@@ -1,0 +1,25 @@
+name: Github to gitee
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docs-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Mirror the Github organization repos to Gitee.
+        uses: Yikun/hub-mirror-action@master
+        with:
+          src: github/yzqdev
+          dst: gitee/yzqdev
+          dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          static_list: "cs-guide"
