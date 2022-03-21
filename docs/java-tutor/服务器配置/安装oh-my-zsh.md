@@ -1,3 +1,5 @@
+# 安装 oh-my-zsh
+
 ```shell
 sudo apt-get install -y zsh
 

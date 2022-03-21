@@ -74,7 +74,8 @@ export default defineThemeConfig({
 
   plugins: {
     blog: {
-      autoExcerpt: true,
+      //生成摘录
+      // autoExcerpt: true,
     },
 
     // 你也可以使用 Waline
@@ -86,11 +87,11 @@ export default defineThemeConfig({
       categoryId: "DIC_kwDOFs7gBM4COKgn",
     },
 
-    mdEnhance: {
-      enableAll: true,
-      presentation: {
-        plugins: ["highlight", "math", "search", "notes", "zoom"],
-      },
-    },
+    // mdEnhance: {
+    //   enableAll: true,
+    //   presentation: {
+    //     plugins: ["highlight", "math", "search", "notes", "zoom"],
+    //   },
+    // },
   },
 });
