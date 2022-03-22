@@ -1,3 +1,4 @@
+//getFiles.js
 var fs = require("fs");
 var path = require("path");
 var exec = require("child_process").exec;
@@ -13,7 +14,7 @@ function readFileList(dir, filesList = []) {
       //   console.log("not markdown", item.toString());
     } else {
       let data = fs.readFileSync(fullPath);
-      let pattern = /# [\u4E00-\u9FA5A-Za-z0-9_]{0,20}/;
+      let pattern = /# [\S]{0,20}/;
       if (pattern.test(data.toString())) {
         dirPath.files.push({
           content: data.toString().match(pattern)[0].slice(2),

@@ -1,17 +1,3 @@
----
-title: JavaScript 实用技巧和写法建议
-category: '编程, 前端'
-tag:
-  - 前端
-  - js
-translate_title: javascript-practical-skills-and-suggestions
-date: 2017-05-14 09:17:00
-description:
----
-
-# 前端
-
-标签： 干货
 
 # JavaScript 实用技巧和写法建议
 

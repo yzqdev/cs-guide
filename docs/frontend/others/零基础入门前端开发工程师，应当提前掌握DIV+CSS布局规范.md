@@ -1,23 +1,5 @@
----
-title: 生活
-category:
-  - 编程
-tag:
-  - 前端
-  - 编程
-  - 前端
-  - html
-  - css
-translate_title: life
-date: 2017-12-01 19:17:00
-description:
----
-
-### 编程
 
 # 零基础入门前端开发工程师，应当提前掌握 DIV+CSS 布局规范
-
-
 
 **样式命名规范**
 
@@ -43,13 +25,14 @@ id 选择器常用命名规范
 
 5.自定义选择器名称建议都用小写、尽量使用英文单词，少用拼音，名称中建议少用"-"或者"\_",尽量少用英文缩写。
 
-/_ 全局样式部分 _/
+/_全局样式部分_/
+
 ```css
 * {
-	padding: 0;
-	margin: 0;
-	font-size: 12px;
-	font-family: "宋体";
+ padding: 0;
+ margin: 0;
+ font-size: 12px;
+ font-family: "宋体";
 }
 
 ul,
@@ -65,29 +48,30 @@ h5,
 h6,
 form,
 p {
-	padding: 0;
-	margin: 0;
+ padding: 0;
+ margin: 0;
 }
 
 ul {
-	list-style: none;
+ list-style: none;
 }
 
 img {
-	border: 0px;
+ border: 0px;
 }
 
 a {
-	text-decoration: none;
+ text-decoration: none;
 }
 
 .clearfloat {
-	clear: both;
-	height: 0px;
-	font-size: 1px;
-	line-height: 0px;
+ clear: both;
+ height: 0px;
+ font-size: 1px;
+ line-height: 0px;
 }
 ```
+
 html 文档书写规范
 
 1.html 标签代码书写应遵循 xhtml 规范：
@@ -120,15 +104,15 @@ d.标签属性需要用引号，且不能简写，如:
 
 ```html
 <div id="main_nav">
-		<ul>
-			<li>
-				<a href="#">首 页</a>
-			</li>
-			<li>
-				<a href="#">企业招聘</a>
-			</li>
-		</ul>
-	</div>
+  <ul>
+   <li>
+    <a href="#">首 页</a>
+   </li>
+   <li>
+    <a href="#">企业招聘</a>
+   </li>
+  </ul>
+ </div>
 ```
 
 4.Img 标签需加上"alt"属性

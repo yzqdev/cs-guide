@@ -1,16 +1,3 @@
----
-title: 跨域问题解决
-category:
-  - 编程
-  - 前端
-  - 跨域
-tag:
-  - 编程
-description: 跨域问题1
-translate_title: crossdomain-problem-solving
-date: 2017-09-11 19:17:00
----
-
 
 # 前端跨域请求api的几种常用解决方案
 
