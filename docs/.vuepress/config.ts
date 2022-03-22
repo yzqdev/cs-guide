@@ -14,6 +14,14 @@ export default defineHopeConfig({
         href: "//at.alicdn.com/t/font_2410206_mfj6e1vbwo.css",
       },
     ],
+    [
+      "link",
+      //我的iconfont库
+      {
+        rel: "stylesheet",
+        href: "//at.alicdn.com/t/font_3267094_j92iwdcfcxp.css",
+      },
+    ],
   ],
 
   locales: {

@@ -8,6 +8,7 @@ export default defineSidebarConfig({
   "/java-tutor/": "structure",
   "/linux-tutor/": "structure",
   "/python-tutor/": "structure",
+  "/csharp-tutor/": "structure",
   "/windows-tutor/": "structure",
   // fallback
   // "/": ["" /* / */, "contact" /* /contact.html */, "about" /* /about.html */],

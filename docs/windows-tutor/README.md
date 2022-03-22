@@ -52,7 +52,7 @@
 
 ## golang教程
 
-- [golang 开源项目](./golang教程/golang 开源项目.md)
+- [golang-opensource](./golang教程/golang-opensource.md)
 - [golang技巧](./golang教程/golang技巧.md)
 - [golang配置](./golang教程/golang配置.md)
 - [go语言依赖管理](./golang教程/go语言依赖管理.md)
