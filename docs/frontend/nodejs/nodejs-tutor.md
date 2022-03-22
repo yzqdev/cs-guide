@@ -3,11 +3,11 @@
 ## 遍历文件夹里面的markdown
 
 ```js
-//getFiles.js
-//getFiles.js
-var fs = require("fs");
-var path = require("path");
-var exec = require("child_process").exec;
+//getFiles.mjs
+ 
+import fs from "fs";
+import path from "path";
+
 function readFileList(dir, filesList = []) {
   const files = fs.readdirSync(dir);
   let dirPath = { name: path.resolve().split("\\").pop(), files: [] };
@@ -156,5 +156,45 @@ try {
 - [README](./README.md)
 - [关于dao,dto,vo,pojo](./关于dao,dto,vo,pojo.md)
 - [安装Java](./安装Java.md)
+
+```
+
+## 获取文件夹所有的md文件
+
+```js
+//getFilename.mjs
+import fs from "fs";
+import path from "path";
+function readFileList(dir, filesList = []) {
+  const files = fs.readdirSync(dir);
+  let dirPath = { name: path.resolve().split("\\").pop(), files: [] };
+  files.forEach((item, index) => {
+    var fullPath = path.join(dir, item);
+    const stat = fs.statSync(fullPath);
+    // console.log(path.extname(item));
+    // console.log(fullPath);
+    if (stat.isDirectory() || path.extname(item).toLowerCase() != ".md") {
+      //   console.log("not markdown", item.toString());
+    } else {
+      filesList.push(fullPath.replace("\\", "/"));
+    }
+  });
+  // filesList.push(dirPath);
+  return filesList;
+}
+var filesList = [];
+readFileList("./", filesList);
+console.log(filesList);
+fs.writeFile(
+  "filelist.txt",
+  filesList.join(`\n`),
+  { encoding: "utf-8" },
+  (err, data) => {
+    if (err) {
+    } else {
+      console.log("success");
+    }
+  }
+);
 
 ```
