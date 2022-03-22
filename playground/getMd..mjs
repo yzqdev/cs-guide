@@ -1,7 +1,7 @@
 //getFiles.js
-var fs = require("fs");
-var path = require("path");
-var exec = require("child_process").exec;
+import fs from "fs";
+import path from "path";
+
 function readFileList(dir, filesList = []) {
   const files = fs.readdirSync(dir);
   let dirPath = { name: path.resolve().split("\\").pop(), files: [] };
