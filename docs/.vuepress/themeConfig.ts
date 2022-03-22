@@ -12,7 +12,7 @@ export default defineThemeConfig({
 
   iconPrefix: "iconfont icon-",
 
-  logo: "/logo.svg",
+  logo: "/ayaka.jpg",
 
   repo: "https://github.com/yzqdev/cs-guide",
 
@@ -24,7 +24,7 @@ export default defineThemeConfig({
   // sidebar
   sidebar: sidebar,
 
-  footer: "默认页脚",
+  footer: `powered by <a href='https://vuepress-theme-hope.github.io/v2/'>vuepress-theme-home</a>`,
 
   displayFooter: true,
 
@@ -73,10 +73,7 @@ export default defineThemeConfig({
   // },
 
   plugins: {
-    blog: {
-      //生成摘录
-      // autoExcerpt: true,
-    },
+    blog: false,
 
     // 你也可以使用 Waline
     comment: {
@@ -87,11 +84,11 @@ export default defineThemeConfig({
       categoryId: "DIC_kwDOFs7gBM4COKgn",
     },
 
-    // mdEnhance: {
-    //   enableAll: true,
-    //   presentation: {
-    //     plugins: ["highlight", "math", "search", "notes", "zoom"],
-    //   },
-    // },
+    mdEnhance: {
+      enableAll: true,
+      presentation: {
+        plugins: ["highlight", "math", "search", "notes", "zoom"],
+      },
+    },
   },
 });

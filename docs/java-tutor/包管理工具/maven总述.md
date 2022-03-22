@@ -1,4 +1,4 @@
-# 1、setting.xml
+# maven总述
 
 maven的配置文件settings.xml存在于两个地方：
 
