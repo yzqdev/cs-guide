@@ -16,7 +16,7 @@
 
 ### 2-1去除字符串空格
 
-```
+```js
 //去除空格  type 1-所有空格  2-前后空格  3-前空格 4-后空格
 //ecDo.trim('  1235asd',1)
 //result：1235asd
@@ -40,7 +40,7 @@ trim: function (str, type) {
 
 ### 2-2字母大小写切换
 
-```
+```js
 /*type
  1:首字母大写
  2：首页母小写
@@ -89,7 +89,7 @@ changeCase: function (str, type) {
 
 ### 2-3字符串循环复制
 
-```
+```js
 //repeatStr(str->字符串, count->次数)
 //ecDo.repeatStr('123',3)
 //"result：123123123"
@@ -105,7 +105,7 @@ repeatStr: function (str, count) {
 
 ### 2-4字符串替换
 
-```
+```js
 //ecDo.replaceAll('这里是上海，中国第三大城市，广东省省会，简称穗，','上海','广州')
 //result："这里是广州，中国第三大城市，广东省省会，简称穗，"
 replaceAll: function (str, AFindText, ARepText) {
@@ -969,7 +969,7 @@ randomNumber: function (n1, n2) {
 
 ### 5-6随进产生颜色
 
-```
+```js
 randomColor: function () {
     //randomNumber是下面定义的函数
     //写法1
@@ -988,11 +988,9 @@ randomColor: function () {
 
 ```
 
-![clipboard.png](data:image/svg+xml;utf8,<?xml version="1.0"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="549" height="216"></svg>)
-
 ### 5-7Date日期时间部分
 
-```
+```js
 //到某一个时间的倒计时
 //ecDo.getEndTime('2017/7/22 16:0:0')
 //result："剩余时间6天 2小时 28 分钟20 秒"

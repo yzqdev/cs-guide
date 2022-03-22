@@ -1,20 +1,3 @@
----
-title: js执行机制
-category:
-  - 编程
-  - 前端
-tag:
-  - 前端
-  - js
-  - html
-  - 技巧
-translate_title: js-execution-mechanism
-date: 2017-06-08 09:17:00
-description:
----
-
-# 前端
-
 
 # 这一次，彻底弄懂 JavaScript 执行机制
 

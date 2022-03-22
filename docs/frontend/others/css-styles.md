@@ -1,15 +1,3 @@
----
-title: 偏门却又实用的 CSS 样式
-category: '前端, css'
-tag:
-  - 前端
-  - css
-  - 设计
-translate_title: partial-but-practical-css-style
-date: 2017-08-16 19:17:00
-description:
----
-
 
 # 偏门却又实用的 CSS 样式
 
@@ -61,7 +49,8 @@ Webkit-Playsinline
 
 手机video 都可以在页面中播放，而不是全屏播放了。
 tml
-<video id="myvideo" src="test.mp4" webkit-playsinline="true"></video>
+`<video id="myvideo" src="test.mp4" webkit-playsinline="true"></video>`
+
 ```
 
 Position: Absolute， 让Margin有效的
@@ -107,7 +96,7 @@ input, button, textarea, select {*font-size: 100%;-webkit-appearance:none;}
 
 CSS开启硬件加速
 
-http://www.cnblogs.com/rubylouvre/p/3471490.html
+<http://www.cnblogs.com/rubylouvre/p/3471490.html>
 
 ```
 -webkit-transform: translateZ(0);
@@ -153,7 +142,7 @@ Box-Sizing 让元素的宽度、高度包含Border和Padding
 
 Calc() Function, 计算属性值
 
-https://www.w3schools.com/cssref/func_calc.asp
+<https://www.w3schools.com/cssref/func_calc.asp>
 
 ```
 div {width: calc(100% - 100px);}
