@@ -17,3 +17,5 @@ yapi接口管理    [https://hellosean1025.github.io/yapi/](https://hellosean102
 | runkit-home            | [https://runkit.com/home](https://runkit.com/home) |
 | runkit                 | [https://npm.runkit.com/](https://npm.runkit.com/) |
 | stackblitz(类似vscode) | [https://stackblitz.com/](https://stackblitz.com/) |
+| <https://replit.com/>  | [https://replit.com/](https://replit.com/)         |
+| <https://plnkr.co/>    | [https://plnkr.co/](https://plnkr.co/)             |

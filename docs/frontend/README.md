@@ -1,3 +1,6 @@
+---
+index: 1
+---
 # frontend
 
 ## chrome-plugins
