@@ -1,6 +1,6 @@
-# ui库列表
+# 库列表
 
-vue 的ui库
+## vue 的ui库
 
 - elementui (vue2)
 - element-plus(vue3)
@@ -10,7 +10,7 @@ vue 的ui库
 - <https://vue.geist-ui.dev/zh-cn/introduction>
 - keenui  <https://josephuspaye.github.io/Keen-UI/#/ui-alert>
 
-react的ui库
+## react的ui库
 
 - antdesign
 - <https://material-ui.com/>
@@ -58,3 +58,14 @@ checkRow(checked,row) {
     console.log(`row:${JSON.stringify(row)}`)
   },
 ```
+
+## 一些好玩的库
+
+[https://www.npmjs.com/package/console-feed](https://www.npmjs.com/package/console-feed)
+
+### 播放器
+
+- [https://github.com/zhw2590582/ArtPlayer](https://github.com/zhw2590582/ArtPlayer)
+- [https://github.com/DIYgod/DPlayer](https://github.com/DIYgod/DPlayer)
+- [https://github.com/video-dev/hls.js](https://github.com/video-dev/hls.js)
+- [https://github.com/sampotts/plyr](https://github.com/sampotts/plyr)
