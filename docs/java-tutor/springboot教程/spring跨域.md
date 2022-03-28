@@ -2,7 +2,7 @@
 
 ## 官网使用addCorsMapping
 
-:::caution
+:::warning
 注意:addCorsMapping 会被interceptor覆盖..
 :::
 [链接](https://docs.spring.io/spring-framework/docs/5.3.9/reference/html/web.html#mvc-cors-global)​
@@ -30,7 +30,7 @@ public class MyConfiguration {
 
 ## 也可以使用拦截器:代码如下
 
-:::caution
+:::warning
 这里不能使用allowedOriginsPattern("*")配置多个
 但是可以使用`response.setHeader("Access-Control-Allow-Origin", request.getHeader("origin") );`设置动态请求头实现跨域
 :::
@@ -100,7 +100,7 @@ public class WebMvcConf implements WebMvcConfigurer {
 }
 ```
 
-:::caution
+:::warning
 注意:使用springsecurity时会出现跨域问题!在websecurityconfig上面加上.cors()方法!!!!!!
 :::
 ​
@@ -108,6 +108,8 @@ public class WebMvcConf implements WebMvcConfigurer {
 [https://blog.csdn.net/weixin_45059597/article/details/107490252](https://blog.csdn.net/weixin_45059597/article/details/107490252)
 
 ## 使用过滤器
+
+### 第一种
 
 ```java
 package com.site.blog.filters;
@@ -137,6 +139,32 @@ public class CorsConfig {
         source.registerCorsConfiguration("/**", buildConfig());
         return new CorsFilter(source);
     }
+}
+```
+
+### 第二种
+
+```java
+@WebFilter(value = "/*")
+@Component
+public class CorsFilter extends GenericFilterBean {
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+
+        httpServletResponse.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, httpServletRequest.getHeader(HttpHeaders.ORIGIN));
+        httpServletResponse.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "Origin, X-Requested-With, Content-Type, Accept");
+        httpServletResponse.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, PUT, DELETE, OPTIONS");
+        httpServletResponse.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
+        httpServletResponse.setHeader(HttpHeaders.ACCESS_CONTROL_MAX_AGE, "3600");
+
+        if (!CorsUtils.isPreFlightRequest(httpServletRequest)) {
+            chain.doFilter(httpServletRequest, httpServletResponse);
+        }
+    }
+
 }
 ```
 
