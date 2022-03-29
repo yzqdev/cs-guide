@@ -19,8 +19,7 @@
 - [README](./爬虫/README.md)
 - [爬虫教程](./爬虫/爬虫教程.md)
 
-## python-tutor
+## python网站
 
 - [python网站](./python网站.md)
-- [README](./README.md)
 - [selenium教程](./selenium教程.md)
