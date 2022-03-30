@@ -52,6 +52,22 @@ features:
     details: 一个简单的windows教程
     icon: windows
     link: /windows-tutor/README.md
+  - title: 别人的linux教程
+    details: 别人的linux教程
+    icon: computer
+    link: https://yzqbooks.github.io/Linux-Tutorial/
+  - title: git教程
+    details: 一个简单的git教程
+    icon: git
+    link: https://yzqdev.github.io/git-tutor  
+  - title: nodejs教程
+    details: 一个简单的node教程
+    icon: nodeJS
+    link: https://yzqdev.github.io/node-tutor  
+  - title: 安卓教程
+    details: 一个简单的安卓教程
+    icon: android
+    link: https://yzqdev.github.io/android-docs
 footer: MIT Licensed | Copyright © 2022-present yzqdev
 ---
 ## 🛠开始
