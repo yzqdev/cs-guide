@@ -80,7 +80,7 @@ tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN
 
 2.修改my.cnf，注释掉`bind-address 127.0.0.1`属性，修改后如下图所示
 
-![](https:////upload-images.jianshu.io/upload_images/6597489-5e9f258ab9966494.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/477/format/webp#crop=0&crop=0&crop=1&crop=1&id=xjPeI&originHeight=71&originWidth=477&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![bind](https://upload-images.jianshu.io/upload_images/6597489-5e9f258ab9966494.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/477/format/webp#crop=0&crop=0&crop=1&crop=1&id=xjPeI&originHeight=71&originWidth=477&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 注释掉bind-address
 
@@ -92,13 +92,11 @@ tcp        0      0 127.0.0.1:55074         127.0.0.1:3306          TIME_WAIT
 tcp6       0      0 :::3306                 :::*                    LISTEN
 ```
 
-##  
-
 ## 配置阿里云安全组规则
 
 登录阿里云进入控制台，依次访问**网络和安全->安全组->配置规则**，在入方向上开放MySQL监听端口3306即可，如下所示
 
-![](https:////upload-images.jianshu.io/upload_images/6597489-03199ab0f8ad6c89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/943/format/webp#crop=0&crop=0&crop=1&crop=1&id=ggs1O&originHeight=66&originWidth=943&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![](https://upload-images.jianshu.io/upload_images/6597489-03199ab0f8ad6c89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/943/format/webp#crop=0&crop=0&crop=1&crop=1&id=ggs1O&originHeight=66&originWidth=943&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 开放mysql的3306端口
 
