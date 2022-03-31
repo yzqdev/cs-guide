@@ -9,15 +9,15 @@
 
 ## snippets
 
-- [snippets\README](./csharp教程/snippets\README.md)
-- [snippets\winform](./csharp教程/snippets\winform.md)
+- [README](./csharp教程/snippets/README.md)
+- [winform](./csharp教程/snippets/winform.md)
 
 ## 教程
 
-- [教程\README](./csharp教程/教程\README.md)
-- [教程\一些说明](./csharp教程/教程\一些说明.md)
-- [教程\修饰符](./csharp教程/教程\修饰符.md)
-- [教程\委托](./csharp教程/教程\委托.md)
+- [README](./csharp教程/教程\README.md)
+- [一些说明](./csharp教程/教程\一些说明.md)
+- [修饰符](./csharp教程/教程\修饰符.md)
+- [委托](./csharp教程/教程\委托.md)
 
 ## csharp教程
 
@@ -33,23 +33,6 @@
 - [安装包制作工具](./csharp教程/安装包制作工具.md)
 - [打包发布](./csharp教程/打包发布.md)
 
-## github-acion
-
-- [github-acion\github相关](./git教程/github-acion\github相关.md)
-- [github-acion\README](./git教程/github-acion\README.md)
-
-## git教程
-
-- [git-guide](./git教程/git-guide.md)
-- [github无法访问](./git教程/github无法访问.md)
-- [git单仓库添加token](./git教程/git单仓库添加token.md)
-- [git命令行](./git教程/git命令行.md)
-- [git技巧](./git教程/git技巧.md)
-- [git操作](./git教程/git操作.md)
-- [README](./git教程/README.md)
-- [wsl使用github](./git教程/wsl使用github.md)
-- [常用的git仓库](./git教程/常用的git仓库.md)
-
 ## golang教程
 
 - [golang-opensource](./golang教程/golang-opensource.md)
@@ -61,14 +44,14 @@
 
 ## powershell教程
 
-- [Powershell好用的包](./powershell教程/Powershell好用的包.md)
-- [Powershell常用命令](./powershell教程/Powershell常用命令.md)
-- [Powershell添加alias](./powershell教程/Powershell添加alias.md)
-- [Poweshell美化](./powershell教程/Poweshell美化.md)
-- [README](./powershell教程/README.md)
-- [一些powershell脚本](./powershell教程/一些powershell脚本.md)
-- [环境变量](./powershell教程/环境变量.md)
-- [自用ps配置](./powershell教程/自用ps配置.md)
+- [Powershell好用的包](./powershell/Powershell好用的包.md)
+- [Powershell常用命令](./powershell/Powershell常用命令.md)
+- [Powershell添加alias](./powershell/Powershell添加alias.md)
+- [Poweshell美化](./powershell/Poweshell美化.md)
+- [README](./powershell/README.md)
+- [一些powershell脚本](./powershell/一些powershell脚本.md)
+- [环境变量](./powershell/环境变量.md)
+- [自用ps配置](./powershell/自用ps配置.md)
 
 ## vbs教程
 
