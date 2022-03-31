@@ -2,7 +2,7 @@
 
 ## Powershell的库
 
-[https://www.powershellgallery.com/](https://www.powershellgallery.com/)
+[https://www.powershellgallery.com/](https://www.powershellgallery.com/)  
 部分教程  [链接](https://www.computerperformance.co.uk/powershell/)
 
 ## 获取命令的位置

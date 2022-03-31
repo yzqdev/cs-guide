@@ -29,15 +29,13 @@ Mode                LastWriteTime         Length Name
 而在实际工作中，其实我是比较喜欢用`ls`命令只显示文件名。那么在PowerShell中默认的命令需要输入`ls -Name`或`Get-ChildItem -Name`来实现。
 下面来说说一些关于PowerShell中设置命令别名Alias的常用相关命令和方法：
 
-# 相关方法
-
 _以下命令中的大小写不敏感_：
 
 ## 查看别名
 
 - 查看此Session中已经设定的所有别名：`Get-Alias`或`gal`
 
-```
+```text
 PS C:\> Get-Alias
 CommandType     Name
 -----------     ----
@@ -57,13 +55,13 @@ Alias           asnp -> Add-PSSnapin
 使用`Set-Alias`命令创建或更改别名。注意使用该命令设定的别名只在目前的Windows PowerShell session中生效。也就是说在关闭此会话后这个别名将会失效。_如何创建永久的别名？往下看_。
 如为`Get-ChildItem`命令设定别名`list`：
 
-```
+```text
 PS C:\> Set-Alias -Name list -Value get-childitem
 ```
 
 或简单一些：
 
-```
+```text
 PS C:\> Set-Alias list get-childitem
 ```
 

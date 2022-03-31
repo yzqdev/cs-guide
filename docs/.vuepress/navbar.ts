@@ -21,7 +21,7 @@ export default defineNavbarConfig([
         link: "https://yzqdev.github.io/android-docs",
       },
       {
-        text: "别人的linux教程",
+        text: "linux基础教程",
         icon: "computer",
         link: "https://yzqbooks.github.io/Linux-Tutorial/",
       },
