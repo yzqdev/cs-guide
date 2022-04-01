@@ -14,5 +14,5 @@ quill editor
 
 @kangc/v-md-editor(不推荐)
 
-<https://imzbf.github.io/md-editor-v3/>
+[md-editor-v3](https://imzbf.github.io/md-editor-v3/)
 [微软的编辑器](https://microsoft.github.io/monaco-editor/)

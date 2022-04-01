@@ -13,20 +13,19 @@
 - 命令：`webpack --config webpack.prod.js` 指定配置文件名称运行webpack
 - 参数：`--display-error-details` 用于显示webpack打包的错误信息
 
-```
+```json
 /* package.json */
 
 "scripts": {
   "build": "webpack --config webpack.prod.js"
 }
-1 在项目根目录中创建 webpack.prod.js 文件
-2 在 package.json 中, 配置一个 scripts
-3 在 终端中 通过 npm run build 对项目进行打包
+// 1 在项目根目录中创建 webpack.prod.js 文件
+// 2 在 package.json 中, 配置一个 scripts
+// 3 在 终端中 通过 npm run build 对项目进行打包
 ```
 
 ### 打包处理过程
 
-```
 1 删除掉 devServer 相关的配置项
 2 将图片和字体文件输出到指定的文件夹中
 3 自动删除dist目录
@@ -35,14 +34,13 @@
 6 抽取和压缩CSS文件
 7 压缩HTML页面
 8 配合vue的异步组件，实现按需加载功能
-```
 
 ### 处理图片路径
 
 - 注意：如果`limit`小于比图片大，那么图片将被转化为`base64`编码格式
 - [name参数介绍](https://github.com/webpack-contrib/file-loader)
 
-```
+```json
 /* webpack.prod.js */
 // 处理URL路径的loader
 
@@ -68,7 +66,7 @@
 - 安装：`npm i -D clean-webpack-plugin`
 - 作用: 每次打包之前, 删除上一次打包的dist目录
 
-```
+```js
 /* webpack.prod.js */
 const cleanWebpackPlugin = require('clean-webpack-plugin')
 
@@ -84,7 +82,7 @@ plugins: [
   - 例如：main.js、router、vuex中都引入了vue，不分离的话，vue会被打包3次
   - 抽离后, vue文件只会被打包一次, 用到的地方仅仅是引用
 
-```
+```js
 /* webpack.prod.js */
 
 // 1 入口 -- 打包文件的入口
@@ -114,7 +112,7 @@ plugins: [
 
 - 注意：**uglifyjs 无法压缩ES6的代码**
 
-```
+```js
 plugins: [
   // 优化代码
   // https://github.com/webpack-contrib/uglifyjs-webpack-plugin/tree/v0.4.6
@@ -142,7 +140,7 @@ plugins: [
 - [webpack 抽离CSS文档](https://doc.webpack-china.org/plugins/extract-text-webpack-plugin/)
 - [压缩抽离后的CSS](https://www.npmjs.com/package/optimize-css-assets-webpack-plugin)
 
-```
+```js
 压缩和抽离CSS报错的说明：
 Error processing file: css/style.css
 postcss-svgo: Error in parsing SVG: Unquoted attribute value
@@ -195,7 +193,7 @@ plugins: [
 
 - 详细的配置可以参考[html-minifier](https://github.com/kangax/html-minifier#options-quick-reference)
 
-```
+```js
 new htmlWebpackPlugin({
   // 模板页面
   template: path.join(__dirname, './index.html'),
@@ -223,7 +221,7 @@ new htmlWebpackPlugin({
 
 - 1 修改组件的引用方式
 
-```
+```js
 // 方式一: require.ensure()
 const NewsList = r => require.ensure([], () => r(require('../components/news/newslist.vue')), 'news')
 
@@ -234,7 +232,7 @@ const NewsInfo = () => import(/* webpackChunkName: "newsinfo" */ '../components/
 
 - 2 修改 webpack 配置文件的output
 
-```
+```js
 output: {
   // ------添加 chunkFilename, 指定输出js文件的名称------
   chunkFilename: 'js/[name].[chunkhash].js',

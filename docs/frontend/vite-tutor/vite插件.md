@@ -79,9 +79,10 @@ plugins[
 ```
 
 5.vite-plugin-compression 开启gzip、br压缩
+[https://github.com/vbenjs/vite-plugin-compression](https://github.com/vbenjs/vite-plugin-compression)
 
 ```javascript
-npm i -d vite-plugin-compression
+ 
 import compressPlugin from 'vite-plugin-compression'
  plugins[
       compressPlugin({
@@ -89,4 +90,15 @@ import compressPlugin from 'vite-plugin-compression'
         algorithm: 'gzip', //brotliCompress gzip
         deleteOriginFile:true
      })
+
+
+     //vite.config.ts
+build:{
+  terserOptions: {
+        // 生产环境下移除console
+        compress: {
+          drop_console: true,
+          drop_debugger: true
+        }
+      }
 ```
