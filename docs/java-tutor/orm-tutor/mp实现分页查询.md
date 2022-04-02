@@ -1,4 +1,4 @@
-# mybatis教程
+# mybatis实现分页查询
 
 ## 引入依赖
 
@@ -7,13 +7,12 @@
      　　<dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.2.0</version>
+            <version>3.5.0</version>
         </dependency>
         <!-- 引入mysql驱动包 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.27</version>
         </dependency>
         <!-- 引入Druid依赖，阿里巴巴所提供的数据源 -->
         <dependency>
@@ -178,4 +177,124 @@ Controller类贴上了@RestController注解
         userVo.setUserList(page.getRecords());
         return userVo;
     }
+```
+
+## 多条件查询
+
+### mapper层
+
+```java
+@Mapper
+public interface UserMapper extends BaseMapper<User> {
+
+}
+```
+
+### service层
+
+```java
+public interface UserService extends IService<User> {
+
+    IPage<User> findPage(Page<User> pageParam, UserQuery userQuery);
+}
+```
+
+### service实现类
+
+```java
+
+@Service
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+
+    /**
+     * 条件分页查询
+     */
+    @Override
+    public IPage<User> findPage(Page<User> pageParam, UserQuery userQuery) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        /*非空则加入条件*/
+        if (!StringUtils.isEmpty(userQuery.getName())) {
+            queryWrapper.like("name", userQuery.getName());
+        }
+        if (!StringUtils.isEmpty(userQuery.getPhone())){
+            queryWrapper.like("phone", userQuery.getPhone());
+        }
+        if (!StringUtils.isEmpty(userQuery.getStatus())){
+            queryWrapper.eq("status", userQuery.getStatus());
+        }
+        IPage<User> userPage = baseMapper.selectPage(pageParam, queryWrapper);
+        return userPage;
+    }
+}
+```
+
+### controller
+
+```java
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    /**
+     *  分页讲师条件查询
+     */
+    @GetMapping("{page}/{limit}")
+    public IPage<User> findPage(
+                           @PathVariable(value = "page") Long page,
+                           @PathVariable(value = "limit") Long limit,
+                           UserQuery userQuery)
+    {
+        Page<User> pageParam = new Page<User>(page, limit);
+        IPage<User> pageResult=userService.findPage(pageParam, userQuery);
+        return pageResult;
+    }
+
+}
+```
+
+## 多表联查分页
+
+### mapper
+
+```java
+public interface UserMapper extends BaseMapper<User> {
+ 
+  List<UserListModel> selectUserListPage(Pagination page ,@Param("user") UserListBean user);
+   
+}
+```
+
+### xml语句
+
+```xml
+<select id="selectUserListPage" resultType="com.web.member.model.UserListModel">
+  SELECT
+    *
+  FROM
+    ftms_user u
+  LEFT JOIN ftms_user_level l ON u.level_id = l.id
+  WHERE 1=1
+    <if test="user.nickname != null">
+      and u.nickname like "%"#{user.nickname}"%" 
+    </if>
+</select>
+```
+
+### service实现
+
+```java
+@Service
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
+ 
+  @Transactional(readOnly=true)
+  @Override
+  public Page<UserListModel> selectUserListPage(UserListBean user) {
+    Page<UserListModel> page = new Page<>(user.getCurr(), user.getNums());// 当前页，总条数 构造 page 对象
+    return page.setRecords(this.baseMapper.selectUserListPage(page, user));
+  }
+   
+}
 ```
