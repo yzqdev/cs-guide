@@ -1,4 +1,4 @@
-# electron教程
+# electron相关资源
 
 ## electron fiddle 无法下载electron的问题
 
@@ -35,11 +35,11 @@ globalShortcut.register('Shift+CommandOrControl+I', () => {
 
 ## electron网站
 
- [https://www.electronjs.org/](https://www.electronjs.org/)
-[https://github.com/electron/fiddle](https://github.com/electron/fiddle)
-[https://github.com/nklayman/vue-cli-plugin-electron-builder](https://github.com/nklayman/vue-cli-plugin-electron-builder)
-[https://github.com/cawa-93/vite-electron-builder](https://github.com/cawa-93/vite-electron-builder)
-[https://github.com/SimulatedGREG/electron-vue](https://github.com/SimulatedGREG/electron-vue)
+-  [https://www.electronjs.org/](https://www.electronjs.org/)
+- [https://github.com/electron/fiddle](https://github.com/electron/fiddle)
+- [https://github.com/nklayman/vue-cli-plugin-electron-builder](https://github.com/nklayman/vue-cli-plugin-electron-builder)
+- [https://github.com/cawa-93/vite-electron-builder](https://github.com/cawa-93/vite-electron-builder)
+- [https://github.com/SimulatedGREG/electron-vue](https://github.com/SimulatedGREG/electron-vue)
 
 ## 开源项目
 
