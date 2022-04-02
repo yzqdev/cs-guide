@@ -39,7 +39,7 @@ export default defineNavbarConfig([
       {
         text: "linux基础教程",
         icon: "computer",
-        link: "https://yzqbooks.github.io/Linux-Tutorial/",
+        link: "https://yzqbooks.github.io/linux-tutorial/",
       },
 
       {
