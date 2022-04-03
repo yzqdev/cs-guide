@@ -2,7 +2,7 @@
 
 不配置gopath的话,gopath默认为   ~/go   这个文件夹
 
-```powershell
+```shell
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.cn,direct
 
@@ -13,7 +13,7 @@ go env -w GOPATH=d:\golangmod
 windows最后golang的全局配置会被保存在   ~\AppData\Roaming\go  这个位置
 GO环境变量配置：
 
-```bash
+```shell
 $GOROOT=/usr/local/go                        GO安装目录
 $GOPATH=/usr/local/var/www/go          GO工作目录
 $GOBIN=$GOPATH/bin                          GO可执行文件目录
@@ -28,7 +28,7 @@ $PATH=$PATH:$GOBIN:$GOROOT/bin  将GO可执行文件加入PATH中，使GO指令�
 打开网站[https://github.com/cosmtrek/air/releases](https://github.com/cosmtrek/air/releases)
 下载i适合自己运行文件，然后放到 gopath下的bin文件夹(windows和linux默认在用户文件夹下的go文件夹)
 
-```bash
+```shell
 wget -O air https://github.com/cosmtrek/air/releases/download/v1.12.4/air_1.12.4_linux_amd64
 export GOLANGMOD=/opt/go/golangmod
 mv air $GOLANGMOD/bin
@@ -36,13 +36,13 @@ mv air $GOLANGMOD/bin
 
 ## 安装 gf-cli
 
-```bash
+```shell
 wget https://goframe.org/cli/linux_amd64/gf && chmod +x gf && ./gf install
 ```
 
 ## 快速记忆golang日期格式化
 
-```bash
+```shell
 2006-01-02 15:04:05
 ```
 
@@ -56,7 +56,7 @@ wget https://goframe.org/cli/linux_amd64/gf && chmod +x gf && ./gf install
 
 > 自行编译
 
-```bash
+```shell
 go get https://github.com/go-swagger/go-swagger
 # 然后进入您的gopath目录找到go-swagger 目录进入
 # 执行

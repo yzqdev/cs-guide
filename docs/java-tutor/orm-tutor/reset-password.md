@@ -5,7 +5,7 @@
 [https://dev.mysql.com/downloads/](https://dev.mysql.com/downloads/)
 下载mysql8的config文件,然后在ubuntu上安装
 
-```
+```shell
 sudo dpkg -i mysql_.deb
 sudo apt update 
 sudo apt-get install mysql-server
@@ -23,13 +23,13 @@ sudo apt-get install mysql-server
 
 2.切换到 mysql库
 
-```php
+```shell
 use mysql;
 ```
 
 3.查看用户表,可以看到当前host是localhost,只允许本地访问
 
-```ruby
+```shell
 mysql> select host,user from user;
 +-----------+------------------+
 | host      | user             |
@@ -41,25 +41,25 @@ mysql> select host,user from user;
 
 4.更新user用户表
 
-```tsx
+```shell
 mysql> update user set `host` = '%'  where `user` = 'root'  LIMIT 1;
 ```
 
 5.分配所有访问权限,如果已分配过，该步骤可跳过
 
-```bash
+```shell
 mysql> GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'root密码' WITH GRANT OPTION;
 ```
 
 6.强制刷新权限
 
-```undefined
+```shell
 mysql> flush privileges;
 ```
 
 7.再次查看用户表,root用户的host变成%，即允许所有的ip远程访问，如果需要指定具体的ip，就写上具体的ip即可
 
-```ruby
+```shell
 mysql> select host,user from user;
 +-----------+------------------+
 | Host      | User             |
@@ -73,7 +73,7 @@ mysql> select host,user from user;
 
 1.使用命令`netstat -an|grep 3306` 查看端口监听状态如下所示，绑定了127.0.0.1，只允许本地访问，需要修改配置文件：
 
-```ruby
+```shell
 # netstat -an|grep 3306
 tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN
 ```
@@ -86,7 +86,7 @@ tcp        0      0 127.0.0.1:3306          0.0.0.0:*               LISTEN
 
 3.重启mysql服务`service mysql restart`,再次使用命令`netstat -an|grep 3306`查看端口监听状态
 
-```ruby
+```shell
 # netstat -an|grep 3306
 tcp        0      0 127.0.0.1:55074         127.0.0.1:3306          TIME_WAIT  
 tcp6       0      0 :::3306                 :::*                    LISTEN

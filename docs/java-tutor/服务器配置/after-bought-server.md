@@ -22,7 +22,7 @@ chsh -s /bin/zsh
 
 ### 如果这种方式不需要环境变量,但不一定是最新的
 
-```java
+```shell
 sudo apt install openjdk-11-jdk-headless 
 ```
 
@@ -71,4 +71,20 @@ sudo systemctl start nginx
 
 然后输入你的服务器ip出现nginx默认页面即可
 
+```
+
+## 或者安装open-resty
+
+:::tip
+
+OpenResty是一个基于 Nginx 与 Lua 的高性能 Web 平台，其内部集成了大量精良的 Lua 库、第三方模块以及大多数的依赖项。用于方便地搭建能够处理超高并发、扩展性极高的动态 Web 应用、Web 服务和动态网关。
+
+简单地说OpenResty 的目标是让你的Web服务直接跑在 Nginx 服务内部，充分利用 Nginx 的非阻塞 I/O 模型，不仅仅对 HTTP 客户端请求,甚至于对远程后端诸如 MySQL、PostgreSQL、Memcached 以及 Redis 等都进行一致的高性能响应
+:::
+
+```shell
+apt-get install libpcre3-dev \
+    libssl-dev perl make build-essential curl
+
+sudo apt install openresty
 ```

@@ -9,7 +9,7 @@
 - gookit   [http://github.com/gookit/color](http://github.com/gookit/color)
 - 还有其他的    [https://gookit.github.io/docs/zh/all-projects](https://gookit.github.io/docs/zh/all-projects)
 - goframe    [https://goframe.org/display/gf](https://goframe.org/display/gf)
-- air         github.com/cosmtrek/air  
+- air         [https://github.com/cosmtrek/air](https://github.com/cosmtrek/air)  
 - 发送邮件的   [https://github.com/jordan-wright/email](https://github.com/jordan-wright/email)
 - 命令行工具  [https://cobra.dev/](https://cobra.dev/)
 - learnku   [https://learnku.com/articles/47737](https://learnku.com/articles/47737)(查看//indirect出现的原因)

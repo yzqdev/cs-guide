@@ -6,12 +6,18 @@
 ​
 
 在centos下安装dos2unix：
+
+```shell
 yum install -y dos2unix
-​
+
+```
 
 安装完成后，对文件进行转换
+
+```shell
 dos2unix xx.sh
-​
+
+```
 
 ​
 
@@ -61,22 +67,7 @@ nohup java -jar XXX.jar > /dev/null 2>&1 &
 备注：输出之后，可以使用“jobs”查看一下后台运行的任务。
 
 ## 下面是一个bash命令
-
-由于在DOS（windows系统）下，文本文件的换行符为CRLF，而在Linux下换行符为LF，使用git进行代码管理时，git会自动进行CRLF和LF之间的转换，这个我们不用操心。而有时候，我们需要将windows下的文件上传到linux上，例如shell脚本，执行的时候有时会出现奇怪的问题，这时候，就需要安装dos2unix软件。
-​
-
-在centos下安装dos2unix：
-yum install -y dos2unix
-​
-
-安装完成后，对文件进行转换
-dos2unix xx.sh
-​
-
-​
-
-或者把文本在vscode中编辑,再放回linux
-
+ 
 ```bash
 #!/bin/bash
 # 定义变量

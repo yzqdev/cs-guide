@@ -186,7 +186,7 @@ export PATH=$PATH:/home/uusama/mysql/bin
 
 在每个文件中的第一行都加上下面这句代码，并相应的把冒号后的内容修改为当前文件的绝对文件名。
 
-```
+```shell
 export UU_ORDER="$UU_ORDER:~/.bash_profile"
 ```
 

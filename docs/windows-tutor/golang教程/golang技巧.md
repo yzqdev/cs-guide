@@ -62,7 +62,7 @@ orangeg框架  [http://zhucheer.gitee.io/orange_doc/](http://zhucheer.gitee.io/o
 
 ## 音频和音乐
 
-_用于操作音频的库_
+用于操作音频的库_
 
 - [flac](https://github.com/eaburns/flac) - 原生 Go FLAC 解码器
 - [flac](https://github.com/mewkiz/flac) - 原生 Go FLAC 解码器
@@ -82,7 +82,7 @@ _用于操作音频的库_
 
 ## 认证和授权
 
-_用来生成认证授权模板的库_
+用来生成认证授权模板的库_
 
 - [authboss](https://github.com/volatiletech/authboss) - 用于 web 开发的组件化认证授权系统。它尝试尽可能的移除模板代码以及硬编码，这使你每次新建 web 项目的时候，可以做到即插即用、配置并开始开发你的 web 英语，而不必每次都重新创建一个认证授权系统。
 - [casbin](https://github.com/hsluoyz/casbin) - 一个支持接入控制模型（例如:ACL,RBAC,ABAC）的授权库
@@ -110,7 +110,7 @@ _用来生成认证授权模板的库_
 
 ### 标准命令行交互
 
-_用于构建标准或基础命令行应用的库_
+用于构建标准或基础命令行应用的库_
 
 - [argv](https://github.com/cosiner/argv) - 用于分隔命令行字符串并将其作为参数的 Go 语言库，使用 bash 的语法
 - [cli](https://github.com/mkideal/cli) - 功能强大，使用简单的命令行软件包，基于Golang tag
@@ -137,7 +137,7 @@ _用于构建标准或基础命令行应用的库_
 
 ### 高级控制台界面
 
-_用于构建命令行程序以及控制台界面的库_
+用于构建命令行程序以及控制台界面的库_
 
 - [aurora](https://github.com/logrusorgru/aurora) - ANSI 终端颜色，支持 fmt.Printf/Sprintf
 - [chalk](https://github.com/ttacon/chalk) - 符合直觉的用于美化命令行输出的库
