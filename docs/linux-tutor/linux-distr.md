@@ -9,36 +9,36 @@
 ## linuxmint
 
 [https://linuxmint.com/](https://linuxmint.com/)  
-![mint](./res/min.png)
+![mint](https://distrowatch.com/images/ktyxqzobhgijab/mint.png)
 
 ## zorinos
 
 [https://zorin.com/os/](https://zorin.com/os/)  
-![zorin](./res/zorin.png)
+![zorin](https://distrowatch.com/images/ktyxqzobhgijab/zorin.png)
 
 ## deepin
 
-![deepin](./res/deepin.png)
+![deepin](https://distrowatch.com/images/ktyxqzobhgijab/deepin.png)
 
 ### manjarokde
 
 [https://manjaro.org/](https://manjaro.org/)
-![manjaro](./res/manjaro.png)
+![manjaro](https://distrowatch.com/images/ktyxqzobhgijab/manjaro.png)
 
 ### kubuntu
 
 [https://kubuntu.org/](https://kubuntu.org/)  
-![kubuntu](./res/kubuntu.png)
+![kubuntu](https://distrowatch.com/images/ktyxqzobhgijab/kubuntu.png)
 
 ### kali
 
 [http://www.kali.org/](http://www.kali.org/)  
-![kali](./res/kali.png)
+![kali](https://distrowatch.com/images/ktyxqzobhgijab/kali.png)
 
 ### archlinux
 
 [http://www.archlinux.org/](http://www.archlinux.org/)  
-![arch](./res/arch.png)
+![arch](https://distrowatch.com/images/ktyxqzobhgijab/arch.png)
 
 ### parrot
 
@@ -48,19 +48,19 @@
 ### backbox
 
 [http://www.backbox.org/](http://www.backbox.org/)  
-![backbox](./res/backbox.png)
+![backbox](https://distrowatch.com/images/ktyxqzobhgijab/backbox.png)
 
 ### solus
 
 [https://getsol.us/](https://getsol.us/)  
-![solus](./res/solus.png)
+![solus](https://distrowatch.com/images/ktyxqzobhgijab/solus.png)
 
 ### freebsd
 
 [https://www.freebsd.org/](https://www.freebsd.org/)
-![freebsd](./res/freebsd.png)
+![freebsd](https://distrowatch.com/images/ktyxqzobhgijab/freebsd.png)
 
 ### gentoo
 
 [http://www.gentoo.org/](http://www.gentoo.org/)  
-![gentoo](./res/gentoo.png)
+![gentoo](https://distrowatch.com/images/ktyxqzobhgijab/gentoo.png)

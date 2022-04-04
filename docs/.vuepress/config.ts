@@ -1,6 +1,5 @@
 import { defineHopeConfig } from "vuepress-theme-hope";
 import themeConfig from "./themeConfig";
-
 export default defineHopeConfig({
   base: "/cs-guide/",
 
