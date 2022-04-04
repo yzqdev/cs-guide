@@ -65,3 +65,17 @@ PySpider是binux做的一个爬虫架构的开源化实现。主要的功能需�
 
 [官网](https://jsoup.org/)
 一个java爬虫
+
+## colly
+
+一个go语言爬虫
+
+[http://go-colly.org/](http://go-colly.org/)
+
+## goquery
+
+[https://github.com/PuerkitoBio/goquery](https://github.com/PuerkitoBio/goquery)
+
+## gospider
+
+[https://github.com/zhshch2002/gospider](https://github.com/zhshch2002/gospider)
