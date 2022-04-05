@@ -11,9 +11,9 @@ sudo apt-get install nginx
 sudo systemctl start nginx
 ```
 
-注意要把    include conf.d/*.conf; 写在http{}内部
+注意要把   `include conf.d/*.conf;` 写在`http{}`内部
 
-```java
+```shell
 
 #user  nobody;
 worker_processes  1;
@@ -47,7 +47,7 @@ http {
     keepalive_timeout  65;
 
     #gzip  on;
-include conf.d/*.conf;
+    include conf.d/*.conf;
  
     server {
         listen       80;
@@ -137,20 +137,34 @@ include conf.d/*.conf;
 
 config.d/nav.conf
 
-```java
+```shell
 
    server{
     listen    6800;
-    server_name  localhost;
+    server_name   www.yzqdev.top;
       location / {
             root   /opt/navurl/;
             index  index.html index.htm;
         }
     }
    server{
-    listen    6900;
-    server_name  localhost;
-      location /home/main {
+    listen    80;
+    server_name   www.yzqdev.top;
+       client_max_body_size 20m;
+         location / {
+           proxy_pass http://localhost:8090;
+            
+            
+        }
+         
+ 
+
+    }
+
+ server{
+    listen    2800;
+    server_name   www.yzqdev.top;
+      location /home/main/ {
            root   /opt/myblog;
            try_files $uri $uri/ /index.html;
            index  index.html index.htm;
@@ -159,8 +173,72 @@ config.d/nav.conf
             root   /opt/myblog;
             try_files $uri $uri/ /index.html;
             index  index.html index.htm;
-            
-            
+
+
+        }
+    }
+
+
+```
+
+config.d/static.conf
+
+```shell
+ 
+  server{
+    listen    2333;
+    server_name   www.yzqdev.top;
+     index  index.html;
+    location /atools {
+           root   /opt/atools/;
+           try_files $uri $uri/ /index.html;
+          
+ }
+    location / {
+           root   /opt/atools/;
+           try_files $uri $uri/ /index.html;
+          
+ }
+  
+
+}
+server {
+  listen  8080;
+  server_name www.yzqdev.top;
+  location / {
+    proxy_pass http://127.0.0.1:8080;
+     proxy_redirect off;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        root /usr/local/nginx/html;
+        index index.html index.htm;
+  }
+}
+
+```
+
+config.d/zfile.conf
+
+```shell
+  server{
+    listen    9100;
+    server_name   www.yzqdev.top;
+ location /admin {
+           root   /opt/zfile-vue/;
+           try_files $uri $uri/ /index.html;
+           index  index.html index.htm;
+        }
+
+ location /install {
+           root   /opt/zfile-vue/;
+           try_files $uri $uri/ /index.html;
+           index  index.html index.htm;
+        }
+      location / {
+            root   /opt/zfile-vue/;
+            try_files $uri $uri/ /index.html;
+            index  index.html index.htm;
         }
     }
 

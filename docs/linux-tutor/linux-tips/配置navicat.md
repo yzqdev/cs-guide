@@ -1,7 +1,6 @@
 # linux使用navicat
 
 工作环境：服务器CentOS7 64位 或 Deepin 15.8（桌面版）
-**1.安装。**
 ①先老实选择官方试用版安装（不推荐在各个下载平台去下载）
 中文版：[http://www.navicat.com.cn/download/navicat-for-mysql](http://www.navicat.com.cn/download/navicat-for-mysql)
 或英文版：[https://www.navicat.com/en/download/navicat-for-mysql](https://www.navicat.com/en/download/navicat-for-mysql)
@@ -21,7 +20,7 @@
 ⑥安装好wine后，运行navicat，胡天厨对话框，可选择使用或输入注册码注册。不要去找注册码，选“试用”，除非你有可用的注册码。
 ⑦打开navicat窗口界面一般会乱码。关闭navicat，然后双击安装目录下的start_navicat 文件默认用文本编辑器gedit打开，在文本开头大概第8行找到配置项 `export LANG="en_US.UTF-8"`,此编码只识别UTF-8中的英文编码，把他改成`export LANG="zh_CN.UTF-8"`，可识别中文。保存，关闭即可。
 
-### 试用过期处理办法
+## 试用过期处理办法
 
 ```
 navicat试用过期处理办法[deepin亲测可用]
