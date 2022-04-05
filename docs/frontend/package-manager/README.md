@@ -1,12 +1,12 @@
 
-# 包管理
+# package-manager
 
 ## 目录
 
-- [nvm](./nvm.md)
-- [pnpm配置](./pnpm配置.md)
-- [README](./README.md)
-- [yarn-conf](./yarn-conf.md)
-- [常用的npm包](./常用的npm包.md)
-- [注意事项](./注意事项.md)
-- [配置npm代理](./配置npm代理.md)
+- [安装全局包](./faq.md)
+- [常用的包管理](./npm-libs.md)
+- [node使用国内镜像](./npm-proxy.md)
+- [使用nvm](./nvm.md)
+- [pnpm教程](./pnpm.md)
+- [包管理](./README.md)
+- [yarn配置](./yarn-conf.md)

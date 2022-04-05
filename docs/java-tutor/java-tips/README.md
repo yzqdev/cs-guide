@@ -12,6 +12,6 @@
 - [java泛型](./java-generics.md)
 - [java发送邮件](./java-send-email.md)
 - [一些java常用的片段](./java-snip.md)
-- [java方法引用](./java方法引用.md)
+- [java方法引用](./method-reference.md)
 - [java的optional类用法](./optional.md)
 - [java学习教程](./README.md)

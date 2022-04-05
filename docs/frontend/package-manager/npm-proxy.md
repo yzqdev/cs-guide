@@ -1,7 +1,9 @@
-# node使用国内
+# node使用国内镜像
+
 假设已经安装好了npm,则需要更改代理
 `npm i -g mirror-config-china`
 他会在`$home` 目录生成一个.npmrc文件,配置代理
+
 ```bash
 registry=https://registry.npmmirror.com
 disturl=https://npmmirror.com/dist
