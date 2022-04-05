@@ -76,13 +76,13 @@ export default defineThemeConfig({
     blog: false,
 
     // 你也可以使用 Waline
-    comment: {
-      type: "giscus",
-      repo: "yzqdev/blog-issues",
-      repoId: "MDEwOlJlcG9zaXRvcnkzODI2NTY1MTY=",
-      category: "General",
-      categoryId: "DIC_kwDOFs7gBM4COKgn",
-    },
+    // comment: {
+    //   type: "giscus",
+    //   repo: "yzqdev/blog-issues",
+    //   repoId: "MDEwOlJlcG9zaXRvcnkzODI2NTY1MTY=",
+    //   category: "General",
+    //   categoryId: "DIC_kwDOFs7gBM4COKgn",
+    // },
 
     mdEnhance: {
       enableAll: true,

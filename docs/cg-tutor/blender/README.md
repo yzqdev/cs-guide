@@ -1,9 +1,10 @@
 
 # blender
 
-- [blender模型下载](./blender模型下载.md)
-- [mmd注意事项](./mmd注意事项.md)
-- [README](./README.md)
-- [使用mmd](./使用mmd.md)
-- [快捷键](./快捷键.xlsx)
-- [插件](./插件.md)
+## 目录
+
+- [模型下载](./blender-models.md)
+- [使用mmd](./blender-use-mmd.md)
+- [mmd注意事项](./mikumiku-dance.md)
+- [插件推荐](./plugins.md)
+- [blender](./README.md)

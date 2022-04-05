@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import { reactive, h, ref, toRefs, computed } from "vue";
-import { NAvatar, useMessage } from "naive-ui";
+import {
+  NAvatar,
+  NAlert,
+  NButton,
+  NCard,
+  NCheckbox,
+  NCode,
+  NCheckboxGroup,
+  NConfigProvider,
+  NGi,
+  NInput,
+} from "naive-ui";
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
 import go from "highlight.js/lib/languages/go";
@@ -291,8 +302,8 @@ const count = ref(0);
 </script>
 
 <template>
-  <n-config-provider :hljs="hljs" :locale="locale" :date-locale="dateLocale">
-    <n-message-provider>
+  <ClientOnly>
+    <n-config-provider :hljs="hljs" :locale="locale" :date-locale="dateLocale">
       <n-space vertical size="large">
         <n-layout content-style="padding: 24px;">
           <n-layout-header>
@@ -585,8 +596,9 @@ const count = ref(0);
               </div>
             </div>
           </n-modal>
-        </n-layout> </n-space></n-message-provider
-  ></n-config-provider>
+        </n-layout>
+      </n-space> </n-config-provider
+  ></ClientOnly>
 </template>
 
 <style lang="scss">
