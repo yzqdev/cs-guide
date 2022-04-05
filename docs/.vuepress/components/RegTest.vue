@@ -291,7 +291,7 @@ const count = ref(0);
 </script>
 
 <template>
-  <ClientOnly>
+   
     <n-config-provider :hljs="hljs" :locale="locale" :date-locale="dateLocale">
       <n-message-provider>
         <n-space vertical size="large">
@@ -595,7 +595,7 @@ const count = ref(0);
               </div>
             </n-modal>
           </n-layout> </n-space></n-message-provider></n-config-provider
-  ></ClientOnly>
+   
 </template>
 
 <style lang="scss">
