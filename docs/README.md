@@ -52,10 +52,15 @@ features:
     details: 一个简单的windows教程
     icon: windows
     link: /windows-tutor/README.md
-  - title: 别人的linux教程
-    details: 别人的linux教程
+  - title: cs-guide
+    details: 计算机技术教程
     icon: computer
-    link: https://yzqbooks.github.io/Linux-Tutorial/
+    link: https://yzqdev.github.io/cs-guide
+ 
+  - title: linux基础
+    details: linux基础教程
+    icon: linux
+    link: https://yzqbooks.github.io/linux-tutorial/
   - title: git教程
     details: 一个简单的git教程
     icon: git
@@ -68,6 +73,10 @@ features:
     details: 一个简单的安卓教程
     icon: android
     link: https://yzqdev.github.io/android-docs
+  - title: wangdoc教程
+    details: wangdoc教程
+    icon: android
+    link: https://yzqbooks.github.io/wangdoc
 footer: MIT Licensed | Copyright © 2022-present yzqdev
 ---
 ## 🛠开始

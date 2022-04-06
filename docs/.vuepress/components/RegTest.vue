@@ -368,17 +368,17 @@ const count = ref(0);
                       </n-popover>
                       <n-popover placement="bottom" trigger="click">
                         <ul style="padding: 12px; min-width: 350px">
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>.</strong></code> -
                             除换行符以外的所有字符。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>^</strong></code> - 字符串开头。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>$</strong></code> - 字符串结尾。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <strong
                               ><code>\d</code>,<code>\w</code>,<code
                                 >\s</code
@@ -386,7 +386,7 @@ const count = ref(0);
                             >
                             - 匹配数字、字符、空格。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <strong
                               ><code>\D</code>,<code>\W</code>,<code
                                 >\S</code
@@ -394,76 +394,76 @@ const count = ref(0);
                             >
                             - 匹配非数字、非字符、非空格。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>[abc]</strong></code> - 匹配 a、b 或 c
                             中的一个字母。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>[a-z]</strong></code> - 匹配 a 到 z
                             中的一个字母。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>[^abc]</strong></code> - 匹配除了 a、b
                             或 c 中的其他字母。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>aa|bb</strong></code> - 匹配 aa 或
                             bb。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>?</strong></code> - 0 次或 1 次匹配。
                           </li>
 
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>*</strong></code> - 匹配 0 次或多次。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>+</strong></code> - 匹配 1 次或多次。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>{<em>n</em>}</strong></code> - 匹配
                             <em>n</em>次。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code><strong>{<em>n</em>,}</strong></code> - 匹配
                             <em>n</em>次以上。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <code
                               ><strong>{<em>m</em>,<em>n</em>}</strong></code
                             >
                             - 最少 <em>m</em> 次，最多 <em>n</em> 次匹配。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <strong
                               ><code>(</code><em>expr</em><code>)</code></strong
                             >
                             - 捕获 <em>expr</em> 子模式,以
                             <code>\1</code> 使用它。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <strong
                               ><code>(?:</code><em>expr</em
                               ><code>)</code></strong
                             >
                             - 忽略捕获的子模式。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <strong
                               ><code>(?=</code><em>expr</em
                               ><code>)</code></strong
                             >
                             - 正向预查模式 <em>expr</em>。
                           </li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-item">
                             <strong
                               ><code>(?!</code><em>expr</em
                               ><code>)</code></strong
                             >
                             - 负向预查模式 <em>expr</em>。
                           </li>
-                          <li class="dropdown-divider"></li>
-                          <li class="dropdown-item">
+                          <li class="ul-dropdown-divider"></li>
+                          <li class="ul-dropdown-item">
                             <a
                               role="menuitem"
                               target="_blank"
@@ -608,14 +608,14 @@ const count = ref(0);
     font-weight: bold;
   }
 }
-.dropdown-divider {
+.ul-dropdown-divider {
   height: 0;
   margin: 0.5rem 0;
   overflow: hidden;
   border-top: 1px solid #e9ecef;
 }
 
-.dropdown-item {
+.ul-dropdown-item {
   display: block;
   width: 100%;
   padding: 0.25rem 1.5rem;
