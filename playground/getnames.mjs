@@ -1,5 +1,4 @@
-//getFiles.mjs
-
+//getFiles.js
 import fs from "fs";
 import path from "path";
 
@@ -10,23 +9,30 @@ function readFileList(dir, filesList = []) {
     var fullPath = path.join(dir, item);
     const stat = fs.statSync(fullPath);
     // console.log(path.extname(item));
-    // console.log(fullPath);
-    if (stat.isDirectory() || path.extname(item).toLowerCase() != ".md") {
+
+    console.log("完整路径=", fullPath);
+    // console.log(stat);
+    if (stat.isDirectory()) {
       //   console.log("not markdown", item.toString());
+      console.log("是路径");
+
+      readFileList(path.resolve(item));
     } else {
-      let data = fs.readFileSync(fullPath);
-      let pattern = /# [\S]{0,20}/;
-      if (pattern.test(data.toString())) {
-        dirPath.files.push({
-          content: data.toString().match(pattern)[0].slice(2),
-          filename: fullPath.replace("\\", "/"),
-        });
+      if (path.extname(item).toLowerCase() != ".md") {
       } else {
-        console.log(fullPath);
-        dirPath.files.push({
-          content: fullPath.split(".")[0],
-          filename: fullPath.replace("\\", "/"),
-        });
+        let data = fs.readFileSync(fullPath);
+        let pattern = /# [\S]{0,20}/;
+        if (pattern.test(data.toString())) {
+          dirPath.files.push({
+            content: data.toString().match(pattern)[0].slice(2),
+            filename: fullPath.replace("\\", "/"),
+          });
+        } else {
+          dirPath.files.push({
+            content: fullPath.split(".")[0],
+            filename: fullPath.replace("\\", "/"),
+          });
+        }
       }
 
       // filesList.push(fullPath.replace("\\", "/"));
@@ -37,7 +43,8 @@ function readFileList(dir, filesList = []) {
 }
 var filesList = [];
 readFileList("./", filesList);
-console.log(filesList);
+console.log("文件列表");
+console.log(JSON.stringify(filesList));
 let mdContent = "";
 for (let link of filesList) {
   mdContent += `\n# ${link.name}\n\n## 目录\n\n`;
@@ -45,8 +52,9 @@ for (let link of filesList) {
     mdContent += `- [${file.content}](./${file.filename})\n`;
   }
 }
-
+console.log("readme内容---------------------------------------------");
 console.log(mdContent);
+console.log("readme内容---------------------------------------------");
 let fileName = "README.md";
 try {
   const data = fs.writeFileSync(fileName, mdContent);

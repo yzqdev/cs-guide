@@ -11,9 +11,7 @@ date: 2017-05-08 09:17:00
 description:
 ---
 
- 大前端工具集 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
-
-
+ 大前端工具集 [Awesome](https://github.com/sindresorhus/awesome)
 
 这个项目的定位是 **大前端程序猿的百宝箱**。主要针对 前端方向和 Node 方向；主要内容是国内外优秀的库、工具、套路、设计 / 交互或关注的前端组织 / 博客等等，反正用
 **瑞士军刀** 来总结这篇文章再合适不过了。
@@ -21,21 +19,13 @@ description:
 对于列在这里的几乎所有项目，我都有去实践与了解，所以我会尽量给出中肯的建议和理解，也希望大家能多关注我的评语 :)
 <!--more-->
 
-<h2 id="catalog">目录</h2>
-
-* [前端](#%E5%89%8D%E7%AB%AF)
-* [大前端工具集 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)](#%E5%A4%A7%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7%E9%9B%86-awesomehttpscdnrawgitcomsindresorhusawesomed7305f38d29fed78fa85652e3a63e154dd8e8829mediabadgesvghttpsgithubcomsindresorhusawesome)
-  * [正文](#%E6%AD%A3%E6%96%87) -
+* [正文](#%E6%AD%A3%E6%96%87) -
     [这里介绍些有特色且前端有必要知道的包](#%E8%BF%99%E9%87%8C%E4%BB%8B%E7%BB%8D%E4%BA%9B%E6%9C%89%E7%89%B9%E8%89%B2%E4%B8%94%E5%89%8D%E7%AB%AF%E6%9C%89%E5%BF%85%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E5%8C%85) -
-    [背景](#%E8%83%8C%E6%99%AF) -
-    [说说目标](#%E8%AF%B4%E8%AF%B4%E7%9B%AE%E6%A0%87) -
-    [您可以通过以下方式联系到我：](#%E6%82%A8%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E4%BB%A5%E4%B8%8B%E6%96%B9%E5%BC%8F%E8%81%94%E7%B3%BB%E5%88%B0%E6%88%91%EF%BC%9A)
-  * [License](#license)
+* [License](#license)
 
 ## 正文
 
-<h3 id="blogs">前端组织/前端博客</h3>
-
+### 前端组织/前端博客
 
 > 虽混过外企俩家，但劳资英文这项的技能点还是灰色的 ...so，俺关注的站点主要以中文为主
 
@@ -58,7 +48,7 @@ description:
 * [粉丝日志 for 张丹](http://blog.fens.me/) - 大爱作者写的 `Node` 系列
 * [张鑫旭](http://www.zhangxinxu.com/wordpress/) - 成名多年的、高产的前端大湿，`CSS`猛人
 
-<h3 id="blog_build">博客搭建</h3>
+### 博客搭建
 
 * [Hexo](https://hexo.io/zh-cn/) - 快速、简洁且高效的博客框架，照着文档分分钟就可以在本地跑起来。`Github` 地址 :[Hexo](https://github.com/hexojs/hexo)
 * [Jekyll](http://jekyll.bootcss.com/) - 将纯文本转化为静态网站和博客。由于环境依赖的问题，所以安装起来可能稍费劲那么一点。`Github` 地址：[Jekyll](https://github.com/jekyll/jekyll)
@@ -71,7 +61,7 @@ description:
 
 再推荐三款视觉效果极佳的 `Hexo` 主题，且在 `Github` 上的 `star` 都很不错：
 
-* [NexT](https://github.com/iissnan/hexo-theme-next)
+* [NexT](https://github.com/next-theme/hexo-theme-next)
 * [Yilia](https://github.com/litten/hexo-theme-yilia)
 * [Tranquilpeak](https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak)
 
@@ -82,7 +72,7 @@ description:
   [fefork](http://www.fefork.com/) 差点选这个主题 :)
 * [beautiful](https://github.com/daattali/beautiful-jekyll#readme)
 
-<h3 id="html">HTML</h3>
+### HTML
 
 纯 `HTML` 相关其实没有好玩的项目，所以这儿展示的内容主要都是一些模板，而且以下列出来的都是免费的，方便拿取搭架后台或者博客
 
@@ -94,7 +84,7 @@ description:
 * [material-design-lite](https://github.com/google/material-design-lite) -
   `Star` 数超过 2W 的开源模板项目，包含了多套简洁的 `templates`，可以用于博客、后台或者企业首页。
 
-<h3 id="css">CSS</h3>
+### CSS
 
 * [MetroUI](http://metroui.org.ua/) - 好看好用，重点是样式特别、个性
 * [Font-Awesome](http://fontawesome.io/) - 图标字体库。相类似的库有不少，大厂都喜欢造轮子嘛 :)
@@ -116,7 +106,7 @@ description:
   变得美妙
 * [cssmatic](http://www.cssmatic.com) - 一个帮忙调试 CSS 效果的工具
 
-<h3 id="javascript">浏览端 JS</h3>
+### 浏览端 JS
 
 * [requirejs](https://github.com/requirejs/requirejs) - JS 模块化是构建复杂项目的第一步 中文学习文档奉上：[RequireJS 中文网](http://www.requirejs.cn/)
 * [three.js](https://github.com/mrdoob/three.js) - JavaScript 3D 库。超多的
@@ -161,11 +151,11 @@ description:
 
 > **_`Swiper/PhotoSwipe/fullPage` 有这仨库，微信里常见的 H5 页完全不是问题哒_**
 
-<h3 id="react">React & RN</h3>
+### React & RN
 
 * [awesome-react-native](https://github.com/jondot/awesome-react-native) - 不解释
 
-<h3 id="project_build">Project Build</h3>
+### Project Build
 
 * [pm2](https://www.npmjs.com/package/pm2) - 是一个带有负载均衡功能的 Node 应用的进程管理器； 是 [Forever](https://www.npmjs.com/package/forever) 的进阶库，想了解的可以看这篇文章[《拥抱 PM2》](http://se77en.cc/2013/06/27/goodbye-node-forever-hello-pm2-translation/)
 * [Webpack](http://webpack.github.io/) - 项目构建工具，由于过于复杂和太强大，所以劳资还没去深入研究。推荐篇教程：[webpack 教程资源收集](https://github.com/naraku666/webpack-tutorial-collection)
@@ -189,7 +179,7 @@ description:
 
 > Webpack 用起来吼吼：[webpack-howto](https://github.com/petehunt/webpack-howto)
 
-<h3 id="node_package">Node Package</h3>
+### Node Package
 
 > 作为一名大前端甚至是多端，`Node` 绝逼是必备的一块
 
@@ -249,13 +239,13 @@ description:
 
 > 以上库俺都有使用过，甚至有不少都是项目开发中、各种特定场景下必用的，有任何使用问题欢迎沟通哈 :)
 
-<h3 id="node_project">Node Project</h3>
+### Node Project
 
 _暂无_
 
-<h2 id="read">精选阅读</h2>
+## 精选阅读
 
-<h3 id="fedev">前端技术</h3>
+### 前端技术
 
 * [2015D2 前端论坛](http://www.imooc.com/learn/590) - Node 方向非常值得看，有干货，相信东哥推荐哈
 * [前端开发规范手册](http://zhibimo.com/read/Ashu/front-end-style-guide/index.html) -
@@ -275,7 +265,7 @@ _暂无_
 * [移动前端入门](http://gold.xitu.io/entry/56c29abfa34131005b8cb1f3) - 入门价值高，移动方向常见问题的较好总结
 * [GulpBook](https://github.com/nimojs/gulp-book) - Gulp 是基于 Node 实现 Web 前端自动化开发的工具
 
-<h3 id="node_read">Node 学习资料</h3>
+### Node 学习资料
 
 * [Node.js 中文资料导航](https://github.com/youyudehexie/node123) - Node 的中文资料导航，`start1300+`
 * [从零开始 NodeJS 系列文章](http://blog.fens.me/series-nodejs/) - 基本上每一篇都看过，强烈推荐
@@ -287,7 +277,7 @@ _暂无_
 * [stream-handbook](https://github.com/jabez128/stream-handbook) - 如果学习
   NodeJS，那么流一定是需要掌握的概念
 
-<h3 id="interview">前端面试</h3>
+### 前端面试
 
 * [笔试面试知识整理](https://github.com/HIT-Alibaba/interview) - 打开其 Gitbook
   上的地址我都惊呆了。虽然有部分内容待完善，但是光浏览目录都是享受。
@@ -300,7 +290,7 @@ _暂无_
 * [前端面经](https://github.com/paddingme/Front-end-Web-Development-Interview-Question) -
   主要内容是些前端面试笔试题和面试套路，值得阅读
 
-<h3 id="otherdev">其他技术</h3>
+### 其他技术
 
 * [微信小程序开发资源汇总](https://github.com/justjavac/awesome-wechat-weapp) -
   天津第一程出品。微信小程序开发资源汇总。
@@ -314,7 +304,7 @@ _暂无_
 
 <h2 id="tools">工具/软件</h2>
 
-<h3 id="web">Web</h3>
+### Web
 
 * [百度脑图](http://naotu.baidu.com) - 非常方便的思维导图工具。功能强、样式佳、无广告，算百度出的良心产品之一。除了 Evernote，脑图是我非常依赖的记录工具
 * [CanIuse](http://caniuse.com/) - **前端必备**；查看浏览器对各种新特性的兼容情况
@@ -336,7 +326,7 @@ _暂无_
 * [AdminLTE](https://github.com/almasaeed2010/AdminLTE/) - 又是一个 `Bootstrap`
   的免费管理后台
 
-<h3 id="app">APP</h3>
+### APP
 
 > 以下列表中的 APP 都是不区分系统平台的
 
@@ -348,7 +338,7 @@ _暂无_
 * [Monkey](https://github.com/coderyi/Monkey) - Monkey 是 iPhone 上一个 GitHub
   第三方客户端。 展示 GitHub 上的开发者的排名，以及仓库的排名
 
-<h3 id="mac_soft">Mac 软件篇</h3>
+### Mac 软件篇
 
 > 对于美好事务的追求无论何时都不算晚。
 
@@ -393,7 +383,7 @@ Mac 下的软件那么多，又是免费又是付费，应该怎么选呢？我�
 以上列出来的都是偶觉得比较有意思、有特点的软件。当然，类似 `Docker`、`Polarr( 泼 辣修图 )` 等这类都太小众；`有道翻译`、`Evernote`、`Foxmail` 等这类又太大众；然后有些软件买了觉得有点 “ 亏 ”，比如刚出手买入的 `Final Cut Pro`，其实机器自带的
 `iMovie` 就挺好了（完美诠释《Final 从入手到放弃》）。所以，这几类就不一一往这列举啦 ~
 
-<h3 id="linux">Linux</h3>
+### Linux
 
 > 作为一名程序员兼工具控，我期待自己无比高效
 
@@ -420,7 +410,7 @@ Mac 下的软件那么多，又是免费又是付费，应该怎么选呢？我�
 * [Homebrew](http://brew.sh/) - 有了他 `OS X` 程序猿能更好的专注代码层面。最近在看《七周七语言》，里面出现各种语言环境，用 `brew` 来安装、管理各种解释器和编译器，省心省力！
 * [Xcode](https://developer.apple.com/xcode/) - 因为玩 `Swift` 所以早早就下载了，后来才知道原来 `Mac` 下如果不安装 `Xcode`，部分常用的指令都不支持，囧
 
-<h3 id="BrowserPlugins">Chrome 浏览器插件</h3>
+### Chrome 浏览器插件
 
 > `Chrome` 应用商店必定是需要翻墙的哈。
 
@@ -488,7 +478,7 @@ Mac 下的软件那么多，又是免费又是付费，应该怎么选呢？我�
 1. 翻墙代理的插件偶没使用，偶手机和电脑的翻墙都是配的 `Surge` 无脑搞定，不过翻墙代理插件推荐[Proxy SwitchySharp](https://chrome.google.com/webstore/detail/proxy-switchysharp/dpplabbmogkhghncfbfdeeokoefdjegm)，熊掌公司里大多用的都是它
 2. 日常开发相关的插件就以上这些，还有几款如知乎的插件、购物插件等这类与开发效率不沾边的，俺就不这上头列了哈
 
-<h3 id="git">Git</h3>
+### Git
 
 * [Git 教程 - 廖雪峰](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000) -
   俺有看过不少 Git 的文章，确实这个系列是最通俗易懂的
@@ -500,24 +490,24 @@ Mac 下的软件那么多，又是免费又是付费，应该怎么选呢？我�
 * [GitHub 漫游指南](https://github.com/phodal/github-roam) - 一篇还算不错的 Git
   学习总结，就是乱了点 ... 我理解作者**_漫游_**的意思是漫无目的想到哪写到哪 ~ 看到作者为鸟达成 Git 连击的成就，也是蛮拼的 :)
 
-<h3 id="servers">服务端</h3>
+### 服务端
 
 如 `Ruby、Python 、 Perl` 等相似的服务端语言的学习资源。
 
 _暂无_
 
-<h3 id="backend">数据端</h3>
+### 数据端
 
 * [Mongoose](https://github.com/Automattic/mongoose) - 让 NodeJS 更容易操作
   Mongodb 数据库。 附上一篇[Mongoose 学习参考文档](https://cnodejs.org/topic/504b4924e2b84515770103dd)
 
-<h3 id="client">客户端</h3>
+### 客户端
 
 面对大名鼎鼎的 Electron，我懵逼了。犹豫了一会儿，不知道把其放在哪个分类中，于是我单开了一个 **客户端** 的类目。
 
 * [Electron](http://electron.atom.io/) - 如果你想利用 web 技术构建跨平台的桌面程序，那么赶紧来了解 Electron。
 
-<h3 id="ux">设计/交互</h3>
+### 设计/交互
 
 > 作为负责最终效果呈现的前端工程师，多少得了解些 **设计和交互** 的，这也是为什么
 > fetool 会单独的存在这一章 ... 当然话又说回来了，偶毕业的第一份工作是设计 :)
@@ -525,7 +515,7 @@ _暂无_
 * [站酷](http://www.zcool.com.cn/works/) - 里面好东西太多，俺当年真没少再上面淘素材
 * [UI 中国](http://www.ui.cn/list.html) - 光听名字就知道有多高大上鸟 :)
 
-<h3 id="handbook">速查手册</h3>
+### 速查手册
 
 > RT，这篇都是些文档或者 API，一般这类东西都在大家浏览器的书签内，偶这也列一下大前端常用的手册地址
 
@@ -547,7 +537,7 @@ _暂无_
   PHP 框架用户指南 推荐指数低的原因是劳资 PHP 比较弱，囧
 * [Yaf](http://www.laruence.com/manual/) - 鸟哥 ( 惠新宸 ) 所写的 PHP 框架 推荐指数低的原因同上 ...
 
-<h3 id="other">杂七杂八</h3>
+### 杂七杂八
 
 > 放些开发中较有用的杂物在这儿
 
@@ -570,7 +560,7 @@ _暂无_
 * [emailframe](http://emailframe.work/) - 邮件展示确实比较坑，建议有需要的收藏
 * [ReadmeSample](https://github.com/nieweidong/ReadmeSample) - 项目高大上的第一步就是**包装**，所以来看看 `README` 的书写套路吧 PS：劳资怎么这么无聊 ...
 
-<h3 id="cool">前端炫技-_炫酷狂拽叼炸天站点_</h3>
+### 前端炫技-_炫酷狂拽叼炸天站点_
 
 * [three.js](https://github.com/mrdoob/three.js) - JavaScript 3D 库。超多的
   [examples](http://threejs.org/examples/) 等着你去发现，你只需要关注内存和风扇就行了
@@ -589,9 +579,9 @@ _暂无_
 * [CSS 字母](http://yusugomori.com/projects/css-sans/fonts) - 用 CSS 实现英文字母，叼叼的
 * [墨刀](https://modao.cc/) - 一个在线移动应用原型制作工具。 旨在帮助产品经理快速制作可在手机端展示的移动应用原型。
 
-<h3 id="summary">小结</h3>
+### 小结
 
-##### 背景
+#### 背景
 
 俺算个比较能自我总结的码农，所以偶尔喜欢写点东西做些记录或者自我熏陶陶醉一下。可写着写着发现`Evernote`里面的东西太尼玛多 ( 乱 ) 了，于是想着把一些技术相关的资料都整理整理，都丢到`Github`上沉淀下来。 这样 Evernote 就可以只需要记录些偏生活方便的，看着清爽一些 ...
 
@@ -603,7 +593,7 @@ _暂无_
 
 > 所以劳资对自己的要求是：这篇记录里列出的每样东西，自己都得的去了解、去尝试，然后再列出来。 能举一反三最好，如果达不到至少也能清楚的认识：列出来的这玩意对程序员有没有卵用，解决了啥痛点。
 
-<h3 id="todo">TODO</h3>
+### TODO
 
 1. 继续完善和扩充内容
 
@@ -625,8 +615,11 @@ _暂无_
 <img src="https://raw.githubusercontent.com/nieweidong/fetool/master/img/me.jpg" width="120" height="120" style="border-radius: 60px;" />
 
 用自己青涩时的照片镇楼，哇哈哈 ~
+:::tip
+下面是原作者的联系方式
+:::
 
-#### 您可以通过以下方式联系到我：
+#### 您可以通过以下方式联系到我
 
 * 微博 [@ 聂微东](http://weibo.com/darrencode "Darren 聂微东")
 * 个人 Blog [fefork.com](http://www.fefork.com/ "一枚 Web 技术领域的手艺人")
@@ -639,11 +632,3 @@ _暂无_
 [![CC0](http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
 ---
-
-**[⬆ 返回顶部](#catalog)**
-
-[opensource_icon]: http://nieweidong.github.com/images/open_source.svg
-[free_icon]: http://nieweidong.github.com/images/freeware.svg
-[hot_icon]: http://nieweidong.github.com/images/hot.svg
-[rec_icon]: http://nieweidong.github.com/images/rec.svg
-[must_icon]: http://nieweidong.github.com/images/must.svg

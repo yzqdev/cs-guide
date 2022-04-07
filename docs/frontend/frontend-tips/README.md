@@ -1,5 +1,5 @@
 
-# frontend-tips
+# 前端技巧
 
 ## 目录
 

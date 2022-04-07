@@ -1,7 +1,7 @@
 ---
 index: 1
 ---
-# frontend
+# 前端学习笔记
 
 ## chrome-plugins
 

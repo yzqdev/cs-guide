@@ -1,18 +1,18 @@
 
-# vue教程
+# vue-tutor
 
 ## 目录
 
-- [iconfont使用](./iconfont.md)
-- [icon资源网站](./icon-site.md)
-- [nuxt注意事项](./nuxt-tutor.md)
+- [图标网站](./icon-site.md)
+- [iconfont](./iconfont.md)
+- [数据获取](./nuxt-tutor.md)
 - [quasar教程](./quasar.md)
-- [README](./README.md)
-- [vue-router教程](./vue-router教程.md)
-- [vue2使用svgicon](./vue2-svgicon.md)
-- [vue2教程](./vue2-tutor.md)
-- [vue3-tips](./vue3-tips.md)
-- [vue3使用svgicon](./vue3-svgicon.md)
-- [vue单个html使用](./vue-singlehtml.md)
-- [使用webpack配置vue](./vue-use-webpack.md)
+- [vue教程](./README.md)
 - [富文本编辑器](./rich-editor.md)
+- [vue-router教程](./vue-router.md)
+- [vue单html](./vue-singlehtml.md)
+- [wepack教程](./vue-use-webpack.md)
+- [vue2使用svgicon](./vue2-svgicon.md)
+- [Vue](./vue2-tutor.md)
+- [在awesome-vite使用搜索工具搜](./vue3-svgicon.md)
+- [vue3教程](./vue3-tips.md)

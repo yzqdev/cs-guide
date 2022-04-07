@@ -25,7 +25,7 @@
 
 ## webcomponents
 
-xy-ui.codelabo.cn
+[xy-ui.codelabo.cn](xy-ui.codelabo.cn)
 
 ## antdv
 

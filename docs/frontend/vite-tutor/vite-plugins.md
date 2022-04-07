@@ -1,6 +1,6 @@
 # vite插件
 
-1. @vitejs/plugin-vue-js 用于jsx tsx
+## @vitejs/plugin-vue-js 用于jsx tsx
 
 ```javascript
 npm i @vitejs/plugin-vue-jsx -d
@@ -8,7 +8,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 plugins: [vueJsx()]
 ```
 
-2. vite-plugin-style-import 第三方包样式按需引入
+## vite-plugin-style-import 第三方包样式按需引入
 
 ```javascript
 npm i vite-plugin-style-import -d
@@ -26,7 +26,7 @@ import styleImport from 'vite-plugin-style-import'
     ]
 ```
 
-3.rollup-plugin-terser 打包 压缩js代码 清除console.log
+## rollup-plugin-terser 打包 压缩js代码 清除console.log
 
 ```javascript
 npm i -d rollup-plugin-terser
@@ -40,7 +40,7 @@ import { terser } from "rollup-plugin-terser"
     ]
 ```
 
-4.vite-plugin-imagemin 打包压缩图片
+## vite-plugin-imagemin 打包压缩图片
 
 ```javascript
 npm i -d vite-plugin-imagemin
@@ -78,7 +78,8 @@ plugins[
    ]
 ```
 
-5.vite-plugin-compression 开启gzip、br压缩
+## vite-plugin-compression 开启gzip、br压缩
+
 [https://github.com/vbenjs/vite-plugin-compression](https://github.com/vbenjs/vite-plugin-compression)
 
 ```javascript

@@ -10,9 +10,8 @@ export default defineHopeConfig({
       "link",
       {
         rel: "icon",
-        type: "image/png",
-        sizes: "16x16",
-        href: `/images/logo.png`,
+
+        href: `/cs-guide/images/logo.png`,
       },
     ],
     [
