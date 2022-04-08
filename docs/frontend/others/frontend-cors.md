@@ -13,11 +13,7 @@
 
 jsonp是比较常用的方法，我们假设a.com域名需要向b.com发起一个api请求（jsonp的一个缺点是，仅能接受GET方式），则使用JSONP完成该过程的实例可以这样：
 
-![前端跨域请求api的几种常用解决方案](http://p9.pstatp.com/large/471a0003f97186e22f1a)
-
 a.com/jsonp.html
-
-![前端跨域请求api的几种常用解决方案](http://p1.pstatp.com/large/471d0000e892d47be493)
 
 b.com/jsonp.php
 
@@ -31,14 +27,8 @@ b.com/jsonp.php
 
 Nginx反向代理可以使用 proxy_pass
 
-![前端跨域请求api的几种常用解决方案](http://p3.pstatp.com/large/471c0000f29ef3c942b5)
-
 Apache2的反向代理的配置可以使用ProxyPass
-
-![前端跨域请求api的几种常用解决方案](http://p3.pstatp.com/large/471d0000ec0cdcd89c79)
 
 **5.设置header头（CORS）**
 
 在你要跨域请求的api里，设置header头Access-Control-Allow-Origin: *，以php为例，在api代码的入口方法处加入如下一行：
-
-![前端跨域请求api的几种常用解决方案](http://p9.pstatp.com/large/471d0000ecfccdb33597)

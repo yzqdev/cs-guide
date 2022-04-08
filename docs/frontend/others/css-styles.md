@@ -1,11 +1,10 @@
 
-# 偏门却又实用的 CSS 样式
+# 偏门却又实用的css样式
 
-很早之前我们推荐大家看《推荐大家使用的CSS书写规范、顺序》，里面提到 CSS 的一些常用命名、规范等等，而今天主要是说一些偏门一点的 CSS 样式、技巧。
+很早之前我们推荐大家看《推荐大家使用的CSS书写规范、顺序》，里面提到css的一些常用命名、规范等等，而今天主要是说一些偏门一点的css样式、技巧。
 
-什么是偏门，就是有些片段很少使用，时间久了就记不起来，但用的时候又要去找，所以这里为大家整理一些少用但又实用的 CSS 样式，
+什么是偏门，就是有些片段很少使用，时间久了就记不起来，但用的时候又要去找，所以这里为大家整理一些少用但又实用的css样式，
 <!--more-->
-![偏门却又实用的 CSS 样式](http://p1.pstatp.com/large/47070002fa2c9784ef4c)
 
 部分由小编及网友提供，感谢你们~ 持续更新哦。
 
@@ -14,8 +13,6 @@
 input 的 H5 `placeholder` 属性，很好用，但不能直接改这个文字颜色，所以目前的解决方法就是用`::input-placeholder`属性来改。
 
 小Tips: 配合 opacity 属性使用效果更佳哦！
-
-![偏门却又实用的 CSS 样式](http://p3.pstatp.com/large/470900026ba1fc15e6a3)
 
 ```css
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */color: pink;}::-moz-placeholder { /* Firefox 19+ */color: pink;}:-ms-input-placeholder { /* IE 10+ */color: pink;}:-moz-placeholder { /* Firefox 18- */color: pink;}
@@ -30,8 +27,6 @@ input 的 H5 `placeholder` 属性，很好用，但不能直接改这个文字�
 ```
 
 Outline 当点击Input元素时显示的当前状态线（外发光）
-
-![偏门却又实用的 CSS 样式](http://p1.pstatp.com/large/47040004c20b145fc186)
 
 这个状态线是用来提示用户当前状态指示作用，但因为效果很美观，建议去掉，或自己改个样式
 
@@ -166,4 +161,4 @@ div {linear-gradient(red, yellow)}background: linear-gradient(direction, color-s
 p:nth-child(1) {...}
 ```
 
-就介绍到这里，以后会不断更新，如果有好的 CSS 代码，欢迎在留言处提交给我们，一起收录进来！
+就介绍到这里，以后会不断更新，如果有好的css代码，欢迎在留言处提交给我们，一起收录进来！

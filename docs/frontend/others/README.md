@@ -18,6 +18,7 @@
 - [个人分享--web前端学习资源分享](./frontend-resources.md)
 - [笼统的前端——前端技术的各种知识点总结](./frontend-techs.md)
 - [正文](./frontend-tools.md)
+- [web前端中的居中（八种方法）](./how-to-center.md)
 - [js](./js-development-tools.md)
 - [JavaScript](./js-format.md)
 - [这一次，彻底弄懂](./js-run-method.md)
@@ -30,5 +31,4 @@
 - [其他](./README.md)
 - [初级篇](./simple-js.md)
 - [还在用微信](./transfer-tools.md)
-- [web前端中的居中（八种方法）](./web前端中的居中（八种方法）.md)
 - [老司机告诉你经常用到的压缩文件都是什么原](./zip-principle.md)

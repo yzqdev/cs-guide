@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "pc documents",
   "license": "MIT",
-  "private": "true",
   "scripts": {
     "docs:build": "vuepress build docs",
     "docs:clean-dev": "vuepress dev docs --clean-cache",

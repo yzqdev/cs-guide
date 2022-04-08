@@ -8,10 +8,6 @@ nvm全名node.js version management，顾名思义是一个nodejs的版本管理
 
 见 [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
 
-​
-
-​
-
 ## windows安装nvm
 
 ### 下载地址
@@ -39,4 +35,29 @@ nvm use 16.2.0
 
 #卸载某个版本
 nvm uninstall 16.2.0
+```
+
+## 安装nrm
+
+:::tip
+nrm可以随时切换镜像源
+:::
+
+```shell
+yarn global add nrm
+
+```
+
+输入`nrm ls`
+
+```text
+# nrm ls
+
+  npm ---------- https://registry.npmjs.org/
+  yarn --------- https://registry.yarnpkg.com/
+  tencent ------ https://mirrors.cloud.tencent.com/npm/
+  cnpm --------- https://r.cnpmjs.org/
+  taobao ------- https://registry.npmmirror.com/
+  npmMirror ---- https://skimdb.npmjs.com/registry/
+
 ```
