@@ -1,5 +1,9 @@
 # powershell基础
 
+:::tip
+powershell和linux bash的比较[http://xahlee.info/powershell/powershell_for_unixer.html](http://xahlee.info/powershell/powershell_for_unixer.html)
+:::
+
 ## 变量
 
 变量都是以`$`开头, 是强类型语言, 语言是大小写不敏感的

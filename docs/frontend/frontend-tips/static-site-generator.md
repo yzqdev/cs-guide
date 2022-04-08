@@ -31,7 +31,7 @@ hexo-theme-butterfly
 
 ## vuepress
 
-[首页 | VuePress (vuejs.org)](https://v2.vuepress.vuejs.org/zh/)
+[首页 | VuePress (vuejs.org)](https://v2.vuepress.vuejs.org/zh/)  
 
 ```text
 插件

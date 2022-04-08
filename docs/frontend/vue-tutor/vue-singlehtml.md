@@ -12,7 +12,7 @@
             rel="stylesheet"
             href="//cdn.jsdelivr.net/npm/element-plus/dist/index.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdn.jsdelivr.net/npm/element-plus"></script>
 </head>
 <body>
