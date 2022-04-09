@@ -17,3 +17,12 @@
 chcp
 活动代码页: 936 这个是gbk编码
 ```
+
+## 下载文件
+
+```powershell
+
+iwr "http://p9.pstatp.com" -Outfile a.webp
+或者
+curl 'http:www.baidu.com' -o a.webp
+```

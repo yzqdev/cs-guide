@@ -26,4 +26,4 @@
 vscode-icons
 :::
 
-<icon-display link='//at.alicdn.com/t/font_3267094_vkw5m8k51t.css' />
+<icon-display link='//at.alicdn.com/t/font_3267094_0pfgirl8r8qg.css' />

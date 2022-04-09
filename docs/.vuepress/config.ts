@@ -28,7 +28,7 @@ export default defineHopeConfig({
       //我的vscodeiconfont库
       {
         rel: "stylesheet",
-        href: "//at.alicdn.com/t/font_3267094_vkw5m8k51t.css",
+        href: "//at.alicdn.com/t/font_3267094_0pfgirl8r8qg.css",
       },
     ],
   ],
