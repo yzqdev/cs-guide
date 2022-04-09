@@ -3,7 +3,7 @@
 <CanvasVSSvg />
 
 :::details
-@[code vue](@src/CanvasVSSVg.vue)
+@[code vue](@/components/CanvasVSSVg.vue)
 :::
 
 下面是html中的svg代码
@@ -30,7 +30,7 @@
 <canvas-sample />
 
 :::details
-@[code vue](@src/CanvasSample.vue)
+@[code vue](@/components/CanvasSample.vue)
 :::
 
 -------
@@ -39,5 +39,5 @@
 <gobang />
 
 :::details 五子棋
-@[code vue](@src/Gobang.vue)
+@[code vue](@/components/Gobang.vue)
 :::

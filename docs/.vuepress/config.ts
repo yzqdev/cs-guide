@@ -42,7 +42,7 @@ export default defineHopeConfig({
   markdown: {
     importCode: {
       handleImportPath: (str) =>
-        str.replace(/^@src/, path.resolve(__dirname, "./components")),
+        str.replace(/^@/, path.resolve(__dirname, "./")),
     },
   },
   themeConfig,

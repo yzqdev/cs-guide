@@ -5,7 +5,7 @@
 
  <create-svg />
 
-@[code vue](@src/CreateSvg.vue)
+@[code vue](@/components/CreateSvg.vue)
 
 ## 创建 SVG 元素
 
@@ -89,4 +89,4 @@ e1 . appendChild ( svg1 );
 
 <svg-list />
 
-@[code vue](@src/SvgList.vue)
+@[code vue](@/components/SvgList.vue)

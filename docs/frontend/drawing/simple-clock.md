@@ -2,4 +2,4 @@
 
 <svg-clock />
 
-@[code vue](@src/SvgClock.vue)
+@[code vue](@/components/SvgClock.vue)

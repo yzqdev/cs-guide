@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <!--
+    WARNING! Make sure that you match all Quasar related
+    tags to the same version! (Below it's "@2.3.2")
+  -->
+
+  <head>
+    <!-- <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
+      rel="stylesheet"
+      type="text/css"
+    /> -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/quasar@2.3.2/dist/quasar.prod.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+
+  <body>
+    <!-- example of injection point where you write your app template -->
+    <div id="q-app">
+      <q-btn>按钮</q-btn>
+      <q-card class="my-card">
+        <q-card-section> {{ lorem }} </q-card-section>
+      </q-card>
+    </div>
+
+    <!-- Add the following at the end of your body tag -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.6.6/dist/quasar.umd.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quasar@2.6.6/dist/lang/zh-CN.umd.prod.js"></script>
+
+    <script>
+      /*
+        Example kicking off the UI. Obviously, adapt this to your specific needs.
+        Assumes you have a <div id="q-app"></div> in your <body> above
+       */
+      const app = Vue.createApp({
+        setup() {
+          return {
+            lorem:
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+          };
+        },
+      });
+
+      app.use(Quasar);
+      Quasar.lang.set(Quasar.lang.zhCN);
+      app.mount("#q-app");
+    </script>
+  </body>
+</html>
