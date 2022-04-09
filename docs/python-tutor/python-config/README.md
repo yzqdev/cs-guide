@@ -1,5 +1,5 @@
 
-# python-config
+# python配置
 
 ## 目录
 

@@ -1,5 +1,7 @@
 import { defineClientAppEnhance } from "@vuepress/client";
 import RegTest from "./components/RegTest.vue";
+import SvgList from "./components/SvgList.vue";
+import CreateSvg from "./components/CreateSvg.vue";
 import naive from "naive-ui";
 
 import hope from "vuepress-theme-hope/package.json";
@@ -25,4 +27,6 @@ showBadge("vuepress-theme-hope", hope.version, "#606060", "RGB(20,117,178)");
 export default defineClientAppEnhance(({ app, router, siteData }) => {
   app.use(naive);
   app.component("RegTest", RegTest);
+  app.component("SvgList", SvgList);
+  app.component("CreateSvg", CreateSvg);
 });

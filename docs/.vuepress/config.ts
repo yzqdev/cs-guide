@@ -1,4 +1,5 @@
 import { defineHopeConfig } from "vuepress-theme-hope";
+import { path } from "@vuepress/utils";
 import themeConfig from "./themeConfig";
 export default defineHopeConfig({
   base: "/cs-guide/",
@@ -38,7 +39,12 @@ export default defineHopeConfig({
       description: "计算机科学教程",
     },
   },
-
+  markdown: {
+    importCode: {
+      handleImportPath: (str) =>
+        str.replace(/^@src/, path.resolve(__dirname, "./components")),
+    },
+  },
   themeConfig,
   plugins: [
     [

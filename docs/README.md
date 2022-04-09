@@ -75,7 +75,7 @@ features:
     link: https://yzqdev.github.io/android-docs
   - title: wangdoc教程
     details: wangdoc教程
-    icon: android
+    icon: read
     link: https://yzqbooks.github.io/wangdoc
 footer: MIT Licensed | Copyright © 2022-present yzqdev
 ---

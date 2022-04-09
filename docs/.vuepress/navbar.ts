@@ -47,6 +47,11 @@ export default defineNavbarConfig([
         icon: "nodeJS",
         link: "https://yzqdev.github.io/node-tutor",
       },
+      {
+        text: "wandoc",
+        icon: "read",
+        link: "https://yzqbooks.github.io/wangdoc",
+      },
     ],
   },
 ]);
