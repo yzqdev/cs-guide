@@ -19,7 +19,7 @@ html=resp.text # 这里就是html内容
 ```
 
 看一下我们要爬的视频地址
-![地址](./res/douyin1.png)  
+![地址](./res/douyin1.webp)  
 
 ```text
 https://v26-web.douyinvod.com/69e8bf321b23ff4f71f475be635e4cfa/624ac07a/video/tos/cn/tos-cn-ve-15c001-alinc2/7c48f7eeebfa4ceb9b53db7fbb588e71/?a=6383&br=573&bt=573&cd=0|0|0|0&ch=5&cr=0&cs=0&cv=1&dr=0&ds=3&er=&ft=5q_lc5mmnPQJ2XA7HhWwkXAGfdH.C3nJcbZc&l=2022040416541301014203403909D9EFAF&lr=all&mime_type=video_mp4&net=0&pl=0&qs=0&rc=Mzw0N2Y6ZnY0PDMzNGkzM0ApNDg2ODllOGRlNzg4NztlO2cxLXBlcjRfaDJgLS1kLTBzcy5hMGIyYTUxYWEyXmEwXmE6Yw==&vl=&vr=

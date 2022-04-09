@@ -11,7 +11,7 @@
 
 **Halo 首页：**
 
-![img](./res/halo.png)
+![img](./res/halo.webp)
 
 Halo首页-halo.run
 
@@ -64,7 +64,7 @@ Artificial-Intelligence-Algorithm-Scientist-www.piqiandong.com
 
 **蘑菇博客前台效果：**
 
-![img](./res/mogu.png)
+![img](./res/mogu.webp)
 
 蘑菇博客-专注于技术分享的博客平台-demoweb.moguit.cn
 
@@ -85,6 +85,6 @@ Artificial-Intelligence-Algorithm-Scientist-www.piqiandong.com
 
 **plumemo 博客后台效果：**
 
-![img](./res/plum.png)
+![img](./res/plum.webp)
 
  <https://www.plumemo.com/>
