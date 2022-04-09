@@ -1,3 +1,6 @@
+---
+index: 2
+---
 # 路径(path)基础
 
 Path 元素是最强大和最有用的元素。它可以有效地替换任何其他 SVG 形状，如{ rect，circle，line，polygon }。

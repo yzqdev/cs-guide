@@ -2,6 +2,10 @@ import { defineClientAppEnhance } from "@vuepress/client";
 import RegTest from "./components/RegTest.vue";
 import SvgList from "./components/SvgList.vue";
 import CreateSvg from "./components/CreateSvg.vue";
+import SvgClock from "./components/SvgClock.vue";
+import CanvasVSSvg from "./components/CanvasVSSvg.vue";
+import CanvasSample from "./components/CanvasSample.vue";
+import Gobang from "./components/Gobang.vue";
 import naive from "naive-ui";
 
 import hope from "vuepress-theme-hope/package.json";
@@ -29,4 +33,8 @@ export default defineClientAppEnhance(({ app, router, siteData }) => {
   app.component("RegTest", RegTest);
   app.component("SvgList", SvgList);
   app.component("CreateSvg", CreateSvg);
+  app.component("SvgClock", SvgClock);
+  app.component("CanvasVSSvg", CanvasVSSvg);
+  app.component("CanvasSample", CanvasSample);
+  app.component("Gobang", Gobang);
 });

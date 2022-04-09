@@ -1,0 +1,267 @@
+# svg文本
+
+这个页面是关于 SVG 文本元素的教程。
+
+## 文本元素
+
+文本元素用于添加文本。
+
+```
+<svg width="100" height="100">
+<text x="50" y="50">dog</text>
+</svg>
+```
+
+基本文本示例
+
+{ x，y }属性指定放置文本的坐标。
+
+注意: SVG 中的文本都是图形，就好像字体变成了实际的曲线。当您使用变换，如缩放放大图形，所有文本也将缩放。[参见 SVG: 坐标转换]
+
+### 文本不自动换行
+
+文本元素中的文本不会自动换行(不会自动换行)。
+
+不像 HTML，也没有“ pre”元素。
+
+```
+<svg width="100" height="100">
+<text x="0" y="50">cat and
+dog</text>
+</svg>
+```
+
+换行不会换行
+
+### 如何在 SVG 文本元素中有换行符？
+
+你不能。
+
+解决方案:
+
+- 对新的文本行使用新的“ text”元素
+- 使用属性{ x，y，dx，dy }的“ tspan”
+
+这两种解决方案都要求您手动计算出确切的行高来定位文本元素。
+
+## 文本元素锚定位置
+
+当您有一个文本元素时
+
+< text x = " 50" y = " 50" > cat </text >
+
+确切的锚定位置是第一个字符的基线左下方。
+
+```
+<svg width="100" height="100">
+<circle cx="50" cy="50" r="3" style="fill:red"></circle>
+<text x="50" y="50">dog</text>
+</svg>
+```
+
+## 文本对齐
+
+Text-anchor 可用于设置 text 元素中{ x，y }表示的位置。
+
+可能的值是:
+
+- (预设)
+- `middle`
+- `end`
+
+```
+<svg width="100" height="100">
+<circle cx="50" cy="50" r="3" style="fill:red"></circle>
+<text x="50" y="50" text-anchor="middle">dog</text>
+</svg>
+```
+
+以文本为中心的
+
+```
+<svg width="100" height="100">
+<circle cx="50" cy="50" r="3" style="fill:red"></circle>
+<text x="50" y="50" text-anchor="end">dog</text>
+</svg>
+```
+
+右对齐
+
+## Tspan 元素
+
+Tspan 类似于 HTML 的 span 元素。
+
+Tspan 元素用于文本元素内部。
+
+Tspan 用于为文本标记中的单词设置不同的样式，比如粗体文本。
+
+Tspan 对于在文本元素中包含每一行也很有用。
+
+您还可以使用 tspan 来调整单词或字母的位置。使用属性 dy 更改相对于当前文本元素的位置的位置。
+
+Tspan 最有用的属性是{ dx，dy }。它们是相对于字符的正常位置的位置偏移量。
+
+Tspan 也有绝对定位的属性{ x，y }。
+
+abc
+
+```
+<svg width="100" height="100">
+<text x="0" y="50">ab<tspan style="font-weight:bold">c</tspan></text>
+</svg>
+```
+
+使用“ tspan”的粗体字
+
+abc
+
+```
+<svg width="100" height="100">
+<text x="0" y="50">ab<tspan dy="-10">c</tspan></text>
+</svg>
+```
+
+上标使用“ tspan”, 偏移
+
+## X 和 y 属性的多个值
+
+每个属性“ x”和“ y”都可以是一个数字序列。第二个数字是第二个字符的位置，第三个数字是第三个字符的位置等等。
+
+```
+<svg width="100" height="100">
+<text x="0 10 50" y="100 90 80">dog</text>
+</svg>
+```
+
+x y 的多个值
+
+## 上标，下标，带基线移位
+
+Baseline-shift 属性可以与文本元素或 tspan 一起使用，用于向上或向下移动字符。
+
+可能的值:
+
+- `baseline`
+- `sub`
+- `super`
+- 百分比
+- 长度
+- `inherit`
+
+## 垂直文本
+
+你可以通过以下方式获得垂直文本:
+
+- 对文本元素使用旋转变换[坐标变换](http://xahlee.info/js/svg_transformation.html)]
+- 使用 财产，有价值 (从上到下)
+
+```
+<svg width="100" height="100">
+<text x="50" y="50" transform="rotate(-90 50 50)">mouse</text>
+</svg>
+```
+
+使用变换旋转垂直文本
+
+```
+<svg width="100" height="100">
+<text x="50" y="50" writing-mode="tb">bird</text>
+</svg>
+```
+
+垂直文本 财产
+
+写入模式的可能值是:
+
+- (从左到右，从上到下)
+- `rl-tb`
+- `tb-rl`
+- `lr`
+- `rl`
+- `tb`
+- `inherit`
+
+### 字形-方向-垂直
+
+字形-方向-垂直可以用来有字母定位侧面。
+
+允许的值是:
+
+- `auto`
+- 。必须是{`0`, `90`, `180`, `270`}
+- `inherit`
+
+```
+<figure class="svg_example">
+<svg width="100" height="100">
+<text x="20" y="20" writing-mode="tb" glyph-orientation-vertical="0">LOVE</text>
+</svg>
+```
+
+垂直文本`writing-mode`, }(注意: 从2015-08-17开始，Firefox 不支持 也不`glyph-orientation-vertical`)
+
+## 路径上的文本
+
+若要在曲线上显示文本，请使用带有 xlink: href 属性的 textPath 元素，该属性引用先前定义的 path 元素。
+
+textPath 应该有一个 xlink: href 属性，其值为 path 元素的 id。
+
+[参见 SVG 路径教程]
+
+[参见 SVG: Structure Elements ]
+
+## 指定文本长度
+
+textLength = “ length”
+
+- `lengthAdjust = "spacing"`
+- `lengthAdjust = "spacingspacingAndGlyphs"`
+
+## 文本元素属性
+
+## 文字样式
+
+有关 Font Size，请参见 SVG: Font Size
+
+### 字体属性
+
+下面的代码与 CSS 代码相同。
+
+- `font`
+- `font-family`
+- `font-size`
+- `font-size-adjust`
+- `font-stretch`
+- `font-style`
+- `font-variant`
+- `font-weight`
+
+### 文本属性
+
+下面的代码与 CSS 代码相同。
+
+- `direction`
+- `letter-spacing`
+- `text-decoration`
+- `unicode-bidi`
+- `word-spacing`
+
+### 文本元素特定属性
+
+- `alignment-baseline`
+- `baseline-shift`
+- `dominant-baseline`
+- `glyph-orientation-horizontal`
+- `glyph-orientation-vertical`
+- `kerning`
+- `text-anchor`
+- `writing-mode`
+
+### 视觉媒体的其他属性
+
+- ，只适用于最外层的 svg 元素
+- 的潜在间接值(currentColor)`fill`, `stroke`, `stop-color`, 及 属性。(支持颜色的 SVG 属性允许从 css2扩展颜色规范，以适应任意颜色空间中的颜色定义。请参阅颜色配置文件描述。)
+- `cursor`
+- `display`
+- ，只适用于建立新视图窗口的元素
+- `visibility`

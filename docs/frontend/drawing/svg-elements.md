@@ -1,0 +1,315 @@
+---
+index: 3
+---
+# svg元素
+
+## `g`元素
+
+“ g”元素用于将几个图形元素组合在一起。
+
+- `<g id=val style=val >elements</g>`
+
+  将一组元素分组
+
+分组是有用的，因为:
+
+- 在其他地方或多次重用图形集，而不需要每次都定义它们
+- 对组中的所有图形使用单一样式,
+- 对组中的所有图形应用坐标变换[坐标变换](http://xahlee.info/js/svg_transformation.html)]
+:::demo
+
+```html
+<svg width="100" height="100">
+<g id="abc46"
+ style="fill:yellow; stroke:blue; stroke-width:5" >
+ <rect x="9" y="0" width="30" height="80"/>
+ <circle cx="50" cy="50" r="20"/>
+</g>
+</svg>
+```
+
+:::
+
+使用的例子 分组
+
+若要在其他位置使用分组图形，请使用 use 元素。
+
+## “使用”元素
+
+Use 元素允许您重用图形元素，而不需要重新定义它们。
+
+“ use”的基本句法是:
+
+```html
+< use xlink: href = " # id" x-coord" y = " x-coord"/>
+```
+
+可以使用的元素是:`{ g，symbol，svg，use }`
+
+元素有可选属性 x，y，width 和 height，用于将参考元素的图形化内容映射到当前坐标系中的矩形区域。
+:::demo
+
+```html
+<svg width="100" height="100">
+<g id="abc46"
+ style="fill:yellow; stroke:blue; stroke-width:5" >
+ <rect x="9" y="0" width="30" height="80"/>
+ <circle cx="50" cy="50" r="20"/>
+</g>
+
+<use xlink:href="#abc46" x="50" y="0" />
+
+</svg>
+```
+
+:::
+
+例如`use`
+
+## “ defs”元素
+
+Defs 元素允许您定义一些图形元素，然后在其他地方重用该定义。(这就像程序设计语言中的变量，其中变量名是 id 属性值。)
+
+Defs 元素的基本语法是:
+
+图形元素 `</def >` →定义几个东西，由 id 引用。
+
+:::demo
+
+```html
+<svg width="100" height="100">
+<defs id="c">
+ <circle cx="10" cy="10" r="10"/>
+</defs>
+</svg>
+```
+
+:::
+
+例子`defs`
+
+注意: “ defs”不呈现图形，它只定义图形。
+
+若要使用已定义的元素，请使用标记。
+
+------
+有些 SVG 样式属性名称不同于 CSS。
+
+有4种方法来指定 SVG 样式:
+
+1. 元素属性。例如,`<line … stroke="black" />`
+2. 在标记中将内联 CSS 作为样式属性,`<line style="stroke:black;…" …/>`
+3. 内部 CSS. (在文件头中声明)
+4. 指向样式文件的链接
+
+下面是对每一个问题的解释。
+
+## 1，SVG Element Attribute
+
+:::demo
+
+```html
+<line x1="0" y1="0" x2="50" y2="10" stroke="black" />
+```
+
+:::
+Stroke 是 SVG line 元素的样式属性。
+
+## 2，Inline CSS (style attribute)
+
+:::demo
+
+```html
+<!-- inline styling -->
+<line x1="0" y1="0" x2="50" y2="10" style="stroke:black" />
+```
+
+:::
+
+Style = val 是对每个 SVG 元素进行样式化的通用方法。
+
+## 3，内部 CSS (在文件头)
+
+下面是一个内部样式表的例子:
+
+:::demo
+
+```html
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="12cm" height="3cm" viewBox="0 0 1200 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style type="text/css">
+    <![CDATA[
+      #x123 { fill: blue }
+      path { fill-opacity: .5 }
+      .y567 { stroke-linecap: round }
+    ]]>
+  </style>
+</svg>
+```
+
+:::
+
+注意: 因为它是 XML 文件，所以必须用 < ! [ CDATA [ ... ]] > 把它括起来。
+
+## 4，外部 CSS (链接到样式文件)
+
+下面是一个外部样式表的例子，基本上是一个样式文件的链接:
+
+:::demo
+
+```html
+<!-- external style sheet-->
+<?xml version="1.0" standalone="no"?>
+<?xml-stylesheet href="my_style.css" type="text/css"?>
+<!DOCTYPE svg …>
+<svg …>
+…
+</svg>
+```
+
+------
+
+## 单位是用户坐标
+
+当你使用字体大小属性的时候，比如说` x = "0" y = " 100" font-size = " 16" > e 16 </text > `，这个单位就是用户坐标。
+
+[参见 SVG: viewBox，用户坐标]
+
+:::demo
+
+```html
+<svg width="100" height="100">
+<text x="0" y="100" font-size="100">E 100</text>
+</svg>
+```
+
+:::
+
+:::demo
+
+```html
+<svg width="100" height="100" viewBox="0 0 500 500">
+<text x="0" y="500" font-size="100">E 100</text>
+```
+
+:::
+两个 SVG 的 font-size 都是100。但第一个 SVG 的宽度高度为100100，第二个 SVG 的用户坐标宽度高度为500500
+
+## 百分比价值
+
+字体大小的百分比值表示相对于默认字体大小的值。
+
+“100%”等于 font-size = “16”
+
+:::demo
+
+```html
+<svg width="100" height="100">
+<text x="0" y="50" font-size="16">E 16</text>
+<text x="0" y="70" font-size="100%">E 100%</text>
+</svg>
+```
+
+:::
+
+`font-size="16"` vs ，在 SVG 框的宽度高度100100
+
+:::demo
+
+```html
+<svg width="100" height="100">
+<text x="0" y="100" font-size="200%">E 200%</text>
+</svg>
+```
+
+:::
+
+:::demo
+
+```html
+<svg width="100" height="100" viewBox="0 0 500 500">
+<text x="0" y="500" font-size="200%">E 200%</text>
+</svg>
+```
+
+:::
+
+两个 SVG 的文本都有 ，但第一个 SVG 的宽度高度为100100，第二个 SVG 的用户坐标宽度高度为500500
+
+## 属性 vs CSS
+
+字体大小也可以由 CSS 指定，例如: style = “ Font-size: 16px”。
+
+当使用 CSS 时，需要一个像“ px”这样的单位(这是 CSS 所要求的)
+
+当使用 CSS 时，“ px”长度的含义与没有单位的 SVG 字体大小属性完全相同。
+
+:::demo
+
+```html
+<text x="0" y="50" font-size="30">E 30</text>
+<text x="0" y="80" style="font-size:30px">E 30px</text>
+```
+
+:::
+
+诸如 rem 或 em 之类的 CSS 单元不起作用。
+
+CSS 值，例如1rem，被转换为16px，而16px 又是 SVG 用户坐标中的16个单位。当你使用用户坐标时，它们可能变得微小或不可见，或者变得巨大并且占满屏幕。
+
+:::demo
+
+```html
+<svg width="100" height="100">
+<text x="0" y="100" style="font-size:1rem">1rem</text>
+</svg>
+```
+
+:::
+
+:::demo
+
+```html
+<svg width="100" height="100" viewBox="0 0 500 500">
+<text x="0" y="500" style="font-size:5rem">5rem</text>
+</svg>
+```
+
+:::
+
+或 em 单元基本上只有16个单元，相对于 SVG 用户坐标
+
+## 使用 CSS 的百分比值
+
+使用 CSS 的 Percentage 值与 SVG 属性的含义相同。
+:::demo
+
+```html
+<svg width="100" height="100">
+<text x="0" y="50" font-size="100%">E 100%</text>
+<text x="0" y="70" style="font-size:100%">E 100%</text>
+</svg>
+```
+
+:::
+
+及 这里的 SVG 的宽度高度为100100
+
+:::demo
+
+```html
+<svg width="100" height="100" viewBox="0 0 500 500">
+<text x="0" y="250" font-size="200%">E 200%</text>
+<text x="0" y="500" style="font-size:200%">E 200%</text>
+```
+
+:::
+
+`font-size="200%"` vs ，在用户坐标宽度高度500500
+
+## 用户坐标的单位大小
+
+有关如何在用户坐标中计算好的字体大小，请参见
+
+视框，用户坐标的单位大小

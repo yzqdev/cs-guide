@@ -1,9 +1,91 @@
-# 圆弧
 
-使用代码实现svg
+# 使用代码实现svg
+
+下面是一个例子
+
  <create-svg />
 
 @[code vue](@src/CreateSvg.vue)
+
+## 创建 SVG 元素
+
+首先，需要创建一个 SVG 元素。
+
+```js
+const svg1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+svg1. setAttribute ("width", "100" );
+svg1. setAttribute ("height", "100" );
+```
+
+下面是 viewBox 的一个例子:
+
+```js
+const svg1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+svg1. setAttribute ("viewBox", "0 0 300 300" );
+```
+
+## 创建 SVG 形状
+
+任何 SVG 元素都是这样创建的:
+
+```js
+const cir1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+cir1.setAttribute("cx", 0 );
+cir1.setAttribute("cy", 0 );
+cir1.setAttribute("r", 50);
+```
+
+要创建其他形状，代码类似。创建 shape 标记，然后设置其属性。
+
+创建一个形状之后，需要将其附加到 SVG 元素上:
+
+```js
+// create svg element
+const svg1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+svg1. setAttribute ("width", "100" );
+svg1. setAttribute ("height", "100" );
+
+// create a shape
+const cir1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+cir1.setAttribute("cx", 0 );
+cir1.setAttribute("cy", 0 );
+cir1.setAttribute("r", 50);
+
+// attach the shape to svg
+svg1 . appendChild ( cir1 );
+
+// attach the svg to a element on page
+document.getElementById ('x77738'). appendChild ( svg1 );
+```
+
+## 将 SVG 元素附加到网页
+
+您需要将 SVG 元素附加到网页上的一个元素上。
+
+```js
+const svg1 = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+// code for adding shapes ...
+
+// attach the svg to a element on the web page
+const e1 = document.getElementById ('x43865');
+e1 . appendChild ( svg1 );
+```
+
+这件事应该最后再做。
+
+## 如何编写 SVG 脚本？
+
+记住 SVG 只是 XML。(XML 类似于 HTML，但语法更加严格)所以，要编写 SVG 脚本，您不必做任何特殊的事情。只需要使用 JavaScript 编写普通的 XML 脚本。
+
+以下是你需要做的。
+
+1. 使用“ createElementNS”创建一个 SVG 元素
+2. 使用“ createElementNS”创建 SVG 形状元素(例如，circle、 rect、 path、 ... ...)
+3. 将 shape 元素附加到 SVG 元素
+4. 将 SVG 元素附加到文档中
+
+## 创建一个圆
 
 <svg-list />
 
