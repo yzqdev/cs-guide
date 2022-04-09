@@ -2,30 +2,29 @@
 
 ## vue 的ui库
 
-- elementui (vue2)
-- element-plus(vue3)
-- antdv
-- vuetify
-- quasa
-- <https://vue.geist-ui.dev/zh-cn/introduction>
-- keenui  <https://josephuspaye.github.io/Keen-UI/#/ui-alert>
+- [elementui (vue2)](http://element-cn.eleme.io/#/zh-CN)
+- [element-plus(vue3)](https://element-plus.gitee.io/)
+- [antdv](https://antdv.com/)
+- [vuetify](https://vuetifyjs.com/)
+- [quasar](https://quasar.dev/)
+- [keenui](https://josephuspaye.github.io/Keen-UI/#/ui-alert)
 
 ## react的ui库
 
-- antdesign
-- <https://material-ui.com/>
-- rsuit  <https://rsuitejs.com/>
-- roit  <https://github.com/riot/riot>
-- <https://github.com/ionic-team/ionic-framework>
-- react-bootstrap  <https://react-bootstrap.github.io/>
-- <http://reactstrap.github.io/>
-- ever green <https://evergreen.segment.com/>
-- eui  <https://elastic.github.io/eui>
-- react.geist-ui.dev
+- [antdesign](https://ant.design/)
+- [materialui](https://material-ui.com/)
+- [rsuit](https://rsuitejs.com/)
+- [roit](https://riot.js.org/)
+- [iconic](https://github.com/ionic-team/ionic-framework)
+- [react-bootstrap](https://react-bootstrap.github.io)
+- [reactstrap](http://reactstrap.github.io)
+- [ever-green](https://evergreen.segment.com/)
+- [elasticui](https://elastic.github.io/eui/)
+- [geist](https://geist-ui.dev/zh-cn)
 
 ## webcomponents
 
-[xy-ui.codelabo.cn](xy-ui.codelabo.cn)
+[xy-ui.codelabo.cn](https://xy-ui.codelabo.cn/docs/#/)
 
 ## antdv
 

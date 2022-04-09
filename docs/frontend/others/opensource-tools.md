@@ -17,9 +17,7 @@ description:
 
 > 无论你是想修改图片、编译音频，还是制作动画，这里的自由而开源的工具都能帮你做到。 -- Máirín Duffy
 
-> 本文导航
->
-> * -核心应用 …… 02%
+## -核心应用 …… 02%
 
 * -GIMP …… 09%
 * -Inkscape …… 16%
@@ -28,7 +26,7 @@ description:
 * -Blender …… 34%
 * -Krita …… 41%
 
-> * -视频处理工具 …… 45%
+## -视频处理工具 …… 45%
 
 * -Kdenlive …… 48%
 * -Flowblade …… 51%
@@ -36,7 +34,7 @@ description:
 * -Shotcut …… 55%
 * -OpenShot Video Editor …… 57%
 
-> * -其它工具 …… 59%
+## -其它工具 …… 59%
 
 * -SwatchBooker …… 59%
 * -GNOME Color Manager …… 61%
@@ -45,30 +43,30 @@ description:
 * -PDF Mod …… 66%
 * -SparkleShare …… 67%
 
-> * -摄影 …… 69%
+## -摄影 …… 69%
 
 * -Darktable …… 69%
 * -Entangle …… 71%
 * -Hugin …… 72%
 
-> * -2D 动画 …… 73%
+## -2D 动画 …… 73%
 
 * -Synfig Studio …… 73%
 * -Blender Grease Pencil …… 75%
 * -Krita …… 76%
 
-> * -音频编辑 …… 77%
+## -音频编辑 …… 77%
 
 * -Audacity …… 77%
 * -Ardour …… 78%
 * -Hydrogen …… 79%
 * -Mixxx …… 80%
 
-> * -Rosegarden …… 81%
+## -Rosegarden …… 81%
 
 * -MuseScore …… 83%
 
-> * -其它具有创造力的工具 …… 84%
+## -其它具有创造力的工具 …… 84%
 
 * -MakeHuman …… 84%
 * -Natron …… 85%
@@ -76,7 +74,7 @@ description:
 * -Valentina …… 87%
 * -Calligra Flow …… 87%
 
-> * -资源 …… 88%
+## -资源 …… 88%
 
 > 编译自： <https://opensource.com/article/16/12/yearbook-top-open-source-creative-tools-2016>
 >

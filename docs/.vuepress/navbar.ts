@@ -44,7 +44,7 @@ export default defineNavbarConfig([
 
       {
         text: "node教程",
-        icon: "nodeJS",
+        icon: "node",
         link: "https://yzqdev.github.io/node-tutor",
       },
       {

@@ -3,15 +3,15 @@
 
 **样式命名规范**
 
-![零基础入门前端开发工程师，应当提前掌握DIV+CSS布局规范](http://p1.pstatp.com/large/470e000043a2bccf221e)
+![零基础入门前端开发工程师，应当提前掌握DIV+CSS布局规范](https://p26.toutiaoimg.com/large/470e000043a2bccf221e)
 
 id 选择器常用命名规范
 
-![零基础入门前端开发工程师，应当提前掌握DIV+CSS布局规范](http://p3.pstatp.com/large/470b0001f6a133c60835)
+![零基础入门前端开发工程师，应当提前掌握DIV+CSS布局规范](https://p26.toutiaoimg.com/large/470b0001f6a133c60835)
 
 类选择器常用命名规范
 
-![零基础入门前端开发工程师，应当提前掌握DIV+CSS布局规范](http://p1.pstatp.com/large/470b0001f9d5cf732b27)
+![零基础入门前端开发工程师，应当提前掌握DIV+CSS布局规范](https://p26.toutiaoimg.com/large/470b0001f9d5cf732b27)
 <!--more-->
 **全局样式设置**
 
@@ -101,6 +101,7 @@ d.标签属性需要用引号，且不能简写，如:
 <!---logo广告条结束--->
 
 3.Html 通过首行缩进来体现代码结构，如：
+:::demo
 
 ```html
 <div id="main_nav">
@@ -114,5 +115,7 @@ d.标签属性需要用引号，且不能简写，如:
   </ul>
  </div>
 ```
+
+:::
 
 4.Img 标签需加上"alt"属性

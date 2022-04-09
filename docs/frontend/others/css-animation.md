@@ -14,7 +14,6 @@ description:
 ---
 
 
- 
 
 1.前言
 
@@ -25,6 +24,8 @@ description:
 声明
 
 1.下面将会看到很多个
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a71d3f30d344)
 
 类似这样的举行，都是 span 标签，样式都是给出的 css
 
@@ -50,6 +51,8 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 2-1-1 大小变化
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32140002c6011423e743)
+
 html
 
 ```html
@@ -63,6 +66,8 @@ css
 ```
 
 2-1-2 形状变化
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/321200009430a3950910)
 
 html
 
@@ -78,6 +83,8 @@ css
 
 2-1-3 旋转角度变化
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32110004d5a36cfcdc56)
+
 html
 
 ```htm
@@ -91,6 +98,8 @@ css
 ```
 
 2-1-4 位移变化
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32140002c602c8db7856)
 
 html
 
@@ -106,6 +115,8 @@ css
 
 2-1-5 边框变化
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320a0001e3c21c7f03b9)
+
 html
 
 ```html
@@ -119,6 +130,8 @@ css
 ```
 
 2-1-6 阴影变化
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a71f373cd680)
 
 (gif 图看得效果太难看了，大家可以去 github 下载看)
 
@@ -136,6 +149,8 @@ css
 
 2-1-7 透明度变化
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32120000942fa98cf879)
+
 html
 
 ```html
@@ -149,6 +164,8 @@ css
 ```
 
 2-1-8 圆角变化
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320a0001e3c41db58188)
 
 html
 
@@ -168,6 +185,8 @@ css
 
 2-2-1.颜色块变化
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32110004d5a0af60fd98)
+
 因为这块内容很像，我就一大块一起说，大家看代码的时候要留神注意。看代码看不明白，直接在 github 下载，然后运行文件，边调试边看效果！这样大家就很容易明白了！
 
 html
@@ -186,6 +205,8 @@ css
 
 这里也是一大块一起说，看代码可能会更乱，所以大家看代码的时候要更加留神注意。看代码看不明白，直接在 github 下载，然后运行文件，边调试边看效果！这样大家就很容易明白了！
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a71e4ea99694)
+
 html
 
 ```html
@@ -199,6 +220,8 @@ css
 ```
 
 2-2-3 箭头动画
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/322b0000516e097769bd)
 
 html
 
@@ -218,6 +241,8 @@ css
 
 2-3-1 闪烁效果
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/31fc0001f0dde8c2a102)
+
 html
 
 ```
@@ -231,6 +256,8 @@ css
 ```
 
 2-3-2 闹钟振铃效果
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/322b0000516f09796a2d)
 
 html
 
@@ -246,6 +273,8 @@ css
 
 2-3-3 摇摆效果
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/31fc0001f0decf6202fa)
+
 html
 
 ```
@@ -259,6 +288,8 @@ css
 ```
 
 2-3-4 摇晃效果
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320a0001e3c576ce518a)
 
 html
 
@@ -274,6 +305,8 @@ css
 
 2-3-5 抖动效果
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320a0001e3c657f855aa)
+
 html
 
 ```
@@ -287,6 +320,8 @@ css
 ```
 
 2-3-6 弹跳效果
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a72226cd81e4)
 
 html
 
@@ -304,15 +339,23 @@ css
 
 受限于篇幅的长度，我也不想分开两篇文章写。关于这个预设动画，我就简单的说一下，写一下，我直接给一个大概的操作演示，和完整的代码！反正写法这个也是比较单一，无非就是改一个类名而已。难的是动画的一些编写，这个需要创意，大家可以上网参考。
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/322b000051713f40367c)
+
 （不知道为什么，gif 截大图放不上来，就放了张小的，大家结果下面的 jpg 一起看把，就是通过下面的按钮，展示动画，大家也可以在 github 下面下载代码看下）
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a720ffaa5b81)
 
 **（完整代码比较多，这里贴出，但是建议大家稍微看一下，过一下就好，因为这个只看代码是会懵逼的，要在浏览器打开文件，一看调试一边看，这样会很简单，很容易的明白）**
 
 html 代码
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32140002c915d3b1499c)
+
 代码过长需要文档版源码来我的前端群 657137906，源码已经上传了！
 
 css
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32110004d7dcc47a2b1b)
 
 代码过长需要文档版源码来我的前端群 657137906，源码已经上传了！
 
@@ -326,7 +369,11 @@ css
 
 一个普通的动画，加上无限执行，一般会出现很友好的效果，
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32140002c603d42b8528)
+
 但是有些时候的效果差强人意
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a7231d5b31e1)
 
 4-2.反向动画
 
@@ -334,15 +381,23 @@ css
 
 没加反向动画效果
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/321200009432d00a970c)
+
 加上反向动画效果
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a72197d51805)
 
 4-3.组合效果
 
 阴影效果和其它效果的组合，(gif 看不出阴影效果，哎。。)
 
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/322b0000517082ead70b)
+
 上面的几个的栗子
 
 css 代码不变，区别是 html 代码，多加了一些类名
+
+![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32110004d5a28160f9b0)
 
 上面几个是我在开发时候发现的栗子，这个我会继续研究，也希望大家能研究，研究出什么好玩的效果，或者动画写法，欢迎分享！
 

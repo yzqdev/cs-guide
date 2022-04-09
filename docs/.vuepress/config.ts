@@ -22,12 +22,13 @@ export default defineHopeConfig({
         href: "//at.alicdn.com/t/font_2410206_mfj6e1vbwo.css",
       },
     ],
+
     [
       "link",
-      //我的iconfont库
+      //我的vscodeiconfont库
       {
         rel: "stylesheet",
-        href: "//at.alicdn.com/t/font_3267094_j92iwdcfcxp.css",
+        href: "//at.alicdn.com/t/font_3267094_vkw5m8k51t.css",
       },
     ],
   ],

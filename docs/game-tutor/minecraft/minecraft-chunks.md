@@ -23,11 +23,11 @@ Y轴用不到，所以这里省略
 Px, Pz的类型均为浮点型(float), Cx, Cz, Rx, Rz均为整数型(int)
 
 坐标 | 区块坐标 | .mca文件名 之间关系如下
-
-> [坐标](https://minecraft-zh.gamepedia.com/%E5%9D%90%E6%A0%87): 坐标（coordinates）在数字上反映了玩家在主世界中的位置。坐标基于一个由三条交于一点（即原点）的坐标轴而形成的网格
+:::tip
+  [坐标](https://minecraft-zh.gamepedia.com/%E5%9D%90%E6%A0%87): 坐标（coordinates）在数字上反映了玩家在主世界中的位置。坐标基于一个由三条交于一点（即原点）的坐标轴而形成的网格
 [区块](https://minecraft-zh.gamepedia.com/%E5%8C%BA%E5%9D%97): 区块（Chunk）是Minecraft世界里一个大小为16×256×16的部分
 [.mca文件](https://minecraft-zh.gamepedia.com/%E5%8C%BA%E5%9F%9F%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F): 存档文件, 一个mca文件包含32个区块, 既 512×256×512 大小范围, 保存在 `world(地图目录)\region` 中
-
+:::
 **注意: 区块坐标 与 .mca文件名 的变量 Cx,Cz,Rx,Rz 均向下取整!**
 **下文不再提示**
 

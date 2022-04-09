@@ -1,10 +1,10 @@
 ---
-title: web前端学习资源分享
+title: 你以为 CSS 只是个简单的布局？
 category: '前端, css'
 tag:
-  - 前端
-  - css
-  - 设计
+  ### 前端
+  ### css
+  ### 设计
 translate_title: web-frontend-learning-resource-sharing
 date: 2017-06-16 19:17:00
 description:
@@ -12,7 +12,6 @@ description:
 
 
 
-# 你以为 CSS 只是个简单的布局？
 
 ## CSS3 奇思妙想
 
@@ -20,7 +19,7 @@ description:
 
 于是我迫不及待想跟你们一起分享分享，以后你也可以在别人面前炫（装）耀（逼）了~
 
-ps：本文原创不是我，我只是搬运工，看到好东西与大家分享而已，作者 github 主页请戳 [这里](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fchokcoco)~
+ps：本文原创不是我，我只是搬运工，看到好东西与大家分享而已，作者 github 主页请戳 [这里](https://csscoco.com/inspiration/#/)~
 <!--more-->
 ### 装逼指南
 
@@ -30,7 +29,7 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 本文所有图形都会有个容器 `<div class="css-cell"></div>`包裹，其样式结构如下：
 
-```
+```css
 .css-cell{
     position: relative;
     width: 100%;
@@ -41,7 +40,7 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 所有图形都是在容器内实现的，其结构如下：
 
-```
+```html
 <!--heart-->
 <div class="css-cell">
     <div class="heart"></div>
@@ -51,7 +50,7 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 天气那一块有部分会多一个容器，其结构如下：
 
-```
+```html
 <div class="css-cell ">
     <div class="breeze-container">
         <div class="breeze"></div>
@@ -64,13 +63,21 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ### 装逼实战
 
-- 爱心
-
-![爱心](https://user-gold-cdn.xitu.io/2017/12/28/1609b4a25453943f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 爱心
 
 利用 `div` 的正方形和伪类的圆型组合而成，具体代码如下：
+:::demo
 
+```html
+<div class="css-cell">
+    <div class="heart"></div>
+</div>
 ```
+
+```css
+.css-cell{
+    height:10rem;
+}
 /*heart*/
 .heart{
     position: absolute;
@@ -100,14 +107,24 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 气泡悬浮框
+:::
 
-![气泡悬浮框](https://user-gold-cdn.xitu.io/2017/12/28/1609bc49342281b1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 气泡悬浮框
 
 利用 `border` 结合 `transparent` 特性实现，代码如下：
+::: demo
 
+```html
+<div class='wrap'>
+    <div class='bubbly'></div>
+</div>
 ```
+
+```css
 /*bubbly*/
+.wrap{
+    height:10rem;
+}
 .bubbly{
     position: absolute;
     top:50%;
@@ -135,14 +152,24 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 切角
+:::
 
-![切角](https://user-gold-cdn.xitu.io/2017/12/28/1609bcfc3fb6ab17?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 切角
 
 利用使用线性渐变实现的，代码如下：
+:::demo
 
+```html
+<div class='wrap'>
+    <div class='notching'></div>
+</div>
 ```
+
+```css
 /*notching*/
+.wrap{
+    height:10rem;
+}
 .notching{
     position: absolute;
     top:50%;
@@ -167,14 +194,24 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 弧形切角
+:::
 
-![弧形切角](https://user-gold-cdn.xitu.io/2017/12/28/1609bd960a8abe5c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 弧形切角
 
 使用径向渐变实现，具体实现如下：
+:::demo
 
+```html
+<div class='wrap'>
+    <div class='arc'></div>
+</div>
 ```
+
+```css
 /*arc*/
+.wrap{
+    height:10rem;
+}
 .arc{
     position: absolute;
     top:50%;
@@ -199,13 +236,23 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 梯形
+:::
 
-![梯形](https://user-gold-cdn.xitu.io/2017/12/28/1609bedfbc4f9e4e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 梯形
 
 利用伪类加旋转透视实现，具体实现如下：
+:::demo
 
+```html
+<div class='wrap'>
+    <div class='trapezoid'></div>
+</div>
 ```
+
+```css
+.wrap{
+height:10rem;
+}
 /*trapezoid*/
 .trapezoid{
     position: absolute;
@@ -230,14 +277,24 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 饼图
+:::
 
-![饼图](https://user-gold-cdn.xitu.io/2017/12/28/1609bf61246a04d0?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 饼图
 
 利用伪类、线性渐变、旋转实现，具体代码如下：
+:::demo
 
+```html
+<div class='wrap'>
+    <div class='pie'></div>
+</div>
 ```
+
+```css
 /*pie*/
+.wrap{
+    height:10rem;
+}
 .pie{
     position: absolute;
     top:50%;
@@ -271,14 +328,20 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 平行四边形
+:::
 
-![平行四边形](https://user-gold-cdn.xitu.io/2017/12/28/1609c0352dacd9b9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 平行四边形
 
 利用伪类、拉伸实现，实现过程如下：
+:::demo
 
+```html
+<div class='wrap'><div class='parallelogram'></div></div>
 ```
+
+```css
 /*parallelogram*/
+.wrap{height:10rem}
 .parallelogram{
     position: absolute;
     top:50%;
@@ -302,13 +365,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 折角
+:::
 
-![折角](https://user-gold-cdn.xitu.io/2017/12/28/1609c0974bbd2eff?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 折角
 
 利用切角、伪类、渐变、旋转实现，代码如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='corner'>
+          
+     </div>
+     
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 /*corner*/
 .corner{
     position: absolute;
@@ -336,18 +414,24 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 纯 CSS 方案实现背景变暗效果（hover按钮触发）
+:::
 
-![hover之前](https://user-gold-cdn.xitu.io/2017/12/28/1609c0f767ce7bc6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 纯 CSS 方案实现背景变暗效果（hover按钮触发）
 
 鼠标移入
 
-![hover之后](https://user-gold-cdn.xitu.io/2017/12/28/1609c1260cb55808?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
-
 利用 `box-shadow` 实现，具体代码如下：
+:::demo
 
+```html
+<div class='wrap'>
+    <div class='spectiveBlur'></div>
+</div>
 ```
+
+```css
 /*spectiveBlur*/
+.wrap{height:10rem;}
 .spectiveBlur{
     position: absolute;
     top: 50%;
@@ -368,13 +452,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 条纹背景图
+:::
+
+### 条纹背景图
 
 主要是利用渐变实现，具体实现如下：
 
-![条纹背景图](https://user-gold-cdn.xitu.io/2017/12/28/1609c1c08d51999a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+:::demo
 
+```html
+ <div class='wrap'>
+     <div class='stripe'>
+          
+     </div>
+     
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 /*stripe*/
 .stripe{
     position: absolute;
@@ -390,9 +489,23 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-![条纹背景图](https://user-gold-cdn.xitu.io/2017/12/28/1609c2bc6f0c78c7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+:::
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='wave-stripe'>
+     </div>
+     
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 /*wave-stripe*/
 .wave-stripe{
     position: absolute;
@@ -412,10 +525,24 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-![条纹背景图](https://user-gold-cdn.xitu.io/2017/12/28/1609c3045511cb71?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+:::
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='arrow-stripe'>
+       
+     </div>
+     
+ </div>
 ```
-/*arrow-stripe*/
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 .arrow-stripe{
     position: absolute;
     top:50%;
@@ -434,11 +561,26 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 混合模式背景图
+:::
 
-![混合模式背景图](https://user-gold-cdn.xitu.io/2017/12/28/1609c32894bab7b7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 混合模式背景图
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='colorful-stripe'>
+         
+     </div>
+     
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 .colorful-stripe {
     position: absolute;
     top: 50%;
@@ -457,14 +599,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 太阳
+:::
 
-![sun](https://user-gold-cdn.xitu.io/2017/12/28/1609cb0a29b83907?imageslim)
+### 太阳
 
 利用线性渐变、阴影、旋转实现，具体代码如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='sun'>
+         
+     </div>
+     
+ </div>
 ```
-/*sun*/
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 .sun{
     position: absolute;
     top: 50%;
@@ -516,13 +672,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 多云
+:::
 
-![cloud](https://user-gold-cdn.xitu.io/2017/12/28/1609cb292be61801?imageslim)
+### 多云
 
 利用线性渐变、阴影、缩放实现，具体实现如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='starry-container'>
+         <div class='cloudy'></div>
+     </div>
+     
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 /*cloudy*/
 .cloudy{
     position: absolute;
@@ -591,9 +762,23 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-![cloud2](https://user-gold-cdn.xitu.io/2017/12/28/1609cb387b64eb76?imageslim)
+:::
+:::demo
 
+```html
+ <div class='wrap'>
+     <div class='starry-container'>
+         <div class='cloudy2'></div>
+     </div>
+     
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 /*cloudy2*/
 .cloudy2{
     position: absolute;
@@ -651,14 +836,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 雨
+:::
 
-![rain](https://user-gold-cdn.xitu.io/2017/12/28/1609cb4becbf5596?imageslim)
+### 雨
 
 利用线性渐变、阴影、缩放实现，具体代码如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='rainy-container'>
+         <div class='rainy'></div>
+     </div>
+     
+ </div>
 ```
-/*rainy*/
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 .rainy {
     position: absolute;
     width: 3px;
@@ -742,13 +941,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 微风
+:::
 
-![wind](https://user-gold-cdn.xitu.io/2017/12/28/1609cb5cd8e6d262?imageslim)
+### 微风
 
 利用border、transparent、实现，这个会多一层 `div.breeze-container` 包裹，样式代码如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='breeze-container'>
+         <div class='breeze'></div>
+     </div>
+     
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 /*breeze*/
 .breeze-container{
     position: absolute;
@@ -811,13 +1025,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 彩虹
+:::
 
-![rainbow](https://user-gold-cdn.xitu.io/2017/12/28/1609cb6a409c0973?imageslim)
+### 彩虹
 
 主要是利用border、box-shadow 实现，具体实现如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='rainbow-container'>
+         <div class='rainbow'></div>
+     </div>
+     
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 /*rainbow*/
 .rainbow-container{
     position: absolute;
@@ -886,13 +1115,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 夜空
+:::
 
-![moon](https://user-gold-cdn.xitu.io/2017/12/28/1609cb7c1751450a?imageslim)
+### 夜空
 
 主要是利用 box-shadow 实现 ， 实现方式如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='starry-container'>
+         <div class='starry'></div>
+     </div>
+     
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 /*starry*/
 .starry-container{
     position: absolute;
@@ -964,14 +1208,25 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 雷电
+:::
 
-![thunder](https://user-gold-cdn.xitu.io/2017/12/28/1609cb8bcf96f93e?imageslim)
+### 雷电
 
 主要是利用阴影、border实现，代码如下：
+:::demo
 
+```html
+ <div class='wrap'>
+     <div class='thunder-container'><div class='thunder'></div></div>
+     
+ </div>
 ```
-/*thunder*/
+
+```css
+ 
+.wrap{
+    height:30rem;
+}
 .thunder-container {
     position: absolute;
     top: 50%;
@@ -1046,13 +1301,26 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 大雪
+:::
 
-![snow](https://user-gold-cdn.xitu.io/2017/12/28/1609cb9204a92b1e?imageslim)
+### 大雪
 
 利用阴影实现 ， 代码如下：
+:::demo
 
+```html
+ <div class='wrap'>
+     <div class='snowy-container'><div class='snowy'></div></div>
+     <div class='cloudy'></div>
+     <div class='snowy_rain'></div>
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:30rem;
+}
 /*snow*/
 .snowy-container {
     position: absolute;
@@ -1220,13 +1488,24 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 五角星
+:::
 
-![五角星](https://user-gold-cdn.xitu.io/2017/12/28/1609c60c3b3523d7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 五角星
 
 主要是利用border、transparent、旋转实现，代码如下：
+:::demo
 
+```html
+ <div class='wrap'>
+     <div class='five-star'></div>
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:10rem;
+}
 /*star*/
 .five-star{
     position: absolute;
@@ -1275,13 +1554,24 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 太极八卦
+:::
 
-![太极八卦](https://user-gold-cdn.xitu.io/2017/12/28/1609c62e88dda173?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 太极八卦
 
 利用 box-shadow 实现 ， 代码很简单：
+:::demo
 
+```html
+ <div class='wrap'>
+     <div class='TaiChi'></div>
+ </div>
 ```
+
+```css
+/*captainAmerica*/
+.wrap{
+    height:10rem;
+}
 /*TaiChi*/
 .TaiChi{
     position: absolute;
@@ -1303,14 +1593,24 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 美队盾牌
+:::
 
-![美队盾牌](https://user-gold-cdn.xitu.io/2017/12/28/1609c654fe2e1e5b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 美队盾牌
 
 利用 渐变 实现 ， 代码如下：
+:::demo
 
+```html
+ <div class='wrap'>
+     <div class='captainAmerica'></div>
+ </div>
 ```
+
+```css
 /*captainAmerica*/
+.wrap{
+    height:10rem;
+}
 .captainAmerica{
     position: absolute;
     top: 50%;
@@ -1346,14 +1646,27 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 纽扣
+:::
 
-![纽扣](https://user-gold-cdn.xitu.io/2017/12/28/1609c66d6b7f7ca4?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 纽扣
 
 利用 渐变、阴影 实现 ， 实现方法如下：
+:::demo
 
+```html
+ <div class='wrap'>
+     <div class='button'>
+          
+     </div>
+     
+ </div>
 ```
-/*button*/
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 .button{
     position: absolute;
     top: 50%;
@@ -1408,14 +1721,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- Chrome
+:::
 
-![Chrome](https://user-gold-cdn.xitu.io/2017/12/28/1609c68ed206684a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### Chrome
 
 利用渐变实现 , 具体如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='Chrome'>
+          
+     </div>
+     
+ </div>
 ```
-/*chrome*/
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 .Chrome{
     position: absolute;
     top: 50%;left: 50%;
@@ -1440,14 +1767,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- Opera
+:::
 
-![Opera](https://user-gold-cdn.xitu.io/2017/12/28/1609c6ad7311175f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### Opera
 
 利用渐变实现 , 代码如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='Opera'>
+          
+     </div>
+     
+ </div>
 ```
-/*Opera*/
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 .Opera{
     position: absolute;
     top: 50%;left: 50%;
@@ -1479,14 +1820,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- IE
+:::
 
-![IE](https://user-gold-cdn.xitu.io/2017/12/28/1609c6c9d941f7cb?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### IE
 
 利用渐变、多重阴影实现 ， 代码实现如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='IE'>
+          
+     </div>
+     
+ </div>
 ```
-/*IE*/
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 .IE{
     position: absolute;
     top: 50%;
@@ -1530,14 +1885,28 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- safari
+:::
 
-![safari](https://user-gold-cdn.xitu.io/2017/12/28/1609c996a8c00cbd?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### safari
 
 利用渐变、border、旋转实现 ， 具体代码如下：
 
+:::demo
+
+```html
+ <div class='wrap'>
+     <div class='safari'>
+          
+     </div>
+     
+ </div>
 ```
-/*safari*/
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 .safari{
     position: absolute;
     top: 50%;left: 50%;
@@ -1594,13 +1963,27 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- firefox
+:::
 
-![firefox](https://user-gold-cdn.xitu.io/2017/12/28/1609c9c9d255ca6a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### firefox
 
 利用多重阴影实现 , 代码如下：
+:::demo
 
+```html
+ <div class='wrap'>
+     <div class='firefox'>
+          
+     </div>
+     
+ </div>
 ```
+
+```css
+ 
+.wrap{
+    height:20rem;
+}
 /*firefox*/
 .firefox{
     position: absolute;
@@ -1665,14 +2048,22 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 搜狗
+:::
 
-![搜狗](https://user-gold-cdn.xitu.io/2017/12/28/1609c9d800b66778?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+### 搜狗
 
 利用文字、阴影实现 , 具体代码如下：
+:::demo
 
+```html
+<div class='wrap'>
+    <div class='sogou'></div>
+</div>
 ```
+
+```css
 /*sougou*/
+.wrap{height:10rem}
 .sogou{
     position: absolute;
     top: 50%;
@@ -1708,14 +2099,23 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
-- 利用滤镜实现混合效果
+:::
 
-![filter-mix](https://user-gold-cdn.xitu.io/2017/12/28/1609caaf1fcb43b8?imageslim)
+### 利用滤镜实现混合效果
 
 利用 `fliter:blur()` 、`filter:contrast()` 实现 ， 代码如下：
+:::demo
+
+```html
+<div class='wrap'><div class='filter-mix'></div></div>
 
 ```
+
+```css
 /*filter-mix*/
+.wrap{
+    height:10rem;
+}
 .filter-mix{
     position: absolute;
     top: 50%;left: 50%;
@@ -1781,6 +2181,8 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 ```
 
+:::
+
 ### 装逼总结
 
 怎么样，是不是颠覆了你对 `CSS3` 的认识？
@@ -1795,8 +2197,6 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 
 本文主要来源以下文章：
 
-[magicCss](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fchokcoco%2FmagicCss)
+[magicCss](https://github.com/chokcoco/magicCss)
 
-[CSS Secrets](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fcssmagic%2FCSS-Secrets)
-
-对 `CSS` 感兴趣的同学可以去作者的 [github](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fchokcoco) 点个赞~
+[CSS Secrets](https://github.com/cssmagic/CSS-Secrets)

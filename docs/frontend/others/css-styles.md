@@ -1,10 +1,11 @@
 
-# 偏门却又实用的css样式
+# 偏门却又实用的 CSS 样式
 
-很早之前我们推荐大家看《推荐大家使用的CSS书写规范、顺序》，里面提到css的一些常用命名、规范等等，而今天主要是说一些偏门一点的css样式、技巧。
+很早之前我们推荐大家看《推荐大家使用的CSS书写规范、顺序》，里面提到 CSS 的一些常用命名、规范等等，而今天主要是说一些偏门一点的 CSS 样式、技巧。
 
-什么是偏门，就是有些片段很少使用，时间久了就记不起来，但用的时候又要去找，所以这里为大家整理一些少用但又实用的css样式，
+什么是偏门，就是有些片段很少使用，时间久了就记不起来，但用的时候又要去找，所以这里为大家整理一些少用但又实用的 CSS 样式，
 <!--more-->
+![偏门却又实用的 CSS 样式](https://p26.toutiaoimg.com/large/47070002fa2c9784ef4c)
 
 部分由小编及网友提供，感谢你们~ 持续更新哦。
 
@@ -14,9 +15,20 @@ input 的 H5 `placeholder` 属性，很好用，但不能直接改这个文字�
 
 小Tips: 配合 opacity 属性使用效果更佳哦！
 
-```css
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */color: pink;}::-moz-placeholder { /* Firefox 19+ */color: pink;}:-ms-input-placeholder { /* IE 10+ */color: pink;}:-moz-placeholder { /* Firefox 18- */color: pink;}
+![偏门却又实用的 CSS 样式](https://p26.toutiaoimg.com/large/470900026ba1fc15e6a3)
+::: demo
+
+```html
+<input id='place' placeholder='请输入' />
 ```
+
+```css
+#place{
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */color: pink;}::-moz-placeholder { /* Firefox 19+ */color: pink;}:-ms-input-placeholder { /* IE 10+ */color: pink;}:-moz-placeholder { /* Firefox 18- */color: pink;}
+}
+```
+
+:::
 
 @Impor 嵌套样式表文件
 
@@ -28,6 +40,8 @@ input 的 H5 `placeholder` 属性，很好用，但不能直接改这个文字�
 
 Outline 当点击Input元素时显示的当前状态线（外发光）
 
+![偏门却又实用的 CSS 样式](https://p26.toutiaoimg.com/large/47040004c20b145fc186)
+
 这个状态线是用来提示用户当前状态指示作用，但因为效果很美观，建议去掉，或自己改个样式
 
 ```css
@@ -35,10 +49,13 @@ div {outline: none; //移动浏览器默认的状态线// outline: 5px dotted re
 ```
 
 Contenteditable 设置Element是否可编辑
+::: demo
 
-```css
+```html
 <p contenteditable="true">可编辑</p>
 ```
+
+:::
 
 Webkit-Playsinline
 
@@ -63,11 +80,17 @@ div {position: absolute;left: 0;right: 0;margin: 0 auto;}
 ```
 
 User-Select 禁止用户选中文本
+:::demo
+
+```html
+<div>禁止用户选中文本</div>
+```
 
 ```css
 div {user-select: none; /* Standard syntax */}
 ```
 
+:::
 清除手机Tap事件后Element 时候出现的一个高亮
 
 ```css
@@ -84,11 +107,20 @@ div {user-select: none; /* Standard syntax */}
 2. To remove platform specific styling to an element that does have it by default
 
 移除浏览器默认的样式，比如chrome的input默认样式
+:::demo
+
+```html
+<input value='hhh' />
+<button >哈利</button>
+<textarea></textarea>
 
 ```
-input, button, textarea, select {*font-size: 100%;-webkit-appearance:none;}
+
+```css
+input, button, textarea, select { font-size: 100%;-webkit-appearance:none;}
 ```
 
+:::
 CSS开启硬件加速
 
 <http://www.cnblogs.com/rubylouvre/p/3471490.html>
@@ -119,27 +151,25 @@ Perspective 透视
 
 这个属性的存在决定你看到的元素是2d还是3d。一般设置在包裹元素的父类上。
 
-```
+```css
 .div-box {perspective: 400px;}
 ```
 
 Css实现不换行、自动换行、强制换行
 
-```
+```css
 //不换行white-space:nowrap;//自动换行word-wrap: break-word;word-break: normal;//强制换行word-break:break-all;
 ```
 
 Box-Sizing 让元素的宽度、高度包含Border和Padding
 
-```
+```css
 {box-sizing: border-box;}
 ```
 
 Calc() Function, 计算属性值
 
-<https://www.w3schools.com/cssref/func_calc.asp>
-
-```
+```css
 div {width: calc(100% - 100px);}
 ```
 
@@ -149,7 +179,7 @@ Css3 Linear-Gradient 线性渐变
 
 默认开始在top, 也可以自定义方向。
 
-```
+```css
 div {linear-gradient(red, yellow)}background: linear-gradient(direction, color-stop1, color-stop2, ...);
 ```
 
@@ -157,8 +187,8 @@ div {linear-gradient(red, yellow)}background: linear-gradient(direction, color-s
 
 以下代码是选择父类下第一个子节点，p元素，建议学习这个样式属性的使用，很实用的。
 
-```
+```css
 p:nth-child(1) {...}
 ```
 
-就介绍到这里，以后会不断更新，如果有好的css代码，欢迎在留言处提交给我们，一起收录进来！
+就介绍到这里，以后会不断更新，如果有好的 CSS 代码，欢迎在留言处提交给我们，一起收录进来！

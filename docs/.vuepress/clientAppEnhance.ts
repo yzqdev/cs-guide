@@ -6,6 +6,8 @@ import SvgClock from "./components/SvgClock.vue";
 import CanvasVSSvg from "./components/CanvasVSSvg.vue";
 import CanvasSample from "./components/CanvasSample.vue";
 import Gobang from "./components/Gobang.vue";
+import IconDisplay from "./components/IconDisplay";
+import Econ from "./components/Econ.vue";
 import naive from "naive-ui";
 
 import hope from "vuepress-theme-hope/package.json";
@@ -38,4 +40,6 @@ export default defineClientAppEnhance(({ app, router, siteData }) => {
   app.component("CanvasVSSvg", CanvasVSSvg);
   app.component("CanvasSample", CanvasSample);
   app.component("Gobang", Gobang);
+  app.component("IconDisplay", IconDisplay);
+  app.component("Econ", Econ);
 });

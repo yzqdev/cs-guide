@@ -67,7 +67,7 @@ features:
     link: https://yzqdev.github.io/git-tutor  
   - title: nodejs教程
     details: 一个简单的node教程
-    icon: nodeJS
+    icon: node
     link: https://yzqdev.github.io/node-tutor  
   - title: 安卓教程
     details: 一个简单的安卓教程
