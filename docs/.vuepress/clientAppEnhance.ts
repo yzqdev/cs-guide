@@ -29,6 +29,7 @@ showBadge("vue", vuePkg.version, "#606060", "RGB(20,117,178)");
 showBadge("vuepress", vp.version, "#606060", "RGB(20,117,178)");
 showBadge("vuepress-theme-hope", hope.version, "#606060", "RGB(20,117,178)");
 export default defineClientAppEnhance(({ app, router, siteData }) => {
+  console.log(app);
   app.use(naive);
   app.component("RegTest", RegTest);
   app.component("SvgList", SvgList);

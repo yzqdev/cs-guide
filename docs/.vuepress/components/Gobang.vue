@@ -1,11 +1,14 @@
 <template>
+  <h2 class="center">和伙伴玩</h2>
   <canvas id="cv" width="200px" height="200px"></canvas>
   <p class="result"></p>
-  <button onclick="loadPanel(400, 400,30,13)">刷新</button>
+  <button class="refresh-btn" onclick="loadPanel(400, 400,30,13)">刷新</button>
   <br />
   <br />
   <br />
+  <h2 class="center">和计算机玩</h2>
   <div id="box"></div>
+  <button class="refresh-btn" @click="clearAll">重新开始</button>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
@@ -137,6 +140,26 @@ class Gobang {
     //落子功能实现
     this.dorpChess();
   }
+  clear() {
+    this.over = false; // 是否结束
+    this.player = true; // true:我  false:电脑
+    this.allChesses = []; // 所有棋子
+    this.existChesses = []; // 已经落下的棋子
+    this.winsCount = 0; // 赢法总数
+    this.wins = []; // 所有赢法统计
+    this.myWins = []; //我的赢法统计
+    this.computerWins = []; //电脑赢法统计
+
+    // 鼠标移动聚焦功能实现
+    this.mouseMove();
+
+    //算法初始化
+    this.algorithmInit();
+
+    //落子功能实现
+    this.dorpChess();
+    console.log(this);
+  }
   //生成canvas
   createCanvas(opts) {
     var opts = opts || {};
@@ -265,14 +288,14 @@ class Gobang {
         this.winsCount++;
 
         /*
-				如： 
+				如：
 				1.组成的第一种赢法
 					[0,0]
 					[0,1]
 					[0,2]
 					[0,3]
 					[0,4]
-				
+
 				2.组成的第二种赢法
 					[0,1]
 					[0,2]
@@ -302,7 +325,7 @@ class Gobang {
 
 						虽然这是一个三维数组, 我们把它拆分下就好理解了
 						相当于  this.wins[0][0][1], this.wins[0][1][1], this.wins[0][2][1], this.wins[0][3][1], this.wins[0][4][1]
-						
+
 						因为对象可以这样取值：
 							var obj = {
 								a: 10,
@@ -310,7 +333,7 @@ class Gobang {
 							}
 							obj['a'] === obj.a
 
-						所有也就相当于 this.wins[0][0].1, this.wins[0][1].1, this.wins[0][2].1, this.wins[0][3].1, this.wins[0][4].1 
+						所有也就相当于 this.wins[0][0].1, this.wins[0][1].1, this.wins[0][2].1, this.wins[0][3].1, this.wins[0][4].1
 
 						虽然数组不能这么取值，可以这么理解
 
@@ -319,7 +342,7 @@ class Gobang {
 								......
 
 						以上this.wins[0][0],this.wins[0][1]...可以看作是 this.wins[x][y]
-						所以第一种赢法的坐标就是: [0,0] [0,1] [0,2] [0,3] [0,4] 
+						所以第一种赢法的坐标就是: [0,0] [0,1] [0,2] [0,3] [0,4]
 				*/
         }
       }
@@ -350,7 +373,7 @@ class Gobang {
 				[2,2]
 				[3,3]
 				[4,4]
-			
+
 			2.  [0,1]
 				[1,2]
 				[2,3]
@@ -409,7 +432,9 @@ class Gobang {
 
       if (!that.over) {
         that.player = false;
-        that.computerDropChess();
+        setTimeout(() => {
+          that.computerDropChess();
+        }, 500);
       }
     });
   }
@@ -543,24 +568,31 @@ class Gobang {
 
         if (currObj[i - 1] === 5) {
           //当达到 5 的时候,证明我胜利了
-          alert(currText + "赢了");
           this.over = true;
+          alert(currText + "赢了");
+          console.log(this);
         }
       }
     }
   }
 } //---------------------
-
+let gobang = new Gobang();
+function clearAll() {
+  gobang.clear();
+}
 onMounted(() => {
   p2p();
-  let gobang = new Gobang();
+
   gobang.init({
     container: "#box",
   });
 });
 </script>
 
-<style>
+<style scoped>
+.center {
+  text-align: center;
+}
 #box {
   width: 450px;
   height: 450px;
@@ -580,7 +612,7 @@ canvas {
 .result {
   text-align: center;
 }
-button {
+.refresh-btn {
   display: block;
   margin: 0 auto;
   padding: 4px 20px;
@@ -588,10 +620,12 @@ button {
   color: #fff;
   outline: none;
   border-radius: 3px;
+  transition: all 0.3s;
   background: #43a6ff;
 }
-button:hover {
+.refresh-btn:hover {
   font-weight: bold;
   cursor: pointer;
+  background: #449ff0;
 }
 </style>

@@ -5,12 +5,15 @@
 ## 文本元素
 
 文本元素用于添加文本。
+:::demo
 
-```
+```html
 <svg width="100" height="100">
 <text x="50" y="50">dog</text>
 </svg>
 ```
+
+:::
 
 基本文本示例
 
@@ -23,13 +26,16 @@
 文本元素中的文本不会自动换行(不会自动换行)。
 
 不像 HTML，也没有“ pre”元素。
+:::demo
 
-```
+```html
 <svg width="100" height="100">
 <text x="0" y="50">cat and
 dog</text>
 </svg>
 ```
+
+:::
 
 换行不会换行
 
@@ -47,17 +53,25 @@ dog</text>
 ## 文本元素锚定位置
 
 当您有一个文本元素时
+:::demo
 
-< text x = " 50" y = " 50" > cat </text >
+```html
+<text x = " 50" y = " 50" > cat </text >
+```
 
+:::
 确切的锚定位置是第一个字符的基线左下方。
 
-```
+:::demo
+
+```html
 <svg width="100" height="100">
 <circle cx="50" cy="50" r="3" style="fill:red"></circle>
 <text x="50" y="50">dog</text>
 </svg>
 ```
+
+:::
 
 ## 文本对齐
 
@@ -69,21 +83,28 @@ Text-anchor 可用于设置 text 元素中{ x，y }表示的位置。
 - `middle`
 - `end`
 
-```
+:::demo
+
+```html
 <svg width="100" height="100">
 <circle cx="50" cy="50" r="3" style="fill:red"></circle>
 <text x="50" y="50" text-anchor="middle">dog</text>
 </svg>
 ```
 
+:::
 以文本为中心的
 
-```
+:::demo
+
+```html
 <svg width="100" height="100">
 <circle cx="50" cy="50" r="3" style="fill:red"></circle>
 <text x="50" y="50" text-anchor="end">dog</text>
 </svg>
 ```
+
+:::
 
 右对齐
 
@@ -105,21 +126,28 @@ Tspan 也有绝对定位的属性{ x，y }。
 
 abc
 
-```
+:::demo
+
+```html
 <svg width="100" height="100">
 <text x="0" y="50">ab<tspan style="font-weight:bold">c</tspan></text>
 </svg>
 ```
 
+:::
+
 使用“ tspan”的粗体字
 
 abc
+:::demo
 
-```
+```html
 <svg width="100" height="100">
 <text x="0" y="50">ab<tspan dy="-10">c</tspan></text>
 </svg>
 ```
+
+:::
 
 上标使用“ tspan”, 偏移
 
@@ -127,11 +155,15 @@ abc
 
 每个属性“ x”和“ y”都可以是一个数字序列。第二个数字是第二个字符的位置，第三个数字是第三个字符的位置等等。
 
-```
+:::demo
+
+```html
 <svg width="100" height="100">
 <text x="0 10 50" y="100 90 80">dog</text>
 </svg>
 ```
+
+:::
 
 x y 的多个值
 
@@ -155,19 +187,27 @@ Baseline-shift 属性可以与文本元素或 tspan 一起使用，用于向上�
 - 对文本元素使用旋转变换[坐标变换](http://xahlee.info/js/svg_transformation.html)]
 - 使用 财产，有价值 (从上到下)
 
-```
+:::demo
+
+```html
 <svg width="100" height="100">
 <text x="50" y="50" transform="rotate(-90 50 50)">mouse</text>
 </svg>
 ```
 
+:::
+
 使用变换旋转垂直文本
 
-```
+:::demo
+
+```html
 <svg width="100" height="100">
 <text x="50" y="50" writing-mode="tb">bird</text>
 </svg>
 ```
+
+:::
 
 垂直文本 财产
 
@@ -191,13 +231,16 @@ Baseline-shift 属性可以与文本元素或 tspan 一起使用，用于向上�
 - 。必须是{`0`, `90`, `180`, `270`}
 - `inherit`
 
-```
+:::demo
+
+```html
 <figure class="svg_example">
 <svg width="100" height="100">
 <text x="20" y="20" writing-mode="tb" glyph-orientation-vertical="0">LOVE</text>
 </svg>
 ```
 
+:::
 垂直文本`writing-mode`, }(注意: 从2015-08-17开始，Firefox 不支持 也不`glyph-orientation-vertical`)
 
 ## 路径上的文本

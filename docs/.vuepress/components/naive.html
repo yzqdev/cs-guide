@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>naive</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/naive-ui"></script>
+  </head>
+  <body>
+    <div id="app">
+      <n-button>click</n-button>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            msg: "hhhhh",
+          };
+        },
+      });
+      app.use(Naive);
+      app.mount("#app");
+    </script>
+  </body>
+</html>

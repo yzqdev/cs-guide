@@ -2,42 +2,48 @@
 
 ## Vue3
 
+:::demo
+
 ```html
-<!DOCTYPE html>
-<html lang="zh"  >
-<head>
-    <meta charset="UTF-8"/>
-    <title>系统配置</title>
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>element-plus</title>
     <link
-            rel="stylesheet"
-            href="//cdn.jsdelivr.net/npm/element-plus/dist/index.css"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/element-plus/dist/index.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://cdn.jsdelivr.net/npm/element-plus"></script>
-</head>
-<body>
-<div id="app">
-     <el-button>哈哈哈</el-button>
+  </head>
+  <body>
+    <div id="app">
+      <el-button type="primary" @click="showMsg">element-plus</el-button>
+    </div>
 
-</div>
-
-
-<script >
-
-    const app=Vue.createApp({
-        data(){
-            return{
-                msg:'hhhhh'
-            }
-        }
-    })
-    app.use(ElementPlus);
-    app.mount("#app")
-</script>
-
-</body>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            msg: "hhhhh",
+          };
+        },
+        methods: {
+          showMsg() {
+            ElementPlus.ElMessage("hhh");
+          },
+        },
+      });
+      app.use(ElementPlus);
+      app.mount("#app");
+    </script>
+  </body>
 </html>
+
 ```
+
+:::
 
 ## 使用quasar
 
