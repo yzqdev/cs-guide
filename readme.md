@@ -12,4 +12,4 @@ yarn  docs:build
 
 ```
 
- ![预览](./res/home.png)
+ ![预览](./res/home.webp)

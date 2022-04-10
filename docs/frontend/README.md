@@ -1,128 +1,171 @@
----
-index: 1
----
-# 前端学习笔记
+# frontend
 
 ## chrome-plugins
 
-- [chrome插件开发](./chrome-plugins/chrome插件开发.md)
-- [chrome插件推荐](./chrome-plugins/chrome插件推荐.md)
-- [README](./chrome-plugins/README.md)
+- [chrome插件开发](./chrome-plugins/chrome-plugin-development.md)
+- [chrome好用的插件](./chrome-plugins/chrome-plugin-recommend.md)
+- [chrome插件](./chrome-plugins/README.md)
+- [使用Vue开发浏览器插件](./chrome-plugins/vue-to-chromeplugin.md)
 
-## electron教程
+## drawing
 
-- [electron-errors](./electron教程/electron-errors.md)
-- [electron技巧](./electron教程/electron技巧.md)
-- [electron网站](./electron教程/electron网站.md)
-- [README](./electron教程/README.md)
+- [canvas和svg对比](./drawing/canvas-and-svg.md)
+- [学习svg和canvas](./drawing/README.md)
+- [一个svg钟](./drawing/simple-clock.md)
+- [svg基础](./drawing/svg-basics.md)
+- [使用代码实现svg](./drawing/svg-circle.md)
+- [svg元素](./drawing/svg-elements.md)
+- [路径(path)基础](./drawing/svg-path.md)
+- [svg文本](./drawing/svg-text.md)
+- [坐标转换](./drawing/svg-transform.md)
+- [viewbox基础](./drawing/viewbox.md)
 
-## es教程
+## electron-tutor
 
-- [async,await](./es教程/async,await.md)
-- [ES6-8新语法](./es教程/ES6-8新语法.md)
-- [ES9-ES12新语法](./es教程/ES9-ES12新语法.md)
-- [README](./es教程/README.md)
+- [electron](./electron-tutor/electron-errors.md)
+- [electron](./electron-tutor/electron-tips.md)
+- [electron相关资源](./electron-tutor/electron-website.md)
+- [electron学习笔记](./electron-tutor/README.md)
 
-## nodejs
+## es
 
-- [express教程](./nodejs/express教程.md)
-- [koa教程](./nodejs/koa教程.md)
-- [nest教程](./nodejs/nest教程.md)
-- [nodejs-tutor](./nodejs/nodejs-tutor.md)
-- [README](./nodejs/README.md)
+- [js中的异步](./es/async,await.md)
+- [ES6](./es/es6-es8.md)
+- [ES10新特性（2019）](./es/es9-es12.md)
+- [es教程](./es/README.md)
 
-## react教程
+## frontend-tips
 
-- [README](./react教程/README.md)
-- [升级版本](./react教程/升级版本.md)
+- [前端数组](./frontend-tips/array.md)
+- [css](./frontend-tips/css-hacks.md)
+- [css面试题](./frontend-tips/css-interview.md)
+- [json相关](./frontend-tips/json-parser.md)
+- [前端布局](./frontend-tips/layouts.md)
+- [库列表](./frontend-tips/lib-recommend.md)
+- [前端地图实现](./frontend-tips/maps.md)
+- [模拟数据](./frontend-tips/mock.md)
+- [前端技巧](./frontend-tips/README.md)
+- [静态网站生成器](./frontend-tips/static-site-generator.md)
+- [svelte教程](./frontend-tips/svelte.md)
+- [正则表达式](./frontend-tips/templates.md)
+
+## interview
+
+- [前端手写代码](./interview/hands-on.md)
+- [js算法](./interview/js-algorithm.md)
+- [前端算法](./interview/README.md)
+
+## others
+
+- [用手机这么久](./others/about-your-phone.md)
+- [css](./others/css-content.md)
+- [前端—css面试题](./others/css-interview.md)
+- [偏门却又实用的](./others/css-styles.md)
+- [零基础入门前端开发工程师，应当提前掌握](./others/div-and-css.md)
+- [做动效？这75款动效工具让你无所不能（上](./others/effect-tool.md)
+- [正确面对跨域，别慌](./others/face-cors.md)
+- [前端跨域请求api的几种常用解决方案](./others/frontend-cors.md)
+- [前端常用类库](./others/frontend-libs.md)
+- [前端开发规范：命名规范、html规范、c](./others/frontend-naming-convention.md)
+- [个人分享--web前端学习资源分享](./others/frontend-resources.md)
+- [笼统的前端——前端技术的各种知识点总结](./others/frontend-techs.md)
+- [正文](./others/frontend-tools.md)
+- [web前端中的居中（八种方法）](./others/how-to-center.md)
+- [js](./others/js-development-tools.md)
+- [JavaScript](./others/js-format.md)
+- [这一次，彻底弄懂](./others/js-run-method.md)
+- [编写自己的代码库（javascript常](./others/lib-make.md)
+- [第一章](./others/linux-basics.md)
+- [[读懂源码：一步一步实现一个](./others/make-a-vue.md)
+- [做新媒体必备的43款工具，速来围观](./others/new-media-tools.md)
+- [送给前端开发者的一份新年礼物](./others/new-year-gift.md)
+- [2016](./others/opensource-tools.md)
+- [其他](./others/README.md)
+- [初级篇](./others/simple-js.md)
+- [还在用微信](./others/transfer-tools.md)
+- [老司机告诉你经常用到的压缩文件都是什么原](./others/zip-principle.md)
+
+## package-manager
+
+- [安装全局包](./package-manager/faq.md)
+- [常用的包管理](./package-manager/npm-libs.md)
+- [node使用国内镜像](./package-manager/npm-proxy.md)
+- [使用nvm](./package-manager/nvm.md)
+- [pnpm教程](./package-manager/pnpm.md)
+- [包管理工具](./package-manager/README.md)
+- [工作区使用](./package-manager/workspace.md)
+- [yarn配置](./package-manager/yarn-conf.md)
+
+## react
+
+- [react教程](./react/README.md)
+- [react升级](./react/upgrade.md)
+
+## regex
+
+- [常用正则表达式1](./regex/common-reg1.md)
+- [正则表达式总述](./regex/README.md)
+- [正则表达式教程](./regex/regex.md)
+
+## snippets
+
+- [一些在控制台好用的js脚本](./snippets/awesome-js-console.md)
+- [前端](./snippets/css-hacks.md)
+- [滚动条美化](./snippets/css-snippets.md)
+- [express配置跨域](./snippets/expres-snippets.md)
+- [js代码片段](./snippets/JavaScript.md)
+- [lessjs配置](./snippets/less-snippets.md)
+- [自己的axios配置](./snippets/my-axios.md)
+- [fetchapi配置](./snippets/my-fetch.md)
+- [代码片段](./snippets/README.md)
+- [vue-ls实现](./snippets/simple-vue-ls.md)
+- [常用代码片段](./snippets/snippets2.md)
+- [vue代码片段](./snippets/vue-snippets.md)
+- [nodejs代码块](./snippets/node-snippets.md)
+- [webstorm识别`@`标识符](./snippets/webstorm-alias.md)
 
 ## tampermonkey
 
-- [README](./tampermonkey/README.md)
-- [tamper-api](./tampermonkey/tamper-api.md)
+- [油猴脚本](./tampermonkey/README.md)
+- [tampermonkey相关的api](./tampermonkey/tamper-api.md)
 - [tamper插件编写](./tampermonkey/tamper插件编写.md)
 
-## ts教程
+## typescript
 
-- [README](./ts教程/README.md)
-- [学习网址](./ts教程/学习网址.md)
+- [ts学习网站](./typescript/learning-resources.md)
+- [ts教程](./typescript/README.md)
 
-## vite教程
+## vite-tutor
 
-- [README](./vite教程/README.md)
-- [vite插件](./vite教程/vite插件.md)
-- [vite配置](./vite教程/vite配置.md)
+- [vite教程](./vite-tutor/README.md)
+- [vite.config.js](./vite-tutor/vite-configs.md)
+- [vite插件](./vite-tutor/vite-plugins.md)
 
-## vue教程
+## vue-tutor
 
-- [iconfont使用](./vue教程/iconfont使用.md)
-- [icon资源网站](./vue教程/icon资源网站.md)
-- [nuxt注意事项](./vue教程/nuxt注意事项.md)
-- [quasar教程](./vue教程/quasar教程.md)
-- [README](./vue教程/README.md)
-- [vue-router教程](./vue教程/vue-router教程.md)
-- [vue2使用svgicon](./vue教程/vue2使用svgicon.md)
-- [vue2教程](./vue教程/vue2教程.md)
-- [vue3-tips](./vue教程/vue3-tips.md)
-- [vue3使用svgicon](./vue教程/vue3使用svgicon.md)
-- [vue单个html使用](./vue教程/vue单个html使用.md)
-- [使用webpack配置vue](./vue教程/使用webpack配置vue.md)
-- [富文本编辑器](./vue教程/富文本编辑器.md)
+- [代码高亮](./vue-tutor/highlight-code.md)
+- [图标网站](./vue-tutor/icon-site.md)
+- [iconfont](./vue-tutor/iconfont.md)
+- [数据获取](./vue-tutor/nuxt-tutor.md)
+- [quasar教程](./vue-tutor/quasar.md)
+- [vue教程](./vue-tutor/README.md)
+- [富文本编辑器](./vue-tutor/rich-editor.md)
+- [vue-router教程](./vue-tutor/vue-router.md)
+- [vue单html](./vue-tutor/vue-singlehtml.md)
+- [wepack教程](./vue-tutor/vue-use-webpack.md)
+- [vue2使用svgicon](./vue-tutor/vue2-svgicon.md)
+- [Vue](./vue-tutor/vue2-tutor.md)
+- [使用svg插件](./vue-tutor/vue3-svgicon.md)
+- [vue3教程](./vue-tutor/vue3-tips.md)
 
-## webpack教程
+## webpack-tutor
 
-- [README](./webpack教程/README.md)
-- [webpack5教程](./webpack教程/webpack5教程.md)
-- [一些奇妙的插件](./webpack教程/一些奇妙的插件.md)
-- [使用babel](./webpack教程/使用babel.md)
-
-## 代码片段
-
-- [axios基本配置](./代码片段/axios基本配置.md)
-- [css片段](./代码片段/css片段.md)
-- [express配置跨域](./代码片段/express配置跨域.md)
-- [fetch基本配置](./代码片段/fetch基本配置.md)
-- [JavaScript](./代码片段/JavaScript.md)
-- [less文件](./代码片段/less文件.md)
-- [README](./代码片段/README.md)
-- [vue代码片段](./代码片段/vue代码片段.md)
-- [webstorm alias](./代码片段/webstorm alias.md)
-- [别人的axios配置](./代码片段/别人的axios配置.md)
-- [简易的vue-ls](./代码片段/简易的vue-ls.md)
-
-## 前端教程
-
-- [css教程](./前端教程/css教程.md)
-- [css问题](./前端教程/css问题.md)
-- [json解析](./前端教程/json解析.md)
-- [mock](./前端教程/mock.md)
-- [README](./前端教程/README.md)
-- [svelte](./前端教程/svelte.md)
-- [ui库推荐](./前端教程/ui库推荐.md)
-- [前端地图](./前端教程/前端地图.md)
-- [前端学习](./前端教程/前端学习.md)
-- [前端布局](./前端教程/前端布局.md)
-- [前端网站](./前端教程/前端网站.md)
-- [常用的](./前端教程/常用的.md)
-- [静态网站生成器](./前端教程/静态网站生成器.md)
-
-## 前端算法
-
-- [js算法](./前端算法/js算法.md)
-- [README](./前端算法/README.md)
-- [前端手写代码](./前端算法/前端手写代码.md)
-- [实现vue](./前端算法/实现vue.md)
-
-## 包管理
-
-- [nvm](./包管理/nvm.md)
-- [pnpm配置](./包管理/pnpm配置.md)
-- [README](./包管理/README.md)
-- [yarn-conf](./包管理/yarn-conf.md)
-- [常用的npm包](./包管理/常用的npm包.md)
-- [注意事项](./包管理/注意事项.md)
-- [配置npm代理](./包管理/配置npm代理.md)
+- [babel教程](./webpack-tutor/babel-loader.md)
+- [webpack教程](./webpack-tutor/README.md)
+- [webpack教程](./webpack-tutor/webpack-plugins.md)
+- [webpack5教程](./webpack-tutor/webpack5-upgrade.md)
 
 ## frontend
 
-- [README](./README.md)
+- [node教程](./node-tutor.md)
+- [前端学习笔记](./README.md)

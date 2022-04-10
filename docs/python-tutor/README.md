@@ -1,25 +1,29 @@
 # python-tutor
 
-## python教程
+## python-config
 
-- [python发送邮件](./python教程/python发送邮件.md)
-- [README](./python教程/README.md)
+- [conda错误](./python-config/conda-errors.md)
+- [conda常见命令](./python-config/conda-tutor.md)
+- [pip配置](./python-config/pip-tutor.md)
+- [python配置](./python-config/python-install.md)
+- [python好用的包](./python-config/python-libs.md)
+- [python配置](./python-config/README.md)
 
-## python配置
+## python-tips
 
-- [conda命令](./python配置/conda命令.md)
-- [conda常见错误](./python配置/conda常见错误.md)
-- [pip配置](./python配置/pip配置.md)
-- [python常用的库](./python配置/python常用的库.md)
-- [python配置](./python配置/python配置.md)
-- [README](./python配置/README.md)
+- [python教程](./python-tips/README.md)
+- [发送邮件](./python-tips/send-email.md)
 
-## 爬虫
+## spider
 
-- [README](./爬虫/README.md)
-- [爬虫教程](./爬虫/爬虫教程.md)
+- [抖音爬虫](./spider/douyin-spider.md)
+- [一些爬虫框架](./spider/frameworks-compare.md)
+- [一些爬虫常用框架](./spider/frameworks.md)
+- [爬虫教程](./spider/README.md)
+- [爬虫教程](./spider/scrawl-tutor.md)
 
-## python网站
+## python-tutor
 
-- [python网站](./python网站.md)
-- [selenium教程](./selenium教程.md)
+- [常用python网站](./python-site.md)
+- [python-tutor](./README.md)
+- [selenium教程](./selenium.md)
