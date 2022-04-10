@@ -1,3 +1,6 @@
+---
+index: 1
+---
 # 数据类型
 
 ## [https://www.cnblogs.com/Ulysse/p/14926572.html#/c/subject/tag/VBScript/](https://www.cnblogs.com/Ulysse/p/14926572.html#/c/subject/tag/VBScript/)

@@ -4,7 +4,7 @@ Chrome 55 中默认情况下启用异步函数，坦率地讲，它们的作用�
 
 异步函数的工作方式是这样的:
 
-```
+```js
 async function myFirstAsyncFunction() {
   try {
     const fulfilledValue = await promise;
@@ -23,7 +23,7 @@ async function myFirstAsyncFunction() {
 
 假设我们想获取某个网址并以文本形式记录响应日志。以下是利用 Promise 编写的代码:
 
-```
+```js
 function logFetch(url) {
   return fetch(url)
     .then(response => response.text())
@@ -37,7 +37,7 @@ function logFetch(url) {
 
 以下是利用异步函数具有相同作用的代码:
 
-```
+```js
 async function logFetch(url) {
   try {
     const response = await fetch(url);
@@ -59,7 +59,7 @@ async function logFetch(url) {
 
 因此，对于:
 
-```
+```js
 // wait ms milliseconds
 function wait(ms) {
   return new Promise(r => setTimeout(r, ms));
@@ -73,7 +73,7 @@ async function hello() {
 
 …调用 `hello()` 返回的 Promise 会在_执行_时返回 `"world"`。
 
-```
+```js
 async function foo() {
   await wait(500);
   throw Error('bar');
@@ -90,7 +90,7 @@ async function foo() {
 
 以下是使用 Promise 编写的代码:
 
-```
+```js
 function getResponseSize(url) {
   return fetch(url).then(response => {
     const reader = response.body.getReader();
@@ -113,7 +113,7 @@ function getResponseSize(url) {
 
 我们再用异步函数来编写上面这段代码:
 
-```
+```js
 async function getResponseSize(url) {
   const response = await fetch(url);
   const reader = response.body.getReader();
@@ -142,7 +142,7 @@ async function getResponseSize(url) {
 
 ### 箭头函数
 
-```
+```js
 // map some URLs to json-promises
 const jsonPromises = urls.map(async url => {
   const response = await fetch(url);
@@ -154,7 +154,7 @@ const jsonPromises = urls.map(async url => {
 
 ### 对象方法
 
-```
+```js
 const storage = {
   async getAvatar(name) {
     const cache = await caches.open('avatars');
@@ -167,7 +167,7 @@ storage.getAvatar('jaffathecake').then(…);
 
 ### 类方法
 
-```
+```js
 class Storage {
   constructor() {
     this.cachePromise = caches.open('avatars');
@@ -189,7 +189,7 @@ storage.getAvatar('jaffathecake').then(…);
 
 尽管您编写的是看似同步的代码，也一定不要错失并行执行的机会。
 
-```
+```js
 async function series() {
   await wait(500);
   await wait(500);
@@ -199,7 +199,7 @@ async function series() {
 
 以上代码执行完毕需要 1000 毫秒，再看看这段代码:
 
-```
+```js
 async function parallel() {
   const wait1 = wait(500);
   const wait2 = wait(500);
@@ -217,7 +217,7 @@ async function parallel() {
 
 _深呼吸_ - 以下是使用 Promise 编写的代码:
 
-```
+```js
 function logInOrder(urls) {
   // fetch all the URLs
   const textPromises = urls.map(url => {
@@ -238,7 +238,7 @@ function logInOrder(urls) {
 
 **不推荐的编码方式** - 过于循序
 
-```
+```js
 async function logInOrder(urls) {
   for (const url of urls) {
     const response = await fetch(url);
@@ -251,7 +251,7 @@ async function logInOrder(urls) {
 
 **推荐的编码方式** - 可读性强、并行效率高
 
-```
+```js
 async function logInOrder(urls) {
   // fetch all the URLs in parallel
   const textPromises = urls.map(async url => {
@@ -290,7 +290,7 @@ async function logInOrder(urls) {
 
 原本的异步函数代码:
 
-```
+```js
 async function slowEcho(val) {
   await wait(1000);
   return val;
@@ -299,7 +299,7 @@ async function slowEcho(val) {
 
 …如果使用 [polyfill](https://gist.github.com/jakearchibald/edbc78f73f7df4f7f3182b3c7e522d25)，就需要这样编写:
 
-```
+```js
 const slowEcho = createAsyncFunction(function*(val) {
   yield wait(1000);
   return val;

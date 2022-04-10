@@ -1,4 +1,4 @@
-# ES6 (ES2015)
+# ES6 (ES2015)到es8
 
 直接看掘金上的文章不香吗??
 [https://juejin.cn/post/6844903775329583112](https://juejin.cn/post/6844903775329583112)
@@ -16,11 +16,11 @@ ES2016添加了两个小的特性来说明标准化过程：
 
 `includes` 函数与 `indexOf` 函数很相似，下面两个表达式是等价的：
 
-```
+```js
 arr.includes(x)
 arr.indexOf(x) >= 0
 
-复制代码
+
 ```
 
 接下来我们来判断数字中是否包含某个元素：
@@ -37,7 +37,7 @@ if (arr.indexOf('react') !== -1)
     console.log('react存在');
 }
 
-复制代码
+
 ```
 
 > 使用ES7的includes()
@@ -51,7 +51,7 @@ if (arr.includes('react'))
 {
     console.log('react存在');
 }
-复制代码
+
 ```
 
 ### 2.指数操作符
@@ -77,7 +77,7 @@ function calculateExponent(base, exponent)
 
 console.log(calculateExponent(2, 10)); // 输出1024
 console.log(Math.pow(2, 10)); // 输出1024
-复制代码
+
 ```
 
 > 使用指数操作符
@@ -86,7 +86,7 @@ console.log(Math.pow(2, 10)); // 输出1024
 
 ```
 console.log(2**10);// 输出1024
-复制代码
+
 ```
 
 ## ES8新特性（2017）
@@ -109,7 +109,7 @@ async function process(array) {
     doSomething(i);
   }
 }
-复制代码
+
 ```
 
 ### 2.Object.values()
@@ -120,7 +120,7 @@ async function process(array) {
 
 ```
 const obj = {a: 1, b: 2, c: 3};
-复制代码
+
 ```
 
 > 不使用Object.values() :ES7
@@ -128,7 +128,7 @@ const obj = {a: 1, b: 2, c: 3};
 ```
 const vals=Object.keys(obj).map(key=>obj[key]);
 console.log(vals);//[1, 2, 3]
-复制代码
+
 ```
 
 > 使用Object.values() :ES8
@@ -136,7 +136,7 @@ console.log(vals);//[1, 2, 3]
 ```
 const values=Object.values(obj1);
 console.log(values);//[1, 2, 3]
-复制代码
+
 ```
 
 从上述代码中可以看出`Object.values()`为我们省去了遍历key，并根据这些key获取value的步骤。
@@ -156,7 +156,7 @@ Object.keys(obj).forEach(key=>{
 //key:a value:1
 //key:b value:2
 //key:c value:3
-复制代码
+
 ```
 
 > 使用Object.entries() :ES8
@@ -169,7 +169,7 @@ for(let [key,value] of Object.entries(obj1)){
 //key:b value:2
 //key:c value:3
 
-复制代码
+
 ```
 
 ### 4.String padding
@@ -184,7 +184,7 @@ for(let [key,value] of Object.entries(obj1)){
 ```
 console.log('0.0'.padStart(4,'10')) //10.0
 console.log('0.0'.padStart(20))// 0.00    
-复制代码
+
 ```
 
 > String.padEnd(targetLength,padString])
@@ -195,7 +195,7 @@ console.log('0.0'.padStart(20))// 0.00
 ```
 console.log('0.0'.padEnd(4,'0')) //0.00    
 console.log('0.0'.padEnd(10,'0'))//0.00000000
-复制代码
+
 ```
 
 ### 5.函数参数列表结尾允许逗号
@@ -210,7 +210,7 @@ console.log('0.0'.padEnd(10,'0'))//0.00000000
 
 ```
 Object.getOwnPropertyDescriptors(obj)
-复制代码
+
 ```
 
 返回`obj`对象的所有自身属性的描述符，如果没有任何自身属性，则返回空对象。
@@ -235,7 +235,7 @@ Object.getOwnPropertyDescriptors(obj2)
 //  writable:true
 //   }
 // }
-复制代码
+
 ```
 
 ### 7.SharedArrayBuffer对象
@@ -249,7 +249,7 @@ SharedArrayBuffer 对象用来表示一个通用的，固定长度的原始二�
  * @returns {SharedArrayBuffer} 一个大小指定的新 SharedArrayBuffer 对象。其内容被初始化为 0。
  */
 new SharedArrayBuffer(length)
-复制代码
+
 ```
 
 ### 8.Atomics对象
@@ -331,7 +331,7 @@ async function process(array) {
     await doSomething(i);
   }
 }
-复制代码
+
 ```
 
 这段代码不会正常运行，下面这段同样也不会：
@@ -342,7 +342,7 @@ async function process(array) {
     await doSomething(i);
   });
 }
-复制代码
+
 ```
 
 这段代码中，循环本身依旧保持同步，并在在内部异步函数之前全部调用完成。
@@ -355,7 +355,7 @@ async function process(array) {
     doSomething(i);
   }
 }
-复制代码
+
 ```
 
 ### 2.Promise.finally()
@@ -376,7 +376,7 @@ function doSomething() {
     // finish here!
   });
 }
-复制代码
+
 ```
 
 ### 3.Rest/Spread 属性
@@ -391,7 +391,7 @@ function restParam(p1, p2, ...p3) {
   // p2 = 2
   // p3 = [3, 4, 5]
 }
-复制代码
+
 ```
 
 展开操作符以相反的方式工作，将数组转换成可传递给函数的单独参数。例如`Math.max()`返回给定数字中的最大值：
@@ -399,7 +399,7 @@ function restParam(p1, p2, ...p3) {
 ```
 const values = [99, 100, -1, 48, 16];
 console.log( Math.max(...values) ); // 100
-复制代码
+
 ```
 
 ES2018为对象解构提供了和数组一样的Rest参数（）和展开操作符，一个简单的例子：
@@ -414,7 +414,7 @@ const myObject = {
 const { a, ...x } = myObject;
 // a = 1
 // x = { b: 2, c: 3 }
-复制代码
+
 ```
 
 或者你可以使用它给函数传递参数：
@@ -430,7 +430,7 @@ function restParam({ a, ...x }) {
   // a = 1
   // x = { b: 2, c: 3 }
 }
-复制代码
+
 ```
 
 跟数组一样，Rest参数只能在声明的结尾处使用。此外，它只适用于每个对象的顶层，如果对象中嵌套对象则无法适用。
@@ -441,7 +441,7 @@ function restParam({ a, ...x }) {
 const obj1 = { a: 1, b: 2, c: 3 };
 const obj2 = { ...obj1, z: 26 };
 // obj2 is { a: 1, b: 2, c: 3, z: 26 }
-复制代码
+
 ```
 
 可以使用扩展运算符拷贝一个对象，像是这样`obj2 = {...obj1}`，但是 **这只是一个对象的浅拷贝**。另外，如果一个对象A的属性是对象B，那么在克隆后的对象cloneB中，该属性指向对象B。
@@ -457,7 +457,7 @@ const
   year   = match[1], // 2018
   month  = match[2], // 04
   day    = match[3]; // 30
-复制代码
+
 ```
 
 这样的代码很难读懂，并且改变正则表达式的结构有可能改变匹配对象的索引。
@@ -471,7 +471,7 @@ const
   year   = match.groups.year,  // 2018
   month  = match.groups.month, // 04
   day    = match.groups.day;   // 30
-复制代码
+
 ```
 
 任何匹配失败的命名组都将返回`undefined`。
@@ -483,7 +483,7 @@ const
   reDate = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/,
   d      = '2018-04-30',
   usDate = d.replace(reDate, '$<month>-$<day>-$<year>');
-复制代码
+
 ```
 
 ### 5.正则表达式反向断言
@@ -496,7 +496,7 @@ const
   match       = reLookahead.exec('$123.89');
 
 console.log( match[0] ); // $
-复制代码
+
 ```
 
 ES2018引入以相同方式工作但是匹配前面的反向断言（lookbehind），这样我就可以忽略货币符号，单纯的捕获价格的数字：
@@ -507,7 +507,7 @@ const
   match        = reLookbehind.exec('$123.89');
 
 console.log( match[0] ); // 123.89
-复制代码
+
 ```
 
 以上是 **肯定反向断言**，非数字`\D`必须存在。同样的，还存在 **否定反向断言**，表示一个值必须不存在，例如：
@@ -518,7 +518,7 @@ const
   match           = reLookbehind.exec('$123.89');
 
 console.log( match[0] ); // null
-复制代码
+
 ```
 
 ### 6.正则表达式dotAll模式
@@ -528,7 +528,7 @@ console.log( match[0] ); // null
 ```
 /hello.world/.test('hello\nworld');  // false
 /hello.world/s.test('hello\nworld'); // true
-复制代码
+
 ```
 
 ### 7.正则表达式 Unicode 转义
@@ -538,7 +538,7 @@ console.log( match[0] ); // null
 ```
 const reGreekSymbol = /\p{Script=Greek}/u;
 reGreekSymbol.test('π'); // true
-复制代码
+
 ```
 
 此特性可以避免使用特定 Unicode 区间来进行内容类型判断，提升可读性和可维护性。
