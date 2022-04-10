@@ -15,7 +15,8 @@
     "vuepress-theme-hope": "next"
   },
   "dependencies": {
-    "naive-ui": "^2.27.0",
-    "axios": "latest"
+    "element-plus": "latest",
+    "axios": "latest",
+    "highlight.js": "latest"
   }
 }

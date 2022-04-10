@@ -1,17 +1,11 @@
 <script setup lang="ts">
-import { reactive, h, ref, toRefs, computed } from "vue";
-import {
-  NAvatar,
-  NAlert,
-  NButton,
-  NCard,
-  NCheckbox,
-  NCode,
-  NCheckboxGroup,
-  NConfigProvider,
-  NGi,
-  NInput,
-} from "naive-ui";
+import { reactive, h, ref, toRefs, computed, onMounted } from "vue";
+import { ElMessage } from "element-plus";
+import { useClipboard } from "@vueuse/core";
+const { text, isSupported, copy, copied } = useClipboard();
+import Highlight from "./Highlight";
+
+import "highlight.js/styles/atom-one-dark.css";
 import hljs from "highlight.js/lib/core";
 import javascript from "highlight.js/lib/languages/javascript";
 import go from "highlight.js/lib/languages/go";
@@ -19,7 +13,7 @@ import python from "highlight.js/lib/languages/python";
 import php from "highlight.js/lib/languages/php";
 import java from "highlight.js/lib/languages/java";
 import csharp from "highlight.js/lib/languages/csharp";
-import { zhCN, dateZhCN } from "naive-ui";
+
 hljs.registerLanguage("javascript", javascript);
 hljs.registerLanguage("go", go);
 hljs.registerLanguage("python", python);
@@ -98,14 +92,269 @@ let languageCode: any = {
   go: goCode,
   csharp: csharpCode,
 };
+let digital: any[] = [
+  {
+    text: "数字",
+    reg: "^[0-9]*$",
+  },
+  {
+    text: "n位的数字",
+    reg: "^\\d{n}$",
+  },
+  {
+    text: "至少n位的数字",
+    reg: "^\\d{n,}$",
+  },
+  {
+    text: "m-n位的数字",
+    reg: "^\\d{m,n}$",
+  },
+  {
+    text: "零和非零开头的数字",
+    reg: "^(0|[1-9][0-9]*)$",
+  },
+  {
+    text: " 非零开头的最多带两位小数的数字",
+    reg: "^([1-9][0-9]*)+(\\.[0-9]{1,2})?$",
+  },
+  {
+    text: " 带1-2位小数的正数或负数",
+    reg: "^(\\-)?\\d+(\\.\\d{1,2})$",
+  },
+  {
+    text: " 正数、负数、和小数",
+    reg: "^(\\-|\\+)?\\d+(\\.\\d+)?$",
+  },
+  {
+    text: " 有两位小数的正实数",
+    reg: "^[0-9]+(\\.[0-9]{2})?$",
+  },
+  {
+    text: " 有1~3位小数的正实数",
+    reg: "^[0-9]+(\\.[0-9]{1,3})?$",
+  },
+  {
+    text: " 非零的正整数",
+    reg: "^[1-9]\\d*$ 或 ^([1-9][0-9]*){1,3}$ 或 ^\\+?[1-9][0-9]*$",
+  },
+  {
+    text: " 非零的负整数",
+    reg: '^\\-[1-9][]0-9"*$ 或 ^-[1-9]\\d*$',
+  },
+  {
+    text: "非负整数",
+    reg: "^\\d+$ 或 ^[1-9]\\d*|0$",
+  },
+  {
+    text: " 非正整数",
+    reg: "^-[1-9]\\d*|0$ 或 ^((-\\d+)|(0+))$",
+  },
+  {
+    text: " 非负浮点数",
+    reg: "^\\d+(\\.\\d+)?$ 或 ^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*|0?\\.0+|0$",
+  },
+  {
+    text: " 非正浮点数",
+    reg: "^((-\\d+(\\.\\d+)?)|(0+(\\.0+)?))$ 或 ^(-([1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*))|0?\\.0+|0$",
+  },
+  {
+    text: " 正浮点数",
+    reg: "^[1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*$ 或 ^(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*))$",
+  },
+  {
+    text: " 负浮点数",
+    reg: "^-([1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*)$ 或 ^(-(([0-9]+\\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\\.[0-9]+)|([0-9]*[1-9][0-9]*)))$",
+  },
+  {
+    text: " 浮点数",
+    reg: "^(-?\\d+)(\\.\\d+)?$ 或 ^-?([1-9]\\d*\\.\\d*|0\\.\\d*[1-9]\\d*|0?\\.0+|0)$",
+  },
+];
+let strings: any = [
+  {
+    text: "汉字",
+    reg: "^[\\u4e00-\\u9fa5]{0,}$",
+  },
+  {
+    text: " 英文和数字",
+    reg: "^[A-Za-z0-9]+$ 或 ^[A-Za-z0-9]{4,40}$",
+  },
+  {
+    text: "长度为3-20的所有字符",
+    reg: "^.{3,20}$",
+  },
+  {
+    text: " 由26个英文字母组成的字符串",
+    reg: "^[A-Za-z]+$",
+  },
+  {
+    text: " 由26个大写英文字母组成的字符串",
+    reg: "^[A-Z]+$",
+  },
+  {
+    text: " 由26个小写英文字母组成的字符串",
+    reg: "^[a-z]+$",
+  },
+  {
+    text: " 由数字和26个英文字母组成的字符串",
+    reg: "^[A-Za-z0-9]+$",
+  },
+  {
+    text: " 由数字、26个英文字母或者下划线组成的字符串",
+    reg: "^\\w+$ 或 ^\\w{3,20}$",
+  },
+  {
+    text: " 中文、英文、数字包括下划线",
+    reg: "^[\\u4E00-\\u9FA5A-Za-z0-9_]+$",
+  },
+  {
+    text: " 中文、英文、数字但不包括下划线等符号",
+    reg: "^[\\u4E00-\\u9FA5A-Za-z0-9]+$ 或 ^[\\u4E00-\\u9FA5A-Za-z0-9]{2,20}$",
+  },
+  {
+    text: " 可以输入含有^%&amp;',;=?$\\\"等字符",
+    reg: "[^%&',;=?$\\x22]+",
+  },
+  {
+    text: "禁止输入含有~的字符",
+    reg: "[^~\\x22]+",
+  },
+];
+let others: any = [
+  {
+    text: " Email地址",
+    reg: "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$",
+  },
+  {
+    text: " 域名",
+    reg: "[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\\.?",
+  },
+  {
+    text: " InternetURL",
+    reg: "[a-zA-z]+://[^\\s]* 或 ^http://([\\w-]+\\.)+[\\w-]+(/[\\w-./?%&=]*)?$",
+  },
+  {
+    text: " 手机号码",
+    reg: "^(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$",
+  },
+  {
+    text: ' 电话号码("XXX-XXXXXXX"、"XXXX-XXXXXXXX"、"XXX-XXXXXXX"、"XXX-XXXXXXXX"、"XXXXXXX"和"XXXXXXXX)',
+    reg: "^(\\(\\d{3,4}-)|\\d{3.4}-)?\\d{7,8}$",
+  },
+  {
+    text: " 国内电话号码(0511-4405222、021-87888822)",
+    reg: "\\d{3}-\\d{8}|\\d{4}-\\d{7}",
+  },
+  {
+    text: " 电话号码正则表达式（支持手机号码，3-4位区号，7-8位直播号码，1－4位分机号）",
+    reg: "((\\d{11})|^((\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})|(\\d{4}|\\d{3})-(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1})|(\\d{7,8})-(\\d{4}|\\d{3}|\\d{2}|\\d{1}))$)",
+  },
+  {
+    text: " 身份证号(15位、18位数字)，最后一位是校验位，可能为数字或字符X",
+    reg: "(^\\d{15}$)|(^\\d{18}$)|(^\\d{17}(\\d|X|x)$)",
+  },
+  {
+    text: " 帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)",
+    reg: "^[a-zA-Z][a-zA-Z0-9_]{4,15}$",
+  },
+  {
+    text: " 密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)",
+    reg: "^[a-zA-Z]\\w{5,17}$",
+  },
+  {
+    text: " 强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间)",
+    reg: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,10}$",
+  },
+  {
+    text: " 强密码(必须包含大小写字母和数字的组合，可以使用特殊字符，长度在8-10之间)",
+    reg: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$",
+  },
+  {
+    text: "日期格式",
+    reg: "^\\d{4}-\\d{1,2}-\\d{1,2}",
+  },
+  {
+    text: " 一年的12个月(01～09和1～12)",
+    reg: "^(0?[1-9]|1[0-2])$",
+  },
+  {
+    text: " 一个月的31天(01～09和1～31)",
+    reg: "^((0?[1-9])|((1|2)[0-9])|30|31)$",
+  },
+  {
+    text: " 钱的输入格式",
+    reg: "^[1-9][0-9]*$",
+  },
+  {
+    text: " xml文件",
+    reg: "^([a-zA-Z]+-?)+[a-zA-Z0-9]+\\\\.[x|X][m|M][l|L]$",
+  },
+  {
+    text: "中文字符的正则表达式",
+    reg: "[\\u4e00-\\u9fa5]",
+  },
+  {
+    text: " 双字节字符",
+    reg: "[^\\x00-\\xff] (包括汉字在内，可以用来计算字符串的长度(一个双字节字符长度计2，ASCII字符计1))",
+  },
+  {
+    text: " 空白行的正则表达式",
+    reg: "\\n\\s*\\r (可以用来删除空白行)",
+  },
+  {
+    text: " HTML标记的正则表达式 ( 首尾空白字符的正则表达式：^\\s*|\\s*$或(^\\s*)|(\\s*$) (可以用来删除行首行尾的空白字符(包括空格、制表符、换页符等等)，非常有用的表达式)",
+    reg: "<(\\S*?)[^>]*>.*? |<.*? />",
+  },
+  {
+    text: " 腾讯QQ号 (腾讯QQ号从10000开始)",
+    reg: "[1-9][0-9]{4,}",
+  },
+  {
+    text: " 中国邮政编码 (中国邮政编码为6位数字)",
+    reg: "[1-9]\\d{5}(?!\\d)",
+  },
+  {
+    text: " IPv4地址",
+    reg: "((2(5[0-5]|[0-4]\\d))|[0-1]?\\d{1,2})(\\.((2(5[0-5]|[0-4]\\d))|[0-1]?\\d{1,2})){3}",
+  },
+];
+let sidebarIntroValue = [
+  {
+    id: "i",
+    value: "ignore - 不区分大小写",
+    desc: `将匹配设置为不区分大小写，搜索时不区分大小写: A 和 a
+                  没有区别。`,
+  },
+  { id: "g", value: `global - 全局匹配`, desc: `查找所有的匹配项。` },
+  {
+    id: "m",
+    value: `multi line - 多行匹配`,
+    desc: `使边界字符 <span class="marked">^</span> 和
+                <span class="marked">$</span>
+                匹配每一行的开头和结尾，记住是多行，而不是整个字符串的开头和结尾。`,
+  },
+  {
+    id: "s",
+    value: `特殊字符圆点 <span class="marked">.</span> 中包含换行符
+                <span class="marked">\\n</span>`,
+    desc: ` 默认情况下的圆点 <span class="marked">.</span> 是匹配除换行符
+                <span class="marked">\\n</span> 之外的任何字符，加上
+                <span class="marked">s</span> 修饰符之后,
+                <span class="marked">.</span> 中包含换行符 \\n。`,
+  },
+];
 let state = reactive({
-  locale: zhCN,
-  dateLocale: dateZhCN,
-  name: "a",
+  regName: "",
+  matchResult: "",
   showModal: false,
   textPattern: "",
+  sidebarIntro: sidebarIntroValue,
   textSource: "",
+  copyBtnText: "",
   checkboxGroupValue: ["g"],
+  checkDigital: digital,
+  checkStrings: strings,
+  checkOther: others,
   headBtns: [
     { id: "a", reg: `[0-9]+`, textSour: "123abc456def", text: "匹配数字" },
     { id: "b", reg: `[a-z]+`, textSour: "123abc456def", text: "匹配字母" },
@@ -164,24 +413,70 @@ let state = reactive({
 });
 
 let {
-  locale,
-  dateLocale,
-  name,
+  regName,
+  checkStrings,
+  checkDigital,
+  checkOther,
   showModal,
   checkboxGroupValue,
   headBtns,
   textPattern,
   textSource,
   textMatchResult,
+  matchResult,
   codeList,
+  sidebarIntro,
+  copyBtnText,
 } = toRefs(state);
-
+defineProps<{ msg: string }>();
 let regFlag = computed(() => {
   return state.checkboxGroupValue.join("");
 });
 let txtRef = ref();
+let containsSpace = computed(() => {
+  return state.textPattern.includes(" ");
+});
 
-function handleSelect(key: string | number) {}
+function handleSelect(key: string | number) {
+  ElMessage(String(key));
+}
+
+function clearAll() {
+  state.textSource = "";
+  state.textPattern = "";
+  state.textMatchResult = "";
+  state.regName = "";
+  state.matchResult = "";
+}
+function clickToCopy(item: any) {
+  ElMessage({
+    type: "success",
+    message: "复制成功!",
+  });
+  copy(formatStr(item.code, [textPattern.value, textSource.value]));
+}
+function setTestSource() {
+  state.textSource = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+occaecat cupidatat non proident, sunt in culpa qui officia
+deserunt mollit anim id est laborum.
+
+abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ
+0123456789 _+-.,!@#$%^&*();/|<>"'
+12345 -98.7 3.141 .6180 9,000 +42
+555.123.4567\t+1-(800)-555-2468
+foo@demo.net\tbar.ba@test.co.uk
+www.demo.com\thttp://foo.co.uk/
+https://marketplace.visualstudio.com/items?itemName=chrmarti.regex
+https://github.com/chrmarti/vscode-regex
+`;
+  onMatch();
+}
+
+function setRegTo(item: any) {
+  state.textPattern = item.reg;
+  state.regName = item.text;
+  onMatch();
+}
 
 function buildReg() {
   return new RegExp(state.textPattern, regFlag.value);
@@ -189,6 +484,7 @@ function buildReg() {
 
 function setRegColor() {
   let text = state.textSource;
+
   let regex = buildReg();
   const matches: any = text.match(regex);
   let k = 0,
@@ -200,14 +496,14 @@ function setRegColor() {
     //console.log(match);
     if (k % 2) {
       str += [
-        text.slice(0 + lastEnd, position),
+        text.slice(lastEnd, position),
         `<i index='${k}'>`,
         escapeHtml(text.slice(position, match[0].length + position)),
         "</i>",
       ].join("");
     } else {
       str += [
-        text.slice(0 + lastEnd, position),
+        text.slice(lastEnd, position),
         `<b index='${k}'>`,
         escapeHtml(text.slice(position, match[0].length + position)),
         "</b>",
@@ -222,8 +518,11 @@ function setRegColor() {
     }
   }
   str += escapeHtml([text.slice(lastEnd)].join(""));
+  console.log("str=");
+  console.log(str);
   let txtHtml = str.replace(/\r?\n/g, "<br/>");
-  txtRef.value.innerHTML = txtHtml;
+
+  state.matchResult = txtHtml;
 }
 
 function genCode() {
@@ -234,8 +533,15 @@ function genCode() {
 
 function onMatch() {
   let regex = buildReg();
+  console.log(
+    `%c当前的reg是`,
+    `color:red;font-size:16px;background:transparent`
+  );
+  console.log(regex);
   setRegColor();
   let result = state.textSource.match(regex);
+  console.log("匹配", state.textSource, "->", regex, "结果", result);
+  console.log(`console.log(\`${state.textSource}\`.match(${regex}))`);
   if (null == result || 0 == result.length) {
     textMatchResult.value = "（没有匹配）";
     return false;
@@ -254,6 +560,7 @@ function onMatch() {
 }
 
 function onNegativeClick() {
+  ElMessage("Cancel");
   showModal.value = false;
 }
 
@@ -298,324 +605,291 @@ function onPositiveClick() {
   showModal.value = false;
 }
 
-const count = ref(0);
+onMounted(() => {
+  state.textPattern = `[\\u4e00-\\u9fa5]`;
+  state.textSource = "ABC#123中文456def";
+  onMatch();
+});
 </script>
 
 <template>
-  <ClientOnly>
-    <n-config-provider :hljs="hljs" :locale="locale" :date-locale="dateLocale">
-      <n-space vertical size="large">
-        <n-layout content-style="padding: 24px;">
-          <n-layout-header>
-            <n-card style="margin-bottom: 20px">
-              <n-space align="center">
-                <label><strong>正则表达式在线测试</strong> </label>
-                <n-button type="info" @click.stop="genCode">生成代码</n-button>
-                <n-button
-                  v-for="(item, index) in headBtns"
-                  type="primary"
-                  @click="testReg(item.reg, item.textSour)"
-                >
-                  {{ item.text }}
-                </n-button>
-              </n-space>
-            </n-card>
-          </n-layout-header>
-          <n-layout has-sider>
-            <n-layout-content>
-              <n-space vertical size="large">
-                <n-grid x-gap="12" :y-gap="8" :cols="1">
-                  <n-gi>
-                    <n-input-group>
-                      <n-input-group-label size="large">/</n-input-group-label>
-                      <n-input
-                        class="reg-input"
-                        size="large"
-                        v-model:value="textPattern"
-                        @change="onMatch"
-                        @keyup="onMatch"
-                        placeholder="在此输入正则表达式"
-                      />
-                      <n-input-group-label size="large">{{
-                        "/" + regFlag
-                      }}</n-input-group-label>
-                      <n-popover
-                        placement="bottom"
-                        trigger="click"
-                        @update:show="handleUpdateShow"
-                      >
-                        <template #trigger>
-                          <n-button size="large">修饰符</n-button>
-                        </template>
-                        <n-checkbox-group v-model:value="checkboxGroupValue">
-                          <n-space vertical size="small">
-                            <n-checkbox value="g">
-                              全局搜索 <strong> -g</strong>
-                            </n-checkbox>
-                            <n-checkbox value="i">
-                              忽略大小写<strong> -i</strong>
-                            </n-checkbox>
-                            <n-checkbox value="m">
-                              多行模式<strong> -m</strong>
-                            </n-checkbox>
-                            <n-checkbox value="s">
-                              包括换行符<strong> -s</strong>
-                            </n-checkbox>
-                            <hr />
-                            <n-button :text="true">修饰符介绍-></n-button>
-                          </n-space>
-                        </n-checkbox-group>
-                      </n-popover>
-                      <n-popover placement="bottom" trigger="click">
-                        <ul style="padding: 12px; min-width: 350px">
-                          <li class="ul-dropdown-item">
-                            <code><strong>.</strong></code> -
-                            除换行符以外的所有字符。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code><strong>^</strong></code> - 字符串开头。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code><strong>$</strong></code> - 字符串结尾。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <strong
-                              ><code>\d</code>,<code>\w</code>,<code
-                                >\s</code
-                              ></strong
-                            >
-                            - 匹配数字、字符、空格。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <strong
-                              ><code>\D</code>,<code>\W</code>,<code
-                                >\S</code
-                              ></strong
-                            >
-                            - 匹配非数字、非字符、非空格。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code><strong>[abc]</strong></code> - 匹配 a、b 或 c
-                            中的一个字母。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code><strong>[a-z]</strong></code> - 匹配 a 到 z
-                            中的一个字母。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code><strong>[^abc]</strong></code> - 匹配除了 a、b
-                            或 c 中的其他字母。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code><strong>aa|bb</strong></code> - 匹配 aa 或
-                            bb。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code><strong>?</strong></code> - 0 次或 1 次匹配。
-                          </li>
+  <el-space class="reg-test">
+    <el-container style="padding: 24px">
+      <el-header>
+        <el-card style="margin-bottom: 20px" shadow="never">
+          <el-space>
+            <label><strong>正则表达式在线测试</strong> </label>
+            <el-button type="info" @click.stop="genCode">生成代码</el-button>
 
-                          <li class="ul-dropdown-item">
-                            <code><strong>*</strong></code> - 匹配 0 次或多次。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code><strong>+</strong></code> - 匹配 1 次或多次。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code><strong>{<em>n</em>}</strong></code> - 匹配
-                            <em>n</em>次。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code><strong>{<em>n</em>,}</strong></code> - 匹配
-                            <em>n</em>次以上。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <code
-                              ><strong>{<em>m</em>,<em>n</em>}</strong></code
-                            >
-                            - 最少 <em>m</em> 次，最多 <em>n</em> 次匹配。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <strong
-                              ><code>(</code><em>expr</em><code>)</code></strong
-                            >
-                            - 捕获 <em>expr</em> 子模式,以
-                            <code>\1</code> 使用它。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <strong
-                              ><code>(?:</code><em>expr</em
-                              ><code>)</code></strong
-                            >
-                            - 忽略捕获的子模式。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <strong
-                              ><code>(?=</code><em>expr</em
-                              ><code>)</code></strong
-                            >
-                            - 正向预查模式 <em>expr</em>。
-                          </li>
-                          <li class="ul-dropdown-item">
-                            <strong
-                              ><code>(?!</code><em>expr</em
-                              ><code>)</code></strong
-                            >
-                            - 负向预查模式 <em>expr</em>。
-                          </li>
-                          <li class="ul-dropdown-divider"></li>
-                          <li class="ul-dropdown-item">
-                            <a
-                              role="menuitem"
-                              target="_blank"
-                              tabindex="-1"
-                              href="https://www.runoob.com/regexp/regexp-tutorial.html"
-                              ><i class="fa fa-external-link-alt"></i>
-                              正则表达式教程
-                            </a>
-                          </li>
-                        </ul>
-                        <template #trigger>
-                          <n-button size="large">语法参考</n-button>
-                        </template>
-                      </n-popover>
-                    </n-input-group>
-                  </n-gi>
-                  <n-gi>
-                    <n-input
-                      type="textarea"
-                      rows="6"
-                      v-model:value="textSource"
-                      @change="onMatch"
-                      @keyup="onMatch"
-                      show-count
-                    >
-                      <template #count="{ value }"></template>
-                    </n-input>
-                  </n-gi>
-                  <n-gi>
-                    <div
-                      ref="txtRef"
-                      id="txt"
-                      contenteditable="false"
-                      data-text="匹配结果..."
-                      spellcheck="false"
-                    ></div>
-                  </n-gi>
-                </n-grid>
-                <n-grid :cols="1">
-                  <n-gi>
-                    <n-input
-                      rows="6"
-                      type="textarea"
-                      v-model:value="textMatchResult"
-                    ></n-input>
-                  </n-gi>
-                </n-grid>
-              </n-space> </n-layout-content
-            ><n-layout-sider
-              collapse-mode="transform"
-              width="30%"
-              :native-scrollbar="true"
-              content-style="padding: 24px;"
-              bordered
+            <el-button type="info" @click.stop="setTestSource"
+              >生成测试字符串</el-button
             >
-              <n-table>
-                <tbody>
-                  <tr>
-                    <th>修饰符</th>
-                    <th>含义</th>
-                    <th>描述</th>
-                  </tr>
-                  <tr>
-                    <td><span class="imp">i</span></td>
-                    <td>ignore - 不区分大小写</td>
-                    <td>
-                      将匹配设置为不区分大小写，搜索时不区分大小写: A 和 a
-                      没有区别。
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><span class="imp">g</span></td>
-                    <td>global - 全局匹配</td>
-                    <td>查找所有的匹配项。</td>
-                  </tr>
-                  <tr>
-                    <td><span class="imp">m</span></td>
-                    <td>multi line - 多行匹配</td>
-                    <td>
-                      使边界字符 <span class="marked">^</span> 和
-                      <span class="marked">$</span>
-                      匹配每一行的开头和结尾，记住是多行，而不是整个字符串的开头和结尾。
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><span class="imp">s</span></td>
-                    <td>
-                      特殊字符圆点 <span class="marked">.</span> 中包含换行符
-                      <span class="marked">\n</span>
-                    </td>
-                    <td>
-                      默认情况下的圆点
-                      <span class="marked">.</span> 是匹配除换行符
-                      <span class="marked">\n</span> 之外的任何字符，加上
-                      <span class="marked">s</span> 修饰符之后,
-                      <span class="marked">.</span> 中包含换行符 \n。
-                    </td>
-                  </tr>
-                </tbody>
-              </n-table>
-            </n-layout-sider>
-          </n-layout>
-          <n-modal
-            v-model:show="showModal"
-            preset="card"
-            title="各种语言代码参考"
-            style="width: 30%"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-body">
-                  <n-alert type="warning" v-if="!textPattern">
-                    你还没输入正则表达式
-                  </n-alert>
-                  <div>
-                    <div v-for="item in codeList">
-                      <h4>
-                        {{ item.codeName }} -
-                        <a :href="item.linkHref" target="_blank">{{
-                          item.linkText
-                        }}</a>
-                      </h4>
-                      <pre
-                        class="prettyprint"
-                      > <n-code :code="formatStr(item.code,[textPattern,textSource])"
-                            :language="item.codeName"></n-code></pre>
-                    </div>
-                  </div>
+            <el-button
+              v-for="(item, index) in headBtns"
+              type="primary"
+              @click="testReg(item.reg, item.textSour)"
+            >
+              {{ item.text }}
+            </el-button>
+            <el-button type="danger" @click.stop="clearAll">清空</el-button>
+          </el-space>
+        </el-card>
+      </el-header>
+
+      <el-container>
+        <el-main>
+          <el-space fill direction="vertical" size="large" style="width: 100%">
+            <el-alert type="info" v-if="containsSpace"
+              >注意,你的正则表达式内有空格,需要谨慎</el-alert
+            >
+            <span style="color: darkgreen">{{ regName }}</span>
+            <el-row>
+              <el-col :span="24">
+                <div style="display: flex">
+                  <el-input
+                    class="reg-input"
+                    size="large"
+                    v-model="textPattern"
+                    @change="onMatch"
+                    @keyup="onMatch"
+                    placeholder="在此输入正则表达式"
+                  >
+                    <template #prepend> / </template>
+                    <template #append>{{ "/" + regFlag }} </template>
+                  </el-input>
+                  <el-popover
+                    placement="bottom"
+                    trigger="click"
+                    @update:show="handleUpdateShow"
+                  >
+                    <template #reference>
+                      <el-button size="large">修饰符</el-button>
+                    </template>
+                    <el-checkbox-group v-model="checkboxGroupValue">
+                      <el-space direction="vertical" size="small">
+                        <el-checkbox label="g">
+                          全局搜索 <strong> -g</strong>
+                        </el-checkbox>
+                        <el-checkbox label="i">
+                          忽略大小写<strong> -i</strong>
+                        </el-checkbox>
+                        <el-checkbox label="m">
+                          多行模式<strong> -m</strong>
+                        </el-checkbox>
+                        <el-checkbox label="s">
+                          包括换行符<strong> -s</strong>
+                        </el-checkbox>
+                        <hr />
+                        <el-button :text="true">修饰符介绍-></el-button>
+                      </el-space>
+                    </el-checkbox-group>
+                  </el-popover>
+                  <el-popover placement="bottom" trigger="click" width="350px">
+                    <ul style="padding: 12px">
+                      <li class="dropdown-item">
+                        <code><strong>.</strong></code> -
+                        除换行符以外的所有字符。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>^</strong></code> - 字符串开头。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>$</strong></code> - 字符串结尾。
+                      </li>
+                      <li class="dropdown-item">
+                        <strong
+                          ><code>\d</code>,<code>\w</code>,<code
+                            >\s</code
+                          ></strong
+                        >
+                        - 匹配数字、字符、空格。
+                      </li>
+                      <li class="dropdown-item">
+                        <strong
+                          ><code>\D</code>,<code>\W</code>,<code
+                            >\S</code
+                          ></strong
+                        >
+                        - 匹配非数字、非字符、非空格。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>[abc]</strong></code> - 匹配 a、b 或 c
+                        中的一个字母。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>[a-z]</strong></code> - 匹配 a 到 z
+                        中的一个字母。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>[^abc]</strong></code> - 匹配除了 a、b 或
+                        c 中的其他字母。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>aa|bb</strong></code> - 匹配 aa 或 bb。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>?</strong></code> - 0 次或 1 次匹配。
+                      </li>
+
+                      <li class="dropdown-item">
+                        <code><strong>*</strong></code> - 匹配 0 次或多次。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>+</strong></code> - 匹配 1 次或多次。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>{<em>n</em>}</strong></code> - 匹配
+                        <em>n</em>次。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>{<em>n</em>,}</strong></code> - 匹配
+                        <em>n</em>次以上。
+                      </li>
+                      <li class="dropdown-item">
+                        <code><strong>{<em>m</em>,<em>n</em>}</strong></code>
+                        - 最少 <em>m</em> 次，最多 <em>n</em> 次匹配。
+                      </li>
+                      <li class="dropdown-item">
+                        <strong
+                          ><code>(</code><em>expr</em><code>)</code></strong
+                        >
+                        - 捕获 <em>expr</em> 子模式,以 <code>\1</code> 使用它。
+                      </li>
+                      <li class="dropdown-item">
+                        <strong
+                          ><code>(?:</code><em>expr</em><code>)</code></strong
+                        >
+                        - 忽略捕获的子模式。
+                      </li>
+                      <li class="dropdown-item">
+                        <strong
+                          ><code>(?=</code><em>expr</em><code>)</code></strong
+                        >
+                        - 正向预查模式 <em>expr</em>。
+                      </li>
+                      <li class="dropdown-item">
+                        <strong
+                          ><code>(?!</code><em>expr</em><code>)</code></strong
+                        >
+                        - 负向预查模式 <em>expr</em>。
+                      </li>
+                    </ul>
+                    <template #reference>
+                      <el-button size="large">语法参考</el-button>
+                    </template>
+                  </el-popover>
+                </div>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
+                <el-input
+                  type="textarea"
+                  rows="6"
+                  v-model="textSource"
+                  @change="onMatch"
+                  @keyup="onMatch"
+                  style="width: 100%"
+                >
+                </el-input>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
+                <div
+                  ref="txtRef"
+                  id="txt"
+                  contenteditable="false"
+                  data-text="匹配结果..."
+                  spellcheck="false"
+                  v-html="matchResult"
+                ></div>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :span="24">
+                <el-input
+                  rows="6"
+                  type="textarea"
+                  v-model="textMatchResult"
+                ></el-input>
+              </el-col>
+            </el-row>
+          </el-space>
+        </el-main>
+      </el-container>
+      <el-table :data="sidebarIntro" border fit>
+        <el-table-column prop="id" label="修饰符" width="80"> </el-table-column>
+        <el-table-column prop="value" label="含义">
+          <template #default="{ row }"><div v-html="row.value"></div></template>
+        </el-table-column>
+        <el-table-column prop="desc" label="描述">
+          <template #default="{ row }"><div v-html="row.desc"></div></template>
+        </el-table-column>
+      </el-table>
+      <el-dialog v-model="showModal" title="各种语言代码参考" width="40%">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <el-alert type="warning" v-if="!textPattern">
+                你还没输入正则表达式
+              </el-alert>
+              <div>
+                <div v-for="item in codeList">
+                  <h4>
+                    {{ item.codeName }} -
+                    <a :href="item.linkHref" target="_blank">{{
+                      item.linkText
+                    }}</a>
+                  </h4>
+                  <el-button @click="clickToCopy(item)"> 复制代码 </el-button>
+                  {{ copyBtnText }}
+
+                  <highlight
+                    class="prettyprint"
+                    :code="formatStr(item.code, [textPattern, textSource])"
+                    :language="item.codeName"
+                  ></highlight>
                 </div>
               </div>
             </div>
-          </n-modal>
-        </n-layout>
-      </n-space> </n-config-provider
-  ></ClientOnly>
+          </div>
+        </div>
+      </el-dialog>
+    </el-container>
+  </el-space>
 </template>
 
 <style lang="scss">
+.reg-test {
+  .card-body {
+    li {
+      strong {
+        cursor: pointer;
+        color: #1060c9;
+      }
+    }
+  }
+  .prettyprint {
+    margin: 1rem 0;
+  }
+}
+
 .reg-input {
-  .n-input__input-el {
+  .el-input__inner {
     color: #3030c0;
     font-weight: bold;
   }
 }
-.ul-dropdown-divider {
+
+.dropdown-divider {
   height: 0;
   margin: 0.5rem 0;
   overflow: hidden;
   border-top: 1px solid #e9ecef;
 }
 
-.ul-dropdown-item {
+.dropdown-item {
   display: block;
   width: 100%;
   padding: 0.25rem 1.5rem;
@@ -666,12 +940,6 @@ const count = ref(0);
   background-color: #fff;
 }
 
-.runoob-regex-test {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 0px;
-}
-
 #exp,
 #exp_dsp,
 #flags,
@@ -688,15 +956,15 @@ const count = ref(0);
   padding: 6px 12px;
   margin: 0;
   background: #fff;
-}
 
-#exp:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
+  &:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 8px rgba(102, 175, 233, 0.6);
+  }
 }
 
 .popover {
@@ -708,10 +976,10 @@ const count = ref(0);
   display: inline-block;
   cursor: pointer;
   white-space: pre-wrap;
-}
 
-#exp_dsp .error {
-  color: #f13f86;
+  .error {
+    color: #f13f86;
+  }
 }
 
 #match {
@@ -730,19 +998,19 @@ const count = ref(0);
 #txt {
   min-height: 100px;
   background: #fff;
+
+  &:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+      0 0 8px rgba(102, 175, 233, 0.6);
+  }
 }
 
 #txt ol li:first-child {
   opacity: 0.5;
-}
-
-#txt:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 #txt i {
