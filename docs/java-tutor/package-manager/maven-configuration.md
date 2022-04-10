@@ -47,3 +47,11 @@ maven其实也可以使用版本范围
     <version>[1.2.60, )</version>
 </dependency>
 ```
+
+注意`[1.2.60, )`这种方式会下载1.2.60到最新版直接所有的包的索引,强迫症患者慎用
+
+![索引](./res/maven-index.webp)
+
+## vue项目添加到springboot
+
+直接把打包文件放到static文件夹即可
