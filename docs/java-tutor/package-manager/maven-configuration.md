@@ -35,7 +35,7 @@ maven的默认配置文件在 `$home/.m2/settings.xml` 需要自己从maven配�
 
 ## 版本管理
 
-maven其实也可以使用版本范围
+maven其实也可以使用版本范围  
 ![版本](./res/maven-version.png)  
 
 因为JSON协议以及fastjson库的兼容性和稳定性都非常好，所以才可以考虑自动升级到最新版本，pom.xml中依赖配置这样写，将自动引用版本大于等于1.2.60的fastjson
@@ -54,4 +54,44 @@ maven其实也可以使用版本范围
 
 ## vue项目添加到springboot
 
-直接把打包文件放到static文件夹即可
+:::tip
+把打包好的资源文件放到`resources`文件夹下的`front`文件夹即可,然后按照下面的方法配置
+:::
+
+### 第一种,在`webmvcconfig`里面设置静态文件目录
+
+```java
+  @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/front/");
+    }
+```
+
+## 第二种,在properties文件里面配置
+
+在 properties文件里面设置  `spring.resources.static-locations=classpath:/front`  
+`spring.resources.static-locations`的默认值是：`classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/`  
+区别：`spring.mvc.static-path-pattern`，这个配置的意思是什么样的路径，才到`spring.resources.static-locations`中查找静态文件, 默认的配置就是`/**`，就是全部的路径  
+如：`spring.mvc.static-path-pattern=/static/**`,  当访问`/static/css/demo.css`时，会拿`/css/demo.css`到`spring.resources.static-locations`配置的目录中去查找。
+
+### 在windows上后台运行jar包(类似nohup)
+
+只需要
+
+```shell
+javaw -jar zfile.jar
+```
+
+如何关闭呢
+
+写一个`powershell`文件
+
+```powershell
+
+$process ="*javaw*"
+# 查找和javaw相关的进程
+Get-CimInstance Win32_Process | Where {$_.CommandLine -like $process } | select -ExpandProperty CommandLine # | Measure-Object -Line
+# 关闭javaw进程
+Get-CimInstance Win32_Process | Where {$_.CommandLine -like $process} | Remove-CimInstance
+```

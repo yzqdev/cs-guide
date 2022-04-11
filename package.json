@@ -9,7 +9,6 @@
     "docs:dev": "vuepress dev docs  "
   },
   "devDependencies": {
-    "@vuepress/plugin-git": "next",
     "@vuepress/plugin-search": "next",
     "vuepress": "next",
     "vuepress-theme-hope": "next"
