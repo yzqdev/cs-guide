@@ -635,6 +635,7 @@ onMounted(() => {
                   <el-popover
                     placement="bottom"
                     trigger="click"
+                    :hide-after="0"
                     @update:show="handleUpdateShow"
                   >
                     <template #reference>
@@ -659,7 +660,12 @@ onMounted(() => {
                       </el-space>
                     </el-checkbox-group>
                   </el-popover>
-                  <el-popover placement="bottom" trigger="click" width="350px">
+                  <el-popover
+                    placement="bottom"
+                    trigger="click"
+                    width="350px"
+                    :hide-after="0"
+                  >
                     <ul style="padding: 12px">
                       <li class="dropdown-code">
                         <code><strong>.</strong></code> -
