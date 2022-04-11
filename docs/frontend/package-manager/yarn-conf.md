@@ -23,17 +23,43 @@ C:\Users\yanni\AppData\Roaming\npm
 
 ```
 
-- mirror-config-china
-- npm-check-updates
-- prettier
-- serve
-- typescript
-- @vue/cli
-- gulp-cli
-- hexo-cli
-- docsify-cli
-- sass
-- less
+```json
+{
+  "dependencies": {
+    "@nestjs/cli": "^8.2.4",
+    "@quasar/cli": "^1.2.2",
+    "@tarojs/cli": "^3.3.0",
+    "@vitejs/create-app": "^2.4.5",
+    "@vue/cli": "^5.0.1",
+    "create-docusaurus": "^2.0.0-beta.17",
+    "create-ice": "^1.7.4",
+    "create-next-app": "^11.0.1",
+    "create-nuxt-app": "^4.0.0",
+    "create-tauri-app": "^1.0.0-rc.3",
+    "create-vite": "^2.9.0",
+    "create-vite-app": "^1.21.0",
+    "docsify-cli": "^4.4.4",
+    "expo-cli": "^5.2.0",
+    "gulp-cli": "^2.3.0",
+    "hexo-cli": "^4.3.0",
+    "lerna": "^4.0.0",
+    "less": "^4.1.1",
+    "local-web-server": "^5.1.1",
+    "npkill": "^0.8.3",
+    "npm-check-updates": "^12.5.8",
+    "nrm": "^1.2.5",
+    "pnpm": "^6.32.3",
+    "pug-cli": "^1.0.0-alpha6",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.52.7",
+    "serve": "^12.0.0",
+    "taze": "^0.5.0",
+    "ts-node": "^10.7.0",
+    "typeorm": "^0.3.3",
+    "typescript": "^4.6.2"
+  }
+}
+```
 
 如果使用yarn 安装node-sass失败 出现node-gyp error就在根目录下新建一个`.yarnrc` 文件
 然后写入,这样就可以下载node-sass了
