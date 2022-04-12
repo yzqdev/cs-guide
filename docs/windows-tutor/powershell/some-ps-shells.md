@@ -53,6 +53,34 @@ Get-Host
 Get-Process
 ```
 
+### 关闭某进程
+
+```powershell
+$process ="*javaw*"
+# 查找和javaw相关的进程
+Get-CimInstance Win32_Process | Where {$_.CommandLine -like $process } | select -ExpandProperty CommandLine # | Measure-Object -Line
+# 关闭javaw进程
+Get-CimInstance Win32_Process | Where {$_.CommandLine -like $process} | Remove-CimInstance
+```
+
+### 查看进程的命令行
+
+```powershell
+# 获取java进程的命令行
+Get-CimInstance Win32_Process -Filter "name = 'java.exe'" | Select-Object CommandLine
+# 获取命令行带有zfile.jar的命令行
+Get-CimInstance Win32_Process  | Where-Object CommandLine -Match 'zfile'| Remove-CimInstance
+
+# 关闭某进程
+Stop-Process -Id 34328
+```
+
+## 查看端口被哪个进程占用
+
+```powershell
+Get-Process -Id (Get-NetTCPConnection -LocalPort 5000).OwningProcess
+```
+
 ## 重命名
 
 ```powershell
