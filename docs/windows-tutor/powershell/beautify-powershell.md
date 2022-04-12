@@ -28,7 +28,7 @@ Import-Module oh-my-posh
 Set-Theme PowerLine
 ```
 
-**如果你的电脑里没有安装Git，在输入**`**Import-Module posh-git**`**会报错，解决方法是**[**安装Git**](https://link.zhihu.com/?target=https%3A//git-scm.com/)**或者把这一行去掉。**
+**如果你的电脑里没有安装Git，在输入**`**Import-Module posh-git**`**会报错，解决方法是**[**安装Git**](https://git-scm.com/)**或者把这一行去掉。**
 
 但是这次使用`Import-Module`的指令，再次启动PowerShell就会发现没有效果，这是因为这些指令仅限于本次会话的PowerShell有效，因此，若要使这一效果在每次启动的时候都有效，那就要将其添加到启动脚本中。
 
