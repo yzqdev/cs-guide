@@ -5,7 +5,7 @@
 
 1、CSS 选择符有哪些？
 
-![前端—css面试题](https://p26.toutiaoimg.com//large/191f0001d4fe202a29e1)
+![191f0001d4fe202a29e1.png](./res/191f0001d4fe202a29e1.png)
 
 2、CSS 优先级的选择过程？
 
@@ -19,7 +19,7 @@
 
 3、阐述一下CSS3的新增伪类。
 
-![前端—css面试题](https://p26.toutiaoimg.com/large/191f0001d6e9b63b2b25)
+![191f0001d6e9b63b2b25.png](./res/191f0001d6e9b63b2b25.png)
 
 4、如何居中 div？如何居中一个浮动元素？如何让绝对定位的div居中？
 
@@ -27,27 +27,27 @@ div居中：给div一个宽度，然后添加margin: 0 auto;属性即可。
 
 浮动元素居中：
 
-![前端—css面试题](https://p26.toutiaoimg.com/large/19190001edad07f39b6e)
+![19190001edad07f39b6e.png](./res/19190001edad07f39b6e.png)
 
 绝对定位的div居中：
 
-![前端—css面试题](https://p26.toutiaoimg.com/large/191f0001e5f6b8e7ec92)
+![191f0001e5f6b8e7ec92.png](./res/191f0001e5f6b8e7ec92.png)
 
 5、属性display 有哪些值？说明他们的作用。
 
-![前端—css面试题](https://p26.toutiaoimg.com/large/19190001efa19a3a4d0a)
+![19190001efa19a3a4d0a.png](./res/19190001efa19a3a4d0a.png)
 
 6、position 的值 relative 和 absolute 定位原理？
 
-![前端—css面试题](https://p26.toutiaoimg.com/large/19210001cbfbc8c17b56)
+![19210001cbfbc8c17b56.png](./res/19210001cbfbc8c17b56.png)
 
 7、用纯CSS 创建一个三角形的过程？
 
-![前端—css面试题](https://p26.toutiaoimg.com/large/191e0001f8be740419ee)
+![191e0001f8be740419ee.png](./res/191e0001f8be740419ee.png)
 
 8、li 与 li 之间有看不见的空白间隔如何形成的？相应的解决办法？
 
-![前端—css面试题](https://p26.toutiaoimg.com/large/191f0001e9e0273378ad)
+![191f0001e9e0273378ad.png](./res/191f0001e9e0273378ad.png)
 
 9、为什么要初始化CSS样式？
 
@@ -55,7 +55,7 @@ div居中：给div一个宽度，然后添加margin: 0 auto;属性即可。
 
 10、CSS3 有哪些新特性？
 
-![前端—css面试题](https://p26.toutiaoimg.com/large/19210001d1e69085b570)
+![19210001d1e69085b570.png](./res/19210001d1e69085b570.png)
 
 - [CSS](https://www.toutiao.com/search/?keyword=CSS)
 - [科技](https://www.toutiao.com/search/?keyword=%E7%A7%91%E6%8A%80)

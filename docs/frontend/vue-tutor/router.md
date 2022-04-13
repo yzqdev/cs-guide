@@ -104,13 +104,13 @@ const router = new VueRouter({
 ```
 
 例如： /user/foo 和 /user/bar 都将映射到相同的路由。
-一个『路径参数』使用冒号 : 标记。当匹配到一个路由时，参数值会被设置到**this.![](https://g.yuque.com/gr/latex?route.params**%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%9C%A8%E6%AF%8F%E4%B8%AA%E7%BB%84%E4%BB%B6%E5%86%85%E4%BD%BF%E7%94%A8%E3%80%82%0A%E4%BD%A0%E5%8F%AF%E4%BB%A5%E5%9C%A8%E4%B8%80%E4%B8%AA%E8%B7%AF%E7%94%B1%E4%B8%AD%E8%AE%BE%E7%BD%AE%E5%A4%9A%E6%AE%B5%E3%80%8E%E8%B7%AF%E5%BE%84%E5%8F%82%E6%95%B0%E3%80%8F%EF%BC%8C%E5%AF%B9%E5%BA%94%E7%9A%84%E5%80%BC%E9%83%BD%E4%BC%9A%E8%AE%BE%E7%BD%AE%E5%88%B0%20**#card=math&code=route.params%2A%2A%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%9C%A8%E6%AF%8F%E4%B8%AA%E7%BB%84%E4%BB%B6%E5%86%85%E4%BD%BF%E7%94%A8%E3%80%82%0A%E4%BD%A0%E5%8F%AF%E4%BB%A5%E5%9C%A8%E4%B8%80%E4%B8%AA%E8%B7%AF%E7%94%B1%E4%B8%AD%E8%AE%BE%E7%BD%AE%E5%A4%9A%E6%AE%B5%E3%80%8E%E8%B7%AF%E5%BE%84%E5%8F%82%E6%95%B0%E3%80%8F%EF%BC%8C%E5%AF%B9%E5%BA%94%E7%9A%84%E5%80%BC%E9%83%BD%E4%BC%9A%E8%AE%BE%E7%BD%AE%E5%88%B0%20%2A%2A)route.params** 中。例如：
-![](https://cdn.nlark.com/yuque/0/2021/png/295914/1624847415596-3352a92f-4311-4d2e-bcd4-e48721bfebe3.png#align=left&display=inline&height=123&margin=%5Bobject%20Object%5D&originHeight=123&originWidth=767&size=0&status=done&style=none&width=767)
+一个『路径参数』使用冒号 : 标记。当匹配到一个路由时，参数值会被设置到**this.$route.params** 中。例如：
+![1624847415596-3352a92f-4311-4d2e-bcd4-e48721bfebe3.png](./res/1624847415596-3352a92f-4311-4d2e-bcd4-e48721bfebe3.png)
 
 ## 五、vue-router参数传递
 
 1.用name传值（不推荐）
-![](https://cdn.nlark.com/yuque/0/2021/png/295914/1624847415714-529369b2-6c50-47af-93cb-3368824f70b4.png#align=left&display=inline&height=263&margin=%5Bobject%20Object%5D&originHeight=263&originWidth=558&size=0&status=done&style=none&width=558)
+![1624847415714-529369b2-6c50-47af-93cb-3368824f70b4.png](./res/1624847415714-529369b2-6c50-47af-93cb-3368824f70b4.png)
 2.通过 标签中的to传参
 
 ```
@@ -270,7 +270,7 @@ const routes = [
 **1.router.push( )**
 想要导航到不同的 URL，则使用 **router.push (在创建vue实例并挂载后调用)**。router.push方法就是用来动态导航到不同的链接的，这个方法会向 history 栈添加一个新的记录，所以，当用户点击浏览器后退按钮时，则回到之前的 URL。
 当你点击  时，这个方法会在内部调用，所以说，点击  等同于调用 router.push(...)。
-![](https://cdn.nlark.com/yuque/0/2021/png/295914/1624847415629-4a7a5f1e-7644-4370-9ed7-e1f83ce4873f.png#align=left&display=inline&height=430&margin=%5Bobject%20Object%5D&originHeight=430&originWidth=707&size=0&status=done&style=none&width=707)
+![1624847415629-4a7a5f1e-7644-4370-9ed7-e1f83ce4873f.png](./res/1624847415629-4a7a5f1e-7644-4370-9ed7-e1f83ce4873f.png)
 **注意：
 如果提供了 path，params 会被忽略，而 query 并不属于这种情况。取而代之的是下面例子的做法，你需要提供路由的 name 或手写完整的带有参数的 path：**
 
@@ -284,7 +284,7 @@ router.push({ path: '/user', params: { userId }}) // -> /user
 
 **2.router.replace( )**
 router.replace跟 router.push 很像，唯一的不同就是，它不会向 history 添加新记录，而是跟它的方法名一样 —— 替换掉当前的 history 记录。
-![](https://cdn.nlark.com/yuque/0/2021/png/295914/1624847415617-6b0abd5e-0f61-4274-b577-0d5dff873bb1.png#align=left&display=inline&height=83&margin=%5Bobject%20Object%5D&originHeight=83&originWidth=774&size=0&status=done&style=none&width=774)
+![1624847415617-6b0abd5e-0f61-4274-b577-0d5dff873bb1.png](./res/1624847415617-6b0abd5e-0f61-4274-b577-0d5dff873bb1.png)
 **3.router.go(n)**
 这个方法的参数是一个整数，意思是在 history 记录中向前或者后退多少步，类似 window.history.go(n)。
 
@@ -472,7 +472,7 @@ const router = new VueRouter({
 不过这种模式要玩好，还需要后台配置支持。因为我们的应用是个单页客户端应用，如果后台没有正确的配置，当用户在浏览器直接访问
 [http://www.dxl.com/user/id](http://www.dxl.com/user/id)
 就会返回 404，。所以要在服务端增加一个覆盖所有情况的候选资源：如果 URL 匹配不到任何静态资源，则应该返回同一个 index.html 页面，这个页面就是你 app 依赖的页面。
-![](https://cdn.nlark.com/yuque/0/2021/png/295914/1624847415620-7b86a738-135c-4192-b83f-b05866383816.png#align=left&display=inline&height=375&margin=%5Bobject%20Object%5D&originHeight=375&originWidth=587&size=0&status=done&style=none&width=587)
+![1624847415620-7b86a738-135c-4192-b83f-b05866383816.png](./res/1624847415620-7b86a738-135c-4192-b83f-b05866383816.png)
 这么做以后，你的服务器就不再返回 404 错误页面，因为对于所有路径都会返回 index.html 文件。
 为了避免这种情况，你应该在 Vue 应用里面覆盖所有的路由情况，然后在给出一个 404 页面。
 

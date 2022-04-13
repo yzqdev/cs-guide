@@ -454,10 +454,10 @@ import path from "path";
 import fs from "fs";
 import https from "https";
 
-let beforeName = `pip.md`;
-let afterName = `pipline.md`;
+let beforeName = `transfer.md`;
+let afterName = `transfer-tools.md`;
 let data = fs.readFileSync(beforeName);
-let reg = new RegExp(/!\[img\]\(.+\)/, "gi");
+let reg = new RegExp(/!\[.*\]\(.+\)/, "gi");
 
 let imgs = data.toString().match(reg);
 for (let item of imgs) {
@@ -472,20 +472,24 @@ function replacerToUrl(match) {
 
   return str.substring(0, str.length - 1);
 }
+/**
+ * 生成如下的格式(1624847415629-4a7a5f1e-7644-4370-9ed7-e1f83ce4873f.png)
+ * @param {s} match
+ * @returns
+ */
 function replacerFileName(match) {
-  let matchLen = match.split("/");
-  //类似格式112233-2343.png
-  let str = match.split("/")[matchLen.length - 1];
-  return str.substring(0, str.length - 1);
+  console.log(match);
+  let extReg = new RegExp(/\d*-.*\.(png|jpg|gif|webp)/, "gi");
+  let resArr = match.match(/\/\w*/gi);
+  console.log(resArr[resArr.length - 1].slice(1));
+  if (extReg.test(match)) {
+    return match.match(extReg)[0];
+  } else {
+    return resArr[resArr.length - 1].slice(1) + ".png";
+  }
 }
 function replacerMd(match) {
-  let matchLen = match.split("/");
-  //类似格式112233-2343.png
-  let str = match.split("/")[matchLen.length - 1];
-  return `![${str.substring(0, str.length - 1)}](./res/${str.substring(
-    0,
-    str.length - 1
-  )})`;
+  return `![${replacerFileName(match)}](./res/${replacerFileName(match)})`;
 }
 function writeMd() {
   let arr = data.toString().replaceAll(reg, replacerMd);
@@ -523,5 +527,6 @@ function downloadFileAsync(uri, dest) {
     });
   });
 }
+
 
 ```

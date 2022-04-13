@@ -8,16 +8,17 @@
 - javascript是按照语句出现的顺序执行的
 
 看到这里读者要打人了：我难道不知道js是一行一行执行的？还用你说？稍安勿躁，正因为js是一行一行执行的，所以我们以为js都是这样的：
-<!--more-->
+
 ```javascript
 let a = '1';
 console.log(a);
 
 let b = '2';
 console.log(b);
+复制代码
 ```
 
-![img](https://user-gold-cdn.xitu.io/2017/11/20/15fd87f7221d0dbe?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/20/15fd87f7221d0dbe~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 然而实际上js是这样的：
 
@@ -36,22 +37,24 @@ new Promise(function(resolve){
 });
 
 console.log('代码执行结束');
+复制代码
 ```
 
-![img](https://user-gold-cdn.xitu.io/2017/11/20/15fd87d38acc4905?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/20/15fd87d38acc4905~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 依照**js是按照语句出现的顺序执行**这个理念，我自信的写下输出结果：
 
-```
+```javascript
 //"定时器开始啦"
 //"马上执行for循环啦"
 //"执行then函数啦"
 //"代码执行结束"
+复制代码
 ```
 
 去chrome上验证下，结果完全不对，瞬间懵了，说好的一行一行执行的呢？
 
-![img](https://user-gold-cdn.xitu.io/2017/11/20/15fd8840f3c3f109?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/20/15fd8840f3c3f109~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 我们真的要彻底弄明白javascript的执行机制了。
 
@@ -68,7 +71,7 @@ javascript是一门**单线程**语言，在最新的HTML5中提出了Web-Worker
 
 当我们打开网站时，网页的渲染过程就是一大堆同步任务，比如页面骨架和页面元素的渲染。而像加载图片音乐之类占用资源大耗时久的任务，就是异步任务。关于这部分有严格的文字定义，但本文的目的是用最小的学习成本彻底弄懂执行机制，所以我们用导图来说明：
 
-![img](https://user-gold-cdn.xitu.io/2017/11/21/15fdd88994142347?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/21/15fdd88994142347~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 导图要表达的内容用文字来表述的话：
 
@@ -91,6 +94,7 @@ $.ajax({
     }
 })
 console.log('代码执行结束');
+复制代码
 ```
 
 上面是一段简易的`ajax`请求代码：
@@ -110,6 +114,7 @@ console.log('代码执行结束');
 setTimeout(() => {
     console.log('延时3秒');
 },3000)
+复制代码
 ```
 
 渐渐的`setTimeout`用的地方多了，问题也出现了，有时候明明写的延时3秒，实际却5，6秒才执行函数，这又咋回事啊？
@@ -121,17 +126,18 @@ setTimeout(() => {
     task();
 },3000)
 console.log('执行console');
+复制代码
 ```
 
 根据前面我们的结论，`setTimeout`是异步的，应该先执行`console.log`这个同步任务，所以我们的结论是：
 
-```
+```javascript
 //执行console
 //task()
+复制代码
 ```
 
-去验证一下，结果正确！
-然后我们修改一下前面的代码：
+去验证一下，结果正确！ 然后我们修改一下前面的代码：
 
 ```javascript
 setTimeout(() => {
@@ -139,6 +145,7 @@ setTimeout(() => {
 },3000)
 
 sleep(10000000)
+复制代码
 ```
 
 乍一看其实差不多嘛，但我们把这段代码在chrome执行一下，却发现控制台执行`task()`需要的时间远远超过3秒，说好的延时三秒，为啥现在需要这么长时间啊？
@@ -162,29 +169,30 @@ console.log('先执行这里');
 setTimeout(() => {
     console.log('执行啦')
 },0);
-```
-
-```javascript
+复制代码
 //代码2
 console.log('先执行这里');
 setTimeout(() => {
     console.log('执行啦')
-},3000);
+},3000);  
+复制代码
 ```
 
 代码1的输出结果是：
 
-```
+```javascript
 //先执行这里
 //执行啦
+复制代码
 ```
 
 代码2的输出结果是：
 
-```
+```javascript
 //先执行这里
 // ... 3s later
 // 执行啦
+复制代码
 ```
 
 关于`setTimeout`要补充的是，即便主线程为空，0毫秒实际上也是达不到的。根据HTML的标准，最低是4毫秒。有兴趣的同学可以自行了解。
@@ -193,13 +201,13 @@ setTimeout(() => {
 
 上面说完了`setTimeout`，当然不能错过它的孪生兄弟`setInterval`。他俩差不多，只不过后者是循环的执行。对于执行顺序来说，`setInterval`会每隔指定的时间将注册的函数置入Event Queue，如果前面的任务耗时太久，那么同样需要等待。
 
-唯一需要注意的一点是，对于`setInterval(fn,ms)`来说，我们已经知道不是每过`ms`秒会执行一次`fn`，而是每过`ms`秒，会有`fn`进入Event Queue。一旦**setInterval的回调函数fn执行时间超过了延迟时间ms，那么就完全看不出来有时间间隔了**。这句话请读者仔细品味。
+唯一需要注意的一点是，对于`setInterval(fn,ms)`来说，我们已经知道不是每过`ms`秒会执行一次`fn`，而是每过`ms`秒，会有`fn`进入Event Queue。一旦**`setInterval`的回调函数`fn`执行时间超过了延迟时间`ms`，那么就完全看不出来有时间间隔了**。这句话请读者仔细品味。
 
 ### 5.Promise与process.nextTick(callback)
 
 传统的定时器我们已经研究过了，接着我们探究`Promise`与`process.nextTick(callback)`的表现。
 
-`Promise`的定义和功能本文不再赘述，不了解的读者可以学习一下阮一峰老师的[Promise](https://link.juejin.im/?target=http%3A%2F%2Fes6.ruanyifeng.com%2F%23docs%2Fpromise)。而`process.nextTick(callback)`类似node.js版的"setTimeout"，在事件循环的下一次循环中调用 callback 回调函数。
+`Promise`的定义和功能本文不再赘述，不了解的读者可以学习一下阮一峰老师的[Promise](https://link.juejin.cn?target=http%3A%2F%2Fes6.ruanyifeng.com%2F%23docs%2Fpromise)。而`process.nextTick(callback)`类似node.js版的"setTimeout"，在事件循环的下一次循环中调用 callback 回调函数。
 
 我们进入正题，除了广义的同步任务和异步任务，我们对任务有更精细的定义：
 
@@ -222,6 +230,7 @@ new Promise(function(resolve) {
 })
 
 console.log('console');
+复制代码
 ```
 
 - 这段代码作为宏任务，进入主线程。
@@ -234,7 +243,7 @@ console.log('console');
 
 事件循环，宏任务，微任务的关系如图所示：
 
-![img](https://user-gold-cdn.xitu.io/2017/11/21/15fdcea13361a1ec?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/21/15fdcea13361a1ec~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 我们来分析一段较复杂的代码，看看你是否真的掌握了js的执行机制：
 
@@ -275,6 +284,7 @@ setTimeout(function() {
         console.log('12')
     })
 })
+复制代码
 ```
 
 第一轮事件循环流程分析如下：
@@ -324,8 +334,7 @@ setTimeout(function() {
 - 输出12。
 - 第三轮事件循环结束，第三轮输出9，11，10，12。
 
-整段代码，共进行了三次事件循环，完整的输出为1，7，6，8，2，4，3，5，9，11，10，12。
-(请注意，node环境下的事件监听依赖libuv与前端环境不完全相同，输出顺序可能会有误差)
+整段代码，共进行了三次事件循环，完整的输出为1，7，6，8，2，4，3，5，9，11，10，12。 (请注意，node环境下的事件监听依赖libuv与前端环境不完全相同，输出顺序可能会有误差)
 
 ### 6.写在最后
 
@@ -351,3 +360,8 @@ setTimeout(function() {
 - Event Loop是javascript的执行机制
 
 牢牢把握两个基本点，以认真学习javascript为中心，早日实现成为前端高手的伟大梦想！
+
+作者：ssssyoki
+链接：<https://juejin.cn/post/6844903512845860872>
+来源：稀土掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

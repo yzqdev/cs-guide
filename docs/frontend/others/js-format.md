@@ -11,7 +11,7 @@
 [...new Set([2,"12",2,12,1,2,1,6,12,13,6])]
 //[2, "12", 12, 1, 6, 13]
 //es6的新特性
-
+复制代码
 ```
 
 ## 3.对象深浅拷贝
@@ -28,28 +28,28 @@
 
 ```
 var myInfo={name:'守候',sex:'男'};
-
+复制代码
 ```
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf444b153bd43?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf444b153bd43~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ```
 var newInfo=myInfo;
-
+复制代码
 ```
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf444e6487915?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf444e6487915~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ```
 newInfo.sex='女';
-
+复制代码
 ```
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf444e2d6a43b?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf444e2d6a43b~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ```
 console.log(myInfo)   //{name: "守候", sex: "女"}
-
+复制代码
 ```
 
 ### 假-深拷贝
@@ -57,27 +57,27 @@ console.log(myInfo)   //{name: "守候", sex: "女"}
 假-深拷贝这个是自己随性命名的，大家看看就好，别当真！
 
 ```
-var myInfo={name:'守候',sex:'男'};
+var myInfo={name:'守候',sex:'男'};复制代码
 ```
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf444b153bd43?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf444b153bd43~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ```
-var newInfo=Object.assign({},myInfo)
+var newInfo=Object.assign({},myInfo)复制代码
 ```
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf444ea8bca2c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf444ea8bca2c~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ```
-newInfo.sex='女';
+newInfo.sex='女';复制代码
 ```
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf444a56dc84e?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf444a56dc84e~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ```
 console.log(myInfo)   //{name: "守候", sex: "男"}
 console.log(newInfo)   //{name: "守候", sex: "女"}
-
+复制代码
 ```
 
 ### 真-深拷贝
@@ -96,7 +96,7 @@ console.log(arr)//[{a:1,b:2},{a:3,b:4}]
 //操作newArr，这里看着对arr没影响，实际上已经挖了一个坑，下面就跳进去
 newArr[0].a=123
 //修改newArr[0]这个对象，也是影响了arr[0]这个对象
-console.log(arr[0])//{a: 123, b: 2}
+console.log(arr[0])//{a: 123, b: 2}复制代码
 ```
 
 为什么会这样呢，因为Object.assign并不是深拷贝，是披着深拷贝外衣的浅拷贝。最多也是Object.assign会课拷贝第一层的值，对于第一层的值都是深拷贝，而到第二层的时候就是 复制引用。类似的情况还有，slice方法和concat方法等。
@@ -126,7 +126,7 @@ var arr=[{a:1,b:2},{a:3,b:4}]
 var newArr=deepClone(arr)
 console.log(arr[0])//{a:1,b:2}
 newArr[0].a=123
-console.log(arr[0])//{a:1,b:2}
+console.log(arr[0])//{a:1,b:2}复制代码
 ```
 
 还有一个方法就是简单粗暴法，我现在在用的一个方法！原理很简单，就是先把对象转成字符串，再把字符串转成对象！也能实现同样效果
@@ -135,7 +135,7 @@ console.log(arr[0])//{a:1,b:2}
 var newArr2=JSON.parse(JSON.stringify(arr));
 console.log(arr[0])//{a:1,b:2}
 newArr2[0].a=123
-console.log(arr[0])//{a:1,b:2}
+console.log(arr[0])//{a:1,b:2}复制代码
 ```
 
 上面所说的浅拷贝，真假深拷贝（自己随性命名的），这几种情况，在开发上都有可能要用到，至于要使用哪一种方式，视情况而定！
@@ -174,7 +174,7 @@ console.log(arr[0])//{a:1,b:2}
             })
         }
     </script>
-</html>
+</html>复制代码
 ```
 
 很简单，这样就实现了，实际上这里有坑，也待优化！
@@ -215,12 +215,12 @@ console.log(arr[0])//{a:1,b:2}
         })
     </script>
 </html>
-
+复制代码
 ```
 
 这样写，即使是动态添加进来的li点击也有反应，还有一个就是ul只有一个，事件绑定在ul上，无论li多少个，都是添加一次事件！但是也是可能会有问题，如果li下面还有子元素，那么点击的时候，target可能不是li，而是鼠标点击那个位置的最底层元素！如下图，如果鼠标点击白色区域，那个target就是body元素,鼠标点击绿色区域target就是div元素，鼠标点击蓝色区域target就是ul，点击橙色就是li。
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf444ed94451a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf444ed94451a~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ## 5.使用对象作为函数参数
 
@@ -231,7 +231,7 @@ function personInfo(name,phone,card){
     ...
 }
 //以上函数，可以任意传参数。比如我想传card等于1472586326。这下是不是这样写
-personInfo('','','1472586326')
+personInfo('','','1472586326')复制代码
 ```
 
 有没有觉得上面写法奇怪，不太优雅？下面这里看着舒服一点！
@@ -240,7 +240,7 @@ personInfo('','','1472586326')
 function personInfo(opt){
     ...
 }
-personInfo({card:'1472586326'})
+personInfo({card:'1472586326'})复制代码
 ```
 
 再想一下，如果一个函数，参数很多，怎么处理？
@@ -248,7 +248,7 @@ personInfo({card:'1472586326'})
 ```
 function test(arg1,arg2,arg3,arg4,arg5,arg6,arg7){
     ...
-}
+}复制代码
 ```
 
 密集恐惧症复发没有复发？下面这样看着会舒服一点！
@@ -256,7 +256,7 @@ function test(arg1,arg2,arg3,arg4,arg5,arg6,arg7){
 ```
 function personInfo(opt){
     ...
-}
+}复制代码
 ```
 
 最后再想一下，如果需求改了，操作函数也要改！函数也要增加一个参数。
@@ -269,7 +269,7 @@ function personInfo(name,phone,card){
 //修改后
 function personInfo(name,age,phone,card){
     ...
-}
+}复制代码
 ```
 
 这样就是参数修改一次，函数的参数就要修改一次！如果是用对象，就不会出现这样问题！
@@ -278,7 +278,7 @@ function personInfo(name,age,phone,card){
 //修改前后都是这样，变得是函数的操作内容和调用时候的传参！
 function personInfo(opt){
     ...
-}
+}复制代码
 ```
 
 看了上面的几个栗子，总结来说，就是当函数的参数不固定的时候，参数多(三个或者三个以上)的时候，建议用一个对象记录参数，这样会比较方便，也为以后如果参数要改留了条后路！
@@ -292,7 +292,7 @@ function personInfo(opt){
 ```
 var arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
 arr1=arr1.concat(arr2)
-console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]复制代码
 ```
 
 concat会一个全新的数组，表示arr1和arr2两个数组的组合，并让arr1和arr2不变。简单吧？
@@ -305,7 +305,7 @@ var arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
 for(var i=0,len=arr2.length;i<len;i++){
     arr1.push(arr2[i])
 }
-console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]复制代码
 ```
 
 这里是往arr1循环添加arr2的元素，但是有一个情况，arr1的长度远小于arr2的长度，是不是循环arr1性能更好，循环次数更少。处理这个很简单，但是万一不知道arr1和arr2到底哪个长度更少呢？而且，for循环不够优雅！（当然，这个可以用迭代方法来替代）
@@ -318,7 +318,7 @@ arr1 = arr2.reduce( function(coll,item){
      coll.push( item );
      return coll;
  }, arr1 );
- console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]复制代码
 ```
 
 逼格高了一点，而且用ES6的箭头函数还可以减少一些代码量，但它仍然需要一个函数，每个元素都需要调用一次。
@@ -329,7 +329,7 @@ arr1 = arr2.reduce( function(coll,item){
 var arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
 arr1.push.apply(arr1,arr2);
 console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
+复制代码
 ```
 
 逼格看着高，代码少，也不会产生新的数组，也不难理解，就是调用`arr1.push`这个函数实例的`apply`方法，同时把`arr2`当作参数传入，这样`arr1.push`这个方法就会遍历`arr2`数组的所有元素，达到合并的效果。相当于`arr1.push.apply(arr1,[6,7,8,9,10]);`，最后相当于`arr1.push(6,7,8,9,10)`。遗憾的就是，这个方法对数组长度有限制，网上说法是不同浏览器，不同的长度限制，一般不超过10万！
@@ -344,7 +344,7 @@ console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 var a=123.36896335.toFixed(2)
 console.log(a)//'123.37'
 a=+a
-console.log(a)//123.37
+console.log(a)//123.37复制代码
 ```
 
 PS：a=a|0和~~a也可以实现，但是生成的是一个整数，如下
@@ -359,7 +359,7 @@ var a=123.36896335.toFixed(2)
 console.log(a)//'123.37'
 a=~~a  
 console.log(a)//123        
-
+复制代码
 ```
 
 ## 8.其它类型数据转布尔数据
@@ -378,7 +378,7 @@ console.log(!!'123')
 !!''
 //false
 !!null
-//false
+//false复制代码
 ```
 
 ## 9.缓存变量
@@ -394,7 +394,7 @@ for(var i=0,i<arr.length;i++){
 var arr=[1,2,3,4,5,6]
 for(var i=0,len=arr.length;i<len;i++){
     ...
-}
+}复制代码
 ```
 
 第一段就是每一次循环的时候，都要查询一次arr.length。第二段代码就是缓存了arr.length，每次对比len就好，理论上是第二段代码的写法比较好，性能比较高！但是随着浏览器的发展，这个细节的性能上的影响貌似远远小于预期，现在还是建议缓存！我写了下面的测试用例(谷歌浏览器测试)！
@@ -428,7 +428,7 @@ testCache(arr10000)//default: 0.035ms
 testNoCache(arr100)//default: 0.012ms
 testNoCache(arr10000)//default: 0.109ms
 //这只是一个最简单的数组，如果遍历的是一个nodeList（元素列表），效果可能会更明显。
-
+复制代码
 ```
 
 ### 元素事件
@@ -443,7 +443,7 @@ $('.div1').click(function(){
 var $div1=$('.div1');
 $div1.click(function(){
    ...
-})
+})复制代码
 ```
 
 上面的代码，改变的也是缓存了$('.div1')，但是这里就建议是第二种写法了，因为第一种点击一次就要查询一次.div1，Dom的操作还是能减少就减少！
@@ -484,12 +484,12 @@ $div1.click(function(){
         console.timeEnd();
     </script>
 </html>
-
+复制代码
 ```
 
 大家把代码用浏览器打开，发现基本是第二种方式更快，第8点也说了，DOM操作能少就少！第一种要操作10次DOM，第二种只需要操作1次DOM。还有一个就是，这个只是很简单的li,如果是下面的列表呢？用第一种方式，得createElement多少次，innerHTML多少次，appendChild多少次？代码多，各个节点的逻辑和嵌套关系也乱！用第二种方式就是一个拼接字符串的操作，比第一种方式好多了，如果用es6的模板字符串，就更简单了！
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf4453fd37b0a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf4453fd37b0a~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ## 11.将参数转成数组
 
@@ -497,7 +497,7 @@ $div1.click(function(){
 
 ```
 var _arguments=Array.prototype.slice.apply(arguments)
-
+复制代码
 ```
 
 ## 12.函数节流
@@ -514,12 +514,12 @@ function beginCount() {
 }
 document.onmousemove = function () {
    beginCount();
-};
+};复制代码
 ```
 
 效果
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf4453fbde66a?imageslim)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf4453fbde66a~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 节流写法
 
@@ -538,12 +538,12 @@ function delayFn(method, thisArg) {
 document.onmousemove = function () {
     delayFn(beginCount)
 };
-
+复制代码
 ```
 
 效果
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf445673b76fc?imageslim)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf445673b76fc~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 这种方式，其实是有问题的，在不断触发停下来等待100ms才开始执行，中间操作得太快直接无视。于是在网上找到下面这种方案！
 
@@ -580,17 +580,22 @@ function fn1(){
     console.log(count)
 } 
 //100ms内连续触发的调用，后一个调用会把前一个调用的等待处理掉，但每隔200ms至少执行一次
-document.onmousemove=delayFn2(fn1,100,200)
+document.onmousemove=delayFn2(fn1,100,200)复制代码
 ```
 
-![img](https://user-gold-cdn.xitu.io/2017/11/15/15fbf44576a04947?imageslim)
+![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf44576a04947~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 > 我现在函数节流用得很少，这两个写法是比较基础的，希望大家能共享下自己的比较好的方法！
 
 ## 13.其他写作建议
 
-关于其它的一些写法技巧和建议，都是比较老生常谈的，比如命名规范，函数单一性原则等。这一部分内容我自己总结和别人写的基本一致！我就不展开说了（感觉展开说也基本是复制粘贴别人的文章，这事我不干），所以我推荐大家去看这篇文章（[如何优雅的编写 JavaScript 代码](https://link.juejin.im/?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F28910636)）。有些知识我也是从这里获得的！
+关于其它的一些写法技巧和建议，都是比较老生常谈的，比如命名规范，函数单一性原则等。这一部分内容我自己总结和别人写的基本一致！我就不展开说了（感觉展开说也基本是复制粘贴别人的文章，这事我不干），所以我推荐大家去看这篇文章（[如何优雅的编写 JavaScript 代码](https://link.juejin.cn?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F28910636)）。有些知识我也是从这里获得的！
 
 ## 14.小结
 
 好了，关于我自己总结的一些实用技巧和建议，就到这里了！关于javascript的技巧和建议，这点大家还是要多看网上的资源，也要自己多总结，毕竟我自己总结的只是我自己发现的，只是冰山一角。但还是希望这篇文章能帮到大家，让大家学习到知识。当然，更希望的是能起到一个交流意见的作用。如果大家有什么建议，技巧。也欢迎分享。觉得我哪里写错了，写得不够好，也欢迎指出！让大家一起互相帮助，互相学习！
+
+作者：守候i
+链接：<https://juejin.cn/post/6844903526796099591>
+来源：稀土掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

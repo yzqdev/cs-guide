@@ -25,14 +25,19 @@ description:
 
 1.下面将会看到很多个
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a71d3f30d344)
-
 类似这样的举行，都是 span 标签，样式都是给出的 css
 
-```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;
+:::demo
+
+```html
+<span> demo</span>
 ```
 
+```css
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+```
+
+:::
 2.关于 class 命名方式，l 代表 left，r 代表 right，t 代表 top，b 代表 bottom，c 代表 center，m 代表 middle。切记
 
 > 文章比较长，但是说得就是两点，大家看得也应该会很快
@@ -47,12 +52,11 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 首先是 hover 动画，关于这个概念，我解释下，就是鼠标移上去触发的动画，就是触发了鼠标的 hover 事件时能看到的动画！下面，按照类型，一个一个的写！
 
-2-1.简单动画
+## 2-1.简单动画
 
-2-1-1 大小变化
+## 2-1-1 大小变化
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32140002c6011423e743)
-
+:::demo
 html
 
 ```html
@@ -62,13 +66,18 @@ html
 css
 
 ```css
-.ech-big,.ech-small { transition: all .4s;
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+.ech-big,.ech-small { transition: all .4s;}
+.ech-big:hover { transform: scale(1.1,1.1)}
+.ech-small:hover { transform: scale(0.9,0.9)}
+
 ```
 
-2-1-2 形状变化
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/321200009430a3950910)
+## 2-1-2 形状变化
 
+:::demo
 html
 
 ```html
@@ -78,95 +87,244 @@ html
 css
 
 ```css
-.ech-skew-l, .ech-skew-r, .ech-skew-l-t, .ech-skew-r-b, .ech-skew-l-b, .ech-skew-r-t{ transition: all .4s;
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+.ech-skew-l, .ech-skew-r, .ech-skew-l-t, .ech-skew-r-b, .ech-skew-l-b, .ech-skew-r-t{ transition: all .4s;}
+.ech-skew-l:hover {
+    transform: skew(-15deg);
+}
+
+.ech-skew-r:hover {
+    transform: skew(15deg);
+}
+
+.ech-skew-l-t:hover {
+    transform: skew(-15deg);
+
+}
+
+.ech-skew-r-t:hover {
+    transform: skew(15deg);
+}
+
+.ech-skew-l-b:hover {
+    transform: skew(15deg);
+}
+
+.ech-skew-r-b:hover {
+    transform: skew(-15deg);
+}
 ```
 
-2-1-3 旋转角度变化
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32110004d5a36cfcdc56)
+## 2-1-3 旋转角度变化
 
+:::demo
 html
 
-```htm
+```html
 <span class="ech-grow-rotate-l">grow-rotate-l</span><span class="ech-grow-rotate-r">grow-rotate-r</span><span class="ech-rotate5">rotate5</span><span class="ech-rotate15">rotate15</span><span class="ech-rotate30">rotate30</span><span class="ech-rotate60">rotate60</span><span class="ech-rotate90">rotate90</span><span class="ech-rotate180">rotate180</span><span class="ech-rotate360">rotate360</span><span class="ech-rotate-5">rotate-5</span><span class="ech-rotate-15">rotate-15</span><span class="ech-rotate-30">rotate-30</span><span class="ech-rotate-60">rotate-60</span><span class="ech-rotate-90">rotate-90</span><span class="ech-rotate-180">rotate-180</span>
 ```
 
 css
 
 ```css
-.ech-grow-rotate-l,.ech-grow-rotate-r, .ech-rotate5, .ech-rotate15, .ech-rotate30, .ech-rotate60, .ech-rotate90, .ech-rotate180, .ech-rotate360, .ech-rotate-5,.ech-rotate-15, .ech-rotate-30, .ech-rotate-60, .ech-rotate-90, .ech-rotate-180{transition: all .4s;
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+.ech-grow-rotate-l,.ech-grow-rotate-r, .ech-rotate5, .ech-rotate15, .ech-rotate30, .ech-rotate60, .ech-rotate90, .ech-rotate180, .ech-rotate360, .ech-rotate-5,.ech-rotate-15, .ech-rotate-30, .ech-rotate-60, .ech-rotate-90, .ech-rotate-180{transition: all .4s;}
+.ech-grow-rotate-l:hover {
+    transform: scale(1.1) rotate(4deg);
+}
+.ech-grow-rotate-r:hover {
+    transform: scale(1.1) rotate(-4deg);
+}
+.ech-rotate-5:hover {
+    transform: rotate(-5deg);
+}
+.ech-rotate-15:hover {
+    transform: rotate(-15deg);
+}
+
+.ech-rotate-30:hover {
+    transform: rotate(-30deg);
+}
+
+.ech-rotate-60:hover {
+    transform: rotate(-60deg);
+}
+
+.ech-rotate-90:hover {
+    transform: rotate(-90deg);
+}
+
+.ech-rotate-180:hover {
+    transform: rotate(-180deg);
+}
+.ech-rotate5:hover {
+    transform: rotate(5deg);
+}
+.ech-rotate15:hover {
+    transform: rotate(15deg);
+}
+
+.ech-rotate30:hover {
+    transform: rotate(30deg);
+}
+
+.ech-rotate60:hover {
+    transform: rotate(60deg);
+}
+
+.ech-rotate90:hover {
+    transform: rotate(90deg);
+}
+
+.ech-rotate180:hover {
+    transform: rotate(180deg);
+}
+
+.ech-rotate360:hover {
+    transform: rotate(360deg);
+}
 ```
 
-2-1-4 位移变化
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32140002c602c8db7856)
+## 2-1-4 位移变化
 
+:::demo
 html
 
 ```html
 <span class="ech-t">up</span>
+<span class="ech-b">up</span>
+<span class="ech-l">up</span>
+<span class="ech-r">up</span>
 ```
 
 css
 
 ```css
-.ech-t,.ech-bottom,.ech-top,.ech-right{ transition: all .4s;
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+.ech-t,.ech-b,.ech-l,.ech-r{ transition: all .4s;}
+.ech-t:hover {
+    transform: translate3d(0, -10px, 0);
+}
+
+.ech-b:hover {
+    transform: translate3d(0, 10px, 0);
+}
+
+.ech-l:hover {
+    transform: translate3d(-10px, 0, 0);
+}
+
+.ech-r:hover {
+    transform: translate3d(10px, 0, 0);
+}
 ```
 
-2-1-5 边框变化
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320a0001e3c21c7f03b9)
+## 2-1-5 边框变化
 
+:::demo
 html
 
 ```html
 <span class="ech-border">border</span>
+<span class="ech-border-in">border</span>
 ```
 
 css
 
 ```css
-.ech-border,.ech-border-in{ transition: all .4s;
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+.ech-border,.ech-border-in{transition:all 0.4s}
+.ech-border:hover {
+    box-shadow: 0 0 0 4px #09f, 0 0 1px transparent;
+}
+
+.ech-border-in:hover {
+    box-shadow: inset 0 0 0 4px #09f, 0 0 1px transparent;
+}
 ```
 
-2-1-6 阴影变化
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a71f373cd680)
+## 2-1-6 阴影变化
 
 (gif 图看得效果太难看了，大家可以去 github 下载看)
-
+:::demo
 html
 
 ```html
 <span class="ech-shadow">shadow</span>
+<span class="ech-shadow-in">shadow</span>
+<span class="ech-shadow-write">shadow</span>
+<span class="ech-shadow-big">shadow</span>
 ```
 
 css
 
 ```css
-.ech-shadow,.ech-shadow-in,.ech-shadow-write,.ech-shadow-big{ transition: all .4s;
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+ 
+.ech-shadow,.ech-shadow-in,.ech-shadow-write,.ech-shadow-big{ transition: all .4s;}
+.ech-shadow:hover {
+    box-shadow: 0 0 10px #333;
+}
+
+.ech-shadow-in:hover {
+    box-shadow: inset 0 0 10px #333;
+}
+
+.ech-shadow-write:hover {
+    box-shadow: inset 0 0 20px #fff;
+}
+
+.ech-shadow-big:hover {
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
 ```
 
-2-1-7 透明度变化
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32120000942fa98cf879)
+## 2-1-7 透明度变化
 
+:::demo
 html
 
 ```html
 <span class="ech-fade-out">fade-out</span>
+<span class="ech-fade-in">fade-in</span>
 ```
 
 css
 
 ```css
-.ech-fade-out,.ech-fade-in{ transition: all .4s;
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+ 
+.ech-fade-out,.ech-fade-in{ transition: all .4s;}
+.ech-fade-out:hover {
+    opacity: .6;
+}
+
+.ech-fade-in {
+    opacity: .5;
+}
+
+.ech-fade-in:hover {
+    opacity: 1;
+}
+
 ```
 
-2-1-8 圆角变化
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320a0001e3c41db58188)
+## 2-1-8 圆角变化
 
+:::demo
 html
 
 ```html
@@ -176,251 +334,508 @@ html
 css
 
 ```css
-.ech-radius,.ech-rectangle{ transition: all .4s;
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+.ech-radius,.ech-rectangle{ transition: all .4s;}
+.ech-radius{border-radius:10px;}
+.ech-radius:hover{border-radius: 0px;}
+.ech-rectangle:hover{border-radius:10px;}
 ```
 
-2-2.颜色动画效果
+:::
 
-这部分的动画主要是利用:before 和:after 进行实现的，所以，大家如果使用的时候，切记:before 和:after 没有被占用，否则会显示不正常
-
-2-2-1.颜色块变化
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32110004d5a0af60fd98)
-
-因为这块内容很像，我就一大块一起说，大家看代码的时候要留神注意。看代码看不明白，直接在 github 下载，然后运行文件，边调试边看效果！这样大家就很容易明白了！
-
-html
-
-```html
-<span class="ech-fade">fade</span>
-```
-
-css
-
-```css
-/*当前元素设置相对定位*/.ech-fade, .ech-fade-t, .ech-fade-b, .ech-fade-l, .ech-fade-r, .ech-fade-c-in, .ech-fade-m-in, .ech-fade-m-out, .ech-fade-c-out, .ech-bounce-t, .ech-bounce-b, .ech-bounce-r, .ech-bounce-l { position: relative; transition: all .3s; z-index: 1;
-```
-
-2-2-2.颜色上下划线变化
+## 2-2-2.颜色上下划线变化
 
 这里也是一大块一起说，看代码可能会更乱，所以大家看代码的时候要更加留神注意。看代码看不明白，直接在 github 下载，然后运行文件，边调试边看效果！这样大家就很容易明白了！
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a71e4ea99694)
-
+:::demo
 html
 
 ```html
 <span class="ech-overline-l">overline-l</span>
+<span class="ech-overline-r">overline-l</span>
+<span class="ech-overline-c">overline-l</span>
+<span class="ech-underline-r">overline-l</span>
+<span class="ech-underline-c">overline-l</span>
+<span class="ech-underline-l">overline-l</span>
+<span class="ech-underline-c-out">overline-l</span>
+<span class="ech-underline-l">overline-l</span>
+<span class="ech-fade-c-in">overline-l</span>
 ```
 
 css
 
 ```css
-/*上划线和下划线变化 当前元素样式设置相对定位*/.ech-overline-r, .ech-overline-l, .ech-underline-r, .ech-underline-l, .ech-underline-c, .ech-overline-c, .ech-underline-c-out, .ech-overline-c-out{ position: relative; transition: all .3s; z-index: 1;
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+/*上划线和下划线变化 当前元素样式设置相对定位*/.ech-overline-r, .ech-overline-l, .ech-underline-r, .ech-underline-l, .ech-underline-c, .ech-overline-c, .ech-underline-c-out, .ech-overline-c-out{ position: relative; transition: all .3s; z-index: 1;}
+.ech-overline-r:before, .ech-overline-l:before, .ech-underline-l:before, .ech-underline-r:before, .ech-underline-c:before, .ech-overline-c:before, .ech-underline-c:after, .ech-overline-c:after, .ech-underline-c-out:before, .ech-overline-c-out:before {
+    position: absolute;
+    transition: all .3s;
+    content: "";
+    display: block;
+    background: #09f;
+    z-index: -1;
+    height: 4px;
+    width: 100%;
+    transform: scaleX(0);
+}
+.ech-overline-r:before, .ech-overline-l:before, .ech-underline-l:before, .ech-underline-r:before, .ech-underline-c:before, .ech-overline-c:before, .ech-underline-c:after, .ech-overline-c:after, .ech-underline-c-out:before, .ech-overline-c-out:before {
+    position: absolute;
+    transition: all .3s;
+    content: "";
+    display: block;
+    background: #09f;
+    z-index: -1;
+    height: 4px;
+    width: 100%;
+    transform: scaleX(0);
+}
+
+/*上划线 左右出来*/
+.ech-overline-r:before {
+    top: 0;
+    left: 0;
+    transform-origin: 100% 50%;
+}
+
+.ech-overline-l:before {
+    top: 0;
+    right: 0;
+    transform-origin: 0 50%;
+}
+
+/*下划线 左右出来*/
+.ech-underline-r:before {
+    bottom: 0;
+    left: 0;
+    transform-origin: 100% 50%;
+
+}
+
+.ech-underline-l:before {
+    bottom: 0;
+    right: 0;
+    transform-origin: 0% 50%;
+}
+
+/**上划线 下划线 居中进来**/
+.ech-overline-c:before {
+    top: 0;
+    transform-origin: 0 50%;
+}
+
+.ech-overline-c:after {
+    top: 0;
+    transform-origin: 100% 50%;
+}
+
+.ech-underline-c:before {
+    bottom: 0;
+    transform-origin: 0 50%;
+}
+
+.ech-underline-c:after {
+    bottom: 0;
+    transform-origin: 100% 50%;
+}
+
+.ech-overline-c:before, .ech-underline-c:before {
+    left: 0;
+}
+
+.ech-overline-c:after, .ech-underline-c:after {
+    right: 0;
+}
+
+/*上划线 下划线-居中出去 */
+.ech-overline-c-out:before {
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.ech-underline-c-out:before {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.ech-fade-t:hover:before, .ech-fade-b:hover:before, .ech-fade-m-out:hover:before, .ech-bounce-b:hover:before, .ech-bounce-t:hover:before {
+    transform: scaleY(1);
+}
+
+.ech-fade:hover, .ech-fade-t:hover, .ech-fade-b:hover, .ech-fade-l:hover, .ech-fade-r:hover, .ech-fade-c-in:hover, .ech-fade-m-in:hover, .ech-fade-m-out:hover, .ech-fade-c-out:hover, .ech-bounce-t:hover, .ech-bounce-b:hover, .ech-bounce-r:hover, .ech-bounce-l:hover {
+    color: #fff;
+}
+
+.ech-fade-m-in:hover:before, .ech-fade-m-in:hover:after {
+    transform: scaleY(.51);
+}
+
+.ech-fade-c-in:hover:before, .ech-fade-c-in:hover:after, .ech-overline-c:hover:after, .ech-overline-c:hover:before, .ech-underline-c:hover:after, .ech-underline-c:hover:before {
+    transform: scaleX(.51);
+}
+
+.ech-fade-l:hover:before, .ech-fade-r:hover:before,.ech-fade-c-out:hover:before, .ech-bounce-l:hover:before, .ech-bounce-r:hover:before, .ech-overline-l:hover:before, .ech-overline-r:hover:before, .ech-underline-l:hover:before, .ech-underline-r:hover:before, .ech-underline-c-out:hover:before, .ech-overline-c-out:hover:before {
+    transform: scaleX(1);
+}
 ```
 
-2-2-3 箭头动画
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/322b0000516e097769bd)
+## 2-2-3 箭头动画
 
+:::demo
 html
 
-```
+```html
 <span class="ech-arrow-l">arrow-l</span><span class="ech-arrow-r">arrow-r</span><span class="ech-arrow-t">arrow-t</span><span class="ech-arrow-b">arrow-b</span><span class="ech-arrow-l-move">arrow-l</span><span class="ech-arrow-r-move">arrow-r</span><span class="ech-arrow-t-move">arrow-t</span><span class="ech-arrow-b-move">arrow-b</span>
 ```
 
 css
 
+```css
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+.ech-arrow-l, .ech-arrow-r, .ech-arrow-t, .ech-arrow-b, .ech-arrow-l-move, .ech-arrow-r-move, .ech-arrow-t-move, .ech-arrow-b-move{ position: relative; transition: all .3s; z-index: 1;}
+.ech-arrow-l:before, .ech-arrow-r:before, .ech-arrow-t:before, .ech-arrow-b:before, .ech-arrow-l-move:before, .ech-arrow-r-move:before, .ech-arrow-t-move:before, .ech-arrow-b-move:before {
+    position: absolute;
+    transition: all .3s;
+    content: "";
+    display: block;
+    z-index: -1;
+    border-style: solid;
+    margin: auto;
+    width: 0;
+    height: 0;
+}
+
+.ech-arrow-l:before, .ech-arrow-l-move:before {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #ccc transparent transparent;
+}
+
+.ech-arrow-r:before, .ech-arrow-r-move:before {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #ccc;
+}
+
+.ech-arrow-t:before, .ech-arrow-t-move:before {
+    left: 0;
+    top: 0;
+    right: 0;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #ccc transparent;
+}
+
+.ech-arrow-b:before, .ech-arrow-b-move:before {
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-width: 10px 10px 0 10px;
+    border-color: #ccc transparent transparent transparent;
+}
+
+.ech-arrow-l-move, .ech-arrow-r-move, .ech-arrow-t-move, .ech-arrow-b-move {
+    transition: transform .3s;
+}
+
+.ech-arrow-l-move:hover {
+    transform: translateX(10px);
+}
+
+.ech-arrow-r-move:hover {
+    transform: translateX(-10px);
+}
+
+.ech-arrow-t-move:hover {
+    transform: translateY(10px);
+}
+
+.ech-arrow-b-move:hover {
+    transform: translateY(-10px);
+}
+
+.ech-arrow-l-move:hover:before, .ech-arrow-l:hover:before {
+    transform: translateX(-10px);
+}
+
+.ech-arrow-r-move:hover:before, .ech-arrow-r:hover:before {
+    transform: translateX(10px);
+}
+
+.ech-arrow-t-move:hover:before, .ech-arrow-t:hover:before {
+    transform: translateY(-10px);
+}
+
+.ech-arrow-b-move:hover:before, .ech-arrow-b:hover:before {
+    transform: translateY(10px);
+}
 ```
-.ech-arrow-l, .ech-arrow-r, .ech-arrow-t, .ech-arrow-b, .ech-arrow-l-move, .ech-arrow-r-move, .ech-arrow-t-move, .ech-arrow-b-move{ position: relative; transition: all .3s; z-index: 1;
-```
 
-2-3 较复杂动画
+:::
 
-2-1 和 2-2 的内容，都是利用过渡实现效果，那么这一块就是利用动画来实现效果！区别就是 hover 的写法是增加一个动画，动画的封装，难度就在于创意。
+## 2-3 较复杂动画
 
-2-3-1 闪烁效果
+## 2-1 和  2-2 的内容，都是利用过渡实现效果，那么这一块就是利用动画来实现效果！区别就是 hover 的写法是增加一个动画，动画的封装，难度就在于创意
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/31fc0001f0dde8c2a102)
+## 2-3-1 闪烁效果
 
+:::demo
 html
 
-```
+```html
 <span class="ech-flash">flash</span>
 ```
 
 css
 
+```css
+ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+/*闪烁变化*/
+.ech-flash:hover {
+    animation: flash .5s ease;
+}
+
+@keyframes flash {
+    0%, 50%, 100% {
+        opacity: 1;
+    }
+    25%, 75% {
+        opacity: 0;
+    }
+}
 ```
-.ech-flash:hover { animation: flash .5s ease;
-```
 
-2-3-2 闹钟振铃效果
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/322b0000516f09796a2d)
+## 2-3-2 闹钟振铃效果
 
+:::demo
 html
 
-```
+```html
 <span class="ech-shake-time">shake-time</span>
 ```
 
 css
 
+```css
+
+/*仿闹钟振铃效果*/
+.ech-shake-time:hover {
+    animation: shake-time 1s ease;
+}
+
+@keyframes shake-time {
+    0% {
+        transform: scale(1);
+    }
+    10%, 20% {
+        transform: scale(0.9) rotate(-3deg);
+    }
+    30%, 50%, 70%, 90% {
+        transform: scale(1.1) rotate(3deg);
+    }
+    40%, 60%, 80% {
+        transform: scale(1.1) rotate(-3deg);
+    }
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+/*仿闹钟振铃效果*/  span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+
 ```
-/*仿闹钟振铃效果*/.ech-shake-time:hover { animation: shake-time 1s ease;
-```
 
-2-3-3 摇摆效果
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/31fc0001f0decf6202fa)
+## 2-3-3 摇摆效果
 
+:::demo
 html
 
-```
+```html
 <span class="ech-wobble-c">wobble-c</span><span class="ech-wobble-t">wobble-t</span><span class="ech-wobble-b">wobble-b</span>
 ```
 
 css
 
+```css
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+.ech-wobble-t, .ech-skew-r-t, .ech-skew-l-t { transform-origin: 0 100%;}
+
+/*
+ * 当前元素 较复杂动画，利用动画实现
+ */
+.ech-wobble-t, .ech-skew-r-t, .ech-skew-l-t {
+    transform-origin: 0 100%;
+}
+
+.ech-wobble-b, .ech-skew-r-b, .ech-skew-l-b {
+    transform-origin: 100% 0;
+}
+
+.ech-wobble-c:hover, .ech-wobble-t:hover,.ech-wobble-b:hover {
+    animation: wobble-x 1s ease-in-out;
+}
+
+@keyframes wobble-x {
+    16.65% {
+        -webkit-transform: skew(-12deg);
+        transform: skew(-12deg);
+    }
+    33.3% {
+        -webkit-transform: skew(10deg);
+        transform: skew(10deg);
+    }
+    49.95% {
+        -webkit-transform: skew(-6deg);
+        transform: skew(-6deg);
+    }
+    66.6% {
+        -webkit-transform: skew(4deg);
+        transform: skew(4deg);
+    }
+    83.25% {
+        -webkit-transform: skew(-2deg);
+        transform: skew(-2deg);
+    }
+    100% {
+        -webkit-transform: skew(0);
+        transform: skew(0);
+    }
+}
+
+@keyframes wobble {
+    16.65% {
+        -webkit-transform: skew(-12deg);
+        transform: skew(-12deg);
+    }
+    33.3% {
+        -webkit-transform: skew(10deg);
+        transform: skew(10deg);
+    }
+    49.95% {
+        -webkit-transform: skew(-6deg);
+        transform: skew(-6deg);
+    }
+    66.6% {
+        -webkit-transform: skew(4deg);
+        transform: skew(4deg);
+    }
+    83.25% {
+        -webkit-transform: skew(-2deg);
+        transform: skew(-2deg);
+    }
+    100% {
+        -webkit-transform: skew(0);
+        transform: skew(0);
+    }
+}
 ```
-.ech-wobble-t, .ech-skew-r-t, .ech-skew-l-t { transform-origin: 0 100%;
-```
 
-2-3-4 摇晃效果
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320a0001e3c576ce518a)
+## 2-3-4 摇晃效果
 
+:::demo
 html
 
-```
+```html
 <span class="ech-swing">swing</span>
 ```
 
 css
 
+```css
+.ech-swing:hover { animation: swing .5s ease alternate;}
+ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+
+@keyframes swing {
+    20% {
+        transform: rotate(15deg);
+    }
+    40% {
+        transform: rotate(-10deg);
+    }
+    60% {
+        transform: rotate(5deg);
+    }
+    80% {
+        transform: rotate(-5deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
 ```
-.ech-swing:hover { animation: swing .5s ease alternate;
-```
 
-2-3-5 抖动效果
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320a0001e3c657f855aa)
+## 2-3-5 抖动效果
 
+:::demo
 html
 
-```
+```html
 <span class="ech-shake">shake</span>
 ```
 
 css
 
+```css
+.ech-shake:hover {
+    animation: shake .5s ease;
+}
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
 ```
-.ech-shake:hover { animation: shake .5s ease;
-```
 
-2-3-6 弹跳效果
+:::
 
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a72226cd81e4)
+## 2-3-6 弹跳效果
 
+:::demo
 html
 
-```
+```html
 <span class="ech-bounce">bounce</span>
 ```
 
 css
 
+```css
+span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+.ech-bounce:hover {
+    animation: bounce 1s ease;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
 ```
-.ech-bounce:hover { animation: bounce 1s ease;
-```
-
-3.预设动画
-
-受限于篇幅的长度，我也不想分开两篇文章写。关于这个预设动画，我就简单的说一下，写一下，我直接给一个大概的操作演示，和完整的代码！反正写法这个也是比较单一，无非就是改一个类名而已。难的是动画的一些编写，这个需要创意，大家可以上网参考。
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/322b000051713f40367c)
-
-（不知道为什么，gif 截大图放不上来，就放了张小的，大家结果下面的 jpg 一起看把，就是通过下面的按钮，展示动画，大家也可以在 github 下面下载代码看下）
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a720ffaa5b81)
-
-**（完整代码比较多，这里贴出，但是建议大家稍微看一下，过一下就好，因为这个只看代码是会懵逼的，要在浏览器打开文件，一看调试一边看，这样会很简单，很容易的明白）**
-
-html 代码
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32140002c915d3b1499c)
-
-代码过长需要文档版源码来我的前端群 657137906，源码已经上传了！
-
-css
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32110004d7dcc47a2b1b)
-
-代码过长需要文档版源码来我的前端群 657137906，源码已经上传了！
-
-4.未知探索
-
-好了，说完了 hover 动画和预设动画，我开发的时候，发现了这样一些好玩的东西，我也准备继续研究，也建议大家玩下，说不定哪天做出了了不起的东西！如下面的栗子！
-
-> 下面说的动画，不分 hover 动画和预设动画，大家注意
-
-4-1.无限执行动画
-
-一个普通的动画，加上无限执行，一般会出现很友好的效果，
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32140002c603d42b8528)
-
-但是有些时候的效果差强人意
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a7231d5b31e1)
-
-4-2.反向动画
-
-在 4-1 的基础上，加上方向执行动画，也会有不一样的效果
-
-没加反向动画效果
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/321200009432d00a970c)
-
-加上反向动画效果
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/320f0002a72197d51805)
-
-4-3.组合效果
-
-阴影效果和其它效果的组合，(gif 看不出阴影效果，哎。。)
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/322b0000517082ead70b)
-
-上面的几个的栗子
-
-css 代码不变，区别是 html 代码，多加了一些类名
-
-![程序员开发css3动画-实现自己的代码库](https://p26.toutiaoimg.com/large/32110004d5a28160f9b0)
-
-上面几个是我在开发时候发现的栗子，这个我会继续研究，也希望大家能研究，研究出什么好玩的效果，或者动画写法，欢迎分享！
-
-5.鸡肋选择
-
-**在写 css3 代码库的时候，我也发现封装 css3 的一个鸡肋情况。**
-
-1.css3 的效果太过于灵活，多样，封装非常容易出现众口难调的情况，以及每个项目的效果可能出现效果差不多，但就是不一样，这样就是说封装的库并不适合用在项目上。
-
-2.还有一点在于，css3 效果基本上每一个项目都是有用到，并且是常用，但是平常项目要用到的 css3 效果最多也就 10 个，而且也不难，手写很快可以实现，根本没必要去引一个插件或者库。
-
-**但是最后我还是坚持写下去了，原因如下**
-
-1.如果项目开发，对动画效果的要求基本不会达到非常的严格的地步，我完全可以多引一个文件，增加我的开发效率，压缩过后的文件可能只有 10K 左右，可以接受。
-
-2.就算在项目用不上，我也可以当作是练手，学习的作用。如果以后项目需要动画效果，即使动画效果跟我封装的不一样，我也可以看着来进行修改。
-
-3.就算开发的时候没使用上这个库，万一有些动画，我写过，但是忘了怎么写，也可以回头看怎么实现！
-
-4.如果开发的时候，不知道放什么效果好，这个库，也能起到一定的参考作用！
-
-5.现在多写几个，说不定起到一个发散思维的作用，写了这些效果，想到了另一些效果怎么写，或者想到还有什么效果可以写，这个也是非常好的一个结果和收获！
-
-6.小结
-
-好了，css3 的代码库封装到这里就差不多了，如果你能看完全篇，你已经是勇士了，证明你很有耐心，看完马上掌握，这个对于大家来说问题不大，毕竟不是什么逻辑性强的代码。我想要的效果虽然都实现了，不过以后肯定也是要修改完善的(至少看源码的话，我自己看得都有点乱，但是一时之间又不知道该如果整理，就先放上去了)。话说回来，通过以上的案例，希望能帮到大家，最理想就是能起到发散思维的作用，就是通过我的案例，能让大家知道其它的一些动画怎么做，或者想到有什么好看动画效果。web 前端这一行，最重要的就是多练，大家除了看别人的项目，博客之外，一定要多练，多写，这样进步才会更快，知识才会记得更牢。
