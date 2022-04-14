@@ -96,5 +96,11 @@ export default defineHopeConfig({
         },
       },
     ],
+    [
+      "@vuepress/plugin-prismjs",
+      {
+        preloadLanguages: ["autohotkey", "go"],
+      },
+    ],
   ],
 });

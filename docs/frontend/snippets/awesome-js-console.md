@@ -32,3 +32,19 @@ let arr=[];
     console.log(i.href);arr.push(i.href)
     })
 ```
+
+## 获取所有的cookie
+
+```js
+function getCookies() {
+  let pairs = document.cookie.split(";");
+  let cookies = new Map();
+  for (let i = 0; i < pairs.length; i++) {
+    let pair = pairs[i].split("=");
+    cookies.set(((pair[0] + '').trim()),pair[1])
+  }
+  return cookies;
+}
+
+
+```
