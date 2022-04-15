@@ -15,8 +15,367 @@
 见[https://github.com/the1812/Bilibili-Evolved](https://github.com/the1812/Bilibili-Evolved)
 
 :::
+下面是一个样例
+meta.json
+
+```json
+{
+  "name": "tamper-webpack",
+  "description": "Bilibili Evolved 的预览版, 可以抢先体验新功能.",
+  "updateURL": "https://cdn.jsdelivr.net/gh/the1812/Bilibili-Evolved@preview/dist/bilibili-evolved.preview.user.js",
+  "downloadURL": "https://cdn.jsdelivr.net/gh/the1812/Bilibili-Evolved@preview/dist/bilibili-evolved.preview.user.js",
+  "version": "2.1.7",
+  "author": "Grant Howard, Coulomb-G",
+  "copyright": "[year], Grant Howard (https://github.com/the1812) & Coulomb-G (https://github.com/Coulomb-G)",
+  "licence": "MIT",
+  "match": "https://bbs.mihoyo.com/ys/*",
+  "exclude": [
+    "*://api.bilibili.com/*",
+    "*://api.*.bilibili.com/*",
+    "*://*.bilibili.com/api/*",
+    "*://member.bilibili.com/studio/bs-editor/*",
+    "*://t.bilibili.com/h5/dynamic/specification",
+    "*://bbq.bilibili.com/*",
+    "*://message.bilibili.com/pages/nav/header_sync",
+    "*://s1.hdslb.com/bfs/seed/jinkela/short/cols/iframe.html"
+  ],
+  "run-at": "document-end",
+  "supportURL": "https://github.com/the1812/Bilibili-Evolved/issues",
+  "homepage": "https://github.com/the1812/Bilibili-Evolved",
+  "grant": [
+    "unsafeWindow",
+    "GM_getValue",
+    "GM_setValue",
+    "GM_deleteValue",
+    "GM_info",
+    "GM_xmlhttpRequest"
+  ],
+  "connect": [
+    "raw.githubusercontent.com",
+    "github.com",
+    "cdn.jsdelivr.net",
+    "cn.bing.com",
+    "www.bing.com",
+    "translate.google.cn",
+    "translate.google.com",
+    "localhost",
+    "*"
+  ],
+  "require": [
+    "https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"
+  ],
+  "icon": "https://cdn.jsdelivr.net/gh/the1812/Bilibili-Evolved@preview/images/logo-small.png",
+  "icon64": "https://cdn.jsdelivr.net/gh/the1812/Bilibili-Evolved@preview/images/logo.png"
+}
+
+```
+
+package.json
+
+```json
+{
+  "name": "tamper-webpack",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack --watch --config config/webpack.dev.js",
+    "build": "webpack --config config/webpack.prod.js"
+  },
+  "dependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "html-webpack-template": "^6.2.0",
+    "mini-css-extract-plugin": "latest",
+    "prettier": "^2.6.2",
+    "sass": "^1.50.0",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-middleware": "^5.3.1",
+    "webpack-dev-server": "^4.8.1",
+    "webpack-hot-middleware": "^2.25.1",
+    "webpack-merge": "^5.8.0"
+  }
+}
+
+```
+
+loaders.js
+
+```js
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const cssLoader = {
+  test: /\.css$/,
+  use: [
+    // {
+    //   loader: MiniCssExtractPlugin.loader
+    // },
+    {
+      loader: "css-loader",
+    },
+    {
+      loader: "postcss-loader",
+      options: {
+        config: {
+          path: path.join(__dirname, "./postcss.config.js"),
+        },
+      },
+    },
+  ],
+};
+const csLoader = {
+  test: /\.css$/,
+  use:  ["css-loader", MiniCssExtractPlugin.loader], // 从右向左解析
+
+};
+const sassLoader = {
+  test: /\.scss$/,
+
+    use: [{
+      loader: "style-loader" // 将 JS 字符串生成为 style 节点
+    }, {
+      loader: "css-loader" //  将 CSS 转化成 CommonJS 模块
+    }, {
+      loader: "sass-loader" // 将 Sass 编译成 CSS
+    }]
+
+};
+const fileLoader = {
+  test: /\.(png|svg|jpg|gif)$/,
+  use: [`file-loader`],
+};
+const jsxLoader = {
+  test: /\.jsx$/,
+  exclude: /(node_modules)/,
+  use: {
+    loader: "babel-loader",
+    options: {
+      presets: ["@babel/preset-react"],
+    },
+  },
+};
+const svgLoader = {
+  test: /\.svg$/,
+  use: [
+    {
+      loader: "image-webpack-loader",
+    },
+    {
+      loader: "base64-inline-loader",
+    },
+  ],
+};
+
+const jsLoader = {
+  test: /\.js$/,
+  exclude: /node_modules/,
+  use: {
+    loader: "babel-loader",
+    options: { presets: ["@babel/preset-env"] },
+  },
+};
+const eslintLoader = {
+  test: /\.js$/,
+  enforce: "pre",
+  exclude: /node_modules/,
+  use: {
+    loader: "eslint-loader",
+    options: {
+      configFile: path.join(__dirname, "../.eslintrc"),
+    },
+  },
+};
+const csvLoader = {
+  test: /\.(csv|tsc)$/,
+  use: [`csv-loader`],
+};
+
+const htmlLoader = {
+  test: /\.html$/,
+  use: "file-loader?name=[name].[ext]",
+};
+const xmlLoader = {
+  test: /\.xml$/,
+  use: ["xml-loader"],
+};
+const imageLoader = {
+  test: /\.(png|jpg|jpeg|gif)$/,
+  use: "url-loader?limit=1024&name=images/[name]_[hash].[ext]",
+};
+
+module.exports = {
+  jsLoader,
+  svgLoader,
+  xmlLoader,
+  imageLoader,
+  csvLoader,
+  csLoader,
+  fileLoader,
+  sassLoader,
+  cssLoader,
+  jsxLoader,
+  htmlLoader,
+};
+
+```
+
+webpack.common.js
+
+```js
+// 
+const path = require("path");
+const webpack = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin"); //这里必须这样写
+const loaders = require("./loaders");
+const {getBanner} = require("./webpack.utils");
+const meta = require("./meta.json");
+module.exports = {
+  entry:  './src/index.js',
+  output: {
+    filename: "tamper-webpack.dev.user.js",
+    path: path.resolve(__dirname, "../build"),
+    publicPath: path.resolve(__dirname, "../build"),
+    // 在script标签上添加crossOrigin,以便于支持跨域脚本的错误堆栈捕获
+    crossOriginLoading: "anonymous",
+  },
+  plugins: [
+    // new CleanWebpackPlugin(), //这里注意要大写啊
+    new webpack.BannerPlugin({
+      banner: getBanner(meta),
+      raw: true,
+      entryOnly: true,
+    }),
+
+
+  ],
+  resolve: {
+    modules: [
+      path.resolve(__dirname, "../src"),
+    ],
+    alias: {
+      components: path.resolve(__dirname, "/src/components"),
+    },
+  },
+
+  module: {
+    rules: [
+      loaders.cssLoader,
+        loaders.sassLoader,
+      loaders.fileLoader,
+    ],
+  },
+};
+
+```
+
+webpack.dev.js
+
+```js
+//
+const {merge} = require("webpack-merge");
+const os=require('os');
+const common = require("./webpack.common.js");
+const utils=require('./webpack.utils')
+const TerserPlugin = require('terser-webpack-plugin')
+module.exports = merge(common, {
+
+  mode:'development',
+  optimization: {
+    minimizer: [new TerserPlugin({
+      terserOptions: {
+        output: {
+          comments: /==\/?UserScript==|^[ ]?@|eslint-disable|spell-checker/i,
+        },
+      },
+      extractComments: false,
+    }),],
+  }
+
+
+});
+
+```
+
+webpack.prod.js
+
+```js
+const webpack = require("webpack");
+
+const {merge} = require("webpack-merge");
+const common = require("./webpack.common.js");
+const TerserPlugin = require("terser-webpack-plugin");
+
+module.exports = merge(common, {
+  mode:`production`,
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          output: {
+            comments: /==\/?UserScript==|^[ ]?@|eslint-disable|spell-checker/i,
+          },
+        },
+        extractComments: false,
+      }),
+    ],
+  },
+
+});
+
+```
+
+webpack.util.js
+
+```js
+const os=require('os');
+const commonMeta=require('./meta.json')
+const year = new Date().getFullYear()
+const getBanner = meta => `// ==UserScript==\n${Object.entries(Object.assign(meta, commonMeta)).map(([key, value]) => {
+  if (Array.isArray(value)) {
+    return value.map(item => `// @${key.padEnd(16, ' ')}${item}`).join('\n')
+  }
+  return `// @${key.padEnd(16, ' ')}${value.replace(/\[year\]/g, year)}`
+}).join('\n')}
+// ==/UserScript==
+/* eslint-disable */ /* spell-checker: disable */
+// @[ You can find all source codes in GitHub repo ]`
+/*
+获取本机IP
+*/
+const getIpAddress = () => {
+  let localIPAddress = ``;
+  let interfaces = os.networkInterfaces();
+  for (let devName in interfaces) {
+
+    let iface = interfaces[devName];
+    for (let i = 0; i < iface.length; i++) {
+      let alias = iface[i];
+      if (
+        alias.family === `IPv4` &&
+        alias.address !== `127.0.0.1` &&
+        !alias.internal
+      ) {
+        localIPAddress = alias.address;
+      }
+    }
+  }
+  return localIPAddress;
+};
+module.exports = {
+   getIpAddress,getBanner
+};
+```
 
 ## 搭建vite开发环境
+
+:::tip
+[https://github.com/lisonge/vite-plugin-monkey](https://github.com/lisonge/vite-plugin-monkey)
+:::
 
 开发模式下所使用的油猴脚本：
 
