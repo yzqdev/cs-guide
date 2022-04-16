@@ -1,16 +1,6 @@
----
-title: 大前端工具集
-category:
-  - 编程
-  - 前端
-tag:
-  - 前端
-  - 干货
-translate_title: big-frontend-tool-set
-date: 2017-05-08 09:17:00
-description:
----
+# 大前端工具集
 
+:::tip
  大前端工具集 [Awesome](https://github.com/sindresorhus/awesome)
 
 这个项目的定位是 **大前端程序猿的百宝箱**。主要针对 前端方向和 Node 方向；主要内容是国内外优秀的库、工具、套路、设计 / 交互或关注的前端组织 / 博客等等，反正用
@@ -18,10 +8,7 @@ description:
 
 对于列在这里的几乎所有项目，我都有去实践与了解，所以我会尽量给出中肯的建议和理解，也希望大家能多关注我的评语 :)
 <!--more-->
-
-* [正文](#%E6%AD%A3%E6%96%87) -
-    [这里介绍些有特色且前端有必要知道的包](#%E8%BF%99%E9%87%8C%E4%BB%8B%E7%BB%8D%E4%BA%9B%E6%9C%89%E7%89%B9%E8%89%B2%E4%B8%94%E5%89%8D%E7%AB%AF%E6%9C%89%E5%BF%85%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E5%8C%85) -
-* [License](#license)
+:::
 
 ## 正文
 

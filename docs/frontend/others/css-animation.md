@@ -1,19 +1,4 @@
----
-title: 程序员开发 css3 动画-实现自己的代码库
-category:
-  - 工具
-  - css
-  - 前端
-tag:
-  - Windows
-  - Config
-  - 前端
-translate_title: computer-skills
-date: 2017-01-30 09:17:00
-description:
----
-
-
+# 程序员开发 css3 动画-实现自己的代码库
 
 1.前言
 
