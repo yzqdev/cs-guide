@@ -38,7 +38,7 @@
 nuxtServerInit函数不生效?
 需要在nuxt.config.js里面设置`ssr:true`:
 
-```html
+```js
 // ssr:true,
   vite: { ssr: true },
   // Target: https://go.nuxtjs.dev/config-target
