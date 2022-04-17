@@ -40,7 +40,7 @@ function gcacheFun {
     git add -A ;
     git branch -D main ;
     git branch -m main ; 
-    git commit -m 'update' ;
+    git commit -m 'Initial commit' ;
     git push origin main -f ; 
     git gc --aggressive --prune=all
 }
@@ -49,7 +49,7 @@ Set-Alias ip fluship
 Set-Alias y yarnDev
 Set-Alias gitp gpFunc
 Set-Alias gitc gcacheFun
-# chcp 65001
+#chcp 65001
 
 
 # PSReadLine
@@ -62,7 +62,7 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Import-Module posh-git
 Import-Module oh-my-posh
 Set-PoshPrompt -Theme amro
-# conda activate condapkg
+#conda activate condapkg
 ```
 
 ## 下载sg源码的配置

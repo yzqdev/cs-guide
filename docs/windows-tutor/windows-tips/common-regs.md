@@ -1,5 +1,13 @@
 # windows常用注册表
 
+:::tip
+
+常用注册表管理工具
+regedit  
+[https://registry-finder.com/](https://registry-finder.com/)
+registry workshop(收费)
+:::
+
 ## 常见问题
 
 在使用电脑过程中，很多时候为了设置系统会使用注册表导入操作，但是有时用户会发现，如我们导入一些添加右键菜单功能的注册表，左导入之后菜单、选项变成乱码的问题，那么这是怎么回事，如何解决呢。
