@@ -9,6 +9,8 @@
 找到【translations】文件夹，
 下载【translation.zh_CN.zip】
 把其中的install.inf、zh_CN.ini以及其他存在的文件都解压到cudatext的data\lang文件夹下，重新运行软件点击【Options】-【translations】选择【zh_CN】即可。
+下载所有插件  
+[https://sourceforge.net/projects/cudatext/files/addons_all/](https://sourceforge.net/projects/cudatext/files/addons_all/)
 
 :::
 
@@ -18,17 +20,21 @@
 
 ### 右键注册`用cudatext打开`
 
+注意这里的`%1`在注册表里面要带`""`
+就像这样 `"D:\\programs\\cudatext\\cudatext.exe"  "%1"`
 新建一个`用cudatext打开`的reg文件,然后执行
 
 ```reg
 Windows Registry Editor Version 5.00
 
-[HKEY_CLASSES_ROOT\*\shell\用cudatext打开]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\用cudatext打开]
 "Icon"="D:\\programs\\cudatext\\cudatext.exe"
 @="用cudatext打开"
 
-[HKEY_CLASSES_ROOT\*\shell\用cudatext打开\command]
-@="D:\\programs\\cudatext\\cudatext.exe %1 "
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\用cudatext打开\command]
+@="\"D:\\programs\\cudatext\\cudatext.exe\"  \"%1\""
+
+
 
 ```
 

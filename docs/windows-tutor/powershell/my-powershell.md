@@ -1,4 +1,4 @@
-# ps配置
+# 我的ps配置
 
 :::tip
 查询`profile`位置: `$PROFILE`
@@ -49,6 +49,7 @@ Set-Alias ip fluship
 Set-Alias y yarnDev
 Set-Alias gitp gpFunc
 Set-Alias gitc gcacheFun
+Set-Alias cuda cudatext
 #chcp 65001
 
 
