@@ -27,6 +27,27 @@ iwr "http://p9.pstatp.com" -Outfile a.webp
 curl 'http:www.baidu.com' -o a.webp
 ```
 
+可以使用openfiles这个命令，和linux下的lsof差不多
+不过系统默认是关闭这个功能，要使用这个功能，需要先激活。
+激活命令：
+
+```powershell
+openfiles /local on
+```
+
+然后重启电脑
+然后就可以使用了，下面命令可以查询。
+
+```powershell
+openfiles /query /v
+```
+
+不用了别忘记关闭它
+
+```powershell
+openfiles /local off
+```
+
 ## 执行exe或者可执行文件
 
 ```powershell
