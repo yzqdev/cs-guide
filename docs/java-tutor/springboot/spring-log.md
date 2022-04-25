@@ -1,4 +1,4 @@
-# [Java日志框架SLF4J和log4j以及logback的联系和区别](https://www.cnblogs.com/hanszhao/p/9754419.html)
+# Java日志框架SLF4J和log4j以及logback的联系和区别
 
 **1.SLF4J(Simple logging Facade for Java)**
 

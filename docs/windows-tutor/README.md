@@ -3,6 +3,8 @@
 ## autohotkey-tutor
 
 - [一些好用的ahk脚本](./autohotkey-tutor/awesome-ahk.md)
+- [常用的函数](./autohotkey-tutor/common-ahk.md)
+- [我的一些ahk脚本](./autohotkey-tutor/my-ahk.md)
 - [autohotkey和autoit教程](./autohotkey-tutor/README.md)
 
 ## cpp-tutor
@@ -22,6 +24,17 @@
 - [golang配置](./golang-tutor/install-golang.md)
 - [golang-tutor](./golang-tutor/README.md)
 
+## others
+
+- [音乐源地址](./others/netease-api.md)
+- [编程字体推荐](./others/programming-fonts.md)
+
+## basics
+
+- [管道](./powershell/basics/pipline.md)
+- [基础](./powershell/basics/README.md)
+- [使用where查询](./powershell/basics/where-object.md)
+
 ## powershell
 
 - [powershell美化](./powershell/beautify-powershell.md)
@@ -29,7 +42,7 @@
 - [powershell常用命令](./powershell/common-commands.md)
 - [环境变量配置](./powershell/environment-varibles.md)
 - [alias](./powershell/my-alias.md)
-- [ps配置](./powershell/my-powershell.md)
+- [我的ps配置](./powershell/my-powershell.md)
 - [powershell好用的包](./powershell/powershell-packages.md)
 - [powershell基础](./powershell/ps-basics.md)
 - [powershell](./powershell/README.md)
@@ -60,7 +73,7 @@
 
 ## vbs
 
-- [数据类型](./vbs/1数据类型,变量常量.md)
+- [数据类型](./vbs/basic-types.md)
 - [vbs教程](./vbs/README.md)
 
 ## windows-tips
@@ -78,6 +91,6 @@
 ## windows-tutor
 
 - [windows好用的软件](./awesome-windows.md)
-- [音乐源地址](./netease-api.md)
-- [编程字体推荐](./programming-fonts.md)
+- [开发单个exe桌面应用程序](./create-one-exe.md)
+- [使用cudatext代替记事本](./cudatext.md)
 - [windows-tutor](./README.md)

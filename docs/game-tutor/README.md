@@ -9,9 +9,3 @@
 - [mc服务器开发](./minecraft/plugin-development.md)
 - [mc服务器插件推荐](./minecraft/plugin-recommend.md)
 - [minecraft相关](./minecraft/README.md)
-
-## game-tutor
-
-- [accelerator推荐](./accelerator.md)
-- [game-store](./game-store.md)
-- [游戏教程](./README.md)

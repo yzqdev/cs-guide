@@ -1,5 +1,15 @@
 # frontend
 
+## basic-js
+
+- [使用canvas](./basic-js/canvas.md)
+- [剪切板api](./basic-js/clipboard-api.md)
+- [创建自定义事件](./basic-js/create-event.md)
+- [使用fetch](./basic-js/fetch.md)
+- [全屏api](./basic-js/fullscreen.md)
+- [地理位置相关](./basic-js/geo.md)
+- [一些基础的js教程](./basic-js/README.md)
+
 ## chrome-plugins
 
 - [chrome插件开发](./chrome-plugins/chrome-plugin-development.md)
@@ -31,7 +41,7 @@
 
 - [js中的异步](./es/async,await.md)
 - [ES6](./es/es6-es8.md)
-- [ES10新特性（2019）](./es/es9-es12.md)
+- [ES9到ES12](./es/es9-es12.md)
 - [es教程](./es/README.md)
 
 ## frontend-tips
@@ -47,7 +57,7 @@
 - [前端技巧](./frontend-tips/README.md)
 - [静态网站生成器](./frontend-tips/static-site-generator.md)
 - [svelte教程](./frontend-tips/svelte.md)
-- [正则表达式](./frontend-tips/templates.md)
+- [一些模板](./frontend-tips/templates.md)
 
 ## interview
 
@@ -58,6 +68,7 @@
 ## others
 
 - [用手机这么久](./others/about-your-phone.md)
+- [程序员开发](./others/css-animation.md)
 - [css](./others/css-content.md)
 - [前端—css面试题](./others/css-interview.md)
 - [偏门却又实用的](./others/css-styles.md)
@@ -69,14 +80,13 @@
 - [前端开发规范：命名规范、html规范、c](./others/frontend-naming-convention.md)
 - [个人分享--web前端学习资源分享](./others/frontend-resources.md)
 - [笼统的前端——前端技术的各种知识点总结](./others/frontend-techs.md)
-- [正文](./others/frontend-tools.md)
+- [大前端工具集](./others/frontend-tools.md)
 - [web前端中的居中（八种方法）](./others/how-to-center.md)
 - [js](./others/js-development-tools.md)
 - [JavaScript](./others/js-format.md)
 - [这一次，彻底弄懂](./others/js-run-method.md)
 - [编写自己的代码库（javascript常](./others/lib-make.md)
 - [第一章](./others/linux-basics.md)
-- [[读懂源码：一步一步实现一个](./others/make-a-vue.md)
 - [做新媒体必备的43款工具，速来围观](./others/new-media-tools.md)
 - [送给前端开发者的一份新年礼物](./others/new-year-gift.md)
 - [2016](./others/opensource-tools.md)
@@ -117,18 +127,18 @@
 - [lessjs配置](./snippets/less-snippets.md)
 - [自己的axios配置](./snippets/my-axios.md)
 - [fetchapi配置](./snippets/my-fetch.md)
+- [一些nodejs代码块](./snippets/node-snippets.md)
 - [代码片段](./snippets/README.md)
 - [vue-ls实现](./snippets/simple-vue-ls.md)
 - [常用代码片段](./snippets/snippets2.md)
 - [vue代码片段](./snippets/vue-snippets.md)
-- [nodejs代码块](./snippets/node-snippets.md)
 - [webstorm识别`@`标识符](./snippets/webstorm-alias.md)
 
 ## tampermonkey
 
 - [油猴脚本](./tampermonkey/README.md)
 - [tampermonkey相关的api](./tampermonkey/tamper-api.md)
-- [tamper插件编写](./tampermonkey/tamper插件编写.md)
+- [tamper插件编写](./tampermonkey/write-plugin.md)
 
 ## typescript
 
@@ -150,7 +160,7 @@
 - [quasar教程](./vue-tutor/quasar.md)
 - [vue教程](./vue-tutor/README.md)
 - [富文本编辑器](./vue-tutor/rich-editor.md)
-- [vue-router教程](./vue-tutor/vue-router.md)
+- [vue-router教程](./vue-tutor/router.md)
 - [vue单html](./vue-tutor/vue-singlehtml.md)
 - [wepack教程](./vue-tutor/vue-use-webpack.md)
 - [vue2使用svgicon](./vue-tutor/vue2-svgicon.md)
@@ -158,14 +168,15 @@
 - [使用svg插件](./vue-tutor/vue3-svgicon.md)
 - [vue3教程](./vue-tutor/vue3-tips.md)
 
-## webpack-tutor
+## webpack-rollup
 
-- [babel教程](./webpack-tutor/babel-loader.md)
-- [webpack教程](./webpack-tutor/README.md)
-- [webpack教程](./webpack-tutor/webpack-plugins.md)
-- [webpack5教程](./webpack-tutor/webpack5-upgrade.md)
+- [babel教程](./webpack-rollup/babel-loader.md)
+- [webpack教程](./webpack-rollup/README.md)
+- [webpack教程](./webpack-rollup/webpack-plugins.md)
+- [使用webpack开发vue](./webpack-rollup/webpack-vue.md)
+- [webpack5教程](./webpack-rollup/webpack5-upgrade.md)
 
 ## frontend
 
 - [node教程](./node-tutor.md)
-- [前端学习笔记](./README.md)
+- [frontend](./README.md)

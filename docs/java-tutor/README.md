@@ -55,30 +55,30 @@
 ## spring-errors
 
 - [springboot错误](./springboot/spring-errors/errors.md)
-- [spring常见错误](./springboot/spring-errors/README.md)
+- [spring错误](./springboot/spring-errors/README.md)
 
-## spring原理
+## spring-why
 
-- [依赖注入的简单理解](./springboot/spring原理/ioc-tutor.md)
-- [spring原理](./springboot/spring原理/README.md)
+- [依赖注入的简单理解](./springboot/spring-why/ioc-tutor.md)
+- [spring原理](./springboot/spring-why/README.md)
 
 ## springboot
 
+- [添加注解](./springboot/add-annotation.md)
 - [添加静态文件](./springboot/add-static-files.md)
+- [注解的作用](./springboot/annotation-tips.md)
+- [常用注解解析](./springboot/common-annotation.md)
 - [java-jwt使用](./springboot/java-jwt.md)
 - [其他api框架](./springboot/other-frameworks.md)
 - [springboot](./springboot/README.md)
 - [quartz教程](./springboot/spring-boot-starter-quartz.md)
 - [springboot使用controll](./springboot/spring-controller.md)
 - [spring跨域处理](./springboot/spring-cors.md)
-- [[Java日志框架SLF4J和log4j](./springboot/spring-log.md)
+- [Java日志框架SLF4J和log4j以](./springboot/spring-log.md)
 - [springboot升级](./springboot/springboot-upgrade.md)
 - [spring-openapi-ui使用](./springboot/springdoc.md)
 - [使用swaggerui](./springboot/swaggerui.md)
 - [java模板引擎](./springboot/templates.md)
-- [常用注解解析](./springboot/常用注解.md)
-- [注解的作用](./springboot/注解的作用.md)
-- [添加注解](./springboot/添加注解.md)
 
 ## stackoverflow
 
@@ -178,4 +178,4 @@
 - [java被弃用的包](./deprecated.md)
 - [这是faq](./faq.md)
 - [面试题链接](./interview.md)
-- [java学习教程](./README.md)
+- [java-tutor](./README.md)

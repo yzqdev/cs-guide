@@ -2,8 +2,10 @@
 
 ## java下载地址
 
+官方openjdk(adoptjdk或者说termurin)下载: [https://adoptium.net/](https://adoptium.net/)
 下载openjdk(oracle jdk收费)
-[https://www.injdk.cn/](https://www.injdk.cn/)
+[https://www.injdk.cn/](https://www.injdk.cn/)  
+下载java8的压缩包: [地址](https://www.oracle.com/java/technologies/javase/javase8-archive-downloads.html)
 jrebel激活
 服务器地址监听服务器地址：
 [http://jrebel.cicoding.cn](http://jrebel.cicoding.cn/)
