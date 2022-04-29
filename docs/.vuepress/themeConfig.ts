@@ -84,6 +84,7 @@ export default defineThemeConfig({
       categoryId: "DIC_kwDOFs7gBM4COKgn",
     },
     docsearch: {
+      // ...
       appId: "34G1OD781X",
       apiKey: "0f5b0bfed83ee7c842f9b2e366c5a30a",
       indexName: "yzq",
