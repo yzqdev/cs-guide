@@ -4,8 +4,8 @@
   "description": "pc documents",
   "license": "MIT",
   "scripts": {
-    "docs:webpack": "vuepress-webpack  build docs",
-    "docs:build": "vuepress-vite  build docs",
+    "docs:vite": "vuepress-vite  build docs",
+    "docs:build": "vuepress-webpack  build docs",
     "docs:clean-dev": "vuepress-vite dev docs --clean-cache",
     "docs:dev": "vuepress-vite dev docs  "
   },

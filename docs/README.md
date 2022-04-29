@@ -1,7 +1,7 @@
 ---
 home: true
 title: 首页
-heroImage: /images/cs-guide.png  
+heroImage: /images/cs-guide.webp 
 actions:
   - text: 前端指南 💡
     link: /frontend/
