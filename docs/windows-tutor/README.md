@@ -92,5 +92,6 @@
 
 - [windows好用的软件](./awesome-windows.md)
 - [开发单个exe桌面应用程序](./create-one-exe.md)
-- [使用cudatext代替记事本](./cudatext.md)
+- [使用cudatext代替记事本](./everedit.md)
 - [windows-tutor](./README.md)
+- [注册表相关](./regedit.md)

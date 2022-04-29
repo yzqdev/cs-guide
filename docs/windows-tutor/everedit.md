@@ -1,6 +1,7 @@
 # 使用cudatext代替记事本
 
 :::tip
+现在推荐使用everedit了,[http://cn.everedit.net/](http://cn.everedit.net/)
 [https://cudatext.github.io/](https://cudatext.github.io/)  
 > 用pascal语言写的  
 设置中文
