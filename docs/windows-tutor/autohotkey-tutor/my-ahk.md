@@ -2,7 +2,7 @@
 
 ## 原神自动点击剧情
 
-```ahk
+```autohotkey
 
 
 UAC() 

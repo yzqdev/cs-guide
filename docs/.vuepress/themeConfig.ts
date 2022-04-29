@@ -12,7 +12,7 @@ export default defineThemeConfig({
 
   iconPrefix: "iconfont icon-",
 
-  logo: "/ayaka.jpg",
+  logo: "/ayaka.webp",
 
   repo: "https://github.com/yzqdev/cs-guide",
 
