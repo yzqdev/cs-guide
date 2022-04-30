@@ -1,10 +1,10 @@
 # redis工具推荐
 
-用这个
-[https://github.com/zkteco-home/redis-windows](https://github.com/zkteco-home/redis-windows)
-[https://github.com/tporadowski/redis](https://github.com/tporadowski/redis)
-也可以用memurai
-[https://www.memurai.com/get-memurai](https://www.memurai.com/get-memurai)
+用这个  
+[https://github.com/zkteco-home/redis-windows](https://github.com/zkteco-home/redis-windows)  
+[https://github.com/tporadowski/redis](https://github.com/tporadowski/redis)  
+也可以用memurai  
+[https://www.memurai.com/get-memurai](https://www.memurai.com/get-memurai)  
 
 ## 管理工具
 

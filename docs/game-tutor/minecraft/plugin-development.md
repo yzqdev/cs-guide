@@ -6,10 +6,12 @@ paper   [https://papermc.io/downloads](https://papermc.io/downloads)
 ​
 
 [https://getbukkit.org/download/spigot](https://getbukkit.org/download/spigot)
-服务器配置
-[各种服务器](https://minecraft.fandom.com/zh/wiki/%E5%AE%9A%E5%88%B6%E6%9C%8D%E5%8A%A1%E5%99%A8)
-[https://bukkit.org/](https://bukkit.org/)
-[https://www.spigotmc.org/](https://www.spigotmc.org/)
+
+### 服务器配置
+
+- [各种服务器](https://minecraft.fandom.com/zh/wiki/%E5%AE%9A%E5%88%B6%E6%9C%8D%E5%8A%A1%E5%99%A8)
+- [https://bukkit.org/](https://bukkit.org/)
+- [https://www.spigotmc.org/](https://www.spigotmc.org/)
 
 api地址: [https://bukkit.windit.net/javadoc/](https://bukkit.windit.net/javadoc/)
 
@@ -18,8 +20,10 @@ api地址: [https://bukkit.windit.net/javadoc/](https://bukkit.windit.net/javado
 
 基岩版下载地址:   [https://klpbbs.com/](https://klpbbs.com/)
 
-下载服务端    [https://minecraftversion.net/](https://minecraftversion.net/)
-[https://dev.bukkit.org/bukkit-plugins](https://dev.bukkit.org/bukkit-plugins)
+下载服务端
+
+- [https://minecraftversion.net/](https://minecraftversion.net/)
+- [https://dev.bukkit.org/bukkit-plugins](https://dev.bukkit.org/bukkit-plugins)
 ​
 
 ​
@@ -27,8 +31,9 @@ api地址: [https://bukkit.windit.net/javadoc/](https://bukkit.windit.net/javado
 [https://www.spigotmc.org/resources/](https://www.spigotmc.org/resources/)
 ​
 
-vault地址   [https://github.com/MilkBowl/Vault/blob/master/pom.xml](https://github.com/MilkBowl/Vault/blob/master/pom.xml)
-这里依赖有问题
+vault地址  
+[https://github.com/MilkBowl/Vault/blob/master/pom.xml](https://github.com/MilkBowl/Vault/blob/master/pom.xml)  
+这里依赖有问题  
 [https://blog.csdn.net/liu_xue_xue/article/details/107544299](https://blog.csdn.net/liu_xue_xue/article/details/107544299)
 ​
 
@@ -43,10 +48,10 @@ yum和plugmanx
 
 ## 使用spigotapi
 
-maven3.8.1阻止了非https地址的接入
+maven3.8.1阻止了非https地址的接入  
 [https://stackoverflow.com/questions/67833372/getting-blocked-mirror-for-repositories-maven-error-even-after-adding-mirrors](https://stackoverflow.com/questions/67833372/getting-blocked-mirror-for-repositories-maven-error-even-after-adding-mirrors)
-所有有些repository无法使用
-需要在setting.xml添加
+所有有些repository无法使用  
+需要在setting.xml添加  
 
 ```xml
   <mirror>
@@ -58,9 +63,9 @@ maven3.8.1阻止了非https地址的接入
         </mirror>
 ```
 
-看这个
-[https://github.com/EssentialsX/Essentials/blob/2.x/settings.gradle.kts](https://github.com/EssentialsX/Essentials/blob/2.x/settings.gradle.kts)
-在pom.xml添加
+看这个  
+[https://github.com/EssentialsX/Essentials/blob/2.x/settings.gradle.kts](https://github.com/EssentialsX/Essentials/blob/2.x/settings.gradle.kts)  
+在pom.xml添加  
 
 ```xml
  <repository>

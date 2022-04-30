@@ -22,7 +22,7 @@ Error:(11, 6) java: 找不到符号
  位置: 类 com.test.controller.HelloController
 ```
 
-**解决方案：**
+解决方案：  
 ![tip](./res/error1.png)
 ![tip](./res/error2.png)
 
@@ -68,12 +68,12 @@ public class MyWebAppConfigurer implements WebMvcConfigurer {
 在Springboot中默认的JSON解析框架是jackson
 今天引入alibaba的fastjson，使用@JSONField(serialize=false),让@RestController转换数据给前端的时候不序列化莫些字段，发现@JSONField根本不起作用
 在网上查阅了一番，发现Springboot使用fastjson需要替换默认的json转换器的
-具体解决方法有两种：
-本文借鉴地址：<https://blog.csdn.net/qq_28929589/article/details/79245774>
-一、（1）启动类继承extends WebMvcConfigurerAdapter （2）覆盖方法configureMessageConverters
-二、（1）在App.java启动类中，注入Bean : HttpMessageConverters
-第一种方式：
-启动类继承WebMvcConfigurerAdapter，然后对configureMessageConverters方法进行重写
+具体解决方法有两种：  
+本文借鉴地址： [https://blog.csdn.net/qq_28929589/article/details/79245774](https://blog.csdn.net/qq_28929589/article/details/79245774)  
+一、（1）启动类继承extends WebMvcConfigurerAdapter （2）覆盖方法configureMessageConverters  
+二、（1）在App.java启动类中，注入Bean : HttpMessageConverters  
+第一种方式：  
+启动类继承WebMvcConfigurerAdapter，然后对configureMessageConverters方法进行重写  
 
 ```java
 @Override

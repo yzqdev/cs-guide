@@ -23,7 +23,7 @@ export default defineHopeConfig({
         href: "//at.alicdn.com/t/font_2410206_mfj6e1vbwo.css",
       },
     ],
-
+    ["meta", { name: "referrer", content: "no-referrer" }],
     [
       "link",
       //我的vscodeiconfont库
@@ -52,7 +52,7 @@ export default defineHopeConfig({
     [
       "@vuepress/plugin-prismjs",
       {
-        preloadLanguages: ["autohotkey", "go"],
+        preloadLanguages: ["autohotkey", "go", "xml"],
       },
     ],
   ],

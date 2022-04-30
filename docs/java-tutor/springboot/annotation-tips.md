@@ -11,17 +11,20 @@
 1. @Bean 注解比 @Component 注解的自定义性更强，而且很多地方我们只能通过 @Bean 注解来注册 bean。比如当我们引用第三方库中的类需要装配到 Spring 容器时，只能通过 @Bean 来实现。
 
 ```java
-@Bean 注解使用示例：
-@Configuration public class AppConfig {     @Bean public TransferService transferService() { return new TransferServiceImpl();     } } 
-@Component 注解使用示例：
+@Bean //注解使用示例：
+@Configuration public class AppConfig {     
+    @Bean public TransferService transferService() { return new TransferServiceImpl();     } } 
+@Component //注解使用示例：
 @Component public class ServiceImpl implements AService {     .... } 
-下面这个例子是通过 @Component 无法实现的：
+//下面这个例子是通过 
+@Component 
+//无法实现的：
 @Bean public OneService getService(status) { case (status)  { when 1: return new serviceImpl1(); when 2: return new serviceImpl2(); when 3: return new serviceImpl3();     } } 
 ```
 
-### [2. Autowire 和 @Resource 的区别](https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzUyNDc0NjM0Nw%3D%3D%26mid%3D2247492574%26idx%3D2%26sn%3Df27a39ad8bf4540785d08d7d4be889df%26chksm%3Dfa2a08dacd5d81cc3b043fcf01b6b0d9f12e0ed43f02a97c0941c5d325d989c6af5fb0276dc7%26scene%3D21%23wechat_redirect)
+### [2. Autowire 和 @Resource 的区别](https://mp.weixin.qq.com/s?__biz=MzUyNDc0NjM0Nw==&mid=2247492574&idx=2&sn=f27a39ad8bf4540785d08d7d4be889df&chksm=fa2a08dacd5d81cc3b043fcf01b6b0d9f12e0ed43f02a97c0941c5d325d989c6af5fb0276dc7&scene=21#wechat_redirect)
 
-1. @Autowire 和 @Resource都可以用来装配bean，都可以用于字段或setter方法。[Spring Boot 学习笔记](https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzUyNDc0NjM0Nw%3D%3D%26mid%3D2247492574%26idx%3D2%26sn%3Df27a39ad8bf4540785d08d7d4be889df%26chksm%3Dfa2a08dacd5d81cc3b043fcf01b6b0d9f12e0ed43f02a97c0941c5d325d989c6af5fb0276dc7%26scene%3D21%23wechat_redirect)分享给你。
+1. @Autowire 和 @Resource都可以用来装配bean，都可以用于字段或setter方法。[Spring Boot 学习笔记](https://mp.weixin.qq.com/s?__biz=MzUyNDc0NjM0Nw==&mid=2247492574&idx=2&sn=f27a39ad8bf4540785d08d7d4be889df&chksm=fa2a08dacd5d81cc3b043fcf01b6b0d9f12e0ed43f02a97c0941c5d325d989c6af5fb0276dc7&scene=21#wechat_redirect)分享给你。
 1. @Autowire 默认按类型装配，默认情况下必须要求依赖对象必须存在，如果要允许 null 值，可以设置它的 required 属性为 false。
 1. @Resource 默认按名称装配，当找不到与名称匹配的 bean 时才按照类型进行装配。名称可以通过 name 属性指定，如果没有指定 name 属性，当注解写在字段上时，默认取字段名，当注解写在 setter 方法上时，默认取属性名进行装配。
 
@@ -46,9 +49,17 @@
 ### **4. @Configuration ：配置类注解**
 
 @Configuration 表明在一个类里可以声明一个或多个 @Bean 方法，并且可以由 Spring 容器处理，以便在运行时为这些 bean 生成 bean 定义和服务请求，例如：
+
+```java
 @Configuration public class AppConfig {     @Bean public MyBean myBean() { // instantiate, configure and return bean ...     } }
+```
+
 我们可以通过 AnnotationConfigApplicationContext 来注册 @Configuration 类：
+
+```java
 AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(); ctx.register(AppConfig.class); ctx.refresh(); MyBean myBean = ctx.getBean(MyBean.class); // use myBean ...
+```
+
 另外也可以通过组件扫描(component scanning)来加载，@Configuration 使用 @Component 进行原注解，因此 @Configuration 类也可以被组件扫描到(特别是使用 XML 的 元素)。@Configuration 类不仅可以使用组件扫描进行引导，还可以使用 @ComponentScan 注解自行配置组件扫描：
 @Configuration @ComponentScan("com.acme.app.services") public class AppConfig { // various @Bean definitions ... }
 **使用 @Configuration 的约束：**
@@ -60,20 +71,33 @@ AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(
 - @Bean 方法可能不会反过来创建更多的配置类。
 
 除了单独使用 @Configuration 注解，我们还可以结合一些外部的 bean 或者注解共同使用，比如 Environment API，@PropertySource，@Value，@Profile 等等许多，这里就不做详细介绍了，更多的用法可以参看 Spring @Configuration 的相关文档 。
-推荐一个 Spring Boot 基础教程及实战示例：[https://github.com/javastacks/spring-boot-best-practice](https://link.zhihu.com/?target=https%3A//github.com/javastacks/spring-boot-best-practice)
+推荐一个 Spring Boot 基础教程及实战示例：[https://github.com/javastacks/spring-boot-best-practice](https://github.com/javastacks/spring-boot-best-practice)
 
 ### **5. @ControllerAdvice ：处理全局异常利器**
 
 在 Spring 3.2 中，新增了 @ControllerAdvice、@RestControllerAdvice、@RestController 注解，可以用于定义 @ExceptionHandler、@InitBinder、@ModelAttribute，并应用到所有 @RequestMapping 、@PostMapping、@GetMapping等这些 Controller 层的注解中。
-默认情况下，@ControllerAdvice 中的方法应用于全局所有的 Controller。而使用选择器 annotations()，basePackageClasses() 和 basePackages() (或其别名value())来定义更小范围的目标 Controller 子集。[Spring Boot 学习笔记](https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzUyNDc0NjM0Nw%3D%3D%26mid%3D2247492574%26idx%3D2%26sn%3Df27a39ad8bf4540785d08d7d4be889df%26chksm%3Dfa2a08dacd5d81cc3b043fcf01b6b0d9f12e0ed43f02a97c0941c5d325d989c6af5fb0276dc7%26scene%3D21%23wechat_redirect)分享给你。
+默认情况下，@ControllerAdvice 中的方法应用于全局所有的 Controller。而使用选择器 annotations()，basePackageClasses() 和 basePackages() (或其别名value())来定义更小范围的目标 Controller 子集。[Spring Boot 学习笔记](https://mp.weixin.qq.com/s?__biz=MzUyNDc0NjM0Nw==&mid=2247492574&idx=2&sn=f27a39ad8bf4540785d08d7d4be889df&chksm=fa2a08dacd5d81cc3b043fcf01b6b0d9f12e0ed43f02a97c0941c5d325d989c6af5fb0276dc7&scene=21#wechat_redirect)分享给你。
 如果声明了多个选择器，则应用 OR 逻辑，这意味着所选的控制器应匹配至少一个选择器。请注意，选择器检查是在运行时执行的，因此添加许多选择器可能会对性能产生负面影响并增加复杂性。
-@ControllerAdvice 我们最常使用的是结合 @ExceptionHandler 用于全局异常的处理。可以结合以下例子，我们可以捕获自定义的异常进行处[理，并且可以自定义状态码返回：](https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzUyNDc0NjM0Nw%3D%3D%26mid%3D2247492574%26idx%3D2%26sn%3Df27a39ad8bf4540785d08d7d4be889df%26chksm%3Dfa2a08dacd5d81cc3b043fcf01b6b0d9f12e0ed43f02a97c0941c5d325d989c6af5fb0276dc7%26scene%3D21%23wechat_redirect)
-@ControllerAdvice("com.developlee.errorhandle") public class MyExceptionHandler {     /**      * 捕获CustomException      * @param e      * @return json格式类型      */     @ResponseBody     @ExceptionHandler({CustomException.class}) //指定拦截异常的类型 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) //自定义浏览器返回状态码     public Map>String, Object< customExceptionHandler(CustomException e) {         Map&lt;String, Object&gt; map = new HashMap&lt;&gt;(); map.put("code", e.getCode()); map.put("msg", e.getMsg()); return map;     } }
-更多信息可以参看 Spring @ControllerAdvice 的官方文档。推荐一个 Spring Boot 基础教程及实战示例：[https://github.com/javastacks/spring-boot-best-practice](https://link.zhihu.com/?target=https%3A//github.com/javastacks/spring-boot-best-practice)
-###**6. @Component, @Repository, @Service 的区别**
+@ControllerAdvice 我们最常使用的是结合 @ExceptionHandler 用于全局异常的处理。可以结合以下例子，我们可以捕获自定义的异常进行处[理，并且可以自定义状态码返回：](https://mp.weixin.qq.com/s?__biz=MzUyNDc0NjM0Nw==&mid=2247492574&idx=2&sn=f27a39ad8bf4540785d08d7d4be889df&chksm=fa2a08dacd5d81cc3b043fcf01b6b0d9f12e0ed43f02a97c0941c5d325d989c6af5fb0276dc7&scene=21#wechat_redirect)
 
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/295914/1637642939614-acda60bb-945b-4545-8fa4-ea03adb19b6a.png#clientId=u7ea0afae-f963-4&from=paste&id=ud79095f9&margin=%5Bobject%20Object%5D&name=image.png&originHeight=157&originWidth=771&originalType=url&ratio=1&size=70340&status=done&style=none&taskId=u45e88868-1605-4390-bb92-89b1ddd8853)
+```java
+@ControllerAdvice("com.developlee.errorhandle") public class MyExceptionHandler {     /**      * 捕获CustomException      * @param e      * @return json格式类型      */     
+@ResponseBody     
+@ExceptionHandler({CustomException.class}) //指定拦截异常的类型 
+
+@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) //自定义浏览器返回状态码     
+public Map>String, Object< customExceptionHandler(CustomException e) {     
+        Map<String, Object> map = new HashMap <>(); 
+        map.put("code", e.getCode()); 
+        map.put("msg", e.getMsg()); return map;
+ } }
+```
+
+更多信息可以参看 Spring @ControllerAdvice 的官方文档。推荐一个 Spring Boot 基础教程及实战示例：[https://github.com/javastacks/spring-boot-best-practice](https://link.zhihu.com/?target=https%3A//github.com/javastacks/spring-boot-best-practice)
+
+### **6. @Component, @Repository, @Service 的区别**
+
+![image.png](./img/image.png)
 @Component是一个通用的Spring容器管理的单例bean组件。而@Repository, @Service, @Controller就是针对不同的使用场景所采取的特定功能化的注解组件。
 因此，当你的一个类被@Component所注解，那么就意味着同样可以用@Repository, @Service, @Controller 来替代它，同时这些注解会具备有更多的功能，而且功能各异。
 最后，如果你不知道要在项目的业务层采用@Service还是@Component注解。那么，@Service是一个更好的选择。
-##**​**
