@@ -1,4 +1,6 @@
-# node使用国内镜像
+# node的使用
+
+## node使用国内镜像
 
 假设已经安装好了npm,则需要更改代理
 `npm i -g mirror-config-china`

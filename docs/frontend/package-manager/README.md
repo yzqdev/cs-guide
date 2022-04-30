@@ -3,9 +3,9 @@
 
 ## 目录
 
-- [安装全局包](./faq.md)
-- [常用的包管理](./npm-libs.md)
-- [node使用国内镜像](./npm-proxy.md)
+- [常见问题](./faq.md)
+- [常用的包](./npm-libs.md)
+- [node的使用](./npm-conf.md)
 - [使用nvm](./nvm.md)
 - [pnpm教程](./pnpm.md)
 - [包管理](./README.md)

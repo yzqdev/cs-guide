@@ -75,7 +75,7 @@ registry https://registry.npmmirror.com
 其实node-sass已经弃用了,建议使用dart-sass , 命令`yarn add sass`
 ​
 
-```powershell
+```shell
 yarn config set registry https://registry.npmmirror.com -g
 yarn config set disturl https://npmmirror.com/dist -g
 yarn config set electron_mirror https://npmmirror.com/mirrors/electron/ -g

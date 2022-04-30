@@ -13,7 +13,7 @@ export default defineHopeConfig({
       {
         rel: "icon",
 
-        href: `/cs-guide/images/cs-guide.png`,
+        href: `/cs-guide/images/cs-guide.webp`,
       },
     ],
     [

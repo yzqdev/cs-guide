@@ -1,4 +1,4 @@
-# 常用的包管理
+# 常用的包 
 
 ## cli tools
 
@@ -28,7 +28,7 @@ npm-check -u
 
 ## Contents
 
-- [常用的包管理](#常用的包管理)
+- [常用的包](#常用的包)
   - [cli tools](#cli-tools)
     - [rimraf](#rimraf)
     - [npm-check-updates (windows用)](#npm-check-updates-windows用)
