@@ -194,4 +194,28 @@ pm2 deploy deploy.yaml production upddate
 
 ### 该部署流程同样适用前端项目
 
-如vue-cli的项目，自动部署到服务器，自动执行npm run build 命令，生成的dist目录，指定到nginx的静态文件目录下。
+如vue-cli的项目，自动部署到服务器，自动执行`npm run build` 命令，生成的dist目录，指定到nginx的静态文件目录下。
+由于 PM2 通常都用于 node 应用, 所以 exec_mode 应写为 fork, 其中最重要的是 args, -jar 和 jar 包所在的位置应该注明, 如果需要提供其他参数, 也要在 args 中一并注明.
+
+假设创建如下所示的 fz.json, 使用命令 `pm2 start fz.json` 即可运行 fz.jar. 使用命令 tail -f /home/imzhizi/log/fz-out.log 还可以查看运行日志.
+
+```json
+{
+  "name": "zfile",
+    "script": "java",
+    "args": [
+        "-jar",
+        "zfile-3.2.war"
+    ],
+   "error_file":"./log/err.log",
+    "out_file":"./log/out.log",
+    "exec_interpreter": "",
+    "exec_mode": "fork"
+}
+```
+
+几点经验:
+
+通过 json 启动之后, 就可以直接使用 json 文件中的名称来对项目进行控制, 如`pm2 stop name`;
+每次重新打包之后, 使用 `pm2 restart name`就可以更新项目;
+如果修改了 json 文件, 就无法通过 restart 更新项目了, 必须要先 `pm2 del name`然后再重新 `pm2 start xx.json`.
