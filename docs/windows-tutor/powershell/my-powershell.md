@@ -12,7 +12,10 @@ function fluship {
     ipconfig /flushdns
 }
 function yarnDev {
-    yarn && yarn dev
+    yarn --registry=https://registry.npmmirror.com && yarn dev
+}
+function yarnInstall{
+ yarn install --registry=https://registry.npmmirror.com
 }
 function removeItem {
     Remove-Item -Recurse -Force
@@ -46,7 +49,8 @@ function gcacheFun {
 }
 Set-Alias yr deleteNodemodules
 Set-Alias ip fluship
-Set-Alias y yarnDev
+Set-Alias yd yarnDev
+Set-Alias y yarnInstall
 Set-Alias gitp gpFunc
 Set-Alias gitc gcacheFun
 Set-Alias cuda cudatext
