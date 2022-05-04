@@ -1,8 +1,8 @@
 # rust包管理
 
 :::tips
-
-建议使用镜像
+仓库搜索 1.[https://crates.io/](https://crates.io/) 2.[https://docs.rs/] (<https://docs.rs/>)
+建议使用镜像  
 [http://mirrors.ustc.edu.cn/help/crates.io-index.html](http://mirrors.ustc.edu.cn/help/crates.io-index.html)
 :::
 

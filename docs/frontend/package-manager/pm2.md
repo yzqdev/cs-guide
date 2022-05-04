@@ -176,6 +176,13 @@ ssh-keygen -t rsa -C "xxx@xxx.com"
 
 ### 使用pm2部署项目
 
+:::tip
+一般监控 node 有几种方案：
+
+supervisor: 一般用作开发环境的使用；
+forever: 管理多个站点，一般每个站点的访问量不大的情况，不需要监控；
+PM2: 网站的访问量比较大，需要完整的监控页面。
+:::
 每次部署前先将本地的代码提交到远程git仓库
 
 - 首次部署
@@ -198,6 +205,29 @@ pm2 deploy deploy.yaml production upddate
 由于 PM2 通常都用于 node 应用, 所以 exec_mode 应写为 fork, 其中最重要的是 args, -jar 和 jar 包所在的位置应该注明, 如果需要提供其他参数, 也要在 args 中一并注明.
 
 假设创建如下所示的 fz.json, 使用命令 `pm2 start fz.json` 即可运行 fz.jar. 使用命令 tail -f /home/imzhizi/log/fz-out.log 还可以查看运行日志.
+
+```text
+name:应用程序名称
+args:脚本的参数域
+cwd:应用程序所在的目录
+script:应用程序的脚本路径
+log_date_format:
+node_args:node 的参数域
+error_file:自定义应用程序的错误日志文件
+out_file:自定义应用程序日志文件
+pid_file:自定义应用程序的pid文件
+instances:
+min_uptime:最小运行时间，这里设置的是60s即如果应用程序在60s内退出，pm2会认为程序异常退出，此时触发重启max_restarts设置数量
+max_restarts:设置应用程序异常退出重启的次数，默认15次（从0开始计数）
+cron_restart:定时启动，解决重启能解决的问题
+watch:是否启用监控模式，默认是false。如果设置成true，当应用程序变动时，  pm2会自动重载。这里也可以设置你要监控的文件。
+merge_logs:
+exec_interpreter:应用程序的脚本类型，这里使用的shell，默认是nodejs
+exec_mode:应用程序启动模式，这里设置的是cluster_mode（集群），默认是fork
+autorestart:启用/禁用应用程序崩溃或退出时自动重启
+vizion:启用/禁用vizion特性(版本控制)
+ 
+```
 
 ```json
 {
