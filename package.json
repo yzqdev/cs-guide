@@ -4,15 +4,14 @@
   "description": "pc documents",
   "license": "MIT",
   "scripts": {
-    "docs:vite": "vuepress-vite  build docs",
-    "docs:build": "vuepress-webpack  build docs",
-    "docs:clean-dev": "vuepress-vite dev docs --clean-cache",
-    "docs:dev": "vuepress-vite dev docs  "
+    "docs:vite": "vuepress  build docs",
+    "docs:build": "vuepress  build docs",
+    "docs:clean-dev": "vuepress dev docs --clean-cache",
+    "docs:dev": "vuepress dev docs  "
   },
   "devDependencies": {
     "@vuepress/plugin-docsearch": "next",
-    "vuepress-vite": "next",
-    "vuepress-webpack": "next",
+    "vuepress": "next",
     "vuepress-theme-hope": "next"
   },
   "dependencies": {
