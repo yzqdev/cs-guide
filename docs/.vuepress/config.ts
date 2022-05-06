@@ -1,8 +1,9 @@
-import { defineHopeConfig } from "vuepress-theme-hope";
 import { path } from "@vuepress/utils";
 
-import themeConfig from "./themeConfig";
-export default defineHopeConfig({
+import theme  from "./themeConfig";
+import  {prismjsPlugin} from '@vuepress/plugin-prismjs'
+import {defineUserConfig} from "vuepress-vite";
+export default defineUserConfig({
   base: "/cs-guide/",
 
   dest: "./dist",
@@ -47,13 +48,10 @@ export default defineHopeConfig({
         str.replace(/^@/, path.resolve(__dirname, "./")),
     },
   },
-  themeConfig,
+  theme,
   plugins: [
-    [
-      "@vuepress/plugin-prismjs",
-      {
-        preloadLanguages: ["autohotkey", "go", "xml"],
-      },
-    ],
+    prismjsPlugin({
+      preloadLanguages: ["autohotkey", "go", "xml"],
+    })
   ],
 });

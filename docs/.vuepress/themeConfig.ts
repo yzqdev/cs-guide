@@ -1,8 +1,8 @@
-import { defineThemeConfig } from "vuepress-theme-hope";
+import { hopeTheme } from "vuepress-theme-hope";
 import navbar from "./navbar";
 import sidebar from "./sidebar";
 
-export default defineThemeConfig({
+export default hopeTheme({
   hostname: "https://yzqdev.github.io/cs-guide",
 
   author: {
@@ -67,9 +67,8 @@ export default defineThemeConfig({
   // },
 
   // encrypt: {
-  //   config: {
-  //     "/guide/encrypt.html": ["1234"],
-  //   },
+  //   global:true,
+  //  admin:'123456'
   // },
 
   plugins: {

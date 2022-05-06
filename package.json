@@ -10,10 +10,10 @@
     "docs:dev": "vuepress-vite dev docs  "
   },
   "devDependencies": {
-    "@vuepress/plugin-docsearch": "2.0.0-beta.38",
-    "vuepress-vite": "2.0.0-beta.38",
-    "vuepress-webpack": "2.0.0-beta.38",
-    "vuepress-theme-hope": "2.0.0-beta.47"
+    "@vuepress/plugin-docsearch": "next",
+    "vuepress-vite": "next",
+    "vuepress-webpack": "next",
+    "vuepress-theme-hope": "next"
   },
   "dependencies": {
     "element-plus": "latest",

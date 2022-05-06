@@ -1,6 +1,6 @@
-import { defineNavbarConfig } from "vuepress-theme-hope";
+import { navbar } from "vuepress-theme-hope";
 
-export default defineNavbarConfig([
+export default navbar([
   // { text: "文章", icon: "home", link: "/article/" },
 
   { text: "前端教程", icon: "html", link: "/frontend/" },
