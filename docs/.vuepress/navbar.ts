@@ -16,9 +16,9 @@ export default navbar([
   { text: "c#教程", icon: "csharp", link: "/csharp-tutor/" },
   { text: "windows教程", icon: "windows", link: "/windows-tutor/" },
   {
-    text: "cg教程",
+    text: "mc教程",
     icon: "game",
-    children: [{ text: "游戏教程", icon: "game", link: "/game-tutor/" }],
+    link: "/mc-tutor/",
   },
   {
     text: "其他",
@@ -44,6 +44,11 @@ export default navbar([
         text: "wandoc",
         icon: "read",
         link: "https://yzqbooks.github.io/wangdoc",
+      },
+      {
+        text: "cg教程",
+        icon: "read",
+        link: "https://yzqdev.github.io/cg-tutor",
       },
     ],
   },

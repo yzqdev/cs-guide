@@ -23,10 +23,10 @@ features:
     icon: html
     link: /frontend/README.md
 
-  - title: 游戏教程
-    details: 一个简单的游戏教程
+  - title: mc教程
+    details: 一个简单的mc教程
     icon: game
-    link: /game-tutor/README.md
+    link: /mc-tutor/README.md
 
   - title: java教程
     details: 一个简单的java教程
@@ -47,7 +47,10 @@ features:
     details: 一个简单的csharp教程
     icon: csharp
     link: /csharp-tutor/README.md
-
+  - title: cg教程
+    details: cg教程
+    icon: document
+    link: https://yzqdev.github.io/cg-tutor
   - title: windows教程
     details: 一个简单的windows教程
     icon: windows
