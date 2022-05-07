@@ -1,8 +1,6 @@
 import { sidebar } from "vuepress-theme-hope";
 
 export default sidebar({
-  "/cg-tutor/": "structure",
-
   "/frontend/": "structure",
   "/game-tutor/": "structure",
   "/java-tutor/": "structure",

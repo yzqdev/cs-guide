@@ -18,14 +18,7 @@ export default navbar([
   {
     text: "cg教程",
     icon: "game",
-    children: [
-      {
-        text: "cg教程",
-        icon: "software",
-        link: "/cg-tutor/",
-      },
-      { text: "游戏教程", icon: "game", link: "/game-tutor/" },
-    ],
+    children: [{ text: "游戏教程", icon: "game", link: "/game-tutor/" }],
   },
   {
     text: "其他",
