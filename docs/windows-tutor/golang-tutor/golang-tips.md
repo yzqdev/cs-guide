@@ -10,10 +10,10 @@
 
 ## 好用的库
 
-读取配置文件 ： [https://github.com/spf13/viper](https://github.com/spf13/viper)
-命令行颜色显示： <https://github.com/gookit/color>
-工具库： [https://github.com/gookit/goutil](https://github.com/gookit/goutil)
-操作数据库：  gorm.io/gorm
+- 读取配置文件 ： [https://github.com/spf13/viper](https://github.com/spf13/viper)  
+- 命令行颜色显示：  [color](https://github.com/gookit/color)
+- 工具库： [https://github.com/gookit/goutil](https://github.com/gookit/goutil)
+- 操作数据库：  [gorm](https://gorm.io/gorm)
 
 ```bash
 go get -u gorm.io/gorm
