@@ -1,6 +1,8 @@
-# 使用nvm
+# 使用nvm和fnm
 
 :::tip
+
+也可以使用[fnm](https://github.com/Schniz/fnm) 一个rust写的工具  
 nvm全名node.js version management，顾名思义是一个nodejs的版本管理工具。通过它可以安装和切换不同版本的nodejs。下面列出下载、安装及使用方法:
 :::
 

@@ -4,6 +4,7 @@ export default sidebar({
   "/frontend/": "structure",
   "/mc-tutor/": "structure",
   "/java-tutor/": "structure",
+  "/go-tutor/": "structure",
   "/linux-tutor/": "structure",
   "/python-tutor/": "structure",
   "/csharp-tutor/": "structure",

@@ -1,8 +1,8 @@
 import { path } from "@vuepress/utils";
 
-import theme  from "./themeConfig";
-import  {prismjsPlugin} from '@vuepress/plugin-prismjs'
-import {defineUserConfig} from "vuepress-vite";
+import theme from "./themeConfig";
+import { prismjsPlugin } from "@vuepress/plugin-prismjs";
+import { defineUserConfig } from "vuepress-vite";
 export default defineUserConfig({
   base: "/cs-guide/",
 
@@ -30,7 +30,7 @@ export default defineUserConfig({
       //我的vscodeiconfont库
       {
         rel: "stylesheet",
-        href: "//at.alicdn.com/t/font_3267094_0pfgirl8r8qg.css",
+        href: "//at.alicdn.com/t/font_3267094_a34bftaoco8.css",
       },
     ],
   ],
@@ -52,6 +52,6 @@ export default defineUserConfig({
   plugins: [
     prismjsPlugin({
       preloadLanguages: ["autohotkey", "go", "xml"],
-    })
+    }),
   ],
 });

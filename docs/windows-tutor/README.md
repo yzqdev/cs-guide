@@ -14,16 +14,6 @@
 - [qt开源例子](./cpp-tutor/qt-opensource.md)
 - [cpp教程](./cpp-tutor/README.md)
 
-## golang-tutor
-
-- [go命令行参数](./golang-tutor/go-cli.md)
-- [依赖管理](./golang-tutor/go-deps.md)
-- [Go命名规范](./golang-tutor/go-format.md)
-- [常用框架](./golang-tutor/golang-opensource.md)
-- [golang常用技巧](./golang-tutor/golang-tips.md)
-- [golang配置](./golang-tutor/install-golang.md)
-- [golang-tutor](./golang-tutor/README.md)
-
 ## others
 
 - [音乐源地址](./others/netease-api.md)
@@ -48,6 +38,12 @@
 - [powershell](./powershell/README.md)
 - [教程](./powershell/some-ps-shells.md)
 
+## rust-tutor
+
+- [rust包管理](./rust-tutor/package-manage.md)
+- [rust](./rust-tutor/README.md)
+- [教程](./rust-tutor/tutor.md)
+
 ## soft-activation
 
 - [激活jrebel](./soft-activation/jrebel.md)
@@ -67,7 +63,7 @@
 - [chrome插件](./soft-plugins/chrome-plugins.md)
 - [公共插件](./soft-plugins/common-plugins.md)
 - [idea插件](./soft-plugins/IDEA-plugins.md)
-- [软件插件](./soft-plugins/README.md)
+- [soft-plugins](./soft-plugins/README.md)
 - [tampermonkey插件](./soft-plugins/tampermonkey-plugins.md)
 - [webstorm插件](./soft-plugins/webstorm-plugins.md)
 
