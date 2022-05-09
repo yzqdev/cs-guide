@@ -1,0 +1,16 @@
+{
+  "name": "cs-guide",
+  "short_name": "cs-guide",
+  "description": "Vue-powered Static Site Generator",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "#3eaf7c",
+  "icons": [
+    {
+      "src": "/images/logo.webp",
+      "sizes": "384x384",
+      "type": "image/webp"
+    }
+  ]
+}
