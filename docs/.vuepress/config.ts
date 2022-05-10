@@ -30,7 +30,7 @@ export default defineUserConfig({
       //我的vscodeiconfont库
       {
         rel: "stylesheet",
-        href: "//at.alicdn.com/t/font_3267094_a34bftaoco8.css",
+        href: "//at.alicdn.com/t/font_3267094_1gli0nmxpsr.css",
       },
     ],
   ],
