@@ -4,9 +4,29 @@
 
 在Shell中一个重要的基本概念就是管道（pipeline），即在一组命令中，输出的命令结果成为下一个命令的输入参数。管道的概念与真实生活中的生产线比较相似：在不同的生产环节进行连续的再加工，如下图例子：
 
-![1147484-20170604181839930-1737659148.png](./res/1147484-20170604181839930-1737659148.png)
+```powershell
+# Get-ChildItem |Where-Object {$_.Length -gt 200}|Sort-Object -Descending Name
 
-“Get-ChildItem”意思是获取当前路径的所有项目，“|Where-Object {$_.Length -gt 200}”意思是查看上一步结果，取所有长度大于200的项目，“|Sort-Object -Descending Name”意思是查看上一步结果，按照Name进行倒叙排列。
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            2022/4/2    23:34           4318 test.txt
+-a---            2022/4/2    23:34           4318 Test.md
+-a---            2022/4/2    23:34           4318 test-name.md
+-a---            2022/4/2    23:34           4318 test-name - 副本.md
+-a---            2022/4/2    23:34           4318 test - 副本.txt
+-a---            2022/4/2    23:34           4318 Test - 副本.md
+-a---           2022/5/11    10:11            559 teeResult.txt
+-a---           2022/5/11    10:39            753 outfile.txt
+-a---           2022/5/11    10:35            209 ateeResult.txt
+```
+
+```powershell
+Get-ChildItem |Where-Object {$_.Length -gt 200}|Sort-Object -Descending Name
+```
+
+ `Get-ChildItem`意思是获取当前路径的所有项目，`|Where-Object {$_.Length -gt 200}`意思是查看上一步结果，取所有长度大于200的项目， `|Sort-Object -Descending Name`意思是查看上一步结果，按照Name进行倒叙排列。
 
 **在PowerShell****中，使用管道符号（|****）来划分管道中的每个命令，上述例子说明了管道的强大功能，同时PowerShell****在管道中传递的是高保真对象，不仅仅是文本描述。**
 
@@ -17,14 +37,42 @@
 可以使用Where-Object（别名是where和?）从列表或者命令输出结果中过滤选择你需要的项目。
 
 对于输入的每一项，Where-Object都会根据{}中定义的脚本块对输入进行计算，如果返回True，则输出，否则不输出。如下例子：
+:::tip
+其中的where-object可以用where和?代替
 
-![1147484-20170604181918133-841473841.png](./res/1147484-20170604181918133-841473841.png)
+```powershell
+Get-ChildItem |? {$_.Length -gt 200}|Sort-Object -Descending Name
+```
+
+:::
 
 {}表示一个脚本块，可以输入一系列PowerShell命令，其中`$_`代表当前输入对象，在这个例子中，`$_`就代表一个文件项目。-gt是比较操作符，意思是大于，关于比较操作符的介绍如下：
 
 PowerShell中比较操作符是用于对表达式进行比较的。默认情况比较操作符不区分大小写，如果想要区分，需要使用-C前缀，不需要区分的，使用-I前缀。
 
-![1147484-20170604181934149-1415645729.png](./res/1147484-20170604181934149-1415645729.png)
+```powershell
+# Get-ChildItem|Where-Object {$_.Name -ilike "Test*"}
+
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            2022/4/2    23:34           4318 Test - 副本.md
+-a---            2022/4/2    23:34           4318 test - 副本.txt
+-a---            2022/4/2    23:34           4318 test-name - 副本.md
+-a---            2022/4/2    23:34           4318 test-name.md
+-a---            2022/4/2    23:34           4318 Test.md
+-a---            2022/4/2    23:34           4318 test.txt
+
+# Get-ChildItem|Where-Object {$_.Name -clike "Test*"}
+
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            2022/4/2    23:34           4318 Test - 副本.md
+-a---            2022/4/2    23:34           4318 Test.md
+```
 
 所有可用的比较操作符如下表格：
 
@@ -51,7 +99,30 @@ PowerShell中比较操作符是用于对表达式进行比较的。默认情况�
 
 使用例子如下：
 
-![1147484-20170604181950368-973531332.png](./res/1147484-20170604181950368-973531332.png)
+```powershell
+# 1..10|ForEach-Object {$_ *5}
+5
+10
+15
+20
+25
+30
+35
+40
+45
+50
+# 1..10|% {$_ *5}
+5
+10
+15
+20
+25
+30
+35
+40
+45
+50
+```
 
 例子中1..10的意思是简单声明了一个1~10的一组数字。其中处理列表中每一项还可以用for、foreach、do和while等，以后会更详细的介绍。
 
@@ -65,27 +136,92 @@ PowerShell中比较操作符是用于对表达式进行比较的。默认情况�
 
 a)    选择当前路径下所有项目的Name和Length属性：
 
-![1147484-20170604182005524-912730680.png](./res/1147484-20170604182005524-912730680.png)
+```powershell
+# Get-ChildItem|Select-Object Name,Length
 
-b)   选择当前路径下前三个项目：
+Name                Length
+----                ------
+ateeResult.txt         209
+outfile.txt            753
+teeResult.txt          559
+Test - 副本.md        4318
+test - 副本.txt       4318
+test-name - 副本.md   4318
+test-name.md          4318
+Test.md               4318
+test.txt              4318
+```
 
-![1147484-20170604182012743-1974678133.png](./res/1147484-20170604182012743-1974678133.png)
+b)   选择当前路径下前2个项目：
+
+```powershell
+#  E:/tmp/ps
+# Get-ChildItem |Select-Object -First 2
+
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            2022/4/2    23:34           4318 test-name.md
+-a---            2022/4/2    23:34           4318 Test.md
+```
 
 c)    选择当前路径下所有项目的Name和自定义属性，名字叫做Last Modified Day，结果是通过LastWriteTime属性算出来的：
 
-![1147484-20170604182020868-1877644164.png](./res/1147484-20170604182020868-1877644164.png)
+```powershell
+# dir|select -Property @{Name="上次修改";Expression={$_.LastWriteTime.DayOfWeek}},Name
+
+ 上次修改 Name
+ -------- ----
+Wednesday ateeResult.txt
+Wednesday outfile.txt
+Wednesday teeResult.txt
+ Saturday Test - 副本.md
+ Saturday test - 副本.txt
+ Saturday test-name - 副本.md
+ Saturday test-name.md
+ Saturday Test.md
+ Saturday test.txt
+```
 
 d)   选择当前路径下第一个和第六个项目：
 
-![1147484-20170604182032618-2136048185.png](./res/1147484-20170604182032618-2136048185.png)
+```powershell
+# dir|Select-Object -Index 0,5
+ 
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            2022/4/2    23:34           4318 test-name.md
+```
 
 e)   选择当前路径下除第五个项目外的所有项目：
 
-![1147484-20170604182041211-1797491018.png](./res/1147484-20170604182041211-1797491018.png)
+```powershell
+# dir|Select-Object -Skip 4
+ 
+
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            2022/4/2    23:34           4318 Test.md
+-a---            2022/4/2    23:34           4318 test.txt
+```
 
 f)    显示数组中的唯一数字：
 
-![1147484-20170604182052868-317365990.png](./res/1147484-20170604182052868-317365990.png)
+```powershell
+# 1,1,2,2,3,3,4,4,5,5,6,6,"test"|Select-Object -Unique
+1
+2
+3
+4
+5
+6
+test
+```
 
 ## 5.  Sort-Object：对列表项或者输出结果进行排序
 
@@ -97,11 +233,34 @@ f)    显示数组中的唯一数字：
 
 a)    对当前路径下所有的项目按照长度从小到大排序：
 
-![1147484-20170604182113571-536021484.png](./res/1147484-20170604182113571-536021484.png)
+```powershell
+
+# dir|Sort-Object -Property Length
+
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            2022/4/2    23:34           4318 Test - 副本.md
+-a---            2022/4/2    23:34           4318 test - 副本.txt
+-a---            2022/4/2    23:34           4318 test-name - 副本.md
+-a---            2022/4/2    23:34           4318 test-name.md
+-a---            2022/4/2    23:34           4318 Test.md
+-a---            2022/4/2    23:34           4318 test.txt
+```
 
 b)   对整个数组的唯一性数字按照降序排列：
 
-![1147484-20170604182130680-1603138758.png](./res/1147484-20170604182130680-1603138758.png)
+```powershell
+# 1,1,2,2,3,3,4,4,5,5,6,6,"test"|Sort-Object -Descending -Unique
+test
+6
+5
+4
+3
+2
+1
+```
 
 ## 6.  Tee-Object：保存并输出列表项或者输出结果
 
@@ -109,21 +268,81 @@ b)   对整个数组的唯一性数字按照降序排列：
 
 a)    将当前路径下所有大小大于900的项目都保存到文件中并显示在控制台中：
 
-![1147484-20170604182141383-2013009110.png](./res/1147484-20170604182141383-2013009110.png)
+```powershell
+# dir|where {$_.Length -gt 900}|Tee-Object -FilePath teeResult.txt
+
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            2022/4/2    23:34           4318 Test - 副本.md
+-a---            2022/4/2    23:34           4318 test - 副本.txt
+-a---            2022/4/2    23:34           4318 test-name - 副本.md
+-a---            2022/4/2    23:34           4318 test-name.md
+-a---            2022/4/2    23:34           4318 Test.md
+-a---            2022/4/2    23:34           4318 test.txt
+
+ 
+# Get-Content .\teeResult.txt
+
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            2022/4/2    23:34           4318 Test - 副本.md
+-a---            2022/4/2    23:34           4318 test - 副本.txt
+-a---            2022/4/2    23:34           4318 test-name - 副本.md
+-a---            2022/4/2    23:34           4318 test-name.md
+-a---            2022/4/2    23:34           4318 Test.md
+-a---            2022/4/2    23:34           4318 test.txt
+```
 
 b)   将当前路径下所有大小大于900的项目都保存在变量中并显示在控制台中：
 
-![1147484-20170604182156133-63621459.png](./res/1147484-20170604182156133-63621459.png)
+```powershell
+
+# $test="first"
+ 
+# dir|where {$_.Length -gt 900}|Tee-Object -Variable $test
+
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---            2022/4/2    23:34           4318 Test - 副本.md
+-a---            2022/4/2    23:34           4318 test - 副本.txt
+-a---            2022/4/2    23:34           4318 test-name - 副本.md
+-a---            2022/4/2    23:34           4318 test-name.md
+-a---            2022/4/2    23:34           4318 Test.md
+-a---            2022/4/2    23:34           4318 test.txt
+```
 
 ## 7.  Group-Object：对列表项或者输出结果进行分组
 
 使用Group-Object（group）对列表项或者输出结果进行分组，指定的属性包含相同值的组对象。Group-Object 返回一个表，其中每个属性值对应一行，同时一个列显示具有该值的项目数。
 
-![1147484-20170604182207055-1681638865.png](./res/1147484-20170604182207055-1681638865.png)
+```powershell
+# dir|Group-Object -Property Length
+
+Count Name                      Group
+----- ----                      -----
+    1 559                       {E:\tmp\ps\teeResult.txt}
+    6 4318                      {E:\tmp\ps\Test - 副本.md, E:\tmp\ps\test - 副本.txt, E:\tmp\ps\test-name - 副本.md, E…}
+
+```
 
 还可以让返回的对象是个HashTable——key-value的键值对数组，指定-AsHashTable参数：
 
-![1147484-20170604182215664-310162960.png](./res/1147484-20170604182215664-310162960.png)
+```powershell
+# dir|Group-Object -Property Length -AsHashTable -AsString
+
+Name                           Value
+----                           -----
+559                            {E:\tmp\ps\teeResult.txt}
+209                            {E:\tmp\ps\ateeResult.txt}
+753                            {E:\tmp\ps\outfile.txt}
+4318                           {E:\tmp\ps\Test - 副本.md, E:\tmp\ps\test - 副本.txt, E:\tmp\ps\test-name - 副本.md, E}
+```
 
 ## 8.  Measure-Object：对列表项或输出结果进行计算
 
@@ -131,59 +350,181 @@ b)   将当前路径下所有大小大于900的项目都保存在变量中并显
 
 a)    计算当前路径下项目的总数：
 
-![1147484-20170604182245852-1720531644.png](./res/1147484-20170604182245852-1720531644.png)
+```powershell
+# dir |Measure-Object
+
+Count             : 7
+Average           :
+Sum               :
+Maximum           :
+Minimum           :
+StandardDeviation :
+Property          :
+```
 
 b)   计算当前路径下项目的长度的最小值、最大值以及平均值：
 
-![1147484-20170604182258196-1778147007.png](./res/1147484-20170604182258196-1778147007.png)
+```powershell
+# dir|Measure-Object -Property Length -Minimum -Maximum -Average
+
+Count             : 7
+Average           : 3781
+Sum               :
+Maximum           : 4318
+Minimum           : 559
+StandardDeviation :
+Property          : Length
+```
 
 c)    计算当前文件中字符、行、单词的总数：
 
-![1147484-20170604182312039-2090244896.png](./res/1147484-20170604182312039-2090244896.png)
+```powershell
+# Get-Content .\teeResult.txt |measure -Character -Line -Word
+
+Lines Words Characters Property
+----- ----- ---------- --------
+    9    46        523
+```
 
 ## 9.  Compare-Object：对两组对象进行比较
 
 用Compare-Object（别名是compare和diff）可以将两组对象进行比较，一组对象为Reference组，而另一组为Difference组。比较的结果将指示属性值是只出现在 Reference 组中的对象中（由 <= 符号指示），或是只出现在 Difference 组中的对象中（由 => 符号指示），抑或（在指定了 IncludeEqual 参数的情况下）同时出现在这两个对象中（由 == 符号指示）。
 
-![1147484-20170604182324305-1725382469.png](./res/1147484-20170604182324305-1725382469.png)
+```powershell
+# $res=Get-Content .\teeResult.txt
+
+# Get-Content .\ateeResult.txt |Compare-Object $res|fl
+
+InputObject   : -a---            2022/4/2    23:34           4318 Test - .md
+SideIndicator : =>
+
+InputObject   : -a---            2022/4/2    23:34           4318 test - .txt
+SideIndicator : =>
+
+InputObject   : -a---            2022/4/2    23:34           4318 Test - 副本.md
+SideIndicator : <=
+
+InputObject   : -a---            2022/4/2    23:34           4318 test - 副本.txt
+SideIndicator : <=
+```
 
 ## 10. ConvertTo-Html：将对象转换为HTML
 
 用ConvertTo-Html可以将Microsoft.Net Framework对象转换为可在Web浏览器中显示的HTML：
 
-![1147484-20170604182337774-26385780.png](./res/1147484-20170604182337774-26385780.png)
+```powershell
+# Get-Date |ConvertTo-Html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>HTML TABLE</title>
+</head><body>
+<table>
+<colgroup><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/><col/></colgroup>
+<tr><th>DisplayHint</th><th>DateTime</th><th>Date</th><th>Day</th><th>DayOfWeek</th><th>DayOfYear</th><th>Hour</th><th>Kind</th><th>Millisecond</th><th>Minute</th><th>Month</th><th>Second</th><th>Ticks</th><th>TimeOfDay</th><th>Year</th></tr>
+<tr><td>DateTime</td><td>2022年5月11日 10:33:47</td><td>2022/5/11 0:00:00</td><td>11</td><td>Wednesday</td><td>131</td><td>10</td><td>Local</td><td>288</td><td>33</td><td>5</td><td>47</td><td>637878620272889291</td><td>10:33:47.2889291</td><td>2022</td></tr>
+</table>
+</body></html>
+```
 
 ## 11. Export-Csv：将对象转换为CSV字符串存储在文件中
 
 用Export-Csv（别名是epcsv）将 Microsoft .NET Framework 对象转换为一系列以逗号分隔的、长度可变的 (CSV) 字符串，并将这些字符串保存到一个 CSV 文件中。
 
-![1147484-20170604182350993-360445921.png](./res/1147484-20170604182350993-360445921.png)
+```powershell
+# dir|select Name,Length|Export-Csv -Path .\ateeResult.txt
+# Get-Content .\ateeResult.txt
+"Name","Length"
+"ateeResult.txt","0"
+"teeResult.txt","559"
+"Test - 副本.md","4318"
+"test - 副本.txt","4318"
+"test-name - 副本.md","4318"
+"test-name.md","4318"
+"Test.md","4318"
+"test.txt","4318"
+```
 
 ## 12. Format-List、Format-Table、Format-Wide：将输出结果格式化
 
 Format-List（别名是fl）可以将输出的格式设置为属性列表，其中每个属性均各占一行显示：
 
-![1147484-20170604182408711-1610157225.png](./res/1147484-20170604182408711-1610157225.png)
+```powershell
+# dir|select -Index 0 |Format-List
+
+    Directory: E:\tmp\ps
+
+Name           : ateeResult.txt
+Length         : 209
+CreationTime   : 2022/5/11 10:26:19
+LastWriteTime  : 2022/5/11 10:35:01
+LastAccessTime : 2022/5/11 10:35:01
+Mode           : -a---
+LinkType       :
+Target         :
+```
 
 Format-Table（别名是ft）可以将输出的格式设置为表：
 
-![1147484-20170604182418711-884322210.png](./res/1147484-20170604182418711-884322210.png)
+```powershell
+# dir|select -Index 0 |Format-Table
+
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           2022/5/11    10:35            209 ateeResult.txt
+
+```
 
 Format-Wide（别名是fw）可以将对象的格式设置为只能显示每个对象的一个属性的宽表：
 
-![1147484-20170604182430961-779272027.png](./res/1147484-20170604182430961-779272027.png)
+```shell
+# dir|select -Index 0,1,2,3,4,5 |Format-Wide -Column 3
+
+    Directory: E:\tmp\ps
+
+ateeResult.txt                          teeResult.txt                           Test - 副本.md
+test - 副本.txt                         test-name - 副本.md
+```
 
 ## 13. Get-Unique：获取输出结果的唯一值
 
 使用Get-Unique（别名是gu）可以从排序列表中返回唯一项目。
 
-![1147484-20170604182442493-1611018634.png](./res/1147484-20170604182442493-1611018634.png)
+```powershell
+# 1,1,2,2,3,3,4,4,5,5,6,6,"test"|Sort-Object -Descending|Get-Unique
+test
+6
+5
+4
+3
+2
+1
+```
 
 ## 14. Out-File：将输出结果输出到文件
 
 可以使用Out-File将输出发送到文件：
 
-![1147484-20170604182456024-1637923934.png](./res/1147484-20170604182456024-1637923934.png)
+```powershell
+# dir|Out-File outfile.txt
+# Get-Content .\outfile.txt
+
+    Directory: E:\tmp\ps
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           2022/5/11    10:35            209 ateeResult.txt
+-a---           2022/5/11    10:39              0 outfile.txt
+-a---           2022/5/11    10:11            559 teeResult.txt
+-a---            2022/4/2    23:34           4318 Test - 副本.md
+-a---            2022/4/2    23:34           4318 test - 副本.txt
+-a---            2022/4/2    23:34           4318 test-name - 副本.md
+-a---            2022/4/2    23:34           4318 test-name.md
+-a---            2022/4/2    23:34           4318 Test.md
+-a-
+```
 
 ## 15. Get-Member：如何获取管道操作对象的属性
 
@@ -193,9 +534,52 @@ a)    获取对象的公有属性：
 
 ![1147484-20170604182507055-1797570667.png](./res/1147484-20170604182507055-1797570667.png)
 
+```powershell
+# Get-Process -Name node |Get-Member -MemberType AliasProperty
+
+   TypeName: System.Diagnostics.Process
+
+Name    MemberType    Definition
+----    ----------    ----------
+Handles AliasProperty Handles = Handlecount
+Name    AliasProperty Name = ProcessName
+NPM     AliasProperty NPM = NonpagedSystemMemorySize64
+PM      AliasProperty PM = PagedMemorySize64
+SI      AliasProperty SI = SessionId
+VM      AliasProperty VM = VirtualMemorySize64
+WS      AliasProperty WS = WorkingSet64
+```
+
 b)   获取对象的公有方法：
 
-![1147484-20170604182514493-2061535920.png](./res/1147484-20170604182514493-2061535920.png)
+```powershell
+# Get-Process -Name node |Get-Member -MemberType Method
+
+   TypeName: System.Diagnostics.Process
+
+Name                      MemberType Definition
+----                      ---------- ----------
+BeginErrorReadLine        Method     void BeginErrorReadLine()
+BeginOutputReadLine       Method     void BeginOutputReadLine()
+CancelErrorRead           Method     void CancelErrorRead()
+CancelOutputRead          Method     void CancelOutputRead()
+Close                     Method     void Close()
+CloseMainWindow           Method     bool CloseMainWindow()
+Dispose                   Method     void Dispose(), void IDisposable.Dispose()
+Equals                    Method     bool Equals(System.Object obj)
+GetHashCode               Method     int GetHashCode()
+GetLifetimeService        Method     System.Object GetLifetimeService()
+GetType                   Method     type GetType()
+InitializeLifetimeService Method     System.Object InitializeLifetimeService()
+Kill                      Method     void Kill(), void Kill(bool entireProcessTree)
+Refresh                   Method     void Refresh()
+Start                     Method     bool Start()
+ToString                  Method     string ToString()
+WaitForExit               Method     void WaitForExit(), bool WaitForExit(int milliseconds)
+WaitForExitAsync          Method     System.Threading.Tasks.Task WaitForExitAsync(System.Threading.CancellationToken c…
+WaitForInputIdle          Method     bool WaitForInputIdle(), bool WaitForInputIdle(int milliseconds)
+
+```
 
 当得知对象的公有属性和方法的名字后，就可以在管道操作中使用了。
 
@@ -203,17 +587,15 @@ b)   获取对象的公有方法：
 
 学会使用管道后，得学会判断一个命令是否支持管道输入。使用Get-Help命令获取一个命令的使用方法，对于参数，可以看到是否支持管道输入，或者通过MSDN去查询命令帮助。
 
-比如PowerShell Core里面的Where-Object的MSDN的帮助站点是：<https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.core/Where-Object>。
+比如PowerShell Core里面的Where-Object的MSDN的帮助站点是：[msdn](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.core/Where-Object)。
 
 对于里面的-InputObject则是支持管道输入，-Is则不支持管道输入：
 
 ![1147484-20170604182524696-201939906.png](./res/1147484-20170604182524696-201939906.png)
 
-比如PowerShell Core里面的Move-Item的MSDN的帮助站点是：<https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.management/Move-Item>。
+比如PowerShell Core里面的Move-Item的MSDN的帮助站点是：[msdn](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.management/Move-Item)。
 
 对于里面的-Path则是支持管道输入，-UseTransaction则不支持管道输入：
-
-![1147484-20170604182534508-1926318215.png](./res/1147484-20170604182534508-1926318215.png)
 
 对于没有任何一个参数支持管道输入的命令则是不支持管道输入的命令。
 
