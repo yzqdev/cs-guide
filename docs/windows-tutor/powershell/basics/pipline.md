@@ -532,8 +532,7 @@ Mode                 LastWriteTime         Length Name
 
 a)    获取对象的公有属性：
 
-![1147484-20170604182507055-1797570667.png](./res/1147484-20170604182507055-1797570667.png)
-
+ 
 ```powershell
 # Get-Process -Name node |Get-Member -MemberType AliasProperty
 

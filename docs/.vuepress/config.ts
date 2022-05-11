@@ -4,8 +4,8 @@ import theme from "./themeConfig";
 import { prismjsPlugin } from "@vuepress/plugin-prismjs";
 import { defineUserConfig } from "vuepress-vite";
 export default defineUserConfig({
-  base: "/cs-guide/",
-  //base: "/",
+  // base: "/cs-guide/",
+  base: "/",
   dest: "./dist",
 
   head: [
