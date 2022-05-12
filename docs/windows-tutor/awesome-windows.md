@@ -1,5 +1,14 @@
 # windows好用的软件
 
+## 数据库软件
+
+- [https://www.heidisql.com/download.php?download=portable-64](https://www.heidisql.com/download.php?download=portable-64)
+- navicat
+- [DBeaver](https://dbeaver.io/)
+- datagriop
+- [beekeper studio](https://www.beekeeperstudio.io/)
+- sqlyog
+
 ## 鼠标手势软件
 
 StrokesPlus.net
