@@ -73,7 +73,20 @@ export default hopeTheme({
 
   plugins: {
     blog: false,
-
+    pwa: {
+      update: "hint",
+      favicon: "/favicon.ico",
+      themeColor: "#46bd87",
+      appendBase: true,
+      apple: {
+        icon: "/images/cs-guide.webp",
+        statusBarColor: "black",
+      },
+      msTile: {
+        image: "/images/cs-guide.webp",
+        color: "#ffffff",
+      },
+    },
     // 你也可以使用 Waline
     comment: {
       type: "giscus",
