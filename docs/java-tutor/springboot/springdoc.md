@@ -1,6 +1,6 @@
 # spring-openapi-ui使用
 
-swagger似乎已经不再维护了
+swagger似乎已经不再维护了,不推荐再使用了
 
 ```java
 <dependency>
@@ -18,7 +18,7 @@ swagger似乎已经不再维护了
 <dependency>
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-ui</artifactId>
-      <version>1.5.12</version>
+      <version>latest-version</version>
    </dependency>
 ```
 
@@ -135,4 +135,57 @@ public class HsApi {
         return JSONObject.parseObject(JSONObject.toJSONString(hs));
     }
 }
+```
+
+## spring-security和shiro屏蔽了swagger-ui的api
+
+对于spring-security
+
+```java
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/css/**", "/js/**", "/index.html", "/img/**", "/fonts/**", "/favicon.ico", "/verifyCode","/swagger-ui/*","/v2/api-docs/**","/v3/api-docs/**",
+                "/swagger-resources",
+                "/swagger-resources/**",
+                "/configuration/ui",
+                "/configuration/security",
+                "/swagger-ui.html/**",
+                "/webjars/**" );
+    }
+```
+
+对于shiro
+
+```java
+@Bean("shiroFilter")
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
+        if (UtilValidate.isEmpty(loginpage)) loginpage = "login.html";
+        ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+        shiroFilter.setSecurityManager(securityManager);
+        shiroFilter.setLoginUrl("/" + loginpage);
+        shiroFilter.setUnauthorizedUrl("/");
+
+        Map<String, String> filterMap = new LinkedHashMap<>();
+
+        filterMap.put("/pobstyle.css", "anon");
+        filterMap.put("/webjars/**", "anon");
+        filterMap.put("/statics/**", "anon");
+        filterMap.put("/" + loginpage, "anon");
+        filterMap.put("/sys/login", "anon");
+        filterMap.put("/favicon.ico", "anon");
+        filterMap.put("/captcha.jpg", "anon");
+
+     
+
+        //swagger请求不拦截
+        filterMap.put("/swagger/**", "anon");
+        filterMap.put("/v3/api-docs", "anon");
+        filterMap.put("/swagger-ui.html", "anon");
+        filterMap.put("/swagger-resources/**", "anon");
+        shiroFilter.setFilterChainDefinitionMap(filterMap);
+
+        filterMap.put("/**", "authc");
+        shiroFilter.setFilterChainDefinitionMap(filterMap);
+        return shiroFilter;
+    }
 ```

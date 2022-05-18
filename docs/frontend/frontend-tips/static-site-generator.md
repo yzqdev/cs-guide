@@ -61,3 +61,7 @@ https://vuepress-theme-hope.github.io/v2/md-enhance/zh/guide/#enableall
 ## storybook
 
 [storybook](https://github.com/storybookjs/storybook/)
+
+## 一些hexo主题
+
+- [https://easyhexo.com/](https://easyhexo.com/)
