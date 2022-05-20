@@ -1,5 +1,10 @@
 # mp自动生成代码
 
+[https://www.cnblogs.com/diffx/p/10611082.html](https://www.cnblogs.com/diffx/p/10611082.html)
+​
+
+[https://pengshiyu.blog.csdn.net/article/details/107307390](https://pengshiyu.blog.csdn.net/article/details/107307390)
+
 [https://gitee.com/best_handsome/mybatis-plus-join](https://gitee.com/best_handsome/mybatis-plus-join)
 自动生成代码
 需要安装依赖
