@@ -6,14 +6,22 @@ PM2 是 node 进程管理工具，可以利用它来简化很多 node应用管�
 
 ## 安装
 
-```undefined
+```powershell
 npm install -g pm2
 ```
 
 ## 快速使用
 
-```css
+```powershell
 pm2 start app.js
+
+pm2 save
+```
+
+### 执行package.json的命令
+
+```powershell
+pm2 start  npm -- run dev
 ```
 
 ## 常用命令
@@ -32,7 +40,7 @@ pm2 start app.js
 
 ### 重启
 
-```css
+```powershell
 pm2 restart app.js
 ```
 
@@ -162,7 +170,7 @@ yum –y install git
 
 1. 生成秘钥
 
-```css
+```powershell
 ssh-keygen -t rsa -C "xxx@xxx.com"
 ```
 
@@ -187,7 +195,7 @@ PM2: 网站的访问量比较大，需要完整的监控页面。
 
 - 首次部署
 
-```css
+```powershell
 pm2 deploy deploy.yaml production setup 
 ```
 
@@ -195,7 +203,7 @@ pm2 deploy deploy.yaml production setup
 
 - 再次部署
 
-```css
+```powershell
 pm2 deploy deploy.yaml production upddate
 ```
 
