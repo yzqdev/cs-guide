@@ -1,5 +1,11 @@
 # 使用swaggerui
 
+:::warning
+
+不推荐使用
+
+:::
+
 ## swaggerui配置
 
 ### 添加swaggerui依赖

@@ -1,4 +1,4 @@
-import { Message } from "@mr-hope/vuepress-shared/lib/client";
+import { Message } from "vuepress-shared/lib/client";
 import { useRouteLocale } from "@vuepress/client";
 import axios from "axios";
 import { defineComponent, h, onMounted, reactive } from "vue";
