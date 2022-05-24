@@ -8,7 +8,7 @@
 
 下面是html中的svg代码
 
-:::demo svg代码
+::: normal-demo svg代码
 
 ```html
 <svg>

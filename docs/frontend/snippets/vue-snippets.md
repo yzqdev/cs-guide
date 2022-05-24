@@ -1,6 +1,7 @@
 # vue代码片段
 
 一个按钮点击两次出现不同事件
+:::vue-demo
 
 ```vue
 <template>
@@ -34,6 +35,8 @@ export default {
 </style>
 
 ```
+
+:::
 
 ## 一个图片预览的组件
 

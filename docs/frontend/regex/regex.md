@@ -71,7 +71,7 @@
 ### 例子
 
  校验登录名：只能输入5-20个以字母开头、可带数字、“_”、“.”的字串
- :::demo
+ ::: normal-demo
 `/^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/`
 
 ```html
@@ -129,8 +129,8 @@
 | (?:pattern)  | 匹配 pattern 但不获取匹配结果，也就是说这是一个非获取匹配，不进行存储供以后使用。这在使用 "或" 字符 (\|) 来组合一个模式的各个部分是很有用。例如， 'industr(?:y\|ies) 就是一个比 'industry\|industries' 更简略的表达式。                                                                                                                                                                 |
 | (?=pattern)  | 正向肯定预查（look ahead positive assert），在任何匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如，"Windows(?=95\|98\|NT\|2000)"能匹配"Windows2000"中的"Windows"，但不能匹配"Windows3.1"中的"Windows"。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。 |
 | (?!pattern)  | 正向否定预查(negative assert)，在任何不匹配pattern的字符串开始处匹配查找字符串。这是一个非获取匹配，也就是说，该匹配不需要获取供以后使用。例如"Windows(?!95\|98\|NT\|2000)"能匹配"Windows3.1"中的"Windows"，但不能匹配"Windows2000"中的"Windows"。预查不消耗字符，也就是说，在一个匹配发生后，在最后一次匹配之后立即开始下一次匹配的搜索，而不是从包含预查的字符之后开始。              |
-| (?<=pattern) | 反向(look behind)肯定预查，与正向肯定预查类似，只是方向相反。例如，"`(?<=95|98|NT|2000)Windows`"能匹配"`2000Windows`"中的"`Windows`"，但不能匹配"`3.1Windows`"中的"`Windows`"。                                                                                                                                                                                                         |
-| (?<!pattern) | 反向否定预查，与正向否定预查类似，只是方向相反。例如"`(?<!95|98|NT|2000)Windows`"能匹配"`3.1Windows`"中的"`Windows`"，但不能匹配"`2000Windows`"中的"`Windows`"。                                                                                                                                                                                                                        |
+| (?<=pattern) | 反向(look behind)肯定预查，与正向肯定预查类似，只是方向相反。例如，"`(?<=95                                                                                                                                                                                                                                                                                                             | 98 | NT | 2000)Windows`"能匹配"`2000Windows`"中的"`Windows`"，但不能匹配"`3.1Windows`"中的"`Windows`"。 |
+| (?<!pattern) | 反向否定预查，与正向否定预查类似，只是方向相反。例如"`(?<!95                                                                                                                                                                                                                                                                                                                            | 98 | NT | 2000)Windows`"能匹配"`3.1Windows`"中的"`Windows`"，但不能匹配"`2000Windows`"中的"`Windows`"。 |
 | x\|y         | 匹配 x 或 y。例如，'z\|food' 能匹配 "z" 或 "food"。'(z\|f)ood' 则匹配 "zood" 或 "food"。                                                                                                                                                                                                                                                                                                |
 | [xyz]        | 字符集合。匹配所包含的任意一个字符。例如， '[abc]' 可以匹配 "plain" 中的 'a'。                                                                                                                                                                                                                                                                                                          |
 | [^xyz]       | 负值字符集合。匹配未包含的任意字符。例如， '[^abc]' 可以匹配 "plain" 中的'p'、'l'、'i'、'n'。                                                                                                                                                                                                                                                                                           |
@@ -170,7 +170,7 @@
 
 **1.只能输入数字和英文的：**
 
-:::demo
+::: normal-demo
 
 ```html
 <input onkeyup="value=value.replace(/[\W]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" ID="Text1" NAME="Text1">
@@ -179,7 +179,7 @@
 :::
 **2.只能输入数字的：**
 
-:::demo
+::: normal-demo
 
 ```html
 <input onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" ID="Text2" NAME="Text2">
@@ -189,7 +189,7 @@
 
 **3.只能输入全角的：**
 
-:::demo
+::: normal-demo
 
 ```html
 <input onkeyup="value=value.replace(/[^\uFF00-\uFFFF]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\uFF00-\uFFFF]/g,''))" ID="Text3" NAME="Text3">
@@ -199,7 +199,7 @@
 
 **4.只能输入汉字的：**
 
-:::demo
+::: normal-demo
 
 ```html
 <input onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))" ID="Text4" NAME="Text4">
@@ -285,30 +285,30 @@ function regx(r,s){
 | `/\d{2}-\d{5}/`                            | 验证由两位数字、一个连字符再加 5 位数字组成的 ID 号。                                                   |
 | `<[a-zA-Z]+.*?>([\s\S]*?)`                 | 匹配 HTML 标记。                                                                                        |
 
-| 正则表达式             | 描述                                                         |
-| :--------------------- | :----------------------------------------------------------- |
-| `hello`                | 匹配 {hello}                                                 |
-| `gray\|grey`           | 匹配 {gray, grey}                                            |
-| `gr(a\|e)y`            | 匹配 {gray, grey}                                            |
-| `gr[ae]y`              | 匹配 {gray, grey}                                            |
-| `b[aeiou]bble`         | 匹配 {babble, bebble, bibble, bobble, bubble}                |
-| `[b-chm-pP]at\|ot`     | 匹配 {bat, cat, hat, mat, nat, oat, pat, Pat, ot}            |
-| `colou?r`              | 匹配 {color, colour}                                         |
-| `rege(x(es)?\|xps?)`   | 匹配 {regex, regexes, regexp, regexps}                       |
-| `go*gle`               | 匹配 {ggle, gogle, google, gooogle, goooogle, ...}           |
-| `go+gle`               | 匹配 {gogle, google, gooogle, goooogle, ...}                 |
-| `g(oog)+le`            | 匹配 {google, googoogle, googoogoogle, googoogoogoogle, ...} |
-| `z{3}`                 | 匹配 {zzz}                                                   |
-| `z{3,6}`               | 匹配 {zzz, zzzz, zzzzz, zzzzzz}                              |
-| `z{3,}`                | 匹配 {zzz, zzzz, zzzzz, ...}                                 |
-| `[Bb]rainf\*\*k`       | 匹配 {Brainf**k, brainf**k}                                  |
-| `\d`                   | 匹配 {0,1,2,3,4,5,6,7,8,9}                                   |
-| `1\d{10}`              | 匹配 11 个数字，以 1 开头                                    |
-| `[2-9]\|[12]\d|3[0-6]` | 匹配 2 到 36 范围内的整数                                    |
-| `Hello\nworld`         | 匹配 Hello 后跟换行符，后跟 world                            |
-| `\d+(\.\d\d)?`         | 包含一个正整数或包含两位小数位的浮点数。                     |
-| `[^*@#]`               | 排除 *、@ 、# 三个特色符号                                   |
-| `//[^\r\n]*[\r\n]`     | 匹配 **//** 开头的注释                                       |
-| `^dog`                 | 匹配以 "dog" 开始                                            |
-| `dog$`                 | 匹配以 "dog" 结尾                                            |
-| `^dog$`                | is exactly "dog"                                             |
+| 正则表达式           | 描述                                                         |
+| :------------------- | :----------------------------------------------------------- |
+| `hello`              | 匹配 {hello}                                                 |
+| `gray\|grey`         | 匹配 {gray, grey}                                            |
+| `gr(a\|e)y`          | 匹配 {gray, grey}                                            |
+| `gr[ae]y`            | 匹配 {gray, grey}                                            |
+| `b[aeiou]bble`       | 匹配 {babble, bebble, bibble, bobble, bubble}                |
+| `[b-chm-pP]at\|ot`   | 匹配 {bat, cat, hat, mat, nat, oat, pat, Pat, ot}            |
+| `colou?r`            | 匹配 {color, colour}                                         |
+| `rege(x(es)?\|xps?)` | 匹配 {regex, regexes, regexp, regexps}                       |
+| `go*gle`             | 匹配 {ggle, gogle, google, gooogle, goooogle, ...}           |
+| `go+gle`             | 匹配 {gogle, google, gooogle, goooogle, ...}                 |
+| `g(oog)+le`          | 匹配 {google, googoogle, googoogoogle, googoogoogoogle, ...} |
+| `z{3}`               | 匹配 {zzz}                                                   |
+| `z{3,6}`             | 匹配 {zzz, zzzz, zzzzz, zzzzzz}                              |
+| `z{3,}`              | 匹配 {zzz, zzzz, zzzzz, ...}                                 |
+| `[Bb]rainf\*\*k`     | 匹配 {Brainf**k, brainf**k}                                  |
+| `\d`                 | 匹配 {0,1,2,3,4,5,6,7,8,9}                                   |
+| `1\d{10}`            | 匹配 11 个数字，以 1 开头                                    |
+| `[2-9]\|[12]\d       | 3[0-6]`                                                      | 匹配 2 到 36 范围内的整数 |
+| `Hello\nworld`       | 匹配 Hello 后跟换行符，后跟 world                            |
+| `\d+(\.\d\d)?`       | 包含一个正整数或包含两位小数位的浮点数。                     |
+| `[^*@#]`             | 排除 *、@ 、# 三个特色符号                                   |
+| `//[^\r\n]*[\r\n]`   | 匹配 **//** 开头的注释                                       |
+| `^dog`               | 匹配以 "dog" 开始                                            |
+| `dog$`               | 匹配以 "dog" 结尾                                            |
+| `^dog$`              | is exactly "dog"                                             |

@@ -2,7 +2,7 @@
 
 ## 基本事件
 
-:::demo
+::: normal-demo
 
 ```html
 <button id='btn'>点击我</button>
@@ -27,7 +27,7 @@ document.getElementById("btn").addEventListener(
 
 ## customEvent
 
-:::demo
+::: normal-demo
 
 ```html
 <button id='btn'>点击我</button>

@@ -101,7 +101,7 @@ d.标签属性需要用引号，且不能简写，如:
 <!---logo广告条结束--->
 
 3.Html 通过首行缩进来体现代码结构，如：
-:::demo
+::: normal-demo
 
 ```html
 <div id="main_nav">

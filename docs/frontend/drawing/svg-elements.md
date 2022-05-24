@@ -16,7 +16,7 @@ index: 3
 - 在其他地方或多次重用图形集，而不需要每次都定义它们
 - 对组中的所有图形使用单一样式,
 - 对组中的所有图形应用坐标变换[坐标变换](http://xahlee.info/js/svg_transformation.html)]
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -47,7 +47,7 @@ Use 元素允许您重用图形元素，而不需要重新定义它们。
 可以使用的元素是:`{ g，symbol，svg，use }`
 
 元素有可选属性 x，y，width 和 height，用于将参考元素的图形化内容映射到当前坐标系中的矩形区域。
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -74,7 +74,7 @@ Defs 元素的基本语法是:
 
 图形元素 `</def >` →定义几个东西，由 id 引用。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -106,7 +106,7 @@ Defs 元素的基本语法是:
 
 ## 1，SVG Element Attribute
 
-:::demo
+::: normal-demo
 
 ```html
 <line x1="0" y1="0" x2="50" y2="10" stroke="black" />
@@ -117,7 +117,7 @@ Stroke 是 SVG line 元素的样式属性。
 
 ## 2，Inline CSS (style attribute)
 
-:::demo
+::: normal-demo
 
 ```html
 <!-- inline styling -->
@@ -132,7 +132,7 @@ Style = val 是对每个 SVG 元素进行样式化的通用方法。
 
 下面是一个内部样式表的例子:
 
-:::demo
+::: normal-demo
 
 ```html
 <?xml version="1.0" standalone="no"?>
@@ -156,7 +156,7 @@ Style = val 是对每个 SVG 元素进行样式化的通用方法。
 
 下面是一个外部样式表的例子，基本上是一个样式文件的链接:
 
-:::demo
+::: normal-demo
 
 ```html
 <!-- external style sheet-->
@@ -176,7 +176,7 @@ Style = val 是对每个 SVG 元素进行样式化的通用方法。
 
 [参见 SVG: viewBox，用户坐标]
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -186,7 +186,7 @@ Style = val 是对每个 SVG 元素进行样式化的通用方法。
 
 :::
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 500 500">
@@ -202,7 +202,7 @@ Style = val 是对每个 SVG 元素进行样式化的通用方法。
 
 “100%”等于 font-size = “16”
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -215,7 +215,7 @@ Style = val 是对每个 SVG 元素进行样式化的通用方法。
 
 `font-size="16"` vs ，在 SVG 框的宽度高度100100
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -225,7 +225,7 @@ Style = val 是对每个 SVG 元素进行样式化的通用方法。
 
 :::
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 500 500">
@@ -245,7 +245,7 @@ Style = val 是对每个 SVG 元素进行样式化的通用方法。
 
 当使用 CSS 时，“ px”长度的含义与没有单位的 SVG 字体大小属性完全相同。
 
-:::demo
+::: normal-demo
 
 ```html
 <text x="0" y="50" font-size="30">E 30</text>
@@ -258,7 +258,7 @@ Style = val 是对每个 SVG 元素进行样式化的通用方法。
 
 CSS 值，例如1rem，被转换为16px，而16px 又是 SVG 用户坐标中的16个单位。当你使用用户坐标时，它们可能变得微小或不可见，或者变得巨大并且占满屏幕。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -268,7 +268,7 @@ CSS 值，例如1rem，被转换为16px，而16px 又是 SVG 用户坐标中的1
 
 :::
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 500 500">
@@ -283,7 +283,7 @@ CSS 值，例如1rem，被转换为16px，而16px 又是 SVG 用户坐标中的1
 ## 使用 CSS 的百分比值
 
 使用 CSS 的 Percentage 值与 SVG 属性的含义相同。
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -296,7 +296,7 @@ CSS 值，例如1rem，被转换为16px，而16px 又是 SVG 用户坐标中的1
 
 及 这里的 SVG 的宽度高度为100100
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 500 500">

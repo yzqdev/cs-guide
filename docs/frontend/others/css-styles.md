@@ -81,7 +81,7 @@ div {position: absolute;left: 0;right: 0;margin: 0 auto;}
 ```
 
 User-Select 禁止用户选中文本
-:::demo
+::: normal-demo
 
 ```html
 <div>禁止用户选中文本</div>
@@ -108,7 +108,7 @@ div {user-select: none; /* Standard syntax */}
 2. To remove platform specific styling to an element that does have it by default
 
 移除浏览器默认的样式，比如chrome的input默认样式
-:::demo
+::: normal-demo
 
 ```html
 <input value='hhh' />

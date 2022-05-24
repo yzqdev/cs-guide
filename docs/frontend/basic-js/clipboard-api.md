@@ -6,7 +6,7 @@
 推荐用[clipboard](https://developer.mozilla.org/zh-CN/docs/Web/API/Clipboard_API)
 :::
 
-:::demo
+::: normal-demo
 
 ```html
 <button onclick='run()'>点击我(会把剪切板的内容复制到下面的div里面)</button>
@@ -25,7 +25,7 @@ function run (){
 
 ## 写入剪切板
 
-:::demo
+::: normal-demo
 
 ```html
 <button onclick='run()'>点击我(会把下面的div里面复制到剪切板的)</button>

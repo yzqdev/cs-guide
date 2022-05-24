@@ -12,7 +12,7 @@
 
 类似这样的举行，都是 span 标签，样式都是给出的 css
 
-:::demo
+::: normal-demo
 
 ```html
 <span> demo</span>
@@ -41,7 +41,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-1-1 大小变化
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -62,7 +62,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-1-2 形状变化
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -104,7 +104,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-1-3 旋转角度变化
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -176,7 +176,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-1-4 位移变化
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -212,7 +212,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-1-5 边框变化
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -239,7 +239,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 ## 2-1-6 阴影变化
 
 (gif 图看得效果太难看了，大家可以去 github 下载看)
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -277,7 +277,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-1-7 透明度变化
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -309,7 +309,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-1-8 圆角变化
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -332,7 +332,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 这里也是一大块一起说，看代码可能会更乱，所以大家看代码的时候要更加留神注意。看代码看不明白，直接在 github 下载，然后运行文件，边调试边看效果！这样大家就很容易明白了！
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -471,7 +471,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-2-3 箭头动画
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -572,7 +572,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-3-1 闪烁效果
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -602,7 +602,7 @@ css
 
 ## 2-3-2 闹钟振铃效果
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -643,7 +643,7 @@ css
 
 ## 2-3-3 摇摆效果
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -730,7 +730,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-3-4 摇晃效果
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -766,7 +766,7 @@ css
 
 ## 2-3-5 抖动效果
 
-:::demo
+::: normal-demo
 html
 
 ```html
@@ -797,7 +797,7 @@ span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; disp
 
 ## 2-3-6 弹跳效果
 
-:::demo
+::: normal-demo
 html
 
 ```html

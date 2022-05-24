@@ -20,7 +20,7 @@
 
 ## 创建一个响应式对象，对象的属性是数组
 
-:::demo [vue]
+:::vue-demo  
 
 ```vue
 <template>

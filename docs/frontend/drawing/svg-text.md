@@ -5,7 +5,7 @@
 ## 文本元素
 
 文本元素用于添加文本。
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -26,7 +26,7 @@
 文本元素中的文本不会自动换行(不会自动换行)。
 
 不像 HTML，也没有“ pre”元素。
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -53,7 +53,7 @@ dog</text>
 ## 文本元素锚定位置
 
 当您有一个文本元素时
-:::demo
+::: normal-demo
 
 ```html
 <text x = " 50" y = " 50" > cat </text >
@@ -62,7 +62,7 @@ dog</text>
 :::
 确切的锚定位置是第一个字符的基线左下方。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -83,7 +83,7 @@ Text-anchor 可用于设置 text 元素中{ x，y }表示的位置。
 - `middle`
 - `end`
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -95,7 +95,7 @@ Text-anchor 可用于设置 text 元素中{ x，y }表示的位置。
 :::
 以文本为中心的
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -126,7 +126,7 @@ Tspan 也有绝对定位的属性{ x，y }。
 
 abc
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -139,7 +139,7 @@ abc
 使用“ tspan”的粗体字
 
 abc
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -155,7 +155,7 @@ abc
 
 每个属性“ x”和“ y”都可以是一个数字序列。第二个数字是第二个字符的位置，第三个数字是第三个字符的位置等等。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -187,7 +187,7 @@ Baseline-shift 属性可以与文本元素或 tspan 一起使用，用于向上�
 - 对文本元素使用旋转变换[坐标变换](http://xahlee.info/js/svg_transformation.html)]
 - 使用 财产，有价值 (从上到下)
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -199,7 +199,7 @@ Baseline-shift 属性可以与文本元素或 tspan 一起使用，用于向上�
 
 使用变换旋转垂直文本
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -231,7 +231,7 @@ Baseline-shift 属性可以与文本元素或 tspan 一起使用，用于向上�
 - 。必须是{`0`, `90`, `180`, `270`}
 - `inherit`
 
-:::demo
+::: normal-demo
 
 ```html
 <figure class="svg_example">

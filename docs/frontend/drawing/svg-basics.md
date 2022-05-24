@@ -5,7 +5,7 @@ index: 1
 
 svg是xml文档,所以你可以直接放在html里面
 
-:::demo line
+::: normal-demo line
 
 ```html
 <svg width="100" height="100">
@@ -17,7 +17,7 @@ style="stroke:black" />
 :::
 
 完整的html如下
-:::demo
+::: normal-demo
 
 ```html
 <!doctype html><html><head><meta charset="utf-8" />
@@ -38,7 +38,7 @@ style="stroke:black" />
 
 ## 视窗单位
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 10 10" >
@@ -51,7 +51,7 @@ style="stroke:black; fill:yellow; stroke-width:0.5" />
 
 ## reactangle
 
-:::demo
+::: normal-demo
 其中 {rx="15" ry="15"}是圆角,如果只选了一个,那另一个就是一样的值
 
 ```html
@@ -65,7 +65,7 @@ style="fill:green; stroke:blue; stroke-width:5"/>
 
 ## circle
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -78,7 +78,7 @@ style="fill:yellow; stroke:blue; stroke-width:5" />
 
 ### ellipse
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -91,7 +91,7 @@ style="fill:yellow; stroke:red; stroke-width:5" />
 
 ### polygon多边形
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -115,7 +115,7 @@ style="stroke: blue; fill: yellow;" />
 
 ### 文本
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -127,7 +127,7 @@ style="stroke: blue; fill: yellow;" />
 
 ### 路径
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -152,7 +152,7 @@ style="stroke:black; fill:green"></svg>
 ### 三次样条曲线路径
 
 路径标签是最通用和最常用的。它可以用来绘制曲线使用贝塞尔曲线。
-:::demo
+::: normal-demo
 
 ```html
  
@@ -202,7 +202,7 @@ SVG 动画
 下面是一个 SVG 动画示例。点击红色方块。
 
 下面是代码。
-:::demo
+::: normal-demo
 
 ```html
 <svg>
@@ -298,7 +298,7 @@ stroke-linecap:square
 ```
 
 下面是代码:
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -317,7 +317,7 @@ stroke-linejoin:miter
 stroke-linejoin:round
 ```
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="200" height="200">
@@ -339,7 +339,7 @@ stroke-linejoin:bevel
 
 ## 填充不透明例子
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">

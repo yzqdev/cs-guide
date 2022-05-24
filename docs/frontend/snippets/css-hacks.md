@@ -66,7 +66,7 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 ### 爱心
 
 利用 `div` 的正方形和伪类的圆型组合而成，具体代码如下：
-:::demo
+::: normal-demo
 
 ```html
 <div class="css-cell">
@@ -157,7 +157,7 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 ### 切角
 
 利用使用线性渐变实现的，代码如下：
-:::demo
+::: normal-demo
 
 ```html
 <div class='wrap'>
@@ -199,7 +199,7 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 ### 弧形切角
 
 使用径向渐变实现，具体实现如下：
-:::demo
+::: normal-demo
 
 ```html
 <div class='wrap'>
@@ -241,7 +241,7 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 ### 梯形
 
 利用伪类加旋转透视实现，具体实现如下：
-:::demo
+::: normal-demo
 
 ```html
 <div class='wrap'>
@@ -282,7 +282,7 @@ height:10rem;
 ### 饼图
 
 利用伪类、线性渐变、旋转实现，具体代码如下：
-:::demo
+::: normal-demo
 
 ```html
 <div class='wrap'>
@@ -333,7 +333,7 @@ height:10rem;
 ### 平行四边形
 
 利用伪类、拉伸实现，实现过程如下：
-:::demo
+::: normal-demo
 
 ```html
 <div class='wrap'><div class='parallelogram'></div></div>
@@ -371,7 +371,7 @@ height:10rem;
 
 利用切角、伪类、渐变、旋转实现，代码如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -421,7 +421,7 @@ height:10rem;
 鼠标移入
 
 利用 `box-shadow` 实现，具体代码如下：
-:::demo
+::: normal-demo
 
 ```html
 <div class='wrap'>
@@ -458,7 +458,7 @@ height:10rem;
 
 主要是利用渐变实现，具体实现如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -491,7 +491,7 @@ height:10rem;
 
 :::
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -527,7 +527,7 @@ height:10rem;
 
 :::
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -565,7 +565,7 @@ height:10rem;
 
 ### 混合模式背景图
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -605,7 +605,7 @@ height:10rem;
 
 利用线性渐变、阴影、旋转实现，具体代码如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -678,7 +678,7 @@ height:10rem;
 
 利用线性渐变、阴影、缩放实现，具体实现如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -763,7 +763,7 @@ height:10rem;
 ```
 
 :::
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -842,7 +842,7 @@ height:10rem;
 
 利用线性渐变、阴影、缩放实现，具体代码如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -947,7 +947,7 @@ height:10rem;
 
 利用border、transparent、实现，这个会多一层 `div.breeze-container` 包裹，样式代码如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1031,7 +1031,7 @@ height:10rem;
 
 主要是利用border、box-shadow 实现，具体实现如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1121,7 +1121,7 @@ height:10rem;
 
 主要是利用 box-shadow 实现 ， 实现方式如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1213,7 +1213,7 @@ height:10rem;
 ### 雷电
 
 主要是利用阴影、border实现，代码如下：
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1306,7 +1306,7 @@ height:10rem;
 ### 大雪
 
 利用阴影实现 ， 代码如下：
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1493,7 +1493,7 @@ height:10rem;
 ### 五角星
 
 主要是利用border、transparent、旋转实现，代码如下：
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1559,7 +1559,7 @@ height:10rem;
 ### 太极八卦
 
 利用 box-shadow 实现 ， 代码很简单：
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1598,7 +1598,7 @@ height:10rem;
 ### 美队盾牌
 
 利用 渐变 实现 ， 代码如下：
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1651,7 +1651,7 @@ height:10rem;
 ### 纽扣
 
 利用 渐变、阴影 实现 ， 实现方法如下：
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1727,7 +1727,7 @@ height:10rem;
 
 利用渐变实现 , 具体如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1773,7 +1773,7 @@ height:10rem;
 
 利用渐变实现 , 代码如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1826,7 +1826,7 @@ height:10rem;
 
 利用渐变、多重阴影实现 ， 代码实现如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1891,7 +1891,7 @@ height:10rem;
 
 利用渐变、border、旋转实现 ， 具体代码如下：
 
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -1968,7 +1968,7 @@ height:10rem;
 ### firefox
 
 利用多重阴影实现 , 代码如下：
-:::demo
+::: normal-demo
 
 ```html
  <div class='wrap'>
@@ -2053,7 +2053,7 @@ height:10rem;
 ### 搜狗
 
 利用文字、阴影实现 , 具体代码如下：
-:::demo
+::: normal-demo
 
 ```html
 <div class='wrap'>
@@ -2104,7 +2104,7 @@ height:10rem;
 ### 利用滤镜实现混合效果
 
 利用 `fliter:blur()` 、`filter:contrast()` 实现 ， 代码如下：
-:::demo
+::: normal-demo
 
 ```html
 <div class='wrap'><div class='filter-mix'></div></div>

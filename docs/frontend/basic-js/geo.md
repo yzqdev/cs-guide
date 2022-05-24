@@ -1,6 +1,6 @@
 # 地理位置相关
 
-:::demo
+:::normal-demo
 
 ```html
 <button onclick='run()'>点击我 </button>

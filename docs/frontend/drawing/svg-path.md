@@ -9,7 +9,7 @@ Path 元素也是最难理解的元素。如果您使用 JavaScript 编写 SVG �
 
 ## 移动到,画条线
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -31,7 +31,7 @@ style="stroke:black; fill:yellow; stroke-width:5" />
 ## 路径的默认笔划样式
 
 警告: 默认情况下，路径的笔划样式为无。因此，您需要添加 style = “ stroke: red”或类似的内容。[参见 SVG: 形状样式]
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -44,7 +44,7 @@ style="stroke:black; fill:yellow; stroke-width:5" />
 
 下面是同一行的一个例子，添加了样式。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -58,7 +58,7 @@ style="stroke:black; fill:yellow; stroke-width:5" />
 
 ## 小写字母 = 相对坐标
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -81,7 +81,7 @@ style="stroke:black; fill:yellow" />
 
 小写和大写命令可以混合使用。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -94,7 +94,7 @@ style="stroke:black; fill:none;" />
 
 ## 关闭路径
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -113,7 +113,7 @@ style="stroke:black; fill:yellow" />
 
 水平线有一个快捷的符号。你可以写 h30，而不是 l30。同样的垂直线。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -157,7 +157,7 @@ style="stroke:black; fill:yellow" />
 
 二次贝塞尔曲线只有一个控制点。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -176,7 +176,7 @@ style="stroke:black; fill:yellow" />
 
   (相对坐标)
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
@@ -199,7 +199,7 @@ style="stroke:black; fill:yellow" />
 
 三次贝塞尔曲线有2个控制点。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">

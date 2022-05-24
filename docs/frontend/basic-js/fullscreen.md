@@ -1,6 +1,6 @@
 # 全屏api
 
-:::demo
+::: normal-demo
 
 ```html
 <div  id="myvideo">

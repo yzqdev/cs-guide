@@ -29,7 +29,7 @@ postData('https://example.com/answer', { answer: 42 })
 
 ```
 
-:::demo
+::: normal-demo
 
 ```html
 <button onclick='fun1()'>点击我 1</button>

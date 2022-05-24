@@ -76,6 +76,7 @@ export default hopeTheme({
     pwa: {
       update: "hint",
       favicon: "/favicon.ico",
+      showInstall: true,
       themeColor: "#46bd87",
       appendBase: true,
       apple: {

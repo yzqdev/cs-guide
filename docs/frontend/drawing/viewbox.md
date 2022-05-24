@@ -38,7 +38,7 @@ viewBox 属性用于指定用户坐标。
 
 这是一个以{30,0}为中心，半径为20的圆。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="30 0 100 100">
@@ -52,7 +52,7 @@ viewBox 属性用于指定用户坐标。
 
 在这里，我们将 viewBox 的 x 和 y 范围都设置为50，并在中间画一个半径为25的圆。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 50 50">
@@ -96,7 +96,7 @@ preserveAspectRatio="none"
 这意味着不要保留长宽比，要根据尺寸进行调整。
 
 比较:
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 50 100" preserveAspectRatio="none">
@@ -106,7 +106,7 @@ preserveAspectRatio="none"
 
 :::
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 50 100" >
@@ -145,7 +145,7 @@ preserveAspectRatio="none"
 
 Viewport 和 viewBox 具有相同的高度。只是宽度不同。视区宽度为100px，而 viewBox 宽度为50px。
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 50 100"
@@ -157,7 +157,7 @@ preserveAspectRatio="xMinYMid"
 
 :::
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 50 100"
@@ -169,7 +169,7 @@ preserveAspectRatio="xMidYMid"
 
 :::
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 50 100"
@@ -186,7 +186,7 @@ preserveAspectRatio="xMaxYMid"
 这里是同样的绘图与3个不同的设置“ preserveAspectRatio”。所有与片。
 
 Viewport 和 viewBox 具有相同的高度。只是宽度不同。视窗宽度为100px，而 viewBox 宽度为200px。
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 200 100"
@@ -198,7 +198,7 @@ preserveAspectRatio="xMinYMid slice"
 
 :::
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 200 100"
@@ -209,7 +209,7 @@ preserveAspectRatio="xMidYMid slice"
 ```
 
 :::
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100" viewBox="0 0 200 100"
@@ -233,7 +233,7 @@ preserveAspectRatio="xMaxYMid slice"
 
 下面是一个例子:
 
-:::demo
+::: normal-demo
 
 ```html
 <svg width="100" height="100">
