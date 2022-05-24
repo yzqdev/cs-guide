@@ -24,7 +24,7 @@ export default hopeTheme({
   // sidebar
   sidebar: sidebar,
 
-  footer: `powered by <a href='https://vuepress-theme-hope.github.io/v2/'>vuepress-theme-home</a>`,
+  footer: `powered by <a href='https://vuepress-theme-hope.github.io/v2/'>vuepress-theme-hope</a>`,
 
   displayFooter: true,
 
