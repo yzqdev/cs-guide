@@ -1,5 +1,4 @@
-
-# Go Protobuf 简明教程
+# GoProtobuf简明教程
 
 :::tip
 转载自[极客兔兔](https://geektutu.com/post/quick-go-protobuf.html)  
