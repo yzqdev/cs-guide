@@ -1,3 +1,6 @@
+---
+index: false
+---
 # minecraft
 
 ## minecraft

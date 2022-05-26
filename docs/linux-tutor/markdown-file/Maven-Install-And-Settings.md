@@ -5,22 +5,21 @@
 - 官网：<http://maven.apache.org/>
 - 官网下载：<http://maven.apache.org/download.cgi>
 - 历史版本下载：<https://archive.apache.org/dist/maven/binaries/>
-- 此时（20160208） Maven 最新版本为：**3.3.9**
 
-##  Maven 安装（bash 环境）
+## Maven 安装（bash 环境）
 
-- Maven 3.3 的 JDK 最低要求是 JDK 7
-- 下载压缩包：`wget http://mirrors.cnnic.cn/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz`
-- 解压：`tar zxvf apache-maven-3.3.9-bin.tar.gz`
-- 修改目录名，默认的太长了：`mv apache-maven-3.3.9/ maven3.3.9/`
-- 移到我个人习惯的安装目录下：`mv maven3.3.9/ /usr/local`
+- Maven 3.8的 JDK 最低要求是 JDK 8
+- 下载压缩包：`wget http://mirrors.cnnic.cn/apache/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz`
+- 解压：`tar zxvf apache-maven-3.8.4-bin.tar.gz`
+- 修改目录名，默认的太长了：`mv apache-maven-3.8.4/ maven3.8.4/`
+- 移到我个人习惯的安装目录下：`mv maven3.8.4/ /usr/local`
 - 环境变量设置：`vim /etc/profile`
 - 在文件最尾巴添加下面内容：
 
 ``` ini
 # Maven
-MAVEN_HOME=/usr/local/maven3.3.9
-M3_HOME=/usr/local/maven3.3.9
+MAVEN_HOME=/usr/local/maven3.8.4
+M3_HOME=/usr/local/maven3.8.4
 PATH=$PATH:$M3_HOME/bin
 MAVEN_OPTS="-Xms256m -Xmx356m"
 export M3_HOME
@@ -36,7 +35,7 @@ export MAVEN_OPTS
 
 - 创建本地参数：`mkdir -p /opt/maven-repository`
 - 配置项目连接上私服
-- 编辑配置文件：`vim /usr/local/maven3.3.9/conf/settings.xml`
+- 编辑配置文件：`vim /usr/local/maven3.8.4/conf/settings.xml`
 
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -82,9 +81,6 @@ export MAVEN_OPTS
 
 </settings>
 ```
-
-
-
 
 ## 资料
 

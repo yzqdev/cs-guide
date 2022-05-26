@@ -31,11 +31,6 @@ export default navbar([
         icon: "android",
         link: "https://yzqdev.github.io/android-docs",
       },
-      {
-        text: "linux基础教程",
-        icon: "computer",
-        link: "https://yzqbooks.github.io/linux-tutorial/",
-      },
 
       {
         text: "node教程",

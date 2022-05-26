@@ -1,3 +1,6 @@
+---
+order: 2
+---
 # mc服务器插件推荐
 
 - clearlog
@@ -10,7 +13,6 @@
 - toggleInventory
 - touchscreenHolograms
 - untimatetimber
-- uncrafter
 - vault
 - veinminer
 - trmenu   [链接](http://repo.iroselle.com/#browse/browse:maven-public:me) 新的 [链接](https://www.mcbbs.net/thread-1240856-1-1.html)
