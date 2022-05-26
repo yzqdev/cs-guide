@@ -1,14 +1,16 @@
-> 原文：http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained
+# 关于yield
+
+> 原文：<http://stackoverflow.com/questions/231767/the-python-yield-keyword-explained>
 >
 > 注：这是一篇 stackoverflow 上一个火爆帖子的译文
 
-## 问题 ##
+## 问题  
 
 Python 关键字 yield 的作用是什么？用来干什么的？
 
 比如，我正在试图理解下面的代码:
 
-```Python
+```python
 def node._get_child_candidates(self, distance, min_dist, max_dist):
     if self._leftchild and distance - max_dist < self._median:
         yield self._leftchild
@@ -16,9 +18,7 @@ def node._get_child_candidates(self, distance, min_dist, max_dist):
         yield self._rightchild
 ```
 
-
 下面的是调用:
-
 
 ```python
 result, candidates = list(), [self]
@@ -32,7 +32,6 @@ return result
 ```
 
 当调用 ```_get_child_candidates``` 的时候发生了什么？返回了一个列表？返回了一个元素？被重复调用了么？ 什么时候这个调用结束呢？
-
 
 ## 回答
 
@@ -135,7 +134,6 @@ def node._get_child_candidates(self, distance, min_dist, max_dist):
   # there is no more than two values : the left and the right children
 ```
 
-
 调用者:
 
 ```Python
@@ -168,9 +166,7 @@ return result
 * 我们对一个列表进行迭代，但是迭代中列表还在不断的扩展。它是一个迭代这些嵌套的数据的简洁方式，即使这样有点危险，因为可能导致无限迭代。 `candidates.extend(node._get_child_candidates(distance, min_dist, max_dist))` 穷尽了生成器的所有值，但 while 不断地在产生新的生成器，它们会产生和上一次不一样的值，既然没有作用到同一个节点上.
 * `extend()` 是一个迭代器方法，作用于迭代器，并把参数追加到迭代器的后面。
 
-
 通常我们传给它一个列表参数:
-
 
 ```Python
 >>> a = [1, 2]
@@ -180,12 +176,10 @@ return result
 [1, 2, 3, 4]
 ```
 
-
 但是在你的代码中的是一个生成器，这是不错的，因为：
 
 * 你不必读两次所有的值
 * 你可以有很多子对象，但不必叫他们都存储在内存里面。
-
 
 并且这很奏效，因为 Python 不关心一个方法的参数是不是个列表。Python 只希望它是个可以迭代的，所以这个参数可以是列表，元组，字符串，生成器... 这叫做 `duck typing`,这也是为何 Python 如此棒的原因之一，但这已经是另外一个问题了...
 
@@ -230,7 +224,6 @@ $100
 $100
 ...
 ```
-
 
 对于控制一些资源的访问来说这很有用。
 

@@ -33,11 +33,7 @@ features:
     icon: java
     link: /java-tutor/README.md
 
-  - title: linux教程
-    details: 一个简单的linux教程
-    icon: linux
-    link: /linux-tutor/README.md
-
+ 
   - title: python教程
     details: 一个简单的python教程
     icon: python

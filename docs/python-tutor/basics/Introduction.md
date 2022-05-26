@@ -1,3 +1,6 @@
+---
+index: 1
+---
 # python介绍
 
 ## 一、Python 简介 #

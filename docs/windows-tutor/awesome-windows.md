@@ -38,15 +38,15 @@ icofx
 
 ## 虚拟机软件
 
-[https://multipass.run/](https://multipass.run/)
+- [https://multipass.run/](https://multipass.run/)
 
- [https://fastcopy.jp/](https://fastcopy.jp/)
+- [https://fastcopy.jp/](https://fastcopy.jp/)
 
 ## 注册表工具
 
-[https://registry-finder.com/](https://registry-finder.com/)
-registry workshop
-[https://www.resplendence.com/registrar](https://www.resplendence.com/registrar)
+- [https://registry-finder.com/](https://registry-finder.com/)
+- registry workshop
+- [https://www.resplendence.com/registrar](https://www.resplendence.com/registrar)
 
 ## ndm
 
@@ -62,28 +62,27 @@ Greenfish Icon Editor Pro
 
 ## 开源软件
 
-markdown(微软商店搜索markdown)
-[https://github.com/marktext/marktext](https://github.com/marktext/marktext)
-FreeCAD
-VLC
-dia
-peazip
-you-get
-**PicGo**
-[https://github.com/1265578519/ShanaEncoder](https://github.com/1265578519/ShanaEncoder)
-[https://ugetdm.com/](https://ugetdm.com/)
-Calibre
-[https://github.com/HandBrake/HandBrake](https://github.com/HandBrake/HandBrake)
-[https://peazip.github.io/](https://peazip.github.io/)
-shotcut
+- markdown(微软商店搜索markdown)
+- [marktext](https://github.com/marktext/marktext)
+- FreeCAD
+- VLC
+- dia
+- [peazip](https://peazip.github.io/)
+- [you-get](https://github.com/soimort/you-get)
+- [picgo](https://github.com/Molunerfinn/PicGo)
+- [https://github.com/1265578519/ShanaEncoder](https://github.com/1265578519/ShanaEncoder)
+- [https://ugetdm.com/](https://ugetdm.com/)
+- Calibre
+- [https://github.com/HandBrake/HandBrake](https://github.com/HandBrake/HandBrake)
+- shotcut
 
 ## 下载站
 
-[https://soft.macxf.com/](https://soft.macxf.com/)
-看图软件
-[https://picview.org/](https://picview.org/)
-wps图片
-honeysee 类似bandizip
+- [https://soft.macxf.com/](https://soft.macxf.com/)
+- 看图软件
+- [https://picview.org/](https://picview.org/)
+- wps图片
+- honeysee 类似bandizip
 
 ## 听音乐软件
 
@@ -92,11 +91,11 @@ honeysee 类似bandizip
 
 ## linux图片处理软件
 
-Pinta
-gimp
-inkscape
-krita
-blender
+- Pinta
+- gimp
+- inkscape
+- krita
+- blender
 
 ## 录屏软件
 
@@ -105,8 +104,6 @@ blender
 ### obsstudio
 
 ### screentogif
-
-### sharex
 
 ### snagit
 
@@ -158,7 +155,7 @@ python做安卓自动化的
 
 windows优化软件,你值得拥有
 
-```javascript
+```text
 Dism++无需任何Dism组件，即可兼容高低版本所有系统！而微软Dism则需要3个版本。
 Dism++是Dism的交集，提供完全的图形化操作，几乎支持Dism的所有功能以及大量Dism原本所不支持的功能。管理更新、驱动、功能、Appx、可选功能、服务、Compact/WIMboot、系统修复等……放马过来吧。
 Dism++提供了完整的WIM支持（包括ESD捕获、ESD转ISO、释放分段ESD以及直接ISO支持），值得一提的是，ESD转ISO，Dism++可以直接在内存中解密无需修改硬盘数据。这极大的满足了强迫症患者。
@@ -176,6 +173,7 @@ Dism++提供了开放的清理以及优化功能，用户可以自定义Dism++�
 
 ## everything
 
+[https://www.voidtools.com/zh-cn/](https://www.voidtools.com/zh-cn/)
 再加一个
 教程 [https://zhuanlan.zhihu.com/p/61334612](https://zhuanlan.zhihu.com/p/61334612)
 文件服务器
@@ -201,7 +199,11 @@ Dism++提供了开放的清理以及优化功能，用户可以自定义Dism++�
 
 ## ShareX，是一个免费开源的截图工具(windows应用商店)
 
-## powertoys
+[https://github.com/ShareX/ShareX](https://github.com/ShareX/ShareX)
+
+## powertoys(微软商店)
+
+[https://github.com/microsoft/PowerToys](https://github.com/microsoft/PowerToys)
 
 ## termius(微软商店)
 
@@ -209,8 +211,12 @@ ssh工具,很好看
 
 ## wizetree
 
+[https://www.diskanalyzer.com/](https://www.diskanalyzer.com/)
 文件管理查看树结构
 
 ## 音视频软件
 
-potplayer,  foobar ,honeyview, bandizip
+- [potplayer](http://potplayer.tv/?lang=zh_CN)
+- foobar ,
+- [honeyview](https://cn.bandisoft.com/honeyview/)
+- [bandizip](https://cn.bandisoft.com/bandizip/)
