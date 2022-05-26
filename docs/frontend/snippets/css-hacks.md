@@ -112,7 +112,7 @@ ps：本文原创不是我，我只是搬运工，看到好东西与大家分享
 ### 气泡悬浮框
 
 利用 `border` 结合 `transparent` 特性实现，代码如下：
-::: demo
+::: normal-demo
 
 ```html
 <div class='wrap'>

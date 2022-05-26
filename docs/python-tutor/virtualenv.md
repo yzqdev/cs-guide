@@ -9,7 +9,7 @@
 
 ## 安装
 
-```
+```shell
  pip3 install virtualenv
 ```
 
@@ -17,7 +17,7 @@
 
 ## 使用
 
-## # 创建
+## 创建
 
 假如我们想要用`scrapy`去爬取某个网站的信息，我们不想再宿主环境总安装scrapy以及requests这些包，那我们就可以使用virtualenv了。
 

@@ -5,7 +5,7 @@
 ## 第一个解决方案
 
 这是因为ChromeDriver与本地chrome浏览器的版本不一致导致
-ChromeDriver下载地址：[http://npm.taobao.org/mirrors/chromedriver/](http://npm.taobao.org/mirrors/chromedriver/)
+ChromeDriver下载地址：[淘宝镜像](http://npmmirror.com/mirrors/chromedriver/)
 ​
 
 ## 第二个解决方案

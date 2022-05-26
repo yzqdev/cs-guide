@@ -1,10 +1,10 @@
 # 模拟数据
 
-easymock  [https://github.com/easy-mock/easy-mock](https://github.com/easy-mock/easy-mock)
+- [easy-mock](https://github.com/easy-mock/easy-mock)
 
-apifox   [https://www.apifox.cn/](https://www.apifox.cn/)
+- [apifox](https://www.apifox.cn/)
 
-yapi接口管理    [https://hellosean1025.github.io/yapi/](https://hellosean1025.github.io/yapi/)
+- [yapi接口管理](https://hellosean1025.github.io/yapi/)
 
 ## 在线编辑代码
 
@@ -17,5 +17,5 @@ yapi接口管理    [https://hellosean1025.github.io/yapi/](https://hellosean102
 | runkit-home            | [https://runkit.com/home](https://runkit.com/home) |
 | runkit                 | [https://npm.runkit.com/](https://npm.runkit.com/) |
 | stackblitz(类似vscode) | [https://stackblitz.com/](https://stackblitz.com/) |
-| <https://replit.com/>  | [https://replit.com/](https://replit.com/)         |
-| <https://plnkr.co/>    | [https://plnkr.co/](https://plnkr.co/)             |
+| replit                 | [https://replit.com/](https://replit.com/)         |
+| plnkr                  | [https://plnkr.co/](https://plnkr.co/)             |

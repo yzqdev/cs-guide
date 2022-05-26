@@ -1,8 +1,11 @@
 # 静态网站生成器
 
+:::tip
+[https://jamstack.org/generators/](https://jamstack.org/generators/)
+:::
+
 ## gridea
 
-[https://jamstack.org/generators/](https://jamstack.org/generators/)
 [https://gridea.dev/](https://gridea.dev/)
 
 ## hexo
@@ -27,24 +30,22 @@ hexo-theme-butterfly
 
 ## hugo
 
-[The world’s fastest framework for building websites | Hugo (gohugo.io)](https://gohugo.io/)
+[Hugo (gohugo.io)](https://gohugo.io/)
 
 ## vuepress
 
-[首页 | VuePress (vuejs.org)](https://v2.vuepress.vuejs.org/zh/)  
+[VuePress](https://v2.vuepress.vuejs.org/zh/)  
+> 主题  
 
-```text
-插件
-https://vuepress-theme-hope.github.io/v2/md-enhance/zh/guide/#enableall
-```
+[vuepress-theme-hope](https://vuepress-theme-hope.github.io/v2/)
 
 ## vitepress
 
-[What is VitePress? | VitePress (vuejs.org)](https://vitepress.vuejs.org/)
+[VitePress](https://vitepress.vuejs.org/)
 
 ## dumi
 
-[dumi - 为组件开发场景而生的文档工具 - dumi (umijs.org)](https://d.umijs.org/zh-CN)
+[dumi](https://d.umijs.org/zh-CN)
 
 ## docsify
 
@@ -52,7 +53,7 @@ https://vuepress-theme-hope.github.io/v2/md-enhance/zh/guide/#enableall
 
 ## docusaurus
 
-[Build optimized websites quickly, focus on your content | Docusaurus](https://www.docusaurus.io/)
+[Docusaurus](https://www.docusaurus.io/)
 
 ## docz
 

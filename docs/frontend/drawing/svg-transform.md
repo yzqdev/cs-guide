@@ -1,5 +1,5 @@
 ---
-index: 4
+order: 4
 ---
 # 坐标转换
 
@@ -23,7 +23,7 @@ Transform = “ function1(...) function2(...) ...”
 
   快走 右边的单位 机组故障
 
-```
+```html
 <svg width="100" height="100">
 
 <rect x="0" y="0" width="10" height="20"
@@ -47,7 +47,7 @@ Transform = “ function1(...) function2(...) ...”
 
   X 比例因子 ，y 量表的倍数s2.
 
-```
+```html
 <svg width="100" height="100">
 
 <circle cx="0" cy="0" r="10" style="fill:none; stroke:gray" />
@@ -59,7 +59,7 @@ Transform = “ function1(...) function2(...) ...”
 
 这是另一个例子。注意，我们以一个以{10,10}为中心的圆开始。缩放后，它的中心发生了变化。因为转换是针对{0,0}完成的。也就是说，任何点{ x，y }变成{ x *s，y* s }。
 
-```
+```html
 <svg width="100" height="100">
 
 <circle cx="10" cy="10" r="10" style="fill:none; stroke:gray" />
@@ -71,7 +71,7 @@ Transform = “ function1(...) function2(...) ...”
 
 您可以通过 transform = “ scale (s1，s2)”来分别缩放 x 和 y 坐标。
 
-```
+```html
 <svg width="100" height="100">
 
 <circle cx="10" cy="10" r="10" style="fill:none; stroke:gray" />
@@ -87,7 +87,7 @@ Transform = “ function1(...) function2(...) ...”
 
   旋转 原点周围度，正数 是顺时针方向
 
-```
+```html
 <svg width="100" height="100">
 
 <rect x="50" y="0" width="10" height="20"
@@ -111,7 +111,7 @@ Transform = “ function1(...) function2(...) ...”
 
   旋转 度，大约点{x, 肯定的 是顺时针方向
 
-```
+```html
 <svg width="100" height="100">
 
 <rect x="50" y="0" width="10" height="20"
@@ -135,7 +135,7 @@ Transform = “ function1(...) function2(...) ...”
 
   斜 x 坐标由 度
 
-```
+```html
 <svg width="100" height="100">
 
 <rect x="10" y="10" width="30" height="30"
@@ -158,7 +158,7 @@ Transform = “ function1(...) function2(...) ...”
 
 这是一个正方形和螺旋形的结果。
 
-```
+```html
 <svg width="100" height="100">
 
 <rect x="10" y="10" width="30" height="30"
@@ -182,7 +182,7 @@ Transform = “ function1(...) function2(...) ...”
 
 这是一个长方形。
 
-```
+```html
 <svg width="100" height="100">
 <rect x="0" y="0" width="10" height="20" />
 </svg>
@@ -190,7 +190,7 @@ Transform = “ function1(...) function2(...) ...”
 
 这是一个矩形，经过平移然后旋转(按照这个顺序)。
 
-```
+```html
 <svg width="100" height="100">
 <rect x="0" y="0" width="10" height="20"
  style="fill:blue;"
@@ -200,7 +200,7 @@ Transform = “ function1(...) function2(...) ...”
 
 这是一个矩形，旋转然后平移(按这个顺序)。
 
-```
+```html
 <svg width="100" height="100">
 <rect x="0" y="0" width="10" height="20"
  style="fill:red;"
