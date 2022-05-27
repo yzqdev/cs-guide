@@ -1,4 +1,4 @@
-# pstack 跟踪进程栈 {#pstack}
+# pstack 跟踪进程栈
 
 此命令可显示每个进程的栈跟踪。pstack 命令必须由相应进程的属主或 root
 运行。可以使用 pstack

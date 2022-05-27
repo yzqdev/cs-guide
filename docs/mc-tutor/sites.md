@@ -10,6 +10,7 @@ order: 1
 
 ## 国外
 
+- [spigotmc](https://www.spigotmc.org/)
 - [plantMinecraft](https://www.planetminecraft.com/)
 - [curseforge](https://www.curseforge.com/minecraft/modpacks)
 - <https://www.blockminecraft.com/>
@@ -30,18 +31,18 @@ order: 1
 - [namemc](https://namemc.com/minecraft-skins)
 - [skin](https://littleskin.cn/skinlib?filter=skin&sort=time&page=1)
 
-<https://pcminecraft-mods.com/category/download-minecraft-free/>
-<https://www.moddb.com/games/minecraft/mods>
-<https://www.technicpack.net/modpacks?page=1>
-<http://minecraftsix.com/>
-<https://bdcraft.net/downloads/>
-<https://mc-mods.org/>
-<http://minecraftmodpacks.net/>#
-<https://resourcepack.net/>
-<http://file-minecraft.com/>
-<https://www.minecraftmods.com/>
-<https://www.minecraftxl.com/category/minecraft-mods/>
-<https://azminecraft.info/>
-<http://www.miinecraft.org/category/minecraft-mods>
-<http://24hminecraft.com/>
-<http://shadersmods.com/>
+- <https://pcminecraft-mods.com/category/download-minecraft-free/>
+- <https://www.moddb.com/games/minecraft/mods>
+- <https://www.technicpack.net/modpacks?page=1>
+- <http://minecraftsix.com/>
+- <https://bdcraft.net/downloads/>
+- <https://mc-mods.org/>
+- <http://minecraftmodpacks.net/>#
+- <https://resourcepack.net/>
+- <http://file-minecraft.com/>
+- <https://www.minecraftmods.com/>
+- <https://www.minecraftxl.com/category/minecraft-mods/>
+- <https://azminecraft.info/>
+- <http://www.miinecraft.org/category/minecraft-mods>
+- <http://24hminecraft.com/>
+- <http://shadersmods.com/>

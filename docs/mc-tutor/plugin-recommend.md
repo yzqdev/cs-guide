@@ -5,9 +5,13 @@ order: 2
 
 - clearlog
 - colorMotd
-- customJoinMessages
-- elevator
-- sunlight
+- [auth-me](https://dev.bukkit.org/projects/authme-reloaded/files)
+- [ancient-gates](https://www.spigotmc.org/resources/ancient-gates.6583/)
+- [beehivetrees](https://www.spigotmc.org/resources/beehivestrees-grow-trees-from-saplings-with-bees.73394/)
+- [customJoinMessages](https://www.spigotmc.org/resources/customjoinandquitmessages.64237/)
+- [console-spam-fix](https://www.spigotmc.org/resources/console-spam-fix.18410/)
+- [simple elevator](https://www.spigotmc.org/resources/simple-elevators-1-8-1-18.44462/)
+- [sunlight](https://www.spigotmc.org/resources/sunlight-server-management-plugin-essentials-update-soon.67733/)
 - TimeIsMoney
 - TitleManager   [链接](https://www.spigotmc.org/resources/titlemanager.1049/) (可以被sunlightcore替代)
 - toggleInventory

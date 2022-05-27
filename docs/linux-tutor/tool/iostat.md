@@ -1,4 +1,4 @@
-# iostat 监视I/O子系统 {#iostat}
+# iostat 监视I/O子系统
 
 iostat是I/O
 statistics（输入/输出统计）的缩写，用来动态监视系统的磁盘操作活动。
@@ -14,16 +14,16 @@ iostat\[参数\]\[时间\]\[次数\]
 
 ## 命令参数
 
--   -C 显示CPU使用情况
--   -d 显示磁盘使用情况
--   -k 以 KB 为单位显示
--   -m 以 M 为单位显示
--   -N 显示磁盘阵列(LVM) 信息
--   -n 显示NFS 使用情况
--   -p\[磁盘\] 显示磁盘和分区的情况
--   -t 显示终端和CPU的信息
--   -x 显示详细信息
--   -V 显示版本信息
+- -C 显示CPU使用情况
+- -d 显示磁盘使用情况
+- -k 以 KB 为单位显示
+- -m 以 M 为单位显示
+- -N 显示磁盘阵列(LVM) 信息
+- -n 显示NFS 使用情况
+- -p\[磁盘\] 显示磁盘和分区的情况
+- -t 显示终端和CPU的信息
+- -x 显示详细信息
+- -V 显示版本信息
 
 ## 工具实例
 
@@ -121,12 +121,12 @@ svctm，说明I/O
     dm-1              5.83         0.46        23.25    2857265  143368744
     dm-2              0.01         0.00         0.02      11965     144644
 
--   tps：该设备每秒的传输次数（Indicate the number of transfers per
+- tps：该设备每秒的传输次数（Indicate the number of transfers per
     second that were issued to the
     device.）。"一次传输"意思是"一次I/O请求"。多个逻辑请求可能会被合并为"一次I/O请求"。"一次传输"请求的大小是未知的。
--   kB_read/s：每秒从设备（drive expressed）读取的数据量；
--   kB_wrtn/s：每秒向设备（drive expressed）写入的数据量；
--   kB_read：读取的总数据量；kB_wrtn：写入的总数量数据量；
+- kB_read/s：每秒从设备（drive expressed）读取的数据量；
+- kB_wrtn/s：每秒向设备（drive expressed）写入的数据量；
+- kB_read：读取的总数据量；kB_wrtn：写入的总数量数据量；
 
 这些单位都为Kilobytes。
 
@@ -143,24 +143,24 @@ svctm，说明I/O
     dm-1              0.00     0.00    0.02    5.82     0.46    23.26     8.13     0.43   74.33   1.30   0.76
     dm-2              0.00     0.00    0.00    0.01     0.00     0.02     8.00     0.00    5.41   3.28   0.00
 
--   rrqm/s： 每秒进行 merge 的读操作数目.即 delta(rmerge)/s
--   wrqm/s： 每秒进行 merge 的写操作数目.即 delta(wmerge)/s
--   r/s： 每秒完成的读 I/O 设备次数.即 delta(rio)/s
--   w/s： 每秒完成的写 I/O 设备次数.即 delta(wio)/s
--   rsec/s： 每秒读扇区数.即 delta(rsect)/s
--   wsec/s： 每秒写扇区数.即 delta(wsect)/s
--   rkB/s： 每秒读K字节数.是 rsect/s
+- rrqm/s： 每秒进行 merge 的读操作数目.即 delta(rmerge)/s
+- wrqm/s： 每秒进行 merge 的写操作数目.即 delta(wmerge)/s
+- r/s： 每秒完成的读 I/O 设备次数.即 delta(rio)/s
+- w/s： 每秒完成的写 I/O 设备次数.即 delta(wio)/s
+- rsec/s： 每秒读扇区数.即 delta(rsect)/s
+- wsec/s： 每秒写扇区数.即 delta(wsect)/s
+- rkB/s： 每秒读K字节数.是 rsect/s
     的一半,因为每扇区大小为512字节.(需要计算)
--   wkB/s： 每秒写K字节数.是 wsect/s 的一半.(需要计算)
--   avgrq-sz：平均每次设备I/O操作的数据大小
+- wkB/s： 每秒写K字节数.是 wsect/s 的一半.(需要计算)
+- avgrq-sz：平均每次设备I/O操作的数据大小
     (扇区).delta(rsect+wsect)/delta(rio+wio)
--   avgqu-sz：平均I/O队列长度.即 delta(aveq)/s/1000
+- avgqu-sz：平均I/O队列长度.即 delta(aveq)/s/1000
     (因为aveq的单位为毫秒).
--   await： 平均每次设备I/O操作的等待时间 (毫秒).即
+- await： 平均每次设备I/O操作的等待时间 (毫秒).即
     delta(ruse+wuse)/delta(rio+wio)
--   svctm： 平均每次设备I/O操作的服务时间 (毫秒).即
+- svctm： 平均每次设备I/O操作的服务时间 (毫秒).即
     delta(use)/delta(rio+wio)
--   %util： 一秒中有百分之多少的时间用于 I/O 操作,或者说一秒中有多少时间
+- %util： 一秒中有百分之多少的时间用于 I/O 操作,或者说一秒中有多少时间
     I/O 队列是非空的，即 delta(use)/s/1000 (因为use的单位为毫秒)
 
 如果 %util 接近

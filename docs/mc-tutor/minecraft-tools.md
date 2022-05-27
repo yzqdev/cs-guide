@@ -24,8 +24,9 @@ Open the command prompt and run `java --module-path <path to unzipped folder>/li
 
 ### amuletmc
 
-[https://www.amuletmc.com](https://www.amuletmc.com)
-nbtstudio  [https://github.com/tryashtar/nbt-studio](https://github.com/tryashtar/nbt-studio)(是NBTExplore的改进版,[https://github.com/jaquadro/NBTExplorer](https://github.com/jaquadro/NBTExplorer))
+- [amuletmc](https://www.amuletmc.com)
+- [nbt-studio](https://github.com/tryashtar/nbt-studio)(是NBTExplore的改进版,
+- [NBTExplorer](https://github.com/jaquadro/NBTExplorer)
 ​
 
 mcaselector 运行的话java8以上需要javafx(下载javafx)
@@ -38,11 +39,12 @@ mcaselector 运行的话java8以上需要javafx(下载javafx)
 ## 指令
 
 [https://minecraft.fandom.com/zh/wiki/%E5%91%BD%E4%BB%A4/give](https://minecraft.fandom.com/zh/wiki/%E5%91%BD%E4%BB%A4/give)
-​
+​```text
 
 /give @s minecraft:diamond_sword{Enchantments:[{id:"minecraft:sharpness",lvl:10}]} 1
 ​
 
+```
 附魔指令 [链接](https://minecraft.fandom.com/zh/wiki/%E9%99%84%E9%AD%94)
 
 ### mc给物品添加指令

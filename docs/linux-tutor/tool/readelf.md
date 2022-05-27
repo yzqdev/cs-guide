@@ -1,4 +1,4 @@
-# readelf elf文件格式分析 {#readelf}
+# readelf elf文件格式分析
 
 这个工具和objdump命令提供的功能类似，但是它显示的信息更为具体，并且它不依赖BFD库(BFD库是一个GNU项目，它的目标就是希望通过一种统一的接口来处理不同的目标文件）；
 
@@ -30,40 +30,40 @@ ELF文件有三种类型：
 
     :   动态库文件，也即 .so 文件
 
--   .text section 里装载了可执行代码；
--   .data section 里面装载了被初始化的数据；
--   .bss section 里面装载了未被初始化的数据；
--   以 .rec 打头的 sections 里面装载了重定位条目；
--   .symtab 或者 .dynsym section 里面装载了符号信息；
--   .strtab 或者 .dynstr section 里面装载了字符串信息；
+- .text section 里装载了可执行代码；
+- .data section 里面装载了被初始化的数据；
+- .bss section 里面装载了未被初始化的数据；
+- 以 .rec 打头的 sections 里面装载了重定位条目；
+- .symtab 或者 .dynsym section 里面装载了符号信息；
+- .strtab 或者 .dynstr section 里面装载了字符串信息；
 
 ## 参数说明
 
--   -a \--all 全部 Equivalent to: -h -l -S -s -r -d -V -A -I
--   -h \--file-header 文件头 Display the ELF file header
--   -l \--program-headers 程序 Display the program headers
--   \--segments An alias for \--program-headers
--   -S \--section-headers 段头 Display the sections\' header
--   \--sections An alias for \--section-headers
--   -e \--headers 全部头 Equivalent to: -h -l -S
--   -s \--syms 符号表 Display the symbol table
--   \--symbols An alias for \--syms
--   -n \--notes 内核注释 Display the core notes (if present)
--   -r \--relocs 重定位 Display the relocations (if present)
--   -u \--unwind Display the unwind info (if present)
--   -d \--dynamic 动态段 Display the dynamic segment (if present)
--   -V \--version-info 版本 Display the version sections (if present)
--   -A \--arch-specific CPU构架 Display architecture specific
+- -a \--all 全部 Equivalent to: -h -l -S -s -r -d -V -A -I
+- -h \--file-header 文件头 Display the ELF file header
+- -l \--program-headers 程序 Display the program headers
+- \--segments An alias for \--program-headers
+- -S \--section-headers 段头 Display the sections\' header
+- \--sections An alias for \--section-headers
+- -e \--headers 全部头 Equivalent to: -h -l -S
+- -s \--syms 符号表 Display the symbol table
+- \--symbols An alias for \--syms
+- -n \--notes 内核注释 Display the core notes (if present)
+- -r \--relocs 重定位 Display the relocations (if present)
+- -u \--unwind Display the unwind info (if present)
+- -d \--dynamic 动态段 Display the dynamic segment (if present)
+- -V \--version-info 版本 Display the version sections (if present)
+- -A \--arch-specific CPU构架 Display architecture specific
     information (if any).
--   -D \--use-dynamic 动态段 Use the dynamic section info when
+- -D \--use-dynamic 动态段 Use the dynamic section info when
     displaying symbols
--   -x \--hex-dump=\<number\> 显示 段内内容Dump the contents of section
+- -x \--hex-dump=\<number\> 显示 段内内容Dump the contents of section
     \<number\>
--   -w\[liaprmfFso\] or
--   -I \--histogram Display histogram of bucket list lengths
--   -W \--wide 宽行输出 Allow output width to exceed 80 characters
--   -H \--help Display this information
--   -v \--version Display the version number of readelf
+- -w\[liaprmfFso\] or
+- -I \--histogram Display histogram of bucket list lengths
+- -W \--wide 宽行输出 Allow output width to exceed 80 characters
+- -H \--help Display this information
+- -v \--version Display the version number of readelf
 
 ## 示例
 
@@ -331,4 +331,4 @@ readelf输出的完整内容:
       GNU                  0x00000014   NT_GNU_BUILD_ID (unique build ID bitstring)
         Build ID: 17fb9651029b6a8543bfafec9eea23bd16454e65
 
-关于ELF文件格式的参考：http://www.cnblogs.com/xmphoenix/archive/2011/10/23/2221879.html
+关于ELF文件格式的参考：<http://www.cnblogs.com/xmphoenix/archive/2011/10/23/2221879.html>

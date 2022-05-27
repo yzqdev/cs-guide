@@ -1,11 +1,12 @@
-# alias
+# 别名alias
 
 ```powershell
 function fluship{
-ipconfig /flushdns
+    ipconfig /flushdns
 }
 function yarnDev{
-yarn&&yarn dev}
+    yarn&&yarn dev
+}
 Set-Alias ip fluship
 Set-Alias y yarnDev
 ```

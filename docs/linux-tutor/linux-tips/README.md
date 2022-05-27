@@ -1,5 +1,5 @@
 
-# linux-tips
+# linux技巧
 
 ## 目录
 

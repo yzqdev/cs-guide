@@ -1,4 +1,7 @@
-# 1.Python基础
+---
+order: 1
+---
+# Python基础
 
 fork 自 [https://github.com/walter201230/Python](https://github.com/walter201230/Python)
 
