@@ -12,6 +12,7 @@ order: 1
 
 - [spigotmc](https://www.spigotmc.org/)
 - [plantMinecraft](https://www.planetminecraft.com/)
+- [https://modrinth.com/](https://modrinth.com/)
 - [curseforge](https://www.curseforge.com/minecraft/modpacks)
 - <https://www.blockminecraft.com/>
 - <https://www.minecraftyard.com/>
