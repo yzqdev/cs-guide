@@ -1,5 +1,10 @@
 # frontend
 
+## basic-css
+
+- [颜色](./basic-css/color.md)
+- [css基础](./basic-css/README.md)
+
 ## basic-js
 
 - [使用canvas](./basic-js/canvas.md)
@@ -19,16 +24,16 @@
 
 ## drawing
 
+- [svg基础](./drawing/1.svg-basics.md)
+- [路径(path)基础](./drawing/2.svg-path.md)
+- [svg文本](./drawing/3.svg-text.md)
+- [viewbox基础](./drawing/3.viewbox.md)
+- [使用代码实现svg](./drawing/4.svg-circle.md)
+- [svg元素](./drawing/5.svg-elements.md)
 - [canvas和svg对比](./drawing/canvas-and-svg.md)
 - [学习svg和canvas](./drawing/README.md)
 - [一个svg钟](./drawing/simple-clock.md)
-- [svg基础](./drawing/svg-basics.md)
-- [使用代码实现svg](./drawing/svg-circle.md)
-- [svg元素](./drawing/svg-elements.md)
-- [路径(path)基础](./drawing/svg-path.md)
-- [svg文本](./drawing/svg-text.md)
 - [坐标转换](./drawing/svg-transform.md)
-- [viewbox基础](./drawing/viewbox.md)
 
 ## electron-tutor
 
@@ -51,7 +56,7 @@
 - [css面试题](./frontend-tips/css-interview.md)
 - [json相关](./frontend-tips/json-parser.md)
 - [前端布局](./frontend-tips/layouts.md)
-- [库列表](./frontend-tips/lib-recommend.md)
+- [ui库列表](./frontend-tips/lib-recommend.md)
 - [前端地图实现](./frontend-tips/maps.md)
 - [模拟数据](./frontend-tips/mock.md)
 - [前端技巧](./frontend-tips/README.md)
@@ -90,19 +95,22 @@
 - [做新媒体必备的43款工具，速来围观](./others/new-media-tools.md)
 - [送给前端开发者的一份新年礼物](./others/new-year-gift.md)
 - [2016](./others/opensource-tools.md)
-- [其他](./others/README.md)
+- [z.其他](./others/README.md)
 - [初级篇](./others/simple-js.md)
 - [还在用微信](./others/transfer-tools.md)
 - [老司机告诉你经常用到的压缩文件都是什么原](./others/zip-principle.md)
 
 ## package-manager
 
-- [安装全局包](./package-manager/faq.md)
-- [常用的包管理](./package-manager/npm-libs.md)
-- [node使用国内镜像](./package-manager/npm-proxy.md)
-- [使用nvm](./package-manager/nvm.md)
+- [命令行工具](./package-manager/cli-tools.md)
+- [常见问题](./package-manager/faq.md)
+- [node的使用](./package-manager/npm-conf.md)
+- [常用的包](./package-manager/npm-libs.md)
+- [使用nvm和fnm](./package-manager/nvm.md)
+- [2.pm2使用教程](./package-manager/pm2.md)
 - [pnpm教程](./package-manager/pnpm.md)
-- [包管理工具](./package-manager/README.md)
+- [1.包管理工具](./package-manager/README.md)
+- [版本号说明](./package-manager/version.md)
 - [工作区使用](./package-manager/workspace.md)
 - [yarn配置](./package-manager/yarn-conf.md)
 
@@ -127,8 +135,8 @@
 - [lessjs配置](./snippets/less-snippets.md)
 - [自己的axios配置](./snippets/my-axios.md)
 - [fetchapi配置](./snippets/my-fetch.md)
-- [一些nodejs代码块](./snippets/node-snippets.md)
-- [代码片段](./snippets/README.md)
+- [nodejs代码块](./snippets/node-snippets.md)
+- [snippets](./snippets/README.md)
 - [vue-ls实现](./snippets/simple-vue-ls.md)
 - [常用代码片段](./snippets/snippets2.md)
 - [vue代码片段](./snippets/vue-snippets.md)
@@ -153,6 +161,8 @@
 
 ## vue-tutor
 
+- [Vue](./vue-tutor/1.vue2-tutor.md)
+- [vue-router教程](./vue-tutor/2.vue-router.md)
 - [代码高亮](./vue-tutor/highlight-code.md)
 - [图标网站](./vue-tutor/icon-site.md)
 - [iconfont](./vue-tutor/iconfont.md)
@@ -160,11 +170,9 @@
 - [quasar教程](./vue-tutor/quasar.md)
 - [vue教程](./vue-tutor/README.md)
 - [富文本编辑器](./vue-tutor/rich-editor.md)
-- [vue-router教程](./vue-tutor/router.md)
 - [vue单html](./vue-tutor/vue-singlehtml.md)
 - [wepack教程](./vue-tutor/vue-use-webpack.md)
 - [vue2使用svgicon](./vue-tutor/vue2-svgicon.md)
-- [Vue](./vue-tutor/vue2-tutor.md)
 - [使用svg插件](./vue-tutor/vue3-svgicon.md)
 - [vue3教程](./vue-tutor/vue3-tips.md)
 
