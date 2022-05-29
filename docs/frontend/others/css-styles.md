@@ -17,7 +17,7 @@ input 的 H5 `placeholder` 属性，很好用，但不能直接改这个文字�
 小Tips: 配合 opacity 属性使用效果更佳哦！
 
 ![偏门却又实用的 CSS 样式](https://p26.toutiaoimg.com/large/470900026ba1fc15e6a3)
-::: demo
+:::normal-demo
 
 ```html
 <input id='place' placeholder='请输入' />
@@ -50,7 +50,7 @@ div {outline: none; //移动浏览器默认的状态线// outline: 5px dotted re
 ```
 
 Contenteditable 设置Element是否可编辑
-::: demo
+:::normal-demo
 
 ```html
 <p contenteditable="true">可编辑</p>

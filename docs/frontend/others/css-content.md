@@ -55,7 +55,7 @@ content 属性可以作用于任意的容器元素中，结合伪元素选择器
 ```
 
 接下来让我们依次来学习 content 属性的各个取值的用法。为了更好的演示 content 属性的各种取值，首先我们在页面中创建一个无序列表：
-::: demo content demo
+:::normal-demo content demo
 
 ```html
  <ul>
@@ -120,7 +120,7 @@ ul li::after {
 **例 3：**为每一个列表项`<li>`标记对设置一个名为 data-li 的属性，并设置不同的内容。可以利用 content 属性的 attr()取值将这个名为 data-li 的属性取值作为内容添加到每一个列表项的前面。
 
 HTML 中无序列表的代码如下所示：
-::: demo
+:::normal-demo
 
 ```html
  <ul>
@@ -156,7 +156,7 @@ ul li::before {
 
 **例 4:** 为每一个列表项的前面添加一个左大括号{，后面添加一个右大括号}。
 
-::: demo
+:::normal-demo
 
 ```html
  <ul>
