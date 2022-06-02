@@ -6,11 +6,11 @@
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.cn,direct
 
-建议不要把gopath设置为go安装文件夹内
+# 建议不要把gopath设置为go安装文件夹内
 go env -w GOPATH=d:\golangmod
 ```
 
-windows最后golang的全局配置会被保存在   ~\AppData\Roaming\go  这个位置
+windows最后golang的全局配置会被保存在   `~\AppData\Roaming\go`这个位置
 GO环境变量配置：
 
 ```shell
