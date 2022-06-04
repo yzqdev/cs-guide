@@ -158,6 +158,3 @@ innobackupex --user=root --password=gitnavi123456 /data/backup/full/201806
 - <https://zhangge.net/5125.html>
 - <https://blog.csdn.net/u012758088/article/details/78643704>
 - <https://coding.imooc.com/class/219.html>
-- <>
-- <>
-- <>

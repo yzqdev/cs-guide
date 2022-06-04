@@ -1,17 +1,4 @@
----
-title: linux基本知识
-category: Configuration
-tag:
-  - linux
-  - Config
-translate_title: basic-knowledge-of-linux
-date: 2017-12-18 09:17:00
-description:
----
-
-标签： linux
-
-Linux 的命令行
+# linux基本知识
 
 ## 第一章
 
@@ -57,11 +44,13 @@ LANGUAGE=”en_US:en”
 
 2、reboot 即可
 locale 命令可以列出当前系统所用的所有语言设置
+
 ```
 Sudo apt install
 Sudo apt install
 sudo apt
 ```
+
 apt 1.4 (amd64)
 用法： apt [选项] 命令
 
@@ -89,6 +78,7 @@ apt 1.4 (amd64)
 好玩的软件 oneko,cmatrix,
 
 软件安装,
+
 ```
 gdebi ,gedit ,cinnamon ,mate,xfce,unity,gnome-fontviewer,或者 font-manager,gnome-ternimal,firefox,screefetch,file-roller(压缩包管理器),tree,transmission(迅雷),gnome-software 软件更新器,gnome-packagekit 软件包 unbuntu-desktop, Software-properties-gtk(软件源,ppa 更新) Gnome-software (软件商店) Gnome-systemmoniter(任务管理器) FTP/SFTP 客户端: 声音视频:audacity,vlc,rhythmbox 图像处理:gimp 抓图工具:shutter gnome-web-photo Mypaint,darktable,inkscape,dia,shotwell, 录屏工具:gek-recordmydesktop 视频后期处理:openshot
 ```
@@ -96,11 +86,12 @@ gdebi ,gedit ,cinnamon ,mate,xfce,unity,gnome-fontviewer,或者 font-manager,gno
 搜狗输入法安装,安装 gdebi
 进入搜狗输入法目录输入命令行: `sudo gdebi sogoupinyin_2.1.0.0086_amd64.deb`
 安装 cinnamon :`sudo apt install cinnamon`
-然后运行` cinnamon –replace`
+然后运行`cinnamon –replace`
 运行图形化命令,gksu
 Filezilla:`sudo aptitude install –y filezilla`
 
 安装主题:
+
 1. elementary os 的主题
 
 ```
@@ -119,11 +110,13 @@ sudo apt-get install zorinos-themes
 ```
 
 在终端输入以下命令安装图标主题：
+
 ```
 sudo add-apt-repository ppa:noobslab/icons2
 sudo apt-get update
 sudo apt-get install zorinos-icons
 ```
+
 安装或使用调节工具：如 Unity Tweak Tool、Gnome-tweak-tool 或者 Ubuntu-Tweak 来启用主题和图标。
 
 ## 第二章 linux 的文件系统

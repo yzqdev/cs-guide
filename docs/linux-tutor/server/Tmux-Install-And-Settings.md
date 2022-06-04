@@ -102,5 +102,3 @@
 - <https://gist.github.com/ryerh/14b7c24dfd623ef8edc7>
 - <http://cenalulu.github.io/linux/tmux/>
 - <http://fishcried.com/2014-09-15/tmux/>
-- <>
-- <>

@@ -45,8 +45,8 @@ System.out.println(Arrays.deepToString(strArray));
 *//输出: [John, Mary, Bob]
 ```
 
-Arrays.deepToString与Arrays.toString不同之处在于，Arrays.deepToString更适合打印多维数组<br>
-比如： <br>
+Arrays.deepToString与Arrays.toString不同之处在于，Arrays.deepToString更适合打印多维数组
+比如：  
 
 ```java
 String[][] b = new String[3][4];

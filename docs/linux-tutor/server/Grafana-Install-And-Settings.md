@@ -1,10 +1,8 @@
 # Grafana 安装和配置
 
-
 ## 对于版本
 
 - [支持的 Elasticsearch 版本](http://docs.grafana.org/features/datasources/elasticsearch/#elasticsearch-version)
-
 
 ## Grafana Docker 安装
 
@@ -30,6 +28,7 @@ docker exec -it grafana /bin/bash
 admin_user = admin
 admin_password = admin
 ```
+
 ----------------------------------------------------------------------------------------------
 
 ## Grafana 安装
@@ -45,7 +44,6 @@ sudo yum install -y initscripts fontconfig urw-fonts
 wget https://dl.grafana.com/oss/release/grafana-5.4.0-1.x86_64.rpm 
 sudo yum localinstall -y grafana-5.4.0-1.x86_64.rpm 
 ```
-
 
 - 启动 Grafana 服务（默认是不启动的）
 
@@ -66,19 +64,19 @@ sudo systemctl status grafana-server
 
 - 官网指导：<http://docs.grafana.org/installation/configuration/>
 - 安装包默认安装后的一些路径
-	- 二进制文件：`/usr/sbin/grafana-server`
-	- init.d 脚本：`/etc/init.d/grafana-server`
-	- 配置文件：`/etc/grafana/grafana.ini`
-	- 日志文件：`/var/log/grafana/grafana.log`
-	- 插件目录是：`/var/lib/grafana/plugins`
-	- 默认配置的 sqlite3 数据库：`/var/lib/grafana/grafana.db`
+  - 二进制文件：`/usr/sbin/grafana-server`
+  - init.d 脚本：`/etc/init.d/grafana-server`
+  - 配置文件：`/etc/grafana/grafana.ini`
+  - 日志文件：`/var/log/grafana/grafana.log`
+  - 插件目录是：`/var/lib/grafana/plugins`
+  - 默认配置的 sqlite3 数据库：`/var/lib/grafana/grafana.db`
 - 最重要的配置文件：`vim /etc/grafana/grafana.ini`
-	- 可以修改用户名和密码
-	- 端口
-	- 数据路径
-	- 数据库配置
-	- 第三方认证
-	- Session 有效期
+  - 可以修改用户名和密码
+  - 端口
+  - 数据路径
+  - 数据库配置
+  - 第三方认证
+  - Session 有效期
 - 添加数据源：<http://192.168.0.105:3000/datasources/new>
 - 添加组织：<http://192.168.0.105:3000/admin/orgs>
 - 添加用户：<http://192.168.0.105:3000/org/users>
@@ -91,36 +89,17 @@ sudo systemctl status grafana-server
 - dashboar仓库地址：<https://grafana.com/dashboards>
 - 本地可以通过输入 dashboard id 导入别人模板
 - 打开：<http://192.168.0.105:3000/dashboard/import>
-    - 输入对应的 id，点击 Load 即可
-
-----------------------------------------------------------------------------------------------
+  - 输入对应的 id，点击 Load 即可
 
 ## 数据源
 
 #### Elasticsearch
 
 使用：
+
 - <https://cloud.tencent.com/info/68052367407c3bf21cc10c0263027f3f.html>
 - <http://docs.grafana.org/features/datasources/elasticsearch/#using-elasticsearch-in-grafana>
-- <>
-- <>
-- <>
-- <>
-
-
-----------------------------------------------------------------------------------------------
-
 
 ## 其他资料
 
 - <https://blog.csdn.net/BianChengNinHao/article/details/80985302>
-- <>
-- <>
-- <>
-- <>
-- <>
-- <>
-- <>
-- <>
-- <>
-

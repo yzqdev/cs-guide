@@ -1,15 +1,3 @@
----
-title: web前端中的居中（八种方法）
-category: '前端, 编程'
-tag:
-  - 前端
-  - 优化
-  - 编程
-  - 技巧
-translate_title: centering-in-the-web-front-end-eight-methods
-date: 2017-09-13 19:17:00
-description:
----
 
 # web前端中的居中（八种方法）
 

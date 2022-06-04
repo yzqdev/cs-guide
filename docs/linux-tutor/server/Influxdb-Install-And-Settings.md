@@ -1,13 +1,10 @@
 # Influxdb 安装和配置
 
-
-
 ## Influxdb Docker 安装
 
 - 官网库：<https://docs.docker.com/samples/library/influxdb>
 
-
-```
+```shell
 docker run -d --name influxdb \
 -p 8086:8086 -p 8083:8083 \
 -e INFLUXDB_HTTP_AUTH_ENABLED=true \
@@ -16,10 +13,9 @@ docker run -d --name influxdb \
 -v /Users/gitnavi/docker_data/influxdb/data:/var/lib/influxdb influxdb
 ```
 
-
 - 进入终端交互：
 
-```
+```shell
 docker exec -it influxdb /bin/bash
 
 输入：influx，开始终端交互
@@ -42,29 +38,6 @@ create database demo
 create user "myuser" with password '123456' with all privileges
 ```
 
-
-----------------------------------------------------------------------------------------------
-
-## 配置
-
-
-
-----------------------------------------------------------------------------------------------
-
-
-
-----------------------------------------------------------------------------------------------
-
-
 ## 其他资料
 
 - <https://www.cnblogs.com/woshimrf/p/docker-influxdb.html>
-- <>
-- <>
-- <>
-- <>
-- <>
-- <>
-- <>
-- <>
-

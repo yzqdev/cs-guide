@@ -1,21 +1,5 @@
----
-title: js开发工具大全
-category:
-  - 编程
-  - 前端
-tag:
-  - 电脑
-  - 编程
-  - 前端
-  - js
-translate_title: js-development-tools
-date: 2017-12-26 15:17:00
-description:
----
 
-标签: js,前端
-
-## js 开发工具
+# js 开发工具
 
 # JavaScript 开发工具大全
 
@@ -58,9 +42,9 @@ IDE & 编辑器
 
 * **Swagger**提供了一系列规则用于描述 API。使用 Swagger，可以创建清晰的文档，并且自动化 API 相关的操作(例如功能测试)。
 * **JSDoc**可以根据 javascript 文件中注释信息，生成 JavaScript 应用程序或库、模块的 API 文档。JSDoc 可以用于管理大型项目。
-* **jGrouseDoc **是一个开源工具，可根据 JavaScript 注释生成类似 Jaavdoc 的源码文档。它不仅可以为变量和函数生成文档，还可以为模块等其他元素生成文档。
+* **jGrouseDoc**是一个开源工具，可根据 JavaScript 注释生成类似 Jaavdoc 的源码文档。它不仅可以为变量和函数生成文档，还可以为模块等其他元素生成文档。
 * **YUIDoc**基于 Nodejs，可以将文档中的注释生成 API 文档。它使用类似于 Javadoc 与 Doxygen 的语法，并且支持实时预览，支持各种语言，并且支持标记语言。
-* **Docco **是免费的文档工具，由 Literate CoffeeScript 编写。它将代码中的注释生成 HTML 文档。Docco 并不限于 JavaScript，同时支持 Python, Ruby, Clojure 等语言。
+* **Docco**是免费的文档工具，由 Literate CoffeeScript 编写。它将代码中的注释生成 HTML 文档。Docco 并不限于 JavaScript，同时支持 Python, Ruby, Clojure 等语言。
 
 测试
 

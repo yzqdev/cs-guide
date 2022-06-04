@@ -7,9 +7,9 @@
 
 - <https://notes.diguage.com/mysql/>
 - <https://mp.weixin.qq.com/s/Wc6Gw6S5xMy2DhTCrogxVQ>
-- <>
-- <>
-- <>
+
+
+
 
 
 ## 服务状态查询
@@ -94,9 +94,9 @@
 - 使用 EXPLAIN 进行 SQL 语句分析：`EXPLAIN SELECT * FROM sys_user;`，效果如下：
 
 ```
-id|select_type|table   |partitions|type|possible_keys|key|key_len|ref|rows|filtered|Extra|
---|-----------|--------|----------|----|-------------|---|-------|---|----|--------|-----|
- 1|SIMPLE     |sys_user|          |ALL |             |   |       |   |   2|     100|     |
+| id  | select_type | table    | partitions | type | possible_keys | key | key_len | ref | rows | filtered | Extra |
+| --- | ----------- | -------- | ---------- | ---- | ------------- | --- | ------- | --- | ---- | -------- | ----- |
+| 1   | SIMPLE      | sys_user |            | ALL  |               |     |         |     | 2    | 100      |       |
 ```
 
 - 简单描述
@@ -293,8 +293,3 @@ select * from table lock in share mode;
 - <https://www.jianshu.com/p/1ab3cd5551b9>
 - <http://blog.brucefeng.info/post/mysql-index-query?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io>
 - <https://juejin.im/book/5bffcbc9f265da614b11b731>
-- <>
-- <>
-- <>
-- <>
-- <>

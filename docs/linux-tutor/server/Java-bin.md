@@ -9,18 +9,18 @@
 ![image.png](https://upload-images.jianshu.io/upload_images/12159-f8cdb04243ea36e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - VM 栈（JVM 虚拟机栈）
-	- 是线程私有的，它的生命周期和线程相同。它描述的是 Java 方法执行的内存模式。
+  - 是线程私有的，它的生命周期和线程相同。它描述的是 Java 方法执行的内存模式。
 - Java 堆区（Heap）
-	- 是 Java 虚拟机所管理的内存中最大的一块。是被所有线程共享的一块内存区域，在虚拟机启动时候创建。用于存放对象实例。
+  - 是 Java 虚拟机所管理的内存中最大的一块。是被所有线程共享的一块内存区域，在虚拟机启动时候创建。用于存放对象实例。
 - 方法区（Method Area）
-	- 也是各个线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。
-	- 虽然在 JVM 规范上是描述为堆的一个逻辑部分，但是它有一个别名：Non-Heap（非堆），独立于堆区之外的。JDK8 它是：Metaspace 区
-		- Metaspace：主要存放：Class、Package、Method、Field、字节码、常量池、符号引用等等
-	- 方法区里面有一个：运行时常量池（Run-Time Constant Pool），用于存放编译期生成的各种字面量和符号应用，在类加载后进入该池存放。
+  - 也是各个线程共享的内存区域，用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。
+  - 虽然在 JVM 规范上是描述为堆的一个逻辑部分，但是它有一个别名：Non-Heap（非堆），独立于堆区之外的。JDK8 它是：Metaspace 区
+    - Metaspace：主要存放：Class、Package、Method、Field、字节码、常量池、符号引用等等
+  - 方法区里面有一个：运行时常量池（Run-Time Constant Pool），用于存放编译期生成的各种字面量和符号应用，在类加载后进入该池存放。
 - 本地方法栈（Native Method Stacks）
-	- 与虚拟机栈所发挥的作用类似，之间的区别：
-		- 虚拟机栈是为虚拟机执行 Java 方法（也就是字节码）服务
-		- 本地方法栈是为了虚拟机使用到 Native 方法服务。
+  - 与虚拟机栈所发挥的作用类似，之间的区别：
+    - 虚拟机栈是为虚拟机执行 Java 方法（也就是字节码）服务
+    - 本地方法栈是为了虚拟机使用到 Native 方法服务。
 
 #### JDK8 真实内存结构（HotSpot）
 
@@ -47,9 +47,6 @@
 
 - [从实际案例聊聊Java应用的GC优化](https://tech.meituan.com/jvm_optimize.html)
 
-
--------------------------------------------------------------
-
 ## 频繁GC问题或内存溢出排查流程
 
 - 使用 `jps`，查看线程ID，假设 PID 为 12011
@@ -64,9 +61,6 @@
 - 使用 `jps`查看线程ID，假设 PID 为 12011
 - 使用 `jstack 12011` 查看线程情况
 
--------------------------------------------------------------------
-
-
 ## jps
 
 - 显示当前所有 java 进程 pid 的命令
@@ -78,8 +72,6 @@
 
 - `jps -v` 跟：`ps -ef|grep java` 主要输出内容一样
 - `12011` 是我这边的一个 java 应用的 pid，下面的其他命令都是自己与此应用进行分析的
-
--------------------------------------------------------------------
 
 ## jstat（重要）
 
@@ -105,28 +97,28 @@
 ```
 
 - 列含义说明：
-	- **34944.0 表示 34M 大小，235729.8 表示 235M **
-	- **SO + S1 + Eden = young 区**
-		-S0C 年轻代中第一个survivor（幸存区）的容量 (字节) 
-		-S1C 年轻代中第二个survivor（幸存区）的容量 (字节) 
-		-S0U 年轻代中第一个survivor（幸存区）目前已使用空间 (字节) （字母 U 表示 used）
-		-S1U 年轻代中第二个survivor（幸存区）目前已使用空间 (字节) （字母 U 表示 used）
-		-EC 年轻代中Eden（伊甸园）的容量 (字节) 
-		-EU 年轻代中Eden（伊甸园）目前已使用空间 (字节) 
-	- **OC + OU = old 区**
-		-OC Old代的容量 (字节) 
-		-OU Old代目前已使用空间 (字节) 
-	- **MC + MU = Metaspace 区**
-		- MC 方法区大小
-		- MU 方法区使用大小
-	- 其他
-		- CCSC 压缩类空间大小
-		- CCSU 压缩类空间使用大小
-		- YGC 年轻代垃圾回收次数
-		- YGCT 年轻代垃圾回收消耗时间
-		- FGC 老年代垃圾回收次数
-		- FGCT 老年代垃圾回收消耗时间
-		- GCT 垃圾回收消耗总时间
+  - **34944.0 表示 34M 大小，235729.8 表示 235M**
+  - **SO + S1 + Eden = young 区**
+  -S0C 年轻代中第一个survivor（幸存区）的容量 (字节)
+  -S1C 年轻代中第二个survivor（幸存区）的容量 (字节)
+  -S0U 年轻代中第一个survivor（幸存区）目前已使用空间 (字节) （字母 U 表示 used）
+  -S1U 年轻代中第二个survivor（幸存区）目前已使用空间 (字节) （字母 U 表示 used）
+  -EC 年轻代中Eden（伊甸园）的容量 (字节)
+  -EU 年轻代中Eden（伊甸园）目前已使用空间 (字节)
+  - **OC + OU = old 区**
+  -OC Old代的容量 (字节)
+  -OU Old代目前已使用空间 (字节)
+  - **MC + MU = Metaspace 区**
+    - MC 方法区大小
+    - MU 方法区使用大小
+  - 其他
+    - CCSC 压缩类空间大小
+    - CCSU 压缩类空间使用大小
+    - YGC 年轻代垃圾回收次数
+    - YGCT 年轻代垃圾回收消耗时间
+    - FGC 老年代垃圾回收次数
+    - FGCT 老年代垃圾回收消耗时间
+    - GCT 垃圾回收消耗总时间
 
 #### 堆内存统计
 
@@ -147,28 +139,28 @@
 ```
 
 - 列含义说明：
-	- NGCMN 年轻代(young)中初始化(最小)的大小(字节)
-	- NGCMX 年轻代(young)的最大容量 (字节) 
-	- NGC 年轻代(young)中当前的容量 (字节) 
-	- S0C 年轻代中第一个survivor（幸存区）的容量 (字节) 
-	- S1C 年轻代中第二个survivor（幸存区）的容量 (字节) 
-	- EC 年轻代中Eden（伊甸园）的容量 (字节) 
-	- OGCMN old代中初始化(最小)的大小 (字节) 
-	- OGCMX old代的最大容量(字节) 
-	- OGC old代当前新生成的容量 (字节) 
-	- OC Old代的容量 (字节) 
-	- MCMN 最小元数据容量
-	- MCMX 最大元数据容量
-	- MC 当前元数据空间大小
-	- CCSMN 最小压缩类空间大小
-	- CCSMX 最大压缩类空间大小
-	- CCSC 当前压缩类空间大小
-	- YGC 年轻代gc次数，从应用程序启动到采样时年轻代中gc次数 
-	- FGC 老年代GC次数，从应用程序启动到采样时old代(全gc = Full gc次数)gc次数
+  - NGCMN 年轻代(young)中初始化(最小)的大小(字节)
+  - NGCMX 年轻代(young)的最大容量 (字节)
+  - NGC 年轻代(young)中当前的容量 (字节)
+  - S0C 年轻代中第一个survivor（幸存区）的容量 (字节)
+  - S1C 年轻代中第二个survivor（幸存区）的容量 (字节)
+  - EC 年轻代中Eden（伊甸园）的容量 (字节)
+  - OGCMN old代中初始化(最小)的大小 (字节)
+  - OGCMX old代的最大容量(字节)
+  - OGC old代当前新生成的容量 (字节)
+  - OC Old代的容量 (字节)
+  - MCMN 最小元数据容量
+  - MCMX 最大元数据容量
+  - MC 当前元数据空间大小
+  - CCSMN 最小压缩类空间大小
+  - CCSMX 最大压缩类空间大小
+  - CCSC 当前压缩类空间大小
+  - YGC 年轻代gc次数，从应用程序启动到采样时年轻代中gc次数
+  - FGC 老年代GC次数，从应用程序启动到采样时old代(全gc = Full gc次数)gc次数
 - 更多其他参数的使用可以看：
-	- [Java命令学习系列（四）——jstat](https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=402330276&idx=2&sn=58117de92512f83090d0a9de738eeacd&scene=21#wechat_redirect)
-	- [java高分局之jstat命令使用](https://blog.csdn.net/maosijunzi/article/details/46049117)
-	- [ jstat命令查看jvm的GC情况 （以Linux为例）](https://www.cnblogs.com/yjd_hycf_space/p/7755633.html)
+  - [Java命令学习系列（四）——jstat](https://mp.weixin.qq.com/s?__biz=MzI3NzE0NjcwMg==&mid=402330276&idx=2&sn=58117de92512f83090d0a9de738eeacd&scene=21#wechat_redirect)
+  - [java高分局之jstat命令使用](https://blog.csdn.net/maosijunzi/article/details/46049117)
+  - [jstat命令查看jvm的GC情况 （以Linux为例）](https://www.cnblogs.com/yjd_hycf_space/p/7755633.html)
 
 #### gcutil
 
@@ -204,20 +196,15 @@ S0     S1     E      O      M     CCS    YGC     YGCT    FGC    FGCT     GCT
 - 在 YGC 之前 年轻代 = eden + S1；YGC 之后，年轻代 = eden + S0。
 - 如果看到 YGC 之后 old 区空间没变，表示此次 YGC，没有对象晋升到 old 区
 
-
-
--------------------------------------------------------------------
-
-
 ## jmap
 
 - 生成堆转储快照（heap dump）
-	- heap dump 主要记录了在某一时刻JVM堆中对象使用的情况，即某个时刻JVM堆的快照，是一个二进制文件，主要用于分析哪些对象占用了太对的堆空间，从而发现导致内存泄漏的对象。
+  - heap dump 主要记录了在某一时刻JVM堆中对象使用的情况，即某个时刻JVM堆的快照，是一个二进制文件，主要用于分析哪些对象占用了太对的堆空间，从而发现导致内存泄漏的对象。
 - 堆Dump是反应Java堆使用情况的内存镜像，其中主要包括系统信息、虚拟机属性、完整的线程Dump、所有类和对象的状态等。 一般，在内存不足、GC异常等情况下，我们就会怀疑有内存泄露。这个时候我们就可以制作堆Dump来查看具体情况，分析原因。
 - 常见内存错误：
-	- outOfMemoryError 年老代内存不足。
-	- outOfMemoryError:PermGen Space 永久代内存不足。
-	- outOfMemoryError:GC overhead limit exceed 垃圾回收时间占用系统运行时间的98%或以上。
+  - outOfMemoryError 年老代内存不足。
+  - outOfMemoryError:PermGen Space 永久代内存不足。
+  - outOfMemoryError:GC overhead limit exceed 垃圾回收时间占用系统运行时间的98%或以上。
 - `jmap -heap 12011`，查看指定进程堆（heap）使用情况
 
 ```
@@ -273,11 +260,10 @@ tenured generation:
 7067 interned Strings occupying 596016 bytes.
 ```
 
-
 - `jmap -histo 12011`，查看堆内存(histogram)中的对象数量及大小（下面 demo 内容太多，所以选取其中一部分）
-	- `jmap -histo:live 12011`，查看堆内存(histogram)中的对象数量及大小，但是JVM会先触发gc，然后再统计信息
-	- `jmap -dump:format=b,file=/opt/myHeapDumpFileName 12011`，将内存使用的详细情况输出到文件，之后一般使用其他工具进行分析。
-	- 生成的文件可以用一些可视化工具（Eclipse Memory Analyzer 、IBM HeapAnalyzer）来查看
+  - `jmap -histo:live 12011`，查看堆内存(histogram)中的对象数量及大小，但是JVM会先触发gc，然后再统计信息
+  - `jmap -dump:format=b,file=/opt/myHeapDumpFileName 12011`，将内存使用的详细情况输出到文件，之后一般使用其他工具进行分析。
+  - 生成的文件可以用一些可视化工具（Eclipse Memory Analyzer 、IBM HeapAnalyzer）来查看
 
 ```
 编号              个数          字节   类名
@@ -311,29 +297,26 @@ tenured generation:
  535:             1            168  [[Ljava.math.BigInteger;
 ```
 
--------------------------------------------------------------------
-
-
 ## jstack（线程快照 -- CPU 负载高）
 
 - jstack命令主要用来查看Java线程的调用堆栈的，可以用来分析线程问题（如死锁）
 - jstack用于生成java虚拟机当前时刻的 **线程快照（thread dump）**。主要记录JVM在某一时刻各个线程执行的情况，以栈的形式显示，是一个文本文件。
-- 线程快照是当前java虚拟机内每一条线程正在执行的方法堆栈的集合，生成线程快照的主要目的是定位线程出现长时间停顿的原因，如线程间死锁、死循环、请求外部资源导致的长时间等待等。 
-	- 线程出现停顿的时候通过jstack来查看各个线程的调用堆栈，就可以知道没有响应的线程到底在后台做什么事情，或者等待什么资源。 
-	- 如果java程序崩溃生成core文件，jstack工具可以用来获得core文件的java stack和native stack的信息，从而可以轻松地知道java程序是如何崩溃和在程序何处发生问题。
-	- 另外，jstack工具还可以附属到正在运行的java程序中，看到当时运行的java程序的java stack和native stack的信息, 如果现在运行的java程序呈现hung的状态，jstack是非常有用的。
+- 线程快照是当前java虚拟机内每一条线程正在执行的方法堆栈的集合，生成线程快照的主要目的是定位线程出现长时间停顿的原因，如线程间死锁、死循环、请求外部资源导致的长时间等待等。
+  - 线程出现停顿的时候通过jstack来查看各个线程的调用堆栈，就可以知道没有响应的线程到底在后台做什么事情，或者等待什么资源。
+  - 如果java程序崩溃生成core文件，jstack工具可以用来获得core文件的java stack和native stack的信息，从而可以轻松地知道java程序是如何崩溃和在程序何处发生问题。
+  - 另外，jstack工具还可以附属到正在运行的java程序中，看到当时运行的java程序的java stack和native stack的信息, 如果现在运行的java程序呈现hung的状态，jstack是非常有用的。
 - `jstack 12011`，查看线程情况
 - `jstack -l 12011`，除堆栈外，显示关于锁的附件信息
 - 导出文件：`jstack -l PID >> /opt/jstack-tomcat1-20180917.log`
-	- 把占用 CPU 资源高的线程十进制的 PID 转换成 16 进制：`printf "%x\n" PID`，比如：`printf "%x\n" 12401` 得到结果是：`3071`
-	- 在刚刚输出的那个 log 文件中搜索：`3071`，可以找到：`nid=0x3071`
+  - 把占用 CPU 资源高的线程十进制的 PID 转换成 16 进制：`printf "%x\n" PID`，比如：`printf "%x\n" 12401` 得到结果是：`3071`
+  - 在刚刚输出的那个 log 文件中搜索：`3071`，可以找到：`nid=0x3071`
 - 在线看某个线程 PID 的情况：`jstack 进程ID | grep 十六进制线程ID -A 10`
-	- `-A 10` 参数用来指定显示行数，否则只会显示一行信息
+  - `-A 10` 参数用来指定显示行数，否则只会显示一行信息
 - 下面 demo 内容太多，所以选取其中一部分结构：
 - 常见线程状态
-	- Runnable：正在运行的线程
-	- Sleeping：休眠的线程
-	- Waiting：等待的线程
+  - Runnable：正在运行的线程
+  - Sleeping：休眠的线程
+  - Waiting：等待的线程
 
 ```
 2018-03-08 14:28:13
@@ -344,32 +327,32 @@ Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.151-b12 mixed mode):
 
 "Log4j2-AsyncLoggerConfig-1" #16 daemon prio=5 os_prio=0 tid=0x00007f8a5c48d800 nid=0x2f0c waiting on condition [0x00007f8a4cbfe000]
    java.lang.Thread.State: WAITING (parking)
-	at sun.misc.Unsafe.park(Native Method)
-	- parking to wait for  <0x00000007155e4850> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
-	at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
-	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
-	at com.lmax.disruptor.BlockingWaitStrategy.waitFor(BlockingWaitStrategy.java:45)
-	at com.lmax.disruptor.ProcessingSequenceBarrier.waitFor(ProcessingSequenceBarrier.java:56)
-	at com.lmax.disruptor.BatchEventProcessor.run(BatchEventProcessor.java:124)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
-	at java.lang.Thread.run(Thread.java:748)
+ at sun.misc.Unsafe.park(Native Method)
+ - parking to wait for  <0x00000007155e4850> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+ at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+ at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+ at com.lmax.disruptor.BlockingWaitStrategy.waitFor(BlockingWaitStrategy.java:45)
+ at com.lmax.disruptor.ProcessingSequenceBarrier.waitFor(ProcessingSequenceBarrier.java:56)
+ at com.lmax.disruptor.BatchEventProcessor.run(BatchEventProcessor.java:124)
+ at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+ at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+ at java.lang.Thread.run(Thread.java:748)
 
 "Wrapper-Control-Event-Monitor" #13 daemon prio=5 os_prio=0 tid=0x00007f8a5c34e000 nid=0x2efc waiting on condition [0x00007f8a60314000]
    java.lang.Thread.State: TIMED_WAITING (sleeping)
-	at java.lang.Thread.sleep(Native Method)
-	at org.tanukisoftware.wrapper.WrapperManager$3.run(WrapperManager.java:731)
+ at java.lang.Thread.sleep(Native Method)
+ at org.tanukisoftware.wrapper.WrapperManager$3.run(WrapperManager.java:731)
 
 "RMI TCP Accept-0" #11 daemon prio=5 os_prio=0 tid=0x00007f8a5c32f800 nid=0x2efa runnable [0x00007f8a60619000]
    java.lang.Thread.State: RUNNABLE
-	at java.net.PlainSocketImpl.socketAccept(Native Method)
-	at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
-	at java.net.ServerSocket.implAccept(ServerSocket.java:545)
-	at java.net.ServerSocket.accept(ServerSocket.java:513)
-	at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:52)
-	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
-	at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
-	at java.lang.Thread.run(Thread.java:748)
+ at java.net.PlainSocketImpl.socketAccept(Native Method)
+ at java.net.AbstractPlainSocketImpl.accept(AbstractPlainSocketImpl.java:409)
+ at java.net.ServerSocket.implAccept(ServerSocket.java:545)
+ at java.net.ServerSocket.accept(ServerSocket.java:513)
+ at sun.management.jmxremote.LocalRMIServerSocketFactory$1.accept(LocalRMIServerSocketFactory.java:52)
+ at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.executeAcceptLoop(TCPTransport.java:400)
+ at sun.rmi.transport.tcp.TCPTransport$AcceptLoop.run(TCPTransport.java:372)
+ at java.lang.Thread.run(Thread.java:748)
 
 "Service Thread" #7 daemon prio=9 os_prio=0 tid=0x00007f8a5c0b4800 nid=0x2ef3 runnable [0x0000000000000000]
    java.lang.Thread.State: RUNNABLE
@@ -385,12 +368,12 @@ Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.151-b12 mixed mode):
 
 "Finalizer" #3 daemon prio=8 os_prio=0 tid=0x00007f8a5c07b000 nid=0x2eef in Object.wait() [0x00007f8a614f4000]
    java.lang.Thread.State: WAITING (on object monitor)
-	at java.lang.Object.wait(Native Method)
-	- waiting on <0x00000007155e5ba8> (a java.lang.ref.ReferenceQueue$Lock)
-	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
-	- locked <0x00000007155e5ba8> (a java.lang.ref.ReferenceQueue$Lock)
-	at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:164)
-	at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:209)
+ at java.lang.Object.wait(Native Method)
+ - waiting on <0x00000007155e5ba8> (a java.lang.ref.ReferenceQueue$Lock)
+ at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+ - locked <0x00000007155e5ba8> (a java.lang.ref.ReferenceQueue$Lock)
+ at java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:164)
+ at java.lang.ref.Finalizer$FinalizerThread.run(Finalizer.java:209)
 
 "VM Thread" os_prio=0 tid=0x00007f8a5c06e800 nid=0x2eed runnable 
 
@@ -398,7 +381,6 @@ Full thread dump Java HotSpot(TM) 64-Bit Server VM (25.151-b12 mixed mode):
 
 JNI global references: 281
 ```
-
 
 ## 资料
 

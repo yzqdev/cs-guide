@@ -1,17 +1,3 @@
----
-title: 用手机这么久 你了解关于手机选项吗?
-category:
-  - 数码
-  - 技术
-tag:
-  - 数码
-  - 手机
-  - 操作系统
-translate_title: use-mobile-phone-for-so-long
-date: 2017-12-27 09:17:00
-description:
----
-
 
 # 用手机这么久 你了解关于手机选项吗?
 

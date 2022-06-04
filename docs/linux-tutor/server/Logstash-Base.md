@@ -508,4 +508,3 @@ output {
 ## 资料
 
 - <https://liang178.github.io/2016/08/11/elk+rabbitmq/>
-- <>

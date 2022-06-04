@@ -1,9 +1,11 @@
 # 如何使用Java创建一个内存泄漏的程序
 
-## 问题：
+## 问题
+
 我在一个面试的过程中被问到如何使用Java创建一个内存泄漏的程序。毫无疑问地说，我当时哑口无言，根本不知道如何开始编码。
 
 ## 解答
+
 在Java下有一个很好的方法来创建内存泄漏程序--通过使得对象不可访问但任然存储在内存中。
 
 1. 应用程序创建一个长期运行的线程A 或者 使用一个线程池来加快泄漏的速度。
@@ -25,8 +27,8 @@
 
 ******************************下方为个人理解************************************
 
-通过一个简单的图来描述上述关系：<br>
-ThreadLocal.obj ---> B.obj ---> B.class <--> ClassLoader.obj<br>
+通过一个简单的图来描述上述关系：  
+ThreadLocal.obj ---> B.obj ---> B.class <--> ClassLoader.obj  
 注：上图的\*.obj表示\*类的一个实例对象，B.class表示类B的Class对象
 
 ******************************上方为个人理解************************************
@@ -34,8 +36,8 @@ ThreadLocal.obj ---> B.obj ---> B.class <--> ClassLoader.obj<br>
 这个模式的一个变形：如果频繁的重新部署那些可能使用ThreadLocals的应用，应用容器（例如Tomcat）就会像筛子一样泄漏内存。
 因为应用容器使用上述所说的线程，每次重新部署应用时，应用容器都会使用一个新的ClassLoader。
 
-具体代码可以参考：https://gist.github.com/dpryden/b2bb29ee2d146901b4ae
+具体代码可以参考：<https://gist.github.com/dpryden/b2bb29ee2d146901b4ae>
 
-参考：http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html
+参考：<http://frankkieviet.blogspot.com/2006/10/classloader-leaks-dreaded-permgen-space.html>
 
-stackoverflow原址：http://stackoverflow.com/questions/6470651/creating-a-memory-leak-with-java
+stackoverflow原址：<http://stackoverflow.com/questions/6470651/creating-a-memory-leak-with-java>

@@ -507,30 +507,9 @@ Master选举确保kube-scheduler和kube-controller-manager高可用
 ## 资料
 
 - [如何更“优雅”地部署Kubernetes集群](https://juejin.im/entry/5a03f98d6fb9a04524054516)
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- 
+- 
+- 
+- 
+- 
+- 

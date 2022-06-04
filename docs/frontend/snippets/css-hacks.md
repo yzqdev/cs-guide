@@ -1,17 +1,3 @@
----
-title: 你以为 CSS 只是个简单的布局？
-category: '前端, css'
-tag:
-  ### 前端
-  ### css
-  ### 设计
-translate_title: web-frontend-learning-resource-sharing
-date: 2017-06-16 19:17:00
-description:
----
-
-
-
 
 ## CSS3 奇思妙想
 

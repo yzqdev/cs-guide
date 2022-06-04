@@ -1,7 +1,6 @@
- 
- 
+
 # Kubernetes 部署
- 
+
 ## 环境说明
 
 - CentOS 7.4
@@ -9,24 +8,22 @@
 - 所有机子都是干净的不需要先安装 Docker 等其他容器相关的东西
 - 建议还是用美国服务器，不然各种网络的坑
 
-| 机器简称 | 内网 IP 地址 | 部署软件  | 系统环境  | 硬件配置 |
-|---|---|---|---|---|
-| 操作机 | 172.20.229.224 | ansible | CentOS 7.4 | 1 vCPU + 2 GB |
-| node1 | 172.20.229.225 | master | CentOS 7.4 | 1 vCPU + 4 GB |
-| node2 | 172.20.229.226 | worker | CentOS 7.4 | 1 vCPU + 4 GB |
-| node3 | 172.20.229.227 | worker | CentOS 7.4 | 1 vCPU + 4 GB |
-
+| 机器简称 | 内网 IP 地址   | 部署软件 | 系统环境   | 硬件配置      |
+| -------- | -------------- | -------- | ---------- | ------------- |
+| 操作机   | 172.20.229.224 | ansible  | CentOS 7.4 | 1 vCPU + 2 GB |
+| node1    | 172.20.229.225 | master   | CentOS 7.4 | 1 vCPU + 4 GB |
+| node2    | 172.20.229.226 | worker   | CentOS 7.4 | 1 vCPU + 4 GB |
+| node3    | 172.20.229.227 | worker   | CentOS 7.4 | 1 vCPU + 4 GB |
 
 ## 所有机子都需要的环境准备
 
 - 关闭 SELinux
-	- 编辑配置文件：`vim /etc/selinux/config`
-	- 把 `SELINUX=enforcing` 改为 `SELINUX=disabled`
+  - 编辑配置文件：`vim /etc/selinux/config`
+  - 把 `SELINUX=enforcing` 改为 `SELINUX=disabled`
 
 所有节点关闭防火墙：`systemctl stop firewalld && systemctl disable firewalld`
 
 安装自己常用的一些组件（非必须）：vim zsh zip unzip lrzsz git
-
 
 ## 安装过程
 
@@ -41,7 +38,7 @@ yum install -y gcc libffi-devel python-devel openssl-devel
 
 操作机免密码登录到其他节点
 
-如果还不懂可以具体看我的这篇文章：[]()
+如果还不懂可以具体看我的这篇文章：
 ssh-keygen
 ssh-copy-id -i /root/.ssh/id_rsa.pub -p 22 root@172.20.229.225
 ssh-copy-id -i /root/.ssh/id_rsa.pub -p 22 root@172.20.229.226
@@ -56,33 +53,27 @@ ssh -p 22 root@172.20.229.227
 
 - kubespray 项目官网：<https://github.com/kubernetes-incubator/kubespray>
 
-
 在本地机子上
 
-git clone https://github.com/kubernetes-incubator/kubespray.git
+git clone <https://github.com/kubernetes-incubator/kubespray.git>
 
 当前时间（2018-02）最新版本是：v2.4.0，所以我 checkout v2.4.0 的 tag
 
 用 IntelliJ IDEA 打开该项目，然后批量替换：
 
 - `gcr.io/` 替换成：`registry.cn-hangzhou.aliyuncs.com/`
-- 因为 gcr.io 这个网站的本地址是：https://cloud.google.com/container-registry/，国内的环境当然就没资格上了，所以才要替换。
+- 因为 gcr.io 这个网站的本地址是：<https://cloud.google.com/container-registry/>，国内的环境当然就没资格上了，所以才要替换。
 - 但是需要注意的是，官网的这些镜像阿里云不一定有，所以稳妥点，你最好可以去阿里云检查下的：<https://dev.aliyun.com/search.html>，或者是：<https://hub.docker.com/>
-
-
-
-
 
 ======================================================
 
-
 cd /opt/kubespray && cp -rfp inventory/sample inventory/mycluster
 
-
-修改：inventory/mycluster/hosts.ini 
+修改：inventory/mycluster/hosts.ini
 python3 contrib/inventory_builder/inventory.py 172.20.229.225 172.20.229.226 172.20.229.227
 
 # Review and change parameters under ``inventory/mycluster/group_vars``
+
 cat inventory/mycluster/group_vars/all.yml
 cat inventory/mycluster/group_vars/k8s-cluster.yml
 
@@ -107,7 +98,6 @@ node3
 kube-node
 kube-master
 ```
-
 
 然后把这个项目压缩成 zip 上传到操作机的 /opt 根目录上，然后解压。
 
@@ -156,12 +146,6 @@ cd /opt/kubespray/roles/etcd/files && dos2unix make-ssl-etcd.sh
 cd /opt/kubespray/roles/kubernetes/secrets/files && dos2unix make-ssl.sh
 ```
 
-
-
-
-
-
-
 #### 验证
 
 SSH 连上 master 节点：ssh root@172.20.229.225
@@ -177,7 +161,7 @@ node3     Ready                      1m        v1.6.1+coreos.0
 
 - <http://www.wisely.top/2017/05/16/kargo-ansible-kubernetes/>
 - <https://github.com/wiselyman/kubespray>
-- <>
+
 ======================================================
 
 安装bzip2软件
@@ -192,11 +176,9 @@ hostnamectl --static set-hostname  k8s-master
 
 hostnamectl --static set-hostname  k8s-node-1
 
-
 在master和slave的/etc/hosts文件中均加入以下内容：
 
 172.18.218.96   k8s-master
 172.18.218.96   etcd
 172.18.218.96   registry
 172.18.218.97   k8s-node-1
-

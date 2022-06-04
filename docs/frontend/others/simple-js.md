@@ -1,18 +1,4 @@
----
-title: JavaScript 开发人员需要知道的简写技巧
-category: Configuration
-tag:
-  - Programming
-  - JavaScript
-  - Config
-translate_title: shorthand-skills-that-javascript-developers-need-to-know
-date: 2017-10-01 09:17:00
-description:
----
-
-标签： 编程
-
----
+# JavaScript 开发人员需要知道的简写技巧
 
 ## 初级篇
 

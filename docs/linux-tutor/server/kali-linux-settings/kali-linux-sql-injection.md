@@ -95,11 +95,3 @@ information_schema.tables
 
 - <http://www.cnblogs.com/hongfei/p/3872156.html>
 - <https://www.tr0y.wang/2018/03/21/SQLmap/index.html>
-- <>
-- <>
-- <>
-- <>
-- <>
-- <>
-- <>
-- <>
