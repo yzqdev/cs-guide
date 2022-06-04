@@ -13,18 +13,20 @@
 
   #zsh-autosuggestions自动补全
   git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
+  #国内使用
+  git clone https://gitclone.com/github.com/zsh-users/zsh-completions.git ~/.oh-my-zsh/custom/plugins/zsh-completions
 
 #zsh-syntax-highlighting 命令有语法高亮效果
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  #国内使用
+  git clone https://gitclone.com/github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 # 自动提示插件
-  git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+#国内使用
+  git clone https://gitclone.com/github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
   vim ~/.zshrc
   # edit plugins & save
-
-  #设置随机主题,喜欢再改
-  ZSH_THEME=random
-  # 添加插件
   plugins=(git zsh-syntax-highlighting docker docker-compose zsh-autosuggestions zsh-completions extract)
 
   autoload -U compinit && compinit
