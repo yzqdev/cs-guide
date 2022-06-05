@@ -214,7 +214,7 @@ function regx(r,s){
   if (r == null || r == ""){
     return false;
   }
-  var patrn= new RegExp(r);
+  let patrn= new RegExp(r);
   if (patrn.exec(s))
     return true
   return false

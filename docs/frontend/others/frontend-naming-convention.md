@@ -55,13 +55,13 @@ ps:资料来自网络
 推荐
 
 ```
-var tableTitle = "LoginTable"
+let tableTitle = "LoginTable"
 ```
 
 不推荐
 
 ```
-var getTitle = "LoginTable"
+let getTitle = "LoginTable"
 ```
 
 ## 函数
@@ -98,8 +98,8 @@ function getName{
 推荐：
 
 ```
- var MAX_COUNT = 10;
- var URL = 'http://www.baidu.com';
+ let MAX_COUNT = 10;
+ let URL = 'http://www.baidu.com';
 ```
 
 ## 类的成员
@@ -111,7 +111,7 @@ function getName{
 
 ```
 function Student(name) {
-    var _name = name; // 私有成员
+    let _name = name; // 私有成员
 
     // 公共方法
     this.getName = function () {
@@ -123,7 +123,7 @@ function Student(name) {
         _name = value;
     }
 }
-var st = new Student('tom');
+let st = new Student('tom');
 st.setName('jerry');
 console.log(st.getName()); // => jerry：输出_name私有变量的值
 ```
@@ -142,7 +142,7 @@ console.log(st.getName()); // => jerry：输出_name私有变量的值
 // 调用了一个函数；1)单独在一行
 setTitle();
 
-var maxCount = 10; // 设置最大量；2)在代码后面注释
+let maxCount = 10; // 设置最大量；2)在代码后面注释
 
 // setName(); // 3)注释代码
 ```
@@ -505,7 +505,7 @@ IIFE 还可确保你的代码不会轻易被其它全局命名空间里的代码
 不推荐:
 
 ```
-var x = 10,
+let x = 10,
     y = 100;
 
 // Declaring variables in the global scope is resulting in global scope pollution. All variables declared like this
@@ -520,7 +520,7 @@ console.log(window.x + ' ' + window.y);
 (function(log, w, undefined){
   'use strict';
 
-  var x = 10,
+  let x = 10,
       y = 100;
 
   // Will output 'true true'
@@ -562,18 +562,18 @@ ECMAScript 5 严格模式可在整个脚本或独个方法内被激活。它对�
 
 ## 变量声明
 
-总是使用 var 来声明变量。如不指定 var，变量将被隐式地声明为全局变量，例如
+总是使用 let 来声明变量。如不指定 var，变量将被隐式地声明为全局变量，例如
 
 ```
-var a = b = 0; //b会被隐式的创建为全局变量
+let a = b = 0; //b会被隐式的创建为全局变量
 ```
 
-所以，请总是使用 var 来声明变量，并且使用单var模式（将所有的变量在函数最前面只使用一个var定义）。例如：
+所以，请总是使用 let 来声明变量，并且使用单var模式（将所有的变量在函数最前面只使用一个var定义）。例如：
 
 ```
 (function (){
   'use strict'
-  var a = 0,
+  let a = 0,
       b = 0,
       c = 0,
       i,
@@ -593,15 +593,15 @@ javascript会自动将函数作用域内的变量和方法的定义提前（只�
 (function(log){
   'use strict';
 
-  var a = 10;
+  let a = 10;
 
-  for(var i = 0; i < a; i++) {
-    var b = i * i;
+  for(let i = 0; i < a; i++) {
+    let b = i * i;
     log(b);
   }
 
   if(a === 10) {
-    var f = function() {
+    let f = function() {
       log(a);
     };
     f();
@@ -621,7 +621,7 @@ javascript会自动将函数作用域内的变量和方法的定义提前（只�
 (function(log){
   'use strict';
   // All variables used in the closure will be hoisted to the top of the function
-  var a,
+  let a,
       i,
       b,
       f;
@@ -664,7 +664,7 @@ javascript会自动将函数作用域内的变量和方法的定义提前（只�
   log('1' == true); // true
   log(null == undefined); // true
 
-  var x = {
+  let x = {
     valueOf: function() {
       return 'X';
     }
@@ -724,7 +724,7 @@ Array.prototype.valueOf = function() {
   this[0]++;
   return this;
 }
-var x = [1, 2, 3];
+let x = [1, 2, 3];
 x == 0;
 console.log(x);   // [2, 2, 3]
 ```
@@ -814,7 +814,7 @@ eval()函数的作用是返回任意字符串，当作js代码来处理。
 (function(log){
   'use strict';
 
-  var arr = [10, 3, 7, 9, 100, 20],
+  let arr = [10, 3, 7, 9, 100, 20],
       sum = 0,
       i;
 
@@ -834,9 +834,9 @@ eval()函数的作用是返回任意字符串，当作js代码来处理。
 (function(log){
   'use strict';
 
-  var arr = [10, 3, 7, 9, 100, 20];
+  let arr = [10, 3, 7, 9, 100, 20];
 
-  var sum = arr.reduce(function(prevValue, currentValue) {
+  let sum = arr.reduce(function(prevValue, currentValue) {
     return prevValue + currentValue;
   }, 0);
 

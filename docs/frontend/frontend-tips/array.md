@@ -12,9 +12,9 @@ Array构造器用于创建一个新的数组。通常，我们推荐使用对象
 
 ```javascript
 // 使用Array构造器
-var a = Array(8); // [undefined × 8]
+let a = Array(8); // [undefined × 8]
 // 使用对象字面量
-var b = [];
+let b = [];
 b.length = 8; // [undefined × 8]
 12345
 ```
@@ -101,7 +101,7 @@ Array.from的设计初衷是快速便捷的基于其他对象创建新数组，�
 从语法上看，Array.from拥有3个形参，第一个为类似数组的对象，必选。第二个为加工函数，新生成的数组会经过该函数的加工再返回。第三个为this作用域，表示加工函数执行时this的值。后两个参数都是可选的。我们来看看用法。
 
 ```
-var obj = {0: 'a', 1: 'b', 2:'c', length: 3};
+let obj = {0: 'a', 1: 'b', 2:'c', length: 3};
 Array.from(obj, function(value, index){
   console.log(value, index, this, arguments.length);
   return value.repeat(3); //必须指定返回值，否则返回undefined
@@ -162,7 +162,7 @@ Array.from({length: 10}, (v, i) => i); // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 顾名思义，Array.isArray用来判断一个变量是否数组类型。JS的弱类型机制导致判断变量类型是初级前端开发者面试时的必考题，一般我都会将其作为考察候选人第一题，然后基于此展开。在ES5提供该方法之前，我们至少有如下5种方式去判断一个值是否数组：
 
 ```
-var a = [];
+let a = [];
 // 1.基于instanceof
 a instanceof Array;
 // 2.基于constructor
@@ -181,7 +181,7 @@ Object.prototype.toString.apply(a) === '[object Array]';
 要知道，代码的运行环境十分复杂，一个变量可能使用浑身解数去迷惑它的创造者。且看：
 
 ```
-var a = {
+let a = {
   __proto__: Array.prototype
 };
 // 分别在控制台试运行以下代码
@@ -336,8 +336,8 @@ Object.getOwnPropertyNames(Array.prototype); // ["length", "constructor", "toStr
 pop() 方法删除一个数组中的最后的一个元素，并且返回这个元素。如果是栈的话，这个过程就是栈顶弹出。
 
 ```
-var array = ["cat", "dog", "cow", "chicken", "mouse"];
-var item = array.pop();
+let array = ["cat", "dog", "cow", "chicken", "mouse"];
+let item = array.pop();
 console.log(array); // ["cat", "dog", "cow", "chicken"]
 console.log(item); // mouse
 1234
@@ -346,8 +346,8 @@ console.log(item); // mouse
 由于设计上的巧妙，pop方法可以应用在类数组对象上，即 `鸭式辨型`. 如下：
 
 ```
-var o = {0:"cat", 1:"dog", 2:"cow", 3:"chicken", 4:"mouse", length:5}
-var item = Array.prototype.pop.call(o);
+let o = {0:"cat", 1:"dog", 2:"cow", 3:"chicken", 4:"mouse", length:5}
+let item = Array.prototype.pop.call(o);
 console.log(o); // Object {0: "cat", 1: "dog", 2: "cow", 3: "chicken", length: 4}
 console.log(item); // mouse
 1234
@@ -356,8 +356,8 @@ console.log(item); // mouse
 但如果类数组对象不具有length属性，那么该对象将被创建length属性，length值为0。如下：
 
 ```
-var o = {0:"cat", 1:"dog", 2:"cow", 3:"chicken", 4:"mouse"}
-var item = Array.prototype.pop.call(o);
+let o = {0:"cat", 1:"dog", 2:"cow", 3:"chicken", 4:"mouse"}
+let item = Array.prototype.pop.call(o);
 console.log(array); // Object {0: "cat", 1: "dog", 2: "cow", 3: "chicken", 4: "mouse", length: 0}
 console.log(item); // undefined
 1234
@@ -370,8 +370,8 @@ push()方法添加一个或者多个元素到数组末尾，并且返回数组�
 语法：_arr.push(element1, …, elementN)_
 
 ```
-var array = ["football", "basketball", "volleyball", "Table tennis", "badminton"];
-var i = array.push("golfball");
+let array = ["football", "basketball", "volleyball", "Table tennis", "badminton"];
+let i = array.push("golfball");
 console.log(array); // ["football", "basketball", "volleyball", "Table tennis", "badminton", "golfball"]
 console.log(i); // 6
 1234
@@ -380,8 +380,8 @@ console.log(i); // 6
 同pop方法一样，push方法也可以应用到类数组对象上，如果length不能被转成一个数值或者不存在length属性时，则插入的元素索引为0，且length属性不存在时，将会创建它。
 
 ```
-var o = {0:"football", 1:"basketball"};
-var i = Array.prototype.push.call(o, "golfball");
+let o = {0:"football", 1:"basketball"};
+let i = Array.prototype.push.call(o, "golfball");
 console.log(o); // Object {0: "golfball", 1: "basketball", length: 1}
 console.log(i); // 1
 1234
@@ -390,8 +390,8 @@ console.log(i); // 1
 实际上，push方法是根据length属性来决定从哪里开始插入给定的值。
 
 ```
-var o = {0:"football", 1:"basketball",length:1};
-var i = Array.prototype.push.call(o,"golfball");
+let o = {0:"football", 1:"basketball",length:1};
+let i = Array.prototype.push.call(o,"golfball");
 console.log(o); // Object {0: "football", 1: "golfball", length: 2}
 console.log(i); // 2
 1234
@@ -400,9 +400,9 @@ console.log(i); // 2
 利用push根据length属性插入元素这个特点，可以实现数组的合并，如下：
 
 ```
-var array = ["football", "basketball"];
-var array2 = ["volleyball", "golfball"];
-var i = Array.prototype.push.apply(array,array2);
+let array = ["football", "basketball"];
+let array2 = ["volleyball", "golfball"];
+let i = Array.prototype.push.apply(array,array2);
 console.log(array); // ["football", "basketball", "volleyball", "golfball"]
 console.log(i); // 4
 12345
@@ -415,8 +415,8 @@ reverse()方法颠倒数组中元素的位置，第一个会成为最后一个�
 语法：_arr.reverse()_
 
 ```
-var array = [1,2,3,4,5];
-var array2 = array.reverse();
+let array = [1,2,3,4,5];
+let array2 = array.reverse();
 console.log(array); // [5,4,3,2,1]
 console.log(array2===array); // true
 1234
@@ -425,8 +425,8 @@ console.log(array2===array); // true
 同上，reverse 也是鸭式辨型的受益者，颠倒元素的范围受length属性制约。如下:
 
 ```
-var o = {0:"a", 1:"b", 2:"c", length:2};
-var o2 = Array.prototype.reverse.call(o);
+let o = {0:"a", 1:"b", 2:"c", length:2};
+let o2 = Array.prototype.reverse.call(o);
 console.log(o); // Object {0: "b", 1: "a", 2: "c", length: 2}
 console.log(o === o2); // true
 1234
@@ -435,8 +435,8 @@ console.log(o === o2); // true
 如果 length 属性小于2 或者 length 属性不为数值，那么原类数组对象将没有变化。即使 length 属性不存在，该对象也不会去创建 length 属性。特别的是，当 length 属性较大时，类数组对象的『索引』会尽可能的向 length 看齐。如下:
 
 ```
-var o = {0:"a", 1:"b", 2:"c",length:100};
-var o2 = Array.prototype.reverse.call(o);
+let o = {0:"a", 1:"b", 2:"c",length:100};
+let o2 = Array.prototype.reverse.call(o);
 console.log(o); // Object {97: "c", 98: "b", 99: "a", length: 100}
 console.log(o === o2); // true
 1234
@@ -449,8 +449,8 @@ shift()方法删除数组的第一个元素，并返回这个元素。如果是�
 语法：_arr.shift()_
 
 ```
-var array = [1,2,3,4,5];
-var item = array.shift();
+let array = [1,2,3,4,5];
+let item = array.shift();
 console.log(array); // [2,3,4,5]
 console.log(item); // 1
 1234
@@ -459,8 +459,8 @@ console.log(item); // 1
 同样受益于鸭式辨型，对于类数组对象，shift仍然能够处理。如下：
 
 ```
-var o = {0:"a", 1:"b", 2:"c", length:3};
-var item = Array.prototype.shift.call(o);
+let o = {0:"a", 1:"b", 2:"c", length:3};
+let item = Array.prototype.shift.call(o);
 console.log(o); // Object {0: "b", 1: "c", length: 2}
 console.log(item); // a
 1234
@@ -469,8 +469,8 @@ console.log(item); // a
 如果类数组对象length属性不存在，将添加length属性，并初始化为0。如下：
 
 ```
-var o = {0:"a", 1:"b", 2:"c"};
-var item = Array.prototype.shift.call(o);
+let o = {0:"a", 1:"b", 2:"c"};
+let item = Array.prototype.shift.call(o);
 console.log(o); // Object {0: "a", 1: "b", 2:"c" length: 0}
 console.log(item); // undefined
 1234
@@ -485,13 +485,13 @@ sort()方法对数组元素进行排序，并返回这个数组。sort方法比�
 comparefn是可选的，如果省略，数组元素将按照各自转换为字符串的Unicode(万国码)位点顺序排序，例如”Boy”将排到”apple”之前。当对数字排序的时候，25将会排到8之前，因为转换为字符串后，”25”将比”8”靠前。例如：
 
 ```
-var array = ["apple","Boy","Cat","dog"];
-var array2 = array.sort();
+let array = ["apple","Boy","Cat","dog"];
+let array2 = array.sort();
 console.log(array); // ["Boy", "Cat", "apple", "dog"]
 console.log(array2 == array); // true
 
 array = [10, 1, 3, 20];
-var array3 = array.sort();
+let array3 = array.sort();
 console.log(array3); // [1, 10, 20, 3]
 12345678
 ```
@@ -514,11 +514,11 @@ function compare(a, b){
 如果数组元素为非ASCII字符的字符串(如包含类似 e、é、è、a、ä 或中文字符等非英文字符的字符串)，则需要使用String.localeCompare。下面这个函数将排到正确的顺序。
 
 ```
-var array = ['互','联','网','改','变','世','界'];
-var array2 = array.sort();
+let array = ['互','联','网','改','变','世','界'];
+let array2 = array.sort();
 
-var array = ['互','联','网','改','变','世','界']; // 重新赋值,避免干扰array2
-var array3 = array.sort(function (a, b) {
+let array = ['互','联','网','改','变','世','界']; // 重新赋值,避免干扰array2
+let array3 = array.sort(function (a, b) {
   return a.localeCompare(b);
 });
 
@@ -534,7 +534,7 @@ console.log(array3); // ["变", "改", "互", "界", "联", "世", "网"]
 同上，sort一样受益于鸭式辨型，比如：
 
 ```
-var o = {0:'互',1:'联',2:'网',3:'改',4:'变',5:'世',6:'界',length:7};
+let o = {0:'互',1:'联',2:'网',3:'改',4:'变',5:'世',6:'界',length:7};
 Array.prototype.sort.call(o,function(a, b){
   return a.localeCompare(b);
 });
@@ -545,7 +545,7 @@ console.log(o); // Object {0: "变", 1: "改", 2: "互", 3: "界", 4: "联", 5: 
 注意：使用sort的鸭式辨型特性时，若类数组对象不具有length属性，它并不会进行排序，也不会为其添加length属性。
 
 ```
-var o = {0:'互',1:'联',2:'网',3:'改',4:'变',5:'世',6:'界'};
+let o = {0:'互',1:'联',2:'网',3:'改',4:'变',5:'世',6:'界'};
 Array.prototype.sort.call(o,function(a, b){
   return a.localeCompare(b);
 });
@@ -559,9 +559,9 @@ comparefn 如果需要对数组元素多次转换以实现排序，那么使用m
 
 ```
 // 需要被排序的数组
-var array = ['dog', 'Cat', 'Boy', 'apple'];
+let array = ['dog', 'Cat', 'Boy', 'apple'];
 // 对需要排序的数字和位置的临时存储
-var mapped = array.map(function(el, i) {
+let mapped = array.map(function(el, i) {
   return { index: i, value: el.toLowerCase() };
 })
 // 按照多个值排序数组
@@ -569,7 +569,7 @@ mapped.sort(function(a, b) {
   return +(a.value > b.value) || +(a.value === b.value) - 1;
 });
 // 根据索引得到排序的结果
-var result = mapped.map(function(el){
+let result = mapped.map(function(el){
   return array[el.index];
 });
 console.log(result); // ["apple", "Boy", "Cat", "dog"]
@@ -581,11 +581,11 @@ console.log(result); // ["apple", "Boy", "Cat", "dog"]
 实际上，ECMAscript规范中并未规定具体的sort算法，这就势必导致各个浏览器不尽相同的sort算法，请看sort方法在Chrome浏览器下表现：
 
 ```
-var array = [{ n: "a", v: 1 }, { n: "b", v: 1 }, { n: "c", v: 1 }, { n: "d", v: 1 }, { n: "e", v: 1 }, { n: "f", v: 1 }, { n: "g", v: 1 }, { n: "h", v: 1 }, { n: "i", v: 1 }, { n: "j", v: 1 }, { n: "k", v: 1 }, ];
+let array = [{ n: "a", v: 1 }, { n: "b", v: 1 }, { n: "c", v: 1 }, { n: "d", v: 1 }, { n: "e", v: 1 }, { n: "f", v: 1 }, { n: "g", v: 1 }, { n: "h", v: 1 }, { n: "i", v: 1 }, { n: "j", v: 1 }, { n: "k", v: 1 }, ];
 array.sort(function (a, b) {
     return a.v - b.v;
 });
-for (var i = 0,len = array.length; i < len; i++) {
+for (let i = 0,len = array.length; i < len; i++) {
     console.log(array[i].n);
 }
 // f a c d e b g h i j k
@@ -597,11 +597,11 @@ for (var i = 0,len = array.length; i < len; i++) {
 这是因为v8引擎为了高效排序(采用了不稳定排序)。即数组长度超过10条时，会调用另一种排序方法(快速排序)；而10条及以下采用的是插入排序，此时结果将是稳定的，如下：
 
 ```
-var array = [{ n: "a", v: 1 }, { n: "b", v: 1 }, { n: "c", v: 1 }, { n: "d", v: 1 }, { n: "e", v: 1 }, { n: "f", v: 1 }, { n: "g", v: 1 }, { n: "h", v: 1 }, { n: "i", v: 1 }, { n: "j", v: 1 },];
+let array = [{ n: "a", v: 1 }, { n: "b", v: 1 }, { n: "c", v: 1 }, { n: "d", v: 1 }, { n: "e", v: 1 }, { n: "f", v: 1 }, { n: "g", v: 1 }, { n: "h", v: 1 }, { n: "i", v: 1 }, { n: "j", v: 1 },];
 array.sort(function (a, b) {
   return a.v - b.v;
 });
-for (var i = 0,len = array.length; i < len; i++) {
+for (let i = 0,len = array.length; i < len; i++) {
   console.log(array[i].n);
 }
 // a b c d e f g h i j
@@ -644,8 +644,8 @@ sort方法传入的排序函数如果返回布尔值会导致什么样的结果�
 分析以下代码，预期将数组元素进行升序排序：
 
 ```
-var array = [7, 6, 5, 4, 3, 2, 1, 0, 8, 9];
-var comparefn = function (x, y) {
+let array = [7, 6, 5, 4, 3, 2, 1, 0, 8, 9];
+let comparefn = function (x, y) {
   return x > y;
 };
 array.sort(comparefn);
@@ -672,8 +672,8 @@ array.sort(comparefn);
 **将数组元素扩大至 11 位，现象如下：**
 
 ```
-var array = [7, 6, 5, 4, 3, 2, 1, 0, 10, 9, 8];
-var comparefn = function (x, y) {
+let array = [7, 6, 5, 4, 3, 2, 1, 0, 10, 9, 8];
+let comparefn = function (x, y) {
   return x > y;
 };
 array.sort(comparefn);
@@ -712,8 +712,8 @@ itemN 指定新增的元素，如果缺省，则该方法只删除数组元素�
 下面来举栗子说明：
 
 ```
-var array = ["apple","boy"];
-var splices = array.splice(1,1);
+let array = ["apple","boy"];
+let splices = array.splice(1,1);
 console.log(array); // ["apple"]
 console.log(splices); // ["boy"] ,可见是从数组下标为1的元素开始删除,并且删除一个元素,由于itemN缺省,故此时该方法只删除元素
 
@@ -742,8 +742,8 @@ console.log(splices); // ["apple", "boy"], 可见当deleteCount大于数组start
 同上, splice一样受益于鸭式辨型, 比如:
 
 ```
-var o = {0:"apple",1:"boy",length:2};
-var splices = Array.prototype.splice.call(o,1,1);
+let o = {0:"apple",1:"boy",length:2};
+let splices = Array.prototype.splice.call(o,1,1);
 console.log(o); // Object {0: "apple", length: 1}, 可见对象o删除了一个属性,并且length-1
 console.log(splices); // ["boy"]
 1234
@@ -754,7 +754,7 @@ console.log(splices); // ["boy"]
 如果需要删除数组中一个已存在的元素，可参考如下：
 
 ```
-var array = ['a','b','c'];
+let array = ['a','b','c'];
 array.splice(array.indexOf('b'),1);
 12
 ```
@@ -766,8 +766,8 @@ unshift() 方法用于在数组开始处插入一些元素(就像是栈底插入
 语法：_arr.unshift(element1, …, elementN)_
 
 ```
-var array = ["red", "green", "blue"];
-var length = array.unshift("yellow");
+let array = ["red", "green", "blue"];
+let length = array.unshift("yellow");
 console.log(array); // ["yellow", "red", "green", "blue"]
 console.log(length); // 4
 1234
@@ -776,8 +776,8 @@ console.log(length); // 4
 如果给unshift方法传入一个数组呢？
 
 ```
-var array = ["red", "green", "blue"];
-var length = array.unshift(["yellow"]);
+let array = ["red", "green", "blue"];
+let length = array.unshift(["yellow"]);
 console.log(array); // [["yellow"], "red", "green", "blue"]
 console.log(length); // 4, 可见数组也能成功插入
 1234
@@ -786,8 +786,8 @@ console.log(length); // 4, 可见数组也能成功插入
 同上，unshift也受益于鸭式辨型，呈上栗子：
 
 ```
-var o = {0:"red", 1:"green", 2:"blue",length:3};
-var length = Array.prototype.unshift.call(o,"gray");
+let o = {0:"red", 1:"green", 2:"blue",length:3};
+let length = Array.prototype.unshift.call(o,"gray");
 console.log(o); // Object {0: "gray", 1: "red", 2: "green", 3: "blue", length: 4}
 console.log(length); // 4
 1234
@@ -808,14 +808,14 @@ taget 指定被替换元素的索引，start 指定替换元素起始的索引�
 注：目前只有Firefox（版本32及其以上版本）实现了该方法。
 
 ```
-var array = [1,2,3,4,5]; 
-var array2 = array.copyWithin(0,3);
+let array = [1,2,3,4,5]; 
+let array2 = array.copyWithin(0,3);
 console.log(array===array2,array2); // true [4, 5, 3, 4, 5]
 
-var array = [1,2,3,4,5]; 
+let array = [1,2,3,4,5]; 
 console.log(array.copyWithin(0,3,4)); // [4, 2, 3, 4, 5]
 
-var array = [1,2,3,4,5]; 
+let array = [1,2,3,4,5]; 
 console.log(array.copyWithin(0,-2,-1)); // [4, 2, 3, 4, 5]
 123456789
 ```
@@ -823,8 +823,8 @@ console.log(array.copyWithin(0,-2,-1)); // [4, 2, 3, 4, 5]
 同上，copyWithin一样受益于鸭式辨型，例如：
 
 ```
-var o = {0:1, 1:2, 2:3, 3:4, 4:5,length:5}
-var o2 = Array.prototype.copyWithin.call(o,0,3);
+let o = {0:1, 1:2, 2:3, 3:4, 4:5,length:5}
+let o2 = Array.prototype.copyWithin.call(o,0,3);
 console.log(o===o2,o2); // true Object { 0=4,  1=5,  2=3,  更多...}
 123
 ```
@@ -844,8 +844,8 @@ value 指定被替换的值，start 指定替换元素起始的索引，end 可�
 注：目前只有Firefox（版本31及其以上版本）实现了该方法。
 
 ```
-var array = [1,2,3,4,5];
-var array2 = array.fill(10,0,3);
+let array = [1,2,3,4,5];
+let array2 = array.fill(10,0,3);
 console.log(array===array2,array2); // true [10, 10, 10, 4, 5], 可见数组区间[0,3]的元素全部替换为10
 // 其他的举例请参考copyWithin
 1234
@@ -854,8 +854,8 @@ console.log(array===array2,array2); // true [10, 10, 10, 4, 5], 可见数组区�
 同上，fill 一样受益于鸭式辨型，例如：
 
 ```
-var o = {0:1, 1:2, 2:3, 3:4, 4:5,length:5}
-var o2 = Array.prototype.fill.call(o,10,0,2);
+let o = {0:1, 1:2, 2:3, 3:4, 4:5,length:5}
+let o2 = Array.prototype.fill.call(o,10,0,2);
 console.log(o===o2,o2); true Object { 0=10,  1=10,  2=3,  更多...}
 123
 ```
@@ -873,8 +873,8 @@ concat() 方法将传入的数组或者元素与原数组合并，组成一个�
 语法：_arr.concat(value1, value2, …, valueN)_
 
 ```
-var array = [1, 2, 3];
-var array2 = array.concat(4,[5,6],[7,8,9]);
+let array = [1, 2, 3];
+let array2 = array.concat(4,[5,6],[7,8,9]);
 console.log(array2); // [1, 2, 3, 4, 5, 6, 7, 8, 9]
 console.log(array); // [1, 2, 3], 可见原数组并未被修改
 1234
@@ -883,8 +883,8 @@ console.log(array); // [1, 2, 3], 可见原数组并未被修改
 若concat方法中不传入参数，那么将基于原数组**浅复制**生成一个一模一样的新数组（指向新的地址空间）。
 
 ```
-var array = [{a: 1}];
-var array3 = array.concat();
+let array = [{a: 1}];
+let array3 = array.concat();
 console.log(array3); // [{a: 1}]
 console.log(array3 === array); // false
 console.log(array[0] === array3[0]); // true，新旧数组第一个元素依旧共用一个同一个对象的引用
@@ -894,8 +894,8 @@ console.log(array[0] === array3[0]); // true，新旧数组第一个元素依旧
 同上，concat 一样受益于鸭式辨型，但其效果可能达不到我们的期望，如下：
 
 ```
-var o = {0:"a", 1:"b", 2:"c",length:3};
-var o2 = Array.prototype.concat.call(o,'d',{3:'e',4:'f',length:2},['g','h','i']);
+let o = {0:"a", 1:"b", 2:"c",length:3};
+let o2 = Array.prototype.concat.call(o,'d',{3:'e',4:'f',length:2},['g','h','i']);
 console.log(o2); // [{0:"a", 1:"b", 2:"c", length:3}, 'd', {3:'e', 4:'f', length:2}, 'g', 'h', 'i']
 123
 ```
@@ -909,7 +909,7 @@ join() 方法将数组中的所有元素连接成一个字符串。
 语法：_arr.join([separator = ‘,’])_ separator可选，缺省默认为逗号。
 
 ```
-var array = ['We', 'are', 'Chinese'];
+let array = ['We', 'are', 'Chinese'];
 console.log(array.join()); // "We,are,Chinese"
 console.log(array.join('+')); // "We+are+Chinese"
 console.log(array.join('')); // "WeareChinese"
@@ -919,7 +919,7 @@ console.log(array.join('')); // "WeareChinese"
 同上，join 一样受益于鸭式辨型，如下：
 
 ```
-var o = {0:"We", 1:"are", 2:"Chinese", length:3};
+let o = {0:"We", 1:"are", 2:"Chinese", length:3};
 console.log(Array.prototype.join.call(o,'+')); // "We+are+Chinese"
 console.log(Array.prototype.join.call('abc')); // "a,b,c"
 123
@@ -938,7 +938,7 @@ slice() 方法将数组中一部分元素浅复制存入新的数组对象，并
 slice方法参数为空时，同concat方法一样，都是浅复制生成一个新数组。
 
 ```
-var array = ["one", "two", "three","four", "five"];
+let array = ["one", "two", "three","four", "five"];
 console.log(array.slice()); // ["one", "two", "three","four", "five"]
 console.log(array.slice(2,3)); // ["three"]
 123
@@ -947,8 +947,8 @@ console.log(array.slice(2,3)); // ["three"]
 **浅复制** 是指当对象的被复制时，只是复制了对象的引用，指向的依然是同一个对象。下面来说明slice为什么是浅复制。
 
 ```
-var array = [{color:"yellow"}, 2, 3];
-var array2 = array.slice(0,1);
+let array = [{color:"yellow"}, 2, 3];
+let array2 = array.slice(0,1);
 console.log(array2); // [{color:"yellow"}]
 array[0]["color"] = "blue";
 console.log(array2); // [{color:"bule"}]
@@ -967,8 +967,8 @@ console.log([1,2,3].slice(-1));//[3]
 同上，slice 一样受益于鸭式辨型。如下：
 
 ```
-var o = {0:{"color":"yellow"}, 1:2, 2:3, length:3};
-var o2 = Array.prototype.slice.call(o,0,1);
+let o = {0:{"color":"yellow"}, 1:2, 2:3, length:3};
+let o2 = Array.prototype.slice.call(o,0,1);
 console.log(o2); // [{color:"yellow"}] ,毫无违和感...
 123
 ```
@@ -982,8 +982,8 @@ toString() 方法返回数组的字符串形式，该字符串由数组中的每
 语法： _arr.toString()_
 
 ```
-var array = ['Jan', 'Feb', 'Mar', 'Apr'];
-var str = array.toString();
+let array = ['Jan', 'Feb', 'Mar', 'Apr'];
+let str = array.toString();
 console.log(str); // Jan,Feb,Mar,Apr
 123
 ```
@@ -991,11 +991,11 @@ console.log(str); // Jan,Feb,Mar,Apr
 当数组直接和字符串作连接操作时，将会自动调用其toString() 方法。
 
 ```
-var str = ['Jan', 'Feb', 'Mar', 'Apr'] + ',May';
+let str = ['Jan', 'Feb', 'Mar', 'Apr'] + ',May';
 console.log(str); // "Jan,Feb,Mar,Apr,May"
 // 下面我们来试试鸭式辨型
-var o = {0:'Jan', 1:'Feb', 2:'Mar', length:3};
-var o2 = Array.prototype.toString.call(o);
+let o = {0:'Jan', 1:'Feb', 2:'Mar', length:3};
+let o2 = Array.prototype.toString.call(o);
 console.log(o2); // [object Object]
 console.log(o.toString()==o2); // true
 1234567
@@ -1006,7 +1006,7 @@ console.log(o.toString()==o2); // true
 根据ES5语义，toString() 方法是通用的，可被用于任何对象。如果对象有一个join() 方法，将会被调用，其返回值将被返回，没有则调用`Object.prototype.toString()`，为此，我们给o对象添加一个join方法。如下：
 
 ```
-var o = {
+let o = {
   0:'Jan', 
   1:'Feb', 
   2:'Mar', 
@@ -1032,8 +1032,8 @@ toLocaleString() 类似toString()的变型，该字符串由数组中的每个�
 - `Date`：`[Date.prototype.toLocaleString()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString)`
 
 ```
-var array= [{name:'zz'}, 123, "abc", new Date()];
-var str = array.toLocaleString();
+let array= [{name:'zz'}, 123, "abc", new Date()];
+let str = array.toLocaleString();
 console.log(str); // [object Object],123,abc,2016/1/5 下午1:06:23
 123
 ```
@@ -1041,7 +1041,7 @@ console.log(str); // [object Object],123,abc,2016/1/5 下午1:06:23
 其鸭式辨型的写法也同toString 保持一致，如下：
 
 ```
-var o = {
+let o = {
   0:123, 
   1:'abc', 
   2:new Date(), 
@@ -1067,7 +1067,7 @@ fromIndex 为开始查找的位置，缺省默认为0。如果超出数组长度
 indexOf使用严格相等（即使用 === 去匹配数组中的元素）。
 
 ```
-var array = ['abc', 'def', 'ghi','123'];
+let array = ['abc', 'def', 'ghi','123'];
 console.log(array.indexOf('def')); // 1
 console.log(array.indexOf('def',-1)); // -1 此时表示从最后一个元素往后查找,因此查找失败返回-1
 console.log(array.indexOf('def',-4)); // 1 由于4大于数组长度,此时将查找整个数组,因此返回1
@@ -1078,7 +1078,7 @@ console.log(array.indexOf(123)); // -1, 由于是严格匹配,因此并不会匹
 得益于鸭式辨型，indexOf 可以处理类数组对象。如下：
 
 ```
-var o = {0:'abc', 1:'def', 2:'ghi', length:3};
+let o = {0:'abc', 1:'def', 2:'ghi', length:3};
 console.log(Array.prototype.indexOf.call(o,'ghi',-4));//2
 12
 ```
@@ -1110,7 +1110,7 @@ element 为需要查找的元素。
 fromIndex 表示从该索引位置开始查找 element，缺省为0，它是正向查找，即从索引处往数组末尾查找。
 
 ```
-var array = [-0, 1, 2];
+let array = [-0, 1, 2];
 console.log(array.includes(+0)); // true
 console.log(array.includes(1)); // true
 console.log(array.includes(2,-4)); // true
@@ -1122,7 +1122,7 @@ console.log(array.includes(2,-4)); // true
 你可能会问，既然有了indexOf方法，为什么又造一个includes方法，`arr.indexOf(x)>-1`不就等于`arr.includes(x)`？看起来是的，几乎所有的时候它们都等同，唯一的区别就是includes能够发现NaN，而indexOf不能。
 
 ```javascript
-var array = [NaN];
+let array = [NaN];
 console.log(array.includes(NaN)); // true
 console.log(arra.indexOf(NaN)>-1); // false
 123
@@ -1131,8 +1131,8 @@ console.log(arra.indexOf(NaN)>-1); // false
 该方法同样受益于鸭式辨型。如下：
 
 ```
-var o = {0:'a', 1:'b', 2:'c', length:3};
-var bool = Array.prototype.includes.call(o, 'a');
+let o = {0:'a', 1:'b', 2:'c', length:3};
+let bool = Array.prototype.includes.call(o, 'a');
 console.log(bool); // true
 123
 ```
@@ -1146,10 +1146,10 @@ toSource() 方法是**非标准的**，该方法返回数组的源代码，目�
 语法：_arr.toSource()_
 
 ```javascript
-var array = ['a', 'b', 'c'];
+let array = ['a', 'b', 'c'];
 console.log(array.toSource()); // ["a", "b", "c"]
 // 测试鸭式辨型
-var o = {0:'a', 1:'b', 2:'c', length:3};
+let o = {0:'a', 1:'b', 2:'c', length:3};
 console.log(Array.prototype.toSource.call(o)); // ["a","b","c"]
 12345
 ```
@@ -1177,9 +1177,9 @@ forEach 将为数组中每一项执行一次 fn 函数，那些已删除，新�
 遍历过程中，fn会被传入上述三个参数。
 
 ```
-var array = [1, 3, 5];
-var obj = {name:'cc'};
-var sReturn = array.forEach(function(value, index, array){
+let array = [1, 3, 5];
+let obj = {name:'cc'};
+let sReturn = array.forEach(function(value, index, array){
   array[index] = value * value;
   console.log(this.name); // cc被打印了三次
 },obj);
@@ -1191,7 +1191,7 @@ console.log(sReturn); // undefined, 可见返回值为undefined
 得益于鸭式辨型，虽然forEach不能直接遍历对象，但它可以通过call方式遍历类数组对象。如下：
 
 ```
-var o = {0:1, 1:3, 2:5, length:3};
+let o = {0:1, 1:3, 2:5, length:3};
 Array.prototype.forEach.call(o,function(value, index, obj){
   console.log(value,index,obj);
   obj[index] = value * value;
@@ -1217,8 +1217,8 @@ every() 方法使用传入的函数测试所有元素，只要其中有一个函
 以下是鸭式辨型的写法：
 
 ```
-var o = {0:10, 1:8, 2:25, length:3};
-var bool = Array.prototype.every.call(o,function(value, index, obj){
+let o = {0:10, 1:8, 2:25, length:3};
+let bool = Array.prototype.every.call(o,function(value, index, obj){
   return value >= 8;
 },o);
 console.log(bool); // true
@@ -1245,8 +1245,8 @@ filter() 方法使用传入的函数测试所有元素，并返回所有通过�
 语法：_arr.filter(fn, thisArg)_
 
 ```
-var array = [18, 9, 10, 35, 80];
-var array2 = array.filter(function(value, index, array){
+let array = [18, 9, 10, 35, 80];
+let array2 = array.filter(function(value, index, array){
   return value > 20;
 });
 console.log(array2); // [35, 80]
@@ -1291,8 +1291,8 @@ initialValue 指定第一次调用 fn 的第一个参数。
 - 如果数组仅有一个元素，并且没有提供 initialValue，或提供了 initialValue 但数组为空，那么fn不会被执行，数组的唯一值将被返回。
 
 ```
-var array = [1, 2, 3, 4];
-var s = array.reduce(function(previousValue, value, index, array){
+let array = [1, 2, 3, 4];
+let s = array.reduce(function(previousValue, value, index, array){
   return previousValue * value;
 },1);
 console.log(s); // 24
@@ -1327,8 +1327,8 @@ entries() 方法基于**ECMAScript 2015（ES6）规范**，返回一个数组迭
 语法：_arr.entries()_
 
 ```
-var array = ["a", "b", "c"];
-var iterator = array.entries();
+let array = ["a", "b", "c"];
+let iterator = array.entries();
 console.log(iterator.next().value); // [0, "a"]
 console.log(iterator.next().value); // [1, "b"]
 console.log(iterator.next().value); // [2, "c"]
@@ -1339,8 +1339,8 @@ console.log(iterator.next().value); // undefined, 迭代器处于数组末尾时
 很明显，entries 也受益于鸭式辨型，如下：
 
 ```
-var o = {0:"a", 1:"b", 2:"c", length:3};
-var iterator = Array.prototype.entries.call(o);
+let o = {0:"a", 1:"b", 2:"c", length:3};
+let iterator = Array.prototype.entries.call(o);
 console.log(iterator.next().value); // [0, "a"]
 console.log(iterator.next().value); // [1, "b"]
 console.log(iterator.next().value); // [2, "c"]
@@ -1365,7 +1365,7 @@ findIndex() 方法也基于**ECMAScript 2015（ES6）规范**，它返回数组�
 我们发现它们的语法与forEach等十分相似，其实不光语法，find（或findIndex）在参数及其使用注意事项上，均与forEach一致。因此此处将略去 find（或findIndex）的参数介绍。下面我们来看个例子🌰 ：
 
 ```
-var array = [1, 3, 5, 7, 8, 9, 10];
+let array = [1, 3, 5, 7, 8, 9, 10];
 function f(value, index, array){
   return value%2==0; // 返回偶数
 }
@@ -1390,8 +1390,8 @@ keys() 方法基于**ECMAScript 2015（ES6）规范**，返回一个数组索引
 语法：_arr.keys()_
 
 ```
-var array = ["abc", "xyz"];
-var iterator = array.keys();
+let array = ["abc", "xyz"];
+let iterator = array.keys();
 console.log(iterator.next()); // Object {value: 0, done: false}
 console.log(iterator.next()); // Object {value: 1, done: false}
 console.log(iterator.next()); // Object {value: undefined, done: false}
@@ -1401,9 +1401,9 @@ console.log(iterator.next()); // Object {value: undefined, done: false}
 索引迭代器会包含那些没有对应元素的索引，如下：
 
 ```
-var array = ["abc", , "xyz"];
-var sparseKeys = Object.keys(array);
-var denseKeys = [...array.keys()];
+let array = ["abc", , "xyz"];
+let sparseKeys = Object.keys(array);
+let denseKeys = [...array.keys()];
 console.log(sparseKeys); // ["0", "2"]
 console.log(denseKeys);  // [0, 1, 2]
 12345
@@ -1437,8 +1437,8 @@ values() 方法基于**ECMAScript 2015（ES6）规范**，返回一个数组迭�
 遗憾的是，现在没有浏览器实现了该方法，因此下面将就着看看吧。
 
 ```
-var array = ["abc", "xyz"];
-var iterator = array.values();
+let array = ["abc", "xyz"];
+let iterator = array.values();
 console.log(iterator.next().value);//abc
 console.log(iterator.next().value);//xyz
 1234
@@ -1451,8 +1451,8 @@ console.log(iterator.next().value);//xyz
 语法：_arrSymbol.iterator_
 
 ```
-var array = ["abc", "xyz"];
-var iterator = array[Symbol.iterator]();
+let array = ["abc", "xyz"];
+let iterator = array[Symbol.iterator]();
 console.log(iterator.next().value); // abc
 console.log(iterator.next().value); // xyz
 1234

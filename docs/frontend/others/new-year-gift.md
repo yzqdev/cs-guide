@@ -367,7 +367,7 @@ module.exports = function() {
             }).exec(function(err, doc) {
               // 不存在就自己创建保存
               if (!doc) {
-                var chatModel = new Chat({
+                let chatModel = new Chat({
                   messageId,
                   bothSide: [
                     {

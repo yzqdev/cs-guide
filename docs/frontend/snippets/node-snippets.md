@@ -11,7 +11,7 @@ function readFileList(dir, filesList = []) {
   const files = fs.readdirSync(dir);
   let dirPath = { name: path.resolve().split("\\").pop(), files: [] };
   files.forEach((item, index) => {
-    var fullPath = path.join(dir, item);
+    let fullPath = path.join(dir, item);
     const stat = fs.statSync(fullPath);
     // console.log(path.extname(item));
     // console.log(fullPath);
@@ -39,7 +39,7 @@ function readFileList(dir, filesList = []) {
   filesList.push(dirPath);
   return filesList;
 }
-var filesList = [];
+let filesList = [];
 readFileList("./", filesList);
 console.log(filesList);
 let mdContent = "";
@@ -91,7 +91,7 @@ function readFileList(dir, filesList = []) {
   const files = fs.readdirSync(dir);
   let dirPath = { name: path.resolve().split("\\").pop(), files: [] };
   files.forEach((item, index) => {
-    var fullPath = path.join(dir, item);
+    let fullPath = path.join(dir, item);
     const stat = fs.statSync(fullPath);
     // console.log(path.extname(item));
     // console.log(fullPath);
@@ -119,7 +119,7 @@ function readFileList(dir, filesList = []) {
   filesList.push(dirPath);
   return filesList;
 }
-var filesList = [];
+let filesList = [];
 readFileList("./", filesList);
 console.log(filesList);
 let mdContent = "";
@@ -171,7 +171,7 @@ function readFileList(dir, filesList = []) {
   const files = fs.readdirSync(dir);
   let dirPath = { name: path.resolve(dir).split("\\").pop(), files: [] };
   files.forEach((item, index) => {
-    var fullPath = path.join(dir, item);
+    let fullPath = path.join(dir, item);
     const stat = fs.statSync(fullPath);
 
     if (stat.isDirectory() && item != "res" && item != ".vuepress") {
@@ -188,7 +188,7 @@ function readFileList(dir, filesList = []) {
   filesList.push(dirPath);
   return filesList;
 }
-var filesList = [];
+let filesList = [];
 readFileList("./", filesList);
 console.log("filelist=", filesList);
 let md = "";
@@ -258,7 +258,7 @@ function readFileList(dir, filesList = []) {
   const files = fs.readdirSync(dir);
   let dirPath = { name: path.resolve().split("\\").pop(), files: [] };
   files.forEach((item, index) => {
-    var fullPath = path.join(dir, item);
+    let fullPath = path.join(dir, item);
     const stat = fs.statSync(fullPath);
     // console.log(path.extname(item));
     // console.log(fullPath);
@@ -271,7 +271,7 @@ function readFileList(dir, filesList = []) {
   // filesList.push(dirPath);
   return filesList;
 }
-var filesList = [];
+let filesList = [];
 readFileList("./", filesList);
 console.log(filesList);
 fs.writeFile(
@@ -310,7 +310,7 @@ function readFileList(dir, filesList = []) {
   const files = fs.readdirSync(dir);
   let dirPath = { name: path.resolve(dir).split("\\").pop(), files: [] };
   files.forEach((item, index) => {
-    var fullPath = path.join(dir, item);
+    let fullPath = path.join(dir, item);
     const stat = fs.statSync(fullPath);
 
     if (stat.isDirectory() && item != "res") {
@@ -327,7 +327,7 @@ function readFileList(dir, filesList = []) {
   filesList.push(dirPath);
   return filesList;
 }
-var filesList = [];
+let filesList = [];
 readFileList("./", filesList);
 //
 console.log(filesList);

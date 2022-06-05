@@ -52,7 +52,7 @@ trim: function (str, type) {
 //result：Asdasd
 changeCase: function (str, type) {
     function ToggleCase(str) {
-        var itemText = ""
+        let itemText = ""
         str.split("").forEach(
             function (item) {
                 if (/^([a-z]+)/.test(item)) {
@@ -94,8 +94,8 @@ changeCase: function (str, type) {
 //ecDo.repeatStr('123',3)
 //"result：123123123"
 repeatStr: function (str, count) {
-    var text = '';
-    for (var i = 0; i < count; i++) {
+    let text = '';
+    for (let i = 0; i < count; i++) {
         text += str;
     }
     return text;
@@ -129,33 +129,33 @@ replaceAll: function (str, AFindText, ARepText) {
 //ecDo.replaceStr('1asd88465asdwqe3',[5],1,'+')
 //result："1asd88465as+++++"
 replaceStr: function (str, regArr, type, ARepText) {
-    var regtext = '',
+    let regtext = '',
         Reg = null,
         replaceText = ARepText || '*';
     //repeatStr是在上面定义过的（字符串循环复制），大家注意哦
     if (regArr.length === 3 && type === 0) {
         regtext = '(\\w{' + regArr[0] + '})\\w{' + regArr[1] + '}(\\w{' + regArr[2] + '})'
         Reg = new RegExp(regtext);
-        var replaceCount = this.repeatStr(replaceText, regArr[1]);
+        let replaceCount = this.repeatStr(replaceText, regArr[1]);
         return str.replace(Reg, '$1' + replaceCount + '$2')
     }
     else if (regArr.length === 3 && type === 1) {
         regtext = '\\w{' + regArr[0] + '}(\\w{' + regArr[1] + '})\\w{' + regArr[2] + '}'
         Reg = new RegExp(regtext);
-        var replaceCount1 = this.repeatStr(replaceText, regArr[0]);
-        var replaceCount2 = this.repeatStr(replaceText, regArr[2]);
+        let replaceCount1 = this.repeatStr(replaceText, regArr[0]);
+        let replaceCount2 = this.repeatStr(replaceText, regArr[2]);
         return str.replace(Reg, replaceCount1 + '$1' + replaceCount2)
     }
     else if (regArr.length === 1 && type === 0) {
         regtext = '(^\\w{' + regArr[0] + '})'
         Reg = new RegExp(regtext);
-        var replaceCount = this.repeatStr(replaceText, regArr[0]);
+        let replaceCount = this.repeatStr(replaceText, regArr[0]);
         return str.replace(Reg, replaceCount)
     }
     else if (regArr.length === 1 && type === 1) {
         regtext = '(\\w{' + regArr[0] + '}$)'
         Reg = new RegExp(regtext);
-        var replaceCount = this.repeatStr(replaceText, regArr[0]);
+        let replaceCount = this.repeatStr(replaceText, regArr[0]);
         return str.replace(Reg, replaceCount)
     }
 }
@@ -202,7 +202,7 @@ checkType: function (str, type) {
 //ecDo.checkPwd('12asdASAD')
 //result：3(强度等级为3)
 checkPwd: function (str) {
-    var nowLv = 0;
+    let nowLv = 0;
     if (str.length < 6) {
         return nowLv
     }
@@ -244,7 +244,7 @@ randomWord: function (count) {
 可能标题会有点误导，下面我就简单说明一个需求，在字符串`'sad44654blog5a1sd67as9dablog4s5d16zxc4sdweasjkblogwqepaskdkblogahseiuadbhjcibloguyeajzxkcabloguyiwezxc967'`中找出'blog'的出现次数。代码如下
 
 ```
-//var strTest='sad44654blog5a1sd67as9dablog4s5d16zxc4sdweasjkblogwqepaskdkblogahseiuadbhjcibloguyeajzxkcabloguyiwezxc967'
+//let strTest='sad44654blog5a1sd67as9dablog4s5d16zxc4sdweasjkblogwqepaskdkblogahseiuadbhjcibloguyeajzxkcabloguyiwezxc967'
 //ecDo.countStr(strTest,'blog')
 //result：6
 countStr: function (str, strSplit) {
@@ -260,19 +260,19 @@ countStr: function (str, strSplit) {
 //字符串，替换内容（special-特殊字符,html-html标签,emjoy-emjoy表情,word-小写字母，WORD-大写字母，number-数字,chinese-中文），要替换成什么，默认'',保留哪些特殊字符
 //如果需要过滤多种字符，type参数使用,分割，如下栗子
 //过滤字符串的html标签，大写字母，中文，特殊字符，全部替换成*,但是特殊字符'%'，'?'，除了这两个，其他特殊字符全部清除
-//var str='asd    654a大蠢sasdasdASDQWEXZC6d5#%^*^&*^%^&*$\\"\'#@!()*/-())_\'":"{}?<div></div><img src=""/>啊实打实大蠢猪自行车这些课程';
+//let str='asd    654a大蠢sasdasdASDQWEXZC6d5#%^*^&*^%^&*$\\"\'#@!()*/-())_\'":"{}?<div></div><img src=""/>啊实打实大蠢猪自行车这些课程';
 // ecDo.filterStr(str,'html,WORD,chinese,special','*','%?')
 //result："asd    654a**sasdasd*********6d5#%^*^&*^%^&*$\"'#@!()*/-())_'":"{}?*****************"
 filterStr: function (str, type, restr, spstr) {
-    var typeArr = type.split(','), _str = str;
-    for (var i = 0, len = typeArr.length; i < len; i++) {
+    let typeArr = type.split(','), _str = str;
+    for (let i = 0, len = typeArr.length; i < len; i++) {
         //是否是过滤特殊符号
         if (typeArr[i] === 'special') {
-            var pattern, regText = '$()[]{}?\|^*+./\"\'+';
+            let pattern, regText = '$()[]{}?\|^*+./\"\'+';
             //是否有哪些特殊符号需要保留
             if (spstr) {
-                var _spstr = spstr.split(""), _regText = "[^0-9A-Za-z\\s";
-                for (var j = 0, len1 = _spstr.length; j < len1; j++) {
+                let _spstr = spstr.split(""), _regText = "[^0-9A-Za-z\\s";
+                for (let j = 0, len1 = _spstr.length; j < len1; j++) {
                     if (regText.indexOf(_spstr[j]) === -1) {
                         _regText += _spstr[j];
                     }
@@ -287,7 +287,7 @@ filterStr: function (str, type, restr, spstr) {
                 pattern = new RegExp("[^0-9A-Za-z\\s]", 'g')
             }
         }
-        var _restr = restr || '';
+        let _restr = restr || '';
         switch (typeArr[i]) {
             case 'special':
                 _str = _str.replace(pattern, _restr);
@@ -327,9 +327,9 @@ filterStr: function (str, type, restr, spstr) {
 //ecDo.formatText('1234asda567asd890',4,'-')
 //result："1-234a-sda5-67as-d890"
 formatText: function (str, size, delimiter) {
-    var _size = size || 3, _delimiter = delimiter || ',';
-    var regText = '\\B(?=(\\w{' + _size + '})+(?!\\w))';
-    var reg = new RegExp(regText, 'g');
+    let _size = size || 3, _delimiter = delimiter || ',';
+    let regText = '\\B(?=(\\w{' + _size + '})+(?!\\w))';
+    let reg = new RegExp(regText, 'g');
     return str.replace(reg, _delimiter);
 }
 
@@ -343,9 +343,9 @@ formatText: function (str, size, delimiter) {
 //ecDo.longestWord('Find|the|Longest|word|in|a|String','|')
 //result：7
 longestWord: function (str, splitType) {
-    var _splitType = splitType || /\s+/g,
+    let _splitType = splitType || /\s+/g,
         _max = 0,_item='';
-    var strArr = str.split(_splitType);
+    let strArr = str.split(_splitType);
     strArr.forEach(function (item) {
         if (_max < item.length) {
             _max = item.length
@@ -364,8 +364,8 @@ longestWord: function (str, splitType) {
 //ecDo.titleCaseUp('this is a title')
 //"This Is A Title"
 titleCaseUp: function (str, splitType) {
-    var _splitType = splitType || /\s+/g;
-    var strArr = str.split(_splitType),
+    let _splitType = splitType || /\s+/g;
+    let strArr = str.split(_splitType),
         result = "", _this = this
     strArr.forEach(function (item) {
         result += _this.changeCase(item, 1) + ' ';
@@ -455,8 +455,8 @@ randomOne: function (arr) {
 //ecDo.getEleCount([1,2,3,4,5,66,77,22,55,22],22)
 //result：2
 getEleCount: function (obj, ele) {
-    var num = 0;
-    for (var i = 0, len = obj.length; i < len; i++) {
+    let num = 0;
+    for (let i = 0, len = obj.length; i < len; i++) {
         if (ele === obj[i]) {
             num++;
         }
@@ -484,10 +484,10 @@ getEleCount: function (obj, ele) {
 //传参（rank=3，ranktype=1），只返回出现次数排序（升序）前三的
 //result：[{"el":"6","count":1},{"el":"5","count":1},{"el":"4","count":1}]
 getCount: function (arr, rank, ranktype) {
-    var obj = {},
+    let obj = {},
         k, arr1 = []
     //记录每一元素出现的次数
-    for (var i = 0, len = arr.length; i < len; i++) {
+    for (let i = 0, len = arr.length; i < len; i++) {
         k = arr[i];
         if (obj[k]) {
             obj[k]++;
@@ -496,7 +496,7 @@ getCount: function (arr, rank, ranktype) {
         }
     }
     //保存结果{el-'元素'，count-出现次数}
-    for (var o in obj) {
+    for (let o in obj) {
         arr1.push({el: o, count: obj[o]});
     }
     //排序（降序）
@@ -507,7 +507,7 @@ getCount: function (arr, rank, ranktype) {
     if (ranktype === 1) {
         arr1 = arr1.reverse();
     }
-    var rank1 = rank || arr1.length;
+    let rank1 = rank || arr1.length;
     return arr1.slice(0, rank1);
 }
 
@@ -545,27 +545,27 @@ removeArrayForValue: function (arr, val, type) {
 ### 3-10 获取对象数组某些项
 
 ```
-//var arr=[{a:1,b:2,c:9},{a:2,b:3,c:5},{a:5,b:9},{a:4,b:2,c:5},{a:4,b:5,c:7}]
+//let arr=[{a:1,b:2,c:9},{a:2,b:3,c:5},{a:5,b:9},{a:4,b:2,c:5},{a:4,b:5,c:7}]
 //ecDo.getOptionArray(arr,'a,c')
 //result：[{a:1,c:9},{a:2,c:5},{a:5,c:underfind},{a:4,c:5},{a:4,c:7}]
 //ecDo.getOptionArray(arr,'b')
 //result：[2, 3, 9, 2, 5]
 getOptionArray: function (arr, keys) {
-    var newArr = []
+    let newArr = []
     if (!keys) {
         return arr
     }
-    var _keys = keys.split(','), newArrOne = {};
+    let _keys = keys.split(','), newArrOne = {};
     //是否只是需要获取某一项的值
     if (_keys.length === 1) {
-        for (var i = 0, len = arr.length; i < len; i++) {
+        for (let i = 0, len = arr.length; i < len; i++) {
             newArr.push(arr[i][keys])
         }
         return newArr;
     }
-    for (var i = 0, len = arr.length; i < len; i++) {
+    for (let i = 0, len = arr.length; i < len; i++) {
         newArrOne = {};
-        for (var j = 0, len1 = _keys.length; j < len1; j++) {
+        for (let j = 0, len1 = _keys.length; j < len1; j++) {
             newArrOne[_keys[j]] = arr[i][_keys[j]]
         }
         newArr.push(newArrOne);
@@ -578,17 +578,17 @@ getOptionArray: function (arr, keys) {
 ### 3-11 排除对象数组某些项
 
 ```
-//var arr=[{a:1,b:2,c:9},{a:2,b:3,c:5},{a:5,b:9},{a:4,b:2,c:5},{a:4,b:5,c:7}]
+//let arr=[{a:1,b:2,c:9},{a:2,b:3,c:5},{a:5,b:9},{a:4,b:2,c:5},{a:4,b:5,c:7}]
 //ecDo.filterOptionArray(arr,'a')
 //result：[{b:2,c:9},{b:3,c:5},{b:9},{b:2,c:5},{b:5,c:7}]
 //ecDo.filterOptionArray(arr,'a,c')
 //result：[{b:2},{b:3},{b:9},{b:2},{b:5}]
 filterOptionArray: function (arr, keys) {
-    var newArr = []
-    var _keys = keys.split(','), newArrOne = {};
-    for (var i = 0, len = arr.length; i < len; i++) {
+    let newArr = []
+    let _keys = keys.split(','), newArrOne = {};
+    for (let i = 0, len = arr.length; i < len; i++) {
         newArrOne = {};
-        for (var key in arr[i]) {
+        for (let key in arr[i]) {
             //如果key不存在排除keys里面,添加数据
             if (_keys.indexOf(key) === -1) {
                 newArrOne[key] = arr[i][key];
@@ -604,15 +604,15 @@ filterOptionArray: function (arr, keys) {
 ### 3-12 对象数组排序
 
 ```
-//var arr=[{a:1,b:2,c:9},{a:2,b:3,c:5},{a:5,b:9},{a:4,b:2,c:5},{a:4,b:5,c:7}]
+//let arr=[{a:1,b:2,c:9},{a:2,b:3,c:5},{a:5,b:9},{a:4,b:2,c:5},{a:4,b:5,c:7}]
 //ecDo.arraySort(arr,'a,b')a是第一排序条件，b是第二排序条件
 //result：[{"a":1,"b":2,"c":9},{"a":2,"b":3,"c":5},{"a":4,"b":2,"c":5},{"a":4,"b":5,"c":7},{"a":5,"b":9}]
 arraySort: function (arr, sortText) {
     if (!sortText) {
         return arr
     }
-    var _sortText = sortText.split(',').reverse(), _arr = arr.slice(0);
-    for (var i = 0, len = _sortText.length; i < len; i++) {
+    let _sortText = sortText.split(',').reverse(), _arr = arr.slice(0);
+    for (let i = 0, len = _sortText.length; i < len; i++) {
         _arr.sort(function (n1, n2) {
             return n1[_sortText[i]] - n2[_sortText[i]]
         })
@@ -628,8 +628,8 @@ arraySort: function (arr, sortText) {
 //ecDo.steamroller([1,2,[4,5,[1,23]]])
 //[1, 2, 4, 5, 1, 23]
 steamroller: function (arr) {
-    var newArr = [],_this=this;
-    for (var i = 0; i < arr.length; i++) {
+    let newArr = [],_this=this;
+    for (let i = 0; i < arr.length; i++) {
         if (Array.isArray(arr[i])) {
             // 如果是数组，调用(递归)steamroller 将其扁平化
             // 然后再 push 到 newArr 中
@@ -665,7 +665,7 @@ jquery：$('#xxx').html();
 //检测对象是否有哪个类名
 hasClass: function (obj, classStr) {
     if (obj.className && this.trim(obj.className, 1) !== "") {
-        var arr = obj.className.split(/\s+/); //这个正则表达式是因为class可以有多个,判断是否包含
+        let arr = obj.className.split(/\s+/); //这个正则表达式是因为class可以有多个,判断是否包含
         return (arr.indexOf(classStr) == -1) ? false : true;
     }
     else {
@@ -680,7 +680,7 @@ hasClass: function (obj, classStr) {
 ```
 addClass: function (obj, classStr) {
     if ((this.istype(obj, 'array') || this.istype(obj, 'elements')) && obj.length >= 1) {
-        for (var i = 0, len = obj.length; i < len; i++) {
+        for (let i = 0, len = obj.length; i < len; i++) {
             if (!this.hasClass(obj[i], classStr)) {
                 obj[i].className += " " + classStr;
             }
@@ -700,16 +700,16 @@ addClass: function (obj, classStr) {
 ```
 removeClass: function (obj, classStr) {
     if ((this.istype(obj, 'array') || this.istype(obj, 'elements')) && obj.length > 1) {
-        for (var i = 0, len = obj.length; i < len; i++) {
+        for (let i = 0, len = obj.length; i < len; i++) {
             if (this.hasClass(obj[i], classStr)) {
-                var reg = new RegExp('(\\s|^)' + classStr + '(\\s|$)');
+                let reg = new RegExp('(\\s|^)' + classStr + '(\\s|$)');
                 obj[i].className = obj[i].className.replace(reg, '');
             }
         }
     }
     else {
         if (this.hasClass(obj, classStr)) {
-            var reg = new RegExp('(\\s|^)' + classStr + '(\\s|$)');
+            let reg = new RegExp('(\\s|^)' + classStr + '(\\s|$)');
             obj.className = obj.className.replace(reg, '');
         }
     }
@@ -732,8 +732,8 @@ replaceClass: function (obj, newName, oldName) {
 ```
 //ecDo.siblings(obj,'#id')
 siblings: function (obj, opt) {
-    var a = []; //定义一个数组，用来存o的兄弟元素
-    var p = obj.previousSibling;
+    let a = []; //定义一个数组，用来存o的兄弟元素
+    let p = obj.previousSibling;
     while (p) { //先取o的哥哥们 判断有没有上一个哥哥元素，如果有则往下执行 p表示previousSibling
         if (p.nodeType === 1) {
             a.push(p);
@@ -741,7 +741,7 @@ siblings: function (obj, opt) {
         p = p.previousSibling //最后把上一个节点赋给p
     }
     a.reverse() //把顺序反转一下 这样元素的顺序就是按先后的了
-    var n = obj.nextSibling; //再取o的弟弟
+    let n = obj.nextSibling; //再取o的弟弟
     while (n) { //判断有没有下一个弟弟结点 n是nextSibling的意思
         if (n.nodeType === 1) {
             a.push(n);
@@ -749,8 +749,8 @@ siblings: function (obj, opt) {
         n = n.nextSibling;
     }
     if (opt) {
-        var _opt = opt.substr(1);
-        var b = [];//定义一个数组，用于储存过滤a的数组
+        let _opt = opt.substr(1);
+        let b = [];//定义一个数组，用于储存过滤a的数组
         if (opt[0] === '.') {
             b = a.filter(function (item) {
                 return item.className === _opt
@@ -777,7 +777,7 @@ siblings: function (obj, opt) {
 
 ```
 css: function (obj, json) {
-    for (var attr in json) {
+    for (let attr in json) {
         obj.style[attr] = json[attr];
     }
 }
@@ -808,7 +808,7 @@ text: function (obj) {
 
 ```
 show: function (obj) {
-    var blockArr=['div','li','ul','ol','dl','table','article','h1','h2','h3','h4','h5','h6','p','hr','header','footer','details','summary','section','aside','']
+    let blockArr=['div','li','ul','ol','dl','table','article','h1','h2','h3','h4','h5','h6','p','hr','header','footer','details','summary','section','aside','']
     if(blockArr.indexOf(obj.tagName.toLocaleLowerCase())===-1){
         obj.style.display ='inline';
     }
@@ -830,15 +830,15 @@ hide: function (obj) {
 //cookie
 //设置cookie
 setCookie: function (name, value, iDay) {
-    var oDate = new Date();
+    let oDate = new Date();
     oDate.setDate(oDate.getDate() + iDay);
     document.cookie = name + '=' + value + ';expires=' + oDate;
 },
 //获取cookie
 getCookie: function (name) {
-    var arr = document.cookie.split('; ');
-    for (var i = 0; i < arr.length; i++) {
-        var arr2 = arr[i].split('=');
+    let arr = document.cookie.split('; ');
+    for (let i = 0; i < arr.length; i++) {
+        let arr2 = arr[i].split('=');
         if (arr2[0] == name) {
             return arr2[1];
         }
@@ -858,8 +858,8 @@ removeCookie: function (name) {
 //ecDo.filterParams({a:"",b:null,c:"010",d:123})
 //Object {c: "010", d: 123}
 filterParams: function (obj) {
-    var _newPar = {};
-    for (var key in obj) {
+    let _newPar = {};
+    for (let key in obj) {
         if ((obj[key] === 0 ||obj[key] === false|| obj[key]) && obj[key].toString().replace(/(^\s*)|(\s*$)/g, '') !== '') {
             _newPar[key] = obj[key];
         }
@@ -879,23 +879,23 @@ filterParams: function (obj) {
 //ecDo.upDigit(-1693)
 //result："欠人民币壹仟陆佰玖拾叁元整"
 upDigit: function (n) {
-    var fraction = ['角', '分', '厘'];
-    var digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
-    var unit = [
+    let fraction = ['角', '分', '厘'];
+    let digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
+    let unit = [
         ['元', '万', '亿'],
         ['', '拾', '佰', '仟']
     ];
-    var head = n < 0 ? '欠人民币' : '人民币';
+    let head = n < 0 ? '欠人民币' : '人民币';
     n = Math.abs(n);
-    var s = '';
-    for (var i = 0; i < fraction.length; i++) {
+    let s = '';
+    for (let i = 0; i < fraction.length; i++) {
         s += (digit[Math.floor(n * 10 * Math.pow(10, i)) % 10] + fraction[i]).replace(/零./, '');
     }
     s = s || '整';
     n = Math.floor(n);
-    for (var i = 0; i < unit[0].length && n > 0; i++) {
-        var p = '';
-        for (var j = 0; j < unit[1].length && n > 0; j++) {
+    for (let i = 0; i < unit[0].length && n > 0; i++) {
+        let p = '';
+        for (let j = 0; j < unit[1].length && n > 0; j++) {
             p = digit[n % 10] + unit[1][j] + p;
             n = Math.floor(n / 10);
         }
@@ -914,8 +914,8 @@ upDigit: function (n) {
 //ecDo.setUrlPrmt({'a':1,'b':2})
 //result：a=1&b=2
 setUrlPrmt: function (obj) {
-    var _rs = [];
-    for (var p in obj) {
+    let _rs = [];
+    for (let p in obj) {
         if (obj[p] != null && obj[p] != '') {
             _rs.push(p + '=' + obj[p])
         }
@@ -927,15 +927,15 @@ setUrlPrmt: function (obj) {
 //result：Object{draftId: "122000011938"}
 getUrlPrmt: function (url) {
     url = url ? url : window.location.href;
-    var _pa = url.substring(url.indexOf('?') + 1),
+    let _pa = url.substring(url.indexOf('?') + 1),
         _arrS = _pa.split('&'),
         _rs = {};
-    for (var i = 0, _len = _arrS.length; i < _len; i++) {
-        var pos = _arrS[i].indexOf('=');
+    for (let i = 0, _len = _arrS.length; i < _len; i++) {
+        let pos = _arrS[i].indexOf('=');
         if (pos == -1) {
             continue;
         }
-        var name = _arrS[i].substring(0, pos),
+        let name = _arrS[i].substring(0, pos),
             value = window.decodeURIComponent(_arrS[i].substring(pos + 1));
         _rs[name] = value;
     }
@@ -977,8 +977,8 @@ randomColor: function () {
     //写法2
     return '#' + Math.random().toString(16).substring(2).substr(0, 6);
     //写法3
-    //var color='#',_index=this.randomNumber(15);
-    //for(var i=0;i<6;i++){
+    //let color='#',_index=this.randomNumber(15);
+    //for(let i=0;i<6;i++){
     //color+='0123456789abcdef'[_index];
     //}
     //return color;
@@ -995,10 +995,10 @@ randomColor: function () {
 //ecDo.getEndTime('2017/7/22 16:0:0')
 //result："剩余时间6天 2小时 28 分钟20 秒"
 getEndTime: function (endTime) {
-    var startDate = new Date(); //开始时间，当前时间
-    var endDate = new Date(endTime); //结束时间，需传入时间参数
-    var t = endDate.getTime() - startDate.getTime(); //时间差的毫秒数
-    var d = 0,
+    let startDate = new Date(); //开始时间，当前时间
+    let endDate = new Date(endTime); //结束时间，需传入时间参数
+    let t = endDate.getTime() - startDate.getTime(); //时间差的毫秒数
+    let d = 0,
         h = 0,
         m = 0,
         s = 0;
@@ -1019,12 +1019,12 @@ getEndTime: function (endTime) {
 
 ```
 getFontSize: function (_client) {
-    var doc = document,
+    let doc = document,
         win = window;
-    var docEl = doc.documentElement,
+    let docEl = doc.documentElement,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
         recalc = function () {
-            var clientWidth = docEl.clientWidth;
+            let clientWidth = docEl.clientWidth;
             if (!clientWidth) return;
             //如果屏幕大于750（750是根据我效果图设置的，具体数值参考效果图），就设置clientWidth=750，防止font-size会超过100px
             if (clientWidth > _client) {
@@ -1082,17 +1082,17 @@ ajax: function (obj) {
         };
     obj.error = obj.error || function () {
         };
-    var xmlHttp = null;
+    let xmlHttp = null;
     if (XMLHttpRequest) {
         xmlHttp = new XMLHttpRequest();
     } else {
         xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
     }
-    var params = [];
-    for (var key in obj.data) {
+    let params = [];
+    for (let key in obj.data) {
         params.push(key + '=' + obj.data[key]);
     }
-    var postData = params.join('&');
+    let postData = params.join('&');
     if (obj.type.toUpperCase() === 'POST') {
         xmlHttp.open(obj.type, obj.url, obj.async);
         xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=utf-8');
@@ -1117,7 +1117,7 @@ ajax: function (obj) {
 ```
 //图片没加载出来时用一张图片代替
 aftLoadImg: function (obj, url, errorUrl,cb) {
-    var oImg = new Image(), _this = this;
+    let oImg = new Image(), _this = this;
     oImg.src = url;
     oImg.onload = function () {
         obj.src = oImg.src;
@@ -1149,9 +1149,9 @@ aftLoadImg: function (obj, url, errorUrl,cb) {
 //        }
 //}
 loadImg: function (className, num, errorUrl) {
-    var _className = className || 'ec-load-img', _num = num || 0, _this = this,_errorUrl=errorUrl||null;
-    var oImgLoad = document.getElementsByClassName(_className);
-    for (var i = 0, len = oImgLoad.length; i < len; i++) {
+    let _className = className || 'ec-load-img', _num = num || 0, _this = this,_errorUrl=errorUrl||null;
+    let oImgLoad = document.getElementsByClassName(_className);
+    for (let i = 0, len = oImgLoad.length; i < len; i++) {
         //如果图片已经滚动到指定的高度
         if (document.documentElement.clientHeight + document.documentElement.scrollTop > oImgLoad[i].offsetTop - _num && !oImgLoad[i].isLoad) {
             //记录图片是否已经加载
@@ -1198,8 +1198,8 @@ loadImg: function (className, num, errorUrl) {
 //ecDo.createKeyExp([前端，过来])
 //result:(前端|过来)/g
 createKeyExp: function (strArr) {
-    var str = "";
-    for (var i = 0; i < strArr.length; i++) {
+    let str = "";
+    for (let i = 0; i < strArr.length; i++) {
         if (i != strArr.length - 1) {
             str = str + strArr[i] + "|";
         } else {
@@ -1212,7 +1212,7 @@ createKeyExp: function (strArr) {
 //ecDo.findKey('守侯我oaks接到了来自下次你离开快乐吉祥留在开城侯','守侯 开','i')
 //"<i>守侯</i>我oaks接到了来自下次你离<i>开</i>快乐吉祥留在<i>开</i>城侯"
 findKey: function (str, key, el) {
-    var arr = null,
+    let arr = null,
         regStr = null,
         content = null,
         Reg = null,
@@ -1239,7 +1239,7 @@ findKey: function (str, key, el) {
 //'[object Array]'
 istype: function (o, type) {
     if (type) {
-        var _type = type.toLowerCase();
+        let _type = type.toLowerCase();
     }
     switch (_type) {
         case 'string':
@@ -1293,7 +1293,7 @@ browserInfo: function (type) {
 
 ```
 //多用于鼠标滚动，移动，窗口大小改变等高频率触发事件
-// var count=0;
+// let count=0;
 // function fn1(){
 //     count++;
 //     console.log(count)
@@ -1301,10 +1301,10 @@ browserInfo: function (type) {
 // //100ms内连续触发的调用，后一个调用会把前一个调用的等待处理掉，但每隔200ms至少执行一次
 // document.onmousemove=ecDo.delayFn(fn1,100,200)
 delayFn: function (fn, delay, mustDelay) {
-    var timer = null;
-    var t_start;
+    let timer = null;
+    let t_start;
     return function () {
-        var context = this, args = arguments, t_cur = +new Date();
+        let context = this, args = arguments, t_cur = +new Date();
         //先清理上一次的调用触发（上一次调用触发事件不执行）
         clearTimeout(timer);
         //如果不存触发时间，那么当前的时间就是触发时间
@@ -1358,7 +1358,7 @@ String.prototype.trim=function(type){
 所以建议的封装姿势是
 
 ```
-var ecDo={
+let ecDo={
     trim:function(){..},
     changeCase:function(){..}...
 }

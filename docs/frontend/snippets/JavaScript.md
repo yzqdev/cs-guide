@@ -8,11 +8,11 @@ export const renderSize = value => {
   if (null == value || value == '') {
     return '0 Bytes'
   }
-  var unitArr = new Array('Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB')
-  var index = 0
-  var srcsize = parseFloat(value)
+  let unitArr = new Array('Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB')
+  let index = 0
+  let srcsize = parseFloat(value)
   index = Math.floor(Math.log(srcsize) / Math.log(1024))
-  var size = srcsize / Math.pow(1024, index)
+  let size = srcsize / Math.pow(1024, index)
   size = size.toFixed(2) //保留的小数位数
   return size + unitArr[index]
 }
@@ -51,13 +51,13 @@ export const Time = value => {
 }
 function transformTime(timestamp = +new Date()) {
   if (timestamp) {
-    var time = new Date(timestamp)
-    var y = time.getFullYear()
-    var M = time.getMonth() + 1
-    var d = time.getDate()
-    var h = time.getHours()
-    var m = time.getMinutes()
-    var s = time.getSeconds()
+    let time = new Date(timestamp)
+    let y = time.getFullYear()
+    let M = time.getMonth() + 1
+    let d = time.getDate()
+    let h = time.getHours()
+    let m = time.getMinutes()
+    let s = time.getSeconds()
     return y + '-' + addZero(M) + '-' + addZero(d) + ' ' + addZero(h) + ':' + addZero(m) + ':' + addZero(s)
   } else {
     return ''
@@ -147,14 +147,14 @@ console.log(getMax("aaaabbbbcccccccceeeeeeeeeeeeeeetttttttttt"))
 ```javascript
 function getMost(str) {
   // 步骤1
-  var result = {};
+  let result = {};
   for (let i in str) {
     if (str[i] in result) {
       // 步骤2
       result[str[i]]++;
     } else {
       // 步骤3
-      var object = {};
+      let object = {};
       object[str[i]] = 1;
       result = Object.assign(result, object);
     }
@@ -162,7 +162,7 @@ function getMost(str) {
   return result;
 }
 
-var result = getMost("xyzzyxyz");
+let result = getMost("xyzzyxyz");
 console.log(result); //{x: 2, y: 3, z: 3}
 
 ```
@@ -171,7 +171,7 @@ console.log(result); //{x: 2, y: 3, z: 3}
 
 ```javascript
 function getMost(str) {
-    var result = Array.prototype.reduce.call(str, function(allWords, curWord) {
+    let result = Array.prototype.reduce.call(str, function(allWords, curWord) {
         allWords[curWord] ? allWords[curWord]++ : allWords[curWord] = 1;
         return allWords;
     }, {});
@@ -179,7 +179,7 @@ function getMost(str) {
     return result;
 }
 
-var result = getMost("xyzzyxyz");
+let result = getMost("xyzzyxyz");
 console.log(result);        //{x: 2, y: 3, z: 3}
 ```
 

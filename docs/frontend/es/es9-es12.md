@@ -34,15 +34,15 @@
 - `flat()`方法最基本的作用就是数组降维
 
 ```js
-var arr1 = [1, 2, [3, 4]];
+let arr1 = [1, 2, [3, 4]];
 arr1.flat(); 
 // [1, 2, 3, 4]
 
-var arr2 = [1, 2, [3, 4, [5, 6]]];
+let arr2 = [1, 2, [3, 4, [5, 6]]];
 arr2.flat();
 // [1, 2, 3, 4, [5, 6]]
 
-var arr3 = [1, 2, [3, 4, [5, 6]]];
+let arr3 = [1, 2, [3, 4, [5, 6]]];
 arr3.flat(2);
 // [1, 2, 3, 4, 5, 6]
 
@@ -55,7 +55,7 @@ arr3.flat(Infinity);
 - 其次，还可以利用`flat()`方法的特性来去除数组的空项
 
 ```js
-var arr4 = [1, 2, , 4, 5];
+let arr4 = [1, 2, , 4, 5];
 arr4.flat();
 // [1, 2, 4, 5]
 
@@ -66,7 +66,7 @@ arr4.flat();
 `flatMap()` 方法首先使用映射函数映射每个元素，然后将结果压缩成一个新数组。它与 map 和 深度值1的 flat 几乎相同，但 flatMap 通常在合并成一种方法的效率稍微高一些。 这里我们拿map方法与flatMap方法做一个比较。
 
 ```js
-var arr1 = [1, 2, 3, 4];
+let arr1 = [1, 2, 3, 4];
 
 arr1.map(x => [x * 2]); 
 // [[2], [4], [6], [8]]
@@ -174,8 +174,8 @@ Array.from(matches, m => m[0]);
 ### matchAll可以更好的用于分组
 
 ```js
-var regexp = /t(e)(st(\d?))/g;
-var str = 'test1test2';
+let regexp = /t(e)(st(\d?))/g;
+let str = 'test1test2';
 
 str.match(regexp); 
 // Array ['test1', 'test2']

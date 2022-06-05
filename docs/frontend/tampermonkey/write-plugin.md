@@ -399,11 +399,11 @@ module.exports = {
 (function () {
   "use strict";
   if (location.href === "http://localhost:3000/") return;
-  var script = document.createElement("script");
+  let script = document.createElement("script");
   script.type = "module";
   script.src = "http://localhost:3000/@vite/client";
   document.body.appendChild(script);
-  var script2 = document.createElement("script");
+  let script2 = document.createElement("script");
   script2.type = "module";
   script2.src = "http://localhost:3000/src/main.js";
   document.body.appendChild(script2);

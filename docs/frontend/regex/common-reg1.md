@@ -43,7 +43,7 @@
 ```javascript
 function isDigit(s)
 {
-var patrn=/^[0-9]{1,20}$/;
+let patrn=/^[0-9]{1,20}$/;
 if (!patrn.exec(s)) return false
 return true
 }
@@ -54,7 +54,7 @@ return true
 ```javascript
 function isRegisterUserName(s)
 {
-var patrn=/^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/;
+let patrn=/^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/;
 if (!patrn.exec(s)) return false
 return true
 }
@@ -66,7 +66,7 @@ return true
 ```javascript
 function isTrueName(s)
 {
-var patrn=/^[a-zA-Z]{1,30}$/;
+let patrn=/^[a-zA-Z]{1,30}$/;
 if (!patrn.exec(s)) return false
 return true
 }
@@ -78,7 +78,7 @@ return true
 ```javascript
 function isPasswd(s)
 {
-var patrn=/^(\w){6,20}$/;
+let patrn=/^(\w){6,20}$/;
 if (!patrn.exec(s)) return false
 return true
 }
@@ -89,8 +89,8 @@ return true
 ```javascript
 function isTel(s)
 {
-//var patrn=/^[+]{0,1}(\d){1,3}[ ]?([-]?(\d){1,12})+$/;
-var patrn=/^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/;
+//let patrn=/^[+]{0,1}(\d){1,3}[ ]?([-]?(\d){1,12})+$/;
+let patrn=/^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/;
 if (!patrn.exec(s)) return false
 return true
 }
@@ -101,7 +101,7 @@ return true
 ```javascript
 function isMobil(s)
 {
-var patrn=/^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/;
+let patrn=/^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$/;
 if (!patrn.exec(s)) return false
 return true
 }
@@ -112,8 +112,8 @@ return true
 ```javascript
 function isPostalCode(s)
 {
-//var patrn=/^[a-zA-Z0-9]{3,12}$/;
-var patrn=/^[a-zA-Z0-9 ]{3,12}$/;
+//let patrn=/^[a-zA-Z0-9]{3,12}$/;
+let patrn=/^[a-zA-Z0-9 ]{3,12}$/;
 if (!patrn.exec(s)) return false
 return true
 }
@@ -123,14 +123,14 @@ return true
 
 ```javascript
 function isSearch(s) {
-  var patrn =
+  let patrn =
     /^[^`~!@#$%^&*()+=|\\\][\]\{\}:;\'\,.<>/?]{1}[^`~!@$%^&()+=|\\\][\]\{\}:;\'\,.<>?]{0,19}$/;
   if (!patrn.exec(s)) return false;
   return true;
 }
 function isIP(s) {
   //by zergling
-  var patrn = /^[0-9.]{1,20}$/;
+  let patrn = /^[0-9.]{1,20}$/;
   if (!patrn.exec(s)) return false;
   return true;
 }
@@ -157,15 +157,15 @@ function isBetween(val, lo, hi) {
  * RETURNS: TRUE if theStr is a valid date otherwise false.
  ***/
 function isDate(theStr) {
-  var the1st = theStr.indexOf("-");
-  var the2nd = theStr.lastIndexOf("-");
+  let the1st = theStr.indexOf("-");
+  let the2nd = theStr.lastIndexOf("-");
   if (the1st == the2nd) {
     return false;
   } else {
-    var y = theStr.substring(0, the1st);
-    var m = theStr.substring(the1st + 1, the2nd);
-    var d = theStr.substring(the2nd + 1, theStr.length);
-    var maxDays = 31;
+    let y = theStr.substring(0, the1st);
+    let m = theStr.substring(the1st + 1, the2nd);
+    let d = theStr.substring(the2nd + 1, theStr.length);
+    let maxDays = 31;
     if (isInt(m) == false || isInt(d) == false || isInt(y) == false) {
       return false;
     } else if (y.length < 4) {
@@ -195,15 +195,15 @@ function isEuDate(theStr) {
   if (isBetween(theStr.length, 8, 10) == false) {
     return false;
   } else {
-    var the1st = theStr.indexOf("/");
-    var the2nd = theStr.lastIndexOf("/");
+    let the1st = theStr.indexOf("/");
+    let the2nd = theStr.lastIndexOf("/");
     if (the1st == the2nd) {
       return false;
     } else {
-      var m = theStr.substring(the1st + 1, the2nd);
-      var d = theStr.substring(0, the1st);
-      var y = theStr.substring(the2nd + 1, theStr.length);
-      var maxDays = 31;
+      let m = theStr.substring(the1st + 1, the2nd);
+      let d = theStr.substring(0, the1st);
+      let y = theStr.substring(the2nd + 1, theStr.length);
+      let maxDays = 31;
       if (isInt(m) == false || isInt(d) == false || isInt(y) == false) {
         return false;
       } else if (y.length < 4) {
@@ -237,18 +237,18 @@ function isComdate(lessDate, moreDate) {
   if (!isDate(moreDate)) {
     return false;
   }
-  var less1st = lessDate.indexOf("-");
-  var less2nd = lessDate.lastIndexOf("-");
-  var more1st = moreDate.indexOf("-");
-  var more2nd = moreDate.lastIndexOf("-");
-  var lessy = lessDate.substring(0, less1st);
-  var lessm = lessDate.substring(less1st + 1, less2nd);
-  var lessd = lessDate.substring(less2nd + 1, lessDate.length);
-  var morey = moreDate.substring(0, more1st);
-  var morem = moreDate.substring(more1st + 1, more2nd);
-  var mored = moreDate.substring(more2nd + 1, moreDate.length);
-  var Date1 = new Date(lessy, lessm, lessd);
-  var Date2 = new Date(morey, morem, mored);
+  let less1st = lessDate.indexOf("-");
+  let less2nd = lessDate.lastIndexOf("-");
+  let more1st = moreDate.indexOf("-");
+  let more2nd = moreDate.lastIndexOf("-");
+  let lessy = lessDate.substring(0, less1st);
+  let lessm = lessDate.substring(less1st + 1, less2nd);
+  let lessd = lessDate.substring(less2nd + 1, lessDate.length);
+  let morey = moreDate.substring(0, more1st);
+  let morem = moreDate.substring(more1st + 1, more2nd);
+  let mored = moreDate.substring(more2nd + 1, moreDate.length);
+  let Date1 = new Date(lessy, lessm, lessd);
+  let Date2 = new Date(morey, morem, mored);
   if (Date1 > Date2) {
     return false;
   }
@@ -269,11 +269,11 @@ function isEmpty(str) {
  * CALLS: isDigit
  ***/
 function isInt(theStr) {
-  var flag = true;
+  let flag = true;
   if (isEmpty(theStr)) {
     flag = false;
   } else {
-    for (var i = 0; i < theStr.length; i++) {
+    for (let i = 0; i < theStr.length; i++) {
       if (isDigit(theStr.substring(i, i + 1)) == false) {
         flag = false;
         break;
@@ -290,9 +290,9 @@ decLen AS Integer (how many digits after period)
 * CALLS: isInt
 ***/
 function isReal(theStr, decLen) {
-  var dot1st = theStr.indexOf(".");
-  var dot2nd = theStr.lastIndexOf(".");
-  var OK = true;
+  let dot1st = theStr.indexOf(".");
+  let dot2nd = theStr.lastIndexOf(".");
+  let OK = true;
   if (isEmpty(theStr)) return false;
   if (dot1st == -1) {
     if (!isInt(theStr)) return false;
@@ -300,8 +300,8 @@ function isReal(theStr, decLen) {
   } else if (dot1st != dot2nd) return false;
   else if (dot1st == 0) return false;
   else {
-    var intPart = theStr.substring(0, dot1st);
-    var decPart = theStr.substring(dot2nd + 1);
+    let intPart = theStr.substring(0, dot1st);
+    let decPart = theStr.substring(dot2nd + 1);
     if (decPart.length > decLen) return false;
     else if (!isInt(intPart) || !isInt(decPart)) return false;
     else if (isEmpty(decPart)) return false;
@@ -317,9 +317,9 @@ function isReal(theStr, decLen) {
  * @ sign can appear only once in the email address.
  **/
 function isEmail(theStr) {
-  var atIndex = theStr.indexOf("@");
-  var dotIndex = theStr.indexOf(".", atIndex);
-  var flag = true;
+  let atIndex = theStr.indexOf("@");
+  let dotIndex = theStr.indexOf(".", atIndex);
+  let flag = true;
   theSub = theStr.substring(0, dotIndex + 1);
   if (
     atIndex < 1 ||
@@ -343,8 +343,8 @@ resize -> 1-Resizable = YES 0-Resizable = NO
 * RETURNS: New window instance
 ***/
 function newWindow(doc, hite, wide, bars, resize) {
-  var winNew = "_blank";
-  var opt = "toolbar=0,location=0,directories=0,status=0,menubar=0,";
+  let winNew = "_blank";
+  let opt = "toolbar=0,location=0,directories=0,status=0,menubar=0,";
   opt += "scrollbars=" + bars + ",";
   opt += "resizable=" + resize + ",";
   opt += "width=" + wide + ",";
@@ -359,8 +359,8 @@ function newWindow(doc, hite, wide, bars, resize) {
  * RETURNS: Formated string
  ***/
 function DecimalFormat(paramValue) {
-  var intPart = parseInt(paramValue);
-  var decPart = parseFloat(paramValue) - intPart;
+  let intPart = parseInt(paramValue);
+  let decPart = parseFloat(paramValue) - intPart;
   str = "";
   if (decPart == 0 || decPart == null) str += intPart + ".00";
   else str += intPart + decPart;

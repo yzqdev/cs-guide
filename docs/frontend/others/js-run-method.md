@@ -29,7 +29,7 @@ setTimeout(function(){
 
 new Promise(function(resolve){
     console.log('马上执行for循环啦');
-    for(var i = 0; i < 10000; i++){
+    for(let i = 0; i < 10000; i++){
         i == 99 && resolve();
     }
 }).then(function(){

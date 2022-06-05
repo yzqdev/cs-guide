@@ -27,14 +27,14 @@
 ### 浅拷贝
 
 ```
-var myInfo={name:'守候',sex:'男'};
+let myInfo={name:'守候',sex:'男'};
 复制代码
 ```
 
 ![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf444b153bd43~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ```
-var newInfo=myInfo;
+let newInfo=myInfo;
 复制代码
 ```
 
@@ -57,13 +57,13 @@ console.log(myInfo)   //{name: "守候", sex: "女"}
 假-深拷贝这个是自己随性命名的，大家看看就好，别当真！
 
 ```
-var myInfo={name:'守候',sex:'男'};复制代码
+let myInfo={name:'守候',sex:'男'};复制代码
 ```
 
 ![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf444b153bd43~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
 
 ```
-var newInfo=Object.assign({},myInfo)复制代码
+let newInfo=Object.assign({},myInfo)复制代码
 ```
 
 ![img](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2017/11/15/15fbf444ea8bca2c~tplv-t2oaga2asx-zoom-in-crop-mark:1304:0:0:0.awebp)
@@ -87,8 +87,8 @@ console.log(newInfo)   //{name: "守候", sex: "女"}
 看着深浅拷贝，区别写法很简单，但是那个上面的深拷贝写法是有问题的。看下面案例
 
 ```
-var arr=[{a:1,b:2},{a:3,b:4}]
-var newArr=Object.assign([],arr)
+let arr=[{a:1,b:2},{a:3,b:4}]
+let newArr=Object.assign([],arr)
 //截断数组
 newArr.length=1
 console.log(newArr)//[{a:1,b:2}]
@@ -108,8 +108,8 @@ function deepClone(obj){
   if(!obj&& typeof obj!== 'object'){      
     return;    
   }    
-  var newObj= obj.constructor === Array ? [] : {};    
-  for(var key in obj){       
+  let newObj= obj.constructor === Array ? [] : {};    
+  for(let key in obj){       
     if(obj[key]){          
       if(obj[key] && typeof obj[key] === 'object'){  
         newObj[key] = obj[key].constructor === Array ? [] : {}; 
@@ -122,8 +122,8 @@ function deepClone(obj){
   }    
   return newObj; 
 }
-var arr=[{a:1,b:2},{a:3,b:4}]
-var newArr=deepClone(arr)
+let arr=[{a:1,b:2},{a:3,b:4}]
+let newArr=deepClone(arr)
 console.log(arr[0])//{a:1,b:2}
 newArr[0].a=123
 console.log(arr[0])//{a:1,b:2}复制代码
@@ -132,7 +132,7 @@ console.log(arr[0])//{a:1,b:2}复制代码
 还有一个方法就是简单粗暴法，我现在在用的一个方法！原理很简单，就是先把对象转成字符串，再把字符串转成对象！也能实现同样效果
 
 ```
-var newArr2=JSON.parse(JSON.stringify(arr));
+let newArr2=JSON.parse(JSON.stringify(arr));
 console.log(arr[0])//{a:1,b:2}
 newArr2[0].a=123
 console.log(arr[0])//{a:1,b:2}复制代码
@@ -166,9 +166,9 @@ console.log(arr[0])//{a:1,b:2}复制代码
         </ul>
     </body>
     <script type="text/javascript">
-        var oUl=document.getElementById("ul-test");
-        var oLi=oUl.getElementsByTagName("li");
-        for(var i=0,len=oLi.length;i<len;i++){
+        let oUl=document.getElementById("ul-test");
+        let oLi=oUl.getElementsByTagName("li");
+        for(let i=0,len=oLi.length;i<len;i++){
             oLi[i].addEventListener("click",function(){
                 alert(this.innerHTML)
             })
@@ -204,10 +204,10 @@ console.log(arr[0])//{a:1,b:2}复制代码
         </ul>
     </body>
     <script type="text/javascript">
-        var oUl=document.getElementById("ul-test");
+        let oUl=document.getElementById("ul-test");
         oUl.addEventListener("click",function(ev){
-            var ev=ev||window.event;
-            var target=ev.target||ev.srcElement;
+            let ev=ev||window.event;
+            let target=ev.target||ev.srcElement;
             //如果点击的最底层是li元素
             if(target.tagName.toLowerCase()==='li'){
                 alert(target.innerHTML)
@@ -290,7 +290,7 @@ function personInfo(opt){
 ### concat
 
 ```
-var arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
+let arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
 arr1=arr1.concat(arr2)
 console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]复制代码
 ```
@@ -301,8 +301,8 @@ concat会一个全新的数组，表示arr1和arr2两个数组的组合，并让
 ### for
 
 ```
-var arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
-for(var i=0,len=arr2.length;i<len;i++){
+let arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
+for(let i=0,len=arr2.length;i<len;i++){
     arr1.push(arr2[i])
 }
 console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]复制代码
@@ -313,7 +313,7 @@ console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]复制代码
 ### reduce
 
 ```
-var arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
+let arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
 arr1 = arr2.reduce( function(coll,item){
      coll.push( item );
      return coll;
@@ -326,7 +326,7 @@ arr1 = arr2.reduce( function(coll,item){
 ### push.apply
 
 ```
-var arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
+let arr1=[1,2,3,4,5],arr2=[6,7,8,9,10];
 arr1.push.apply(arr1,arr2);
 console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 复制代码
@@ -341,7 +341,7 @@ console.log(arr1)//[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 在开发上，经常会遇到最多保留多少位小数或者类似的问题，针对这个，使用toFixed可以很简单的解决问题，但是如果数据是要和后台交互的，而且后台存储的数据一般是保存数字类型，而使用toFixed后生成的是一个字符串，这下，就需要把toFixed生成的是一个字符串转成数字类型，转发很多。今天我说一个最简单--+。代码如下
 
 ```
-var a=123.36896335.toFixed(2)
+let a=123.36896335.toFixed(2)
 console.log(a)//'123.37'
 a=+a
 console.log(a)//123.37复制代码
@@ -350,12 +350,12 @@ console.log(a)//123.37复制代码
 PS：a=a|0和~~a也可以实现，但是生成的是一个整数，如下
 
 ```
-var a=123.36896335.toFixed(2)
+let a=123.36896335.toFixed(2)
 console.log(a)//'123.37'
 a=a|0  
 console.log(a)//123 
 //---------------------------------分割线
-var a=123.36896335.toFixed(2)
+let a=123.36896335.toFixed(2)
 console.log(a)//'123.37'
 a=~~a  
 console.log(a)//123        
@@ -386,13 +386,13 @@ console.log(!!'123')
 ### for循环缓存length
 
 ```
-var arr=[1,2,3,4,5,6]
-for(var i=0,i<arr.length;i++){
+let arr=[1,2,3,4,5,6]
+for(let i=0,i<arr.length;i++){
     ...
 }
 //------------------------分割线
-var arr=[1,2,3,4,5,6]
-for(var i=0,len=arr.length;i<len;i++){
+let arr=[1,2,3,4,5,6]
+for(let i=0,len=arr.length;i<len;i++){
     ...
 }复制代码
 ```
@@ -400,17 +400,17 @@ for(var i=0,len=arr.length;i<len;i++){
 第一段就是每一次循环的时候，都要查询一次arr.length。第二段代码就是缓存了arr.length，每次对比len就好，理论上是第二段代码的写法比较好，性能比较高！但是随着浏览器的发展，这个细节的性能上的影响貌似远远小于预期，现在还是建议缓存！我写了下面的测试用例(谷歌浏览器测试)！
 
 ```
-var arr100=[], arr10000=[];
-for(var i=0;i<100;i++){
+let arr100=[], arr10000=[];
+for(let i=0;i<100;i++){
     arr100.push(i)
 }
-for(var i=0;i<10000;i++){
+for(let i=0;i<10000;i++){
     arr10000.push(i)
 }
 //缓存情况
 function testCache(arr){
     console.time();
-    for(var i=0,len=arr.length;i<len;i++){
+    for(let i=0,len=arr.length;i<len;i++){
         
     }
     console.timeEnd()
@@ -418,7 +418,7 @@ function testCache(arr){
 //不缓存情况
 function testNoCache(arr){
     console.time();
-    for(var i=0,len=arr.length;i<len;i++){
+    for(let i=0,len=arr.length;i<len;i++){
         
     }
     console.timeEnd()
@@ -440,7 +440,7 @@ $('.div1').click(function(){
    ...
 })
 //--------------------------分割线   
-var $div1=$('.div1');
+let $div1=$('.div1');
 $div1.click(function(){
    ...
 })复制代码
@@ -465,19 +465,19 @@ $div1.click(function(){
         </ul>
     </body>
     <script type="text/javascript">
-        var oUl=document.getElementById("ul-test");
+        let oUl=document.getElementById("ul-test");
         //createElement方式
         console.time();
-        for(var i=0;i<10;i++){
-            var oLi=document.createElement('li');
+        for(let i=0;i<10;i++){
+            let oLi=document.createElement('li');
             oLi.innerHTML=i;
             oUl.appendChild(oLi);
         }
         console.timeEnd();
         //innerHTML方式
         console.time();
-        var _html='';
-        for(var i=0;i<10;i++){
+        let _html='';
+        for(let i=0;i<10;i++){
             _html+='<li>'+i+'</li>'
         }
         oUl.innerHTML=_html;
@@ -496,7 +496,7 @@ $div1.click(function(){
 函数里的arguments，虽然拥有length属性，但是arguments不是一个数组，是一个类数组，没有push,slice等方法。有些时候，需要把arguments转成数组，转的方法也不止一个，推荐的是是下面的写法！
 
 ```
-var _arguments=Array.prototype.slice.apply(arguments)
+let _arguments=Array.prototype.slice.apply(arguments)
 复制代码
 ```
 
@@ -507,7 +507,7 @@ var _arguments=Array.prototype.slice.apply(arguments)
 普通写法
 
 ```
-var count = 0;
+let count = 0;
 function beginCount() {
     count++;
     console.log(count);
@@ -524,7 +524,7 @@ document.onmousemove = function () {
 节流写法
 
 ```
-var count = 0;
+let count = 0;
 function beginCount() {
     count++;
     console.log(count);
@@ -551,10 +551,10 @@ document.onmousemove = function () {
 
 ```
 function delayFn2 (fn, delay, mustDelay){
-     var timer = null;
-     var t_start;
+     let timer = null;
+     let t_start;
      return function(){
-         var context = this, args = arguments, t_cur = +new Date();
+         let context = this, args = arguments, t_cur = +new Date();
          //先清理上一次的调用触发（上一次调用触发事件不执行）
          clearTimeout(timer);
          //如果不存触发时间，那么当前的时间就是触发时间
@@ -574,7 +574,7 @@ function delayFn2 (fn, delay, mustDelay){
          }
      };
 }
-var count=0;
+let count=0;
 function fn1(){
     count++;
     console.log(count)

@@ -9,7 +9,7 @@
 ```
 
 ```js
-var elem = document.getElementById("myvideo");
+let elem = document.getElementById("myvideo");
 elem.addEventListener('click',function(){
     if (elem.requestFullscreen) {
   elem.requestFullscreen();

@@ -101,7 +101,7 @@ a.nealyang.cn 下有一个test.html文件
                 document.domain = "nealyang.cn"
             }catch(e){}
             $("#iframe").load(function(){
-                var jq = document.getElementById('iframe').contentWindow.$
+                let jq = document.getElementById('iframe').contentWindow.$
                 jq.get("http://nealyang.cn/test.json",function(data){
                     console.log(data);
                 });
@@ -187,11 +187,11 @@ window.name属性可设置或者返回存放窗口名称的一个字符串。他
   <script type="text/javascript"> 
     iframe = document.createElement('iframe');
     iframe.style.display = 'none';
-    var state = 0;
+    let state = 0;
     
     iframe.onload = function() {
       if(state === 1) {
-          var data = JSON.parse(iframe.contentWindow.name);
+          let data = JSON.parse(iframe.contentWindow.name);
           console.log(data);
           iframe.contentWindow.document.write('');
           iframe.contentWindow.close();
@@ -230,7 +230,7 @@ window.name属性可设置或者返回存放窗口名称的一个字符串。他
 <body>
   <script type="text/javascript">
     function getData(url, fn) {
-      var iframe = document.createElement('iframe');
+      let iframe = document.createElement('iframe');
       iframe.style.display = 'none';
       iframe.src = url;
 
@@ -244,9 +244,9 @@ window.name属性可设置或者返回存放窗口名称的一个字符串。他
     }
 
     // get data from server
-    var url = 'http://localhost:8080/data.php';
+    let url = 'http://localhost:8080/data.php';
     getData(url, function(data) {
-      var jsondata = JSON.parse(data);
+      let jsondata = JSON.parse(data);
       console.log(jsondata.name + ' ' + jsondata.age);
     });
   </script>
@@ -272,9 +272,9 @@ otherWindow指的是目标窗口，也就是要给哪一个window发送消息，
 接受信息的message事件
 
 ```js
-var onmessage = function(event) {
-  var data = event.data;
-  var origin = event.origin;
+let onmessage = function(event) {
+  let data = event.data;
+  let origin = event.origin;
 }
 
 if(typeof window.addEventListener != 'undefined'){
@@ -292,9 +292,9 @@ a.html(<http://www.nealyang.cn/a.html>)
 ```html
 <iframe id="iframe" src="http://www.neal.cn/b.html" style="display:none;"></iframe>
 <script>       
-    var iframe = document.getElementById('iframe');
+    let iframe = document.getElementById('iframe');
     iframe.onload = function() {
-        var data = {
+        let data = {
             name: 'aym'
         };
         // 向neal传送跨域数据
@@ -317,7 +317,7 @@ b.html(<http://www.neal.cn/b.html>)
     window.addEventListener('message', function(e) {
         alert('data from nealyang ---> ' + e.data);
 
-        var data = JSON.parse(e.data);
+        let data = JSON.parse(e.data);
         if (data) {
             data.number = 16;
 
@@ -396,7 +396,7 @@ Origin字段用来说明，本次请求来自哪个源（协议 + 域名 + 端�
 另一方面，开发者必须在AJAX请求中打开withCredentials属性。
 
 ```js
-var xhr = new XMLHttpRequest(); // IE8/9需用window.XDomainRequest兼容
+let xhr = new XMLHttpRequest(); // IE8/9需用window.XDomainRequest兼容
 
 // 前端设置是否带cookie
 xhr.withCredentials = true;
@@ -436,8 +436,8 @@ $.ajax({
 浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。
 
 ```js
-var url = 'http://api.alice.com/cors';
-var xhr = new XMLHttpRequest();
+let url = 'http://api.alice.com/cors';
+let xhr = new XMLHttpRequest();
 xhr.open('PUT', url, true);
 xhr.setRequestHeader('X-Custom-Header', 'value');
 xhr.send();
@@ -545,7 +545,7 @@ WebSocket protocol是HTML5一种新的协议。它实现了浏览器与服务器
 <div>user input：<input type="text"></div>
 <script src="./socket.io.js"></script>
 <script>
-var socket = io('http://www.domain2.com:8080');
+let socket = io('http://www.domain2.com:8080');
 
 // 连接成功处理
 socket.on('connect', function() {
@@ -570,11 +570,11 @@ document.getElementsByTagName('input')[0].onblur = function() {
 node Server
 
 ```
-var http = require('http');
-var socket = require('socket.io');
+let http = require('http');
+let socket = require('socket.io');
 
 // 启http服务
-var server = http.createServer(function(req, res) {
+let server = http.createServer(function(req, res) {
     res.writeHead(200, {
         'Content-type': 'text/html'
     });
@@ -609,7 +609,7 @@ node中间件实现跨域代理，是通过启一个代理服务器，实现数�
 前端代码
 
 ```
-var xhr = new XMLHttpRequest();
+let xhr = new XMLHttpRequest();
 
 // 前端开关：浏览器是否读写cookie
 xhr.withCredentials = true;
@@ -623,9 +623,9 @@ xhr.send();
 后端代码
 
 ```
-var express = require('express');
-var proxy = require('http-proxy-middleware');
-var app = express();
+let express = require('express');
+let proxy = require('http-proxy-middleware');
+let app = express();
 
 app.use('/', proxy({
     // 代理跨域目标接口

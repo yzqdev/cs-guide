@@ -17,7 +17,7 @@
     <!-- bind to a data property named `code` -->
     <highlight autodetect :code="code" />
     <!-- or literal code works as well -->
-    <highlight language='javascript' code="var x = 5;" />
+    <highlight language='javascript' code="let x = 5;" />
 </div>
 ```
 

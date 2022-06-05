@@ -3,7 +3,7 @@
 配置如下
 
 ```js
-var webpack = require("webpack");
+let webpack = require("webpack");
 const { VueLoaderPlugin } = require("vue-loader");
 const TerserPlugin = require('terser-webpack-plugin')
  
