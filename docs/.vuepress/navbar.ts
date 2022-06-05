@@ -22,6 +22,11 @@ export default navbar([
     icon: "note",
     children: [
       {
+        text: "java编程思想",
+        icon: "java",
+        link: "https://yzqbooks.github.io/think-in-java/",
+      },
+      {
         text: "git教程",
         icon: "git",
         link: "https://yzqdev.github.io/git-tutor",

@@ -13,10 +13,10 @@ actions:
 features:
    
 
-  - title: cg教程
-    details: 一个简单的cg教程
+  - title: java编程思想
+    details: java编程思想
     icon: software
-    link: /cg-tutor/README.md
+    link:  https://yzqbooks.github.io/think-in-java/
 
   - title: 前端教程
     details: 一个简单的前端教程

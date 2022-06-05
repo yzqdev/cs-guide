@@ -43,6 +43,10 @@ export default defineUserConfig({
     },
   },
   markdown: {
+    extractHeaders: {
+      level: [2, 4],
+    },
+
     importCode: {
       handleImportPath: (str) =>
         str.replace(/^@/, path.resolve(__dirname, "./")),

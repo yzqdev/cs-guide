@@ -30,7 +30,7 @@ export default hopeTheme({
 
   // sidebar
   sidebar: sidebar,
-
+  headerDepth: 3,
   footer: `powered by <a href='https://vuepress-theme-hope.github.io/v2/'>vuepress-theme-hope</a>`,
 
   displayFooter: true,
