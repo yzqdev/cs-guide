@@ -2,9 +2,12 @@
 
 ## 配置
 
-资源管理器中输入：\\wsl$
+资源管理器中输入：`\\wsl$`  
 对应的路径是
+
+```txt
 C:\Users\Melville\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs
+```
 
 ## 一键换源
 
@@ -16,10 +19,11 @@ sudo sed -i 's/security.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
 ```
 
 其它更多国内源参考，将上面的[http://mirrors.ustc.edu.cn](http://mirrors.ustc.edu.cn/)换成下面任一种即可，不同地区下载速度有一定差别。
-搜狐开源镜像站：[http://mirrors.sohu.com/](http://mirrors.sohu.com/)
-网易开源镜像站：[http://mirrors.163.com/](http://mirrors.163.com/)
-开源中国：[http://mirrors.oschina.net/](http://mirrors.oschina.net/)
-阿里云开源镜像：[http://mirrors.aliyun.com/](http://mirrors.aliyun.com/)
+
+- 搜狐开源镜像站：[http://mirrors.sohu.com/](http://mirrors.sohu.com/)
+- 网易开源镜像站：[http://mirrors.163.com/](http://mirrors.163.com/)
+- 开源中国：[http://mirrors.oschina.net/](http://mirrors.oschina.net/)
+- 阿里云开源镜像：[http://mirrors.aliyun.com/](http://mirrors.aliyun.com/)
 
 ## 安装软件
 
@@ -45,10 +49,6 @@ sudo apt install openjdk-17-jdk-headless
 
 [https://github.com/nvm-sh/nvm#git-install](https://github.com/nvm-sh/nvm#git-install)
 
-```python
-添加
-```
-
 ## 安装Nginx
 
 ```shell
@@ -64,14 +64,8 @@ nginx -t
 nginx -s reload
 ```
 
-​
+[关闭wsl](https://docs.microsoft.com/zh-cn/windows/wsl/basic-commands#install)
 
-​
-
-​
-
-关闭wsl[https://docs.microsoft.com/zh-cn/windows/wsl/basic-commands#install](https://docs.microsoft.com/zh-cn/windows/wsl/basic-commands#install)
-
-```java
+```shell
  wsl --shutdown
 ```

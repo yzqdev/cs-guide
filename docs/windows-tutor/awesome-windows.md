@@ -3,15 +3,16 @@
 ## 数据库软件
 
 - [https://www.heidisql.com/download.php?download=portable-64](https://www.heidisql.com/download.php?download=portable-64)
-- navicat
+- [navicat](https://navicat.com.cn/)
 - [DBeaver](https://dbeaver.io/)
-- datagriop
+- datagrip
 - [beekeper studio](https://www.beekeeperstudio.io/)
-- sqlyog
+- [sqlyog](https://webyog.com/product/sqlyog/)
 
 ## 鼠标手势软件
 
-StrokesPlus.net
+- StrokesPlus.net
+- [https://github.com/poerin/Stroke](https://github.com/poerin/Stroke)
 
 ## 图标工具
 
@@ -20,11 +21,14 @@ icofx
 
 ## scoop
 
-安装 sudo
+一个命令安装软件
+[官网](https://scoop.sh/)
+
+- 安装 sudo
 
 ## systeminternals
 
-[https://docs.microsoft.com/zh-cn/sysinternals/downloads/](https://docs.microsoft.com/zh-cn/sysinternals/downloads/)
+[microsoft官网](https://docs.microsoft.com/zh-cn/sysinternals/downloads/)
 
 - 套件是以下所选 Sysinternals 实用工具的捆绑：AccessChk、AccessEnum、AdExplorer、AdInsight、AdRestore、Autologon、Autoruns、BgInfo、BlueScreen、CacheSet、ClockRes、Contig、Coreinfo、Ctrl2Cap、DebugView、Desktops、Disk2vhd、DiskExt、DiskMon、DiskView 、
 - [磁盘](https://docs.microsoft.com/zh-cn/sysinternals/downloads/du)使用情况 (DU) 、EFSDump、FindLinks、Handle、Hex2dec、Junction、LDMDump、ListDLLs、LiveKd、LoadOrder、LogonSessions、MoveFile、NotMyFault、NTFSInfo、PendMoves、PipeList、PortMon、ProcDump、Process
@@ -39,26 +43,21 @@ icofx
 ## 虚拟机软件
 
 - [https://multipass.run/](https://multipass.run/)
-
 - [https://fastcopy.jp/](https://fastcopy.jp/)
 
 ## 注册表工具
 
-- [https://registry-finder.com/](https://registry-finder.com/)
+- [registry-finder](https://registry-finder.com/)
 - registry workshop
-- [https://www.resplendence.com/registrar](https://www.resplendence.com/registrar)
+- [registrar](https://www.resplendence.com/registrar)
 
 ## ndm
 
-下载软件
+[下载软件](https://www.neatdownloadmanager.com/index.php/en/)
 
 ## png转icon
 
 Greenfish Icon Editor Pro
-
-## you-get
-
-下载视频软件
 
 ## 开源软件
 
@@ -79,7 +78,9 @@ Greenfish Icon Editor Pro
 ## 下载站
 
 - [https://soft.macxf.com/](https://soft.macxf.com/)
-- 看图软件
+
+## 看图软件
+
 - [https://picview.org/](https://picview.org/)
 - wps图片
 - honeysee 类似bandizip
@@ -103,7 +104,11 @@ Greenfish Icon Editor Pro
 
 ### obsstudio
 
+steam商店可以下载
+
 ### screentogif
+
+[官网](https://www.screentogif.com/)
 
 ### snagit
 
@@ -111,21 +116,23 @@ Greenfish Icon Editor Pro
 
 ### fastone capture
 
-### snipaste
+### snipaste(微软应用商店)
 
 ### bandicam
 
 ### ev录屏
 
+[官网](https://www.ieway.cn/)
+
 ### 迅捷屏幕录像工具
 
-verycapture  [https://verycapture.com/cn/index.html](https://verycapture.com/cn/index.html)
+ [verycapture](https://verycapture.com/cn/index.html)
 
 ## 剪辑软件
 
-剪映
-必剪
-shortcut
+- [剪映](https://lv.ulikecam.com/)
+- [必剪](https://bcut.drawyoo.com/)
+- [shortcut](https://www.shotcut.org/)
 ​
 
 ## potplayer
@@ -138,7 +145,7 @@ shortcut
 
 ## airtest
 
-[http://airtest.netease.com/index.html](http://airtest.netease.com/index.html)
+[airtest](http://airtest.netease.com/index.html)
 python做安卓自动化的
 
 ## dropit
@@ -164,11 +171,8 @@ Dism++提供了开放的清理以及优化功能，用户可以自定义Dism++�
 
 ## 右键管理
 
-[https://gitee.com/BluePointLilac/ContextMenuManager/releases](https://gitee.com/BluePointLilac/ContextMenuManager/releases)
+[ContextMenuManager](https://gitee.com/BluePointLilac/ContextMenuManager/releases)
 
-## 鼠标手势软件
-
-[https://github.com/poerin/Stroke](https://github.com/poerin/Stroke)
 ​
 
 ## everything
@@ -183,8 +187,6 @@ Dism++提供了开放的清理以及优化功能，用户可以自定义Dism++�
 
 快速搜索软件,谁用都说好
 
-## snipaste截图(微软商店)
-
 ## windows terminal(微软商店)
 
 ## powershell(微软商店)
@@ -195,11 +197,11 @@ Dism++提供了开放的清理以及优化功能，用户可以自定义Dism++�
 ## 必应壁纸
 
 每天随时切换壁纸,好看死了
-[https://www.microsoft.com/zh-cn/bing/bing-wallpaper?pc=W037&rtc=1](https://www.microsoft.com/zh-cn/bing/bing-wallpaper?pc=W037&rtc=1)
+[必应壁纸](https://www.microsoft.com/zh-cn/bing/bing-wallpaper?pc=W037&rtc=1)
 
-## ShareX，是一个免费开源的截图工具(windows应用商店)
+## ShareX，是一个免费开源的截图工具(windows应用商店,steam商店)
 
-[https://github.com/ShareX/ShareX](https://github.com/ShareX/ShareX)
+[ShareX](https://github.com/ShareX/ShareX)
 
 ## powertoys(微软商店)
 
