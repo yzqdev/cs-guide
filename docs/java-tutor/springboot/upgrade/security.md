@@ -1,5 +1,9 @@
 # spring-security
 
+:::tip
+<https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter>
+:::
+
 用过`WebSecurityConfigurerAdapter`的都知道对**Spring Security**十分重要，总管**Spring Security**的配置体系。但是马上这个类要废了，你没有看错，这个类将在5.7版本被`@Deprecated`所标记了，未来这个类将被移除。
 
  <https://github.com/spring-projects/spring-security/issues/10822>
@@ -88,7 +92,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 上面是通过`WebSecurityConfigurerAdapter`开启的是本地配置。开启全局配置需要覆写其`authenticationManagerBean()`方法并标记为Bean:
 
 ```java
-       @Bean(name name="myAuthenticationManager")
+       @Bean(  name="myAuthenticationManager")
        @Override
        public AuthenticationManager authenticationManagerBean() throws Exception {
            return super.authenticationManagerBean();

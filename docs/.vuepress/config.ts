@@ -43,9 +43,9 @@ export default defineUserConfig({
     },
   },
   markdown: {
-    extractHeaders: {
-      level: [2, 4],
-    },
+    // extractHeaders: {
+    //   level: [2, 5],
+    // },
 
     importCode: {
       handleImportPath: (str) =>

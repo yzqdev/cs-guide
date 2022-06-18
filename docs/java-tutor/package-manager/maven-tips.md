@@ -5,7 +5,7 @@ maven 默认的打包类型为 jar，
 然后再指定所属的子模块，如下所示：
 ​
 
-```java
+```xml
 <packing>pom</packing>
 <modules>
        <module>kern-base</module>

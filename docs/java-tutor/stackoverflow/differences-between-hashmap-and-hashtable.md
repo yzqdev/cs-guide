@@ -13,7 +13,6 @@
 
 总之，如果你无需关心同步（synchronized）问题，我会建议用`HashMap`。反之，你可以考虑使用[ConcurrentHashMap](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ConcurrentHashMap.html)
 
-### stackoverflow链接
 <http://stackoverflow.com/questions/40471/differences-between-hashmap-and-hashtable>
 
 ### 相关推荐

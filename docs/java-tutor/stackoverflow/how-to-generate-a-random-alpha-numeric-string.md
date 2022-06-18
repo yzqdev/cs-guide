@@ -1,7 +1,8 @@
 # 如何产生一个随机的字母数字串作为 session 的唯一标识符?
 
 如果允许产生的随机字符串是可猜测的(随机字符串比较都短,或者使用有缺陷的随机数生成器),进而导致攻击者可能会劫持到会话的,可以使用一个相对简单随机数生成代码,如下所示:
-```
+
+```java
 public class RandomString {
 
     private static final char[] symbols;
@@ -34,6 +35,7 @@ public class RandomString {
 ```
 
 为了安全,可以考虑使用下面这段简洁且安全的代码,不过用其作为 session 的标识符,倒显得有点大材小用了（比较耗时）:
+
 ```
 import java.security.SecureRandom;
 
@@ -51,4 +53,4 @@ public final class SessionIdentifierGenerator {
 译者注：上面两段代码，生成26位随机字符串，第一段代码每次耗时不到1ms，第二段耗时约100ms。也就是说第一段代码更快，但第二段代码更安全，但更耗时。
 
 stackoverflow原链接：
-http://stackoverflow.com/questions/41107/how-to-generate-a-random-alpha-numeric-string
+<http://stackoverflow.com/questions/41107/how-to-generate-a-random-alpha-numeric-string>

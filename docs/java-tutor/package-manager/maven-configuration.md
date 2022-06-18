@@ -52,6 +52,56 @@ maven其实也可以使用版本范围
 
 ![索引](./res/maven-index.webp)
 
+## 指定maven中jdk版本
+
+### 方法一
+
+```xml
+<properties>
+ <maven.compiler.source>17</maven.compiler.source>
+ <maven.compiler.target>17</maven.compiler.target>
+</properties>
+```
+
+### 方法二
+
+```xml
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>17</source>
+                <target>17</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+### 本地maven设置
+
+我们也可以设置本地的maven的配置，一劳永逸。
+在settings.xml中配置，可以找到如下的配置模式
+ 这里就是maven自带的配置样式，根据这个我们改写为17
+
+```xml
+<profile>
+    <id>jdk-17</id>
+    <activation>
+     <activeByDefault>true</activeByDefault>
+     <jdk>17</jdk>
+    </activation>
+    <properties>
+     <maven.compiler.source>17</maven.compiler.source>
+     <maven.compiler.target>17</maven.compiler.target>
+     <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
+    </properties>
+</profile>
+```
+
 ## vue项目添加到springboot
 
 :::tip

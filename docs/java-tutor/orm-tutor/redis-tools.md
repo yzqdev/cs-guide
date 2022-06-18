@@ -1,5 +1,8 @@
 # redis工具推荐
 
+官方管理工具
+
+[redisinsight](https://download.redisinsight.redis.com/latest/RedisInsight-v2-win-installer.exe)
 用这个  
 [https://github.com/zkteco-home/redis-windows](https://github.com/zkteco-home/redis-windows)  
 [https://github.com/tporadowski/redis](https://github.com/tporadowski/redis)  

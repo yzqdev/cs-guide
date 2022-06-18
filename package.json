@@ -5,13 +5,16 @@
   "license": "MIT",
   "scripts": {
     "docs:vite": "vuepress  build docs",
-    "docs:build": "vuepress build docs --clean-cache",
+    "docs:build": "vuepress-webpack build docs --clean-cache",
     "docs:clean-dev": "vuepress dev docs --clean-cache",
     "docs:dev": "vuepress dev docs  --clean-cache"
   },
   "devDependencies": {
     "@vuepress/plugin-docsearch": "next",
     "vuepress": "next",
+    "sass-loader": "latest",
+    "sass": "latest",
+    "vuepress-webpack": "next",
     "vuepress-theme-hope": "next"
   },
   "dependencies": {

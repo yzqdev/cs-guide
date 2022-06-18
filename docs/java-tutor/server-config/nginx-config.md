@@ -243,3 +243,56 @@ config.d/zfile.conf
     }
 
 ```
+
+:::tip
+需要注意root和alias区别  
+root与alias主要区别在于nginx如何解释location后面的uri，这会使两者分别以不同的方式将请求映射到服务器文件上。
+
+alias是一个目录别名的定义（仅能用于location上下文），root则是最上层目录的定义。
+
+直接通过例子来理解：
+
+```shell
+location ^~ /123/abc/ {
+root /data/www;
+}
+```
+
+当请求`http://blog.whsir.com/123/abc/logo.png`时，将会返回服务器上的`/data/www/123/abc/logo.png`文件，即`/data/www+/123/abc/`
+
+```shell
+location ^~ /123/abc/ {
+alias /data/www;
+}
+
+当请求`http://blog.whsir.com/123/abc/logo.png`时，将会返回服务器上的`/data/www/logo.png`文件，即/data/www
+```
+
+参考：
+
+<http://nginx.org/en/docs/http/ngx_http_core_module.html#root>
+<http://nginx.org/en/docs/http/ngx_http_core_module.html#alias>
+:::
+对于vuepress使用pages ,最终网址是类似 `yourname.github.io/cs-guide`
+需要配置nginx如下
+
+```shell
+
+server{
+    listen    80;
+    server_name   www.yzqdev.top;
+      location /cs-guide {
+
+            alias   /opt/cs-guide/;
+            index  index.html index.htm;
+            try_files $uri $uri/ /index.html;
+        }
+      location / {
+            root   /opt/cs-guide/;
+            index  index.html index.htm;
+            try_files $uri $uri/ /index.html;
+        }
+
+    }
+
+```

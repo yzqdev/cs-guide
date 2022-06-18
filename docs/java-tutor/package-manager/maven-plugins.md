@@ -4,26 +4,26 @@
 
 ```xml
  <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                </configuration>
-            </plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+         <configuration>
+                <source>17</source>
+                 <target>17</target>
+         </configuration>
+ </plugin>
 ```
 
 ## 配置打包跳过tests
 
 ```xml
 <!-- maven 打包时跳过测试 -->
-            <plugin>
+ <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <skip>true</skip>
         </configuration>
-      </plugin>
+ </plugin>
 ```
 
 ## Do not use @ for indentation错误解决方法
@@ -67,7 +67,6 @@ application.yml使用如下：
 spring:
   profiles:
     active: @profileActive@
-复制代码
 ```
 
 报错如下：

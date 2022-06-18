@@ -1,10 +1,10 @@
 # @Component, @Repository, @Service的区别
 
-#### 问题
+## 问题
 
 在spring集成的框架中，注解在类上的`@Component`，`@Repository`，`@Service`等注解能否被互换？或者说这些注解有什么区别？
 
-#### 回答1
+## 回答1
 
 引用spring的官方文档中的一段描述：
 
@@ -25,7 +25,7 @@
 | @Service    |               作用于业务逻辑层               |
 | @Controller |       作用于表现层（spring-mvc的注解）       |
 
-#### 回答2
+## 回答2
 
 这几个注解几乎可以说是一样的：因为被这些注解修饰的类就会被Spring扫描到并注入到Spring的bean容器中。
 
@@ -44,7 +44,7 @@ public @interface ScheduleJob {...}
 
 这样，所有被`@ScheduleJob`注解的类就都可以注入到spring容器来进行管理。我们所需要做的，就是写一些新的代码来处理这个自定义注解（译者注：可以用反射的方法），进而执行我们想要执行的工作。
 
-#### 回答3
+## 回答3
 
 `@Component`就是跟`<bean>`一样，可以托管到Spring容器进行管理。
 
@@ -58,7 +58,7 @@ public @interface ScheduleJob {...}
 
 有这些分层操作的话，代码之间就实现了松耦合，代码之间的调用也清晰明朗，便于项目的管理；假想一下，如果只用`@Controller`注解，那么所有的请求转发，业务处理，数据库操作代码都糅合在一个地方，那这样的代码该有多难拓展和维护。
 
-#### 总结
+## 总结
 
 * `@Component`, `@Service`, `@Controller`, `@Repository`是spring注解，注解后可以被spring框架所扫描并注入到spring容器来进行管理
 * `@Component`是通用注解，其他三个注解是这个注解的拓展，并且具有了特定的功能
@@ -67,11 +67,11 @@ public @interface ScheduleJob {...}
 * `@Service`层是业务逻辑层注解，这个注解只是标注该类处于业务逻辑层。
 * 用这些注解对应用进行分层之后，就能将请求处理，义务逻辑处理，数据库操作处理分离出来，为代码解耦，也方便了以后项目的维护和开发。
 
-#### Stackoverflow链接
+## Stackoverflow链接
 
 [http://stackoverflow.com/questions/6827752/whats-the-difference-between-component-repository-service-annotations-in](http://stackoverflow.com/questions/6827752/whats-the-difference-between-component-repository-service-annotations-in)
 
-#### 拓展
+## 拓展
 
 1. [Spring注解@Component、@Repository、@Service、@Controller区别](http://www.cnblogs.com/JAYIT/p/5593169.html)
 2. [Spring注解@Autowired、@Resource区别](http://www.cnblogs.com/leiOOlei/p/3713779.html)

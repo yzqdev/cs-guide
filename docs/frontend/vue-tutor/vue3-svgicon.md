@@ -8,3 +8,7 @@
 
 - [https://github.com/jpkleemans/vite-svg-loader](https://github.com/jpkleemans/vite-svg-loader)
 - [https://github.com/vbenjs/vite-plugin-svg-icons](https://github.com/vbenjs/vite-plugin-svg-icons)
+
+## markdown解析
+
+- [https://github.com/bytedance/bytemd](https://github.com/bytedance/bytemd)

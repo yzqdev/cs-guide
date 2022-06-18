@@ -189,3 +189,18 @@ public class HsApi {
         return shiroFilter;
     }
 ```
+
+springboot shiro swagger的项目，shiro已经对swagger的资源放行了，但是只要有@RequiresPermissions注解的controller，swagger就读取不到
+
+需要设置aop
+
+```java
+@Bean
+public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+    DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = 
+            new DefaultAdvisorAutoProxyCreator();
+    defaultAdvisorAutoProxyCreator.setUsePrefix(true);
+    
+    return defaultAdvisorAutoProxyCreator;
+}
+```
