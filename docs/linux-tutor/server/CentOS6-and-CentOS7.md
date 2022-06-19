@@ -13,11 +13,6 @@
 - `cat /etc/redhat-release`
 - `cat /etc/hostname`
 
-## 常用配置差异
-
-- [CentOS 网络配置](centos-settings/CentOS-Network-Settings.md)
-- [CentOS 图形界面的关闭与开启](centos-settings/Close-XWindow.md)
-
 ## systemctl 的用法
 
 - 相当于 CentOS 6 的：service nginx stop
@@ -37,30 +32,29 @@
 ### 开放端口
 
 - 一般设置软件端口有一个原则：
-	- 0 ~ 1024 系统保留，一般不要用到
-	- 1024 ~ 65535（2^16） 可以随意用
+  - 0 ~ 1024 系统保留，一般不要用到
+  - 1024 ~ 65535（2^16） 可以随意用
 - 添加单个端口：`firewall-cmd --zone=public --add-port=8883/tcp --permanent`
 - 添加范围端口：`firewall-cmd --zone=public --add-port=8883-8885/tcp --permanent`
 - 删除端口：`firewall-cmd --zone=public --remove-port=8883/tcp --permanent`
 - 重启防火墙：`firewall-cmd --reload`
-	- 命令解释：
-	- `--zone` #作用域
-	- `--add-port=80/tcp` #添加端口，格式为：端口/通讯协议
-	- `--permanent` #永久生效，没有此参数重启后失效
+  - 命令解释：
+  - `--zone` #作用域
+  - `--add-port=80/tcp` #添加端口，格式为：端口/通讯协议
+  - `--permanent` #永久生效，没有此参数重启后失效
 - 列出所有端口列表：`firewall-cmd --list-all`
-
 
 ## 关闭 firewall 使用 iptables
 
 - 关闭 firewall
-	- `systemctl stop firewalld.service` #停止firewall
-	- `systemctl disable firewalld.service` #禁止firewall开机启动
+  - `systemctl stop firewalld.service` #停止firewall
+  - `systemctl disable firewalld.service` #禁止firewall开机启动
 - 安装 iptables
-	- `yum install -y iptables-services`
+  - `yum install -y iptables-services`
 - 启动 iptables
-	- `systemctl restart iptables.service` #最后重启防火墙使配置生效
-	- `systemctl enable iptables.service` #设置防火墙开机启动
-	- 其他使用照旧
+  - `systemctl restart iptables.service` #最后重启防火墙使配置生效
+  - `systemctl enable iptables.service` #设置防火墙开机启动
+  - 其他使用照旧
 
 ## ifconfig 没有了
 
@@ -71,7 +65,6 @@
 
 - `timedatectl set-timezone Asia/Shanghai`
 - `timedatectl status`
-
 
 ## 资料
 

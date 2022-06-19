@@ -123,7 +123,7 @@ export default hopeTheme({
     },
     // 你也可以使用 Waline
     comment: {
-      type: "giscus",
+      provider: "Giscus",
       repo: "yzqdev/blog-issues",
       repoId: "MDEwOlJlcG9zaXRvcnkzODI2NTY1MTY=",
       category: "General",
@@ -131,10 +131,12 @@ export default hopeTheme({
     },
 
     mdEnhance: {
-      enableAll: true,
-      presentation: {
-        plugins: ["highlight", "math", "search", "notes", "zoom"],
-      },
+      tabs: true,
+      codetabs: true,
+      lazyLoad: true,
+      demo: true,
+      sub: true,
+      sup: true,
     },
   },
 });

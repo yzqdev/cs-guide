@@ -1,5 +1,7 @@
 # windows好用的软件
 
+
+https://www.iplaysoft.com/best-windows-apps-2022.html
 ## 数据库软件
 
 - [https://www.heidisql.com/download.php?download=portable-64](https://www.heidisql.com/download.php?download=portable-64)
