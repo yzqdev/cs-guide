@@ -16,7 +16,6 @@
     "sass-loader": "latest",
     "sass": "latest",
     "vuepress-webpack": "next",
-    "artplayer": "latest",
     "vuepress-theme-hope": "next"
   },
   "dependencies": {

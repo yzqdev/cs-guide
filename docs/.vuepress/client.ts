@@ -9,7 +9,7 @@ import Gobang from "./components/Gobang.vue";
 import IconDisplay from "./components/IconDisplay";
 import Econ from "./components/Econ.vue";
 import CodeSample from "./components/CodeSample.vue";
-import ArtVideo from './components/ArtVideo.vue'
+import ArtVideo from "./components/ArtVideo.vue";
 import "element-plus/dist/index.css";
 import ElementPlus from "element-plus";
 import hope from "vuepress-theme-hope/package.json";
@@ -46,6 +46,6 @@ export default defineClientConfig({
     app.component("Gobang", Gobang);
     app.component("IconDisplay", IconDisplay);
     app.component("Econ", Econ);
-    app.component("CodeSample", CodeSample);app.component("ArtVideo",ArtVideo)
+    app.component("CodeSample", CodeSample);
   },
 });
