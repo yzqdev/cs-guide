@@ -13,3 +13,4 @@
 - [https://github.com/edent/SuperTinyIcons](https://github.com/edent/SuperTinyIcons)
 - [https://www.iconfinder.com/](https://www.iconfinder.com/)
 - [https://icomoon.io/](https://icomoon.io/)
+- [https://uiverse.io/](https://uiverse.io/)

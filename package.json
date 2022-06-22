@@ -6,7 +6,7 @@
   "scripts": {
     "docs:vite": "vuepress  build docs",
     "docs:build": "vuepress-webpack build docs --clean-cache",
-    "docs:clean-dev": "vuepress  dev docs --clean-cache",
+    "docs:clean-dev": "vuepress-webpack  dev docs --clean-cache",
     "docs:dev": "vuepress-vite dev docs  --clean-cache"
   },
   "devDependencies": {

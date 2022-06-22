@@ -3,7 +3,11 @@
 ## 安装zsh
 
 1、安装zsh
+
+```shell
 sudo apt-get install zsh
+```
+
 2、把默认的Shell改成zsh
 
 ```bash
@@ -60,7 +64,7 @@ java -version
 javac -version
 ```
 
-## 安装mysql
+## 安装postgresql
 
 ## 安装Nginx
 

@@ -58,7 +58,7 @@ func Cors() gin.HandlerFunc {
 ```go
  r.Use(cors.New(cors.Config{
   //AllowOrigins: []string{"*"},
-  AllowOrigins:     []string{"http://localhost:3000", "http://localhost:8080", "http://www.yzqdev.top:8580", "http://49.445.443.170:8585"},
+  AllowOrigins:     []string{"http://localhost:3000", "http://localhost:8080", "http://www.juejin.cn:8580", "http://45.445.443.170:8585"},
   AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"},
   AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "Authorization", "version"},
   ExposeHeaders:    []string{"Content-Length"},
@@ -66,4 +66,28 @@ func Cors() gin.HandlerFunc {
 
   MaxAge: 12 * time.Hour,
  }))
+```
+
+## 出现js不是module的错误
+
+```txt
+Failed to load module script: The server responded with a non-JavaScript MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec.
+```
+
+解决方法
+
+```go
+//中间件
+func headersByRequestUrl( ) gin.HandlerFunc{
+    return func(c *gin.Context) {
+        if strings.HasPrefix(c.Request.RequestURI, "/ui/") {
+            c.Header("Cache-Control", "public,max-age=86400")
+            if strings.HasSuffix(c.Request.RequestURI, ".js") {
+                c.Header("Content-Type", "text/javascript")
+            }
+        }
+    }
+}
+
+
 ```
