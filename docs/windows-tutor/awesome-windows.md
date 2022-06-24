@@ -1,7 +1,16 @@
 # windows好用的软件
 
+<https://www.iplaysoft.com/best-windows-apps-2022.html>
 
-https://www.iplaysoft.com/best-windows-apps-2022.html
+## upx
+
+可以快速吧二进制文件压缩,比如压缩go build后的文件
+
+```shell
+go build -ldflags="-s -w"
+upx -9 gva.exe
+```
+
 ## 数据库软件
 
 - [https://www.heidisql.com/download.php?download=portable-64](https://www.heidisql.com/download.php?download=portable-64)
