@@ -136,9 +136,38 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 - Parcel
 - tsup
 - unbuild
+- nativefier
 - esno
 - nodemon
 - ts-node
+- nexe 和pkg类似
+- pkg 把nodejs打包为一个单文件,不需要安装nodejs就可以执行
+
+:::tip
+首次使用会出现下载基础包时间过长的问题，如：
+
+```txt
+> Targets not specified. Assuming:
+  node14-linux-x64, node14-macos-x64, node14-win-x64
+> Fetching base Node.js binaries to PKG_CACHE_PATH
+  fetched-v14.4.0-linux-x64    [                    ] 0%
+ 
+```
+
+这种情况下可以手动下载，进入页面手动下载对应的基础包：
+  [地址](https://github.com/vercel/pkg-fetch/releases )
+然后拷贝到全局目录PKG_CACHE_PATH 内，PKG_CACHE_PATH 可以通过设置系统变量来设置：
+
+```shell
+ 
+export PKG_CACHE_PATH=/usr/local/node/pkg_cache_path
+```
+
+运行完毕后把这行命令建议放到 /etc/profile文件尾部实现长久生效。
+运行过 pkg命令后，PKG_CACHE_PATH 目录下有个以版本号命名的目录，将刚才下载的文件重命名为所需文件拷贝到这个目录即可。例如上面命令提示的文件名是 fetched-v16.15.0-win-x64 ，则拷贝时重命名为该名称。
+再次运行pkg命令就不会下载了，打包速度很快！
+
+:::
 
 ## 其他工具
 
