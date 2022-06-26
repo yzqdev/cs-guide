@@ -55,6 +55,13 @@ function gcacheFun {
     git push origin main -f ; 
     git gc --aggressive --prune=all
 }
+# PowerShell parameter completion shim for the dotnet CLI
+Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
+     param($commandName, $wordToComplete, $cursorPosition)
+         dotnet complete --position $cursorPosition "$wordToComplete" | ForEach-Object {
+            [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
+         }
+ }
 Set-Alias yr deleteNodemodules
 Set-Alias pr deletePnpm
 Set-Alias ip fluship
@@ -64,6 +71,7 @@ Set-Alias gitp gpFunc
 Set-Alias gitc gcacheFun
 Set-Alias cuda cudatext
 #chcp 65001
+#chcp 936
 
 
 # PSReadLine

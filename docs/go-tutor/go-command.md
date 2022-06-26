@@ -8,6 +8,7 @@
 go run main.go
 # 打包
 go build
+
 # 去除调试信息
 go build -ldflags="-s -w"
 #安装依赖
@@ -23,6 +24,17 @@ go list -u -f '{{if (and (not (or .Main .Indirect)) .Update)}}{{.Path}}: {{.Vers
 或者使用go-mod-upgrade
 https://github.com/oligot/go-mod-upgrade
 
+```
+
+关于gin打包
+写一个build.ps1文件
+
+```powershell
+$Env:GOOS = "linux";
+$Env:GOARCH = "amd64"
+$Env:GIN_MODE="release"
+#$env:CGO_ENABLED = "1"
+go build
 ```
 
 :::
