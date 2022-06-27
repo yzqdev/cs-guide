@@ -15,7 +15,9 @@
 - [json-server](https://github.com/typicode/json-server)支持restfulapi增删改查
 - execa
 - chalk
-- picocolors
+- [node-notifier](https://github.com/mikaelbr/node-notifier)
+- regedit
+- [picocolors](https://github.com/alexeyraspopov/picocolors)
 - fs-extra
 - [fs-jetpack](https://github.com/szwacz/fs-jetpack) Better file system API for Node.js
 - fast-glob
@@ -31,7 +33,7 @@
 - enquirer 类似 inquirer
 - meow  命令行工具
 - **prompts**
-- **inquirer**
+- [**inquirer**](https://github.com/SBoudrias/Inquirer.js) A collection of common interactive command line user interfaces
 - [cac](https://github.com/cacjs/cac) Command And Conquer is a JavaScript library for building CLI apps.
 - **yargs** 一个命令行参数解析工具
 - **commander**
@@ -51,31 +53,30 @@
 - open
 - ini
 - dotenv
-- minimist
+- [minimist](https://github.com/substack/minimist) 命令行解析
 - yaml js-yaml
 - toml
 - update-notifier
-- pacote Fetches package manifests and tarballs from the npm registry.
+- [pacote](https://github.com/npm/pacote) Fetches package manifests and tarballs from the npm registry.
 - cli-progress 命令行进度条
 - cli-table
 - boxen
 - semver
 - chokidar
-- rimraf
+- [rimraf](https://github.com/isaacs/rimraf)
 - isomorphic-git git相关操作
 - svgo
 - string-width
 - terminal-link
-- npm-run-path
-- http-server
-- serve-static
-- prettyjson
-- wait-on
+- [npm-run-path](https://github.com/sindresorhus/npm-run-path) Get your PATH prepended with locally installed binaries
+- [http-server](https://github.com/http-party/http-server)
+- [prettyjson](https://github.com/rafeca/prettyjson)
+- [wait-on](https://github.com/jeffbski/wait-on) wait for files, ports, sockets, and http(s) resources to become available
 - Cliffy - A Framework For Interactive CLIs
-- ink
+- [ink](https://github.com/vadimdemedes/ink)
 - which
-- tasuku 一个taskrunner类似gulp
-- simple-git
+- [tasuku](https://github.com/privatenumber/tasuku) 一个taskrunner类似gulp
+- [simple-git](https://github.com/steveukx/git-js) git客户端
 - node-ssh
 - get-port
 - cp-file
@@ -84,7 +85,8 @@
 - resolve
 - got 类似ohmyfetch,node-fetch
 - [superagent](https://github.com/visionmedia/superagent) Ajax for Node.js and browsers (JS HTTP client)
-- socket.io
+- [socket.io](https://github.com/socketio/socket.io) Realtime application framework (Node.JS server)
+- [tap](https://github.com/tapjs/node-tap) test framework
 
 ### Web frameworks
 
@@ -185,6 +187,27 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 ## 一些好用的cli
 
+## 全局安装的工具
+
+- [taze](https://github.com/antfu/taze)  更新你的依赖
+- [concurrently](https://github.com/open-cli-tools/concurrently ) Run commands concurrently. Like `npm run watch-js & npm run watch-less` but better.
+- npm-check&npm-check-updates
+- zx
+- npm-home
+- [fkill-cli](https://github.com/sindresorhus/fkill-cli)  Fabulously kill processes. Cross-platform.
+- gulp
+- [tiged](https://github.com/tiged/tiged) 类似gitclone
+- [grunt](https://github.com/gruntjs/grunt)
+- iroiro 显示一些推荐的颜色
+- **pm2**
+- nrm
+- [npkill](https://github.com/voidcosmos/npkill) delete nodemodules
+- nitropack
+- serve
+- local-web-server
+- ipx High performance, secure and easy to use image proxy
+- docute 一个文档生成器
+
 ### 打包工具
 
 - webpack
@@ -227,27 +250,6 @@ export PKG_CACHE_PATH=/usr/local/node/pkg_cache_path
 再次运行pkg命令就不会下载了，打包速度很快！
 
 :::
-
-## 其他工具
-
-- taze
-- concurrent
-- npm-check&npm-check-updates
-- zx
-- npm-home
-- fkill-cli
-- gulp
-- tiged 类似gitclone
-- grunt
-- iroiro 显示一些推荐的颜色
-- **pm2**
-- nrm
-- npkill
-- nitropack
-- serve
-- local-web-server
-- ipx High performance, secure and easy to use image proxy
-- docute 一个文档生成器
 
 ## esm注意事项
 
