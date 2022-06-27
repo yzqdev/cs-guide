@@ -35,6 +35,11 @@ Electron是利用web前端技术进行桌面应用开发的一套框架。
 
 [https://sciter.com/](https://sciter.com/)
 
+## wails
+
+使用 Go + HTML + CSS + JS 构建漂亮的跨平台桌面应用
+[https://github.com/wailsapp/wails](https://github.com/wailsapp/wails)
+
 ## qt
 
 Qt 是一个跨平台的C++应用程序开发框架。它提供给开发者建立图形用户界面所需的功能，广泛用于开发GUI程序，也可用于开发非GUI程序。Qt是完全面向对象的，很容易扩展，并且允许真正地组件编程。Qt使用标准的C++和特殊的代码生成扩展（称为元对象编译器Meta Object Compiler, moc）以及一些宏。  

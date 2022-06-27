@@ -9,49 +9,54 @@
 
 ## cli依赖库
 
-- meow：一个简单的命令行助手工具
-- yargs：一个命令行参数解析工具
-- pkg：将你的 Node.js 程序包装在一个可执行文件中。
-- node-portfinder 自动寻找没被占用的端口
-- cac Command And Conquer is a JavaScript library for building CLI apps.
+- [pkg](https://github.com/vercel/pkg) 将你的 Node.js 程序包装在一个可执行文件中。
+- [portfinder](https://github.com/http-party/node-portfinder) 自动寻找没被占用的端口
+
 - [json-server](https://github.com/typicode/json-server)支持restfulapi增删改查
 - execa
 - chalk
 - picocolors
 - fs-extra
+- [fs-jetpack](https://github.com/szwacz/fs-jetpack) Better file system API for Node.js
 - fast-glob
 - globby
+- pretty-bytes
+- node-windows Windows support for Node.JS scripts (daemons, eventlog, UAC, etc).
 - lodash
 - minimatch
-- ohmyfetch
+- nodemailer
+- [ohmyfetch](https://github.com/unjs/ohmyfetch) A better fetch API. Works on node, browser and workers.
 - find-up
 - filesize
 - enquirer 类似 inquirer
+- meow  命令行工具
 - **prompts**
 - **inquirer**
-- **yargs**
+- [cac](https://github.com/cacjs/cac) Command And Conquer is a JavaScript library for building CLI apps.
+- **yargs** 一个命令行参数解析工具
 - **commander**
 - **cross-env**
 - **consola**
-- defu Assign default properties, recursively. Lightweight and Fast!
-- cheerio
-- shelljs
+- [defu](https://github.com/unjs/defu) Assign default properties, recursively. Lightweight and Fast!
+- [cheerio](https://github.com/cheeriojs/cheerio) nodejs爬虫
+- [shelljs](https://github.com/shelljs/shelljs)  跨平台 Unix shell 命令 的 node 封装
+- blessed blessed-contrib
 - tslib
 - terminal-kit
-- destr  A faster, secure and convenient alternative for`JSON.parse`
-- ufo url 工具
-- pathe 路径工具类似nodejs的path
+- [destr](https://github.com/unjs/destr)  A faster, secure and convenient alternative for`JSON.parse`
+- [ufo](https://github.com/unjs/ufo) url工具
+- [pathe](https://github.com/unjs/pathe) 路径工具类似nodejs的path
 - terser
-- ora  一个spinner
+- [ora](https://github.com/sindresorhus/ora)  命令行加载中图标
 - open
 - ini
 - dotenv
 - minimist
-- yaml
+- yaml js-yaml
 - toml
 - update-notifier
 - pacote Fetches package manifests and tarballs from the npm registry.
-- cli-progress
+- cli-progress 命令行进度条
 - cli-table
 - boxen
 - semver
@@ -66,6 +71,7 @@
 - serve-static
 - prettyjson
 - wait-on
+- Cliffy - A Framework For Interactive CLIs
 - ink
 - which
 - tasuku 一个taskrunner类似gulp
@@ -76,16 +82,69 @@
 - http-proxy
 - http-proxy-middleware
 - resolve
-- got类似ohmyfetch,node-fetch
-- superagent
+- got 类似ohmyfetch,node-fetch
+- [superagent](https://github.com/visionmedia/superagent) Ajax for Node.js and browsers (JS HTTP client)
 - socket.io
+
+### Web frameworks
+
+- [Fastify](https://github.com/fastify/fastify) - Fast and low overhead web framework.
+- [Next.js](https://github.com/vercel/next.js) - Minimalistic framework for server-rendered universal JavaScript web apps.
+- [Nuxt.js](https://github.com/nuxt/nuxt.js) - Minimalistic framework for server-rendered Vue.js apps.
+- [Hapi](https://github.com/hapijs/hapi) - Framework for building applications and services.
+- [Micro](https://github.com/vercel/micro) - Minimalistic microservice framework with an async approach.
+- [Koa](https://github.com/koajs/koa) - Framework designed by the team behind Express, which aims to be a smaller, more expressive, and more robust foundation for web applications and APIs.
+- [Express](https://github.com/expressjs/express) - Web application framework, providing a robust set of features for building single and multi-page, and hybrid web applications.
+- [Feathers](https://github.com/feathersjs/feathers) - Microservice framework built in the spirit of Express.
+- [LoopBack](https://github.com/loopbackio/loopback-next) - Powerful framework for creating REST APIs and easily connecting to backend data sources.
+- [Meteor](https://github.com/meteor/meteor) - An ultra-simple, database-everywhere, data-on-the-wire, pure-Javascript web framework. *(You might like [awesome-meteor](https://github.com/Urigo/awesome-meteor))*
+- [Restify](https://github.com/restify/node-restify) - Enables you to build correct REST web services.
+- [ThinkJS](https://github.com/thinkjs/thinkjs) - Framework with ES2015+ support, WebSockets, REST API.
+- [ActionHero](https://github.com/actionhero/actionhero) - Framework for making reusable & scalable APIs for TCP sockets, WebSockets, and HTTP clients.
+- [seneca](https://github.com/senecajs/seneca) - Toolkit for writing microservices.
+- [AdonisJs](https://github.com/adonisjs/core) - A true MVC framework for Node.js built on solid foundations of Dependency Injection and IoC container.
+- [Moleculer](https://github.com/moleculerjs/moleculer) - Fast & powerful microservices framework.
+- [Nest](https://github.com/nestjs/nest) - Angular-inspired framework for building efficient and scalable server-side apps.
+- [TypeGraphQL](https://github.com/MichalLytek/type-graphql) - Modern framework for creating GraphQL APIs with TypeScript, using classes and decorators.
+- [Tinyhttp](https://github.com/tinyhttp/tinyhttp) - Modern and fast Express-like web framework.
+- [Marble.js](https://github.com/marblejs/marble) - Functional reactive framework for building server-side apps, based on TypeScript and RxJS.
+- [Lad](https://github.com/ladjs/lad) - Framework made by a former Express TC and Koa member that bundles web, API, job, and proxy servers.
+- [Ts.ED](https://github.com/tsedio/tsed) - Intituive TypeScript framework for building server-side apps on top of Express.js or Koa.js.
 
 ### 数据库
 
-- lowdb
-- pg
-- mysql2
-- mongoose
+- Drivers
+  - [PostgreSQL](https://github.com/brianc/node-postgres) - PostgreSQL client. Pure JavaScript and native libpq bindings.
+  - [Redis](https://github.com/luin/ioredis) - Redis client.
+  - [LevelUP](https://github.com/Level/levelup) - LevelDB.
+  - [MySQL](https://github.com/mysqljs/mysql) - MySQL client.
+  - [couchdb-nano](https://github.com/apache/couchdb-nano) - CouchDB client.
+  - [Aerospike](https://github.com/aerospike/aerospike-client-nodejs) - Aerospike client.
+  - [Couchbase](https://github.com/couchbase/couchnode) - Couchbase client.
+  - [MongoDB](https://github.com/mongodb/node-mongodb-native) - MongoDB driver.
+- ODM / ORM
+  - [Sequelize](https://github.com/sequelize/sequelize) - Multi-dialect ORM. Supports PostgreSQL, SQLite, MySQL, and more.
+  - [Bookshelf](https://github.com/bookshelf/bookshelf) - ORM for PostgreSQL, MySQL and SQLite3 in the style of Backbone.js.
+  - [Mongoose](https://github.com/Automattic/mongoose) - Elegant MongoDB object modeling.
+  - [Waterline](https://github.com/balderdashy/waterline) - Datastore-agnostic tool that dramatically simplifies interaction with one or more databases.
+  - [OpenRecord](https://github.com/PhilWaldmann/openrecord) - ORM for PostgreSQL, MySQL, SQLite3 and RESTful datastores. Similar to ActiveRecord.
+  - [pg-promise](https://github.com/vitaly-t/pg-promise) - PostgreSQL framework for native SQL using promises.
+  - [slonik](https://github.com/gajus/slonik) - PostgreSQL client with strict types, detailed logging and assertions.
+  - [Objection.js](https://github.com/Vincit/objection.js) - Lightweight ORM built on the SQL query builder Knex.
+  - [TypeORM](https://github.com/typeorm/typeorm) - ORM for PostgreSQL, MariaDB, MySQL, SQLite, and more.
+  - [MikroORM](https://github.com/mikro-orm/mikro-orm) - TypeScript ORM based on Data Mapper, Unit of Work and Identity Map patterns. Supports MongoDB, PostgreSQL, MySQL and SQLite.
+  - [Prisma](https://github.com/prisma/prisma) - Modern database access (ORM alternative). Auto-generated and type-safe query builder in TypeScript. Supports PostgreSQL, MySQL & SQLite.
+- Query builder
+  - [Knex](https://github.com/knex/knex) - Query builder for PostgreSQL, MySQL and SQLite3, designed to be flexible, portable, and fun to use.
+- Other
+  - [NeDB](https://github.com/louischatriot/nedb) - Embedded persistent database written in JavaScript.
+  - [Lowdb](https://github.com/typicode/lowdb) - Small JavaScript database powered by Lodash.
+  - [Keyv](https://github.com/jaredwray/keyv) - Simple key-value storage with support for multiple backends.
+  - [Finale](https://github.com/tommybananas/finale) - RESTful endpoint generator for your Sequelize models.
+  - [database-js](https://github.com/mlaanderson/database-js) - Wrapper for multiple databases with a JDBC-like connection.
+  - [Mongo Seeding](https://github.com/pkosiec/mongo-seeding) - Populate MongoDB databases with JavaScript and JSON files.
+  - [@databases](https://github.com/ForbesLindesay/atdatabases) - Query PostgreSQL, MySQL and SQLite3 with plain SQL without risking SQL injection.
+  - [pg-mem](https://github.com/oguimbal/pg-mem) - In-memory PostgreSQL instance for your tests.
 
 ### 其他
 
@@ -175,6 +234,8 @@ export PKG_CACHE_PATH=/usr/local/node/pkg_cache_path
 - concurrent
 - npm-check&npm-check-updates
 - zx
+- npm-home
+- fkill-cli
 - gulp
 - tiged 类似gitclone
 - grunt
