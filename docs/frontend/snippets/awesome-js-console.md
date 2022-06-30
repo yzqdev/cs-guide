@@ -48,3 +48,10 @@ function getCookies() {
 
 
 ```
+
+```js
+
+var log = console.log.bind(null, "%c[Log]%c %s", "color:cyan", "");
+log("foo");
+log("%cfoo%c%s", "color:red", "", "=bar");
+```

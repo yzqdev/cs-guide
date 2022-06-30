@@ -41,6 +41,7 @@
 - **consola**
 - [defu](https://github.com/unjs/defu) Assign default properties, recursively. Lightweight and Fast!
 - [cheerio](https://github.com/cheeriojs/cheerio) nodejs爬虫
+- [crawler](https://github.com/bda-research/node-crawler)
 - [shelljs](https://github.com/shelljs/shelljs)  跨平台 Unix shell 命令 的 node 封装
 - blessed blessed-contrib
 - tslib
@@ -60,7 +61,7 @@
 - [pacote](https://github.com/npm/pacote) Fetches package manifests and tarballs from the npm registry.
 - cli-progress 命令行进度条
 - cli-table
-- boxen
+- [boxen](https://github.com/sindresorhus/boxen)
 - semver
 - chokidar
 - [rimraf](https://github.com/isaacs/rimraf)
@@ -80,6 +81,7 @@
 - node-ssh
 - get-port
 - cp-file
+- [ws](https://github.com/websockets/ws)
 - http-proxy
 - http-proxy-middleware
 - resolve
