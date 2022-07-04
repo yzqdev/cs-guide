@@ -36,3 +36,35 @@ export default defineConfig({
 });
 
 ```
+
+import.meta.glob 为过动态导入，构建时，会分离为独立的 chunk
+
+```js
+
+
+const files = import.meta.glob('./module/*.js')
+
+const modules = {}
+for (const key in files) {
+    files[key]().then(res=>{
+        modules[key.replace(/(\.\/module\/|\.js)/g, '')] = res.default
+    })
+}
+
+Object.keys(modules).forEach(item => {
+    modules[item]['namespaced'] = true
+})
+
+//import.meta.globEager 为直接引入
+
+const files = import.meta.globEager('./module/*.js')
+
+const modules = {}
+for (const key in files) {
+    modules[key.replace(/(\.\/module\/|\.js)/g, '')] = files[key].default
+}
+
+Object.keys(modules).forEach(item => {
+    modules[item]['namespaced'] = true
+})
+```
