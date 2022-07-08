@@ -29,9 +29,7 @@ $PATH=$PATH:$GOBIN:$GOROOT/bin  将GO可执行文件加入PATH中，使GO指令�
 下载i适合自己运行文件，然后放到 gopath下的bin文件夹(windows和linux默认在用户文件夹下的go文件夹)
 
 ```shell
-wget -O air https://github.com/cosmtrek/air/releases/download/v1.12.4/air_1.12.4_linux_amd64
-export GOLANGMOD=/opt/go/golangmod
-mv air $GOLANGMOD/bin
+go install github.com/cosmtrek/air@latest
 ```
 
 ## 安装 gf-cli

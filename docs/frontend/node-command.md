@@ -21,6 +21,7 @@
 - fs-extra
 - [fs-jetpack](https://github.com/szwacz/fs-jetpack) Better file system API for Node.js
 - fast-glob
+- rc-config-loader 获取配置文件
 - globby
 - pretty-bytes
 - node-windows Windows support for Node.JS scripts (daemons, eventlog, UAC, etc).
