@@ -27,7 +27,10 @@ upx -9 gva.exe
 
 ## 图标工具
 
-icofx
+### png转icon
+
+[Greenfish Icon Editor Pro](http://greenfishsoftware.org/gfie.php)
+[icofx(收费)](https://icofx.ro/)
 <https://www.spacedesk.net/>
 
 ## scoop
@@ -66,17 +69,13 @@ icofx
 
 [下载软件](https://www.neatdownloadmanager.com/index.php/en/)
 
-## png转icon
-
-Greenfish Icon Editor Pro
-
 ## 开源软件
 
 - markdown(微软商店搜索markdown)
 - [marktext](https://github.com/marktext/marktext)
 - FreeCAD
 - VLC
-- dia
+- [dia](http://dia-installer.de/download/)
 - [peazip](https://peazip.github.io/)
 - [you-get](https://github.com/soimort/you-get)
 - [picgo](https://github.com/Molunerfinn/PicGo)
@@ -94,7 +93,7 @@ Greenfish Icon Editor Pro
 
 - [https://picview.org/](https://picview.org/)
 - wps图片
-- honeysee 类似bandizip
+- [honeyview](https://www.bandisoft.com/honeyview/) 类似bandizip
 
 ## 听音乐软件
 
@@ -109,12 +108,15 @@ Greenfish Icon Editor Pro
 - krita
 - blender
 
-## 录屏软件
+## 截屏录屏软件
 
 [https://verycapture.com/cn/index.html](https://verycapture.com/cn/index.html)
 
 ### obsstudio
 
+### ShareX，是一个免费开源的截图工具(windows应用商店,steam商店)
+
+[ShareX](https://github.com/ShareX/ShareX)
 steam商店可以下载
 
 ### screentogif
@@ -210,10 +212,6 @@ Dism++提供了开放的清理以及优化功能，用户可以自定义Dism++�
 每天随时切换壁纸,好看死了
 [必应壁纸](https://www.microsoft.com/zh-cn/bing/bing-wallpaper?pc=W037&rtc=1)
 
-## ShareX，是一个免费开源的截图工具(windows应用商店,steam商店)
-
-[ShareX](https://github.com/ShareX/ShareX)
-
 ## powertoys(微软商店)
 
 [https://github.com/microsoft/PowerToys](https://github.com/microsoft/PowerToys)
@@ -222,7 +220,9 @@ Dism++提供了开放的清理以及优化功能，用户可以自定义Dism++�
 
 ssh工具,很好看
 
-## wizetree
+## wiztree
+
+- [wiztree](https://diskanalyzer.com/?ref=wiztree) 查看文件夹打小,又快又好
 
 [https://www.diskanalyzer.com/](https://www.diskanalyzer.com/)
 文件管理查看树结构

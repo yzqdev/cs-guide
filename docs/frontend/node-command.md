@@ -1,7 +1,7 @@
 # node命令行工具
 
 > 注意事项
-
+https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
 - `tsconfig.json`设置`"module": "CommonJS",`
 - `package.json`一般不建议设置`"type":"module"`不然编译出来的js文件需要加上后缀名`import help from './help.js'`,然而ts编译出来的并没有后缀
 

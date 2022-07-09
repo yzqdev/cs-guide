@@ -49,3 +49,7 @@ Set-ExecutionPolicy RemoteSigned
 这样，在每次PoweShell打开的时候都能启用PowerLine主题。
 
 可是这样，PowerShell打开的时候仍有乱码（或者说，有违和感），这是因为没有给你使用的字体链接表情，乱码的地方其实就是表情符号。
+
+
+我喜欢的oh-my-posh主题 `negligible` `pure` `ys`
+`paradox` `powerlevel10k_classic`, `powerlevel10k_lean`

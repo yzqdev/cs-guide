@@ -14,6 +14,10 @@
 - 命令行工具  [https://cobra.dev/](https://cobra.dev/)
 - learnku   [https://learnku.com/articles/47737](https://learnku.com/articles/47737)(查看//indirect出现的原因)
 
+## 爬虫
+
+- <https://github.com/PuerkitoBio/goquery>
+- https://github.com/gocolly/colly
 什么叫间接依赖呢？打个比方，项目 A 依赖了项目 B，项目 B 又依赖了项目 C，那么对项目 A 而言，项目 C 就是间接依赖，这里要注意，并不是所有的间接依赖都会出现在 `go.mod` 文件中。间接依赖出现在 go.mod 文件的情况，可能符合下面的场景的一种或多种：
 
 直接依赖未启用 Go module

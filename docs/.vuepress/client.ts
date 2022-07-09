@@ -9,7 +9,7 @@ import Gobang from './components/Gobang.vue'
 import IconDisplay from './components/IconDisplay'
 import Econ from './components/Econ.vue'
 import CodeSample from './components/CodeSample.vue'
-import ArtVideo from './components/ArtVideo.vue'
+ 
 import 'element-plus/dist/index.css'
 import ElementPlus from 'element-plus'
 import hope from 'vuepress-theme-hope/package.json'

@@ -83,5 +83,5 @@ Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Import-Module posh-git
 Import-Module oh-my-posh
-Set-PoshPrompt -Theme amro
+Set-PoshPrompt -Theme negligible
 #conda activate condapkg
