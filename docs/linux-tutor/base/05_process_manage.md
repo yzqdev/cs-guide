@@ -17,12 +17,16 @@ files），作用是列举系统中已经被打开的文件。在linux环境中�
 
 查询正在运行的进程信息 :
 
-    $ps -ef
+```shell
+ps -ef
+```
 
 eg:查询归属于用户colin115的进程 :
 
-    $ps -ef | grep colin115
-    $ps -lu colin115
+```shell
+ps -ef | grep colin115
+ps -lu colin115
+```
 
 查询进程ID（适合只记得部分进程字段） :
 
@@ -36,45 +40,65 @@ eg:查询归属于用户colin115的进程 :
 
 以完整的格式显示所有的进程 :
 
-    $ps -ajx
+```shell
+ps -ajx
+```
 
 显示进程信息，并实时更新 :
 
-    $top
+```shell
+top
+```
 
 查看端口占用的进程状态： :
 
-    lsof -i:3306
+```shell
+lsof -i:3306
+```
 
 查看用户username的进程所打开的文件 :
 
-    $lsof -u username
+```shell
+lsof -u username
+```
 
 查询init进程当前打开的文件 :
 
-    $lsof -c init
+```shell
+lsof -c init
+```
 
 查询指定的进程ID(23295)打开的文件： :
 
-    $lsof -p 23295
+```shell
+lsof -p 23295
+```
 
 查询指定目录下被进程开启的文件（使用+D 递归目录）： :
 
-    $lsof +d mydir1/
+```shell
+lsof +d mydir1/
+```
 
 ## 终止进程
 
 杀死指定PID的进程 (PID为Process ID) :
 
-    $kill PID
+```shell
+kill PID
+```
 
 杀死相关进程 :
 
-    kill -9 3434
+```shell
+kill -9 3434
+```
 
 杀死job工作 (job为job number) :
 
-    $kill %job
+```shell
+kill %job
+```
 
 ## 进程监控
 
@@ -114,11 +138,16 @@ role="ref"} ;
 
 将用户colin115下的所有进程名以av_开头的进程终止:
 
-    ps -u colin115 |  awk '/av_/ {print "kill -9 " $1}' | sh
+```shell
+
+ps -u colin115 |  awk '/av_/ {print "kill -9 " $1}' | sh
+```
 
 将用户colin115下所有进程名中包含HOST的进程终止:
 
-    ps -fe| grep colin115|grep HOST |awk '{print $2}' | xargs kill -9;
+```shell
+ps -fe| grep colin115|grep HOST |awk '{print $2}' | xargs kill -9;
+```
 
 ## 总结
 

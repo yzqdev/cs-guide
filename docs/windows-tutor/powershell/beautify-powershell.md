@@ -4,18 +4,29 @@
 
 默认的PowerShell并不美观，仅仅是将原来“傻大黑”变成了“傻大蓝”。（由于我的PowerShell已经改造过了所以我这里就没有办法截图了）我们的做法是在PowerShell里面加一个PowerLine，然后剩下的，在Terminal中配置。
 
+### 安装oh-my-posh
+
+地址[https://ohmyposh.dev/](https://ohmyposh.dev/)
+推荐在windows商店下载oh-my-sh或者在[https://github.com/JanDeDobbeleer/oh-my-posh/releases](https://github.com/JanDeDobbeleer/oh-my-posh/releases)下载`install-amd64.exe`自行安装
+
+然后在`$profile`添加
+
+```shell
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\negligible.omp.json"|Invoke-Expression
+```
+
 安装PowerLine的方法很简单，我们要先安装oh-my-posh，首先打开一个PowerShell，输入
 
 ```powershell
 Install-Module posh-git -Scope CurrentUser
-Install-Module oh-my-posh -Scope CurrentUser
+https://ohmyposh.dev/
 ```
 
 如果你使用管理员权限打开PowerShell并且想把oh-my-posh安装到所有用户，则输入
 
 ```powershell
 Install-Module posh-git
-Install-Module oh-my-posh
+[Install-Module oh-my-posh](https://ohmyposh.dev/)
 ```
 
 这里如果让你允许什么不可信的来源，输入`Y`表示同意即可。
@@ -24,7 +35,7 @@ Install-Module oh-my-posh
 
 ```powershell
 Import-Module posh-git
-Import-Module oh-my-posh
+[Import-Module oh-my-posh](https://ohmyposh.dev/)
 Set-Theme PowerLine
 ```
 
@@ -36,8 +47,7 @@ Set-Theme PowerLine
 
 ```powershell
 Import-Module posh-git
-Import-Module oh-my-posh
-Set-Theme PowerLine
+ 
 ```
 
 如果提示禁止执行脚本之类的错误信息，请将脚本执行策略更改为`RemoteSigned`。具体方法为使用具有管理员权限的PowerShell，然后输入
@@ -49,7 +59,6 @@ Set-ExecutionPolicy RemoteSigned
 这样，在每次PoweShell打开的时候都能启用PowerLine主题。
 
 可是这样，PowerShell打开的时候仍有乱码（或者说，有违和感），这是因为没有给你使用的字体链接表情，乱码的地方其实就是表情符号。
-
 
 我喜欢的oh-my-posh主题 `negligible` `pure` `ys`
 `paradox` `powerlevel10k_classic`, `powerlevel10k_lean`
