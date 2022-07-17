@@ -1,7 +1,8 @@
 # node命令行工具
 
 > 注意事项
-https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+<https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c>
+
 - `tsconfig.json`设置`"module": "CommonJS",`
 - `package.json`一般不建议设置`"type":"module"`不然编译出来的js文件需要加上后缀名`import help from './help.js'`,然而ts编译出来的并没有后缀
 
@@ -327,4 +328,36 @@ export default defineBuildConfig({
   "printWidth": 1000
 }
 
+```
+
+## node 开发命令行
+
+```shell
+node link
+```
+
+npm link 是将当前目录包链接到全局
+npm remove -g pka-name 是将全局的链接的 pkg-name 包移除
+npm unlink pka-name 是将当前项目中软链接的包移除
+
+删除全局包
+
+```shell
+ npm rm -g <name>
+```
+
+## 对于pnpm
+
+> 要先设置 pnpm_home  
+
+然后安装全局包
+
+```shell
+pnpm link -g 
+```
+
+卸载的话
+
+```shell
+pnpm un -g 
 ```

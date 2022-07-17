@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn
-
+      
       - name: Build VuePress site
         run: export NODE_OPTIONS=--max_old_space_size=4096&&yarn docs:build
 
