@@ -1,5 +1,8 @@
 # 动画
 
+:::tip
+<https://cssanimation.rocks/>
+:::
 :::normal-demo
 
 ```css
