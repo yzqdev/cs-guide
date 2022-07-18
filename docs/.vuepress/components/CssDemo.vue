@@ -12,7 +12,8 @@
       </div>
     </div>
     <div class="  sample">
-      <div v-if="!image" class="rect"  :style="style"></div>
+      <div v-if="!image" class="rect"  :style="style">
+      <span class="font" v-if="showFont">This is css demo</span></div>
       <div v-if="image"   :style="style"><img :src="image" /></div>
     </div>
   </div>
@@ -22,7 +23,7 @@
 
 <script setup lang="ts">
 import {defineProps,ref,onBeforeMount} from 'vue'
-let props = defineProps(['cssList','image'] )
+let props = defineProps(['cssList','image','showFont'] )
 let style = ref({})
 let active = ref(false)
 
@@ -101,6 +102,9 @@ onBeforeMount(() => {
   justify-content: center;
   align-items: center;
   transition: all 0.3s;
+  .font{
+    font-size:2rem;
+  }
 img{
   width: 6rem;
 }

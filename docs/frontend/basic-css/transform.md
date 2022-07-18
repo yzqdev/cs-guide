@@ -2,8 +2,24 @@
 
 ## 尝试一下
 
-<iframe style='width:100%;height:500px;border:none' src='https://interactive-examples.mdn.mozilla.net/pages/css/transform.html'></iframe>
+<CssDemo :css-list='cssList' :image='image' />
 
+<script setup>
+    import { h, ref } from 'vue'
+    let cssList= ref([
+  {transform: 'matrix(1, 2, 3, 4, 5, 6)'},
+  {transform:' translate(120px, 50%)'},
+  {transform: 'scale(2, 0.5)'},
+  {transform: 'rotate(0.5turn)'},
+  {transform: 'rotateX(10deg)'},
+  {transform: 'skew(30deg, 20deg)'},
+  {transform: 'scale(0.5) translate(-100%, -100%)'},
+  {transform: 'translate3d(12px, 50%, 3em)'},
+
+])
+let image= ref('https://interactive-examples.mdn.mozilla.net/media/examples/firefox-logo.svg')
+
+</script>
 语法
 
 ```css

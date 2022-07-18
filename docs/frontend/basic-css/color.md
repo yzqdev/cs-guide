@@ -1,5 +1,21 @@
 # 颜色
 
+<CssDemo :css-list='cssList' :show-font='font'/>
+
+<script setup>
+
+    import { h, ref } from 'vue'
+    let cssList= ref([
+  {color:'cyan'},
+  {color:'#00ff00'},
+  {color:'rgb(213,122,125)'},
+  {color:'hsl(30,100%,50%)'},
+  {color:'hsla(30,100%,50%,.3)'},
+  {color:'hwb(1.5708rad 20% 10% / 0.7)'},
+
+])
+ let font=ref(true)
+</script>
 hex显示透明度
 
 例如
@@ -32,3 +48,12 @@ hex显示透明度
  | 23% — 3B | 48% — 7A | 73% — BA | 98% — FA |
  | 24% — 3D | 49% — 7D | 74% — BD | 99% — FC |
 100%是FF
+
+- <https://htmlcolorcodes.com/zh/yanse-xuanze-qi/>
+- <https://flatuicolors.com/palette/defo>
+- <http://tool.c7sky.com/webcolor/>
+- <https://colordrop.io/>
+- <https://colors.dopely.top/>
+- <https://colordesigner.io/>
+- <https://picular.co/>
+- <https://colorkit.io/>
