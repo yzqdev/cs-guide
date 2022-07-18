@@ -12,7 +12,8 @@
       </div>
     </div>
     <div class="  sample">
-      <div class="rect"  :style="style"></div>
+      <div v-if="!image" class="rect"  :style="style"></div>
+      <div v-if="image"   :style="style"><img :src="image" /></div>
     </div>
   </div>
 
@@ -21,7 +22,7 @@
 
 <script setup lang="ts">
 import {defineProps,ref,onBeforeMount} from 'vue'
-let props = defineProps(['cssList'])
+let props = defineProps(['cssList','image'] )
 let style = ref({})
 let active = ref(false)
 
@@ -30,7 +31,7 @@ function setActive(index) {
   style.value = props.cssList[index]
 }
 
- 
+
 function setCss(item:  any) {
 
   console.log(item )
@@ -45,7 +46,7 @@ onBeforeMount(() => {
 .css-demo {
   border: 1px solid #cdcdcd;
   display: flex;
-  
+
 }
 
 .css-block {
@@ -58,7 +59,7 @@ onBeforeMount(() => {
 
 .left-select {
   cursor: pointer;
-  height: 2rem;
+
   transition: all .5s;
 
   align-items: center;
@@ -66,14 +67,15 @@ onBeforeMount(() => {
   z-index: 1;
   display: flex;
   justify-content: center;
-  padding: 1rem;
+
   margin: 0.5rem;
   width: 100%;
   border: 1px solid #cdcdcd;
   border-radius: 0.25rem;
   pre{
-      display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
+    margin:1rem 0;padding:0;
   }
 }
 
@@ -94,16 +96,18 @@ onBeforeMount(() => {
 }
 .sample {
   width: 100%;
-  height: 100%;
+  
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s;
-
+img{
+  width: 6rem;
+}
   .rect {
-    
+
     margin: 20px;
-     background:#cdcdcd;
+    background:#cdcdcd;
     width: 150px;
     height: 150px;
     border-radius: 50%;
