@@ -67,7 +67,7 @@ features:
   - title: nodejs教程
     details: 一个简单的node教程
     icon: node
-    link: https://yzqdev.github.io/node-tutor  
+    link: https://yzqdev.github.io/node-docs 
   - title: 安卓教程
     details: 一个简单的安卓教程
     icon: android

@@ -12,7 +12,13 @@
   "devDependencies": {
     "@vuepress/plugin-docsearch": "next",
     "vuepress": "next",
+    "@vuepress/cli": "next",
+    "@vuepress/client": "next",
+    "@vuepress/utils": "next",
+    "vue": "3.2.37",
+    "@vueuse/core":"latest",
     "vuepress-vite": "next",
+    "vuepress-shared": "next",
     "sass-loader": "latest",
     "sass": "latest",
     "vuepress-webpack": "next",

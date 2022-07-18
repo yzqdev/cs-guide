@@ -40,7 +40,7 @@ export default navbar([
       {
         text: "node教程",
         icon: "node",
-        link: "https://yzqdev.github.io/node-tutor",
+        link: "https://yzqdev.github.io/node-docs",
       },
       {
         text: "wandoc",

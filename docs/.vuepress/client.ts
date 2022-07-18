@@ -9,7 +9,7 @@ import Gobang from './components/Gobang.vue'
 import IconDisplay from './components/IconDisplay'
 import Econ from './components/Econ.vue'
 import CodeSample from './components/CodeSample.vue'
- 
+ import CssDemo from './components/CssDemo.vue'
 import 'element-plus/dist/index.css'
 import ElementPlus from 'element-plus'
 import hope from 'vuepress-theme-hope/package.json'
@@ -38,6 +38,7 @@ export default defineClientConfig({
     app.component('Gobang', Gobang)
     app.component('IconDisplay', IconDisplay)
     app.component('Econ', Econ)
+    app.component('CssDemo',CssDemo)
     app.component('CodeSample', CodeSample)
     app.component('Preview', Preview)
     app.component("ImgPreview",ImgPreview)
