@@ -19,7 +19,19 @@
 ```
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
+
 ```
 
 :::
@@ -51,10 +63,29 @@ html
 css
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
-.ech-big,.ech-small { transition: all .4s;}
-.ech-big:hover { transform: scale(1.1,1.1)}
-.ech-small:hover { transform: scale(0.9,0.9)}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
+.ech-big,
+.ech-small {
+  transition: all 0.4s;
+}
+.ech-big:hover {
+  transform: scale(1.1, 1.1);
+}
+.ech-small:hover {
+  transform: scale(0.9, 0.9);
+}
+
 
 ```
 
@@ -72,32 +103,50 @@ html
 css
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
-.ech-skew-l, .ech-skew-r, .ech-skew-l-t, .ech-skew-r-b, .ech-skew-l-b, .ech-skew-r-t{ transition: all .4s;}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
+.ech-skew-l,
+.ech-skew-r,
+.ech-skew-l-t,
+.ech-skew-r-b,
+.ech-skew-l-b,
+.ech-skew-r-t {
+  transition: all 0.4s;
+}
 .ech-skew-l:hover {
-    transform: skew(-15deg);
+  transform: skew(-15deg);
 }
 
 .ech-skew-r:hover {
-    transform: skew(15deg);
+  transform: skew(15deg);
 }
 
 .ech-skew-l-t:hover {
-    transform: skew(-15deg);
-
+  transform: skew(-15deg);
 }
 
 .ech-skew-r-t:hover {
-    transform: skew(15deg);
+  transform: skew(15deg);
 }
 
 .ech-skew-l-b:hover {
-    transform: skew(15deg);
+  transform: skew(15deg);
 }
 
 .ech-skew-r-b:hover {
-    transform: skew(-15deg);
+  transform: skew(-15deg);
 }
+
 ```
 
 :::
@@ -114,62 +163,90 @@ html
 css
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
-.ech-grow-rotate-l,.ech-grow-rotate-r, .ech-rotate5, .ech-rotate15, .ech-rotate30, .ech-rotate60, .ech-rotate90, .ech-rotate180, .ech-rotate360, .ech-rotate-5,.ech-rotate-15, .ech-rotate-30, .ech-rotate-60, .ech-rotate-90, .ech-rotate-180{transition: all .4s;}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
+.ech-grow-rotate-l,
+.ech-grow-rotate-r,
+.ech-rotate5,
+.ech-rotate15,
+.ech-rotate30,
+.ech-rotate60,
+.ech-rotate90,
+.ech-rotate180,
+.ech-rotate360,
+.ech-rotate-5,
+.ech-rotate-15,
+.ech-rotate-30,
+.ech-rotate-60,
+.ech-rotate-90,
+.ech-rotate-180 {
+  transition: all 0.4s;
+}
 .ech-grow-rotate-l:hover {
-    transform: scale(1.1) rotate(4deg);
+  transform: scale(1.1) rotate(4deg);
 }
 .ech-grow-rotate-r:hover {
-    transform: scale(1.1) rotate(-4deg);
+  transform: scale(1.1) rotate(-4deg);
 }
 .ech-rotate-5:hover {
-    transform: rotate(-5deg);
+  transform: rotate(-5deg);
 }
 .ech-rotate-15:hover {
-    transform: rotate(-15deg);
+  transform: rotate(-15deg);
 }
 
 .ech-rotate-30:hover {
-    transform: rotate(-30deg);
+  transform: rotate(-30deg);
 }
 
 .ech-rotate-60:hover {
-    transform: rotate(-60deg);
+  transform: rotate(-60deg);
 }
 
 .ech-rotate-90:hover {
-    transform: rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 .ech-rotate-180:hover {
-    transform: rotate(-180deg);
+  transform: rotate(-180deg);
 }
 .ech-rotate5:hover {
-    transform: rotate(5deg);
+  transform: rotate(5deg);
 }
 .ech-rotate15:hover {
-    transform: rotate(15deg);
+  transform: rotate(15deg);
 }
 
 .ech-rotate30:hover {
-    transform: rotate(30deg);
+  transform: rotate(30deg);
 }
 
 .ech-rotate60:hover {
-    transform: rotate(60deg);
+  transform: rotate(60deg);
 }
 
 .ech-rotate90:hover {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .ech-rotate180:hover {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .ech-rotate360:hover {
-    transform: rotate(360deg);
+  transform: rotate(360deg);
 }
+
 ```
 
 :::
@@ -189,23 +266,40 @@ html
 css
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
-.ech-t,.ech-b,.ech-l,.ech-r{ transition: all .4s;}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
+.ech-t,
+.ech-b,
+.ech-l,
+.ech-r {
+  transition: all 0.4s;
+}
 .ech-t:hover {
-    transform: translate3d(0, -10px, 0);
+  transform: translate3d(0, -10px, 0);
 }
 
 .ech-b:hover {
-    transform: translate3d(0, 10px, 0);
+  transform: translate3d(0, 10px, 0);
 }
 
 .ech-l:hover {
-    transform: translate3d(-10px, 0, 0);
+  transform: translate3d(-10px, 0, 0);
 }
 
 .ech-r:hover {
-    transform: translate3d(10px, 0, 0);
+  transform: translate3d(10px, 0, 0);
 }
+
 ```
 
 :::
@@ -223,15 +317,30 @@ html
 css
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
-.ech-border,.ech-border-in{transition:all 0.4s}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
+.ech-border,
+.ech-border-in {
+  transition: all 0.4s;
+}
 .ech-border:hover {
-    box-shadow: 0 0 0 4px #09f, 0 0 1px transparent;
+  box-shadow: 0 0 0 4px #09f, 0 0 1px transparent;
 }
 
 .ech-border-in:hover {
-    box-shadow: inset 0 0 0 4px #09f, 0 0 1px transparent;
+  box-shadow: inset 0 0 0 4px #09f, 0 0 1px transparent;
 }
+
 ```
 
 :::
@@ -319,11 +428,32 @@ html
 css
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
-.ech-radius,.ech-rectangle{ transition: all .4s;}
-.ech-radius{border-radius:10px;}
-.ech-radius:hover{border-radius: 0px;}
-.ech-rectangle:hover{border-radius:10px;}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
+.ech-radius,
+.ech-rectangle {
+  transition: all 0.4s;
+}
+.ech-radius {
+  border-radius: 10px;
+}
+.ech-radius:hover {
+  border-radius: 0px;
+}
+.ech-rectangle:hover {
+  border-radius: 10px;
+}
+
 ```
 
 :::
@@ -350,121 +480,196 @@ html
 css
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
-/*上划线和下划线变化 当前元素样式设置相对定位*/.ech-overline-r, .ech-overline-l, .ech-underline-r, .ech-underline-l, .ech-underline-c, .ech-overline-c, .ech-underline-c-out, .ech-overline-c-out{ position: relative; transition: all .3s; z-index: 1;}
-.ech-overline-r:before, .ech-overline-l:before, .ech-underline-l:before, .ech-underline-r:before, .ech-underline-c:before, .ech-overline-c:before, .ech-underline-c:after, .ech-overline-c:after, .ech-underline-c-out:before, .ech-overline-c-out:before {
-    position: absolute;
-    transition: all .3s;
-    content: "";
-    display: block;
-    background: #09f;
-    z-index: -1;
-    height: 4px;
-    width: 100%;
-    transform: scaleX(0);
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
 }
-.ech-overline-r:before, .ech-overline-l:before, .ech-underline-l:before, .ech-underline-r:before, .ech-underline-c:before, .ech-overline-c:before, .ech-underline-c:after, .ech-overline-c:after, .ech-underline-c-out:before, .ech-overline-c-out:before {
-    position: absolute;
-    transition: all .3s;
-    content: "";
-    display: block;
-    background: #09f;
-    z-index: -1;
-    height: 4px;
-    width: 100%;
-    transform: scaleX(0);
+/*上划线和下划线变化 当前元素样式设置相对定位*/
+.ech-overline-r,
+.ech-overline-l,
+.ech-underline-r,
+.ech-underline-l,
+.ech-underline-c,
+.ech-overline-c,
+.ech-underline-c-out,
+.ech-overline-c-out {
+  position: relative;
+  transition: all 0.3s;
+  z-index: 1;
+}
+.ech-overline-r:before,
+.ech-overline-l:before,
+.ech-underline-l:before,
+.ech-underline-r:before,
+.ech-underline-c:before,
+.ech-overline-c:before,
+.ech-underline-c:after,
+.ech-overline-c:after,
+.ech-underline-c-out:before,
+.ech-overline-c-out:before {
+  position: absolute;
+  transition: all 0.3s;
+  content: '';
+  display: block;
+  background: #09f;
+  z-index: -1;
+  height: 4px;
+  width: 100%;
+  transform: scaleX(0);
+}
+.ech-overline-r:before,
+.ech-overline-l:before,
+.ech-underline-l:before,
+.ech-underline-r:before,
+.ech-underline-c:before,
+.ech-overline-c:before,
+.ech-underline-c:after,
+.ech-overline-c:after,
+.ech-underline-c-out:before,
+.ech-overline-c-out:before {
+  position: absolute;
+  transition: all 0.3s;
+  content: '';
+  display: block;
+  background: #09f;
+  z-index: -1;
+  height: 4px;
+  width: 100%;
+  transform: scaleX(0);
 }
 
 /*上划线 左右出来*/
 .ech-overline-r:before {
-    top: 0;
-    left: 0;
-    transform-origin: 100% 50%;
+  top: 0;
+  left: 0;
+  transform-origin: 100% 50%;
 }
 
 .ech-overline-l:before {
-    top: 0;
-    right: 0;
-    transform-origin: 0 50%;
+  top: 0;
+  right: 0;
+  transform-origin: 0 50%;
 }
 
 /*下划线 左右出来*/
 .ech-underline-r:before {
-    bottom: 0;
-    left: 0;
-    transform-origin: 100% 50%;
-
+  bottom: 0;
+  left: 0;
+  transform-origin: 100% 50%;
 }
 
 .ech-underline-l:before {
-    bottom: 0;
-    right: 0;
-    transform-origin: 0% 50%;
+  bottom: 0;
+  right: 0;
+  transform-origin: 0% 50%;
 }
 
 /**上划线 下划线 居中进来**/
 .ech-overline-c:before {
-    top: 0;
-    transform-origin: 0 50%;
+  top: 0;
+  transform-origin: 0 50%;
 }
 
 .ech-overline-c:after {
-    top: 0;
-    transform-origin: 100% 50%;
+  top: 0;
+  transform-origin: 100% 50%;
 }
 
 .ech-underline-c:before {
-    bottom: 0;
-    transform-origin: 0 50%;
+  bottom: 0;
+  transform-origin: 0 50%;
 }
 
 .ech-underline-c:after {
-    bottom: 0;
-    transform-origin: 100% 50%;
+  bottom: 0;
+  transform-origin: 100% 50%;
 }
 
-.ech-overline-c:before, .ech-underline-c:before {
-    left: 0;
+.ech-overline-c:before,
+.ech-underline-c:before {
+  left: 0;
 }
 
-.ech-overline-c:after, .ech-underline-c:after {
-    right: 0;
+.ech-overline-c:after,
+.ech-underline-c:after {
+  right: 0;
 }
 
 /*上划线 下划线-居中出去 */
 .ech-overline-c-out:before {
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .ech-underline-c-out:before {
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
-.ech-fade-t:hover:before, .ech-fade-b:hover:before, .ech-fade-m-out:hover:before, .ech-bounce-b:hover:before, .ech-bounce-t:hover:before {
-    transform: scaleY(1);
+.ech-fade-t:hover:before,
+.ech-fade-b:hover:before,
+.ech-fade-m-out:hover:before,
+.ech-bounce-b:hover:before,
+.ech-bounce-t:hover:before {
+  transform: scaleY(1);
 }
 
-.ech-fade:hover, .ech-fade-t:hover, .ech-fade-b:hover, .ech-fade-l:hover, .ech-fade-r:hover, .ech-fade-c-in:hover, .ech-fade-m-in:hover, .ech-fade-m-out:hover, .ech-fade-c-out:hover, .ech-bounce-t:hover, .ech-bounce-b:hover, .ech-bounce-r:hover, .ech-bounce-l:hover {
-    color: #fff;
+.ech-fade:hover,
+.ech-fade-t:hover,
+.ech-fade-b:hover,
+.ech-fade-l:hover,
+.ech-fade-r:hover,
+.ech-fade-c-in:hover,
+.ech-fade-m-in:hover,
+.ech-fade-m-out:hover,
+.ech-fade-c-out:hover,
+.ech-bounce-t:hover,
+.ech-bounce-b:hover,
+.ech-bounce-r:hover,
+.ech-bounce-l:hover {
+  color: #fff;
 }
 
-.ech-fade-m-in:hover:before, .ech-fade-m-in:hover:after {
-    transform: scaleY(.51);
+.ech-fade-m-in:hover:before,
+.ech-fade-m-in:hover:after {
+  transform: scaleY(0.51);
 }
 
-.ech-fade-c-in:hover:before, .ech-fade-c-in:hover:after, .ech-overline-c:hover:after, .ech-overline-c:hover:before, .ech-underline-c:hover:after, .ech-underline-c:hover:before {
-    transform: scaleX(.51);
+.ech-fade-c-in:hover:before,
+.ech-fade-c-in:hover:after,
+.ech-overline-c:hover:after,
+.ech-overline-c:hover:before,
+.ech-underline-c:hover:after,
+.ech-underline-c:hover:before {
+  transform: scaleX(0.51);
 }
 
-.ech-fade-l:hover:before, .ech-fade-r:hover:before,.ech-fade-c-out:hover:before, .ech-bounce-l:hover:before, .ech-bounce-r:hover:before, .ech-overline-l:hover:before, .ech-overline-r:hover:before, .ech-underline-l:hover:before, .ech-underline-r:hover:before, .ech-underline-c-out:hover:before, .ech-overline-c-out:hover:before {
-    transform: scaleX(1);
+.ech-fade-l:hover:before,
+.ech-fade-r:hover:before,
+.ech-fade-c-out:hover:before,
+.ech-bounce-l:hover:before,
+.ech-bounce-r:hover:before,
+.ech-overline-l:hover:before,
+.ech-overline-r:hover:before,
+.ech-underline-l:hover:before,
+.ech-underline-r:hover:before,
+.ech-underline-c-out:hover:before,
+.ech-overline-c-out:hover:before {
+  transform: scaleX(1);
 }
+
 ```
 
 :::
@@ -481,87 +686,128 @@ html
 css
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
-.ech-arrow-l, .ech-arrow-r, .ech-arrow-t, .ech-arrow-b, .ech-arrow-l-move, .ech-arrow-r-move, .ech-arrow-t-move, .ech-arrow-b-move{ position: relative; transition: all .3s; z-index: 1;}
-.ech-arrow-l:before, .ech-arrow-r:before, .ech-arrow-t:before, .ech-arrow-b:before, .ech-arrow-l-move:before, .ech-arrow-r-move:before, .ech-arrow-t-move:before, .ech-arrow-b-move:before {
-    position: absolute;
-    transition: all .3s;
-    content: "";
-    display: block;
-    z-index: -1;
-    border-style: solid;
-    margin: auto;
-    width: 0;
-    height: 0;
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
+.ech-arrow-l,
+.ech-arrow-r,
+.ech-arrow-t,
+.ech-arrow-b,
+.ech-arrow-l-move,
+.ech-arrow-r-move,
+.ech-arrow-t-move,
+.ech-arrow-b-move {
+  position: relative;
+  transition: all 0.3s;
+  z-index: 1;
+}
+.ech-arrow-l:before,
+.ech-arrow-r:before,
+.ech-arrow-t:before,
+.ech-arrow-b:before,
+.ech-arrow-l-move:before,
+.ech-arrow-r-move:before,
+.ech-arrow-t-move:before,
+.ech-arrow-b-move:before {
+  position: absolute;
+  transition: all 0.3s;
+  content: '';
+  display: block;
+  z-index: -1;
+  border-style: solid;
+  margin: auto;
+  width: 0;
+  height: 0;
 }
 
-.ech-arrow-l:before, .ech-arrow-l-move:before {
-    left: 0;
-    top: 0;
-    bottom: 0;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent #ccc transparent transparent;
+.ech-arrow-l:before,
+.ech-arrow-l-move:before {
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #ccc transparent transparent;
 }
 
-.ech-arrow-r:before, .ech-arrow-r-move:before {
-    right: 0;
-    top: 0;
-    bottom: 0;
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent #ccc;
+.ech-arrow-r:before,
+.ech-arrow-r-move:before {
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #ccc;
 }
 
-.ech-arrow-t:before, .ech-arrow-t-move:before {
-    left: 0;
-    top: 0;
-    right: 0;
-    border-width: 0 10px 10px 10px;
-    border-color: transparent transparent #ccc transparent;
+.ech-arrow-t:before,
+.ech-arrow-t-move:before {
+  left: 0;
+  top: 0;
+  right: 0;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #ccc transparent;
 }
 
-.ech-arrow-b:before, .ech-arrow-b-move:before {
-    left: 0;
-    bottom: 0;
-    right: 0;
-    border-width: 10px 10px 0 10px;
-    border-color: #ccc transparent transparent transparent;
+.ech-arrow-b:before,
+.ech-arrow-b-move:before {
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-width: 10px 10px 0 10px;
+  border-color: #ccc transparent transparent transparent;
 }
 
-.ech-arrow-l-move, .ech-arrow-r-move, .ech-arrow-t-move, .ech-arrow-b-move {
-    transition: transform .3s;
+.ech-arrow-l-move,
+.ech-arrow-r-move,
+.ech-arrow-t-move,
+.ech-arrow-b-move {
+  transition: transform 0.3s;
 }
 
 .ech-arrow-l-move:hover {
-    transform: translateX(10px);
+  transform: translateX(10px);
 }
 
 .ech-arrow-r-move:hover {
-    transform: translateX(-10px);
+  transform: translateX(-10px);
 }
 
 .ech-arrow-t-move:hover {
-    transform: translateY(10px);
+  transform: translateY(10px);
 }
 
 .ech-arrow-b-move:hover {
-    transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
-.ech-arrow-l-move:hover:before, .ech-arrow-l:hover:before {
-    transform: translateX(-10px);
+.ech-arrow-l-move:hover:before,
+.ech-arrow-l:hover:before {
+  transform: translateX(-10px);
 }
 
-.ech-arrow-r-move:hover:before, .ech-arrow-r:hover:before {
-    transform: translateX(10px);
+.ech-arrow-r-move:hover:before,
+.ech-arrow-r:hover:before {
+  transform: translateX(10px);
 }
 
-.ech-arrow-t-move:hover:before, .ech-arrow-t:hover:before {
-    transform: translateY(-10px);
+.ech-arrow-t-move:hover:before,
+.ech-arrow-t:hover:before {
+  transform: translateY(-10px);
 }
 
-.ech-arrow-b-move:hover:before, .ech-arrow-b:hover:before {
-    transform: translateY(10px);
+.ech-arrow-b-move:hover:before,
+.ech-arrow-b:hover:before {
+  transform: translateY(10px);
 }
+
 ```
 
 :::
@@ -582,20 +828,35 @@ html
 css
 
 ```css
- span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
 /*闪烁变化*/
 .ech-flash:hover {
-    animation: flash .5s ease;
+  animation: flash 0.5s ease;
 }
 
 @keyframes flash {
-    0%, 50%, 100% {
-        opacity: 1;
-    }
-    25%, 75% {
-        opacity: 0;
-    }
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
 }
+
 ```
 
 :::
@@ -612,30 +873,48 @@ html
 css
 
 ```css
-
 /*仿闹钟振铃效果*/
 .ech-shake-time:hover {
-    animation: shake-time 1s ease;
+  animation: shake-time 1s ease;
 }
 
 @keyframes shake-time {
-    0% {
-        transform: scale(1);
-    }
-    10%, 20% {
-        transform: scale(0.9) rotate(-3deg);
-    }
-    30%, 50%, 70%, 90% {
-        transform: scale(1.1) rotate(3deg);
-    }
-    40%, 60%, 80% {
-        transform: scale(1.1) rotate(-3deg);
-    }
-    100% {
-        transform: scale(1) rotate(0);
-    }
+  0% {
+    transform: scale(1);
+  }
+  10%,
+  20% {
+    transform: scale(0.9) rotate(-3deg);
+  }
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: scale(1.1) rotate(3deg);
+  }
+  40%,
+  60%,
+  80% {
+    transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
 }
-/*仿闹钟振铃效果*/  span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+/*仿闹钟振铃效果*/
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
+
 
 ```
 
@@ -653,77 +932,99 @@ html
 css
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
-.ech-wobble-t, .ech-skew-r-t, .ech-skew-l-t { transform-origin: 0 100%;}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
+.ech-wobble-t,
+.ech-skew-r-t,
+.ech-skew-l-t {
+  transform-origin: 0 100%;
+}
 
 /*
  * 当前元素 较复杂动画，利用动画实现
  */
-.ech-wobble-t, .ech-skew-r-t, .ech-skew-l-t {
-    transform-origin: 0 100%;
+.ech-wobble-t,
+.ech-skew-r-t,
+.ech-skew-l-t {
+  transform-origin: 0 100%;
 }
 
-.ech-wobble-b, .ech-skew-r-b, .ech-skew-l-b {
-    transform-origin: 100% 0;
+.ech-wobble-b,
+.ech-skew-r-b,
+.ech-skew-l-b {
+  transform-origin: 100% 0;
 }
 
-.ech-wobble-c:hover, .ech-wobble-t:hover,.ech-wobble-b:hover {
-    animation: wobble-x 1s ease-in-out;
+.ech-wobble-c:hover,
+.ech-wobble-t:hover,
+.ech-wobble-b:hover {
+  animation: wobble-x 1s ease-in-out;
 }
 
 @keyframes wobble-x {
-    16.65% {
-        -webkit-transform: skew(-12deg);
-        transform: skew(-12deg);
-    }
-    33.3% {
-        -webkit-transform: skew(10deg);
-        transform: skew(10deg);
-    }
-    49.95% {
-        -webkit-transform: skew(-6deg);
-        transform: skew(-6deg);
-    }
-    66.6% {
-        -webkit-transform: skew(4deg);
-        transform: skew(4deg);
-    }
-    83.25% {
-        -webkit-transform: skew(-2deg);
-        transform: skew(-2deg);
-    }
-    100% {
-        -webkit-transform: skew(0);
-        transform: skew(0);
-    }
+  16.65% {
+    -webkit-transform: skew(-12deg);
+    transform: skew(-12deg);
+  }
+  33.3% {
+    -webkit-transform: skew(10deg);
+    transform: skew(10deg);
+  }
+  49.95% {
+    -webkit-transform: skew(-6deg);
+    transform: skew(-6deg);
+  }
+  66.6% {
+    -webkit-transform: skew(4deg);
+    transform: skew(4deg);
+  }
+  83.25% {
+    -webkit-transform: skew(-2deg);
+    transform: skew(-2deg);
+  }
+  100% {
+    -webkit-transform: skew(0);
+    transform: skew(0);
+  }
 }
 
 @keyframes wobble {
-    16.65% {
-        -webkit-transform: skew(-12deg);
-        transform: skew(-12deg);
-    }
-    33.3% {
-        -webkit-transform: skew(10deg);
-        transform: skew(10deg);
-    }
-    49.95% {
-        -webkit-transform: skew(-6deg);
-        transform: skew(-6deg);
-    }
-    66.6% {
-        -webkit-transform: skew(4deg);
-        transform: skew(4deg);
-    }
-    83.25% {
-        -webkit-transform: skew(-2deg);
-        transform: skew(-2deg);
-    }
-    100% {
-        -webkit-transform: skew(0);
-        transform: skew(0);
-    }
+  16.65% {
+    -webkit-transform: skew(-12deg);
+    transform: skew(-12deg);
+  }
+  33.3% {
+    -webkit-transform: skew(10deg);
+    transform: skew(10deg);
+  }
+  49.95% {
+    -webkit-transform: skew(-6deg);
+    transform: skew(-6deg);
+  }
+  66.6% {
+    -webkit-transform: skew(4deg);
+    transform: skew(4deg);
+  }
+  83.25% {
+    -webkit-transform: skew(-2deg);
+    transform: skew(-2deg);
+  }
+  100% {
+    -webkit-transform: skew(0);
+    transform: skew(0);
+  }
 }
+
 ```
 
 :::
@@ -740,26 +1041,40 @@ html
 css
 
 ```css
-.ech-swing:hover { animation: swing .5s ease alternate;}
- span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+.ech-swing:hover {
+  animation: swing 0.5s ease alternate;
+}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
 
 @keyframes swing {
-    20% {
-        transform: rotate(15deg);
-    }
-    40% {
-        transform: rotate(-10deg);
-    }
-    60% {
-        transform: rotate(5deg);
-    }
-    80% {
-        transform: rotate(-5deg);
-    }
-    100% {
-        transform: rotate(0);
-    }
+  20% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-10deg);
+  }
+  60% {
+    transform: rotate(5deg);
+  }
+  80% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
 }
+
 ```
 
 :::
@@ -807,20 +1122,36 @@ html
 css
 
 ```css
-span{ cursor: pointer; height: 40px; line-height: 40px; text-align: center; display: inline-block; color: #333; background: #ccc; min-width: 80px; padding: 0 10px; margin: 10px;}
+span {
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  color: #333;
+  background: #ccc;
+  min-width: 80px;
+  padding: 0 10px;
+  margin: 10px;
+}
 .ech-bounce:hover {
-    animation: bounce 1s ease;
+  animation: bounce 1s ease;
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-30px);
-    }
-    60% {
-        transform: translateY(-15px);
-    }
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
 }
+
 ```
