@@ -1,12 +1,21 @@
-# 使用everedit代替记事本
+# 使用emeditor代替记事本
 
 :::tip
-现在推荐使用everedit了,[http://cn.everedit.net/](http://cn.everedit.net/)
-当然也可以使用cudatext
-[https://cudatext.github.io/](https://cudatext.github.io/)  
-> 用pascal语言写的  
-设置中文
 
+- emeditor
+- editor-plus
+- everedit
+- ueditor
+- vscode
+- sublime
+- cudatext
+- nodepad3
+
+现在推荐使用 emeditor
+
+## cudatext设置中文
+
+![cudatext](https://cudatext.github.io/img/cudatext-main.png)
 打开 <https://sourceforge.net/projects/cudatext/files/addons/>
 找到【translations】文件夹，
 下载【translation.zh_CN.zip】
@@ -16,25 +25,23 @@
 
 :::
 
-![cudatext](https://cudatext.github.io/img/cudatext-main.png)
-
 ## windows上的设置
 
-### 右键注册`用cudatext打开`
+### 右键注册`用emeditor打开`
 
 注意这里的`%1`在注册表里面要带`""`
-就像这样 `"D:\\programs\\cudatext\\cudatext.exe"  "%1"`
+就像这样 `"D:\\programs\\emeditor\\EmEditor.exe"  "%1"`
 新建一个`用cudatext打开`的reg文件,然后执行
 
 ```reg
 Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\用cudatext打开]
-"Icon"="D:\\programs\\cudatext\\cudatext.exe"
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\用EmEditor打开]
+"Icon"="D:\\programs\\EmEditor\\EmEditor.exe"
 @="用cudatext打开"
 
-[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\用cudatext打开\command]
-@="\"D:\\programs\\cudatext\\cudatext.exe\"  \"%1\""
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\用EmEditor打开\command]
+@="\"D:\\programs\\EmEditor\EmEditor.exe\"  \"%1\""
 
 
 
@@ -45,13 +52,13 @@ Windows Registry Editor Version 5.00
 win+R 输入 regedit 打开注册表  
 输入计算机`HKEY_CLASSES_ROOT\txtfile\shell\open\command` 进入记事本的注册表  
 修改默认的值,原来的值是 `%SystemRoot%\system32\NOTEPAD.EXE %1`,改为自己解压后的exe的位置(中间不要有中文和空格)
-我改后是 `D:\programs\cudatext\cudatext.exe %1`
+我改后是 `D:\programs\EmEditor\EmEditor.exe %1`
 然后!
-在路径输入 计算机`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options`,设置默认值为软件路径,比如我是 `D:\programs\cudatext\cudatext.exe`
+在路径输入 计算机`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options`,设置默认值为软件路径,比如我是 `D:\programs\EmEditor\EmEditor.exe`
 
 ```reg
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe]
-"Debugger"="\"D:\\programs\\cudatext\\cudatext.exe\""
+"Debugger"="\"D:\\programs\\EmEditor\\EmEditor.exe\""
 ```

@@ -55,6 +55,12 @@ pnpm install
 
 ```
 
+### 安装全局包
+
+```shell
+pnpm add -g serve
+```
+
 workspace用于lerna项目,不需要在子项目做install的操作
 pnpm-workspace.yaml
 
@@ -78,3 +84,54 @@ packages:
 - 必须在同一个分区
 - 仅支持本地驱动器
 - 不支持为文件夹创建硬链接
+:::tip
+全局安装的包
+
+```json
+{
+  "dependencies": {
+    "@antfu/ni": "^0.17.2",
+    "@nestjs/cli": "^9.0.0",
+    "@neutralinojs/neu": "^9.3.1",
+    "@quasar/cli": "^1.3.2",
+    "@vue/cli": "^5.0.8",
+    "@vue/devtools": "^6.1.4",
+    "create-quasar": "^1.0.28",
+    "create-vite": "^3.0.0",
+    "electron": "^19.0.7",
+    "esno": "^0.16.3",
+    "fkill-cli": "^7.1.0",
+    "gulp-cli": "^2.3.0",
+    "hexo-cli": "^4.3.0",
+    "hugo-installer": "^3.1.0",
+    "increase-memory-limit-fixbug": "^1.0.0",
+    "iroiro": "^0.2.0",
+    "json-server": "^0.17.0",
+    "lerna": "^5.1.6",
+    "less": "^4.1.2",
+    "local-web-server": "^5.2.0",
+    "nativefier": "^47.2.0",
+    "npkill": "^0.8.3",
+    "npm-check-updates": "^14.0.1",
+    "npm-home": "^2.0.0",
+    "nrm": "^1.2.5",
+    "pkg": "^5.7.0",
+    "pm2": "^5.2.0",
+    "pm2-windows-service": "^0.2.1",
+    "pnpm": "^7.5.2",
+    "prettier": "^2.7.1",
+    "pug-cli": "^1.0.0-alpha6",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.70.2",
+    "sass": "^1.51.0",
+    "stylus": "^0.57.0",
+    "taze": "^0.7.6",
+    "typeorm": "^0.3.6",
+    "typescript": "^4.6.3",
+    "vercel": "^27.0.2"
+  }
+}
+
+```
+
+:::

@@ -40,3 +40,8 @@ utp-native-binary-host-mirror=https://npmmirror.com/mirrors/utp-native/v{version
 zmq-prebuilt-binary-host-mirror=https://npmmirror.com/mirrors/zmq-prebuilt/v{version}
 
 ```
+
+## 全局包位置
+
+npm全局包位置
+`AppData\Roaming\npm`
