@@ -14,83 +14,86 @@
 - [portfinder](https://github.com/http-party/node-portfinder) 自动寻找没被占用的端口
 
 - [json-server](https://github.com/typicode/json-server)支持restfulapi增删改查
-- execa
+- [execa](https://github.com/sindresorhus/execa)
 - chalk
 - [node-notifier](https://github.com/mikaelbr/node-notifier)
-- regedit
+- [regedit](https://github.com/ironSource/node-regedit)
 - [picocolors](https://github.com/alexeyraspopov/picocolors)
-- fs-extra
+- [fs-extra](https://github.com/jprichardson/node-fs-extra)
 - [fs-jetpack](https://github.com/szwacz/fs-jetpack) Better file system API for Node.js
-- fast-glob
-- rc-config-loader 获取配置文件
-- globby
-- pretty-bytes
-- node-windows Windows support for Node.JS scripts (daemons, eventlog, UAC, etc).
-- lodash
-- minimatch
-- nodemailer
+- [fast-glob](https://github.com/mrmlnc/fast-glob)
+- [rc-config-loader](https://github.com/azu/rc-config-loader) 获取配置文件
+- [globby](https://github.com/sindresorhus/globby)
+- [pretty-bytes](https://github.com/sindresorhus/pretty-bytes)
+- [node-windows](https://github.com/coreybutler/node-windows) Windows support for Node.JS scripts (daemons, eventlog, UAC, etc).
+- [lodash](https://github.com/lodash/lodash)
+- [minimatch](https://github.com/isaacs/minimatch)
+- [milly](https://github.com/unjs/mlly)
+- [nodemailer](https://github.com/nodemailer/nodemailer)
 - [ohmyfetch](https://github.com/unjs/ohmyfetch) A better fetch API. Works on node, browser and workers.
-- find-up
-- filesize
+- [find-up](https://github.com/sindresorhus/find-up)
+- [filesize](https://github.com/avoidwork/filesize.js)
 - enquirer 类似 inquirer
-- meow  命令行工具
-- **prompts**
+- [meow](https://github.com/sindresorhus/meow)  命令行工具
+- [**prompts**](https://github.com/terkelg/prompts)
 - [**inquirer**](https://github.com/SBoudrias/Inquirer.js) A collection of common interactive command line user interfaces
 - [cac](https://github.com/cacjs/cac) Command And Conquer is a JavaScript library for building CLI apps.
-- **yargs** 一个命令行参数解析工具
-- **commander**
-- **cross-env**
-- **consola**
+- [**yargs**](https://github.com/yargs/yargs) 一个命令行参数解析工具
+- [**commander**](https://github.com/tj/commander.js)
+- [**cross-env**](https://github.com/kentcdodds/cross-env)
+- [**consola**](https://github.com/unjs/consola)
+- [file-type](https://github.com/sindresorhus/file-type)
 - [defu](https://github.com/unjs/defu) Assign default properties, recursively. Lightweight and Fast!
 - [cheerio](https://github.com/cheeriojs/cheerio) nodejs爬虫
 - [crawler](https://github.com/bda-research/node-crawler)
 - [shelljs](https://github.com/shelljs/shelljs)  跨平台 Unix shell 命令 的 node 封装
-- blessed blessed-contrib
-- tslib
-- terminal-kit
+- [blessed](https://github.com/chjj/blessed) blessed-contrib
+- [tslib](https://github.com/Microsoft/tslib)
+- [terminal-kit](https://github.com/cronvel/terminal-kit)
 - [destr](https://github.com/unjs/destr)  A faster, secure and convenient alternative for`JSON.parse`
 - [ufo](https://github.com/unjs/ufo) url工具
 - [pathe](https://github.com/unjs/pathe) 路径工具类似nodejs的path
-- terser
+- [terser](https://github.com/terser/terser)
 - [ora](https://github.com/sindresorhus/ora)  命令行加载中图标
-- open
-- ini
-- dotenv
+- [open](https://github.com/sindresorhus/open)
+- [ini](https://github.com/npm/ini)
+- [dotenv](https://github.com/motdotla/dotenv)
 - [minimist](https://github.com/substack/minimist) 命令行解析
-- yaml js-yaml
-- toml
-- update-notifier
+- yaml [js-yaml](https://github.com/nodeca/js-yaml)
+- [toml](https://github.com/BinaryMuse/toml-node)
+- [update-notifier](https://github.com/yeoman/update-notifier)
 - [pacote](https://github.com/npm/pacote) Fetches package manifests and tarballs from the npm registry.
-- cli-progress 命令行进度条
-- cli-table
+- [cli-progress](https://github.com/npkgz/cli-progress) 命令行进度条
+- [cli-table](https://github.com/Automattic/cli-table)
 - [boxen](https://github.com/sindresorhus/boxen)
-- semver
-- chokidar
+- [semver](https://github.com/npm/node-semver)
+- [chokidar](https://github.com/paulmillr/chokidar)
 - [rimraf](https://github.com/isaacs/rimraf)
-- isomorphic-git git相关操作
-- svgo
-- string-width
-- terminal-link
+- [isomorphic-git](https://github.com/isomorphic-git/isomorphic-git) git相关操作
+- [svgo](https://github.com/svg/svgo)
+- [string-width](https://github.com/sindresorhus/string-width)
+- [terminal-link](https://github.com/sindresorhus/terminal-link)
 - [npm-run-path](https://github.com/sindresorhus/npm-run-path) Get your PATH prepended with locally installed binaries
 - [http-server](https://github.com/http-party/http-server)
 - [prettyjson](https://github.com/rafeca/prettyjson)
 - [wait-on](https://github.com/jeffbski/wait-on) wait for files, ports, sockets, and http(s) resources to become available
-- Cliffy - A Framework For Interactive CLIs
+- [Cliffy](https://github.com/drew-y/cliffy) - A Framework For Interactive CLIs
 - [ink](https://github.com/vadimdemedes/ink)
-- which
+- [which](https://github.com/npm/node-which)
 - [tasuku](https://github.com/privatenumber/tasuku) 一个taskrunner类似gulp
 - [simple-git](https://github.com/steveukx/git-js) git客户端
 - node-ssh
-- get-port
-- cp-file
+- [get-port](https://github.com/sindresorhus/get-port)
+- [cp-file](https://github.com/sindresorhus/cp-file)
 - [ws](https://github.com/websockets/ws)
 - http-proxy
-- http-proxy-middleware
-- resolve
-- got 类似ohmyfetch,node-fetch
+- [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
+- [resolve](https://github.com/browserify/resolve)
+- [got](https://github.com/sindresorhus/got) 类似ohmyfetch,node-fetch
 - [superagent](https://github.com/visionmedia/superagent) Ajax for Node.js and browsers (JS HTTP client)
 - [socket.io](https://github.com/socketio/socket.io) Realtime application framework (Node.JS server)
 - [tap](https://github.com/tapjs/node-tap) test framework
+- [nock](https://github.com/nock/nock)
 
 ### Web frameworks
 
@@ -157,7 +160,7 @@
 - config
 - dotenv
 - cross-env
-- env-cmd
+- [env-cmd](https://github.com/toddbluhm/env-cmd)
 - dotenv-cli
 推荐使用env-cmd+dotenv
 然后在`main.ts`写

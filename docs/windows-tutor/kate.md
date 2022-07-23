@@ -1,7 +1,8 @@
-# 使用emeditor代替记事本
+# 使用kate代替记事本
 
 :::tip
 
+- kate(推荐)
 - emeditor
 - editor-plus
 - everedit
@@ -11,21 +12,17 @@
 - cudatext
 - nodepad3
 
-现在推荐使用 emeditor
+现在推荐使用 [kate(kde默认编辑器)](https://kate-editor.org/zh-cn)
 
-## cudatext设置中文
+[kde永远的神](https://apps.kde.org/zh-cn)
 
-![cudatext](https://cudatext.github.io/img/cudatext-main.png)
-打开 <https://sourceforge.net/projects/cudatext/files/addons/>
-找到【translations】文件夹，
-下载【translation.zh_CN.zip】
-把其中的install.inf、zh_CN.ini以及其他存在的文件都解压到cudatext的data\lang文件夹下，重新运行软件点击【Options】-【translations】选择【zh_CN】即可。
-下载所有插件  
-[https://sourceforge.net/projects/cudatext/files/addons_all/](https://sourceforge.net/projects/cudatext/files/addons_all/)
+- kate
+- okular
+- kile
+- filelight
 
-:::
-
-## windows上的设置
+<p>分割线------------------------------------------</p>
+## 使用emeditor打开文件
 
 ### 右键注册`用emeditor打开`
 
@@ -62,3 +59,15 @@ Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\notepad.exe]
 "Debugger"="\"D:\\programs\\EmEditor\\EmEditor.exe\""
 ```
+
+## cudatext设置中文
+
+![cudatext](https://cudatext.github.io/img/cudatext-main.png)
+打开 <https://sourceforge.net/projects/cudatext/files/addons/>
+找到【translations】文件夹，
+下载【translation.zh_CN.zip】
+把其中的install.inf、zh_CN.ini以及其他存在的文件都解压到cudatext的data\lang文件夹下，重新运行软件点击【Options】-【translations】选择【zh_CN】即可。
+下载所有插件  
+[https://sourceforge.net/projects/cudatext/files/addons_all/](https://sourceforge.net/projects/cudatext/files/addons_all/)
+
+:::
