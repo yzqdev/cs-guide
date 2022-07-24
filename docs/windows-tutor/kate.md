@@ -20,8 +20,10 @@
 - okular
 - kile
 - filelight
+:::
 
 <p>分割线------------------------------------------</p>
+
 ## 使用emeditor打开文件
 
 ### 右键注册`用emeditor打开`
@@ -69,5 +71,3 @@ Windows Registry Editor Version 5.00
 把其中的install.inf、zh_CN.ini以及其他存在的文件都解压到cudatext的data\lang文件夹下，重新运行软件点击【Options】-【translations】选择【zh_CN】即可。
 下载所有插件  
 [https://sourceforge.net/projects/cudatext/files/addons_all/](https://sourceforge.net/projects/cudatext/files/addons_all/)
-
-:::

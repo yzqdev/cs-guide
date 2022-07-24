@@ -1,24 +1,61 @@
 # windows好用的软件
 
+## 日常工具
+
+### 音视频看图软件
+
+- [https://picview.org/](https://picview.org/)
+- wps图片
+- [honeyview](https://www.bandisoft.com/honeyview/) 类似bandizip
+- [potplayer](http://potplayer.tv/?lang=zh_CN)
+- okular   kde的pdf阅读器
+- Calibre
+- [HandBrake](https://github.com/HandBrake/HandBrake) 视频格式转换
+
+- [music bee](https://getmusicbee.com/)
+- [aimp](https://www.aimp.ru/)
+- <https://github.com/digimezzo/Dopamine>
+- [foobar](https://www.foobar2000.org/)
+
+#### linux图片处理软件
+
+- Pinta
+- gimp
+- inkscape
+- krita
+- blender
+
+### 截屏录屏软件
+
+- [verycapture](https://verycapture.com/cn/index.html)
+- [ShareX](https://github.com/ShareX/ShareX) 是一个免费开源的截图工具(windows应用商店,steam商店),steam商店可以下载
+- [obs](https://obsproject.com/) steam可以下载
+- [screentogif](https://www.screentogif.com/)
+- snipaste (微软应用商店)
+- fastone capture
+- pickpick
+- snagit
+- bandicam
+- 迅捷屏幕录像工具
+- [ev录屏](https://www.ieway.cn/)
+- [verycapture](https://verycapture.com/cn/index.html)
+- [potplayer](http://potplayer.tv/?lang=zh_CN)
+- foobar ,
+- [honeyview](https://cn.bandisoft.com/honeyview/)
+- [bandizip](https://cn.bandisoft.com/bandizip/)
+
+### 剪辑软件
+
+- [剪映](https://lv.ulikecam.com/)
+- [必剪](https://bcut.drawyoo.com/)
+- [shortcut](https://www.shotcut.org/)
+
 <https://www.iplaysoft.com/best-windows-apps-2022.html>
 
-## upx
+## 下载工具
 
-可以快速吧二进制文件压缩,比如压缩go build后的文件
-
-```shell
-go build -ldflags="-s -w"
-upx -9 gva.exe
-```
-
-## 数据库软件
-
-- [https://www.heidisql.com/download.php?download=portable-64](https://www.heidisql.com/download.php?download=portable-64)
-- [navicat](https://navicat.com.cn/)
-- [DBeaver](https://dbeaver.io/)
-- datagrip
-- [beekeper studio](https://www.beekeeperstudio.io/)
-- [sqlyog](https://webyog.com/product/sqlyog/)
+- [ndm](https://www.neatdownloadmanager.com/index.php/en/)
+- [fdm](https://www.freedownloadmanager.org/zh/)
 
 ## 鼠标手势软件
 
@@ -33,137 +70,11 @@ upx -9 gva.exe
 [icofx(收费)](https://icofx.ro/)
 <https://www.spacedesk.net/>
 
-## scoop
-
-一个命令安装软件
-[官网](https://scoop.sh/)
-
-- 安装 sudo
-
-## systeminternals
-
-[microsoft官网](https://docs.microsoft.com/zh-cn/sysinternals/downloads/)
-
-- 套件是以下所选 Sysinternals 实用工具的捆绑：AccessChk、AccessEnum、AdExplorer、AdInsight、AdRestore、Autologon、Autoruns、BgInfo、BlueScreen、CacheSet、ClockRes、Contig、Coreinfo、Ctrl2Cap、DebugView、Desktops、Disk2vhd、DiskExt、DiskMon、DiskView 、
-- [磁盘](https://docs.microsoft.com/zh-cn/sysinternals/downloads/du)使用情况 (DU) 、EFSDump、FindLinks、Handle、Hex2dec、Junction、LDMDump、ListDLLs、LiveKd、LoadOrder、LogonSessions、MoveFile、NotMyFault、NTFSInfo、PendMoves、PipeList、PortMon、ProcDump、Process
-- [Explorer、](https://docs.microsoft.com/zh-cn/sysinternals/downloads/process-explorer)
-- [进程监视器](https://docs.microsoft.com/zh-cn/sysinternals/downloads/procmon)
-- [PsExec、PsFile](https://docs.microsoft.com/zh-cn/sysinternals/downloads/psexec)、PsGetSid、PsInfo、PsKill、PsList、PsLoggedOn、PsLogList、PsPasswd、PsPing、PsService、PsShutdown、PsSuspend、PsTools、RAMMap、RDCMan、RegDelNull、RegHide、RegJump、注册表使用情况 (RU ) 、SDelete、ShareEnum、ShellRunas、Sigcheck 、
-- [流](https://docs.microsoft.com/zh-cn/sysinternals/downloads/streams)
-- [字符串](https://docs.microsoft.com/zh-cn/sysinternals/downloads/strings)
-- [同步](https://docs.microsoft.com/zh-cn/sysinternals/downloads/sync)、Sysmon、TCPView、VMMap、VolumeID、WhoIs、WinObj、ZoomIt
-​
-
-## 虚拟机软件
-
-- [https://multipass.run/](https://multipass.run/)
-- [https://fastcopy.jp/](https://fastcopy.jp/)
-
-## 注册表工具
-
-- [registry-finder](https://registry-finder.com/)
-- registry workshop
-- [registrar](https://www.resplendence.com/registrar)
-
-## ndm
-
-[下载软件](https://www.neatdownloadmanager.com/index.php/en/)
-
-## 开源软件
-
-- markdown(微软商店搜索markdown)
-- [marktext](https://github.com/marktext/marktext)
-- FreeCAD
-- VLC
-- [dia](http://dia-installer.de/download/)
-- [peazip](https://peazip.github.io/)
-- [you-get](https://github.com/soimort/you-get)
-- [picgo](https://github.com/Molunerfinn/PicGo)
-- [https://github.com/1265578519/ShanaEncoder](https://github.com/1265578519/ShanaEncoder)
-- [https://ugetdm.com/](https://ugetdm.com/)
-- Calibre
-- [https://github.com/HandBrake/HandBrake](https://github.com/HandBrake/HandBrake)
-- shotcut
-
 ## 下载站
 
 - [https://soft.macxf.com/](https://soft.macxf.com/)
 
-## 看图软件
-
-- [https://picview.org/](https://picview.org/)
-- wps图片
-- [honeyview](https://www.bandisoft.com/honeyview/) 类似bandizip
-
-## 听音乐软件
-
-五音助手
-[https://www.sixyin.com/special/wuyin](https://www.sixyin.com/special/wuyin)
-
-## linux图片处理软件
-
-- Pinta
-- gimp
-- inkscape
-- krita
-- blender
-
-## 截屏录屏软件
-
-[https://verycapture.com/cn/index.html](https://verycapture.com/cn/index.html)
-
-### obsstudio
-
-### ShareX，是一个免费开源的截图工具(windows应用商店,steam商店)
-
-[ShareX](https://github.com/ShareX/ShareX)
-steam商店可以下载
-
-### screentogif
-
-[官网](https://www.screentogif.com/)
-
-### snagit
-
-### pickpick
-
-### fastone capture
-
-### snipaste(微软应用商店)
-
-### bandicam
-
-### ev录屏
-
-[官网](https://www.ieway.cn/)
-
-### 迅捷屏幕录像工具
-
- [verycapture](https://verycapture.com/cn/index.html)
-
-## 剪辑软件
-
-- [剪映](https://lv.ulikecam.com/)
-- [必剪](https://bcut.drawyoo.com/)
-- [shortcut](https://www.shotcut.org/)
-​
-
-## potplayer
-
-[http://potplayer.tv/?lang=zh_CN](http://potplayer.tv/?lang=zh_CN)
-
-## anaconda
-
-快速管理python包
-
-## airtest
-
-[airtest](http://airtest.netease.com/index.html)
-python做安卓自动化的
-
-## dropit
-
-文件自动分类,你值得拥有
+- dropit文件自动分类,你值得拥有
 
 ## autohotkey
 
@@ -226,10 +137,3 @@ ssh工具,很好看
 
 [https://www.diskanalyzer.com/](https://www.diskanalyzer.com/)
 文件管理查看树结构
-
-## 音视频软件
-
-- [potplayer](http://potplayer.tv/?lang=zh_CN)
-- foobar ,
-- [honeyview](https://cn.bandisoft.com/honeyview/)
-- [bandizip](https://cn.bandisoft.com/bandizip/)

@@ -10,6 +10,16 @@
 
 ## cli依赖库
 
+### 文件处理
+
+- [nodejs-fs-utils](https://github.com/sergiu-gordienco/nodejs-fs-utils/)
+- [get-folder-size](https://github.com/alessioalex/get-folder-size)
+- [chokidar](https://github.com/paulmillr/chokidar)
+- [globby](https://github.com/sindresorhus/globby)
+- [graceful-fs](https://github.com/isaacs/node-graceful-fs)
+
+### 常用cli库
+
 - [pkg](https://github.com/vercel/pkg) 将你的 Node.js 程序包装在一个可执行文件中。
 - [portfinder](https://github.com/http-party/node-portfinder) 自动寻找没被占用的端口
 
