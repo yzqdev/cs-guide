@@ -1,3 +1,3 @@
-# 一些基础的js教程
+# js基础教程
 
 比如clipboard,event,webapi什么的

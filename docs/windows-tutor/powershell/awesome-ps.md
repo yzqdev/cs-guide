@@ -7,13 +7,19 @@
 
 ## 获取命令的位置
 
-```java
+```powershell
  Get-Command -Name npm
+```
+
+### 获取命令所在目录
+
+```powershell
+start (Get-Item (Get-Command -Name npm).Source).Directory
 ```
 
 ## 获取系统的编码
 
-```java
+```powershell
 chcp
 活动代码页: 936 这个是gbk编码
 ```
@@ -77,18 +83,18 @@ Get-Process
 ### 关闭某进程
 
 ```powershell
-$process ="*javaw*"
-# 查找和javaw相关的进程
+$process ="*powershellw*"
+# 查找和powershellw相关的进程
 Get-CimInstance Win32_Process | Where {$_.CommandLine -like $process } | select -ExpandProperty CommandLine # | Measure-Object -Line
-# 关闭javaw进程
+# 关闭powershellw进程
 Get-CimInstance Win32_Process | Where {$_.CommandLine -like $process} | Remove-CimInstance
 ```
 
 ### 查看进程的命令行
 
 ```powershell
-# 获取java进程的命令行
-Get-CimInstance Win32_Process -Filter "name = 'java.exe'" | Select-Object CommandLine
+# 获取powershell进程的命令行
+Get-CimInstance Win32_Process -Filter "name = 'powershell.exe'" | Select-Object CommandLine
 # 获取命令行带有zfile.jar的命令行
 Get-CimInstance Win32_Process  | Where-Object CommandLine -Match 'zfile'| Remove-CimInstance
 

@@ -1,3 +1,6 @@
+---
+index: false
+---
 # windows-tutor
 
 ## autohotkey-tutor

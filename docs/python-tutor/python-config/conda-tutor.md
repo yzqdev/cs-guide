@@ -29,6 +29,7 @@ D:\Miniconda3\envs\condapkg\Scripts
 ## 添加.condarc和pip.ini文件
 
 .condarc  
+
 ```java
 channels:
   - http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
@@ -51,7 +52,9 @@ changeps1: false
 auto_activate_base: true
 
 ```
-pip.ini   ($userprofile$\pip\pip.ini)
+
+pip.ini   (`%userprofile%\pip\pip.ini`)
+
 ```java
 [global]
 index-url = https://pypi.tuna.tsinghua.edu.cn/simple
@@ -59,55 +62,8 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 trusted-host = pypi.tuna.tsinghua.edu.cn
 ```
 
-## 激活环境
-
-
-```bash
-# 安装好后，使用activate激活某个环境
-activate py35 # for Windows
-source activate py35 # for Linux & Mac
-(py35) user@user-XPS-8920:~$
- # 激活后，会发现terminal输入的地方多了py35的字样，实际上，此时系统做的事情就是把默认2.7环境从PATH中去除，再把3.4对应的命令加入PATH
-
-(py35) user@user-XPS-8920:~$ python --version
-Python 3.5.5 :: Anaconda, Inc.
-# 可以得到`Python 3.5.5 :: Anaconda, Inc.`，即系统已经切换到了3.５的环境
-```
-
-## 返回主环境
-
-```
-# 如果想返回默认的python 2.7环境，运行
-deactivate py35 # for Windows
-source deactivate py35 # for Linux & Mac
-```
-
-## 删除环境
-
-```bash
-# 删除一个已有的环境
-conda remove --name py35 --all
-```
-
-
-## 查看系统中的所有环境
-
-
-用户安装的不同Python环境会放在`~/anaconda/envs`目录下。查看当前系统中已经安装了哪些环境，使用`conda info -e`。
-
-
-```
-user@user-XPS-8920:~$ conda info -e
-# conda environments:
-#
-base                  *  /home/user/anaconda2
-caffe                    /home/user/anaconda2/envs/caffe
-py35                    /home/user/anaconda2/envs/py35
-tf                       /home/user/anaconda2/envs/tf
-```
-
-
 ## **Conda的包管理**
+
 安装命令行工具建议用`conda install`,或者`pip3 install` 不能用`python -m pip install`
 
 ```java
@@ -119,9 +75,7 @@ pip3 install httpie
 
 ## 安装库
 
-
 为当前环境安装库
-
 
 ```
 # numpy
@@ -129,9 +83,7 @@ conda install numpy
 # conda会从从远程搜索numpy的相关信息和依赖项目
 ```
 
-
 ## 查看已经安装的库
-
 
 ```
 # 查看已经安装的packages
@@ -139,18 +91,14 @@ conda list
 # 最新版的conda是从site-packages文件夹中搜索已经安装的包，可以显示出通过各种方式安装的包
 ```
 
-
 ## 查看某个环境的已安装包
-
 
 ```
 # 查看某个指定环境的已安装包
 conda list -n py35
 ```
 
-
 ## 搜索package的信息
-
 
 ```
 # 查找package信息
@@ -165,9 +113,7 @@ numpy                    1.15.1  py37hec00662_0  anaconda/pkgs/main
 numpy                    1.15.1  py37hec00662_0  pkgs/main
 ```
 
-
 ## 安装package到指定的环境
-
 
 ```
 # 安装package
@@ -176,49 +122,42 @@ conda install -n py35 numpy
 # 也可以通过-c指定通过某个channel安装
 ```
 
-
 ## 更新package
-
 
 ```
 # 更新package
 conda update -n py35 numpy
 ```
 
-
 ## 删除package
-
 
 ```
 # 删除package
 conda remove -n py35 numpy
 ```
 
-
 ## 更新conda
-
 
 ```
 # 更新conda，保持conda最新
 conda update conda
 ```
 
-
 ## 更新anaconda
-
 
 ```
 # 更新anaconda
 conda update anaconda
  ```
-### 更新Python
-```
 
+### 更新Python
 
 ## 更新python
 
-
+```shell
 conda update python
+```
 
-
-##  
+:::tip
+ 兼容pip,所以直接可以用pip安装
+:::
