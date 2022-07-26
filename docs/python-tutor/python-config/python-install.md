@@ -1,5 +1,7 @@
 # python配置
 
+## 使用conda安装
+
 conda环境变量: path里面加上这个  `D:\Miniconda3\Scripts`
 python环境变量:
 注意要先建立一个环境 (用pycharm或者conda create condapkg)
@@ -17,4 +19,8 @@ python环境变量:
 conda create -n py310 python=3.10 -c conda-forge -y
 ```
 
-完成安装之后，激活环境进入Python的shell，可以看到版本为3.10.0
+完成安装之后，激活环境进入Python的shell，可以看到版本为3.10.5
+
+## windows安装
+
+直接下载python的exe安装包安装,不要用zip包,里面缺少`setuptools和pip`,配置麻烦

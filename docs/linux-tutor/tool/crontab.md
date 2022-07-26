@@ -33,8 +33,6 @@ script脚本。时间间隔的单位可以是分钟、小时、日、月、周�
 
 为了便于大家记忆，可以看下面这张图：
 
-![crontab 文件格式](./_static/crontab_format.png)
-
 ## 常用方法
 
 ### 创建一个新的 crontab 文件

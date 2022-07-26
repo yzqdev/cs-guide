@@ -1,12 +1,4 @@
-# GoAccess 安装和配置
 
-## 官网资料
-
-- 一般用于  Apache, Nginx 的 Log 分析
-- 官网：<https://goaccess.io/>
-- 官网下载（201807 最新版本 1.2）：<https://goaccess.io/download>
-- 官网 Github：<https://github.com/allinurl/goaccess>
-- 国内中文站：<https://goaccess.cc/>
 
 
 ## 安装（CentOS 7.4）

@@ -3,11 +3,12 @@
 ## 安装miniconda
 
 不要选择使用环境变量,因为一会儿自己配
-anaconda下载地址: [https://www.anaconda.com/products/individual#windows](https://www.anaconda.com/products/individual#windows)(请选择清华镜像)
-miniconda下载地址: [https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Windows-x86_64.exe](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Windows-x86_64.exe) (点击下载)
-我把anaconda安装在了  d:\Miniconda3  目录
+anaconda下载地址: [https://www.anaconda.com/products/individual#windows](https://www.anaconda.com/products/individual#windows)(请选择清华镜像)  
+miniconda下载地址: [https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Windows-x86_64.exe](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Windows-x86_64.exe) (点击下载)  
+我把anaconda安装在了  `d:\Miniconda3`  目录
+
 安装后查看文档
-[https://conda.io/projects/conda/en/latest/user-guide/getting-started.html#before-you-start](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html#before-you-start)
+[conda文档](https://conda.io/projects/conda/en/latest/user-guide/getting-started.html#before-you-start)
 ​
 
 ## 新建虚拟环境
@@ -19,7 +20,7 @@ conda create --name condapkg python=3.10
 
 ## 然后配置python
 
-```java
+```powershell
 # 在环境变量里面加了这些
 D:\Miniconda3\Scripts
 D:\Miniconda3\envs\condapkg
@@ -30,7 +31,7 @@ D:\Miniconda3\envs\condapkg\Scripts
 
 .condarc  
 
-```java
+```yaml
 channels:
   - http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
   - http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
@@ -55,7 +56,7 @@ auto_activate_base: true
 
 pip.ini   (`%userprofile%\pip\pip.ini`)
 
-```java
+```toml
 [global]
 index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 [install]
@@ -66,7 +67,7 @@ trusted-host = pypi.tuna.tsinghua.edu.cn
 
 安装命令行工具建议用`conda install`,或者`pip3 install` 不能用`python -m pip install`
 
-```java
+```powershell
 conda activate condapkg
 conda install httpie
 pip3 install httpie
@@ -93,71 +94,59 @@ conda list
 
 ## 查看某个环境的已安装包
 
-```
+```shell
+ # 更新python
+ 
+conda update python
 # 查看某个指定环境的已安装包
-conda list -n py35
-```
-
-## 搜索package的信息
-
-```
+conda list -n py310
+conda create -n env_name package_name #创建名为env_name的新环境，并在该环境下安装名为package_name 的包，可以指定新环境的版本号，例如：conda create -n python2 python=python2.7 numpy pandas，创建了python2环境，python版本为2.7，同时还安装了numpy pandas包
+# 删除某个环境
+conda remove --name env_name –all 
+# 或者
+conda env remove -n env_name
+#在指定环境中安装包
+conda install --name env_name package_name 
+ 
 # 查找package信息
 conda search numpy
-Loading channels: done
-# Name                  Version           Build  Channel             
-numpy                     1.5.1          py26_1  pkgs/free           
-
-...
-
-numpy                    1.15.1  py37hec00662_0  anaconda/pkgs/main  
-numpy                    1.15.1  py37hec00662_0  pkgs/main
-```
-
-## 安装package到指定的环境
-
-```
+ 
 # 安装package
-conda install -n py35 numpy
+conda install -n py310 numpy
 # 如果不用-n指定环境名称，则被安装在当前活跃环境
 # 也可以通过-c指定通过某个channel安装
-```
-
-## 更新package
-
-```
+ 
 # 更新package
-conda update -n py35 numpy
-```
-
-## 删除package
-
-```
+conda update -n py310 numpy
+ 
 # 删除package
-conda remove -n py35 numpy
-```
-
-## 更新conda
-
-```
+conda remove -n py310 numpy
+ 
 # 更新conda，保持conda最新
 conda update conda
-```
-
-## 更新anaconda
-
-```
+ 
+ 
 # 更新anaconda
 conda update anaconda
  ```
 
-### 更新Python
-
-## 更新python
-
-```shell
-conda update python
-```
-
 :::tip
  兼容pip,所以直接可以用pip安装
 :::
+
+## conda错误
+
+ CondaHTTPError: HTTP 000 CONNECTION FAILED for url ＜<https://repo.anaconda.com/pkgs/main/win-64/curre>
+
+[https://github.com/conda/conda/issues/9746](https://github.com/conda/conda/issues/9746)
+
+### 安装conda后终端出现的(base)字样去除方法
+
+修改.condarc文件
+
+```bash
+ssl_verify: true
+channels:
+  defaults
+changeps1: False #加上这个
+```

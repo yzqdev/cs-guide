@@ -1,33 +1,31 @@
 # FastDFS 结合 GraphicsMagick
 
-
 ## 单机安装部署（CentOS 6.7 环境）
-
-
 
 ### 先安装 FastDFS
 
 - 软件准备：
-	- 我这边统一提供了一个压缩包，方便使用。
-		- 下载地址：<http://pan.baidu.com/s/1hsg2brA>
+  - 我这边统一提供了一个压缩包，方便使用。
+    - 下载地址：<http://pan.baidu.com/s/1hsg2brA>
 - 安装依赖包：`yum install -y gcc gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel libevent`
 - 安装 **libfastcommon-1.0.7.tar.gz**
-    - 解压：`tar zxvf libfastcommon-1.0.7.tar.gz`
-    - 进入解压后目录：`cd libfastcommon-1.0.7/`
-    - 编译：`./make.sh`
-    - 安装：`./make.sh install`
-    - 设置几个软链接：`ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so`  
-    - 设置几个软链接：`ln -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so`  
-    - 设置几个软链接：`ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so`  
-    - 设置几个软链接：`ln -s /usr/lib64/libfdfsclient.so /usr/lib/libfdfsclient.so` 
+  - 解压：`tar zxvf libfastcommon-1.0.7.tar.gz`
+  - 进入解压后目录：`cd libfastcommon-1.0.7/`
+  - 编译：`./make.sh`
+  - 安装：`./make.sh install`
+  - 设置几个软链接：`ln -s /usr/lib64/libfastcommon.so /usr/local/lib/libfastcommon.so`  
+  - 设置几个软链接：`ln -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so`  
+  - 设置几个软链接：`ln -s /usr/lib64/libfdfsclient.so /usr/local/lib/libfdfsclient.so`  
+  - 设置几个软链接：`ln -s /usr/lib64/libfdfsclient.so /usr/lib/libfdfsclient.so`
 - 安装 tracker （跟踪器）服务 **FastDFS_v5.08.tar.gz**
-    - 解压：`tar zxvf FastDFS_v5.05.tar.gz`
-    - 进入解压后目录：`cd FastDFS/`
-    - 编译：`./make.sh`
-    - 安装：`./make.sh install`
+  - 解压：`tar zxvf FastDFS_v5.05.tar.gz`
+  - 进入解压后目录：`cd FastDFS/`
+  - 编译：`./make.sh`
+  - 安装：`./make.sh install`
 - 配置 tracker 服务
-    - 复制一份配置文件：`cp /etc/fdfs/tracker.conf.sample /etc/fdfs/tracker.conf`
-    - 编辑：`vim /etc/fdfs/tracker.conf`，编辑内容看下面中文注释
+  - 复制一份配置文件：`cp /etc/fdfs/tracker.conf.sample /etc/fdfs/tracker.conf`
+  - 编辑：`vim /etc/fdfs/tracker.conf`，编辑内容看下面中文注释
+
     ``` ini
     disabled=false
     bind_addr=
@@ -82,14 +80,15 @@
     http.check_alive_type=tcp
     http.check_alive_uri=/status.html
     ```
-    - 启动 tracker 服务：`/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf`
-    - 重启 tracker 服务：`/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart`
-    - 查看是否有 tracker 进程：`ps aux | grep tracker`
+  - 启动 tracker 服务：`/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf`
+  - 重启 tracker 服务：`/usr/bin/fdfs_trackerd /etc/fdfs/tracker.conf restart`
+  - 查看是否有 tracker 进程：`ps aux | grep tracker`
 - storage （存储节点）服务部署
-    - 一般 storage 服务我们会单独装一台机子，但是这里为了方便我们安装在同一台。
-    - 如果 storage 单独安装的话，那上面安装的步骤都要在走一遍，只是到了编辑配置文件的时候，编辑的是 storage.conf 而已
-    - 复制一份配置文件：`cp /etc/fdfs/storage.conf.sample /etc/fdfs/storage.conf`
-    - 编辑：`vim /etc/fdfs/storage.conf`，编辑内容看下面中文注释
+  - 一般 storage 服务我们会单独装一台机子，但是这里为了方便我们安装在同一台。
+  - 如果 storage 单独安装的话，那上面安装的步骤都要在走一遍，只是到了编辑配置文件的时候，编辑的是 storage.conf 而已
+  - 复制一份配置文件：`cp /etc/fdfs/storage.conf.sample /etc/fdfs/storage.conf`
+  - 编辑：`vim /etc/fdfs/storage.conf`，编辑内容看下面中文注释
+
     ``` ini
     disabled=false
     group_name=group1
@@ -156,13 +155,14 @@
     http.domain_name=
     http.server_port=8888
     ```
-    - 启动 storage 服务：`/usr/bin/fdfs_storaged /etc/fdfs/storage.conf`，首次启动会很慢，因为它在创建预设存储文件的目录
-    - 重启 storage 服务：`/usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart`
-    - 查看是否有 storage 进程：`ps aux | grep storage`
+  - 启动 storage 服务：`/usr/bin/fdfs_storaged /etc/fdfs/storage.conf`，首次启动会很慢，因为它在创建预设存储文件的目录
+  - 重启 storage 服务：`/usr/bin/fdfs_storaged /etc/fdfs/storage.conf restart`
+  - 查看是否有 storage 进程：`ps aux | grep storage`
 - 测试是否部署成功
-    - 利用自带的 client 进行测试
-    - 复制一份配置文件：`cp /etc/fdfs/client.conf.sample /etc/fdfs/client.conf`
-    - 编辑：`vim /etc/fdfs/client.conf`，编辑内容看下面中文注释
+  - 利用自带的 client 进行测试
+  - 复制一份配置文件：`cp /etc/fdfs/client.conf.sample /etc/fdfs/client.conf`
+  - 编辑：`vim /etc/fdfs/client.conf`，编辑内容看下面中文注释
+
     ``` ini
     connect_timeout=30
     network_timeout=60
@@ -179,52 +179,52 @@
     storage_ids_filename = storage_ids.conf
     http.tracker_server_port=80
     ```
-    - 在终端中通过 shell 上传 opt 目录下的一张图片：`/usr/bin/fdfs_test /etc/fdfs/client.conf upload /opt/test.jpg`
-    - 如下图箭头所示，生成的图片地址为：`http://192.168.1.114/group1/M00/00/00/wKgBclb0aqWAbVNrAAAjn7_h9gM813_big.jpg`
-     - ![FastDFS](../images/FastDFS-a-1.jpg)
-    - 即使我们现在知道图片的访问地址我们也访问不了，因为我们还没装 FastDFS 的 Nginx 模块
-
+  - 在终端中通过 shell 上传 opt 目录下的一张图片：`/usr/bin/fdfs_test /etc/fdfs/client.conf upload /opt/test.jpg`
+  - 如下图箭头所示，生成的图片地址为：`http://192.168.1.114/group1/M00/00/00/wKgBclb0aqWAbVNrAAAjn7_h9gM813_big.jpg`
+  - 即使我们现在知道图片的访问地址我们也访问不了，因为我们还没装 FastDFS 的 Nginx 模块
 
 ### 安装 nginx-lua-GraphicsMagick
 
 - 来源：<https://github.com/yanue/nginx-lua-GraphicsMagick/blob/master/nginx-install.md>
 - 添加专用用户，后面有用
-	- `groupadd www`
-	- `useradd -g www www -s /bin/false`
+  - `groupadd www`
+  - `useradd -g www www -s /bin/false`
 - 安装依赖包
-	- `yum install -y gcc gcc-c++ zlib zlib-devel openssl openssl-devel pcre pcre-devel`
-	- `yum install -y libpng libjpeg libpng-devel libjpeg-devel ghostscript libtiff libtiff-devel freetype freetype-devel`
-	- `yum install -y GraphicsMagick GraphicsMagick-devel`
+  - `yum install -y gcc gcc-c++ zlib zlib-devel openssl openssl-devel pcre pcre-devel`
+  - `yum install -y libpng libjpeg libpng-devel libjpeg-devel ghostscript libtiff libtiff-devel freetype freetype-devel`
+  - `yum install -y GraphicsMagick GraphicsMagick-devel`
 - 下面的这些软件都在本文在开头的那个压缩包里面。现在我们需要解压这些压缩包
-	- `cd /opt/setups`
-	- `tar -zxvf nginx-1.8.0.tar.gz`
-	- `tar -zxvf LuaJIT-2.0.4.tar.gz`
-	- `tar -zxvf GraphicsMagick-1.3.21.tar.gz`
-	- `tar -zxvf zlib-1.2.8.tar.gz`
+  - `cd /opt/setups`
+  - `tar -zxvf nginx-1.8.0.tar.gz`
+  - `tar -zxvf LuaJIT-2.0.4.tar.gz`
+  - `tar -zxvf GraphicsMagick-1.3.21.tar.gz`
+  - `tar -zxvf zlib-1.2.8.tar.gz`
 - 安装 LuaJIT
-	- `cd /opt/setups/LuaJIT-2.0.4`
-	- `make`
-	- `make install`
-	- `export LUAJIT_LIB=/usr/local/lib`
-	- `export LUAJIT_INC=/usr/local/include/luajit-2.0`
-	- `ln -s /usr/local/lib/libluajit-5.1.so.2 /lib64/libluajit-5.1.so.2`
+  - `cd /opt/setups/LuaJIT-2.0.4`
+  - `make`
+  - `make install`
+  - `export LUAJIT_LIB=/usr/local/lib`
+  - `export LUAJIT_INC=/usr/local/include/luajit-2.0`
+  - `ln -s /usr/local/lib/libluajit-5.1.so.2 /lib64/libluajit-5.1.so.2`
 - 修改一些配置文件
-    - 编辑 Nginx 模块的配置文件：`vim /opt/setups/fastdfs-nginx-module/src/config`
-    - 找到下面一行包含有 `local` 字眼去掉，因为这三个路径根本不是在 local 目录下的。（如果你的配置文件没有这个 local，那这一步跳过）
+  - 编辑 Nginx 模块的配置文件：`vim /opt/setups/fastdfs-nginx-module/src/config`
+  - 找到下面一行包含有 `local` 字眼去掉，因为这三个路径根本不是在 local 目录下的。（如果你的配置文件没有这个 local，那这一步跳过）
+
     ``` nginx
     CORE_INCS="$CORE_INCS /usr/local/include/fastdfs /usr/local/include/fastcommon/"
     ```
-    - 改为如下：
+  - 改为如下：
+
     ``` nginx
     CORE_INCS="$CORE_INCS /usr/include/fastdfs /usr/include/fastcommon/"
     ```
-    - 复制文件：`cp /opt/setups/FastDFS/conf/http.conf /etc/fdfs`
-    - 复制文件：`cp /opt/setups/FastDFS/conf/mime.types /etc/fdfs`
+  - 复制文件：`cp /opt/setups/FastDFS/conf/http.conf /etc/fdfs`
+  - 复制文件：`cp /opt/setups/FastDFS/conf/mime.types /etc/fdfs`
 - 开始安装 Nginx
-	- `cd /opt/setups/nginx-1.8.0`
-	- `mkdir -p /usr/local/nginx /var/log/nginx /var/temp/nginx /var/lock/nginx`
-	- 执行下面编译语句：
-	``` nginx
+  - `cd /opt/setups/nginx-1.8.0`
+  - `mkdir -p /usr/local/nginx /var/log/nginx /var/temp/nginx /var/lock/nginx`
+  - 执行下面编译语句：
+ ``` nginx
     ./configure --prefix=/usr/local/nginx \
     --user=www \
     --group=www \
@@ -253,13 +253,14 @@
     --add-module=/opt/setups/lua-nginx-module \
     --add-module=/opt/setups/ngx_devel_kit \
     --add-module=/opt/setups/fastdfs-nginx-module/src
-	```
-	- `make`
-	- `make install`
+ ```
+  - `make`
+  - `make install`
 - 修改一下配置
-    - 复制 Nginx 模块的配置文件：`cp /opt/setups/fastdfs-nginx-module/src/mod_fastdfs.conf /etc/fdfs`
-    - 编辑 Nginx 模块的配置文件：`vim /etc/fdfs/mod_fastdfs.conf`，编辑内容看下面中文注释
-    - 如果在已经启动 Nginx 的情况下修改下面内容记得要重启 Nginx。
+  - 复制 Nginx 模块的配置文件：`cp /opt/setups/fastdfs-nginx-module/src/mod_fastdfs.conf /etc/fdfs`
+  - 编辑 Nginx 模块的配置文件：`vim /etc/fdfs/mod_fastdfs.conf`，编辑内容看下面中文注释
+  - 如果在已经启动 Nginx 的情况下修改下面内容记得要重启 Nginx。
+
     ``` ini
     connect_timeout=2
     network_timeout=30
@@ -291,83 +292,78 @@
     flv_extension = flv
     group_count = 0
     ```
-	- 创建文件夹：`mkdir -p /opt/fastdfs/thumb`
-    - 编辑 Nginx 配置文件
-    - `vim /usr/local/nginx/conf/nginx.conf`
+  - 创建文件夹：`mkdir -p /opt/fastdfs/thumb`
+  - 编辑 Nginx 配置文件
+  - `vim /usr/local/nginx/conf/nginx.conf`
+
     ``` nginx
-	# 注意这一行行，我特别加上了使用 root 用户去执行，不然有些日记目录没有权限访问
-	user  root;
-	worker_processes  1;
-	
-	
-	events {
-	    worker_connections  1024;
-	}
-	
-	
-	http {
-	    include       mime.types;
-	    default_type  application/octet-stream;
-	
-	    sendfile        on;
-	
-	    keepalive_timeout  65;
-	
-	
-		server{
-		    listen      80;
-		    server_name 192.168.1.112;
-		
-		    set $img_thumbnail_root /opt/fastdfs/thumb; 
-		    set $img_file $img_thumbnail_root$uri;  
-		
-		    # like：/pic/M00/xx/xx/xx.jpg_200x100.jpg
-		    # /group1/M00
-		    location ~* ^(\/(\w+)(\/M00)(.+\.(jpg|jpeg|gif|png))_(\d+)+x(\d+)+\.(jpg|jpeg|gif|png))$ {
-		            root $img_thumbnail_root;    
-		            set $fdfs_group_root /opt/fastdfs/storage/images-data/data; 
-					
-					# 如果缩略图不存在
-		            if (!-f $img_file) {   
-		                    add_header X-Powered-By 'Nginx+Lua+GraphicsMagick By Yanue';  
-		                    add_header file-path $request_filename;
-		                    
-		                    set $request_filepath $fdfs_group_root$4;    
-		                    set $img_width $6;    
-		                    set $img_height $7;    
-		                    set $img_ext $5;     
-		                    content_by_lua_file /opt/setups/lua/cropSize.lua;   
-		            }
-		    }
-		
-		    location /group1/M00 {
-		            alias /opt/fastdfs/storage/images-data/data;
-		            ngx_fastdfs_module;
-		    }
-		
-		}
-	}
+ # 注意这一行行，我特别加上了使用 root 用户去执行，不然有些日记目录没有权限访问
+ user  root;
+ worker_processes  1;
+ 
+ 
+ events {
+     worker_connections  1024;
+ }
+ 
+ 
+ http {
+     include       mime.types;
+     default_type  application/octet-stream;
+ 
+     sendfile        on;
+ 
+     keepalive_timeout  65;
+ 
+ 
+  server{
+      listen      80;
+      server_name 192.168.1.112;
+  
+      set $img_thumbnail_root /opt/fastdfs/thumb; 
+      set $img_file $img_thumbnail_root$uri;  
+  
+      # like：/pic/M00/xx/xx/xx.jpg_200x100.jpg
+      # /group1/M00
+      location ~* ^(\/(\w+)(\/M00)(.+\.(jpg|jpeg|gif|png))_(\d+)+x(\d+)+\.(jpg|jpeg|gif|png))$ {
+              root $img_thumbnail_root;    
+              set $fdfs_group_root /opt/fastdfs/storage/images-data/data; 
+     
+     # 如果缩略图不存在
+              if (!-f $img_file) {   
+                      add_header X-Powered-By 'Nginx+Lua+GraphicsMagick By Yanue';  
+                      add_header file-path $request_filename;
+                      
+                      set $request_filepath $fdfs_group_root$4;    
+                      set $img_width $6;    
+                      set $img_height $7;    
+                      set $img_ext $5;     
+                      content_by_lua_file /opt/setups/lua/cropSize.lua;   
+              }
+      }
+  
+      location /group1/M00 {
+              alias /opt/fastdfs/storage/images-data/data;
+              ngx_fastdfs_module;
+      }
+  
+  }
+ }
     ```
-    - 启动 Nginx
-        - 停掉防火墙：`service iptables stop`
-        - 启动：`/usr/local/nginx/sbin/nginx`，启动完成 shell 是不会有输出的
-        - 访问：`192.168.1.114`，如果能看到：`Welcome to nginx!`，即可表示安装成功
-        - 检查 时候有 Nginx 进程：`ps aux | grep nginx`，正常是显示 3 个结果出来 
-        - 刷新 Nginx 配置后重启：`/usr/local/nginx/sbin/nginx -s reload`
-        - 停止 Nginx：`/usr/local/nginx/sbin/nginx -s stop`
-        - 如果访问不了，或是出现其他信息看下错误立即：`vim /var/log/nginx/error.log`
-
-
+  - 启动 Nginx
+    - 停掉防火墙：`service iptables stop`
+    - 启动：`/usr/local/nginx/sbin/nginx`，启动完成 shell 是不会有输出的
+    - 访问：`192.168.1.114`，如果能看到：`Welcome to nginx!`，即可表示安装成功
+    - 检查 时候有 Nginx 进程：`ps aux | grep nginx`，正常是显示 3 个结果出来
+    - 刷新 Nginx 配置后重启：`/usr/local/nginx/sbin/nginx -s reload`
+    - 停止 Nginx：`/usr/local/nginx/sbin/nginx -s stop`
+    - 如果访问不了，或是出现其他信息看下错误立即：`vim /var/log/nginx/error.log`
 
 ### 多机安装部署（CentOS 6.7 环境）
 
 - 多机部署的情况，对生成大小图的 Nginx 也有地方要修改。
 - 资料：<http://blog.csdn.net/ricciozhang/article/details/49402273>
 
-
-
 ## 资料
 
 - [fastdfs+nginx安装配置](http://blog.csdn.net/ricciozhang/article/details/49402273)
-
-

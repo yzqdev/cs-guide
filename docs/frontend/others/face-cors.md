@@ -623,7 +623,7 @@ xhr.send();
 后端代码
 
 ```
-let express = require('express');
+imoprt express from 'express'
 let proxy = require('http-proxy-middleware');
 let app = express();
 

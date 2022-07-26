@@ -1,19 +1,16 @@
 # Zookeeper 安装
 
-
 ## Docker 部署 Zookeeper
-
 
 #### 单个实例
 
 - 官网仓库：<https://hub.docker.com/r/library/zookeeper/>
 - 单个实例：`docker run -d --restart always --name one-zookeeper -p 2181:2181 -v /etc/localtime:/etc/localtime zookeeper:latest`
-	- 默认端口暴露是：`This image includes EXPOSE 2181 2888 3888 (the zookeeper client port, follower port, election port respectively)`
+  - 默认端口暴露是：`This image includes EXPOSE 2181 2888 3888 (the zookeeper client port, follower port, election port respectively)`
 - 容器中的几个重要目录（有需要挂载的可以指定）：
-	- `/data`
-	- `/datalog`
-	- `/conf`
-
+  - `/data`
+  - `/datalog`
+  - `/conf`
 
 #### 单机多个实例（集群）
 
@@ -56,9 +53,9 @@ services:
 ```
 
 - 启动：`docker-compose -f zookeeper.yml -p zk_test up -d`
-	- 参数 -p zk_test 表示这个 compose project 的名字，等价于：`COMPOSE_PROJECT_NAME=zk_test docker-compose -f zookeeper.yml up -d`
-	- 不指定项目名称，Docker-Compose 默认以当前文件目录名作为应用的项目名
-	- 报错是正常情况的。
+  - 参数 -p zk_test 表示这个 compose project 的名字，等价于：`COMPOSE_PROJECT_NAME=zk_test docker-compose -f zookeeper.yml up -d`
+  - 不指定项目名称，Docker-Compose 默认以当前文件目录名作为应用的项目名
+  - 报错是正常情况的。
 - 停止：`docker-compose -f zookeeper.yml -p zk_test stop`
 
 #### 先安装 nc 再来校验 zookeeper 集群情况
@@ -106,7 +103,6 @@ Mode: follower
 Node count: 4
 ```
 
-
 - 命令：`echo stat | nc 127.0.0.1 2183`，得到如下信息：
 
 ```
@@ -127,13 +123,13 @@ Node count: 4
 #### 多机多个实例（集群）
 
 - 三台机子：
-	- 内网 ip：`172.24.165.129`，外网 ip：`47.91.22.116`
-	- 内网 ip：`172.24.165.130`，外网 ip：`47.91.22.124`
-	- 内网 ip：`172.24.165.131`，外网 ip：`47.74.6.138`
+  - 内网 ip：`172.24.165.129`，外网 ip：`47.91.22.116`
+  - 内网 ip：`172.24.165.130`，外网 ip：`47.91.22.124`
+  - 内网 ip：`172.24.165.131`，外网 ip：`47.74.6.138`
 - 修改三台机子 hostname：
-	- 节点 1：`hostnamectl --static set-hostname youmeekhost1`
-	- 节点 2：`hostnamectl --static set-hostname youmeekhost2`
-	- 节点 3：`hostnamectl --static set-hostname youmeekhost3`
+  - 节点 1：`hostnamectl --static set-hostname youmeekhost1`
+  - 节点 2：`hostnamectl --static set-hostname youmeekhost2`
+  - 节点 3：`hostnamectl --static set-hostname youmeekhost3`
 - 三台机子的 hosts 都修改为如下内容：`vim /etc/hosts`
 
 ```
@@ -153,7 +149,6 @@ docker run -d \
 --name=zookeeper1 --net=host --restart=always zookeeper
 ```
 
-
 - 节点 2：
 
 ```
@@ -164,7 +159,6 @@ docker run -d \
 -e "ZOO_SERVERS=server.1=youmeekhost1:2888:3888 server.2=youmeekhost2:2888:3888 server.3=youmeekhost3:2888:3888" \
 --name=zookeeper2 --net=host --restart=always zookeeper
 ```
-
 
 - 节点 3：
 
@@ -177,9 +171,6 @@ docker run -d \
 --name=zookeeper3 --net=host --restart=always zookeeper
 ```
 
-
-
-
 ## 需要环境
 
 - JDK 安装
@@ -191,26 +182,26 @@ docker run -d \
 - 官网下载：<http://www.apache.org/dyn/closer.cgi/zookeeper/>
 - 我这里以：`zookeeper-3.4.8.tar.gz` 为例
 - 安装过程：
-	- `mkdir -p /usr/program/zookeeper/data`
-	- `cd /opt/setups`
-	- `tar zxvf zookeeper-3.4.8.tar.gz`
-	- `mv /opt/setups/zookeeper-3.4.8 /usr/program/zookeeper`
-	- `cd /usr/program/zookeeper/zookeeper-3.4.8/conf`
-    - `mv zoo_sample.cfg zoo.cfg`
-	- `vim zoo.cfg`
+  - `mkdir -p /usr/program/zookeeper/data`
+  - `cd /opt/setups`
+  - `tar zxvf zookeeper-3.4.8.tar.gz`
+  - `mv /opt/setups/zookeeper-3.4.8 /usr/program/zookeeper`
+  - `cd /usr/program/zookeeper/zookeeper-3.4.8/conf`
+  - `mv zoo_sample.cfg zoo.cfg`
+  - `vim zoo.cfg`
 - 将配置文件中的这个值：
-	- 原值：`dataDir=/tmp/zookeeper`
-	- 改为：`dataDir=/usr/program/zookeeper/data`
+  - 原值：`dataDir=/tmp/zookeeper`
+  - 改为：`dataDir=/usr/program/zookeeper/data`
 - 防火墙开放2181端口
-	- `iptables -A INPUT -p tcp -m tcp --dport 2181 -j ACCEPT`
-	- `service iptables save`
-	- `service iptables restart`
+  - `iptables -A INPUT -p tcp -m tcp --dport 2181 -j ACCEPT`
+  - `service iptables save`
+  - `service iptables restart`
 - 启动 zookeeper：`sh /usr/program/zookeeper/zookeeper-3.4.8/bin/zkServer.sh start`
 - 停止 zookeeper：`sh /usr/program/zookeeper/zookeeper-3.4.8/bin/zkServer.sh stop`
 - 查看 zookeeper 状态：`sh /usr/program/zookeeper/zookeeper-3.4.8/bin/zkServer.sh status`
-	- 如果是集群环境，下面几种角色
-		- leader
-		- follower
+  - 如果是集群环境，下面几种角色
+    - leader
+    - follower
 
 ## 集群环境搭建
 
@@ -250,18 +241,11 @@ Mode: follower 或者 Mode: leader
 
 - 下载地址：<https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip>
 - 解压，双击 jar 文件，效果如下：
-- ![ZooInspector](../images/Zookeeper-Client-ZooInspector.png)
 
 #### zooweb
 
 - 下载地址：<https://github.com/zhuhongyu345/zooweb>
 - Spring Boot 的 Web 项目，直接：`java -jar zooweb-1.0.jar` 启动 web 服务，然后访问：<http://127.0.0.1:9345>
-- ![zooweb](../images/Zookeeper-Client-zooweb.png)
-
-
-
-
-
 
 ## 资料
 

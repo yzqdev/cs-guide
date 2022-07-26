@@ -15,10 +15,12 @@ pip install pipenv
 
 ## 使用pipenv
 
+```
 添加镜像
 「清华源」："https://pypi.tuna.tsinghua.edu.cn/simple/"
 「阿里源」："http://mirrors.aliyun.com/pypi/simple/"
 「豆瓣源」："http://pypi.douban.com/simple"
+```
 
 ```toml
 [[source]]
@@ -27,7 +29,7 @@ verify_ssl = true
 name = "pypi"
 ```
 
-默认安装的虚拟环境都在c盘`%userprofile%的.virtualenvs文件夹下面,如果想更换,可以添加`PIPENV_VENV_IN_PROJECT`环境变量,并设置值为true,就是在项目下面创建虚拟环境
+默认安装的虚拟环境都在c盘`%userprofile%的.virtualenvs`文件夹下面,如果想更换,可以添加`PIPENV_VENV_IN_PROJECT`环境变量,并设置值为`1`,就是在项目下面创建虚拟环境
 
 ```shell
 # 创建一个env环境
@@ -42,7 +44,15 @@ pipenv lock -r > requirements.txt
 pipenv install -r requirements.txt
 # 检查包
 pipenv run pip list
+# 删除所有
+pipenv uninstall --all
+
 ```
+
+:::tip
+如何运行呢?
+需要在命令行加上一句`pipenv shell;$env:PYTHONPATH="E:\PycharmProjects\douyin-spider";激活当前的pipenv并`把`PYTHONPATH`改为当前路径,才能让python知道自己当前目录是一个包,不然自己写的包没办法引进去,会报错`ModuleNotFoundError: No module named 'util'`
+:::
 
 :::tip
 命令

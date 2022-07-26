@@ -3,6 +3,7 @@
 一些学习正则的网站
 :::tip
 
+- [ihateregex](https://ihateregex.io/playground/)
 - [https://regex101.com/](https://regex101.com/)
 - [https://regexr.com/](https://regexr.com/)
 - [正则可视化](https://jex.im/regulex/#!flags=&re=%5E(a%7Cb)*%3F%24) ,[可视化2](https://regexper.com/#%2F%5E%5BGCDZTSPKXLY1-9%5D%5Cd%7B1%2C4%7D%24%2F)

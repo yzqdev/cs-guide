@@ -290,7 +290,7 @@ public class UserController {
                 if (!newFile.exists()) {
                     newFile.createNewFile();
                 }
-                BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(newFile));
+                BufferedOutputStream out =new BufferedOutputStream(new FileOutputStream(newFile));
                 out.write(image.getBytes());
                 out.flush();
                 out.close();

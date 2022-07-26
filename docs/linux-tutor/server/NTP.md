@@ -48,8 +48,6 @@ ntp7.aliyun.com
 - 中国时间校对服务器节点：<http://www.pool.ntp.org/zone/cn>
 - 配置文件介绍（记得先备份）：`sudo vim /etc/ntp.conf`
 
-![NTP 服务器配置文件常用参数](../images/NTP-a-1.jpg)
-
 - 该配置解释：
 - 标注 1 是默认内容，我们这里进行了注释。
 - 标注 2 是新增内容，表示使用中国时间校对服务器节点地址。

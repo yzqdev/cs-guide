@@ -46,7 +46,7 @@ Files.write(file, data);
 在Java 7+中
 
 ````java
-try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+try (Writer writer =new BufferedWriter(new OutputStreamWriter(
               new FileOutputStream("filename.txt"), "utf-8"))) {
    writer.write("something");
 }
@@ -67,7 +67,7 @@ which is often a bad idea - it's best to specify the encoding explicitly.
 Writer writer = null;
 
 try {
-    writer = new BufferedWriter(new OutputStreamWriter(
+    writer = Buffer.fromedWriter(new OutputStreamWriter(
           new FileOutputStream("filename.txt"), "utf-8"));
     writer.write("Something");
 } catch (IOException ex) {
@@ -88,7 +88,7 @@ public class Program {
         BufferedWriter output = null;
         try {
             File file = new File("example.txt");
-            output = new BufferedWriter(new FileWriter(file));
+            output = Buffer.fromedWriter(new FileWriter(file));
             output.write(text);
         } catch ( IOException e ) {
             e.printStackTrace();
@@ -144,7 +144,7 @@ public class writer {
             File statText = new File("E:/Java/Reference/bin/images/statsTest.txt");
             FileOutputStream is = new FileOutputStream(statText);
             OutputStreamWriter osw = new OutputStreamWriter(is);    
-            Writer w = new BufferedWriter(osw);
+            Writer w = Buffer.fromedWriter(osw);
             w.write("POTATO!!!");
             w.close();
         } catch (IOException e) {
