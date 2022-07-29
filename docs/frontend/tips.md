@@ -1,3 +1,6 @@
+---
+order: 2
+---
 # 一些小问题
 
 - [prettier格式html](https://stackoverflow.com/questions/63285895/make-prettier-less-uglier-prevent-split-tags)

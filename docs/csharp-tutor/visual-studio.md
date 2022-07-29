@@ -1,3 +1,6 @@
+---
+order: 2
+---
 # visual studio 配置
 
 ## 配置格式化

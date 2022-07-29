@@ -22,6 +22,7 @@ function cloneAll {
     Set-Location $cur
     delTmpPath
     
+    
 }
 function cloneOnlyDocs {
     foreach ($item in $gitRepos) {

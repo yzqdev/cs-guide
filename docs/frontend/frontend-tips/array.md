@@ -111,7 +111,7 @@ Array.from(obj, function(value, index){
 
 执行结果如下：
 
-![](https://cdn.nlark.com/yuque/0/2020/png/295914/1599999298344-92c96d58-6de1-4742-b0a1-40eb18f87a22.png#crop=0&crop=0&crop=1&crop=1&height=106&id=taWkq&originHeight=106&originWidth=757&originalType=binary&ratio=1&rotation=0&showTitle=false&size=0&status=done&style=none&title=&width=757)
+![](./img/array01.png)
 
 可以看到加工函数的this作用域被obj对象取代，也可以看到加工函数默认拥有两个形参，分别为迭代器当前元素的值和其索引。
 

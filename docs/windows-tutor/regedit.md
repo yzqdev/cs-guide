@@ -1,3 +1,6 @@
+---
+order: 6
+---
 # 注册表相关
 
 1.打开注册表键：`HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts\.extension\OpenWithList

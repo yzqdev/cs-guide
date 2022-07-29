@@ -14,7 +14,7 @@ yarn  docs:build
 
 ## 其他相关
 
-- [计算机技术教程](https://yzqbooks.github.io/cs-guide/)
+- [计算机技术教程](https://yzqdev.github.io/cs-guide/)
 - [git教程](https://yzqdev.github.io/git-tutor)
 - [nodejs教程](https://yzqdev.github.io/node-docs)
 - [网道教程](https://yzqbooks.github.io/wangdoc)

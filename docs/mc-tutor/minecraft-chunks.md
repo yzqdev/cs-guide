@@ -1,3 +1,6 @@
+---
+order: 5
+---
 # mc的区块原理
 
 区块宽16格，长16格，高256格。[当玩家第一次出现在世界时](https://minecraft.fandom.com/zh/wiki/%E5%87%BA%E7%94%9F%E7%82%B9%E5%8C%BA%E5%9D%97)会在其周围生成区块，在[Java版](https://minecraft.fandom.com/zh/wiki/Java%E7%89%88)中，世界中最初会生成43×43个区块，其过程显示在[世界加载界面](https://minecraft.fandom.com/zh/wiki/%E4%B8%96%E7%95%8C%E5%8A%A0%E8%BD%BD%E7%95%8C%E9%9D%A2)。而随着玩家对世界的探索，相邻的区块也会被生成。

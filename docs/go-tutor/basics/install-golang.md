@@ -68,4 +68,4 @@ swag init
 ## 使用goland
 
 配置编译go build
-![go](./res/use-goland.png)
+![go](./img/use-goland.png)

@@ -1,3 +1,6 @@
+---
+order: 3
+---
 # GoProtobuf简明教程
 
 :::tip

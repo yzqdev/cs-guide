@@ -62,6 +62,7 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
             [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
          }
  }
+ Remove-Alias -Name ni -Force
 Set-Alias yr deleteNodemodules
 Set-Alias pr deletePnpm
 Set-Alias ip fluship
@@ -82,6 +83,6 @@ Set-PSReadLineOption -PredictionSource History
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Import-Module posh-git
-Import-Module oh-my-posh
-Set-PoshPrompt -Theme negligible
+ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\negligible.omp.json"|Invoke-Expression
+ 
 #conda activate condapkg

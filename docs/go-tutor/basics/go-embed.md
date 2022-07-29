@@ -10,7 +10,7 @@ Failed to load module script: Expected a JavaScript module script but the server
 则需要在注册表里面把关联给改掉
 `HKEY_CLASSES_ROOT\.js`
 
-![res](./res/jstype.png)
+![res](./img/jstype.png)
 :::
 
 ## embed 的基本用法
@@ -88,6 +88,7 @@ func main() {
 templates
 └── index.tmpl
 ```
+
 ## Gin静态文件服务
 
 Gin框架中托管一个静态文件服务非常简单，使用`Static`方法即可，下面看个例子：

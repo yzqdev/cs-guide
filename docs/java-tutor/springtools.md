@@ -1,3 +1,6 @@
+---
+order: 3
+---
 # springtoolsuite安装后的配置
 
 下载地址: [https://spring.io/tools](https://spring.io/tools)

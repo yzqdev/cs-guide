@@ -31,7 +31,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         
         with:
-          repository-name: yzqbooks/cs-guide
           BRANCH: gh-pages
           token: ${{ secrets.ACCESS_TOKEN }}
           FOLDER: dist
