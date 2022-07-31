@@ -1,4 +1,4 @@
-# 教程
+# 我的posh片段
 
 ## Powershell的库
 
@@ -132,4 +132,24 @@ ForEach-Object {
 type > %~dp0\a.txt
 # 新建文件
 echo a 2>FileName
+```
+
+## 添加参数
+
+@[code powershell](./res/addParam.ps1)
+
+使用`.\addParam.ps1 -Type` 输入 `-`会自动弹出-Type
+
+## 获取文件夹大小
+
+```powershell
+
+param (
+    [string] $folder
+)
+    
+Get-ChildItem -Path $folder -Force -Recurse -ErrorAction SilentlyContinue |
+Where-Object { $_.PSIsContainer -eq $false } |
+Measure-Object |  Select-Object -ExpandProperty Count
+Write-Host  "文件数量检测完毕" -ForegroundColor Cyan
 ```

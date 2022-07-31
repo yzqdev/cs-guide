@@ -7,7 +7,7 @@
     "docs:vite": "vuepress  build docs",
     "docs:build": "vuepress-webpack build docs --clean-cache",
     "docs:clean-dev": "vuepress-vite  dev docs --clean-cache",
-    "docs:dev": "vuepress-webpack dev docs "
+    "docs:dev": "vuepress-vite dev docs "
   },
   "devDependencies": {
     "@vuepress/plugin-docsearch": "2.0.0-beta.49",

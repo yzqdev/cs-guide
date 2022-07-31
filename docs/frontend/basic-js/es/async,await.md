@@ -317,3 +317,86 @@ const slowEcho = createAsyncFunction(function*(val) {
 ## 全面异步化
 
 一旦异步函数登陆所有浏览器，就在每一个返回 Promise 的函数上尽情使用吧！ 它们不但能让代码更加整洁美观，还能确保该函数_始终_都能返回 Promise。
+
+## tips
+
+node异步用的是async/await这两个关键字。一般这两个关键字要成对出现。
+**但是，如果不需要等待返回值的话，await可以不加,await会阻塞函数内部同步代码的运行**,并不是阻塞函数
+<https://juejin.cn/post/6844903613530144781>
+<https://juejin.cn/post/7033647059378896903>
+
+```ts
+async function fn1() {
+  console.log(1);
+  await pr1();
+  await pr2();
+  console.log(2);
+}
+
+function fn2() {
+  console.log(3);
+}
+
+function pr1() {
+  return new Promise<void>((resolve, reject) => {
+    setTimeout(() => {
+      console.log(4);
+      resolve();
+    }, 2000);
+  });
+}
+
+function pr2() {
+  return new Promise<void>((resolve, reject) => {
+    setTimeout(() => {
+      console.log(5);
+      resolve();
+    }, 2000);
+  });
+}
+
+fn1();
+fn2();
+
+//如果会阻塞，输出应该是14523，结果是13452，这就表示async/await是不会阻塞，会阻塞的只是使用await的函数内部。
+```
+
+```ts
+function wait(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+async function series() {
+    console.time('a')
+  await wait(500);
+  await wait(500);
+  console.timeEnd('a')
+  return "done!";
+}
+
+async function parallel() {
+    console.time('b')
+  const wait1 = wait(500);
+  const wait2 = wait(500);
+  await wait1;
+  await wait2;
+  console.timeEnd('b')
+  return "done!";
+}
+///这里的await会把series和parallel同步执行,耗时更多
+(async ( ) => {
+   await series();
+    await parallel();
+})()
+//输出
+// a: 1.017s
+// b: 506.249ms
+///这里的两个函数异步执行,parallel先执行完
+(  ( ) => {
+    series();
+     parallel();
+})()
+//输出
+//b: 505.781ms
+// a: 1.020s
+```

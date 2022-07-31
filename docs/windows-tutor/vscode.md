@@ -32,6 +32,7 @@ order: 7
 | 快捷键            | 功能 Function                       |
 | -------------------- | ----------------------------------- |
 | Ctrl + Shift + P，F1 | 显示命令面板 Show Command Palette   |
+| Ctrl + J | 控制台   |
 | Ctrl + P             | 快速打开 Quick Open                 |
 | Ctrl + Shift + N     | 新窗口/实例 New window/instance     |
 | Ctrl + Shift + W     | 关闭窗口/实例 Close window/instance |
