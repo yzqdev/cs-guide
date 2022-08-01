@@ -1,8 +1,6 @@
 # 版本号说明
 
-:::tip
-见[http://nodejs.cn/learn/semantic-versioning-using-npm](http://nodejs.cn/learn/semantic-versioning-using-npm)
-:::
+ 
 
 ## npm 中的版本号规则
 

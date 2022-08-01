@@ -107,7 +107,83 @@ return true
 }
 ```
 
-### 校验邮政编码**
+                                                                                               |
+
+## 正则表达式验证控制文本框的输入字符类型
+
+对于form表单也可以使用原生的`pattern`属性
+
+```html
+<form action="">
+<input type="text"  name="country_code" pattern='[a-zA-Z0-9]|[._]){4,19}'  title="Three letter country code"/>
+<input type="submit">
+</form>
+```
+
+**1.只能输入数字和英文的：**
+
+::: normal-demo
+
+```html
+<input onkeyup="value=value.replace(/[\W]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" ID="Text1" NAME="Text1">
+```
+
+:::
+**2.只能输入数字的：**
+
+::: normal-demo
+
+```html
+<input onkeyup="value=value.replace(/[^\d]/g,'') " onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" ID="Text2" NAME="Text2">
+```
+
+:::
+
+**3.只能输入全角的：**
+
+::: normal-demo
+
+```html
+<input onkeyup="value=value.replace(/[^\uFF00-\uFFFF]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\uFF00-\uFFFF]/g,''))" ID="Text3" NAME="Text3">
+```
+
+:::
+
+**4.只能输入汉字的：**
+
+::: normal-demo
+
+```html
+<input onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))" ID="Text4" NAME="Text4">
+```
+
+:::
+
+## javascript 测试正则
+
+```javascript
+function regx(r,s){
+  if (r == null || r == ""){
+    return false;
+  }
+  let patrn= new RegExp(r);
+  if (patrn.exec(s))
+    return true
+  return false
+}
+```
+
+**校验字符串 ：**
+
+```html
+ <input type="input" name="str" value="" >
+  <input type="button" name="match" value="匹配" onClick="alert(regx(regxStr.value,str.value));">
+</form>
+</body>
+</html>
+```
+
+### 校验邮政编码
 
 ```javascript
 function isPostalCode(s)
@@ -368,4 +444,3 @@ function DecimalFormat(paramValue) {
 }
 
 ```
- 

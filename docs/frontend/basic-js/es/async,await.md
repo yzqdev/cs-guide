@@ -362,41 +362,410 @@ fn2();
 ```
 
 ```ts
-function wait(ms) {
-  return new Promise(r => setTimeout(r, ms));
+let num=50
+function wait(ms:number) {
+    let flas=1
+  return new Promise<void>((r) =>  {
+    for (let index = 0; index < ms; index++) {
+         flas+=index
+       
+    }
+    console.log(flas);
+     r();
+  });
 }
 
 async function series() {
-    console.time('a')
-  await wait(500);
-  await wait(500);
-  console.timeEnd('a')
+ let start=performance.now()
+  await wait(num);
+  await wait(num);
+  await wait(num);
+ let end=performance.now()
+ console.log(end-start);
   return "done!";
 }
 
 async function parallel() {
-    console.time('b')
-  const wait1 = wait(500);
-  const wait2 = wait(500);
+let start=performance.now()
+//下面wait(num)已经resolve了所以跟
+  const wait1 = wait(num);
+  const wait2 = wait(num);
+  const wait3= wait(num);
   await wait1;
   await wait2;
-  console.timeEnd('b')
+  await wait3
+ let end=performance.now()
+ console.log(end-start);
   return "done!";
 }
 ///这里的await会把series和parallel同步执行,耗时更多
-(async ( ) => {
-   await series();
-    await parallel();
-})()
-//输出
-// a: 1.017s
-// b: 506.249ms
-///这里的两个函数异步执行,parallel先执行完
-(  ( ) => {
+( async  ()=> {
+  await series();
+ console.log('接下来进行paraller');
+  parallel();
+})();
+ 
+  //输出
+  // a: 1.017s
+  // b: num06.249ms
+  ///这里的两个函数异步执行,parallel先执行完
+ (  () => {
     series();
-     parallel();
-})()
+    parallel();
+  }
+)();
 //输出
-//b: 505.781ms
+//b: num0num.781ms
 // a: 1.020s
+
+```
+
+下面是另一个例子
+
+```ts
+let num = 50;
+function wait(flag: string, ms: number) {
+  let flas = 1;
+  return new Promise<void>((r) => {
+    for (let index = 0; index < ms; index++) {
+      flas += index;
+    }
+    console.log(flag, flas);
+    r();
+  });
+}
+async function a() {
+  let start = performance.now();
+  await wait("a1", num);
+  await wait("a2", num);
+  await wait("a3", num);
+  let end = performance.now();
+  console.log("ayonghu");
+  console.log(end - start);
+}
+async function b() {
+  let start = performance.now();
+  wait("b1", num);
+  wait("b2", num);
+  wait("b3", num);
+  let end = performance.now();
+  console.log("bbb");
+  console.log(end - start);
+}
+(async () => {
+  a();
+  b();
+})();
+
+```
+
+输出
+
+```txt
+a1 1226
+b1 1226
+b2 1226
+b3 1226
+bbb
+0.9326000064611435
+a2 1226
+a3 1226
+ayonghu
+4.515999995172024
+```
+
+上面看出,a函数和b函数是异步进行的,但 进行第一个函数a1时,由于a函数内部阻塞,b函数直接异步运行完了,所以会出现a1函数后面是b1,b2,b2函数,最后才是a2,a3
+
+下面的说明来自
+<https://github.com/mqyqingfeng/Blog/issues/100>
+
+## async 地狱
+
+async 地狱主要是指开发者贪图语法上的简洁而让原本可以并行执行的内容变成了顺序执行，从而影响了性能，但用地狱形容有点夸张了点……
+
+### 例子一
+
+举个例子：
+
+```js
+(async () => {
+  const getList = await getList();
+  const getAnotherList = await getAnotherList();
+})();
+```
+
+getList() 和 getAnotherList() 其实并没有依赖关系，但是现在的这种写法，虽然简洁，却导致了 getAnotherList() 只能在 getList() 返回后才会执行，从而导致了多一倍的请求时间。
+
+为了解决这个问题，我们可以改成这样：
+
+```js
+(async () => {
+  const listPromise = getList();
+  const anotherListPromise = getAnotherList();
+  await listPromise;
+  await anotherListPromise;
+})();
+```
+
+也可以使用 Promise.all()：
+
+```js
+(async () => {
+  Promise.all([getList(), getAnotherList()]).then(...);
+})();
+```
+
+也可以用.then
+
+```js
+  a().then((val) => {
+    console.log('suce');
+  })
+  b().then((val ) => {
+    console.log('d');
+  })
+```
+
+### 例子二
+
+当然上面这个例子比较简单，我们再来扩充一下：
+
+```js
+(async () => {
+  const listPromise = await getList();
+  const anotherListPromise = await getAnotherList();
+
+  // do something
+
+  await submit(listData);
+  await submit(anotherListData);
+
+})();
+```
+
+下面的代码演示了各个方法
+
+```js
+
+import got from "got";
+
+function a() {
+  return new Promise(async (resolve) => {
+    let data = await got(
+      "http://cdn.apc.360.cn/index.php?c=WallPaper&a=getAllCategoriesV2&from=360chrome"
+    ).json();
+    resolve(data);
+  });
+}
+function b() {
+  return new Promise(async (resolve) => {
+    let data = await got(
+      "https://bbs-api-static.mihoyo.com/misc/api/emoticon_set?gids=2"
+    ).json();
+    resolve(data);
+  });
+}
+(async () => {
+  let start = performance.now();
+  //第一种, 耗时4ms
+
+  // a().then((val) => {
+  //   console.log(val);
+  // });
+  // b().then((val) => {
+  //   console.log(val);
+  // });
+  //第二种 耗时120ms
+  // let res1 = a();
+  // let res2 = b();
+  // let data1 = await res1;
+  // let data2 = await res2;
+  // console.log(data1);
+  // console.log(data2);
+  //第三种 耗时200ms
+  // console.log(await a());
+  // console.log(await b());
+  //第四种 耗时4毫秒
+  Promise.all([a(),b()]).then((val ) => {
+    console.log(val[0]);
+    console.log(val[1]);
+  })
+  //第五种
+  // [a, b].forEach(async (item) => {
+  //   return await item();
+  // });
+  let end = performance.now();
+  console.log(end - start);
+})();
+```
+
+因为 await 的特性，整个例子有明显的先后顺序，然而 getList() 和 getAnotherList() 其实并无依赖，submit(listData) 和 submit(anotherListData) 也没有依赖关系，那么对于这种例子，我们该怎么改写呢？
+
+基本分为三个步骤：
+
+**1. 找出依赖关系**
+
+在这里，submit(listData) 需要在 getList() 之后，submit(anotherListData) 需要在 anotherListPromise() 之后。
+
+**2. 将互相依赖的语句包裹在 async 函数中**
+
+```js
+async function handleList() {
+  const listPromise = await getList();
+  // ...
+  await submit(listData);
+}
+
+async function handleAnotherList() {
+  const anotherListPromise = await getAnotherList()
+  // ...
+  await submit(anotherListData)
+}
+```
+
+**3.并发执行 async 函数**
+
+```js
+async function handleList() {
+  const listPromise = await getList();
+  // ...
+  await submit(listData);
+}
+
+async function handleAnotherList() {
+  const anotherListPromise = await getAnotherList()
+  // ...
+  await submit(anotherListData)
+}
+
+// 方法一
+(async () => {
+  const handleListPromise = handleList()
+  const handleAnotherListPromise = handleAnotherList()
+  await handleListPromise
+  await handleAnotherListPromise
+})()
+
+// 方法二
+(async () => {
+  Promise.all([handleList(), handleAnotherList()]).then()
+})()
+```
+
+## 继发与并发
+
+**问题：给定一个 URL 数组，如何实现接口的继发和并发？**
+
+async 继发实现：
+
+```js
+// 继发一
+async function loadData() {
+  var res1 = await fetch(url1);
+  var res2 = await fetch(url2);
+  var res3 = await fetch(url3);
+  return "whew all done";
+}
+// 继发二
+async function loadData(urls) {
+  for (const url of urls) {
+    const response = await fetch(url);
+    console.log(await response.text());
+  }
+}
+```
+
+async 并发实现：
+
+```js
+// 并发一
+async function loadData() {
+  var res = await Promise.all([fetch(url1), fetch(url2), fetch(url3)]);
+  return "whew all done";
+}
+// 并发二
+async function loadData(urls) {
+  // 并发读取 url
+  const textPromises = urls.map(async url => {
+    const response = await fetch(url);
+    return response.text();
+  });
+
+  // 按次序输出
+  for (const textPromise of textPromises) {
+    console.log(await textPromise);
+  }
+}
+```
+
+## async 错误捕获
+
+尽管我们可以使用 try catch 捕获错误，但是当我们需要捕获多个错误并做不同的处理时，很快 try catch 就会导致代码杂乱，就比如：
+
+```js
+async function asyncTask(cb) {
+    try {
+       const user = await UserModel.findById(1);
+       if(!user) return cb('No user found');
+    } catch(e) {
+        return cb('Unexpected error occurred');
+    }
+
+    try {
+       const savedTask = await TaskModel({userId: user.id, name: 'Demo Task'});
+    } catch(e) {
+        return cb('Error occurred while saving task');
+    }
+
+    if(user.notificationsEnabled) {
+        try {
+            await NotificationService.sendNotification(user.id, 'Task Created');
+        } catch(e) {
+            return cb('Error while sending notification');
+        }
+    }
+
+    if(savedTask.assignedUser.id !== user.id) {
+        try {
+            await NotificationService.sendNotification(savedTask.assignedUser.id, 'Task was created for you');
+        } catch(e) {
+            return cb('Error while sending notification');
+        }
+    }
+
+    cb(null, savedTask);
+}
+```
+
+为了简化这种错误的捕获，我们可以给 await 后的 promise 对象添加 catch 函数，为此我们需要写一个 helper:
+
+```js
+// to.js
+export default function to(promise) {
+   return promise.then(data => {
+      return [null, data];
+   })
+   .catch(err => [err]);
+}
+```
+
+整个错误捕获的代码可以简化为：
+
+```js
+import to from './to.js';
+
+async function asyncTask() {
+     let err, user, savedTask;
+
+     [err, user] = await to(UserModel.findById(1));
+     if(!user) throw new CustomerError('No user found');
+
+     [err, savedTask] = await to(TaskModel({userId: user.id, name: 'Demo Task'}));
+     if(err) throw new CustomError('Error occurred while saving task');
+
+    if(user.notificationsEnabled) {
+       const [err] = await to(NotificationService.sendNotification(user.id, 'Task Created'));
+       if (err) console.error('Just log the error and continue flow');
+    }
+}
 ```

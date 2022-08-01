@@ -183,12 +183,7 @@ Yarn workspace只会在根目录安装一个node_modules，这有利于提升依
   "private": true,
   "workspaces": [
     "android-docs",
-    "cs-guide",
-    "git-tutor",
-    "linux-tutorial",
-    "node-tutor",
-    "python-tutor",
-    "wangdoc"
+    "cs-guide" 
   ],
   "devDependencies": {
     "lerna": "latest",
@@ -198,12 +193,8 @@ Yarn workspace只会在根目录安装一个node_modules，这有利于提升依
     "build": "lerna run docs:build --parallel",
     "dev": "lerna run docs:dev --parallel",
     "cs-guide": "yarn workspace cs-guide docs:dev",
-    "android": "yarn workspace android-docs docs:dev",
-    "git-tutor": "yarn workspace git-tutor docs:dev",
-    "linux-tutorial": "yarn workspace linux-tutorial docs:dev",
-    "node-tutor": "yarn workspace node-tutordocs:dev",
-    "python-tutor": "yarn workspace python-tutor docs:dev",
-    "wangdoc": "yarn workspace wangdoc docs:dev"
+    "android": "yarn workspace android-docs docs:dev" 
+  
   }
 }
 
@@ -217,12 +208,7 @@ lerna.json
   "useWorkspaces": true,
   "packages": [
     "android-docs",
-    "cs-guide",
-    "git-tutor",
-    "linux-tutorial",
-    "node-tutor",
-    "python-tutor",
-    "wangdoc"
+    "cs-guide" 
   ],
   "version": "0.0.0",
   "command": {
@@ -232,4 +218,21 @@ lerna.json
   }
 }
 
+```
+
+## pnpm工作区
+
+新建一个pnpm-workspace.yaml
+
+```yaml
+packages:
+  - 'android-docs'
+  - "cs-guide"
+  - 'packages/*'
+```
+
+然后在package.json里面添加
+
+```
+"cs-guide" :"pnpm -C cs-guide dev"
 ```

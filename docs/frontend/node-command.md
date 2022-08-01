@@ -28,7 +28,7 @@ order: 1
 
 - [json-server](https://github.com/typicode/json-server)支持restfulapi增删改查
 - [execa](https://github.com/sindresorhus/execa)
-- chalk
+- [chalk](https://github.com/chalk/chalk)
 - [node-notifier](https://github.com/mikaelbr/node-notifier)
 - [regedit](https://github.com/ironSource/node-regedit)
 - [picocolors](https://github.com/alexeyraspopov/picocolors)
@@ -95,7 +95,7 @@ order: 1
 - [which](https://github.com/npm/node-which)
 - [tasuku](https://github.com/privatenumber/tasuku) 一个taskrunner类似gulp
 - [simple-git](https://github.com/steveukx/git-js) git客户端
-- node-ssh
+- [node-ssh](https://github.com/steelbrain/node-ssh)
 - [get-port](https://github.com/sindresorhus/get-port)
 - [cp-file](https://github.com/sindresorhus/cp-file)
 - [ws](https://github.com/websockets/ws)

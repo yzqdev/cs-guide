@@ -21,7 +21,7 @@ pnpm config set auto-install-peers true
 
 :::warning
 
-不推荐使用corepack
+推荐使用corepack
 
 建议直接`npm i -g pnpm`
 :::
