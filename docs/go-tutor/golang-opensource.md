@@ -3,6 +3,8 @@ order: 4
 ---
 # 常用框架
 
+## web框架
+
 - gin    [https://gin-gonic.com/zh-cn/docs/quickstart/](https://gin-gonic.com/zh-cn/docs/quickstart/)
 - echo   [https://echo.labstack.com/guide/](https://echo.labstack.com/guide/)
 - gorm   [https://gorm.io/](https://gorm.io/)
@@ -17,10 +19,20 @@ order: 4
 - 命令行工具  [https://cobra.dev/](https://cobra.dev/)
 - learnku   [https://learnku.com/articles/47737](https://learnku.com/articles/47737)(查看//indirect出现的原因)
 
+## 微服务框架
+
+- [go-micro](https://github.com/asim/go-micro)
+- [istio](https://github.com/istio/istio) 谷歌开源
+- [go-zero](https://github.com/zeromicro/go-zero) 推荐使用,国人开源
+- [go-kit](https://github.com/go-kit/kit)
+- [go-kratos](https://github.com/go-kratos/kratos)
+- [dubbo-go](https://github.com/apache/dubbo-go)
+- [tars-go](https://github.com/TarsCloud/TarsGo)
+
 ## 爬虫
 
 - <https://github.com/PuerkitoBio/goquery>
-- https://github.com/gocolly/colly
+- <https://github.com/gocolly/colly>
 什么叫间接依赖呢？打个比方，项目 A 依赖了项目 B，项目 B 又依赖了项目 C，那么对项目 A 而言，项目 C 就是间接依赖，这里要注意，并不是所有的间接依赖都会出现在 `go.mod` 文件中。间接依赖出现在 go.mod 文件的情况，可能符合下面的场景的一种或多种：
 
 直接依赖未启用 Go module

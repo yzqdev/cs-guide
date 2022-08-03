@@ -5,7 +5,7 @@ order: 1
 
 ## 介绍
 
-- [vue2官网](https://cn.vuejs.org/) ([vue3在这里](https://v3.cn.vuejs.org/))
+- [vue2官网](https://cn.vuejs.org/) ([vue3在这里](https://vuejs.org/))
 - [vue-rotuer官网](https://router.vuejs.org/zh/)
 - [vuex官网](https://vuex.vuejs.org/zh/)
 - [vue调试工具(必装,需要科学上网)](https://devtools.vuejs.org/)
@@ -29,16 +29,18 @@ order: 1
 > vue-cli是什么?
 > Vue CLI 是一个基于 Vue.js 进行快速开发的完整系统，提供：
 
-- 通过 @vue/cli 搭建交互式的项目脚手架。
-- 通过 @vue/cli + @vue/cli-service-global 快速开始零配置原型开发。
+ 通过 @vue/cli 搭建交互式的项目脚手架。
+  通过 @vue/cli + @vue/cli-service-global 快速开始零配置原型开发。
 一个运行时依赖 (@vue/cli-service)，该依赖：
-可升级；
-基于 webpack 构建，并带有合理的默认配置；
-可以通过项目内的配置文件进行配置；
-可以通过插件进行扩展。
-一个丰富的官方插件集合，集成了前端生态中最好的工具。
-一套完全图形化的创建和管理 Vue.js 项目的用户界面。
 
+- 可升级；
+- 基于 webpack 构建，并带有合理的默认配置；
+- 可以通过项目内的配置文件进行配置；
+- 可以通过插件进行扩展。
+- 一个丰富的官方插件集合，集成了前端生态中最好的工具。
+- 一套完全图形化的创建和管理 Vue.js 项目的用户界面。
+
+-
 > 如何使用?
 
 ```bash
@@ -60,7 +62,7 @@ vue ui  //使用可视化界面配置项目
 使用 npm：
 
 ```bash
-npm init @vitejs/app <project-name>
+npm create vite <project-name>
 cd <project-name>
 npm install
 npm run dev
@@ -69,51 +71,46 @@ npm run dev
 或者 yarn：
 
 ```bash
-yarn create @vitejs/app <project-name>
+yarn create vite <project-name>
 cd <project-name>
 yarn
 yarn dev
 ```
 
-但是对于vue2需要一个插件,需要在根目录添加一个vite.config.js,并使用插件vite-plugin-vue2(需要自己研究配置)
-
-```bash
-const { createVuePlugin } = require('vite-plugin-vue2');
-
-module.exports = {
-  plugins: [createVuePlugin()],
-};
-```
-
+:::tip
+推荐使用vue官网的sfc工具 ,[链接](https://sfc.vuejs.org/#eNo9j71uwzAMhF+F5eIWqCV0NZQA3foGXbikjpw40B9EOR0EvXspp8imu9N9OFb8TEndN4sTGp7zmgqwLVs6Ulh9irlAhWwXaLDk6GGQrwMFCnMMXMDzBQ49fx2+rHMRvmN255fhjYLRD5yARBTrkzsVKwrAXD+Ote7l1owWtbtrSFuB++jj2boDoeSEEhn9bOM7PlaN/pTUjWOQ3bW36T9gwgl2p3uytmvCaymJJ615mfu1N1YxX7S8VN5CWb1Vlv34k+Mv2yxgwo5oFBq2P3/sZE8=)
+:::
 创建一个hellowold程序
+:::vue-demo
 
-```html
-
-<!-- 指定vue管理内容区域，需要通过vue展示的内容都要放到找个元素中  通常我们也把它叫做边界 数据只在边界内部解析-->
-<div id="app">{{ msg }}</div>
-
-<!-- 引入 vue.js -->
-<script src="vue.js"></script>
-
-<!-- 使用 vue -->
+```vue
+<template>
+  <div class="box">
+    <div>{{msg}}</div>
+  </div>
+</template>
 <script>
-  let vm = new Vue({
-    // el：提供一个在页面上已存在的 DOM 元素作为 Vue 实例的挂载目标
-    el: '#app',
-    // Vue 实例的数据对象，用于给 View 提供数据
-    data: {
-      msg: 'Hello Vue'
-    }
-  })
+export default {
+  data: () => ({ msg:'hello world' }),
+  
+};
 </script>
+<style>
+.box span {
+  color: red;
+}
+</style>
+ 
 ```
+
+:::
 
 ### Vue实例
 
 - 注意 1：**先在data中声明数据，再使用数据**
 - 注意 2：可以通过 `vm.$data` 访问到data中的所有属性，或者 `vm.msg`
 
-```
+```js
 let vm = new Vue({
   data: {
     msg: '大家好，...'
@@ -131,7 +128,7 @@ vm.$data.msg === vm.msg // true
 - 说明：`{{}}`中只能出现JavaScript表达式 而不能解析js语句
 - 注意：**Mustache 语法不能作用在 HTML 元素的属性上**
 
-```
+```html
 <h1>Hello, {{ msg }}.</h1>
 <p>{{ 1 + 2 }}</p>
 <p>{{ isOk ? 'yes': 'no' }}</p>
@@ -148,7 +145,7 @@ vm.$data.msg === vm.msg // true
 - 原理：`Object.defineProperty`中的`get`和`set`方法
   - `getter`和`setter`：访问器
   - 作用：指定`读取或设置`对象属性值的时候，执行的操作
-- [Vue - 深入响应式原理](https://cn.vuejs.org/v2/guide/reactivity.html)
+- [Vue - 深入响应式原理](https://vuejs.org/guide/extras/reactivity-in-depth.html)
 - [MDN - Object.defineProperty()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
 
 ```javascript

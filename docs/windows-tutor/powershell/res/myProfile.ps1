@@ -8,7 +8,7 @@ function yarnInstall {
     yarn install --registry=https://registry.npmmirror.com
 }
 function removeItem {
-    Remove-Item -Recurse -Force 
+    Remove-Item -Recurse -Force
 
 }
 function deletePnpm {
@@ -17,7 +17,7 @@ function deletePnpm {
     if (Test-Path "pnpm-lock.yml") {
         Remove-Item  "pnpm-lock.yml";
     }
-    
+
     Write-Output '删除node_modules中'
     pnpm init && pnpm add axios
     Remove-Item -Force -Recurse .\node_modules;
@@ -33,7 +33,7 @@ function deleteNodemodules {
     Remove-Item .\package.json;
     Write-Output '删除node_modules中'
     yarn init -y && yarn add axios;
-   
+
     Remove-Item -Force -Recurse .\node_modules;
     Remove-Item .\package.json;
     Copy-Item .\package.jsonbak -Destination .\package.json;
@@ -50,9 +50,9 @@ function gcacheFun {
     git checkout --orphan dev ;
     git add -A ;
     git branch -D main ;
-    git branch -m main ; 
+    git branch -m main ;
     git commit -m 'Initial commit' ;
-    git push origin main -f ; 
+    git push origin main -f ;
     git gc --aggressive --prune=all
 }
 # PowerShell parameter completion shim for the dotnet CLI
@@ -70,7 +70,7 @@ Set-Alias yd yarnDev
 Set-Alias y yarnInstall
 Set-Alias gitp gpFunc
 Set-Alias gitc gcacheFun
-Set-Alias cuda cudatext
+Set-Alias kate "C:\Program Files\Kate\bin\kate.exe"
 #chcp 65001
 #chcp 936
 
@@ -84,5 +84,5 @@ Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 Import-Module posh-git
  oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\negligible.omp.json"|Invoke-Expression
- 
+
 #conda activate condapkg

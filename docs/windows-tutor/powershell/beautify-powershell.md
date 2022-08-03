@@ -6,7 +6,7 @@
 
 ### 安装oh-my-posh
 
-地址[https://ohmyposh.dev/](https://ohmyposh.dev/)
+地址[https://ohmyposh.dev/](https://ohmyposh.dev/)  
 推荐在windows商店下载oh-my-sh或者在[https://github.com/JanDeDobbeleer/oh-my-posh/releases](https://github.com/JanDeDobbeleer/oh-my-posh/releases)下载`install-amd64.exe`自行安装
 
 然后在`$profile`添加
@@ -26,24 +26,14 @@ https://ohmyposh.dev/
 
 ```powershell
 Install-Module posh-git
-[Install-Module oh-my-posh](https://ohmyposh.dev/)
-```
-
-这里如果让你允许什么不可信的来源，输入`Y`表示同意即可。
-
-安装完成后，输入
-
-```powershell
-Import-Module posh-git
-[Import-Module oh-my-posh](https://ohmyposh.dev/)
-Set-Theme PowerLine
+ 
 ```
 
 **如果你的电脑里没有安装Git，在输入**`**Import-Module posh-git**`**会报错，解决方法是**[**安装Git**](https://git-scm.com/)**或者把这一行去掉。**
 
 但是这次使用`Import-Module`的指令，再次启动PowerShell就会发现没有效果，这是因为这些指令仅限于本次会话的PowerShell有效，因此，若要使这一效果在每次启动的时候都有效，那就要将其添加到启动脚本中。
 
-在PowerShell中输入`code $profile` ，然后输入以下内容，保存。如果你没有安装VS Code，则使用`notepad $profile`。
+在PowerShell中输入`kate $profile` ，然后输入以下内容，保存。如果你没有安装kate，则使用`notepad $profile`。
 
 ```powershell
 Import-Module posh-git
@@ -62,3 +52,121 @@ Set-ExecutionPolicy RemoteSigned
 
 我喜欢的oh-my-posh主题 `negligible` `pure` `ys`
 `paradox` `powerlevel10k_classic`, `powerlevel10k_lean`
+
+> 一个修改后的negligible主题
+
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "cyan",
+          "style": "powerline",
+          "template": "{{ if .WSL }}WSL at {{ end }}{{.Icon}}",
+          "type": "os"
+        },
+        {
+          "foreground": "cyan",
+          "properties": {
+            "style": "full"
+          },
+          "style": "plain",
+          "template": " {{ .Path }} ",
+          "type": "path"
+        },
+        {
+          "foreground": "#F1502F",
+          "properties": {
+            "fetch_status": true
+          },
+          "style": "plain",
+          "template": ":: {{ .HEAD }}{{ .BranchStatus }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }} ",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "right",
+      "segments": [
+        {
+          "foreground": "red",
+          "style": "plain",
+          "template": "| root ",
+          "type": "root"
+        },
+        {
+          "foreground": "#06A4CE",
+          "style": "powerline",
+          "template": "| \ue798 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} ",
+          "type": "dart"
+        },
+        {
+          "foreground": "#6CA35E",
+          "style": "powerline",
+          "template": "| \ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} ",
+          "type": "node"
+        },
+        {
+          "foreground": "#4584b6",
+          "properties": {
+            "display_mode": "context",
+            "fetch_virtual_env": true
+          },
+          "style": "plain",
+          "template": "| \ue235 {{ .Venv }} ",
+          "type": "python"
+        },
+        {
+          "type": "dotnet",
+          "style": "powerline",
+          "foreground": "#00ffff",
+          "template": "| \uE77F {{ .Full }} "
+        },
+        {
+          "type": "flutter",
+          "style": "powerline",
+          "foreground": "#1389fd",
+          "template": "| \ue28e {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} "
+        },
+        {
+          "type": "java",
+          "style": "powerline",
+          "foreground": "#ce2c00",
+          "template": "| \uE738 {{ .Full }}"
+        },
+        {
+          "foreground": "lightGreen",
+          "style": "plain",
+          "template": "| {{ .CurrentDate | date .Format }} ",
+          "type": "time"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "lightGreen",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}red{{ end }}"
+          ],
+          "properties": {
+            "always_enabled": true
+          },
+          "style": "powerline",
+          "template": "\u279c ",
+          "type": "exit"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "version": 2
+}
+```

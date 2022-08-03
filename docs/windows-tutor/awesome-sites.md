@@ -9,3 +9,12 @@ order: 2
 ## 前端
 
 <https://www.5cv.top/>
+
+### pastbin
+
+- <https://dpaste.org/>
+- <https://paste.ubuntu.com/>
+- <https://gist.github.com/>
+- <https://pastebin.com/>
+- <https://pastebin.mozilla.org/>
+- <https://gist.futils.com/>

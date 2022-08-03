@@ -7,7 +7,6 @@
 - [free](./free.md)
 - [gdb](./gdb.md)
 - [Linux命令工具](./htop.md)
-- [工具参考篇](./index.md)
 - [iostat](./iostat.md)
 - [ipcs](./ipcs.md)
 - [ldd](./ldd.md)

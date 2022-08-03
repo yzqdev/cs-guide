@@ -26,3 +26,9 @@ yarn  docs:build
 ## License
 
 MIT License © 2022 [yzqdev](https://github.com/yzqdev)
+
+## 鸣谢
+
+- 感谢 JetBrains 提供的免费开源 License：  
+
+![jetbrains](./res/jetbrains.svg)

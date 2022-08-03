@@ -188,3 +188,5 @@ XML
 
 - wrk 相对于 ab 来说最大的优点是它支持多线程，可以有更大的并发量
 - 官网说明：<https://github.com/wg/wrk/wiki/Installing-Wrk-on-Linux>
+
+## Wormhole + Flink 最佳实践

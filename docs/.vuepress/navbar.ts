@@ -41,6 +41,10 @@ export default navbar([
         text: "node教程",
         icon: "node",
         link: "https://yzqdev.github.io/node-docs",
+      },{
+        text: "css教程",
+        icon: "css",
+        link: "https://yzqdev.github.io/html-tutor",
       },
       {
         text: "wandoc",
