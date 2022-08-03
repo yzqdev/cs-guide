@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-beta.49" />
+    <meta name="theme" content="VuePress Theme Hope" />
+    <meta property="og:url" content="https://yzqdev.github.io/cs-guide/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html"><meta property="og:site_name" content="cs-guide"><meta property="og:title" content="Jenkins 安装和配置"><meta property="og:type" content="article"><meta property="og:updated_time" content="2022-05-27T01:37:35.000Z"><meta property="og:locale" content="zh-CN"><meta property="article:modified_time" content="2022-05-27T01:37:35.000Z"><link rel="icon" href="/cs-guide/images/cs-guide.webp"><link rel="stylesheet" href="//at.alicdn.com/t/font_2410206_mfj6e1vbwo.css"><meta name="referrer" content="no-referrer"><link rel="stylesheet" href="//at.alicdn.com/t/font_3267094_1gli0nmxpsr.css"><link rel="manifest" href="/cs-guide/manifest.webmanifest" crossorigin="use-credentials"><meta name="theme-color" content="#46bd87"><link rel="apple-touch-icon" href="/cs-guide/assets/icon/apple-icon-152.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="msapplication-TileImage" content="/cs-guide/assets/icon/ms-icon-144.png"><meta name="msapplication-TileColor" content="#ffffff"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"><title>Jenkins 安装和配置 | cs-guide</title><meta name="description" content="计算机科学教程">
+    <style>
+      :root {
+        --bg-color: #fff;
+      }
+
+      html[data-theme="dark"] {
+        --bg-color: #1d2025;
+      }
+
+      html,
+      body {
+        background-color: var(--bg-color);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.querySelector("html").setAttribute("data-theme", "dark");
+      }
+    </script>
+    <link rel="stylesheet" href="/cs-guide/assets/css/styles.df5d62f8.css">
+    <link rel="preload" href="/cs-guide/assets/js/runtime~app.c0ee67b7.js" as="script"><link rel="preload" href="/cs-guide/assets/css/styles.df5d62f8.css" as="style"><link rel="preload" href="/cs-guide/assets/js/96333.ed0b17af.js" as="script"><link rel="preload" href="/cs-guide/assets/js/app.51f7b59f.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="skip-link sr-only">Skip to content</a><!--]--><div class="theme-container has-toc"><!--[--><!--[--><header class="navbar"><div class="navbar-left"><button class="toggle-sidebar-button" title="Toggle Sidebar"><span class="icon"></span></button><!----><a href="/cs-guide/" class="brand"><img class="logo" src="/cs-guide/ayaka.webp" alt="cs-guide"><!----><span class="site-name hide-in-pad">cs-guide</span></a><!----></div><div class="navbar-center"><!----><nav class="nav-links"><div class="nav-item hide-in-mobile"><a href="/cs-guide/frontend/" class="nav-link" aria-label="前端教程"><span class="icon iconfont icon-html"></span>前端教程<!----></a></div><div class="nav-item hide-in-mobile"><a href="/cs-guide/go-tutor/" class="nav-link" aria-label="go教程"><span class="icon iconfont icon-go"></span>go教程<!----></a></div><div class="nav-item hide-in-mobile"><a href="/cs-guide/java-tutor/" class="nav-link" aria-label="java教程"><span class="icon iconfont icon-java"></span>java教程<!----></a></div><div class="nav-item hide-in-mobile"><a href="/cs-guide/linux-tutor/" class="nav-link active" aria-label="linux教程"><span class="icon iconfont icon-linux"></span>linux教程<!----></a></div><div class="nav-item hide-in-mobile"><a href="/cs-guide/python-tutor/" class="nav-link" aria-label="python教程"><span class="icon iconfont icon-python"></span>python教程<!----></a></div><div class="nav-item hide-in-mobile"><a href="/cs-guide/csharp-tutor/" class="nav-link" aria-label="c#教程"><span class="icon iconfont icon-csharp"></span>c#教程<!----></a></div><div class="nav-item hide-in-mobile"><a href="/cs-guide/windows-tutor/" class="nav-link" aria-label="windows"><span class="icon iconfont icon-windows"></span>windows<!----></a></div><div class="nav-item hide-in-mobile"><a href="/cs-guide/mc-tutor/" class="nav-link" aria-label="mc教程"><span class="icon iconfont icon-game"></span>mc教程<!----></a></div><div class="nav-item hide-in-mobile"><div class="dropdown-wrapper"><button class="dropdown-title" type="button" aria-label="其他"><span class="title"><span class="icon iconfont icon-note"></span>其他</span><span class="arrow"></span><ul class="nav-dropdown"><li class="dropdown-item"><a href="https://yzqbooks.github.io/think-in-java/" rel="noopener noreferrer" target="_blank" aria-label="java编程思想" class="nav-link"><span class="icon iconfont icon-java"></span>java编程思想<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></li><li class="dropdown-item"><a href="https://yzqdev.github.io/git-tutor" rel="noopener noreferrer" target="_blank" aria-label="git教程" class="nav-link"><span class="icon iconfont icon-git"></span>git教程<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></li><li class="dropdown-item"><a href="https://yzqdev.github.io/android-docs" rel="noopener noreferrer" target="_blank" aria-label="安卓教程" class="nav-link"><span class="icon iconfont icon-android"></span>安卓教程<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></li><li class="dropdown-item"><a href="https://yzqdev.github.io/node-docs" rel="noopener noreferrer" target="_blank" aria-label="node教程" class="nav-link"><span class="icon iconfont icon-node"></span>node教程<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></li><li class="dropdown-item"><a href="https://yzqbooks.github.io/wangdoc" rel="noopener noreferrer" target="_blank" aria-label="wandoc" class="nav-link"><span class="icon iconfont icon-read"></span>wandoc<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></li><li class="dropdown-item"><a href="https://yzqdev.github.io/cg-tutor" rel="noopener noreferrer" target="_blank" aria-label="cg教程" class="nav-link"><span class="icon iconfont icon-blender"></span>cg教程<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></li></ul></button></div></div></nav><!----></div><div class="navbar-right"><!----><!----><div class="nav-item"><a class="repo-link" href="https://github.com/yzqdev/cs-guide" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" class="icon github-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="github icon" style="width:1.25rem;height:1.25rem;vertical-align:middle;"><path d="M511.957 21.333C241.024 21.333 21.333 240.981 21.333 512c0 216.832 140.544 400.725 335.574 465.664 24.49 4.395 32.256-10.07 32.256-23.083 0-11.69.256-44.245 0-85.205-136.448 29.61-164.736-64.64-164.736-64.64-22.315-56.704-54.4-71.765-54.4-71.765-44.587-30.464 3.285-29.824 3.285-29.824 49.195 3.413 75.179 50.517 75.179 50.517 43.776 75.008 114.816 53.333 142.762 40.79 4.523-31.66 17.152-53.377 31.19-65.537-108.971-12.458-223.488-54.485-223.488-242.602 0-53.547 19.114-97.323 50.517-131.67-5.035-12.33-21.93-62.293 4.779-129.834 0 0 41.258-13.184 134.912 50.346a469.803 469.803 0 0 1 122.88-16.554c41.642.213 83.626 5.632 122.88 16.554 93.653-63.488 134.784-50.346 134.784-50.346 26.752 67.541 9.898 117.504 4.864 129.834 31.402 34.347 50.474 78.123 50.474 131.67 0 188.586-114.73 230.016-224.042 242.09 17.578 15.232 33.578 44.672 33.578 90.454v135.85c0 13.142 7.936 27.606 32.854 22.87C862.25 912.597 1002.667 728.747 1002.667 512c0-271.019-219.648-490.667-490.71-490.667z"></path></svg></a></div><div class="nav-item hide-in-mobile"><button class="outlook-button" tabindex="-1" ariahidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="icon outlook-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="outlook icon"><path d="M224 800c0 9.6 3.2 44.8 6.4 54.4 6.4 48-48 76.8-48 76.8s80 41.6 147.2 0 134.4-134.4 38.4-195.2c-22.4-12.8-41.6-19.2-57.6-19.2C259.2 716.8 227.2 761.6 224 800zM560 675.2l-32 51.2c-51.2 51.2-83.2 32-83.2 32 25.6 67.2 0 112-12.8 128 25.6 6.4 51.2 9.6 80 9.6 54.4 0 102.4-9.6 150.4-32l0 0c3.2 0 3.2-3.2 3.2-3.2 22.4-16 12.8-35.2 6.4-44.8-9.6-12.8-12.8-25.6-12.8-41.6 0-54.4 60.8-99.2 137.6-99.2 6.4 0 12.8 0 22.4 0 12.8 0 38.4 9.6 48-25.6 0-3.2 0-3.2 3.2-6.4 0-3.2 3.2-6.4 3.2-6.4 6.4-16 6.4-16 6.4-19.2 9.6-35.2 16-73.6 16-115.2 0-105.6-41.6-198.4-108.8-268.8C704 396.8 560 675.2 560 675.2zM224 419.2c0-28.8 22.4-51.2 51.2-51.2 28.8 0 51.2 22.4 51.2 51.2 0 28.8-22.4 51.2-51.2 51.2C246.4 470.4 224 448 224 419.2zM320 284.8c0-22.4 19.2-41.6 41.6-41.6 22.4 0 41.6 19.2 41.6 41.6 0 22.4-19.2 41.6-41.6 41.6C339.2 326.4 320 307.2 320 284.8zM457.6 208c0-12.8 12.8-25.6 25.6-25.6 12.8 0 25.6 12.8 25.6 25.6 0 12.8-12.8 25.6-25.6 25.6C470.4 233.6 457.6 220.8 457.6 208zM128 505.6C128 592 153.6 672 201.6 736c28.8-60.8 112-60.8 124.8-60.8-16-51.2 16-99.2 16-99.2l316.8-422.4c-48-19.2-99.2-32-150.4-32C297.6 118.4 128 291.2 128 505.6zM764.8 86.4c-22.4 19.2-390.4 518.4-390.4 518.4-22.4 28.8-12.8 76.8 22.4 99.2l9.6 6.4c35.2 22.4 80 12.8 99.2-25.6 0 0 6.4-12.8 9.6-19.2 54.4-105.6 275.2-524.8 288-553.6 6.4-19.2-3.2-32-19.2-32C777.6 76.8 771.2 80 764.8 86.4z"></path></svg><div class="outlook-dropdown"><!----></div></button></div><div id="docsearch-container"></div><!----><button class="toggle-navbar-button" aria-label="Toggle Navbar" aria-expanded="false" aria-controls="nav-screen"><span class="button-container"><span class="button-top"></span><span class="button-middle"></span><span class="button-bottom"></span></span></button></div></header><!----><!--]--><!----><div class="toggle-sidebar-wrapper"><span class="arrow left"></span></div><aside class="sidebar"><!--[--><!----><!--]--><ul class="sidebar-links"><li><!--[--><section class="sidebar-group"><button class="sidebar-heading clickable"><!----><span class="title">Linux基础</span><span class="arrow right"></span></button><!----></section><!--]--></li><li><!--[--><section class="sidebar-group"><button class="sidebar-heading clickable"><!----><span class="title">linux技巧</span><span class="arrow right"></span></button><!----></section><!--]--></li><li><!--[--><section class="sidebar-group"><button class="sidebar-heading clickable active"><!----><span class="title">linux教程</span><span class="arrow down"></span></button><ul class="sidebar-links"><li><!--[--><a href="/cs-guide/linux-tutor/server/GoAccess-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="/linux-tutor/server/GoAccess-Install-And-Settings.md"><!---->/linux-tutor/server/GoAccess-Install-And-Settings.md<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Ansible-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="Ansible 安装和配置"><!---->Ansible 安装和配置<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Bash-Other-Bash.html" class="nav-link sidebar-link sidebar-page" aria-label="Bash 其他常用命令"><!---->Bash 其他常用命令<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Bash.html" class="nav-link sidebar-link sidebar-page" aria-label="Bash 常用命令"><!---->Bash 常用命令<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Confluence-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="Confluence 安装和配置"><!---->Confluence 安装和配置<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Crontab.html" class="nav-link sidebar-link sidebar-page" aria-label="Crontab 介绍"><!---->Crontab 介绍<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Daemontools.html" class="nav-link sidebar-link sidebar-page" aria-label="daemontools 工具"><!---->daemontools 工具<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Elasticsearch-Base.html" class="nav-link sidebar-link sidebar-page" aria-label="Elasticsearch 知识"><!---->Elasticsearch 知识<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/ELK-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="ELK（Elasticsearch、Logstash、Kibana）安装和配置"><!---->ELK（Elasticsearch、Logstash、Kibana）安装和配置<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/FastDFS-Nginx-Lua-GraphicsMagick.html" class="nav-link sidebar-link sidebar-page" aria-label="FastDFS 结合 GraphicsMagick"><!---->FastDFS 结合 GraphicsMagick<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/FTP.html" class="nav-link sidebar-link sidebar-page" aria-label="FTP（File Transfer Protocol）介绍"><!---->FTP（File Transfer Protocol）介绍<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Grafana-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="Grafana 安装和配置"><!---->Grafana 安装和配置<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Influxdb-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="Influxdb 安装和配置"><!---->Influxdb 安装和配置<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Iptables.html" class="nav-link sidebar-link sidebar-page" aria-label="Iptables 介绍"><!---->Iptables 介绍<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Java-bin.html" class="nav-link sidebar-link sidebar-page" aria-label="Java bin 目录下的工具"><!---->Java bin 目录下的工具<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html" class="router-link-active router-link-exact-active nav-link active sidebar-link sidebar-page active" aria-label="Jenkins 安装和配置"><!---->Jenkins 安装和配置<!----></a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#jenkins-介绍" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="Jenkins 介绍"><!---->Jenkins 介绍<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#docker-下安装-jenkins" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="Docker 下安装 Jenkins"><!---->Docker 下安装 Jenkins<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#首次使用-jenkins-jenkins-插件推荐" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="首次使用 Jenkins / Jenkins 插件推荐"><!---->首次使用 Jenkins / Jenkins 插件推荐<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#docker-的-jenkins-与-docker-结合使用" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="Docker 的 Jenkins 与 Docker 结合使用"><!---->Docker 的 Jenkins 与 Docker 结合使用<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#jenkins-安装-yum" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="Jenkins 安装（YUM）"><!---->Jenkins 安装（YUM）<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#忘记-admin-密码进行重置" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="忘记 admin 密码进行重置"><!---->忘记 admin 密码进行重置<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#pipeline-语法" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="pipeline 语法"><!---->pipeline 语法<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#jenkins-前端-react-项目构建" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="Jenkins 前端 React 项目构建"><!---->Jenkins 前端 React 项目构建<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#jenkins-后端-spring-boot-项目构建" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="Jenkins 后端 Spring Boot 项目构建"><!---->Jenkins 后端 Spring Boot 项目构建<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#多节点-master-与-slave" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="多节点 master 与 slave"><!---->多节点 master 与 slave<!----></a><ul class="sidebar-sub-headers"></ul></li><li class="sidebar-sub-header"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#资料" class="router-link-active router-link-exact-active nav-link sidebar-link heading" aria-label="资料"><!---->资料<!----></a><ul class="sidebar-sub-headers"></ul></li></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Kafka-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="Kafka 安装和配置"><!---->Kafka 安装和配置<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><section class="sidebar-group"><button class="sidebar-heading clickable"><!----><span class="title">kali</span><span class="arrow right"></span></button><!----></section><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Kubernetes-Install-And-Usage.html" class="nav-link sidebar-link sidebar-page" aria-label="Kubernetes 部署"><!---->Kubernetes 部署<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/File-Extract-Compress.html" class="nav-link sidebar-link sidebar-page" aria-label="Linux 下常用压缩文件的解压、压缩"><!---->Linux 下常用压缩文件的解压、压缩<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/other.html" class="nav-link sidebar-link sidebar-page" aria-label="Linux-Tutorial"><!---->Linux-Tutorial<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Logstash-Base.html" class="nav-link sidebar-link sidebar-page" aria-label="Logstash 知识"><!---->Logstash 知识<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Mysql-Test.html" class="nav-link sidebar-link sidebar-page" aria-label="MySQL 测试"><!---->MySQL 测试<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Nexus-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="Nexus 安装和配置"><!---->Nexus 安装和配置<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/NFS.html" class="nav-link sidebar-link sidebar-page" aria-label="NFS（Network FileSystem）介绍"><!---->NFS（Network FileSystem）介绍<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/NTP.html" class="nav-link sidebar-link sidebar-page" aria-label="NTP（Network Time Protocol）介绍"><!---->NTP（Network Time Protocol）介绍<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/SSH-login-without-password.html" class="nav-link sidebar-link sidebar-page" aria-label="SSH 免密登录"><!---->SSH 免密登录<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/SSH.html" class="nav-link sidebar-link sidebar-page" aria-label="SSH（Secure Shell）介绍"><!---->SSH（Secure Shell）介绍<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/SSR-Client-Ubuntu.html" class="nav-link sidebar-link sidebar-page" aria-label="SSR Ubuntu 客户端"><!---->SSR Ubuntu 客户端<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Tmux-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="Tmux 安装和配置"><!---->Tmux 安装和配置<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Tomcat-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="Tomcat 8 安装和配置、优化"><!---->Tomcat 8 安装和配置、优化<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/VPN.html" class="nav-link sidebar-link sidebar-page" aria-label="VPN（Virtual Private Network）介绍"><!---->VPN（Virtual Private Network）介绍<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Wormhole-Install-And-Settings.html" class="nav-link sidebar-link sidebar-page" aria-label="Wormhole + Flink 最佳实践"><!---->Wormhole + Flink 最佳实践<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Zookeeper-Install.html" class="nav-link sidebar-link sidebar-page" aria-label="Zookeeper 安装"><!---->Zookeeper 安装<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li><li><!--[--><a href="/cs-guide/linux-tutor/server/Was-Hacked.html" class="nav-link sidebar-link sidebar-page" aria-label="黑客入侵检查"><!---->黑客入侵检查<!----></a><ul class="sidebar-sub-headers"></ul><!--]--></li></ul></section><!--]--></li><li><!--[--><section class="sidebar-group"><button class="sidebar-heading clickable"><!----><span class="title">一些工具</span><span class="arrow right"></span></button><!----></section><!--]--></li><li><!--[--><section class="sidebar-group"><button class="sidebar-heading clickable"><!----><span class="title">一些很有用的shell</span><span class="arrow right"></span></button><!----></section><!--]--></li><li><!--[--><section class="sidebar-group"><button class="sidebar-heading clickable"><!----><span class="title">常见的问题</span><span class="arrow right"></span></button><!----></section><!--]--></li><li><!--[--><section class="sidebar-group"><button class="sidebar-heading clickable"><!----><span class="title">配置文件</span><span class="arrow right"></span></button><!----></section><!--]--></li><li><!--[--><section class="sidebar-group"><button class="sidebar-heading clickable"><!----><span class="title">高级技巧</span><span class="arrow right"></span></button><!----></section><!--]--></li></ul><!--[--><!----><!--]--></aside><!--[--><main class="page" id="main-content"><!--[--><!----><nav class="breadcrumb disable"></nav><div class="page-title"><h1><!---->Jenkins 安装和配置</h1><div class="page-info"><span class="author-info" aria-label="作者🖊" data-balloon-pos="down" localizeddate="2022年5月27日" isoriginal="false" pageview="false"><svg xmlns="http://www.w3.org/2000/svg" class="icon author-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="author icon"><path d="M649.6 633.6c86.4-48 147.2-144 147.2-249.6 0-160-128-288-288-288s-288 128-288 288c0 108.8 57.6 201.6 147.2 249.6-121.6 48-214.4 153.6-240 288-3.2 9.6 0 19.2 6.4 25.6 3.2 9.6 12.8 12.8 22.4 12.8h704c9.6 0 19.2-3.2 25.6-12.8 6.4-6.4 9.6-16 6.4-25.6-25.6-134.4-121.6-240-243.2-288z"></path></svg><span><a class="author-item" href="http://www.yzqdev.top" target="_blank" rel="noopener noreferrer">yzqdev</a></span><span property="author" content="yzqdev"></span></span><!----><span class="date-info" aria-label="写作日期📅" data-balloon-pos="down" isoriginal="false" pageview="false"><svg xmlns="http://www.w3.org/2000/svg" class="icon calendar-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="calendar icon"><path d="M716.4 110.137c0-18.753-14.72-33.473-33.472-33.473-18.753 0-33.473 14.72-33.473 33.473v33.473h66.993v-33.473zm-334.87 0c0-18.753-14.72-33.473-33.473-33.473s-33.52 14.72-33.52 33.473v33.473h66.993v-33.473zm468.81 33.52H716.4v100.465c0 18.753-14.72 33.473-33.472 33.473a33.145 33.145 0 01-33.473-33.473V143.657H381.53v100.465c0 18.753-14.72 33.473-33.473 33.473a33.145 33.145 0 01-33.473-33.473V143.657H180.6A134.314 134.314 0 0046.66 277.595v535.756A134.314 134.314 0 00180.6 947.289h669.74a134.36 134.36 0 00133.94-133.938V277.595a134.314 134.314 0 00-133.94-133.938zm33.473 267.877H147.126a33.145 33.145 0 01-33.473-33.473c0-18.752 14.72-33.473 33.473-33.473h736.687c18.752 0 33.472 14.72 33.472 33.473a33.145 33.145 0 01-33.472 33.473z"></path></svg><span>2022年5月27日</span><meta property="datePublished" content="2022-05-27T01:37:35.000Z"></span><!----><!----><span class="reading-time-info" aria-label="阅读时间⌛" data-balloon-pos="down" localizeddate="2022年5月27日" isoriginal="false" pageview="false"><svg xmlns="http://www.w3.org/2000/svg" class="icon timer-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="timer icon"><path d="M799.387 122.15c4.402-2.978 7.38-7.897 7.38-13.463v-1.165c0-8.933-7.38-16.312-16.312-16.312H256.33c-8.933 0-16.311 7.38-16.311 16.312v1.165c0 5.825 2.977 10.874 7.637 13.592 4.143 194.44 97.22 354.963 220.201 392.763-122.204 37.542-214.893 196.511-220.2 389.397-4.661 5.049-7.638 11.651-7.638 19.03v5.825h566.49v-5.825c0-7.379-2.849-13.981-7.509-18.9-5.049-193.016-97.867-351.985-220.2-389.527 123.24-37.67 216.446-198.453 220.588-392.892zM531.16 450.445v352.632c117.674 1.553 211.787 40.778 211.787 88.676H304.097c0-48.286 95.149-87.382 213.728-88.676V450.445c-93.077-3.107-167.901-81.297-167.901-177.093 0-8.803 6.99-15.793 15.793-15.793 8.803 0 15.794 6.99 15.794 15.793 0 80.261 63.69 145.635 142.01 145.635s142.011-65.374 142.011-145.635c0-8.803 6.99-15.793 15.794-15.793s15.793 6.99 15.793 15.793c0 95.019-73.789 172.82-165.96 177.093z"></path></svg><span>大约 13 分钟</span><meta property="timeRequired" content="PT13M"></span></div><hr></div><div class="toc-place-holder"><aside id="toc"><div class="toc-header">此页内容</div><div class="toc-wrapper"><ul class="toc-list"><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#jenkins-介绍" class="router-link-active router-link-exact-active toc-link level2">Jenkins 介绍</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#docker-下安装-jenkins" class="router-link-active router-link-exact-active toc-link level2">Docker 下安装 Jenkins</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#首次使用-jenkins-jenkins-插件推荐" class="router-link-active router-link-exact-active toc-link level2">首次使用 Jenkins / Jenkins 插件推荐</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#docker-的-jenkins-与-docker-结合使用" class="router-link-active router-link-exact-active toc-link level2">Docker 的 Jenkins 与 Docker 结合使用</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#jenkins-安装-yum" class="router-link-active router-link-exact-active toc-link level2">Jenkins 安装（YUM）</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#忘记-admin-密码进行重置" class="router-link-active router-link-exact-active toc-link level2">忘记 admin 密码进行重置</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#pipeline-语法" class="router-link-active router-link-exact-active toc-link level2">pipeline 语法</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#jenkins-前端-react-项目构建" class="router-link-active router-link-exact-active toc-link level2">Jenkins 前端 React 项目构建</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#jenkins-后端-spring-boot-项目构建" class="router-link-active router-link-exact-active toc-link level2">Jenkins 后端 Spring Boot 项目构建</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#多节点-master-与-slave" class="router-link-active router-link-exact-active toc-link level2">多节点 master 与 slave</a></li><!----><!--]--><!--[--><li class="toc-item"><a aria-current="page" href="/cs-guide/linux-tutor/server/Jenkins-Install-And-Settings.html#资料" class="router-link-active router-link-exact-active toc-link level2">资料</a></li><!----><!--]--></ul></div></aside></div><!----><div class="theme-hope-content"><h1 id="jenkins-安装和配置" tabindex="-1"><a class="header-anchor" href="#jenkins-安装和配置" aria-hidden="true">#</a> Jenkins 安装和配置</h1><h2 id="jenkins-介绍" tabindex="-1"><a class="header-anchor" href="#jenkins-介绍" aria-hidden="true">#</a> Jenkins 介绍</h2><ul><li>官网：<a href="http://jenkins-ci.org/" target="_blank" rel="noopener noreferrer">http://jenkins-ci.org/<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>官网插件库：<a href="https://plugins.jenkins.io/" target="_blank" rel="noopener noreferrer">https://plugins.jenkins.io/<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>官网下载：<a href="https://jenkins.io/download/" target="_blank" rel="noopener noreferrer">https://jenkins.io/download/<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>官网帮助中心：<a href="https://wiki.jenkins-ci.org/display/JENKINS/Use+Jenkins" target="_blank" rel="noopener noreferrer">https://wiki.jenkins-ci.org/display/JENKINS/Use+Jenkins<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li></ul><h2 id="docker-下安装-jenkins" tabindex="-1"><a class="header-anchor" href="#docker-下安装-jenkins" aria-hidden="true">#</a> Docker 下安装 Jenkins</h2><ul><li>配置：至少需要 2G 内存</li><li>先禁用 selinux <ul><li>编辑配置文件：<code>vim /etc/selinux/config</code></li><li>把 <code>SELINUX=enforcing</code> 改为 <code>SELINUX=disabled</code></li><li>重启服务器</li></ul></li><li>官网下载中有介绍其版本标识：<a href="https://jenkins.io/download/" target="_blank" rel="noopener noreferrer">https://jenkins.io/download/<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a><ul><li>我们就选用：Long-term Support (LTS)</li></ul></li><li>官网关于 Docker 部署也有专门文档：<a href="https://github.com/jenkinsci/docker/blob/master/README.md" target="_blank" rel="noopener noreferrer">https://github.com/jenkinsci/docker/blob/master/README.md<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>先创建一个宿主机以后用来存放数据的目录：<code>mkdir -p /data/jenkins/jenkins_home &amp;&amp; chmod 777 -R /data/jenkins/jenkins_home</code></li><li>安装镜像（813MB，有点大）：<code>docker pull jenkins/jenkins:lts</code></li><li>查看下载下来的镜像：<code>docker images</code></li><li>首次运行镜像：<code>docker run --name jenkins-master -p 8123:18080 -p 50000:50000 -v /etc/localtime:/etc/localtime -v /data/jenkins/jenkins_home:/var/jenkins_home -e JAVA_OPTS=&quot;-Duser.timezone=Asia/Shanghai&quot; -d --restart always jenkins/jenkins:lts</code><ul><li>这里的 8080 端口是 jenkins 运行程序的端口，必须要有映射的。50000 端口是非必须映射的，但是如果你要用 Jenkins 分布式构建这个就必须开放</li></ul></li><li>如果报下面的错误：</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>touch: cannot touch &#39;/var/jenkins_home/copy_reference_file.log&#39;: Permission denied
+Can not write to /var/jenkins_home/copy_reference_file.log. Wrong volume permissions?
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>解决办法：<code>chown -R 1000:1000 /data/jenkins/jenkins_home</code>，具体原因：<a href="http://www.cnblogs.com/jackluo/p/5783116.html" target="_blank" rel="noopener noreferrer">点击查看<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a><ul><li>问题的本质就是，jenkins 镜像中的系统用户是：jenkins，当你进入容器 bash 内，输入：<code>whoami &amp;&amp; id</code>，你就可以看到他的 uid 是 1000，所以这里才 chown 1000</li></ul></li><li>查看容器运行情况：<code>docker ps</code></li><li>进入容器中 Jenkins shell 交互界面：<code>docker exec -it bd290d5eb0d /bin/bash</code></li></ul><h2 id="首次使用-jenkins-jenkins-插件推荐" tabindex="-1"><a class="header-anchor" href="#首次使用-jenkins-jenkins-插件推荐" aria-hidden="true">#</a> 首次使用 Jenkins / Jenkins 插件推荐</h2><ul><li>我这里就不截图了，有需要截图可以看这博文，差不多就是这样的：<a href="https://blog.csdn.net/boling_cavalry/article/details/78942408" target="_blank" rel="noopener noreferrer">点击我o(∩_∩)o <span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>首次进入 Jenkins 的 Web UI 界面是一个解锁页面 Unlock Jenkins，需要让你输入：Administrator password <ul><li>这个密码放在：<code>/var/jenkins_home/secrets/initialAdminPassword</code>，你需要先：<code>docker exec -it ci_jenkins_1 /bin/bash</code><ul><li>然后：<code>cat /data/jenkins/jenkins_home/secrets/initialAdminPassword</code></li><li>也有可能是这个目录：<code>cat /var/jenkins_home/secrets/initialAdminPassword</code></li></ul></li></ul></li><li>然后再接下来就是插件的安装，我推荐直接用它推荐给我们的插件直接安装，稍后再安装自己需要定制的。</li><li>插件安装完会进入：Create First Admin User 页面，填写一个用户信息即可。</li><li>我的这里的代码仓库是：Gitlab</li><li>推荐插件 <ul><li>Publish Over SSH（具体名字要看下）</li><li>Dashbroad View</li><li>Folders View</li><li>OWASP Markup Formatter Plugin</li><li>Build Name Setter Plugin</li><li>build timeout plugin</li><li>Credentials Binding Plugin</li><li>Embeddable Build Status Plugin</li><li>Pipeline</li><li>Build Pipeline Plugin</li><li>Docker Pipeline Plugin</li><li>Git plugin</li><li>GitLab Plugin</li><li>SSH Slaves plugin</li><li>Maven Integration plugin</li><li>Matrix Authorization Strategy Plugin</li><li>PAM Authentication plugin</li><li>LDAP Plugin</li><li>Role-based Authorization Strategy</li><li>Email Extension Plugin</li><li>Email Extension Template Plugin</li><li>Mailer Plugin</li><li>NotifyQQ（<a href="https://github.com/ameizi/NotifyQQ" target="_blank" rel="noopener noreferrer">QQ 消息通知<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a>）</li><li>钉钉通知（<a href="https://wiki.jenkins.io/display/JENKINS/Dingding+Notification+Plugin" target="_blank" rel="noopener noreferrer">钉钉 消息通知<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a>）</li><li>360 FireLine：代码规范检查，已经集成了阿里巴巴的代码规约（P3C）检查</li><li>AnsiColor（可选）：这个插件可以让Jenkins的控制台输出的log带有颜色</li><li>oauth（具体名字要看下）</li><li>Build Failure Analyzer 分析构建错误日志并在构建页面显示错误</li><li>SSH plugin 支持通过SSH执行脚本</li><li>Pre SCM BuildStep Plugin 在拉代码之前插入一些步骤</li><li>GitHub API Plugin Github API插件</li><li>GitHub Pull Request Builder Github Pull Request时自动构建</li><li>GitHub plugin Github与Jenkins集成</li><li>GIT client plugin Git客户端插件</li><li>Maven Integration plugin：用于构建 Maven 项目</li><li>Gradle Plugin：用于构建 Gradle 项目</li><li>Gitlab Plugin：可能会直接安装不成功，如果不成功根据报错的详细信息可以看到 hpi 文件的下载地址，挂代理下载下来，然后离线安装即可</li><li>Gitlab Hook：用于触发 GitLab 的一些 WebHooks 来构建项目</li><li>Gitlab Authentication 这个插件提供了使用GitLab进行用户认证和授权的方案</li><li>Docker Commons Plugin</li><li>Docker plugin</li><li>Kubernetes</li><li>Pre SCM BuildStep Plugin 在拉代码之前插入一些步骤</li><li>GitHub Pull Request Builder Github Pull Request时自动构建</li><li>GitHub API Plugin Github API插件</li><li>NodeJS Plugin</li></ul></li></ul><h2 id="docker-的-jenkins-与-docker-结合使用" tabindex="-1"><a class="header-anchor" href="#docker-的-jenkins-与-docker-结合使用" aria-hidden="true">#</a> Docker 的 Jenkins 与 Docker 结合使用</h2><ul><li>运行镜像命令：<code>docker run --name jenkins-master -p 8123:18080 -p 50000:50000 -v /etc/localtime:/etc/localtime -v /data/jenkins/jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -e JAVA_OPTS=&quot;-Duser.timezone=Asia/Shanghai&quot; -d --restart always jenkins/jenkins:lts</code><ul><li>比上面多了一步：<code>-v /var/run/docker.sock:/var/run/docker.sock</code></li></ul></li><li>这样，在 jenkins 里面写 shell 脚本调用 docker 程序，就可以直接调用宿主机的 docker 了。</li></ul><hr><h2 id="jenkins-安装-yum" tabindex="-1"><a class="header-anchor" href="#jenkins-安装-yum" aria-hidden="true">#</a> Jenkins 安装（YUM）</h2><ul><li><strong>需要 JDK8 环境</strong></li><li>当前最新版本：<code>2.138.1-1.1</code>（201810）</li><li>官网安装说明 RedHat Linux RPM packages：<a href="https://pkg.jenkins.io/redhat-stable/" target="_blank" rel="noopener noreferrer">https://pkg.jenkins.io/redhat-stable/<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>官网在线安装（72M），该安装方式会自己生成一个 jenkins 用户组和用户：</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+sudo yum install -y jenkins
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>查看安装后的情况：<code>rpm -ql jenkins</code></li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>/etc/init.d/jenkins
+/etc/logrotate.d/jenkins
+/etc/sysconfig/jenkins
+/usr/lib/jenkins
+/usr/lib/jenkins/jenkins.war
+/usr/sbin/rcjenkins
+/var/cache/jenkins
+/var/lib/jenkins
+/var/log/jenkins
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>jenkins 相关目录释义：</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>/usr/lib/jenkins/：jenkins安装目录，war 包会放在这里。
+/etc/sysconfig/jenkins：jenkins配置文件，“端口”，“JENKINS_HOME” 等都可以在这里配置。
+/var/lib/jenkins/：默认的 JENKINS_HOME。
+/var/log/jenkins/jenkins.log：jenkins 日志文件。
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>控制台输出方式启动：<code>java -jar /usr/lib/jenkins/jenkins.war --httpPort=18080</code></li><li>内置 Jetty，默认是 18080 端口，你也可以改为其他（建议修改为其他）</li><li>可以看到有一个这个重点内容，这是你的初始化密码，等下会用到的：</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>Jenkins initial setup is required. An admin user has been created and a password generated.
+Please use the following password to proceed to installation:
+
+daacc724767640a29ddc99d159a80cf8
+
+This may also be found at: /root/.jenkins/secrets/initialAdminPassword
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>守护进程启动：<code>nohup java -jar /usr/lib/jenkins/jenkins.war --httpPort=18080 &gt; /dev/null 2&gt;&amp;1 &amp;</code></li><li>浏览器访问 Jenkins 首页开始配置：<a href="http://192.168.0.105:18080/" target="_blank" rel="noopener noreferrer">http://192.168.0.105:18080/<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>特殊情况： <ul><li>如果配置插件过程遇到这个错误：<code>No valid crumb was included in the request</code>，则多重试几次。</li><li>登录后把：<a href="http://192.168.0.105:18080/configureSecurity/" target="_blank" rel="noopener noreferrer">http://192.168.0.105:18080/configureSecurity/<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a> 下面的 <code>防止跨站点请求伪造</code> 勾选去掉。遇到问题多试几次。</li></ul></li></ul><h2 id="忘记-admin-密码进行重置" tabindex="-1"><a class="header-anchor" href="#忘记-admin-密码进行重置" aria-hidden="true">#</a> 忘记 admin 密码进行重置</h2><ul><li>备份配置文件：<code>cp /root/.jenkins/config.xml /root/.jenkins/config.xml.back</code></li><li>编辑：<code>vim /root/.jenkins/config.xml</code>，删除 config.xml 文件中的这部分内容，在 10 行左右位置</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>&lt;useSecurity&gt;true&lt;/useSecurity&gt;
+&lt;authorizationStrategy class=&quot;hudson.security.FullControlOnceLoggedInAuthorizationStrategy&quot;&gt;
+  &lt;denyAnonymousReadAccess&gt;true&lt;/denyAnonymousReadAccess&gt;
+&lt;/authorizationStrategy&gt;
+&lt;securityRealm class=&quot;hudson.security.HudsonPrivateSecurityRealm&quot;&gt;
+  &lt;disableSignup&gt;true&lt;/disableSignup&gt;
+  &lt;enableCaptcha&gt;false&lt;/enableCaptcha&gt;
+&lt;/securityRealm&gt;
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>重启服务，进入首页此时系统是免密状态</li><li>选择左侧的 <code>系统管理</code>，系统会提示你需要配置安全设置：<code>全局安全配置</code><ul><li>勾选 <code>启用安全</code></li><li>安全域 &gt; 勾选 <code>Jenkins专有用户数据库</code></li><li>点击保存</li></ul></li><li>重新点击首页：<code>系统管理</code><ul><li>点击 <code>管理用户</code></li><li>在用户列表中点击 admin 右侧齿轮</li><li>修改密码，修改后即可重新登录。</li></ul></li><li>选择左侧的 <code>系统管理</code>，系统会提示你需要配置安全设置：<code>全局安全配置</code><ul><li>勾选 <code>启用安全</code></li><li>授权策略 &gt; 勾选 <code>登录用户可以做任何事</code> 或 <code>安全矩阵</code></li><li>点击保存</li></ul></li></ul><hr><h2 id="pipeline-语法" tabindex="-1"><a class="header-anchor" href="#pipeline-语法" aria-hidden="true">#</a> pipeline 语法</h2><ul><li>全局 pipeline 语法说明：<a href="http://192.168.0.105:18080/job/react/pipeline-syntax/globals" target="_blank" rel="noopener noreferrer">http://192.168.0.105:18080/job/react/pipeline-syntax/globals<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>其他资料 <ul><li><a href="http://www.cnblogs.com/fengjian2016/p/8227532.html" target="_blank" rel="noopener noreferrer">http://www.cnblogs.com/fengjian2016/p/8227532.html<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li><a href="https://github.com/nbbull/jenkins2Book" target="_blank" rel="noopener noreferrer">https://github.com/nbbull/jenkins2Book<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li><a href="https://github.com/mcpaint/learning-jenkins-pipeline" target="_blank" rel="noopener noreferrer">https://github.com/mcpaint/learning-jenkins-pipeline<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li><a href="https://www.cnblogs.com/fengjian2016/p/8227532.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/fengjian2016/p/8227532.html<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li><a href="https://blog.csdn.net/diantun00/article/details/81075007" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/diantun00/article/details/81075007<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li></ul></li></ul><h4 id="内置的参数" tabindex="-1"><a class="header-anchor" href="#内置的参数" aria-hidden="true">#</a> 内置的参数</h4><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>BUILD_NUMBER = ${env.BUILD_NUMBER}&quot;
+BUILD_ID = ${env.BUILD_ID}&quot;
+BUILD_DISPLAY_NAME = ${env.BUILD_DISPLAY_NAME}&quot;
+JOB_NAME = ${env.JOB_NAME}&quot;
+JOB_BASE_NAME = ${env.JOB_BASE_NAME}&quot;
+WORKSPACE = ${env.WORKSPACE}&quot;
+JENKINS_HOME = ${env.JENKINS_HOME}&quot;
+JENKINS_URL = ${env.JENKINS_URL}&quot;
+BUILD_URL = ${env.BUILD_URL}&quot;
+JOB_URL = ${env.JOB_URL}&quot;
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>输出结果：</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>BUILD_NUMBER = 21
+BUILD_ID = 21
+BUILD_DISPLAY_NAME = #21
+JOB_NAME = react
+JOB_BASE_NAME = react
+WORKSPACE = /root/.jenkins/workspace/react
+JENKINS_HOME = /root/.jenkins
+JENKINS_URL = http://192.168.0.105:18080/
+BUILD_URL = http://192.168.0.105:18080/job/react/21/
+JOB_URL = http://192.168.0.105:18080/job/react/
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="构建时指定参数" tabindex="-1"><a class="header-anchor" href="#构建时指定参数" aria-hidden="true">#</a> 构建时指定参数</h4><ul><li>如果要构建的时候明确输入参数值，可以用 <code>parameters</code>：</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>pipeline {
+  agent any
+
+  parameters {
+    string(name: &#39;assignVersionValue&#39;, defaultValue: &#39;1.1.3&#39;, description: &#39;构建之前请先指定版本号&#39;)
+  }
+  
+  tools {
+    jdk &#39;JDK8&#39;
+    maven &#39;MAVEN3&#39;
+  }
+
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(
+      numToKeepStr: &#39;20&#39;,
+      daysToKeepStr: &#39;30&#39;,
+    ))
+  }
+
+
+  environment {
+    gitUrl = &quot;https://gitee.com/youmeek/springboot-jenkins-demo.git&quot;
+    branchName = &quot;master&quot;
+    giteeCredentialsId = &quot;Gitee&quot;
+    projectWorkSpacePath = &quot;${env.WORKSPACE}&quot;
+  }
+  
+  
+  stages {
+    
+    stage(&#39;Check Env&#39;) {
+    
+      /*当指定的参数版本号等于空字符的时候进入 steps。这里的 when 对 当前 stage 有效，对其他 stage 无效*/
+      when {
+        environment name: &#39;assignVersionValue&#39;, value: &#39;&#39;
+      }
+    
+      /*结束整个任务。如果不想结束整个任务，就不要用：exit 1*/
+      steps {
+        sh &quot;exit 1&quot;
+      }
+    }
+    
+    stage(&#39;Pre Env&#39;) {
+    
+      steps {
+        echo &quot;======================================项目名称 = ${env.JOB_NAME}&quot;
+        echo &quot;======================================项目 URL = ${gitUrl}&quot;
+        echo &quot;======================================项目分支 = ${branchName}&quot;
+        echo &quot;======================================当前编译版本号 = ${env.BUILD_NUMBER}&quot;
+        echo &quot;======================================项目空间文件夹路径 = ${projectWorkSpacePath}&quot;
+        echo &quot;======================================构建时自己指定的版本号值 = ${params.assignVersionValue}&quot;
+      }
+    }
+        
+  }
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="定时构建" tabindex="-1"><a class="header-anchor" href="#定时构建" aria-hidden="true">#</a> 定时构建</h4><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>pipeline {
+  agent any
+  
+  /*采用 linux cron 语法即可*/
+  triggers {
+    cron(&#39;*/1 * * * *&#39;)
+  }
+  
+  tools {
+    jdk &#39;JDK8&#39;
+    maven &#39;MAVEN3&#39;
+  }
+
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(
+      numToKeepStr: &#39;20&#39;,
+      daysToKeepStr: &#39;30&#39;,
+    ))
+  }
+
+
+  environment {
+    gitUrl = &quot;https://gitee.com/youmeek/springboot-jenkins-demo.git&quot;
+    branchName = &quot;master&quot;
+    giteeCredentialsId = &quot;Gitee&quot;
+    projectWorkSpacePath = &quot;${env.WORKSPACE}&quot;
+  }
+  
+  
+  stages {
+    
+    stage(&#39;Pre Env&#39;) {
+      steps {
+         echo &quot;======================================项目名称 = ${env.JOB_NAME}&quot;
+         echo &quot;======================================项目 URL = ${gitUrl}&quot;
+         echo &quot;======================================项目分支 = ${branchName}&quot;
+         echo &quot;======================================当前编译版本号 = ${env.BUILD_NUMBER}&quot;
+         echo &quot;======================================项目空间文件夹路径 = ${projectWorkSpacePath}&quot;
+      }
+    }
+    
+  }
+}
+
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="同时构建其他-job" tabindex="-1"><a class="header-anchor" href="#同时构建其他-job" aria-hidden="true">#</a> 同时构建其他 Job</h4><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>stage(&#39;运行其他任务&#39;) {
+  steps {
+      build job: &#39;任务名称&#39;
+  }
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr><h2 id="jenkins-前端-react-项目构建" tabindex="-1"><a class="header-anchor" href="#jenkins-前端-react-项目构建" aria-hidden="true">#</a> Jenkins 前端 React 项目构建</h2><ul><li><strong>确保</strong>：安装了 <a href="/cs-guide/linux-tutor/server/Node-Install-And-Usage.html" class="">Node.js</a></li></ul><h4 id="简单的-pipeline-写法-开源项目" tabindex="-1"><a class="header-anchor" href="#简单的-pipeline-写法-开源项目" aria-hidden="true">#</a> 简单的 pipeline 写法（开源项目）</h4><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>pipeline {
+  agent any
+
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(
+      numToKeepStr: &#39;20&#39;,
+      daysToKeepStr: &#39;30&#39;,
+    ))
+  }
+
+  /*=======================================常修改变量-start=======================================*/
+
+  environment {
+    gitUrl = &quot;https://github.com/satan31415/heh_umi_template.git&quot;
+    branchName = &quot;master&quot;
+    projectBuildPath = &quot;${env.WORKSPACE}/dist&quot;
+    nginxHtmlRoot = &quot;/usr/share/nginx/react&quot;
+  }
+  
+  /*=======================================常修改变量-end=======================================*/
+  
+  stages {
+    
+    stage(&#39;Pre Env&#39;) {
+      steps {
+         echo &quot;======================================项目名称 = ${env.JOB_NAME}&quot;
+         echo &quot;======================================项目 URL = ${gitUrl}&quot;
+         echo &quot;======================================项目分支 = ${branchName}&quot;
+         echo &quot;======================================当前编译版本号 = ${env.BUILD_NUMBER}&quot;
+         echo &quot;======================================项目 Build 文件夹路径 = ${projectBuildPath}&quot;
+         echo &quot;======================================项目 Nginx 的 ROOT 路径 = ${nginxHtmlRoot}&quot;
+      }
+    }
+    
+    stage(&#39;Git Clone&#39;){
+      steps {
+          git branch: &quot;${branchName}&quot;, url: &quot;${gitUrl}&quot;
+      }
+    }
+
+    stage(&#39;NPM Install&#39;) {
+      steps {
+        sh &quot;npm install&quot;
+      }
+    }
+
+    stage(&#39;NPM Build&#39;) {
+      steps {
+        sh &quot;npm run build&quot;
+      }
+    }
+
+    stage(&#39;Nginx Deploy&#39;) {
+      steps {
+        sh &quot;rm -rf ${nginxHtmlRoot}/&quot;
+        sh &quot;cp -r ${projectBuildPath}/ ${nginxHtmlRoot}/&quot;
+      }
+    }
+
+
+  }
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="简单的-pipeline-写法-闭源项目-码云为例" tabindex="-1"><a class="header-anchor" href="#简单的-pipeline-写法-闭源项目-码云为例" aria-hidden="true">#</a> 简单的 pipeline 写法（闭源项目 -- 码云为例）</h4><ul><li>新增一个全局凭据：<a href="http://192.168.0.105:18080/credentials/store/system/domain/_/newCredentials" target="_blank" rel="noopener noreferrer">http://192.168.0.105:18080/credentials/store/system/domain/_/newCredentials<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>类型：<code>Username with password</code></li><li>范围：<code>全局</code></li><li>Username：<code>你的 Gitee 账号</code></li><li>Password：<code>你的 Gitee 密码</code></li><li><strong>ID</strong>：<code>只要是唯一值就行，后面要用到</code></li><li>描述：<code>最好跟 ID 一致，方便认</code></li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>pipeline {
+  agent any
+
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(
+      numToKeepStr: &#39;20&#39;,
+      daysToKeepStr: &#39;30&#39;,
+    ))
+  }
+
+  /*=======================================常修改变量-start=======================================*/
+
+  environment {
+    gitUrl = &quot;https://gitee.com/youmeek/react-demo.git&quot;
+    branchName = &quot;master&quot;
+    giteeCredentialsId = &quot;上面全局凭据填写的 ID&quot;
+    projectBuildPath = &quot;${env.WORKSPACE}/dist&quot;
+    nginxHtmlRoot = &quot;/usr/share/nginx/react&quot;
+  }
+  
+  /*=======================================常修改变量-end=======================================*/
+  
+  stages {
+    
+    stage(&#39;Pre Env&#39;) {
+      steps {
+         echo &quot;======================================项目名称 = ${env.JOB_NAME}&quot;
+         echo &quot;======================================项目 URL = ${gitUrl}&quot;
+         echo &quot;======================================项目分支 = ${branchName}&quot;
+         echo &quot;======================================当前编译版本号 = ${env.BUILD_NUMBER}&quot;
+         echo &quot;======================================项目 Build 文件夹路径 = ${projectBuildPath}&quot;
+         echo &quot;======================================项目 Nginx 的 ROOT 路径 = ${nginxHtmlRoot}&quot;
+      }
+    }
+    
+    stage(&#39;Git Clone&#39;){
+      steps {
+          git branch: &quot;${branchName}&quot;,
+          credentialsId: &quot;${giteeCredentialsId}&quot;,
+          url: &quot;${gitUrl}&quot;
+      }
+    }
+
+    stage(&#39;NPM Install&#39;) {
+      steps {
+        sh &quot;npm install&quot;
+      }
+    }
+
+    stage(&#39;NPM Build&#39;) {
+      steps {
+        sh &quot;npm run build&quot;
+      }
+    }
+
+    stage(&#39;Nginx Deploy&#39;) {
+      steps {
+        sh &quot;rm -rf ${nginxHtmlRoot}/&quot;
+        sh &quot;cp -r ${projectBuildPath}/ ${nginxHtmlRoot}/&quot;
+      }
+    }
+
+
+  }
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr><h2 id="jenkins-后端-spring-boot-项目构建" tabindex="-1"><a class="header-anchor" href="#jenkins-后端-spring-boot-项目构建" aria-hidden="true">#</a> Jenkins 后端 Spring Boot 项目构建</h2><h4 id="安装-maven" tabindex="-1"><a class="header-anchor" href="#安装-maven" aria-hidden="true">#</a> 安装 Maven</h4><ul><li><a href="/cs-guide/linux-tutor/server/Maven-Install-And-Settings.html" class="">参考该文章</a></li></ul><h4 id="配置工具" tabindex="-1"><a class="header-anchor" href="#配置工具" aria-hidden="true">#</a> 配置工具</h4><ul><li>访问：<a href="http://192.168.0.105:18080/configureTools/" target="_blank" rel="noopener noreferrer">http://192.168.0.105:18080/configureTools/<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li>我习惯自己安装，所以这里修改配置： <ul><li><strong>需要注意</strong>：配置里面的 <code>别名</code> 不要随便取名字，后面 Pipeline 要用到的。在 tool 标签里面会用到。</li><li>具体可以查看该图片说明：<a href="https://upload-images.jianshu.io/upload_images/12159-ef61595aebaa4244.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" target="_blank" rel="noopener noreferrer">点击查看<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li></ul></li></ul><h4 id="简单的-pipeline-写法-jar-方式运行-闭源项目-码云为例" tabindex="-1"><a class="header-anchor" href="#简单的-pipeline-写法-jar-方式运行-闭源项目-码云为例" aria-hidden="true">#</a> 简单的 pipeline 写法（Jar 方式运行）（闭源项目 -- 码云为例）</h4><h6 id="用-supervisord-做进程控制" tabindex="-1"><a class="header-anchor" href="#用-supervisord-做进程控制" aria-hidden="true">#</a> 用 supervisord 做进程控制</h6><ul><li><a href="/cs-guide/linux-tutor/server/Daemontools.html" class="">supervisord 的使用</a></li><li>生成 supervisord 的配置文件会写在 Pipeline，所以只要你保证服务器 supervisord 正常运行即可</li></ul><h6 id="配置-jenkins" tabindex="-1"><a class="header-anchor" href="#配置-jenkins" aria-hidden="true">#</a> 配置 Jenkins</h6><ul><li><strong>必须</strong>：新增一个全局凭据，方法参考前端部分</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>pipeline {
+  agent any
+
+  /*=======================================工具环境修改-start=======================================*/
+  tools {
+    jdk &#39;JDK8&#39;
+    maven &#39;MAVEN3&#39;
+  }
+  /*=======================================工具环境修改-end=======================================*/
+
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(
+      numToKeepStr: &#39;20&#39;,
+      daysToKeepStr: &#39;30&#39;,
+    ))
+  }
+
+  /*=======================================常修改变量-start=======================================*/
+
+  environment {
+    gitUrl = &quot;https://gitee.com/youmeek/springboot-jenkins-demo.git&quot;
+    branchName = &quot;master&quot;
+    giteeCredentialsId = &quot;Gitee&quot;
+    projectWorkSpacePath = &quot;${env.WORKSPACE}&quot;
+    projectBuildTargetPath = &quot;${env.WORKSPACE}/target&quot;
+    projectJarNewName = &quot;${env.JOB_NAME}.jar&quot;
+    supervisorConfigFileFullPath = &quot;/etc/supervisor/conf.d/${env.JOB_NAME}.conf&quot;
+    supervisorLogPath = &quot;/var/log/supervisor&quot;
+
+  }
+  
+  /*=======================================常修改变量-end=======================================*/
+  
+  stages {
+    
+    stage(&#39;Pre Env&#39;) {
+      steps {
+         echo &quot;======================================项目名称 = ${env.JOB_NAME}&quot;
+         echo &quot;======================================项目 URL = ${gitUrl}&quot;
+         echo &quot;======================================项目分支 = ${branchName}&quot;
+         echo &quot;======================================当前编译版本号 = ${env.BUILD_NUMBER}&quot;
+         echo &quot;======================================项目空间文件夹路径 = ${projectWorkSpacePath}&quot;
+         echo &quot;======================================项目 build 后 jar 路径 = ${projectBuildTargetPath}&quot;
+         echo &quot;======================================项目 jar 新名称 = ${projectJarNewName}&quot;
+         echo &quot;======================================supervisor 配置文件路径 = ${supervisorConfigFileFullPath}&quot;
+         echo &quot;======================================supervisor 存放 log 路径 = ${supervisorLogPath}&quot;
+      }
+    }
+    
+    stage(&#39;Git Clone&#39;){
+      steps {
+          git branch: &quot;${branchName}&quot;,
+          credentialsId: &quot;${giteeCredentialsId}&quot;,
+          url: &quot;${gitUrl}&quot;
+      }
+    }
+
+    stage(&#39;Maven Clean&#39;) {
+      steps {
+        sh &quot;mvn clean&quot;
+      }
+    }
+
+    stage(&#39;Maven Package&#39;) {
+      steps {
+        sh &quot;mvn package -DskipTests&quot;
+      }
+    }
+
+    stage(&#39;Spring Boot Run&#39;) {
+      steps {
+
+sh &quot;&quot;&quot;
+mv ${projectBuildTargetPath}/*.jar ${projectBuildTargetPath}/${projectJarNewName}
+
+if [ ! -f ${supervisorConfigFileFullPath} ]; then
+
+touch ${supervisorConfigFileFullPath}
+    
+cat &lt;&lt; EOF &gt;&gt; ${supervisorConfigFileFullPath}
+[program:${env.JOB_NAME}]
+command=java -jar ${projectBuildTargetPath}/${projectJarNewName}
+stdout_logfile=${supervisorLogPath}/${env.JOB_NAME}.log
+stderr_logfile=${supervisorLogPath}/${env.JOB_NAME}-err.log
+user=root
+autostart=true
+autorestart=false
+startsecs=5
+priority=1
+stopasgroup=true
+killasgroup=true
+EOF
+
+/usr/bin/supervisorctl update
+fi
+
+/usr/bin/supervisorctl restart ${env.JOB_NAME}
+&quot;&quot;&quot;
+
+      }
+    }
+
+  }
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="简单的-pipeline-写法-docker-方式运行-闭源项目-码云为例" tabindex="-1"><a class="header-anchor" href="#简单的-pipeline-写法-docker-方式运行-闭源项目-码云为例" aria-hidden="true">#</a> 简单的 pipeline 写法（Docker 方式运行）（闭源项目 -- 码云为例）</h4><ul><li><strong>确保</strong> 项目根目录有 Dockerfile 文件（部分内容自己修改），内容模板：</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>FROM java:8
+VOLUME /tmp
+
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &amp;&amp; echo $TZ &gt; /etc/timezone
+
+ADD ./target/buildApp.jar /app.jar
+
+RUN bash -c &#39;touch /app.jar&#39;
+
+EXPOSE 8081
+
+ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;-Xms512M&quot;, &quot;-Xmx512M&quot; , &quot;-XX:MetaspaceSize=128M&quot;, &quot;-XX:MaxMetaspaceSize=256M&quot; ,&quot;/app.jar&quot;]
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>Pipeline 写法</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>pipeline {
+  agent any
+
+  /*=======================================工具环境修改-start=======================================*/
+  tools {
+    jdk &#39;JDK8&#39;
+    maven &#39;MAVEN3&#39;
+  }
+  /*=======================================工具环境修改-end=======================================*/
+
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(
+      numToKeepStr: &#39;20&#39;,
+      daysToKeepStr: &#39;30&#39;,
+    ))
+  }
+
+  /*=======================================常修改变量-start=======================================*/
+
+  environment {
+    gitUrl = &quot;https://gitee.com/youmeek/springboot-jenkins-demo.git&quot;
+    branchName = &quot;master&quot;
+    giteeCredentialsId = &quot;Gitee&quot;
+    projectWorkSpacePath = &quot;${env.WORKSPACE}&quot;
+    projectBuildTargetPath = &quot;${env.WORKSPACE}/target&quot;
+    projectJarNewName = &quot;buildApp.jar&quot;
+
+
+    dockerImageName = &quot;docker.youmeek.com/demo/${env.JOB_NAME}:${env.BUILD_NUMBER}&quot;
+    dockerContainerName = &quot;${env.JOB_NAME}&quot;
+    inHostPort = &quot;8082&quot;
+    inDockerAndJavaPort = &quot;8081&quot;
+    inHostLogPath = &quot;/data/docker/logs/${dockerContainerName}/${env.BUILD_NUMBER}&quot;
+    inDockerLogPath = &quot;/data/logs&quot;
+    dockerRunParam = &quot;--name=${dockerContainerName} --hostname=${dockerContainerName} -v /etc/hosts:/etc/hosts -v ${inHostLogPath}:${inDockerLogPath} --restart=always  -p ${inHostPort}:${inDockerAndJavaPort}&quot;
+  }
+  
+  /*=======================================常修改变量-end=======================================*/
+  
+  stages {
+    
+    stage(&#39;Pre Env&#39;) {
+      steps {
+         echo &quot;======================================项目名称 = ${env.JOB_NAME}&quot;
+         echo &quot;======================================项目 URL = ${gitUrl}&quot;
+         echo &quot;======================================项目分支 = ${branchName}&quot;
+         echo &quot;======================================当前编译版本号 = ${env.BUILD_NUMBER}&quot;
+         echo &quot;======================================项目空间文件夹路径 = ${projectWorkSpacePath}&quot;
+         echo &quot;======================================项目 build 后 jar 路径 = ${projectBuildTargetPath}&quot;
+         echo &quot;======================================项目 jar 新名称 = ${projectJarNewName}&quot;
+         echo &quot;======================================Docker 镜像名称 = ${dockerImageName}&quot;
+         echo &quot;======================================Docker 容器名称 = ${dockerContainerName}&quot;
+      }
+    }
+    
+    stage(&#39;Git Clone&#39;){
+      steps {
+          git branch: &quot;${branchName}&quot;,
+          credentialsId: &quot;${giteeCredentialsId}&quot;,
+          url: &quot;${gitUrl}&quot;
+      }
+    }
+
+    stage(&#39;Maven Clean&#39;) {
+      steps {
+        sh &quot;mvn clean&quot;
+      }
+    }
+
+    stage(&#39;Maven Package&#39;) {
+      steps {
+        sh &quot;mvn package -DskipTests&quot;
+      }
+    }
+
+    stage(&#39;构建 Docker 镜像&#39;) {
+      steps {
+        sh &quot;&quot;&quot;
+            mv ${projectBuildTargetPath}/*.jar ${projectBuildTargetPath}/${projectJarNewName}
+            
+            cd ${projectWorkSpacePath}
+            
+            docker build -t ${dockerImageName} ./
+        &quot;&quot;&quot;
+      }
+    }
+
+    stage(&#39;运行 Docker 镜像&#39;) {
+      steps {
+        sh &quot;&quot;&quot;
+            docker stop ${dockerContainerName} | true
+
+            docker rm -f ${dockerContainerName} | true
+            
+            docker run -d  ${dockerRunParam} ${dockerImageName}
+        &quot;&quot;&quot;
+      }
+    }
+    
+    
+
+    
+    
+
+  }
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h4 id="简单的-pipeline-写法-docker-harbor-方式运行-闭源项目-码云为例" tabindex="-1"><a class="header-anchor" href="#简单的-pipeline-写法-docker-harbor-方式运行-闭源项目-码云为例" aria-hidden="true">#</a> 简单的 pipeline 写法（Docker + Harbor 方式运行）（闭源项目 -- 码云为例）</h4><ul><li>请先看懂上面 Docker 方式</li><li>一共需要 3 台机子（要保证在内网环境，不然一定会有安全问题） <ul><li>一台部署 <a href="/cs-guide/linux-tutor/server/Harbor-Install-And-Usage.html" class="">Harbor</a></li><li>一台部署 Jenkins</li><li>一台运行项目</li></ul></li><li>确保 Jenkins 机子已经 Docker Login Harbor，这个就一次性的动作，所以自己在 Jenkins 服务器上操作即可</li><li>确保 Spring Boot 项目运行的机子已经 Docker Login Harbor，这个就一次性的动作，所以自己在 Jenkins 服务器上操作即可</li><li>确保 Spring Boot 项目运行的机子 docker remote api 开启（没有身份认证功能，所以才要保证内网）</li><li>Pipeline 写法</li></ul><div class="language-text ext-text line-numbers-mode"><pre class="language-text"><code>pipeline {
+  agent any
+
+  /*=======================================工具环境修改-start=======================================*/
+  tools {
+    jdk &#39;JDK8&#39;
+    maven &#39;MAVEN3&#39;
+  }
+  /*=======================================工具环境修改-end=======================================*/
+
+  options {
+    timestamps()
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(
+      numToKeepStr: &#39;20&#39;,
+      daysToKeepStr: &#39;30&#39;,
+    ))
+  }
+
+  /*=======================================常修改变量-start=======================================*/
+
+  environment {
+    gitUrl = &quot;https://gitee.com/youmeek/springboot-jenkins-demo.git&quot;
+    branchName = &quot;master&quot;
+    giteeCredentialsId = &quot;Gitee&quot;
+    projectWorkSpacePath = &quot;${env.WORKSPACE}&quot;
+    projectBuildTargetPath = &quot;${env.WORKSPACE}/target&quot;
+    projectJarNewName = &quot;buildApp.jar&quot;
+
+    projectDockerDaemon = &quot;tcp://192.168.1.12:2376&quot;
+    harborUrl = &quot;192.168.1.13&quot;
+    harborProjectName = &quot;demo&quot;
+    dockerImageName = &quot;${harborUrl}/${harborProjectName}/${env.JOB_NAME}:${env.BUILD_NUMBER}&quot;
+    dockerContainerName = &quot;${env.JOB_NAME}&quot;
+    inHostPort = &quot;8082&quot;
+    inDockerAndJavaPort = &quot;8081&quot;
+    inHostLogPath = &quot;/data/docker/logs/${dockerContainerName}/${env.BUILD_NUMBER}&quot;
+    inDockerLogPath = &quot;/data/logs&quot;
+    dockerRunParam = &quot;--name=${dockerContainerName} --hostname=${dockerContainerName} -v /etc/hosts:/etc/hosts -v ${inHostLogPath}:${inDockerLogPath} --restart=always  -p ${inHostPort}:${inDockerAndJavaPort}&quot;
+  }
+  
+  /*=======================================常修改变量-end=======================================*/
+  
+  stages {
+    
+    stage(&#39;Pre Env&#39;) {
+      steps {
+         echo &quot;======================================项目名称 = ${env.JOB_NAME}&quot;
+         echo &quot;======================================项目 URL = ${gitUrl}&quot;
+         echo &quot;======================================项目分支 = ${branchName}&quot;
+         echo &quot;======================================当前编译版本号 = ${env.BUILD_NUMBER}&quot;
+         echo &quot;======================================项目空间文件夹路径 = ${projectWorkSpacePath}&quot;
+         echo &quot;======================================项目 build 后 jar 路径 = ${projectBuildTargetPath}&quot;
+         echo &quot;======================================项目 jar 新名称 = ${projectJarNewName}&quot;
+         echo &quot;======================================Docker 镜像名称 = ${dockerImageName}&quot;
+         echo &quot;======================================Docker 容器名称 = ${dockerContainerName}&quot;
+         echo &quot;======================================harbor 地址 = ${harborUrl}&quot;
+         echo &quot;======================================harbor 项目名称 = ${harborProjectName}&quot;
+         echo &quot;======================================项目在宿主机的端口 = ${inHostPort}&quot;
+         echo &quot;======================================项目在 Docker 容器中的端口 = ${inDockerAndJavaPort}&quot;
+         echo &quot;======================================项目在宿主机的 log 路径 = ${inHostLogPath}&quot;
+         echo &quot;======================================项目在 docker 容器的 log 路径 = ${inDockerLogPath}&quot;
+         echo &quot;======================================项目运行的 Docker remote ip 信息 = ${projectDockerDaemon}&quot;
+         echo &quot;======================================项目运行的参数 = ${dockerRunParam}&quot;
+      }
+    }
+    
+    stage(&#39;Git Clone&#39;){
+      steps {
+          git branch: &quot;${branchName}&quot;,
+          credentialsId: &quot;${giteeCredentialsId}&quot;,
+          url: &quot;${gitUrl}&quot;
+      }
+    }
+
+    stage(&#39;Maven Clean&#39;) {
+      steps {
+        sh &quot;mvn clean&quot;
+      }
+    }
+
+    stage(&#39;Maven Package&#39;) {
+      steps {
+        sh &quot;mvn package -DskipTests&quot;
+      }
+    }
+
+    stage(&#39;构建 Docker 镜像&#39;) {
+      steps {
+        sh &quot;&quot;&quot;
+            mv ${projectBuildTargetPath}/*.jar ${projectBuildTargetPath}/${projectJarNewName}
+            
+            cd ${projectWorkSpacePath}
+            
+            docker build -t ${dockerImageName} ./
+        &quot;&quot;&quot;
+      }
+    }
+
+    stage(&#39;Push Docker 镜像&#39;) {
+      options {
+        timeout(time: 5, unit: &#39;MINUTES&#39;) 
+      }
+      steps {
+        sh &quot;&quot;&quot;
+          docker push ${dockerImageName}
+          docker rmi ${dockerImageName}
+        &quot;&quot;&quot;
+      }
+    }
+
+    stage(&#39;运行远程 Docker 镜像&#39;) {
+      options {
+        timeout(time: 5, unit: &#39;MINUTES&#39;) 
+      }
+      steps {
+        sh &quot;&quot;&quot;
+            docker -H ${projectDockerDaemon} pull ${dockerImageName}
+            
+            docker -H ${projectDockerDaemon} stop ${dockerContainerName} | true
+            
+            docker -H ${projectDockerDaemon} rm -f ${dockerContainerName} | true
+            
+            docker -H ${projectDockerDaemon} run -d  ${dockerRunParam} ${dockerImageName}
+        &quot;&quot;&quot;
+      }
+    }
+    
+    
+
+    
+    
+
+  }
+}
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr><h2 id="多节点-master-与-slave" tabindex="-1"><a class="header-anchor" href="#多节点-master-与-slave" aria-hidden="true">#</a> 多节点 master 与 slave</h2><ul><li>可以参考这篇：<a href="http://www.cnblogs.com/sparkdev/p/7102622.html" target="_blank" rel="noopener noreferrer">http://www.cnblogs.com/sparkdev/p/7102622.html<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li></ul><hr><h2 id="资料" tabindex="-1"><a class="header-anchor" href="#资料" aria-hidden="true">#</a> 资料</h2><ul><li><a href="http://stackoverflow.com/questions/4969156/java-net-unknownhostexception" target="_blank" rel="noopener noreferrer">http://stackoverflow.com/questions/4969156/java-net-unknownhostexception<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li><a href="https://www.jianshu.com/p/b50e679e2409" target="_blank" rel="noopener noreferrer">https://www.jianshu.com/p/b50e679e2409<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li><a href="http://xkcoding.com/2018/01/04/devops-jenkins.html" target="_blank" rel="noopener noreferrer">http://xkcoding.com/2018/01/04/devops-jenkins.html<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li><li><a href="https://blog.csdn.net/jlminghui/article/details/54952148" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/jlminghui/article/details/54952148<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span></a></li></ul></div><!----><footer class="page-meta"><div class="meta-item edit-link"><a href="https://github.com/yzqdev/cs-guide/edit/main/docs/linux-tutor/server/Jenkins-Install-And-Settings.md" rel="noopener noreferrer" target="_blank" aria-label="编辑此页" class="nav-link label"><!--[--><svg xmlns="http://www.w3.org/2000/svg" class="icon edit-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="edit icon"><path d="M430.818 653.65a60.46 60.46 0 0 1-50.96-93.281l71.69-114.012 7.773-10.365L816.038 80.138A60.46 60.46 0 0 1 859.225 62a60.46 60.46 0 0 1 43.186 18.138l43.186 43.186a60.46 60.46 0 0 1 0 86.373L588.879 565.55l-8.637 8.637-117.466 68.234a60.46 60.46 0 0 1-31.958 11.229z"></path><path d="M728.802 962H252.891A190.883 190.883 0 0 1 62.008 771.98V296.934a190.883 190.883 0 0 1 190.883-192.61h267.754a60.46 60.46 0 0 1 0 120.92H252.891a69.962 69.962 0 0 0-69.098 69.099V771.98a69.962 69.962 0 0 0 69.098 69.098h475.911A69.962 69.962 0 0 0 797.9 771.98V503.363a60.46 60.46 0 1 1 120.922 0V771.98A190.883 190.883 0 0 1 728.802 962z"></path></svg><!--]-->编辑此页<span><svg class="external-link-icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewbox="0 0 100 100" width="15" height="15"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg><span class="external-link-icon-sr-only">open in new window</span></span><!----></a></div><div class="meta-item update-time"><span class="label">上次编辑于: </span><span class="info">2022/5/27 01:37:35</span></div><div class="meta-item contributors"><span class="label">贡献者: </span><!--[--><!--[--><span class="contributor" title="email: yzqdev@outlook.com">yzqdev</span><!--]--><!--]--></div></footer><nav class="page-nav"><a href="/cs-guide/linux-tutor/server/Java-bin.html" class="nav-link prev" aria-label="Java bin 目录下的工具"><div class="hint"><span class="arrow left"></span>上一页</div><div class="link"><!---->Java bin 目录下的工具</div></a><a href="/cs-guide/linux-tutor/server/Kafka-Install-And-Settings.html" class="nav-link next" aria-label="Kafka 安装和配置"><div class="hint">下一页<span class="arrow right"></span></div><div class="link">Kafka 安装和配置<!----></div></a></nav><div class="giscus-wrapper input-top" style="display:block;"><div style="text-align:center">Loading...</div></div><!----><!--]--></main><!--]--><footer class="footer-wrapper"><div class="footer">powered by <a href='https://vuepress-theme-hope.github.io/v2/'>vuepress-theme-hope</a></div><div class="copyright">Copyright © 2022 yzqdev</div></footer><!--]--></div><!--]--><!----><div id="pwa-install"><!----><div id="install-modal-wrapper" style="display:none;"><div class="background"></div><div class="install-modal"><div class="header"><button class="close-button" aria-label="关闭"><svg xmlns="http://www.w3.org/2000/svg" class="icon close-icon" viewbox="0 0 1024 1024" fill="currentColor" aria-label="close icon"><path d="M589.654 511.965 1007.212 84.22a49.777 49.777 0 0 0-.73-70.02 49.046 49.046 0 0 0-69.687.665L519.967 441.946 85.882 14.2a49.08 49.08 0 0 0-69.687.664 49.777 49.777 0 0 0 .664 70.019l433.454 427.082L16.859 939.048a49.777 49.777 0 0 0-.664 70.019 49.013 49.013 0 0 0 69.687.663l434.085-427.746 416.828 427.083A49.013 49.013 0 0 0 972.037 1024a48.416 48.416 0 0 0 34.512-14.27 49.777 49.777 0 0 0 .73-70.019z"></path></svg></button><div class="logo"><!----><div class="title"><h1></h1><p class="desc">该应用可以安装在你的 PC 或移动设备上。这将使该 Web 应用程序外观和行为与其他应用程序相同。它将在出现在应用程序列表中，并可以固定到主屏幕，开始菜单或任务栏。此 Web 应用程序还将能够与其他应用程序和你的操作系统安全地进行交互。</p></div></div></div><div class="content"><div class="highlight"><!----><!----></div><div class="description"><h3>详情</h3><p></p></div></div><div class="button-wrapper"><button class="install-button">安装<span></span></button><button class="cancel-button">取消</button></div></div></div></div><!----><!--]--></div>
+    <script src="/cs-guide/assets/js/runtime~app.c0ee67b7.js" defer></script><script src="/cs-guide/assets/js/96333.ed0b17af.js" defer></script><script src="/cs-guide/assets/js/app.51f7b59f.js" defer></script>
+  </body>
+</html>

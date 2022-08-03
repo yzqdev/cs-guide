@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>naive</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  </head>
+  <body>
+    <div id="app">
+      <n-button> {{msg}}</n-button>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            msg: "这是中文",
+          };
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>
