@@ -4,7 +4,25 @@
 
 默认的PowerShell并不美观，仅仅是将原来“傻大黑”变成了“傻大蓝”。（由于我的PowerShell已经改造过了所以我这里就没有办法截图了）我们的做法是在PowerShell里面加一个PowerLine，然后剩下的，在Terminal中配置。
 
+### 安装posh-git
+
+```powershell
+PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
+```
+
+### 安装PSReadLine
+
+```powershell
+Install-Module -Name PowerShellGet -Force
+```
+
 ### 安装oh-my-posh
+
+### linux安装
+
+<https://ohmyposh.dev/docs/installation/linux>
+
+### windows安装
 
 地址[https://ohmyposh.dev/](https://ohmyposh.dev/)  
 推荐在windows商店下载oh-my-sh或者在[https://github.com/JanDeDobbeleer/oh-my-posh/releases](https://github.com/JanDeDobbeleer/oh-my-posh/releases)下载`install-amd64.exe`自行安装

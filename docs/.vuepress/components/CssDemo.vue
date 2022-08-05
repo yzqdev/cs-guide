@@ -1,29 +1,25 @@
 <template>
   <h3>css demo</h3>
-  <div class=" css-demo">
-
+  <div class="css-demo">
     <div class="css-block">
-
-      <div class="left-select" :class="[active==index?'active':'']" v-for="(item,index) in cssList"
-           @click="setActive(index)">
-       <pre>
+      <div class="left-select" :class="[active == index ? 'active' : '']" v-for="(item, index) in cssList" @click="setActive(index)">
+        <pre>
         <code> {{ setCss(item) }}</code>
        </pre>
       </div>
     </div>
-    <div class="  sample">
-      <div v-if="!image" class="rect"  :style="style">
-      <span class="font" v-if="showFont">This is css demo</span></div>
-      <div v-if="image"   :style="style"><img :src="image" /></div>
+    <div class="sample">
+      <div v-if="!image" class="rect" :style="style">
+        <span class="font" v-if="showFont">This is css demo</span>
+      </div>
+      <div v-if="image" :style="style"><img :src="image" /></div>
     </div>
   </div>
-
-
 </template>
 
 <script setup lang="ts">
-import {defineProps,ref,onBeforeMount} from 'vue'
-let props = defineProps(['cssList','image','showFont'] )
+import { defineProps, ref, onBeforeMount } from 'vue'
+let props = defineProps(['cssList', 'image', 'showFont'])
 let style = ref({})
 let active = ref(false)
 
@@ -32,11 +28,9 @@ function setActive(index) {
   style.value = props.cssList[index]
 }
 
-
-function setCss(item:  any) {
-
-  console.log(item )
-  return Object.keys(item)[0] + ":" + Object.values(item)[0]
+function setCss(item: any) {
+  console.log(item)
+  return Object.keys(item)[0] + ':' + Object.values(item)[0]
 }
 
 onBeforeMount(() => {
@@ -47,7 +41,6 @@ onBeforeMount(() => {
 .css-demo {
   border: 1px solid #cdcdcd;
   display: flex;
-
 }
 
 .css-block {
@@ -55,13 +48,12 @@ onBeforeMount(() => {
 }
 
 .flex-1 {
-
 }
 
 .left-select {
   cursor: pointer;
 
-  transition: all .5s;
+  transition: all 0.5s;
 
   align-items: center;
   position: relative;
@@ -73,10 +65,11 @@ onBeforeMount(() => {
   width: 100%;
   border: 1px solid #cdcdcd;
   border-radius: 0.25rem;
-  pre{
+  pre {
     display: flex;
     justify-content: center;
-    margin:1rem 0;padding:0;
+    margin: 1rem 0;
+    padding: 0;
   }
 }
 
@@ -90,34 +83,33 @@ onBeforeMount(() => {
     font-size: 12px;
     border: 2px solid red;
   }
-  to{
+  to {
     border: 2px solid yellow;
     font-size: 30px;
   }
 }
 .sample {
   width: 100%;
-  
+
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s;
-  .font{
-    font-size:2rem;
+  .font {
+    font-size: 2rem;
   }
-img{
-  width: 6rem;
-}
+  img {
+    width: 6rem;
+  }
   .rect {
-
     margin: 20px;
-    background:#cdcdcd;
+    background: #cdcdcd;
     width: 150px;
     height: 150px;
     border-radius: 50%;
   }
 }
-.exp{
+.exp {
   animation: slidein 3s infinite;
 }
 </style>

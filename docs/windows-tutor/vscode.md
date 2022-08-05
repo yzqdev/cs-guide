@@ -27,6 +27,10 @@ order: 7
 "terminal.integrated.fontSize": 14
 ```
 
+### 单击打开文件老被新文件覆盖
+
+ 设置`"workbench.editor.enablePreview": false`即可
+
 ## vscode常用快捷键
 
 | 快捷键            | 功能 Function                       |

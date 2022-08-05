@@ -11,5 +11,6 @@ if ($Type -eq "run") {
 elseif ($Type -eq "build") {
     Write-Host "编译" -ForegroundColor Red
     Write-Host "go build" -ForegroundColor Cyan
+   
     
 }

@@ -1,8 +1,20 @@
 # powershell基础
 
 :::tip
-powershell和linux bash的比较[http://xahlee.info/powershell/powershell_for_unixer.html](http://xahlee.info/powershell/powershell_for_unixer.html)
+powershell和linux bash的比较[http://xahlee.info/powershell/powershell_for_unixer.html](http://xahlee.info/powershell/powershell_for_unixer.html)  
+
+[官方文档](https://docs.microsoft.com/zh-cn/powershell/)
 :::
+
+## 安装
+
+### 推荐使用dotnet-cli
+
+```powershell
+dotnet tool install --global PowerShell
+# 更新
+dotnet tool update --global PowerShell
+```
 
 ## 变量
 
@@ -53,13 +65,13 @@ $ip[1] # 获取ipconfig第二行的数据
 
 ### 数组的判断
 
-```
+```powershell
 $test -is [array]
 ```
 
 ### 数组的追加
 
-```
+```powershell
 $books += "元素4"
 ```
 
@@ -67,13 +79,13 @@ $books += "元素4"
 
 ### 哈希表的创建
 
-```
+```powershell
 $stu=@{ Name = "test";Age="12";sex="man" }
 ```
 
 ### 哈希表里存数组
 
-```
+```powershell
 $stu=@{ Name = "hei";Age="12";sex="man";Books="kali","sqlmap","powershell" }
 ```
 

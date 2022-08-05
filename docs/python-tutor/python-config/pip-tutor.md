@@ -83,3 +83,95 @@ python -m pip freeze > requirements.txt
 python -m pip install -r requirements.txt
 
 ```
+
+## Ubuntu 安装最新版本的 Python3.10
+
+> 必须在 `root` 下执行。
+
+**安装最新版本的 Python3.10**
+
+- 查看当前 python3 的版本
+
+  ```bash
+  $ python3 --version
+  Python 3.8.10
+  ```
+
+- 升级包及安装环境前置依赖
+
+  ```bash
+  apt update
+  apt install software-properties-common
+  ```
+
+- 添加 deadsnakes PPA 到源列表
+  安装过程中需要按 `Enter` 进入下一步
+
+  ```bash
+  add-apt-repository ppa:deadsnakes/ppa
+  apt update
+  ```
+
+- 查看软件包是否包含 python3.10
+
+  ```bash
+  apt list | grep python3.10
+  ```
+
+- 安装 python3.10
+
+  ```bash
+  apt install python3.10
+  ```
+
+- 查看当前 Python 版本，发现版本未更新
+
+  ```bash
+  python3 --version
+  ```
+
+- 设置默认版本为 Python3.10
+
+  ```bash
+  update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 1
+  update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 2
+  ```
+
+  执行，选择默认版本
+
+  ```bash
+  update-alternatives --config python3
+  ```
+
+- 查看最新的 Python 版本
+
+  ```bash
+  $ python --version
+  Python 3.10.0
+  ```
+
+**按需要决定是否移除旧版本的 Python3.8（因是默认的 Python，建议不移除，以防个别破坏内置依赖）**
+
+```bash
+apt remove python3.8
+apt autoremove
+```
+
+- 修复 pip 和 disutils
+  执行 `pip --version` 会报错：
+
+  ```bash
+  ModuleNotFoundError: No module named 'distutils.util'
+  ```
+
+  解决：
+
+  ```bash
+  apt install python3.10-distutils
+  ```
+
+- 重装 pip
+
+  ```
+  curl -fSL https://bootstrap.pypa.io/get-pip.py |   python3 get-pip.py --user
+  ```

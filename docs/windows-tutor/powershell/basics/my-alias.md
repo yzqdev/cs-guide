@@ -1,6 +1,6 @@
 # 别名alias
 
-```powershell
+```powershellpowershell
 function fluship{
     ipconfig /flushdns
 }
@@ -14,7 +14,7 @@ Set-Alias y yarnDev
 `PowerShell`在Windows10中的地位被慢慢提高，在最近的系统版本中，Powershell已经在资源管理器中完全代替以前的`cmd`出现。所以我本人也逐渐把运行命令的习惯向PowerShell迁移。
 在使用过程中发现PowerShell虽然默认支持类似Unix系统的`ls`命令，但是其默认展示方式是非常详细的，包括`Mode`，`LastWriteTime`,`Length`和 `Name`共4个字段。这里的`ls`其实是PowerShell命令`Get-ChildItem`的一个别名，显示效果如下：
 
-```
+```powershell
 PS D:\apktool> get-childitem
 
 
@@ -36,8 +36,8 @@ _以下命令中的大小写不敏感_：
 
 - 查看此Session中已经设定的所有别名：`Get-Alias`或`gal`
 
-```text
-PS C:\> Get-Alias
+```powershelltext
+ Get-Alias
 CommandType     Name
 -----------     ----
 Alias           % -> ForEach-Object
@@ -56,14 +56,14 @@ Alias           asnp -> Add-PSSnapin
 使用`Set-Alias`命令创建或更改别名。注意使用该命令设定的别名只在目前的Windows PowerShell session中生效。也就是说在关闭此会话后这个别名将会失效。_如何创建永久的别名？往下看_。
 如为`Get-ChildItem`命令设定别名`list`：
 
-```text
-PS C:\> Set-Alias -Name list -Value get-childitem
+```powershelltext
+ Set-Alias -Name list -Value get-childitem
 ```
 
 或简单一些：
 
-```text
-PS C:\> Set-Alias list get-childitem
+```powershelltext
+ Set-Alias list get-childitem
 ```
 
 _注意：对于系统默认设定的别名，不可在删除此别名之前重新对这个别名赋值。_
@@ -73,9 +73,9 @@ _注意：对于系统默认设定的别名，不可在删除此别名之前重�
 
 如果命令带参数如想为`Get-ChildItem -Name`设定别名为`ls`则我们需要两步，第一步为这个带参数原命令设定一个中间`function`，第二步为这个function指定别名：
 
-```
-PS C:\> function getlist {Get-ChildItem -Name}
-PS C:\> Set-Alias ls getlist
+```powershell
+ function getlist {Get-ChildItem -Name}
+ Set-Alias ls getlist
 ```
 
 ## 删除别名
@@ -83,8 +83,8 @@ PS C:\> Set-Alias ls getlist
 使用`Remove-Item alias`命令删除已设定的别名。
 如删除别名`ls`：
 
-```
-PS C:\> Remove-Item alias:\ls
+```powershell
+ Remove-Item alias:\ls
 ```
 
 ## 创建永久的别名
@@ -92,20 +92,20 @@ PS C:\> Remove-Item alias:\ls
 在PowerShell中直接使用`Set-Alias`或`New-Alias`命令创建的别名在关闭此Session后即会失效，防止此现象的方法是将此命令写入`Windows PowerShell profile`文件。
 查看此文件在计算机中的位置：
 
-```
-PS C:\> $profile
+```powershell
+ $profile
 ```
 
 一般该文件在没有创建前是不存在的，使用以下命令为当前用户创建profile命令并返回文件地址：
 
-```
-PS C:\> New-Item -Type file -Force $profile
+```powershell
+ New-Item -Type file -Force $profile
 ```
 
 一般创建的位置在`~\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`
 打开文件，键入文件内容为`Get-ChildItem -Name`创建别名`ls`：
 
-```
+```powershell
 function fluship{
 ipconfig /flushdns
 }
@@ -118,7 +118,7 @@ Set-Alias ip fluship
 
 试试效果：
 
-```
+```powershell
 PS D:\apktool> ls
 apktool.bat
 apktool.jar

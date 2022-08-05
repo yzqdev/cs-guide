@@ -48,7 +48,6 @@ cmdlet在以下方面与其他命令Shell程序环境中的命令不同：
 - Cmdlet一次处理一个对象，因此它们是面向记录的。
 - Cmdlet是.NET Framework类的实例，因此它们不是独立的可执行文件。
 
- 
 PowerShell基本cmdlet命令如下表所示：
 
 | 命令                      | 描述(说明)                                             |

@@ -13,14 +13,12 @@ PowerShell哈希表是一种数据结构，用于存储一个或多个键/值对
 
 ```powershell
 $variable_name = @{ <key1> = <value1> ; < key2> = <value2> ; ..... ; < keyN> = <valueN>;}
-Shell
 ```
 
 以下语句是创建有序字典的语法：
 
 ```powershell
 $variable_name = [ordered] @{ < key1> = <value1> ; < key2> = <value2> ; ..... ; < keyN> = <valueN>;}
-Shell
 ```
 
 ## 2.创建哈希表
@@ -40,14 +38,12 @@ Shell
 
 ```powershell
 $variablename = @{}
-Shell
 ```
 
 创建哈希表时，我们还可以将其添加到哈希表中。以下示例描述了如何使用三个键及其值创建哈希表。
 
 ```powershell
 $student = @{ name = "Maxsu" ; Course = "数学" ; Age= 25 }
-Shell
 ```
 
 ## 3.显示哈希表
@@ -57,33 +53,26 @@ Shell
 
 ```powershell
 $Student
-Shell
 ```
-
-![img](http://www.xntutor.com/uploads/images/2020/02/03/213736_60997.png)
 
 若要显示哈希表的所有键或所有值，请使用点(`.`)表示法。 下面的示例显示以上示例的所有键：
 
 ```powershell
 $Student.keys
-Shell
 ```
 
 下面的示例显示以上示例的所有值：
 
 ```powershell
 $Student.values
-Shell
 ```
-
-![img](http://www.xntutor.com/uploads/images/2020/02/03/213920_48811.png)
 
 哈希表具有`count`属性，该属性指示哈希表中键/值对的总数。 在上面的示例中，以下命令将显示键-值对的总数：
 
 ```powershell
 PS C:\Users\hema> $Student.count
 3
-Shell
+
 ```
 
 下面是一个完整的示例，演示了如何创建，初始化和处理哈希表-
@@ -123,7 +112,6 @@ $hash.Count
 
 write-host("sort by key")
 $hash.GetEnumerator() | Sort-Object -Property key
-Shell
 ```
 
 上面示例代码执行结果如下：

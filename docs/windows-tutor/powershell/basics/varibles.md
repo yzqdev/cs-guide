@@ -1,6 +1,6 @@
 # 变量
 
-​                        
+​
 
 自动变量是存储Windows PowerShell状态的那些变量。这些变量将包含用户和系统的信息，默认变量，运行时变量和PowerShell设置。这些变量可以由Windows PowerShell创建和维护。
 
