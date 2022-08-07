@@ -6,6 +6,7 @@ order: 5
 - [https://www.sdk.cn/](https://www.sdk.cn/)
 - [https://hao.studygolang.com/](https://hao.studygolang.com/)
 - [https://learnku.com/articles/59094](https://learnku.com/articles/59094)
+- [https://github.com/go-admin-team/go-admin](https://github.com/go-admin-team/go-admin)
 
 ## pastebin
 

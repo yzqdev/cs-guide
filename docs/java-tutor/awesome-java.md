@@ -53,14 +53,9 @@ mapstruct
 ​
 
 [https://github.com/d2-projects/d2-admin](https://github.com/d2-projects/d2-admin)
+​[https://pdai.tech/](https://pdai.tech/)
+
 ​
-
-golang
-​
-
-[https://github.com/go-admin-team/go-admin](https://github.com/go-admin-team/go-admin)
-
-
 
 ## 面试题推荐
 
