@@ -7,3 +7,17 @@ order: 2
 
 <https://github.com/yzqdev/my-configs.git>
 格式化快捷键  `ctrl+k, ctrl+f`
+
+## 插件推荐
+
+<https://github.com/microsoft/TemplateStudio>
+
+## viasfora
+
+## codemaid
+
+## xaml styler
+
+## file icons
+
+## Visual Studio IntelliCode

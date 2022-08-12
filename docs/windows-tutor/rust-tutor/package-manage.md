@@ -1,10 +1,18 @@
 # rust包管理
 
-:::tips
-仓库搜索 1.[https://crates.io/](https://crates.io/) 2.[https://docs.rs/] (<https://docs.rs/>)
+:::tip
+仓库搜索
+
+- [https://crates.io/](https://crates.io/)
+- [https://docs.rs/](https://docs.rs/)
+
 建议使用镜像  
 [http://mirrors.ustc.edu.cn/help/crates.io-index.html](http://mirrors.ustc.edu.cn/help/crates.io-index.html)
 :::
+
+## 安装
+
+<https://www.rust-lang.org/tools/install>
 
 ## 添加镜像
 
@@ -14,7 +22,7 @@
 
  中国科学技术大学  
 
-```
+```shell
 RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
 RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 ```
@@ -41,11 +49,13 @@ registry = "https://mirrors.ustc.edu.cn/crates.io-index"
 
 ```shell
 rustup update stable
+# 或者直接
+rustup update
 ```
 
 ## 配置config.toml
 
-下面是一个配置文件
+下面是一个配置文件,路径`$HOME/.cargo/config.toml`
 
 ```toml
 paths = ["/path/to/override"] # 覆盖 `Cargo.toml` 中通过 path 引入的本地依赖
