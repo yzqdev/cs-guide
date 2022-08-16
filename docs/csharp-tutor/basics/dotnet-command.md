@@ -20,6 +20,7 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 
 ```powershell
 dotnet tool install --global PowerShell
+dotnet tool install -g PowerShell
 ```
 
 ## 打包发布

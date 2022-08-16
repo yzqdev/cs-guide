@@ -8,7 +8,7 @@
 
 ## out修饰符
 
-```java
+```csharp
 public void OutFunc()
         {
             int n;

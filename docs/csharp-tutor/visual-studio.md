@@ -8,16 +8,23 @@ order: 2
 <https://github.com/yzqdev/my-configs.git>
 格式化快捷键  `ctrl+k, ctrl+f`
 
+## 常用配置
+
+- 配置editorconfig和gitignore
+- 配置自动补全,搜索 删除字符后显示完整列表,并打上勾
+
 ## 插件推荐
 
 <https://github.com/microsoft/TemplateStudio>
 
-## viasfora
+### viasfora
 
-## codemaid
+### codemaid
 
-## xaml styler
+### xaml styler
 
-## file icons
+### file icons
 
-## Visual Studio IntelliCode
+### Visual Studio IntelliCode
+
+### open command line
