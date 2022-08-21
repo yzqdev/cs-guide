@@ -16,6 +16,20 @@ PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
 Install-Module -Name PowerShellGet -Force
 ```
 
+### 安装terminal-icons
+
+[github地址](https://github.com/devblackops/Terminal-Icons)
+
+```powershell
+Install-Module -Name Terminal-Icons -Repository PSGallery
+```
+
+然后在`$profile`加入
+
+```powershell
+Import-Module -Name Terminal-Icons
+```
+
 ### 安装oh-my-posh
 
 ### linux安装
