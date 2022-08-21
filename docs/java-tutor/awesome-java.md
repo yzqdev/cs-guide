@@ -59,6 +59,17 @@ mapstruct
 
 ## 面试题推荐
 
+- <https://javaguide.cn/>
+- <https://www.cnblogs.com/yaphetsfang/>
+- <https://www.javanav.com/>
+- <https://tobebetterjavaer.com/#/README>
+- <https://www.javastack.cn/article/2021/spring-boot-2.6.0-released/>
+- <https://www.pdai.tech/>
+- <https://www.developers.pub/wiki/1002310/>
+- <https://bugstack.cn/>
+- <http://springboot.fun/>
+- <https://hzy38324.gitbooks.io/java-concurrency-in-practice/content/how-to-write-un-thread-safe-code.html>
+
 - [链接] <https://mp.weixin.qq.com/s?__biz=MzIyNDU2ODA4OQ==&mid=2247484532&idx=1&sn=1c243934507d79db4f76de8ed0e5727f&>
 - [https://javaguide.cn/](https://javaguide.cn/)
 - [https://www.cnblogs.com/yaphetsfang/](https://www.cnblogs.com/yaphetsfang/)
@@ -83,6 +94,14 @@ mapstruct
 ​
 
 ### 好用的文档
+
+- [https://docs.qq.com/](https://docs.qq.com/)
+- [https://fgb0140i4t.feishu.cn/](https://fgb0140i4t.feishu.cn/)
+- [石墨文档](https://shimo.im/)
+- [超级文档](https://sdocapp.com/)
+- [https://www.baklib.com/](https://www.baklib.com/)
+- [雷鸟365](https://www.leiniao365.com/)
+- [https://www.fangcloud.com/home/online_edit](https://www.fangcloud.com/home/online_edit)
 
 [https://cdk8s.gitbook.io/github/](https://cdk8s.gitbook.io/github/)
 [https://apachecn.org/#/docs/docs/README](https://apachecn.org/#/docs/docs/README)

@@ -8,6 +8,26 @@ order: 5
 - [https://learnku.com/articles/59094](https://learnku.com/articles/59094)
 - [https://github.com/go-admin-team/go-admin](https://github.com/go-admin-team/go-admin)
 
+- [https://www.topgoer.cn/](https://www.topgoer.cn/)
+
+- [learnku.com](https://learnku.com)
+- [学院君](https://geekr.dev/)
+- [煎鱼](https://eddycjy.com/posts/)
+- [helloworld](https://learnku.com/docs/gobyexample/2020/hello-world/6252)
+- [go指南](https://tour.go-zh.org/list)
+- [coolshell](https://coolshell.cn/)
+- [gozero](https://go-zero.dev/cn/)
+- laruence <https://www.laruence.com>
+- 学院君 <https://xueyuanjun.com> laravelacademy.org/
+- 仙士可 <https://www.php20.cn>
+- 冯奎 <https://fengkui.net>
+- laravel <https://appdividend.com>
+- magento <https://alanstorm.com>
+- 菜鸟 <https://www.runoob.com>
+
+- BI <https://d-bi.gitee.io>
+- 爱资料工具网 <https://www.toolnb.com>
+
 ## pastebin
 
 - [mozzilia](https://pastebin.mozilla.org/)

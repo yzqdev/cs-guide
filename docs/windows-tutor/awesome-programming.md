@@ -68,6 +68,17 @@ upx -9 gva.exe
 
 - [https://github.com/HandBrake/HandBrake](https://github.com/HandBrake/HandBrake)
 - shotcut
+- <https://calibre-ebook.com/>
+
+## github好用的软件
+
+- [office激活工具](https://github.com/netnr/kms)
+- [原神抽卡工具](https://github.com/biuuu/genshin-wish-export)
+- [命令行版本](https://github.com/sunfkny/genshin-gacha-export)
+- [https://github.com/tophubs/TopList](https://github.com/tophubs/TopList)
+​
+
+​
 
 ## python tool
 
