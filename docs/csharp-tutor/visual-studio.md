@@ -3,10 +3,14 @@ order: 2
 ---
 # visual studio 配置
 
+## 技巧
+
 ## 配置格式化
 
 <https://github.com/yzqdev/my-configs.git>
 格式化快捷键  `ctrl+k, ctrl+f`
+
+要在调试停止时自动关闭控制台，请启用“工具”->“选项”->“调试”->“调试停止时自动关闭控制台”。
 
 ## 常用配置
 

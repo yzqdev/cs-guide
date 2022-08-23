@@ -36,7 +36,3 @@ dotnet tool update -g upgrade-assistant
 
 - [https://docs.microsoft.com/zh-cn/dotnet/architecture/modernize-desktop/example-migration](https://docs.microsoft.com/zh-cn/dotnet/architecture/modernize-desktop/example-migration)  
 - [https://www.wpfhub.com/](https://www.wpfhub.com/)  
-visualstdio插件
-​
-
-xaml styler
