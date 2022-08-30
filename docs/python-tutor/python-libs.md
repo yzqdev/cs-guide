@@ -27,6 +27,7 @@ order: 1
 - [qtpython](https://github.com/prompt-toolkit/ptpython)
 - [bpython](https://github.com/bpython/bpython/)
 - [legit](https://frostming.github.io/legit/)
+- [black](https://github.com/psf/black)
 
 ## 查看awesome-python
 
@@ -58,10 +59,11 @@ tkinter
 ## python常用包管理工具
 
 pip 见本文档目录
+[pipenv](https://github.com/pypa/pipenv) pipenv   推荐使用!  
 anaconda 见本文档
 
 virtual env    [https://virtualenv.pypa.io/en/latest/](https://virtualenv.pypa.io/en/latest/)
-pipenv   推荐使用!
+
 ​
 
 poetry  [https://github.com/python-poetry/poetry](https://github.com/python-poetry/poetry)  还行,跟npm差不多

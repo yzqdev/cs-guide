@@ -17,9 +17,11 @@ pip install pipenv
 
 ```
 添加镜像
+
 「清华源」："https://pypi.tuna.tsinghua.edu.cn/simple/"
 「阿里源」："http://mirrors.aliyun.com/pypi/simple/"
 「豆瓣源」："http://pypi.douban.com/simple"
+华为也有镜像源 [华为](https://mirrors.huaweicloud.com/home)
 ```
 
 ```toml
@@ -27,6 +29,15 @@ pip install pipenv
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 verify_ssl = true
 name = "pypi"
+```
+
+配置在:Windows路径为：`C:\Users\<UserName>\pip\pip.ini`
+
+```toml
+[global]
+index-url = https://repo.huaweicloud.com/repository/pypi/simple
+trusted-host = repo.huaweicloud.com
+timeout = 120
 ```
 
 默认安装的虚拟环境都在c盘`%userprofile%的.virtualenvs`文件夹下面,如果想更换,可以添加`PIPENV_VENV_IN_PROJECT`环境变量,并设置值为`1`,就是在项目下面创建虚拟环境

@@ -12,7 +12,7 @@
 allprojects{
     repositories {
         def ALIYUN_REPOSITORY_URL = 'https://maven.aliyun.com/repository/public/'
-        def ALIYUN_JCENTER_URL = 'https://maven.aliyun.com/repository/jcenter/'
+        def ALIYUN_JCENTER_URL = 'https://maven.aliyun.com/repository/public/'
         def ALIYUN_GOOGLE_URL = 'https://maven.aliyun.com/repository/google/'
         def ALIYUN_GRADLE_PLUGIN_URL = 'https://maven.aliyun.com/repository/gradle-plugin/'
         all { ArtifactRepository repo ->
