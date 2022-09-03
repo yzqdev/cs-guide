@@ -17,13 +17,13 @@ xml
   <groupId>org.openjfx</groupId>
   <artifactId>javafx-controls</artifactId>
   <!--指定版本-->
-  <version>17.0.1</version>
+  <version>17.0.2</version>
 </dependency>
 <dependency>
   <groupId>org.openjfx</groupId>
   <artifactId>javafx-fxml</artifactId>
   <!--指定版本-->
-  <version>17.0.1</version>
+  <version>17.0.2</version>
 </dependency>
 ```
 
@@ -332,6 +332,10 @@ javapackager打包生成的文件目录
 也可以尝试下去查看注册表 `计算机\HKEY_CLASSES_ROOT\jarfile\shell\open\command` 看是否与你项目的JDK版本一致。当然也可以直接用从openlist添加java.exe作为
 
 ![b0929d6c3bc1ad46c387ca44717a823d](./img/52495b02e8ccdbbb5bbf8c3136c5125d.png)
+:::tip
+双击jar文件运行  
+在注册表编辑器中，找到“HKEY_CLASSES_ROOT\Applications\javaw.exe\shell\open\command”，在其中文件打开命令中加入参数“-jar”（无引号），修改后的数值类似：“"C:\ProgramFiles\Java\jre17\bin\javaw.exe" -jar "%1"”（只需要添加-jar参数，无需修改其他信息），保存并退出注册表编辑器
+:::
 
 ### 问题四：在 JDK17中运行 JDK1.8的JavaFx项目
 

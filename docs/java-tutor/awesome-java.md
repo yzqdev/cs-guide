@@ -3,6 +3,18 @@ order: 1
 ---
 # awesome java
 
+:::tip
+jdk下载地址  
+
+- <https://www.oracle.com/technetwork/java/javase/downloads/index.html>
+- [清华镜像](https://mirrors.tuna.tsinghua.edu.cn/Adoptium/17/jdk/x64/windows/)
+- <https://www.injdk.cn/>
+- <https://bell-sw.com/pages/downloads/>  (这个版本jdk的full版本带有javafx)
+- <https://adoptium.net/>
+- <https://www.azul.com/downloads/?package=jdk#download-openjdk>
+- [使用哪个jdk](https://whichjdk.com/)
+:::
+
 ## 工具包
 
 - 控制台显示颜色   [http://fusesource.github.io/jansi/](http://fusesource.github.io/jansi/)
