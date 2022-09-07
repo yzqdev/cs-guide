@@ -70,3 +70,7 @@ repositories {
     mavenCentral()
 }
 ```
+
+## groovy dsl转kotlin dsl
+
+<https://docs.gradle.org/current/userguide/migrating_from_groovy_to_kotlin_dsl.html>

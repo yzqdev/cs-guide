@@ -18,20 +18,14 @@ export default hopeTheme({
 
   docsDir: "docs",
 
-  themeColor: {
-    blue: "#2196f3",
-    red: "#f26d6d",
-    green: "#3eaf7c",
-    orange: "#fb9b5f",
-  },
-  fullscreen: true,
+ 
   // navbar
   navbar: navbar,
 
   // sidebar
   sidebar: sidebar,
  
-  headerDepth: 3,
+  
   footer: `powered by <a href='https://vuepress-theme-hope.github.io/v2/'>vuepress-theme-hope</a>`,
 
   displayFooter: true,

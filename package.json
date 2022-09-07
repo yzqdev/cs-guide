@@ -4,30 +4,30 @@
   "description": "pc documents",
   "license": "MIT",
   "scripts": {
-    "docs:vite": "vuepress  build docs",
     "docs:build": "vuepress-webpack build docs --clean-cache",
     "docs:clean-dev": "vuepress-vite  dev docs --clean-cache",
-    "docs:dev": "vuepress-vite dev docs "
-  },
-  "devDependencies": {
-    "@vuepress/plugin-docsearch": "2.0.0-beta.49",
-    "vuepress": "2.0.0-beta.49",
-    "@vuepress/cli": "2.0.0-beta.49",
-    "@vuepress/client": "2.0.0-beta.49",
-    "@vuepress/utils": "2.0.0-beta.49",
-    "vuepress-shared": "2.0.0-beta.91",
-    "@vuepress/plugin-prismjs": "2.0.0-beta.49",
-    "vue": "3.2.37",
-    "@vueuse/core": "9.0.0",
-    "vuepress-vite": "2.0.0-beta.49",
-    "sass-loader": "13.0.2",
-    "sass": "1.54.0",
-    "vuepress-webpack": "2.0.0-beta.49",
-    "vuepress-theme-hope": "2.0.0-beta.91"
+    "docs:dev": "vuepress-vite dev docs ",
+    "docs:vite": "vuepress  build docs"
   },
   "dependencies": {
-    "element-plus": "2.2.11",
     "axios": "0.27.2",
+    "element-plus": "2.2.11",
     "highlight.js": "11.6.0"
+  },
+  "devDependencies": {
+    "@vuepress/cli": "2.0.0-beta.49",
+    "@vuepress/client": "2.0.0-beta.49",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.49",
+    "@vuepress/plugin-prismjs": "2.0.0-beta.49",
+    "@vuepress/utils": "2.0.0-beta.49",
+    "@vueuse/core": "9.0.0",
+    "sass": "1.54.0",
+    "sass-loader": "13.0.2",
+    "vue": "3.2.37",
+    "vuepress": "2.0.0-beta.49",
+    "vuepress-shared": "2.0.0-beta.91",
+    "vuepress-theme-hope": "2.0.0-beta.91",
+    "vuepress-vite": "2.0.0-beta.49",
+    "vuepress-webpack": "2.0.0-beta.49"
   }
 }

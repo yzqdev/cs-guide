@@ -145,3 +145,24 @@ Get-CimInstance Win32_Process | Where {$_.CommandLine -like $process } | select 
 # 关闭javaw进程
 Get-CimInstance Win32_Process | Where {$_.CommandLine -like $process} | Remove-CimInstance
 ```
+
+## mvn wrapper
+
+<https://maven.apache.org/wrapper/>
+只需要在原项目里面
+
+```shell
+mvn wrapper:wrapper
+
+```
+
+然后就可以在目录下面运行
+
+```shell
+./mvnw clean install
+
+```
+
+## mvnd
+
+<https://github.com/apache/maven-mvnd>
