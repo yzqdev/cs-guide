@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "axios": "0.27.2",
-    "element-plus": "2.2.11",
+    "element-plus": "2.2.16",
     "highlight.js": "11.6.0"
   },
   "devDependencies": {
@@ -20,13 +20,13 @@
     "@vuepress/plugin-docsearch": "2.0.0-beta.51",
     "@vuepress/plugin-prismjs": "2.0.0-beta.51",
     "@vuepress/utils": "2.0.0-beta.51",
-    "@vueuse/core": "9.0.0",
-    "sass": "1.54.0",
+    "@vueuse/core": "9.2.0",
+    "sass": "1.54.9",
     "sass-loader": "13.0.2",
-    "vue": "3.2.37",
+    "vue": "3.2.39",
     "vuepress": "2.0.0-beta.51",
-    "vuepress-shared": "2.0.0-beta.99",
-    "vuepress-theme-hope": "2.0.0-beta.99",
+    "vuepress-shared": "2.0.0-beta.100",
+    "vuepress-theme-hope": "2.0.0-beta.100",
     "vuepress-vite": "2.0.0-beta.51",
     "vuepress-webpack": "2.0.0-beta.51"
   }
