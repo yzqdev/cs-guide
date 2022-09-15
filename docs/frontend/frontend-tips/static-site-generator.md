@@ -88,6 +88,7 @@ hexo-theme-butterfly
 - <https://github.com/TruthHun/BookStack>
 - <https://github.com/94fzb/zrlog>
 - <https://github.com/mdnice/markdown-nice>
+- <https://gitee.com/durcframework/pagesmanager>
 
 ### 非开源
 

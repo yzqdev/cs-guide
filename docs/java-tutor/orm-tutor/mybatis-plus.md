@@ -86,3 +86,12 @@ static  String path="d://tmp//yzq";
 }
 
 ```
+
+## 使用kotlin
+
+```kotlin
+blogConfigMapper.exists(KtQueryWrapper(BlogConfig::class.java).eq(BlogConfig::configCode,"init"))
+
+```
+
+[例子](https://github.com/baomidou/mybatis-plus/blob/master/mybatis-plus-extension/src/test/kotlin/com/baomidou/mybatisplus/test/kotlin/WrapperTest.kt)
