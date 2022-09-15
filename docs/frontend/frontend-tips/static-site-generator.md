@@ -66,3 +66,37 @@ hexo-theme-butterfly
 ## 一些hexo主题
 
 - [https://easyhexo.com/](https://easyhexo.com/)
+
+----------------------------------------------------------------<!-- markdownlint-capture -->
+
+## 一些知识库
+
+- <https://github.com/huangwei9527/Ink-wash-docs>
+- <https://www.alfresco.com/ecm-software/alfresco-community-editions>
+- <https://github.com/zmister2016/MrDoc>
+- <https://github.com/leanote/leanote>
+- <http://www.tanmer.com/baklib>
+- <https://seed.pgyer.com/>
+- <http://knowledge.bctools.cn/#/>
+- <https://gitee.com/software-minister>
+- <https://pingcode.com/>
+- <https://github.com/siyuan-note/siyuan>
+- <https://github.com/mindoc-org/mindoc>
+- <https://github.com/phachon/mm-wiki>
+- <https://github.com/ryanlelek/Raneto>
+- <https://github.com/BookStackApp/BookStack>
+- <https://github.com/TruthHun/BookStack>
+- <https://github.com/94fzb/zrlog>
+- <https://github.com/mdnice/markdown-nice>
+
+### 非开源
+
+- [yuque.com](https://www.yuque.com/)
+- <https://www.kancloud.cn/>
+- <https://www.feishu.cn/>
+- [baklib.com](https://www.baklib.com/)
+- <https://www.wolai.com/>
+- Worktile
+- <https://www.wiz.cn/zh-cn>
+- <https://shimo.im/welcome>
+- <https://www.documize.com/>

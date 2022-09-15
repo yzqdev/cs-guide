@@ -32,3 +32,7 @@ order: 2
 ### Visual Studio IntelliCode
 
 ### open command line
+
+### rainbow
+
+https://marketplace.visualstudio.com/items?itemName=MadsKristensen.RainbowBraces
