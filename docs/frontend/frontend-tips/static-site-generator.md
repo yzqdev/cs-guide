@@ -71,33 +71,41 @@ hexo-theme-butterfly
 
 ## 一些知识库
 
-- <https://github.com/huangwei9527/Ink-wash-docs>
-- <https://www.alfresco.com/ecm-software/alfresco-community-editions>
-- <https://github.com/zmister2016/MrDoc>
-- <https://github.com/leanote/leanote>
-- <http://www.tanmer.com/baklib>
-- <https://seed.pgyer.com/>
-- <http://knowledge.bctools.cn/#/>
-- <https://gitee.com/software-minister>
-- <https://pingcode.com/>
-- <https://github.com/siyuan-note/siyuan>
-- <https://github.com/mindoc-org/mindoc>
-- <https://github.com/phachon/mm-wiki>
-- <https://github.com/ryanlelek/Raneto>
-- <https://github.com/BookStackApp/BookStack>
-- <https://github.com/TruthHun/BookStack>
-- <https://github.com/94fzb/zrlog>
-- <https://github.com/mdnice/markdown-nice>
-- <https://gitee.com/durcframework/pagesmanager>
-
 ### 非开源
 
-- [yuque.com](https://www.yuque.com/)
-- <https://www.kancloud.cn/>
-- <https://www.feishu.cn/>
-- [baklib.com](https://www.baklib.com/)
-- <https://www.wolai.com/>
-- Worktile
-- <https://www.wiz.cn/zh-cn>
-- <https://shimo.im/welcome>
-- <https://www.documize.com/>
+- [alfresco](https://www.alfresco.com/ecm-software/alfresco-community-editions)
+- **推荐**[语雀](https://www.yuque.com/)
+- **推荐**[我来](https://www.wolai.com/)
+- **推荐**[息流](https://flowus.cn/)
+- [看云](https://www.kancloud.cn/)
+- **推荐**[飞书](https://www.feishu.cn/)
+- **推荐**[baklib](https://www.baklib.com/)
+- **推荐**[seed](https://seed.pgyer.com/)
+- **推荐**[Worktile](https://worktile.com/)
+- **推荐**[为知笔记](https://www.wiz.cn/zh-cn)
+- **推荐**[石墨](https://shimo.im/welcome)
+- [flomoapp](https://flomoapp.com/)
+- **推荐**[documize](https://www.documize.com)
+- [无忧文档](http://knowledge.bctools.cn/#/login)
+- **推荐**[pingcode](https://pingcode.com/)
+
+### 开源
+
+- **推荐** [Ink-wash-docs](https://github.com/huangwei9527/Ink-wash-docs) 后端:nodejs,前端:nuxt+vue
+- **推荐**[mrdoc](https://github.com/zmister2016/MrDoc)   后端:python,前端:jquery
+- **推荐**[zyplayer-doc](https://gitee.com/zyplayer/zyplayer-doc) 后端:java,前端:vue
+- [蚂蚁笔记](https://github.com/leanote/leanote) 后端:go,前端:electron
+- <https://github.com/qjx378/wenku> 后端:java,前端:jquery
+- **推荐**<https://gitee.com/software-minister>  后端:java,前端:vue
+- **推荐**[思源](https://github.com/siyuan-note/siyuan) 后端:go,前端:vue
+- **推荐**[mindoc](https://github.com/mindoc-org/mindoc) 后端:go ,前端:jquery
+- **推荐**<https://github.com/phachon/mm-wiki> 后端:go,前端:jquery
+- <https://github.com/ryanlelek/Raneto>后端:nodejs,前端:jquery
+- <https://github.com/BookStackApp/BookStack> 后端:php,前端:jquery
+- **推荐**[书栈网](https://github.com/TruthHun/BookStack)后端:go,前端:jquery
+- <https://github.com/94fzb/zrlog> 后端:java,前端:jquery
+- <https://github.com/mdnice/markdown-nice> 前端:react
+- [pagesmanager](https://gitee.com/durcframework/pagesmanager) 后端:java,前端:vue
+- [wcps](http://wcp.wcpknow.com/) 后端:java ,前端:jquery
+- [https://gitee.com/durcframework/torna](https://gitee.com/durcframework/torna) 后端:java,前端:jquery
+- [小幺鸡](https://gitee.com/zhoujingjie/apiManager) 后端:java,前端:jquery
