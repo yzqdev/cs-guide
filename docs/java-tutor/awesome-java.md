@@ -39,35 +39,21 @@ mapstruct
 
 ## 开源博客
 
-[https://gitee.com/veal98/Echo](https://gitee.com/veal98/Echo)
-[https://gitee.com/aipaw/dootask.git](https://gitee.com/aipaw/dootask.git)
-[https://www.oschina.net/project/tag/65/blog](https://www.oschina.net/project/tag/65/blog)
-
-[https://gitee.com/explore/bbs?lang=Java](https://gitee.com/explore/bbs?lang=Java)
-
-[https://gitee.com/explore/build-web-system?lang=Java](https://gitee.com/explore/build-web-system?lang=Java)
-[https://github.com/topics/cms?l=java](https://github.com/topics/cms?l=java)
-[https://github.com/topics/blog?l=java](https://github.com/topics/blog?l=java)
-
-[https://gitee.com/explore/backend](https://gitee.com/explore/backend)
-​
-
-[https://github.com/tomoya92/pybbs](https://github.com/tomoya92/pybbs)
-​
-
-[https://gitee.com/hooray/fantastic-admin](https://gitee.com/hooray/fantastic-admin)
-​
-
-[https://github.com/PanJiaChen/vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-​
-
-[https://github.com/bailicangdu/vue2-manage](https://github.com/bailicangdu/vue2-manage)
-​
-
-[https://github.com/d2-projects/d2-admin](https://github.com/d2-projects/d2-admin)
-​[https://pdai.tech/](https://pdai.tech/)
-
-​
+- [https://gitee.com/veal98/Echo](https://gitee.com/veal98/Echo)
+- [https://gitee.com/aipaw/dootask.git](https://gitee.com/aipaw/dootask.git)
+- [https://www.oschina.net/project/tag/65/blog](https://www.oschina.net/project/tag/65/blog)
+- [https://gitee.com/explore/bbs?lang=Java](https://gitee.com/explore/bbs?lang=Java)
+- [https://gitee.com/explore/build-web-system?lang=Java](https://gitee.com/explore/build-web-system?lang=Java)
+- [https://github.com/topics/cms?l=java](https://github.com/topics/cms?l=java)
+- [https://github.com/topics/blog?l=java](https://github.com/topics/blog?l=java)
+- [https://gitee.com/explore/backend](https://gitee.com/explore/backend)
+- [https://github.com/tomoya92/pybbs](https://github.com/tomoya92/pybbs)
+- [https://gitee.com/hooray/fantastic-admin](https://gitee.com/hooray/fantastic-admin)
+- [https://github.com/PanJiaChen/vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
+- [https://github.com/bailicangdu/vue2-manage](https://github.com/bailicangdu/vue2-manage)
+- [https://github.com/d2-projects/d2-admin](https://github.com/d2-projects/d2-admin)
+- ​[https://pdai.tech/](https://pdai.tech/)
+ ​
 
 ## 面试题推荐
 
