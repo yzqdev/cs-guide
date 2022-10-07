@@ -1,36 +1,35 @@
-import { hopeTheme } from "vuepress-theme-hope";
-import navbar from "./navbar";
-import sidebar from "./sidebar";
+import { hopeTheme } from 'vuepress-theme-hope'
+import navbar from './navbar'
+import { themePlayground } from './plugins'
+import sidebar from './sidebar'
 
 export default hopeTheme({
-  hostname: "https://yzqdev.github.io/cs-guide",
+  hostname: 'https://yzqdev.github.io/cs-guide',
 
   author: {
-    name: "yzqdev",
-    url: "http://www.yzqdev.top",
+    name: 'yzqdev',
+    url: 'http://www.yzqdev.top',
   },
 
-  iconPrefix: "iconfont icon-",
+  iconPrefix: 'iconfont icon-',
 
-  logo: "/ayaka.webp",
+  logo: '/ayaka.webp',
 
-  repo: "https://github.com/yzqdev/cs-guide",
+  repo: 'https://github.com/yzqdev/cs-guide',
 
-  docsDir: "docs",
+  docsDir: 'docs',
 
- 
   // navbar
   navbar: navbar,
 
   // sidebar
   sidebar: sidebar,
- 
-  
+
   footer: `powered by <a href='https://vuepress-theme-hope.github.io/v2/'>vuepress-theme-hope</a>`,
 
   displayFooter: true,
 
-  pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
+  pageInfo: ['Author', 'Original', 'Date', 'Category', 'Tag', 'ReadingTime'],
 
   // blog: {
   //   description: "一个前端开发者",
@@ -76,55 +75,55 @@ export default hopeTheme({
   plugins: {
     blog: false,
     pwa: {
-      update: "hint",
-      favicon: "/favicon.ico",
+      update: 'hint',
+      favicon: '/favicon.ico',
       showInstall: true,
-      themeColor: "#46bd87",
+      themeColor: '#46bd87',
       appendBase: true,
       apple: {
-        icon: "/assets/icon/apple-icon-152.png",
-        statusBarColor: "black",
+        icon: '/assets/icon/apple-icon-152.png',
+        statusBarColor: 'black',
       },
       msTile: {
-        image: "/assets/icon/ms-icon-144.png",
-        color: "#ffffff",
+        image: '/assets/icon/ms-icon-144.png',
+        color: '#ffffff',
       },
       manifest: {
         icons: [
           {
-            src: "/assets/icon/chrome-mask-512.png",
-            sizes: "512x512",
-            purpose: "maskable",
-            type: "image/png",
+            src: '/assets/icon/chrome-mask-512.png',
+            sizes: '512x512',
+            purpose: 'maskable',
+            type: 'image/png',
           },
           {
-            src: "/assets/icon/chrome-mask-192.png",
-            sizes: "192x192",
-            purpose: "maskable",
-            type: "image/png",
+            src: '/assets/icon/chrome-mask-192.png',
+            sizes: '192x192',
+            purpose: 'maskable',
+            type: 'image/png',
           },
           {
-            src: "/assets/icon/chrome-512.png",
-            sizes: "512x512",
-            type: "image/png",
+            src: '/assets/icon/chrome-512.png',
+            sizes: '512x512',
+            type: 'image/png',
           },
           {
-            src: "/assets/icon/chrome-192.png",
-            sizes: "192x192",
-            type: "image/png",
+            src: '/assets/icon/chrome-192.png',
+            sizes: '192x192',
+            type: 'image/png',
           },
         ],
       },
     },
     // 你也可以使用 Waline
     comment: {
-      provider: "Giscus",
-      repo: "yzqdev/blog-issues",
-      repoId: "MDEwOlJlcG9zaXRvcnkzODI2NTY1MTY=",
-      category: "General",
-      categoryId: "DIC_kwDOFs7gBM4COKgn",
+      provider: 'Giscus',
+      repo: 'yzqdev/blog-issues',
+      repoId: 'MDEwOlJlcG9zaXRvcnkzODI2NTY1MTY=',
+      category: 'General',
+      categoryId: 'DIC_kwDOFs7gBM4COKgn',
     },
-
+    components: ['BiliBili', 'PDF', 'StackBlitz'],
     mdEnhance: {
       tabs: true,
       codetabs: true,
@@ -132,6 +131,33 @@ export default hopeTheme({
       demo: true,
       sub: true,
       sup: true,
+      footnote: true,
+      mark: true,
+      vuePlayground: true,
+
+      //start playground 配置
+      playground: {
+        presets: [
+          'ts',
+          'vue',
+          {
+            name: 'playground#language',
+            component: 'PlaygroundComponent',
+            propsGetter: (playgroundData): Record<string, string> => ({
+              // playground props
+            }),
+          },
+        ],
+        config: {
+          ts: {
+            // ...
+          },
+          vue: {
+            // ...
+          },
+        },
+      },
+      //end playground 配置
     },
   },
-});
+})

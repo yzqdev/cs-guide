@@ -1,4 +1,5 @@
 <template>
+  <div>monaco</div>
 </template>
 <script setup>
 </script>
