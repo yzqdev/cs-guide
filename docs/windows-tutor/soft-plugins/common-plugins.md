@@ -20,6 +20,10 @@
 
 [https://plugins.jetbrains.com/plugin/13308-indent-rainbow/reviews](https://plugins.jetbrains.com/plugin/13308-indent-rainbow/reviews)
 
+## Rainbow Brackets
+
+<https://plugins.jetbrains.com/plugin/10080-rainbow-brackets>
+
 ## CMD Support
 
 ## Foldable ProjectView
@@ -38,8 +42,6 @@
 
 ## Powershell
 
-## Rainbow Brackets
-
 ## acejump插件
 
 ## Alibaba Cloud Tookit
@@ -53,8 +55,6 @@
 ## One Dark Theme
 
 ## Prettier
-
-## Restful Fast Request
 
 ## AutoJson
 
@@ -82,7 +82,7 @@
 
 ## Gitmoj plus
 
-Gitee
+## Gitee
 
 ## GitToolBox
 

@@ -2,8 +2,8 @@
 
 ## 插件github地址
 
-[https://github.com/mrmanzhaow/RestfulToolkit](https://github.com/mrmanzhaow/RestfulToolkit)
-[https://github.com/Codearte/props2yaml-idea-plugin.git](https://github.com/Codearte/props2yaml-idea-plugin.git)
+- [https://github.com/mrmanzhaow/RestfulToolkit](https://github.com/mrmanzhaow/RestfulToolkit)
+- [https://github.com/Codearte/props2yaml-idea-plugin.git](https://github.com/Codearte/props2yaml-idea-plugin.git)
 
 ## 教程
 
