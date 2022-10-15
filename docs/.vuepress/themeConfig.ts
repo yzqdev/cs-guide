@@ -1,6 +1,5 @@
 import { hopeTheme } from 'vuepress-theme-hope'
 import navbar from './navbar'
-import { themePlayground } from './plugins'
 import sidebar from './sidebar'
 
 export default hopeTheme({

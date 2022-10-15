@@ -9,6 +9,5 @@ export default sidebar({
   "/python-tutor/": "structure",
   "/csharp-tutor/": "structure",
   "/windows-tutor/": "structure",
-  // fallback
-  // "/": ["" /* / */, "contact" /* /contact.html */, "about" /* /about.html */],
+  
 });

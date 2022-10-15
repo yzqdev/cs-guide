@@ -43,6 +43,10 @@ features:
     details: 一个简单的csharp教程
     icon: csharp
     link: /csharp-tutor/README.md
+  - title: cs-tips
+    details: cs-tips
+    icon: document
+    link: https://yzqdev.github.io/cg-tips
   - title: cg教程
     details: cg教程
     icon: document
@@ -73,7 +77,7 @@ features:
     details: wangdoc教程
     icon: read
     link: https://yzqbooks.github.io/wangdoc
-footer: MIT Licensed | Copyright © 2022-present yzqdev
+footer: 备案号:豫ICP备2022004109号-1
 ---
 ## 🛠开始
 
