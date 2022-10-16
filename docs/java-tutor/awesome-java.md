@@ -93,6 +93,7 @@ mapstruct
 
 ### 好用的文档
 
+- <https://www.baeldung.com/>
 - [https://docs.qq.com/](https://docs.qq.com/)
 - [https://fgb0140i4t.feishu.cn/](https://fgb0140i4t.feishu.cn/)
 - [石墨文档](https://shimo.im/)
