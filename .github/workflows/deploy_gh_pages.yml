@@ -16,16 +16,22 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+          run_install: true
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "16"
-
-      - name: Install dependencies
-        run: yarn
-      
-      - name: Build VuePress site
-        run: export NODE_OPTIONS=--max_old_space_size=4096&&yarn docs:build
+          node-version: 18
+          cache: pnpm
+      - name: Build project
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
+        run: pnpm run docs:build
+   
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
