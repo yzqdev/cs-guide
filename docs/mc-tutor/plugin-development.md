@@ -5,7 +5,7 @@ order: 1
 
 ## 服务器下载
 
-paper   [https://papermc.io/downloads](https://papermc.io/downloads)
+ [https://papermc.io/downloads](https://papermc.io/downloads)
 ​
 
 [https://getbukkit.org/download/spigot](https://getbukkit.org/download/spigot)

@@ -43,7 +43,9 @@ mcaselector 运行的话java8以上需要javafx(下载javafx)
 
 [give指令](https://minecraft.fandom.com/zh/wiki/%E5%91%BD%E4%BB%A4/give)
 
+```txt
     /give @s minecraft:diamond_sword{Enchantments:[{id:"minecraft:sharpness",lvl:10}]} 1
+```
 
 附魔指令 [链接](https://minecraft.fandom.com/zh/wiki/%E9%99%84%E9%AD%94)
 
