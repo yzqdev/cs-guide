@@ -15,20 +15,20 @@
     "highlight.js": "11.6.0"
   },
   "devDependencies": {
-    "@vuepress/cli": "2.0.0-beta.53",
-    "@vuepress/client": "2.0.0-beta.53",
-    "@vuepress/plugin-docsearch": "2.0.0-beta.53",
-    "@vuepress/plugin-prismjs": "2.0.0-beta.53",
-    "@vuepress/utils": "2.0.0-beta.53",
+    "@vuepress/cli": "2.0.0-beta.59",
+    "@vuepress/client": "2.0.0-beta.59",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.59",
+    "@vuepress/plugin-prismjs": "2.0.0-beta.59",
+    "@vuepress/utils": "2.0.0-beta.59",
     "@vueuse/core": "9.2.0",
     "sass": "1.54.9",
     "sass-loader": "13.0.2",
     "vue": "3.2.45",
-    "vuepress": "2.0.0-beta.53",
-    "vuepress-shared": "2.0.0-beta.130",
-    "vuepress-plugin-copy-code2": "2.0.0-beta.130",
-    "vuepress-theme-hope": "2.0.0-beta.130",
-    "vuepress-vite": "2.0.0-beta.53",
-    "vuepress-webpack": "2.0.0-beta.53"
+    "vuepress": "2.0.0-beta.59",
+    "vuepress-shared": "2.0.0-beta.143",
+    "vuepress-plugin-copy-code2": "2.0.0-beta.143",
+    "vuepress-theme-hope": "2.0.0-beta.143",
+    "vuepress-vite": "2.0.0-beta.59",
+    "vuepress-webpack": "2.0.0-beta.59"
   }
 }

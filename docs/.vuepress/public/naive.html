@@ -5,21 +5,26 @@
     <title>naive</title>
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    
+    <script src="https://unpkg.com/naive-ui"></script>  
   </head>
   <body>
     <div id="app">
-      <n-button> {{msg}}</n-button>
+      <n-button>{{ message }}</n-button>
     </div>
-
-    <script>
-      const app = Vue.createApp({
-        data() {
+    <script type="module">
+     
+      
+      const App = {
+        setup() {
           return {
-            msg: "这是中文",
-          };
+            message: 'naive',
+          }
         },
-      });
-      app.mount("#app");
+      }
+      const app =Vue. createApp(App)
+       app.use(naive)
+      app.mount('#app')
     </script>
   </body>
 </html>

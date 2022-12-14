@@ -9,7 +9,7 @@ export default hopeTheme({
     name: 'yzqdev',
     url: 'http://www.yzqdev.top',
   },
-
+  iconAssets: 'iconfont',
   iconPrefix: 'iconfont icon-',
 
   logo: '/ayaka.webp',

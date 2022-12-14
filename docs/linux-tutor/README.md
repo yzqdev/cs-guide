@@ -1,3 +1,6 @@
+---
+icon: linux
+---
 # linux-tutor
 
 ## advance
@@ -41,7 +44,6 @@
 - [常见的问题](./common/README.md)
 
 ## shells
-
 
 ## configs
 
