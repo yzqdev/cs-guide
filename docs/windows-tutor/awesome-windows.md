@@ -7,8 +7,11 @@ order: 3
 
 ### 音视频看图软件
 
+- imageglass
+- MassiGra
+- Gifcam
 - [https://picview.org/](https://picview.org/)
-- wps图片
+- wps图片,现在已经被整合进wps里面了..
 - [honeyview](https://www.bandisoft.com/honeyview/) 类似bandizip
 - [potplayer](http://potplayer.tv/?lang=zh_CN)
 - okular   kde的pdf阅读器
@@ -26,7 +29,7 @@ order: 3
 - gimp
 - inkscape
 - krita
-- blender
+- blender (steam商店下载)
 
 ### 截屏录屏软件
 
@@ -140,3 +143,11 @@ ssh工具,很好看
 
 [https://www.diskanalyzer.com/](https://www.diskanalyzer.com/)
 文件管理查看树结构
+
+## 辅助工具
+
+- [Rufus](https://rufus.ie/zh_CN.html)：USB 系统启动/安装盘制作，开源、免费、纯净
+- [PicGo](https://molunerfinn.com/PicGo/)：自定义图床客户端，支持微博、七牛、腾讯云、Imgur、GitHub 等图床
+- [f.lux](https://justgetflux.com/)：过滤蓝光，屏幕色温自动调节（觉得效果比自带的夜间模式要好些）
+- Splash!-Unsplash Wallpaper（UWP 版）：Unsplash 高清壁纸自动更换
+- [Inpaint](https://www.theinpaint.com/)：图片去瑕，去除图片中不需要的内容 
