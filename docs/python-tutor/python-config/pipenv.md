@@ -22,6 +22,11 @@ pip install pipenv
 「阿里源」："http://mirrors.aliyun.com/pypi/simple/"
 「豆瓣源」："http://pypi.douban.com/simple"
 华为也有镜像源 [华为](https://mirrors.huaweicloud.com/home)
+
+
+配置镜像
+export PIPENV_DEFAULT_PYTHON_VERSION=3.7 
+export PIPENV_PYPI_MIRROR=https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 ```toml
