@@ -1,0 +1,18 @@
+{
+  "title":"mongodb tutor",
+  "author":{
+    "name":"yzq",
+    "avatar":"http://www.baidu.com"
+  },"createdAt":"2022-01-01",
+  "content":"mongo 教程",
+  "comments":[
+    {
+      "user":"dog",
+      "comment":"good"
+    },
+     {
+       "user": "cat",
+       "comment": "bad"
+     }
+  ]
+}
