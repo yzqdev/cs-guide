@@ -2,7 +2,7 @@ build/
 out/
 log/
 logs/
-
+.obsidian
 target/
 node_modules/
 classes/
