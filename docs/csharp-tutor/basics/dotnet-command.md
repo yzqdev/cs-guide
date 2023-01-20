@@ -1,5 +1,18 @@
 # dotnet命令
 
+:::tip
+最常用的dotnet命令
+
+```powershell
+dotnet watch run
+dotnet build
+dotnet restore
+dotnet tool install -g PowerShell
+dotnet publish -r win-x64 -c Release -p:PublishSingleFile=true --self-contained false
+```
+
+:::
+
 ## dotnet添加tab补全
 
 [官网](https://docs.microsoft.com/zh-cn/dotnet/core/tools/enable-tab-autocomplete)
