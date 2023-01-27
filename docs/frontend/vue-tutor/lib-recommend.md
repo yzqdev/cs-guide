@@ -15,6 +15,7 @@
 - [antdesign](https://ant.design/)
 - [materialui](https://material-ui.com/)
 - <https://mui.com/zh/core/>
+- <https://react.fluentui.dev/>
 - [rsuit](https://rsuitejs.com/)
 - [roit](https://riot.js.org/)
 - [iconic](https://github.com/ionic-team/ionic-framework)
@@ -25,9 +26,12 @@
 - [geist](https://geist-ui.dev/zh-cn)
 - <https://arco.design/>
 - <https://github.com/chakra-ui/chakra-ui>
-- https://github.com/react-bootstrap/react-bootstrap
-- https://github.com/microsoft/fluentui
-- https://rebassjs.org/
+- <https://github.com/react-bootstrap/react-bootstrap>
+- <https://github.com/microsoft/fluentui>
+- <https://rebassjs.org/>
+- <https://mantine.dev/pages/getting-started/>
+- <https://nextui.org/>
+
 ## 手机端
 
 - <https://github.com/NervJS/taro-ui>

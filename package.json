@@ -10,25 +10,25 @@
     "docs:vite": "vuepress  build docs"
   },
   "dependencies": {
-    "axios": "0.27.2",
-    "element-plus": "2.2.16",
-    "highlight.js": "11.6.0"
+    "axios": "1.2.5",
+    "element-plus": "2.2.28",
+    "highlight.js": "11.7.0"
   },
   "devDependencies": {
-    "@vuepress/cli": "2.0.0-beta.59",
-    "@vuepress/client": "2.0.0-beta.59",
-    "@vuepress/plugin-docsearch": "2.0.0-beta.59",
-    "@vuepress/plugin-prismjs": "2.0.0-beta.59",
-    "@vuepress/utils": "2.0.0-beta.59",
-    "@vueuse/core": "9.2.0",
-    "sass": "1.54.9",
-    "sass-loader": "13.0.2",
+    "@vuepress/cli": "2.0.0-beta.60",
+    "@vuepress/client": "2.0.0-beta.60",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.60",
+    "@vuepress/plugin-prismjs": "2.0.0-beta.60",
+    "@vuepress/utils": "2.0.0-beta.60",
+    "@vueuse/core": "9.11.1",
+    "sass": "1.57.1",
+    "sass-loader": "13.2.0",
     "vue": "3.2.45",
-    "vuepress": "2.0.0-beta.59",
-    "vuepress-shared": "2.0.0-beta.143",
-    "vuepress-plugin-copy-code2": "2.0.0-beta.143",
-    "vuepress-theme-hope": "2.0.0-beta.143",
-    "vuepress-vite": "2.0.0-beta.59",
-    "vuepress-webpack": "2.0.0-beta.59"
+    "vuepress": "2.0.0-beta.60",
+    "vuepress-plugin-copy-code2": "2.0.0-beta.168",
+    "vuepress-shared": "2.0.0-beta.168",
+    "vuepress-theme-hope": "2.0.0-beta.168",
+    "vuepress-vite": "2.0.0-beta.60",
+    "vuepress-webpack": "2.0.0-beta.60"
   }
 }
