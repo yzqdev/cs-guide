@@ -13,6 +13,6 @@
 - To test that you have Rust and Cargo installed, you can run this in your terminal of choice:`cargo --version`
 
 :::
-:::warn
+:::warning
   更新rust `rustup update`
 :::

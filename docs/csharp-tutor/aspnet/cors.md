@@ -1,16 +1,41 @@
 # asp运行局域网访问
 
-找到项目目录 下的.vs/config文件夹下的`applicationhost.config`文件并打开
+打开properties文件夹下面的`launchSettings.json`然后使用`"applicationUrl": "http://0.0.0.0:5059",`
 
-修改以下内容
+下面是例子
 
-```xml
- <bindings>
-          <binding protocol="http" bindingInformation="*:53785:localhost" />
-           <binding protocol="http" bindingInformation="*:53785:192.168.0.102" />
-        </bindings>
+```json
+
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:15455",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "SimpleApi": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://0.0.0.0:5059",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
+
 ```
-
-其中`192.168.0.102`是你的本机ip地址
-然后把vs用管理员权限运行(必须!)
-既可以在`192.168.0.102:53785/index.html`访问了

@@ -20,7 +20,7 @@ export default hopeTheme({
     docsDir: 'docs',
     // navbar
     navbar: navbar,
-
+darkmode:"switch",
     // sidebar
     sidebar: sidebar,
 

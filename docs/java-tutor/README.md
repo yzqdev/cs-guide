@@ -1,11 +1,8 @@
-# java-tutor
+# java笔记
 
 ## design-pattern
 
 - [设计模式](./design-pattern/README.md)
-
-## img
-
 
 ## java-tips
 
@@ -71,7 +68,6 @@
 - [Linux](./server-config/use-vim.md)
 
 ## img
-
 
 ## spring-errors
 

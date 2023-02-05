@@ -1,4 +1,4 @@
-# windows-tutor
+# windows笔记
 
 ## autohotkey-tutor
 
@@ -21,7 +21,6 @@
 - [其他](./others/README.md)
 
 ## img
-
 
 ## basics
 
