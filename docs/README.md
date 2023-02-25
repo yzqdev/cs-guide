@@ -1,6 +1,6 @@
 ---
 home: true
-heroText: 首页
+heroText: 计算机编程指南
 heroImage: /images/cs-guide.webp 
 actions:
   - text: 前端指南 💡

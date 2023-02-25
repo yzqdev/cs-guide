@@ -56,7 +56,9 @@ export default defineUserConfig({
   plugins: [
     prismjsPlugin({
       preloadLanguages: ["autohotkey", "go", "xml"],
+      
     }),
+    
     docsearchPlugin({
       // ...
       appId: "34G1OD781X",
