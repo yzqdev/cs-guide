@@ -70,6 +70,9 @@ onBeforeMount(() => {
     justify-content: center;
     margin: 1rem 0;
     padding: 0;
+    code{
+      color:black;
+    }
   }
 }
 

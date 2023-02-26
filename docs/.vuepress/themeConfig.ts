@@ -26,7 +26,7 @@ export default hopeTheme({
 
   footer: `powered by <a href='https://vuepress-theme-hope.github.io/v2/'>vuepress-theme-hope</a>`,
 
-  displayFooter: true,
+  displayFooter: false,
 
   pageInfo: ['Author', 'Original', 'Date', 'Category', 'Tag', 'ReadingTime'],
 

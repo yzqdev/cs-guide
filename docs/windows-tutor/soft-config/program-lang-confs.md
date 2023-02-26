@@ -1,5 +1,6 @@
 # 软件配置文件
 
+
 ## .npmrc
 
 > 路径 ${userhome}/.npmrc
