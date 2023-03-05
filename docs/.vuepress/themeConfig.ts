@@ -1,4 +1,4 @@
-import { hopeTheme } from 'vuepress-theme-hope'
+import { hopeTheme } from 'vuepress-theme-hope/perf'
 import navbar from './navbar'
 import sidebar from './sidebar'
 
@@ -164,4 +164,4 @@ export default hopeTheme({
       //end playground 配置
     },
   },
-})
+},true)
