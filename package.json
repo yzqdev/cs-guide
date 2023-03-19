@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "axios": "1.3.4",
-    "element-plus": "2.2.32",
+    "element-plus": "2.3.1",
     "highlight.js": "11.7.0"
   },
   "devDependencies": {
@@ -21,12 +21,12 @@
     "@vuepress/plugin-prismjs": "2.0.0-beta.61",
     "@vuepress/utils": "2.0.0-beta.61",
     "@vueuse/core": "9.13.0",
-    "sass": "1.58.3",
-    "sass-loader": "13.2.0",
+    "sass": "1.59.3",
+    "sass-loader": "13.2.1",
     "vue": "3.2.47",
     "vuepress": "2.0.0-beta.61",
-    "vuepress-shared": "2.0.0-beta.189",
-    "vuepress-theme-hope": "2.0.0-beta.189",
+    "vuepress-shared": "2.0.0-beta.193",
+    "vuepress-theme-hope": "2.0.0-beta.193",
     "vuepress-vite": "2.0.0-beta.61",
     "vuepress-webpack": "2.0.0-beta.61"
   }
