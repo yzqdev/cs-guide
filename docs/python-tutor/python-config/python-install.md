@@ -23,4 +23,4 @@ conda create -n py310 python=3.10 -c conda-forge -y
 
 ## windows安装
 
-直接下载python的exe安装包安装,不要用zip包,里面缺少`setuptools和pip`,配置麻烦
+ 在[https://www.python.org/](https://www.python.org/)下载安装即可

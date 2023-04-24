@@ -16,27 +16,37 @@ find、grep、xargs、sort、uniq、tr、cut、paste、wc、sed、awk；
 
 查找txt和pdf文件:
 
+```
     find . \( -name "*.txt" -o -name "*.pdf" \) -print
+```
 
 正则方式查找.txt和pdf:
 
+```
     find . -regex  ".*\(\.txt\|\.pdf\)$"
+```
 
 -iregex： 忽略大小写的正则
 
 否定参数 ,查找所有非txt文本:
 
+```
     find . ! -name "*.txt" -print
+```
 
 指定搜索深度,打印出当前目录的文件（深度为1）:
 
+```
     find . -maxdepth 1 -type f
+```
 
 ### 定制搜索
 
 \- 按类型搜索 :
 
+```
     find . -type d -print  //只列出所有目录
+```
 
 -type f 文件 / l 符号链接 / d 目录
 
@@ -44,14 +54,18 @@ find支持的文件检索类型可以区分普通文件和符号链接、目录�
 
 file命令可以检查文件具体类型（二进制或文本）:
 
+```
     $file redis-cli  # 二进制文件
     redis-cli: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.9, not stripped
     $file redis.pid  # 文本文件
     redis.pid: ASCII text
+```
 
 所以,可以用以下命令组合来实现查找本地目录下的所有二进制文件:
 
+```
     ls -lrt | awk '{print $9}'|xargs file|grep  ELF| awk '{print $1}'|tr -d ':'
+```
 
 -
 
@@ -63,53 +77,75 @@ file命令可以检查文件具体类型（二进制或文本）:
 
 最近第7天被访问过的所有文件:
 
+```
     find . -atime 7 -type f -print
+```
 
 最近7天内被访问过的所有文件:
 
+```
     find . -atime -7 -type f -print
+```
 
 查询7天前被访问过的所有文件:
 
+```
     find . -atime +7 -type f -print
+```
 
 \- 按大小搜索： w字 k M G 寻找大于2k的文件:
 
+```
     find . -type f -size +2k
+```
 
 按权限查找:
 
+```
     find . -type f -perm 644 -print //找具有可执行权限的所有文件
+```
 
 按用户查找:
 
+```
     find . -type f -user weber -print// 找用户weber所拥有的文件
+```
 
 ### 找到后的后续动作
 
 \- 删除 删除当前目录下所有的swp文件:
 
+```
     find . -type f -name "*.swp" -delete
+```
 
 另一种语法:
 
+```
     find . type f -name "*.swp" | xargs rm
+```
 
 \- 执行动作（强大的exec） 将当前目录下的所有权变更为weber:
 
+```
     find . -type f -user root -exec chown weber {} \; 
+```
 
 注：{}是一个特殊的字符串，对于每一个匹配的文件，{}会被替换成相应的文件名；
 
 将找到的文件全都copy到另一个目录:
 
+```
     find . -type f -mtime +10 -name "*.txt" -exec cp {} OLD \;
+```
 
 \- 结合多个命令
 如果需要后续执行多个命令，可以将多个命令写成一个脚本。然后 -exec
 调用时执行脚本即可:
 
+```
     -exec ./commands.sh {} \;
+```
 
 ### -print的定界符
 
@@ -119,10 +155,13 @@ file命令可以检查文件具体类型（二进制或文本）:
 
 ## grep 文本搜索
 
+```
     grep match_patten file // 默认访问匹配行
+```
 
 常用参数
 
+```
 - -o 只输出匹配的文本行 **VS** -v 只输出没有匹配的文本行
 
 -
@@ -136,22 +175,31 @@ file命令可以检查文件具体类型（二进制或文本）:
 - -i 搜索时忽略大小写
 
 - -l 只打印文件名
+```
 
 在多级目录中对文本递归搜索(程序员搜代码的最爱）:
 
+```
     grep "class" . -R -n
+```
 
 匹配多个模式:
 
+```
     grep -e "class" -e "vitural" file
+```
 
 grep输出以0作为结尾符的文件名（-z）:
 
+```
     grep "test" file* -lZ| xargs -0 rm
+```
 
 综合应用：将日志中的所有带where条件的sql查找查找出来:
 
+```
     cat LOG.* | tr a-z A-Z | grep "FROM " | grep "WHERE" > b
+```
 
 查找中文示例：工程目录中utf-8格式和gb2312格式两种文件，要查找字的是中文；
 
@@ -159,7 +207,9 @@ grep输出以0作为结尾符的文件名（-z）:
 
 2. 查询:
 
+```
         grep：grep -rnP "\xE4\xB8\xAD\xE6\x96\x87|\xD6\xD0\xCE\xC4" *即可
+```
 
 汉字编码查询：<http://bm.kdd.cc/>
 
@@ -169,13 +219,17 @@ xargs
 能够将输入数据转化为特定命令的命令行参数；这样，可以配合很多命令来组合使用。比如grep，比如find； -
 将多行输出转化为单行输出 :
 
+```
     cat file.txt| xargs
+```
 
 n 是多行文本间的定界符
 
 \- 将单行转化为多行输出 :
 
+```
     cat single.txt | xargs -n 3
+```
 
 -n：指定每行显示的字段数
 
@@ -189,6 +243,7 @@ xargs参数说明
 
 示例:
 
+```
     cat file.txt | xargs -I {} ./command.sh -p {} -1
 
     #统计程序行数
@@ -196,33 +251,44 @@ xargs参数说明
 
     #redis通过string存储数据，通过set存储索引，需要通过索引来查询出所有的值：
     ./redis-cli smembers $1  | awk '{print $1}'|xargs -I {} ./redis-cli get {}
+```
 
 ## sort 排序
 
 字段说明
 
+```
 - -n 按数字进行排序 VS -d 按字典序进行排序
 - -r 逆序排序
 - -k N 指定按第N列排序
+```
 
 示例:
 
+```
     sort -nrk 1 data.txt
     sort -bd data // 忽略像空格之类的前导空白字符
+```
 
 ## uniq 消除重复行
 
 \- 消除重复行 :
 
+```
     sort unsort.txt | uniq
+```
 
 \- 统计各行在文件中出现的次数 :
 
+```
     sort unsort.txt | uniq -c
+```
 
 \- 找出重复行 :
 
+```
     sort unsort.txt | uniq -d
+```
 
 可指定每行中需要比较的重复内容：-s 开始位置 -w 比较字符数
 
@@ -230,21 +296,29 @@ xargs参数说明
 
 \- 通用用法 :
 
+```
     echo 12345 | tr '0-9' '9876543210' //加解密转换，替换对应字符
     cat text| tr '\t' ' '  //制表符转空格
+```
 
 \- tr删除字符 :
 
+```
     cat file | tr -d '0-9' // 删除所有数字
+```
 
 -c 求补集 :
 
+```
     cat file | tr -c '0-9' //获取文件中所有数字
     cat file | tr -d -c '0-9 \n'  //删除非数字数据
+```
 
 \- tr压缩字符 tr -s 压缩文本中出现的重复字符；最常用于压缩多余的空格:
 
+```
     cat file | tr -s ' '
+```
 
 \- 字符类 tr中可用各种字符类： \* alnum：字母和数字 \* alpha：字母 \*
 digit：数字 \* space：空白字符 \* lower：小写 \* upper：大写 \*

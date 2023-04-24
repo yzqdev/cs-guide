@@ -1,4 +1,4 @@
-# conda常见命令
+# conda使用
 
 ## 安装miniconda
 
