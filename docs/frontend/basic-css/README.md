@@ -3,6 +3,5 @@ dir:
   order: 1
 ---
 # css基础
+<AutoCatalog   />
 
-<https://developer.mozilla.org/en-US/docs/Learn/CSS>
-css properties <https://developer.mozilla.org/en-US/docs/Web/CSS>

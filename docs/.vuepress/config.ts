@@ -1,45 +1,46 @@
-import { path } from "@vuepress/utils";
-import { docsearchPlugin } from "@vuepress/plugin-docsearch";
-import theme from "./themeConfig";
-import { prismjsPlugin } from "@vuepress/plugin-prismjs";
-import { defineUserConfig } from "vuepress-vite";
+import { autoCatalogPlugin } from 'vuepress-plugin-auto-catalog'
+import { path } from '@vuepress/utils'
+import { docsearchPlugin } from '@vuepress/plugin-docsearch'
+import theme from './themeConfig'
+import { prismjsPlugin } from '@vuepress/plugin-prismjs'
+import { defineUserConfig } from 'vuepress-vite'
 export default defineUserConfig({
-  base: "/cs-guide/",
+  base: '/cs-guide/',
   // base: "/",
-  dest: "./dist",
+  dest: './dist',
 
   head: [
     [
-      "link",
+      'link',
       {
-        rel: "icon",
+        rel: 'icon',
 
         href: `/cs-guide/images/cs-guide.webp`,
       },
     ],
     [
-      "link",
+      'link',
       {
-        rel: "stylesheet",
-        href: "//at.alicdn.com/t/font_2410206_mfj6e1vbwo.css",
+        rel: 'stylesheet',
+        href: '//at.alicdn.com/t/font_2410206_mfj6e1vbwo.css',
       },
     ],
-    ["meta", { name: "referrer", content: "no-referrer" }],
+    ['meta', { name: 'referrer', content: 'no-referrer' }],
     [
-      "link",
+      'link',
       //我的vscodeiconfont库
       {
-        rel: "stylesheet",
-        href: "//at.alicdn.com/t/font_3267094_1gli0nmxpsr.css",
+        rel: 'stylesheet',
+        href: '//at.alicdn.com/t/font_3267094_1gli0nmxpsr.css',
       },
     ],
   ],
 
   locales: {
-    "/": {
-      lang: "zh-CN",
-      title: "cs-guide",
-      description: "计算机科学教程",
+    '/': {
+      lang: 'zh-CN',
+      title: 'cs-guide',
+      description: '计算机科学教程',
     },
   },
   markdown: {
@@ -48,60 +49,58 @@ export default defineUserConfig({
     },
 
     importCode: {
-      handleImportPath: (str) =>
-        str.replace(/^@/, path.resolve(__dirname, "./")),
+      handleImportPath: (str) => str.replace(/^@/, path.resolve(__dirname, './')),
     },
   },
   theme,
   plugins: [
     prismjsPlugin({
-      preloadLanguages: ["autohotkey", "go", "xml"],
-      
+      preloadLanguages: ['autohotkey', 'go', 'xml'],
     }),
-    
+autoCatalogPlugin(),
     docsearchPlugin({
       // ...
-      appId: "34G1OD781X",
-      apiKey: "0f5b0bfed83ee7c842f9b2e366c5a30a",
-      indexName: "yzq",
+      appId: '34G1OD781X',
+      apiKey: '0f5b0bfed83ee7c842f9b2e366c5a30a',
+      indexName: 'yzq',
       locales: {
-        "/": {
-          placeholder: "搜索文档",
+        '/': {
+          placeholder: '搜索文档',
           translations: {
             button: {
-              buttonText: "搜索文档",
-              buttonAriaLabel: "搜索文档",
+              buttonText: '搜索文档',
+              buttonAriaLabel: '搜索文档',
             },
             modal: {
               searchBox: {
-                resetButtonTitle: "清除查询条件",
-                resetButtonAriaLabel: "清除查询条件",
-                cancelButtonText: "取消",
-                cancelButtonAriaLabel: "取消",
+                resetButtonTitle: '清除查询条件',
+                resetButtonAriaLabel: '清除查询条件',
+                cancelButtonText: '取消',
+                cancelButtonAriaLabel: '取消',
               },
               startScreen: {
-                recentSearchesTitle: "搜索历史",
-                noRecentSearchesText: "没有搜索历史",
-                saveRecentSearchButtonTitle: "保存至搜索历史",
-                removeRecentSearchButtonTitle: "从搜索历史中移除",
-                favoriteSearchesTitle: "收藏",
-                removeFavoriteSearchButtonTitle: "从收藏中移除",
+                recentSearchesTitle: '搜索历史',
+                noRecentSearchesText: '没有搜索历史',
+                saveRecentSearchButtonTitle: '保存至搜索历史',
+                removeRecentSearchButtonTitle: '从搜索历史中移除',
+                favoriteSearchesTitle: '收藏',
+                removeFavoriteSearchButtonTitle: '从收藏中移除',
               },
               errorScreen: {
-                titleText: "无法获取结果",
-                helpText: "你可能需要检查你的网络连接",
+                titleText: '无法获取结果',
+                helpText: '你可能需要检查你的网络连接',
               },
               footer: {
-                selectText: "选择",
-                navigateText: "切换",
-                closeText: "关闭",
-                searchByText: "搜索提供者",
+                selectText: '选择',
+                navigateText: '切换',
+                closeText: '关闭',
+                searchByText: '搜索提供者',
               },
               noResultsScreen: {
-                noResultsText: "无法找到相关结果",
-                suggestedQueryText: "你可以尝试查询",
-                reportMissingResultsText: "你认为该查询应该有结果？",
-                reportMissingResultsLinkText: "点击反馈",
+                noResultsText: '无法找到相关结果',
+                suggestedQueryText: '你可以尝试查询',
+                reportMissingResultsText: '你认为该查询应该有结果？',
+                reportMissingResultsLinkText: '点击反馈',
               },
             },
           },
@@ -110,4 +109,4 @@ export default defineUserConfig({
     }),
   ],
   shouldPrefetch: false,
-});
+})

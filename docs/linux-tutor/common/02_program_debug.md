@@ -12,6 +12,7 @@ GDB中的命令固然很多，但我们只需掌握其中十个左右的命令�
 
 以下从一个完整的调试过程简单说明最基本的几个命令;
 
+```shell
     $gdb programmer     # 启动gdb
     >break main         # 设置断点
     >run                # 运行调试程序
@@ -19,6 +20,7 @@ GDB中的命令固然很多，但我们只需掌握其中十个左右的命令�
     >print var1         # 在调试过程中，我们需要查看当前某个变量值的时候，使用print 命令打印该值
     >list               # 显示当前调试处的源代码 
     >info b             # 显示当前断点设置情况
+```
 
 当你完成了第一个程序调试之后，你当然会需要更多的命令：关于gdb常用命令及各种调试方法详见
 `gdb`{.interpreted-text role="ref"} ;
@@ -33,10 +35,13 @@ apply all bt命令;
 
 语法:
 
+```
     $pstack <program-pid>
+```
 
 示例:
 
+```
     $ pstack 4551
     Thread 7 (Thread 1084229984 (LWP 4552)):
     #0  0x000000302afc63dc in epoll_wait () from /lib64/tls/libc.so.6
@@ -46,6 +51,7 @@ apply all bt命令;
     #4  0x000000302b80610a in start_thread () from /lib64/tls/libpthread.so.0
     #5  0x000000302afc6003 in clone () from /lib64/tls/libc.so.6
     #6  0x0000000000000000 in ?? ()
+```
 
 ### strace 分析系统调用
 
@@ -53,14 +59,18 @@ strace常用来跟踪进程执行时的系统调用和所接收的信号。在Li
 
 完整程序:
 
+```
     strace -o output.txt -T -tt -e trace=all -p 28979
+```
 
 跟踪28979进程的所有系统调用（-e
 trace=all），并统计系统调用的花费时间，以及开始时间（以可视化的时分秒格式显示），最后将记录结果存在output.txt文件里面。
 
 查看进程正在做什么(实时输出进程执行系统调用的情况):
 
+```
     $strace -p <process-pid>
+```
 
 关于strace的详细介绍，详见 `strace`{.interpreted-text role="ref"} ;
 
@@ -70,6 +80,7 @@ trace=all），并统计系统调用的花费时间，以及开始时间（以�
 
 nm用来列出目标文件的符号清单。
 
+```
     $nm myProgrammer
     08049f28 d _DYNAMIC
     08049ff4 d _GLOBAL_OFFSET_TABLE_
@@ -106,6 +117,7 @@ nm用来列出目标文件的符号清单。
     080483c0 t frame_dummy
     080483e4 T main
              U printf@@GLIBC_2.0
+```
 
 这些包含可执行代码的段称为正文段。同样地，数据段包含了不可执行的信息或数据。另一种类型的段，称为
 BSS 段，它包含以符号数据开头的块。对于 nm
@@ -127,18 +139,13 @@ UNIX 中 nm 的 man
 
 其中两种功能强大的工具是 objdump 和 readelf 程序。
 
-::: note
-::: title
-Note
-:::
-
 关于nm工具的参数说明及更多示例详见 `nm`{.interpreted-text role="ref"} ;
-:::
 
 ### objdump
 
 objdump工具用来显示二进制文件的信息，就是以一种可阅读的格式让你更多地了解二进制文件可能带有的附加信息。
 
+```
     $objdump -d myprogrammer
     a.out:     file format elf32-i386
 
@@ -163,24 +170,20 @@ objdump工具用来显示二进制文件的信息，就是以一种可阅读的�
 
     Disassembly of section .plt:
     ...
+```
 
 每个可执行代码段将在需要特定的事件时执行，这些事件包括库的初始化和该程序本身主入口点。
 
 对于那些着迷于底层编程细节的程序员来说，这是一个功能非常强大的工具，可用于研究编译器和汇编器的输出。细节信息，比如这段代码中所显示的这些信息，可以揭示有关本地处理器本身运行方式的很多内容。对该处理器制造商提供的技术文档进行深入的研究，您可以收集关于一些有价值的信息，通过这些信息可以深入地了解内部的运行机制，因为功能程序提供了清晰的输出。
 
-::: note
-::: title
-Note
-:::
-
 关于objdump工具的参数说明及更多示例详见 `objdump`{.interpreted-text
 role="ref"} ;
-:::
 
 ### readelf
 
 这个工具和objdump命令提供的功能类似，但是它显示的信息更为具体，并且它不依赖BFD库(BFD库是一个GNU项目，它的目标就是希望通过一种统一的接口来处理不同的目标文件）；
 
+```
     $readelf -all a.out
     ELF Header:
       Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00 
@@ -236,6 +239,7 @@ role="ref"} ;
       [28] .symtab           SYMTAB          00000000 0015ec 000410 10     29  45  4
       [29] .strtab           STRTAB          00000000 0019fc 0001f9 00      0   0  1
       ...
+```
 
 ELF Header 为该文件中所有段入口显示了详细的摘要。在列举出这些 Header
 中的内容之前，您可以看到 Header
@@ -243,27 +247,25 @@ ELF Header 为该文件中所有段入口显示了详细的摘要。在列举出
 
 除了所有这些段之外，编译器可以将调试信息放入到目标文件中，并且还可以显示这些信息。输入下面的命令，仔细分析编译器的输出（假设您扮演了调试程序的角色）:
 
+```
     $readelf --debug-dump a.out | more 
+```
 
 调试工具，如
 GDB，可以读取这些调试信息，并且当程序在调试器中运行的同时，您可以使用该工具显示更具描述性的标记，而不是对代码进行反汇编时的原始地址值。
 
-::: note
-::: title
-Note
-:::
-
 关于readelf工具的参数说明及更多示例详见 `readelf`{.interpreted-text
 role="ref"} ;
-:::
 
 ### size 查看程序内存占用
 
 size这个工具用来查看程序运行时各个段的实际内存占用:
 
+```
     $size a.out
     text       data     bss     dec     hex filename
     1146        256       8    1410     582 a.out
+```
 
 ### file 文件类型查询
 
@@ -271,18 +273,24 @@ size这个工具用来查看程序运行时各个段的实际内存占用:
 
 比如我们在64位机器上发现了一个32位的库，链接不上，这就有问题了： :
 
+```
     $file a.out
     a.out: ELF 64-bit LSB executable, AMD x86-64, version 1 (SYSV), for GNU/Linux 2.6.9, dynamically linked (uses shared libs), for GNU/Linux 2.6.9, not stripped
+```
 
 也可以查看Core文件是由哪个程序生成:
 
+```
     $file core.22355
+```
 
 ### strings 查询数据中的文本信息
 
 一个文件中包含二进制数据和文本数据，如果只需要查看其文本信息，使用这个命令就很方便；过滤掉非字符数据，将文本信息输出:
 
+```
     $strings <objfile>
+```
 
 ### fuser 显示文件使用者
 

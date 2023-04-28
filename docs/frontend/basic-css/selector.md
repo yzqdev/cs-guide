@@ -2,6 +2,8 @@
 
 ## 元素选择器
 
+<https://developer.mozilla.org/en-US/docs/Learn/CSS>
+css properties <https://developer.mozilla.org/en-US/docs/Web/CSS>
 ::: normal-demo 元素选择器
 
 ```html
