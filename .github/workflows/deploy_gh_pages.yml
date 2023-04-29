@@ -12,32 +12,29 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7
-          run_install: true
+
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: pnpm
-      - name: Build project
+
+
+
+      - name: install dependencies
+        run: yarn install
+      - name: Build VuePress site
+        run: yarn run docs:build
         env:
           NODE_OPTIONS: --max_old_space_size=8192
-        run: pnpm run docs:build
-   
-
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
-        
         with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
-          token: ${{ secrets.ACCESS_TOKEN }}
           FOLDER: dist
           single-commit: true
