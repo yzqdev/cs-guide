@@ -31,7 +31,7 @@ export default defineUserConfig({
       //我的vscodeiconfont库
       {
         rel: 'stylesheet',
-        href: '//at.alicdn.com/t/font_3267094_1gli0nmxpsr.css',
+        href: '//at.alicdn.com/t/c/font_3267094_jzj9r2z5jjt.css',
       },
     ],
   ],
@@ -57,7 +57,7 @@ export default defineUserConfig({
     prismjsPlugin({
       preloadLanguages: ['autohotkey', 'go', 'xml'],
     }),
-autoCatalogPlugin(),
+    autoCatalogPlugin(),
     docsearchPlugin({
       // ...
       appId: '34G1OD781X',

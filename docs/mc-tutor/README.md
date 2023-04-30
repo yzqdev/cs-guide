@@ -2,3 +2,4 @@
 index: false
 ---
 # minecraft
+<AutoCatalog />

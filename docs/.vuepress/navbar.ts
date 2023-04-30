@@ -3,7 +3,7 @@ import { navbar } from 'vuepress-theme-hope'
 export default navbar([
   { text: '前端教程', icon: 'html', link: '/frontend/' },
 
-  { text: 'go教程', icon: 'go', link: '/go-tutor/' },
+  { text: 'go教程', icon: 'my-go', link: '/go-tutor/' },
   { text: 'java教程', icon: 'java', link: '/java-tutor/' },
 
   { text: 'linux教程', icon: 'linux', link: '/linux-tutor/' },
@@ -12,7 +12,7 @@ export default navbar([
   { text: 'windows', icon: 'windows', link: '/windows-tutor/' },
   {
     text: 'mc教程',
-    icon: 'game',
+    icon: 'game-mc',
     link: '/mc-tutor/',
   },
   {

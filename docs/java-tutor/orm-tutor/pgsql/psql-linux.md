@@ -2,13 +2,13 @@
 
 ## 1. 官网
 
-```
+```shell
 https://www.postgresql.org/download/linux/ubuntu/
 ```
 
 ## 2. 安装
 
-```
+```shell
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update
@@ -17,7 +17,7 @@ sudo apt-get -y install postgresql # 默认安装最新14
 
 ## 3. 初始化账号密码
 
-```
+```shell
 sudo -u postgres psql
 postgres=# \password;
 please enter password:
@@ -28,13 +28,13 @@ please reenter password:
 
 ## 4. 配置远程访问
 
-```
+```shell
 sudo vim /etc/postgresql/14/main/postgresql.conf
 ```
 
 ![img](https://img2020.cnblogs.com/blog/1586673/202112/1586673-20211228142507326-2131564313.png)
 
-```
+```shell
 sudo vim /etc/postgresql/14/main/pg_hba.conf
 ```
 
@@ -42,7 +42,7 @@ sudo vim /etc/postgresql/14/main/pg_hba.conf
 
  重启服务生效
 
-```
+```shell
 sudo systemctl restart postgresql.service
 ```
 
@@ -52,13 +52,13 @@ PostgreSQL会创建一个默认的linux用户postgres，修改该用户密码的
 
 步骤一：删除用户postgres的密码
 
-```
+```shell
 sudo` `passwd` `-d postgre
 ```
 
 步骤二：设置用户postgres的密码
 
-```
+```shell
 sudo` `-u postgres ``passwd
 ```
 
@@ -68,7 +68,7 @@ Enter new UNIX password:
 
 Retype new UNIX password:
 
-```
+```shell
 passwd``: password updated successfully
 ```
 
@@ -78,13 +78,13 @@ PostgreSQL数据库创建一个postgres用户作为数据库的管理员，密�
 
 步骤一：登录PostgreSQL
 
-```
+```shell
 sudo` `-u postgres psql
 ```
 
 步骤二：修改登录PostgreSQL密码
 
-```
+```shell
 ALTER USER postgres WITH PASSWORD ``'postgres'``;
 ```
 
@@ -94,7 +94,7 @@ ALTER USER postgres WITH PASSWORD ``'postgres'``;
 - 命令最后有分号
 \5. 测试远程访问，输入之前修改的密码即可
 
-```
+```shell
 master@master:~$ psql -U postgres -h 192.168.10.248 
 Password for user postgres: 
 psql (13.5 (Ubuntu 13.5-1.pgdg18.04+1), server 14.1 (Ubuntu 14.1-1.pgdg18.04+1))
@@ -108,7 +108,7 @@ postgres=#
 
 \6. 常用操作
 
-```
+```shell
 sudo systemctl restart postgresql.service
 sudo systemctl start postgresql.service
 sudo systemctl stop postgresql.service
@@ -127,7 +127,7 @@ sudo service postgresql status
 
 \6. 卸载
 
-```
+```shell
 tester@fabu:~$ sudo dpkg --get-selections | grep postgres  # 或者sudo dpkg -l | grep postgres
 postgresql                                      install
 postgresql-14                                   install

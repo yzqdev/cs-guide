@@ -25,7 +25,7 @@ features:
 
   - title: mc教程
     details: 一个简单的mc教程
-    icon: game
+    icon: game-mc
     link: /mc-tutor/README.md
 
   - title: java教程
@@ -41,15 +41,15 @@ features:
 
   - title: charp教程
     details: 一个简单的csharp教程
-    icon: csharp
+    icon: my-csharp
     link: /csharp-tutor/README.md
   - title: cs-tips
     details: cs-tips
-    icon: document
-    link: https://yzqdev.github.io/cg-tips
+    icon: my-document
+    link: https://yzqdev.github.io/cs-tips
   - title: cg教程
     details: cg教程
-    icon: document
+    icon: my-document
     link: https://yzqdev.github.io/cg-tutor
   - title: windows教程
     details: 一个简单的windows教程
