@@ -1,1 +1,3 @@
 # 基础
+
+<AutoCatalog />

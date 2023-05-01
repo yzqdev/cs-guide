@@ -10,6 +10,8 @@ windows安装后会自动吧pip和python加入到环境变量
 
 ```shell
 pip install pipenv 
+# 更新
+pip install pipenv -U
 
 ```
 

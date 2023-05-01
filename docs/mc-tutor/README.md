@@ -1,5 +1,4 @@
----
-index: false
----
+
 # minecraft
+
 <AutoCatalog />

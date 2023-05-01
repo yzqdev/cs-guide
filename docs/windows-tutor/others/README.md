@@ -1,1 +1,2 @@
 # 其他
+<AutoCatalog />
