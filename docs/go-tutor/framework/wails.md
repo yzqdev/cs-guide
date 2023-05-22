@@ -2,7 +2,7 @@
 
 :::tip
 
-- [官网](https://wails.top/)
+- [官网](https://wails.io/)
 - [github](https://github.com/wailsapp/wails)
 :::
 

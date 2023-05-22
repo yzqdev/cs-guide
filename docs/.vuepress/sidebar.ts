@@ -9,5 +9,6 @@ export default sidebar({
   "/python-tutor/": "structure",
   "/csharp-tutor/": "structure",
   "/windows-tutor/": "structure",
+  "/android-tutor/": "structure",
   
 });

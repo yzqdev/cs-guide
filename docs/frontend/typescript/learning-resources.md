@@ -7,9 +7,6 @@
 - [prisma](https://github.com/prisma/prisma)
 - [https://github.com/sequelize/sequelize](https://github.com/sequelize/sequelize)
 - [https://github.com/mikro-orm/mikro-orm](https://github.com/mikro-orm/mikro-orm)
-
-[https://ts.xcatliu.com/](https://ts.xcatliu.com/)
-
-[https://www.typescriptlang.org/](https://www.typescriptlang.org/)
-
-[https://zhuanlan.zhihu.com/p/144759092](https://zhuanlan.zhihu.com/p/144759092)
+- [https://ts.xcatliu.com/](https://ts.xcatliu.com/)
+- [https://www.typescriptlang.org/](https://www.typescriptlang.org/)
+- [https://zhuanlan.zhihu.com/p/144759092](https://zhuanlan.zhihu.com/p/144759092)

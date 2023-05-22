@@ -1,7 +1,27 @@
 ---
 order: 4
 ---
-# 常用框架
+# go相关资源
+
+## 相关文档
+
+- [官网](https://go.dev/)
+- [依赖](https://pkg.go.dev/)
+- [topgoer](https://www.topgoer.com/)
+- [地鼠文档](https://www.topgoer.cn/)
+- [go语言中文网](https://studygolang.com/)
+- [learnku](https://learnku.com/go)
+- [go forum](https://forum.golangbridge.org/)
+- [golang中国](https://www.golangtc.com/)
+
+## 一些好用的命令行工具
+
+- [https://github.com/oligot/go-mod-upgrade](https://github.com/oligot/go-mod-upgrade)
+- [https://github.com/cosmtrek/air](https://github.com/cosmtrek/air)
+- [https://github.com/spf13/cobra](https://github.com/spf13/cobra)
+- [https://github.com/gohugoio/hugo](https://github.com/gohugoio/hugo)
+- [upx](https://github.com/upx/upx)
+- [https://github.com/Dreamacro/clash](https://github.com/Dreamacro/clash)
 
 ## web框架
 
@@ -30,6 +50,43 @@ order: 4
 - [https://github.com/samber/lo](https://github.com/samber/lo) go的lodash库
 - <https://github.com/hashicorp/go-getter>
 - <https://github.com/oligot/go-mod-upgrade>
+
+# 常用库
+
+## viper
+
+解析yaml和json可能会出现解析值为空,原因是错误的使用了json或者yaml的tag,要使用`mapstructure`标签
+
+```go
+type Config{
+    QiniuAccessKey     string `yaml:"qiniu_accesskey" mapstruct:"qiniu_accesskey"`
+}
+
+```
+
+## gorm
+
+AutoMigrate
+
+<https://gorm.io/zh_CN/docs/migration.html>
+
+## 爬虫
+
+[https://github.com/gocolly/colly](https://github.com/gocolly/colly)
+## zap
+
+```shell
+go get -u go.uber.org/zap
+```
+
+## logrus
+
+推荐使用logrus
+它是一个结构化、插件化的日志记录库。完全兼容 golang 标准库中的日志模块。它还内置了 2 种日志输出格式 JSONFormatter 和 TextFormatter，来定义输出的日志格式。
+
+github地址：<https://github.com/sirupsen/logrus>
+
+切分日志[lumberjack](https://github.com/natefinch/lumberjack/tree/v3)
 
 ## 微服务框架
 

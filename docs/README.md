@@ -72,7 +72,7 @@ features:
   - title: 安卓教程
     details: 一个简单的安卓教程
     icon: android
-    link: https://yzqdev.github.io/android-docs
+    link: /android-tutor/README.md
   - title: wangdoc教程
     details: wangdoc教程
     icon: read

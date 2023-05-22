@@ -10,6 +10,7 @@ export default navbar([
   { text: 'python教程', icon: 'python', link: '/python-tutor/' },
   { text: 'c#教程', icon: 'csharp', link: '/csharp-tutor/' },
   { text: 'windows', icon: 'windows', link: '/windows-tutor/' },
+  { text: '安卓', icon: 'android', link: '/android-tutor/' },
   {
     text: 'mc教程',
     icon: 'game-mc',
@@ -29,11 +30,7 @@ export default navbar([
         icon: 'git',
         link: 'https://yzqdev.github.io/git-tutor',
       },
-      {
-        text: '安卓教程',
-        icon: 'android',
-        link: 'https://yzqdev.github.io/android-docs',
-      },
+   
 
       {
         text: 'node教程',
