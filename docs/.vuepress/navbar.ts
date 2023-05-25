@@ -15,6 +15,10 @@ export default navbar([
     text: 'mc教程',
     icon: 'game-mc',
     link: '/mc-tutor/',
+  },{
+    text: '技巧',
+    icon: 'hot',
+    link: '/cs-tips/',
   },
   {
     text: '其他',

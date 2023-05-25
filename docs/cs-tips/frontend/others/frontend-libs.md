@@ -1,0 +1,249 @@
+# 前端常用类库
+
+Particles.js — 一个用来在 web 中创建炫酷的浮动粒子的库
+
+Three.js — 一个用来在 web 中创建 3d 物体和 3d 空间的库
+
+Fullpage.js— 快速实现全屏滚动特性
+
+Typed.js — 打字机效果
+
+Waypoints.js — 滚动到某个元素位置时触发一个功能
+
+Highlight.js — web 语法高亮
+
+Chart.js — 使用 JavaScript 创建漂亮的图表
+<!--more-->
+Instantclick — 能够明显加速网站加载时间，鼠标 hover 时预加载资源
+
+Chartist — 另一个图表库
+
+Motio — 一个基于动画和平移的雪碧图库
+
+Animsition — CSS 实现动画过渡的 jQuery 插件
+
+Barba.js — 流式页面过渡
+
+TwentyTwenty — 一个对比图片的可视化 diff 工具
+
+Vivus.js — 在 SVG 上绘制动画
+
+Wow.js — 滚动时展现动画
+
+Scrolline.js — 页面滚动时显示滚动进度
+
+Velocity.js — 快速流畅的 JavaScript 动画
+
+Animate on scroll — 漂亮的页面滚动元素动画
+
+Handlebars.js — Javascript 模板
+
+jInvertScroll — 视差滚动
+
+One page scroll — 又一个页面滚动库
+
+Parallax.js — 对智能设备方向变化做出响应的视差引擎
+
+Typeahead.js — 搜索补全
+
+Dragdealer.js — 炫酷拖拽
+
+Bounce.js — 创建炫酷的 CSS3 动画
+
+Pagepiling.js — 全屏滚动
+
+Multiscroll.js — 两列垂直反向滚动
+
+Favico.js — 动态 favicon
+
+Midnight.js — 固定头部切换效果
+
+Anime.js — 动画库
+
+Keycode — 获取键盘按键的 JavaScript keycode
+
+Sortable — 拖拽插件
+
+Flexdatalist — 自动补全
+
+Slideout.js — 移动应用侧滑导航
+
+Jquerymy — 使用 jQuery 实现双向数据绑定
+
+Cleave.js — 实时格式化输入内容
+
+Page — 客户端单页应用路由
+
+Selectize.js — 用来添加 tag 的 Hybrid 选择框
+
+Nice select — 创建漂亮的选择框的 jQuery 库
+
+Tether — 使用固定定位来创建相关元素
+
+Shepherd.js — 为应用创建新手引导
+
+Tooltip — tooltip 提示框
+
+Select2 — Jquery 选择框插件
+
+IziToast — 通知弹窗实现
+
+IziModal — 模态框实现
+
+CSS 类库特效
+
+Animate.css — 动画库
+
+Flat UI Colors — 扁平化设计配色
+
+Material design lite— 基于 Google material design 的框架
+
+Colorrrs — 随机颜色生成器
+
+Section separators — CSS 实现区域分割
+
+Topcoat — 框架
+
+Create ken burns effect — 使用 CSS3 动画实现 Ken burns 特效
+
+DynCSS — 给 CSS 添加 function，动态化 CSS
+
+Magic animations — CSS3 实现动画特效
+
+CSSpin — css spinners 合集
+
+Feather icons — Icon 集合
+
+Ion icons — Icon 集合
+
+Font awesome — Icon 集合
+
+Font generator — 组合多个字体创建混合字体
+
+On/Off switch — 使用 CSS 创建 on/off 开关、radio 按钮
+
+UI Kit — 框架
+
+Bootstrap — 框架
+
+Foundation — 框架前端面试必知必会的十点：
+
+1、常见的浏览器内核有哪些？
+
+IE浏览器的内核：Trident、
+
+Mozilla的Gecko、
+
+Chrome的Blink（WebKit的分支）、
+
+Opera内核原为Presto，现为Blink
+
+2、行内元素有哪些?块级元素有哪些?CSS的盒模型?
+
+块级元素：div p h1 h2 h3 h4 form ul
+
+行内元素: a b br i span input select
+
+Css盒模型:内容，border ,margin，padding
+
+3、简述一下你对HTML语义化的理解？
+
+HTML语义化是指根据内容的结构化（内容语义化），选择合适的标签（代码语义化）便于开发者阅读和写出更优雅的代码的同时让浏览器的爬虫和机器很好地解析。
+
+HTML语义化的主要目的是：
+
+1).为了在没有css的情况下，页面也能呈现出很好地内容结构、代码结构
+
+2).有利于用户体验
+
+3).有利于SEO和搜索引擎建立良好的沟通。
+
+4).方便其他设备解析以意义的方式来渲染网页、
+
+5).便于团队开发和维护，增加可读性。
+
+4、前端页面有哪三层构成，分别是什么？作用是什么？
+
+最准确的网页设计思路是把网页分成三个层次，即：结构层、表示层、行为层。
+
+网页的结构层（structural layer）由 HTML 或 XHTML 之类的标记语言负责创建。标签，也就是那些出现在尖括号里的单词，对网页内容的语义含义做出了描述，但这些标签不包含任何关于如何显示有关内容的信息。例如，P 标签表达了这样一种语义：“这是一个文本段。”
+
+网页的表示层（presentation layer）由 CSS 负责创建。 CSS 对“如何显示有关内容”的问题做出了回答。
+
+网页的行为层（behavior layer）负责回答“内容应该如何对事件做出反应”这一问题。这是 Javascript 语言和 DOM 主宰的领域。
+
+5、HTML5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和HTML5？
+
+HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
+
+绘画 canvas
+
+用于媒介回放的 video 和 audio 元素
+
+本地离线存储 localStorage 长期存储数据，浏览器关闭后数据不丢失；
+
+sessionStorage 的数据在浏览器关闭后自动删除
+
+语意化更好的内容元素，比如 article、footer、header、nav、section
+
+表单控件，calendar、date、time、email、url、search
+
+新的技术webworker, websockt, Geolocation
+
+移除的元素
+
+纯表现的元素：basefont，big，center，font, s，strike，tt，u；
+
+对可用性产生负面影响的元素：frame，frameset，noframes；
+
+支持HTML5新标签：
+
+IE8/IE7/IE6支持通过document.createElement方法产生的标签，
+
+可以利用这一特性让这些浏览器支持HTML5新标签，
+
+浏览器支持新标签后，还需要添加标签默认的样式。
+
+6、请描述一下 cookies，sessionStorage 和 localStorage 的区别？
+
+cookie在浏览器和服务器间来回传递。 sessionStorage和localStorage不会
+
+sessionStorage和localStorage的存储空间更大；
+
+sessionStorage和localStorage有更多丰富易用的接口；
+
+sessionStorage和localStorage各自独立的存储空间。
+
+7、CSS引入的方式有哪些? link和@import的区别是?
+
+内联 内嵌 外链 导入
+
+区别 ：同时加载
+
+前者无兼容性，后者CSS2.1以下浏览器不支持
+
+Link 支持使用javascript改变样式，后者不可
+
+8、CSS清除浮动的几种方法（至少两种）
+
+使用带clear属性的空元素
+
+使用CSS的overflow属性；
+
+使用CSS的:after伪元素；
+
+使用邻接元素处理。
+
+9、谈一谈JavaScript作用域链
+
+当执行一段JavaScript代码（全局代码或函数）时，JavaScript引擎会创建为其创建一个作用域又称为执行上下文（Execution Context），在页面加载后会首先创建一个全局的作用域，然后每执行一个函数，会建立一个对应的作用域，从而形成了一条作用域链。每个作用域都有一条对应的作用域链，链头是全局作用域，链尾是当前函数作用域。
+
+作用域链的作用是用于解析标识符，当函数被创建时（不是执行），会将this、arguments、命名参数和该函数中的所有局部变量添加到该当前作用域中，当JavaScript需要查找变量X的时候（这个过程称为变量解析），它首先会从作用域链中的链尾也就是当前作用域进行查找是否有X属性，如果没有找到就顺着作用域链继续查找，直到查找到链头，也就是全局作用域链，仍未找到该变量的话，就认为这段代码的作用域链上不存在x变量，并抛出一个引用错误（ReferenceError）的异常。
+
+10、如何理解JavaScript原型链
+
+JavaScript中的每个对象都有一个prototype属性，我们称之为原型，而原型的值也是一个对象，因此它也有自己的原型，这样就串联起来了一条原型链，原型链的链头是object,它的prototype比较特殊，值为null。
+
+原型链的作用是用于对象继承，函数A的原型属性(prototype property)是一个对象，当这个函数被用作构造函数来创建实例时，该函数的原型属性将被作为原型赋值给所有对象实例，比如我们新建一个数组，数组的方法便从数组的原型上继承而来。
+
+当访问对象的一个属性时, 首先查找对象本身, 找到则返回; 若未找到, 则继续查找其原型对象的属性(如果还找不到实际上还会沿着原型链向上查找, 直至到根). 只要没有被覆盖的话, 对象原型的属性就能在所有的实例中找到，若整个原型链未找到则返回undefined。

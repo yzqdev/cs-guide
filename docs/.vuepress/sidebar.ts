@@ -10,5 +10,6 @@ export default sidebar({
   "/csharp-tutor/": "structure",
   "/windows-tutor/": "structure",
   "/android-tutor/": "structure",
+  "/cs-tips/": "structure",
   
 });

@@ -45,8 +45,8 @@ features:
     link: /csharp-tutor/README.md
   - title: cs-tips
     details: cs-tips
-    icon: my-document
-    link: https://yzqdev.github.io/cs-tips
+    icon: hot
+    link: /cs-tips/
   - title: cg教程
     details: cg教程
     icon: my-document
