@@ -208,6 +208,46 @@ public class ListAdapter extends BaseAdapter {
 
 ```
 
+kotlin
+
+```kt
+private inner class MyAdapter : BaseAdapter() {
+        override fun getCount(): Int {
+            return projects.size
+        }
+
+        override fun getItem(position: Int): Project {
+            return projects[position]
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+            val view: View
+            val binding = ViewcoreItemListBinding.inflate(
+                LayoutInflater.from(requireContext()),
+                null,
+                false
+            )
+            if (convertView == null) {
+                val project = getItem(position)
+
+                binding.title.text = project.title
+                binding.desc.text = project.desc
+                return binding.root
+ 
+            } else {
+                view = convertView
+            }
+
+            return view
+        }
+    }
+
+```
+
 ## 在RecyclerView结合Adapter使用
 
 ```java
