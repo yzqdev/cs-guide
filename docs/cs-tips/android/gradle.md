@@ -92,18 +92,6 @@ Apply Changes按钮在菜单栏上，在运行的右侧新增两个按钮，如�
      adb shell getprop ro.product.name
 ```
 
-### 安卓rom
-
-<https://evolution-x.org/>
-<https://download.pixelexperience.org/>
-<https://arrowos.net/download>
-
-<https://lineageos.org/>
-<https://havoc-os.com/download>
-
-<https://crdroid.net/begonia/9> (红米note8pro)
-
-论坛\[<https://forum.xda-developers.com/>]
 
 ## 升级gradlew
 

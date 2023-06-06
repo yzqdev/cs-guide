@@ -34,3 +34,37 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 }
 
 ```
+
+## onBackPress
+
+```kotlin
+  @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (mTag != "activity_constraint") {
+            mTag = "activity_constraint"
+            setContentView(mTag)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+```
+
+替代
+
+```kotlin
+
+# 在onCreate里面
+onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (mTag != "activity_constraint") {
+                    mTag = "activity_constraint"
+                    setContentView(mTag)
+                } else {
+                    
+                }
+            }
+
+        })
+
+```

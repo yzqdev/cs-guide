@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "axios": "1.4.0",
-    "element-plus": "2.3.5",
+    "element-plus": "2.3.6",
     "highlight.js": "11.8.0"
   },
   "devDependencies": {
@@ -25,8 +25,8 @@
     "sass-loader": "13.3.1",
     "vue": "3.3.4",
     "vuepress": "2.0.0-beta.62",
-    "vuepress-shared": "2.0.0-beta.216",
-    "vuepress-theme-hope": "2.0.0-beta.216",
+    "vuepress-shared": "2.0.0-beta.221",
+    "vuepress-theme-hope": "2.0.0-beta.221",
     "vuepress-vite": "2.0.0-beta.62",
     "vuepress-webpack": "2.0.0-beta.62"
   }

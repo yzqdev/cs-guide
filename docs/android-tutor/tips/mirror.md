@@ -1,5 +1,19 @@
-## 镜像
+# 一些技巧
 
+### 安卓rom
+
+<https://evolution-x.org/>
+<https://download.pixelexperience.org/>
+<https://arrowos.net/download>
+
+<https://lineageos.org/>
+<https://havoc-os.com/download>
+
+<https://crdroid.net/begonia/9> (红米note8pro)
+
+论坛\[<https://forum.xda-developers.com/>]
+## 镜像
+<https://stackoverflow.com/questions/2785485/is-there-a-unique-android-device-id>
 <https://libraries.io/>
 <https://www.finclip.com/downloads/?activeTab=assistant>
 <https://developer.android.com/build/migrate-to-kotlin-dsl>
@@ -14,7 +28,7 @@ gradle用法  <https://juejin.cn/post/6895299152226615309>
 <https://doc.nju.edu.cn/books/35f4a/page/gradle>
 第一种
 
-```
+```groovy
 
 settingsEvaluated { settings ->
     settings.dependencyResolutionManagement {
@@ -54,7 +68,7 @@ allprojects {
 
 第二种
 
-```
+```groovy
 
 def repoConfig = {
     all { ArtifactRepository repo ->
@@ -88,7 +102,7 @@ allprojects {
 
 或者
 
-```
+```groovy
 gradle.projectsLoaded {
     rootProject.allprojects {
         buildscript {
@@ -172,7 +186,7 @@ implementation fileTree(dir: 'libs', include: ['*.jar'])
 implementation(files("/commonjar/3rdparty/gson-2.8.5.jar"))
 ```
 
-```
+```groovy
 implementation(files("/commonjar/3rdparty/gson-2.8.5.jar"))
   implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
     implementation(fileTree("src/main/libs") {
