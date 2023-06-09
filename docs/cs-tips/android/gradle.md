@@ -1,11 +1,19 @@
 # gradle配置
 
-# 安卓相关
-
 ## 安卓使用libs
 
-```
+```groovy
  implementation fileTree(include: ['*.jar',"*.aar"], dir: 'libs')
+```
+
+使用kts
+
+```kotlin
+implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
+
+implementation(fileTree("libs") {
+        include("*.jar", "*.aar")
+})
 ```
 
 ## 安卓权限
@@ -91,7 +99,6 @@ Apply Changes按钮在菜单栏上，在运行的右侧新增两个按钮，如�
 ```
      adb shell getprop ro.product.name
 ```
-
 
 ## 升级gradlew
 
