@@ -1,10 +1,8 @@
 ﻿# 为什么数学函数Math.round(0.49999999999999994) 返回 1
 
-tags:stackoverflow-java-top-qa
-
 ---
- 
-###问题
+
+### 问题
 通过下面的程序你可以看出来,对于任意一个比0.5略小的都是舍去小数向下取整,只有0.5是例外.
 
 ```java
@@ -47,11 +45,13 @@ for (int i = 10; i >= 0; i--) {
 0.4999999999999999 rounded is 0
 
 ```
+
 *_译者注:请看输出的最后两行,0.49999999999999994的输出为1,而0.49999999999999999的输出为0*
 
 我使用的版本是 Java 6 update 31
 
 ### 回答
+
 **总结**
 
 在 Java 6(或者之前的版本),round(x)是用floor(x+0.5)实现的.¹ 这是一个规范上的bug,恰恰是在这种病理条件下.²Java 7 不再使用这个有问题的实现了.
@@ -59,6 +59,7 @@ for (int i = 10; i >= 0; i--) {
 **问题**
 
 0.5+0.49999999999999994 在double的精度下的结果是1
+
 ```java
 static void print(double d) {
     System.out.printf("%016x\n", Double.doubleToLongBits(d));
@@ -74,6 +75,7 @@ public static void main(String args[]) {
     print(1.0);    // 3ff0000000000000
 }
 ```
+
 这是因为0.49999999999999994的指数比0.5的指数小,所以当它们两个相加时,0.49999999999999994的原数就会发生移位,然后最小精度单位(unit of least precision)/最后置单位(unit of last place)相应的变大了.
 
 **解决方案**
@@ -88,6 +90,7 @@ public static long round(double a) {
         return 0;
 }
 ```
+
 1. [http://docs.oracle.com/javase/6/docs/api/java/lang/Math.html#round%28double%29](http://docs.oracle.com/javase/6/docs/api/java/lang/Math.html#round%28double%29)
 2. [http://bugs.java.com/bugdatabase/view_bug.do?bug_id=6430675](http://bugs.java.com/bugdatabase/view_bug.do?bug_id=6430675)  (credits to @SimonNickerson for finding this)
 3. [http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html#round%28double%29](http://docs.oracle.com/javase/7/docs/api/java/lang/Math.html#round%28double%29)
