@@ -97,7 +97,7 @@ Apply Changes按钮在菜单栏上，在运行的右侧新增两个按钮，如�
 ## adb命令
 
 ```
-     adb shell getprop ro.product.name
+adb shell getprop ro.product.name
 ```
 
 ## 升级gradlew
