@@ -2,7 +2,7 @@
 
 ## 第一种,使用property文件
 
-```java
+```ini
 spring.mvc.static-path-pattern=/static/**
 spring.resources.static-locations=classpath:/static/
 ```

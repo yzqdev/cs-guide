@@ -5,7 +5,7 @@
 [https://github.com/eclipse-vertx/vert.x](https://github.com/eclipse-vertx/vert.x)
 ​
 
-> jfinal
+> jfinal(不推荐,国产软件)
 
  [https://jfinal.com/](https://jfinal.com/)
 [https://gitee.com/jfinal/jfinal](https://gitee.com/jfinal/jfinal)

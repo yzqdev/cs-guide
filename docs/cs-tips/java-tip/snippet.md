@@ -1,6 +1,6 @@
 # java片段
 
-# java用法
+## java用法
 
 <https://runnable.run/archives/shou-ba-shou-jiang-ni-de-javamaven-xiang-mu-tong-guo-graalvm-da-bao-cheng-windows-ke-zhi-xing-cheng-xu#%E5%AE%89%E8%A3%85graalvm-jdk>
 

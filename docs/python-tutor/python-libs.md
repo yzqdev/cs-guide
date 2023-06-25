@@ -91,3 +91,8 @@ auto-py-to-exe
   - [mycli](https://github.com/dbcli/mycli) - MySQL CLI with autocompletion and syntax highlighting.
   - [pgcli](https://github.com/dbcli/pgcli) - PostgreSQL CLI with autocompletion and syntax highlighting.
   - [saws](https://github.com/donnemartin/saws) - A Supercharged [aws-cli](https://github.com/aws/aws-cli).
+
+## 常用python网站
+
+- [https://magic.iswbm.com/](https://magic.iswbm.com/)
+- <https://github.com/sivel/speedtest-cli>

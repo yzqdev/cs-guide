@@ -12,4 +12,4 @@
         </dependency>
 ```
 
-easy-captcha   [https://mvnrepository.com/artifact/com.github.whvcse/easy-captcha](https://mvnrepository.com/artifact/com.github.whvcse/easy-captcha)
+  [easy-captcha](https://mvnrepository.com/artifact/com.github.whvcse/easy-captcha)

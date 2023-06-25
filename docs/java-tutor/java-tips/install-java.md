@@ -2,6 +2,7 @@
 
 ## java下载地址
 
+推荐使用liberica jdk  <https://bell-sw.com/pages/downloads/>
 官方openjdk(adoptjdk或者说termurin)下载: [https://adoptium.net/](https://adoptium.net/)
 下载openjdk(oracle jdk收费)
 [https://www.injdk.cn/](https://www.injdk.cn/)  

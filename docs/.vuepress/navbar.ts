@@ -2,20 +2,40 @@ import { navbar } from 'vuepress-theme-hope'
 
 export default navbar([
   { text: '前端教程', icon: 'html', link: '/frontend/' },
+  { text: 'node教程', icon: 'node', link: '/node-tutor/' },
 
   { text: 'go教程', icon: 'my-go', link: '/go-tutor/' },
   { text: 'java教程', icon: 'java', link: '/java-tutor/' },
 
-  { text: 'linux教程', icon: 'linux', link: '/linux-tutor/' },
+  {
+    text: '系统教程',
+    icon: 'linux',
+    children: [
+      {
+        text: 'linux',
+        icon: 'linux',
+        link: '/linux-tutor/',
+      },
+      { text: 'windows', icon: 'windows', link: '/windows-tutor/' },
+      { text: 'git教程', icon: 'git', link: '/git-tutor/' },
+    ],
+  },
   { text: 'python教程', icon: 'python', link: '/python-tutor/' },
+
   { text: 'c#教程', icon: 'csharp', link: '/csharp-tutor/' },
-  { text: 'windows', icon: 'windows', link: '/windows-tutor/' },
-  { text: '安卓', icon: 'android', link: '/android-tutor/' },
+
+  { text: '安卓', icon: 'android',children:[
+    { text: '安卓基础',  link: '/android-tutor/' },
+    { text: '安卓tips',  link: '/android-tips/' },
+    { text: 'flutter',  link: '/flutter-tutor/' },
+    { text: 'kotlin',  link: '/kotlin-tutor/' },
+  ] },
   {
     text: 'mc教程',
     icon: 'game-mc',
     link: '/mc-tutor/',
-  },{
+  },
+  {
     text: '技巧',
     icon: 'hot',
     link: '/cs-tips/',
@@ -34,7 +54,6 @@ export default navbar([
         icon: 'git',
         link: 'https://yzqdev.github.io/git-tutor',
       },
-   
 
       {
         text: 'node教程',

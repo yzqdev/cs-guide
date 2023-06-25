@@ -42,7 +42,7 @@
 ## 厉害的网站
 
 - [查询正则](https://any86.github.io/any-rule/)
-- 面试题      [https://www.axihe.com/edu/ask.html](https://www.axihe.com/edu/ask.html)
+- [面试题 ](https://www.axihe.com/edu/ask.html)
 - [谷歌浏览器插件github](https://github.com/topics/chrome-extension)
 - [github中国](https://www.githubs.cn/)
 - [https://lab.magiconch.com/nbnhhsh/](https://lab.magiconch.com/nbnhhsh/)

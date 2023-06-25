@@ -11,11 +11,7 @@ Python 是著名的“龟叔” Guido van Rossum 在 1989 年圣诞节期间，�
 
 这是 2017 年 2 月编程语言排行榜 TOP20 榜单：
 
-![2 月编程语言排行榜 TOP20 榜单.png](http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-07-22-080118.jpg)
-
-还有就是 Top 10 编程语言 TIOBE 指数走势：
-
-![](http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-07-22-080145.jpg)
+[tobie index](https://www.tiobe.com/tiobe-index/)
 
 总的来说，这几种编程语言各有千秋，但不难看出，最近几年 Python 的发展非常的快，特别最近流行的机器学习，数据分析，更让 python 快速的发展起来。
 

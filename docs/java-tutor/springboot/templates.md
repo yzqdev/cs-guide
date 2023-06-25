@@ -4,7 +4,7 @@
 
 ## pebble
 
-```java
+```xml
 <dependency>
  <groupId>io.pebbletemplates</groupId>
  <artifactId>pebble-spring-boot-starter</artifactId>
@@ -29,7 +29,7 @@ thymeleaf fragments
 
 ## freemarker
 
-```java
+```xml
  <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-freemarker</artifactId>
@@ -38,7 +38,7 @@ thymeleaf fragments
 
 ## velocity
 
-```java
+```xml
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-velocity</artifactId>
