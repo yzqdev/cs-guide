@@ -109,3 +109,12 @@ hexo-theme-butterfly
 - [wcps](http://wcp.wcpknow.com/) 后端:java ,前端:jquery
 - [https://gitee.com/durcframework/torna](https://gitee.com/durcframework/torna) 后端:java,前端:jquery
 - [小幺鸡](https://gitee.com/zhoujingjie/apiManager) 后端:java,前端:jquery
+
+## 一些例子
+
+### vitepress
+
+- <https://rollupjs.org/>
+- <https://vitest.dev/>
+- <https://tresjs.org/guide/>
+- <https://sveltepress.site/guide/introduction/>

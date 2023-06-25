@@ -2,8 +2,8 @@
 
 javax.email已经被弃用了
 
-```java
-被弃用
+```xml
+ 
 <dependency>
                 <groupId>com.sun.mail</groupId>
                 <artifactId>javax.mail</artifactId>

@@ -40,6 +40,14 @@ name = "pypi"
 
 配置在:Windows路径为：`C:\Users\<UserName>\pip\pip.ini`
 
+推荐使用清华镜像
+```ini
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+[install]
+trusted-host = https://pypi.tuna.tsinghua.edu.cn
+```
+
 ```toml
 [global]
 index-url = https://repo.huaweicloud.com/repository/pypi/simple

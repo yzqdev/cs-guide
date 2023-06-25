@@ -25,7 +25,7 @@ import javax.validation.constraints.*;
 
 添加下面这个依赖
 
-```java
+```xml
 <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
 <dependency>
     <groupId>org.hibernate.validator</groupId>
@@ -38,7 +38,7 @@ import javax.validation.constraints.*;
 
 或者使用springboot的validator
 
-```java
+```xml
     <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>

@@ -1,68 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # cs-guide
 
 运行
@@ -86,7 +22,7 @@ yarn  docs:build
 - [安卓教程](https://yzqdev.github.io/android-docs)
 - [cg教程](https://yzqdev.github.io/cg-tutor)
 
- ![预览](./res/home.webp)
+ ![预览](./res/home.png)
 
 ## License
 

@@ -1,5 +1,22 @@
 # windows常用路径
 
+## 环境变量备份
+
+Win + R打开搜索框，输入`regedit` 打开注册表
+
+### 系统变量：
+ 
+
+- 在注册表框中输入: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment`
+- 右键`Environment` --> 导出 --> 保存文本为 `.reg`文件即可
+### 用户变量：
+
+- 在注册表框中输入: `HKEY_CURRENT_USER\Environment`
+- 右键`Environment` --> 导出 --> 保存文本为 `.reg`文件即可
+
+
+
+
 jetbrains系列,自己配,不解释
 
 ## blender

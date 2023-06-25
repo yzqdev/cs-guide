@@ -1,0 +1,28 @@
+name: Merge Imgbot
+
+on:
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+  pull_request_review:
+    types:
+      - submitted
+  status: {}
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge pull requests (automerge-action)
+        uses: pascalgn/automerge-action@v0.14.3
+
+        env:
+          GITHUB_TOKEN: "${{ secrets.GIT_MERGE_TOKEN }}"
+          MERGE_LABELS: ""
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "pull-request-description"
+          MERGE_FORKS: "false"
+          MERGE_RETRIES: "2"
+          MERGE_RETRY_SLEEP: "10000"
+          UPDATE_METHOD: "rebase"

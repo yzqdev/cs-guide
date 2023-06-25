@@ -1,5 +1,9 @@
 # tauri教程
 
+## 安装
+
+<https://tauri.app/>
+
 ## 使用nsis
 
 ```json

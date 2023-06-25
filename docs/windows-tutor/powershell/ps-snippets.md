@@ -5,6 +5,12 @@
 [https://www.powershellgallery.com/](https://www.powershellgallery.com/)  
 部分教程  [链接](https://www.computerperformance.co.uk/powershell/)
 
+
+## 遍历删除文件夹下的.git目录
+
+```powershell
+ls * -include  .git  -Force -recurse |Remove-Item -r -Force
+```
 ## Start-Process，别名：start + 路径， 打开当前文件夹
 
 ```powershell
@@ -196,3 +202,45 @@ Where-Object { $_.PSIsContainer -eq $false } |
 Measure-Object |  Select-Object -ExpandProperty Count
 Write-Host  "文件数量检测完毕" -ForegroundColor Cyan
 ```
+##   Run String as Command in PowerShell
+
+ 使用Invoke-Expression
+
+```powershell
+$command = "notepad.exe"
+
+Invoke-Expression $command
+
+  
+$command = "Get-Process | Sort-Object -Property CPU -Descending | Select-Object -First 5"
+
+Invoke-Expression -Command $command
+```
+使用&运算符
+
+```powershell
+$command = "notepad.exe"
+
+& $command
+```
+
+使用双引号
+
+```powershell
+$filename = "File1.txt"
+
+$command = "Get-Process | Out-File -FilePath <code>"E:\$filename</code>""
+
+Invoke-Expression -Command $command
+```
+
+使用c#代码
+```powershell
+$commandString = "Get-ChildItem C:\TEST1"
+
+$commandBlock = [scriptblock]::Create($commandString)
+
+& $commandBlock
+```
+
+来自<https://java2blog.com/powershell-remove-special-characters-from-string/>
