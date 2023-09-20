@@ -28,6 +28,10 @@ order: 1
 - [bpython](https://github.com/bpython/bpython/)
 - [legit](https://frostming.github.io/legit/)
 - [black](https://github.com/psf/black)
+- pipenv
+- isort
+- pipx
+- mitmproxy
 
 ## 查看awesome-python
 

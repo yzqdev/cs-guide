@@ -38,3 +38,19 @@ if __name__ == '__main__':
     print(f"{Fore.RED}http://localhost:{port}")  
     app.run(host="0.0.0.0", port=port)
 ```
+
+
+## 创建定时任务
+
+
+```python
+async def generate_code(app):
+
+    while True:
+
+        await asyncio.sleep(5)
+
+        print("Server successfully started!")
+ 
+app.add_task(generate_code(app))
+```

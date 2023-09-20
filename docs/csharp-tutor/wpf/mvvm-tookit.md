@@ -91,7 +91,7 @@ public partial class TookitModel : ObservableObject
 
 TookitView.xaml
 
-```xaml
+```xml
 <Window
     x:Class="ViewModelTutor.View.TookitView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

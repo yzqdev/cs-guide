@@ -1,5 +1,18 @@
 # idea插件
 
+## idea插件配置
+
+在vmoptions里面添加
+
+
+```
+-Didea.config.path=D:\configuration\rustroverConf\config
+-Didea.system.path=D:\configuration\rustroverConf\system
+-Didea.log.path=D:\configuration\rustroverConf\system\log
+-Didea.plugins.path=D:\configuration\rustroverConf\config\plugins
+```
+
+
 ## 插件github地址
 
 - [https://github.com/mrmanzhaow/RestfulToolkit](https://github.com/mrmanzhaow/RestfulToolkit)

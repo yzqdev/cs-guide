@@ -1,4 +1,4 @@
-# node的使用
+# npm的使用
 
 ## node使用国内镜像
 
@@ -45,3 +45,35 @@ zmq-prebuilt-binary-host-mirror=https://npmmirror.com/mirrors/zmq-prebuilt/v{ver
 
 npm全局包位置
 `AppData\Roaming\npm`
+
+
+## npm用法
+
+
+### npm安装包
+
+1. 直接通过用户名安装
+```
+#   直接利用用户名与仓库名进行安装
+npm install RobinCK/vue-ls
+#   或者为了提醒自己，加上github前缀进行区分
+npm install github:RobinCK/vue-ls
+```
+2. 通过git仓库安装
+```
+#   这样适合安装公司内部的git服务器上的项目
+npm install git+https://github.com/RobinCK/vue-ls.git#<branch>
+#   或者以ssh的方式
+npm install git+ssh://git@github.com:RobinCK/vue-ls.git#<branch>
+```
+3. 安装本地包
+```
+# 本地依赖文件（相对路径）
+npm install ./my-test-npm
+
+# 本地依赖文件（相对路径）
+npm i ../../../my-test-npm
+
+# 本地依赖文件（绝对路径）
+npm i e:\my-test-npm
+```
