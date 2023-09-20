@@ -1,5 +1,16 @@
 # git-tips
 
+## git忽略文件夹,但是添加文件
+
+  git 忽略文件夹除了xx文件
+
+比如有个文件夹，cache文件夹，我们要忽略除了cache文件夹的index.html文件，其他的文件都忽略掉，规则如下：
+
+```
+**/cache/*
+!**/cache/index.html
+```
+
 ## 清空所有commit
 
 ### 一些小技巧

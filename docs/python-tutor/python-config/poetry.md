@@ -29,7 +29,7 @@ poetry export -f requirements.txt --output requirements.txt
 ## config.toml文件
 
 poetry提供了全局config配置和特定项目的config配置。
-windows下的全局config配置文件：`%userprofile%/poetry/config.yoml`
+windows下的全局config配置文件：`%APPDATA%\pypoetry/config.yoml`
 
 ### 指定pip源
 

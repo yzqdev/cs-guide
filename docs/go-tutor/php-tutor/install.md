@@ -35,7 +35,7 @@ xdebug下载: [https://xdebug.org/](https://xdebug.org/)
 ### 第三：下载[composer.phar](https://link.jianshu.com?t=https://getcomposer.org/composer.phar)并放到PHP目录下，在PHP目录下新建`composer.cmd`， 内容为
 
 ```powershell
-**@php "%~dp0composer.phar" %\***
+@php "%~dp0composer.phar" %*
 ```
 
 ![851b81a56ab9d052a8a5481bacc7b328](./img/d821ab74baabee3c91e560e00efea0de.webp)
@@ -48,6 +48,13 @@ xdebug下载: [https://xdebug.org/](https://xdebug.org/)
 
 ```powershell
 composer config -g repo.packagist composer  https://packagist.phpcomposer.com 
+
+阿里
+composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+
+
+退回原镜像
+composer config -g --unset repos.packagist
 ```
 
 ![50c60854f9c07f15eb6cfbdb89fb7cd4](./img/1b06187ef93ca1fc5cdb5836ce753656.webp)

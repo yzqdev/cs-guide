@@ -152,16 +152,3 @@ postgres -D "C:\Program Files\PostgreSQL\12\data" >logfile 2>&1 &
 如果找不到createuser这个命令，可以在\PostgreSQL\14\bin中找到。添加到系统path中，或cd到这个文件夹再运行
 :::
 
-## postgres升级
-
-1，使用pg_dumpall和psql -f的方式
-
-这种方式当数据量大的时候性能较低，执行时间长
-
-2，pg_upgrade
-
-```powershell
-pg_upgrade -b "C:\Program Files\PostgreSQL\10\bin" -B "C:\Program Files\PostgreSQL\12\bin" -d "C:\Program Files\PostgreSQL\10\data" -D "C:\Program Files\PostgreSQL\12\data" -U postgres
-```
- 
- 
