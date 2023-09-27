@@ -21,7 +21,7 @@ export default defineComponent({
  
 })
 ```
- 第二种使用render
+ 第二种使用render(options语法)
  ```vue
  import {defineComponent} from 'vue'
  

@@ -5,7 +5,11 @@
 [https://www.powershellgallery.com/](https://www.powershellgallery.com/)  
 部分教程  [链接](https://www.computerperformance.co.uk/powershell/)
 
+## 获取内置的变量
 
+```
+get-varible
+```
 ## 遍历删除文件夹下的.git目录
 
 ```powershell
@@ -244,3 +248,10 @@ $commandBlock = [scriptblock]::Create($commandString)
 ```
 
 来自<https://java2blog.com/powershell-remove-special-characters-from-string/>
+
+
+## 创建windows服务
+
+```powershell
+New-Service -Name Redis -DisplayName Redis7 -BinaryPathName 'D:\programs\Redis-7.0.13-Windows-x64-with-Service\RedisService.exe' -StartupType Automatic
+```
