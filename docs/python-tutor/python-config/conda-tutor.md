@@ -150,3 +150,12 @@ channels:
   defaults
 changeps1: False #加上这个
 ```
+
+
+## 推荐使用conda-forge
+
+安装
+
+```
+scoop install extras/mambaforge
+```

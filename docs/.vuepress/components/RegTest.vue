@@ -594,7 +594,7 @@ onMounted(() => {
         <el-card style="margin-bottom: 20px" shadow="never">
           <el-space>
             <label><strong>正则表达式在线测试</strong> </label>
-            <el-button type="info" @click.stop="genCode">生成代码</el-button>
+            <el-button  type='info' @click.stop="genCode">生成代码</el-button>
 
             <el-button type="info" @click.stop="setTestSource"
               >生成测试字符串</el-button
@@ -622,6 +622,7 @@ onMounted(() => {
               <el-col :span="24">
                 <div style="display: flex">
                   <el-input
+
                     class="reg-input"
                     size="large"
                     v-model="textPattern"

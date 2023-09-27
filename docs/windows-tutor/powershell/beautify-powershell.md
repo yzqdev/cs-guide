@@ -30,6 +30,315 @@ Install-Module -Name Terminal-Icons -Repository PSGallery
 Import-Module -Name Terminal-Icons
 ```
 
+## 安装PSScriptTools
+
+https://github.com/jdhitsolutions/PSScriptTools
+### startship
+
+https://starship.rs/zh-CN/guide/#%F0%9F%9A%80-%E5%AE%89%E8%A3%85
+
+```
+scoop install starship
+```
+
+### startship配置
+
+```toml
+scan_timeout = 10
+
+[directory]
+
+truncation_length = 8
+
+truncate_to_repo = false
+
+[package]
+
+disabled = true
+
+# [status]
+
+# style = "bg:blue"
+
+# symbol = " "
+
+# format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
+
+# map_symbol = true
+
+# disabled = false
+
+# [username]
+
+# style_user = "white bold"
+
+# style_root = "black bold"
+
+# format = "[$user]($style) "
+
+# disabled = false
+
+# show_always = true
+
+# truncation_symbol = '…/'
+
+  
+
+[time]
+
+disabled = false
+
+format = '[\[ $time \]]($style) '
+
+time_format = "%T"
+
+utc_time_offset = "+8"
+
+[bun]
+
+format = "via [$symbol]($style)"
+
+  
+
+[buf]
+
+format = "via [$symbol]($style)"
+
+  
+
+[cmake]
+
+format = "via [$symbol]($style)"
+
+  
+
+[cobol]
+
+format = "via [$symbol]($style)"
+
+  
+
+[crystal]
+
+format = "via [$symbol]($style)"
+
+  
+
+[daml]
+
+format = "via [$symbol]($style)"
+
+  
+
+[dart]
+
+format = "via [$symbol]($style)"
+
+  
+
+[deno]
+
+format = "via [$symbol]($style)"
+
+  
+
+[dotnet]
+
+format = "[$symbol(🎯 $tfm )]($style)"
+
+  
+
+[elixir]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[elm]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[erlang]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[fennel]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[golang]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[gradle]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[haxe]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[helm]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[java]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[julia]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[kotlin]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[lua]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[meson]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[nim]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[nodejs]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[ocaml]
+
+format = 'via [$symbol(\($switch_indicator$switch_name\) )]($style)'
+
+  
+
+[opa]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[perl]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[php]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[pulumi]
+
+format = 'via [$symbol$stack]($style)'
+
+  
+
+[purescript]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[python]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[raku]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[red]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[rlang]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[ruby]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[rust]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[solidity]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[swift]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[vagrant]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[vlang]
+
+format = 'via [$symbol]($style)'
+
+  
+
+[zig]
+
+format = 'via [$symbol]($style)'
+```
+
 ### 安装oh-my-posh
 
 ### linux安装

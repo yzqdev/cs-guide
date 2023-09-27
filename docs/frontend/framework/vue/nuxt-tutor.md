@@ -1,4 +1,4 @@
-# 数据获取
+ # 数据获取
 
 三种获取数据的方案: fetch , `@nuxt/http`, `@nuxt/axios`
 @nuxt/axios只能用在pages的组件内,其余两个都可以用
