@@ -33,6 +33,12 @@ Import-Module -Name Terminal-Icons
 ## 安装PSScriptTools
 
 https://github.com/jdhitsolutions/PSScriptTools
+
+## 安装yarn completion
+
+https://github.com/PowerShell-Completion/yarn-completion
+## 安装maven completion
+https://github.com/krymtkts/MavenAutoCompletion
 ### startship
 
 https://starship.rs/zh-CN/guide/#%F0%9F%9A%80-%E5%AE%89%E8%A3%85
