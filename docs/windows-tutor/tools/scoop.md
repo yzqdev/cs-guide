@@ -100,6 +100,7 @@ HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
 - scoop install main/clink
 - scoop install extras/scoop-completion
 - geek uninstaller
+- croc
 
 ### 软件
 

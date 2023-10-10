@@ -80,7 +80,14 @@ maven其实也可以使用版本范围
     </plugins>
 </build>
 ```
+对于java9以上,可以用新的方法
 
+
+```xml
+<properties>
+    <maven.compiler.release>17</maven.compiler.release>
+</properties>
+```
 ### 本地maven设置
 
 我们也可以设置本地的maven的配置，一劳永逸。
