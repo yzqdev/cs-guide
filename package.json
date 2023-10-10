@@ -10,8 +10,8 @@
     "docs:vite": "vuepress  dev docs"
   },
   "dependencies": {
-    "axios": "1.5.0",
-    "element-plus": "2.3.12",
+    "axios": "1.5.1",
+    "element-plus": "2.3.14",
     "highlight.js": "11.8.0"
   },
   "devDependencies": {
@@ -20,13 +20,13 @@
     "@vuepress/plugin-docsearch": "2.0.0-beta.67",
     "@vuepress/plugin-prismjs": "2.0.0-beta.67",
     "@vuepress/utils": "2.0.0-beta.67",
-    "@vueuse/core": "10.4.1",
-    "sass": "1.66.1",
+    "@vueuse/core": "10.5.0",
+    "sass": "1.69.0",
     "sass-loader": "13.3.2",
     "vue": "3.3.4",
     "vuepress": "2.0.0-beta.67",
-    "vuepress-shared": "2.0.0-beta.236",
-    "vuepress-theme-hope": "2.0.0-beta.236",
+    "vuepress-shared": "2.0.0-beta.237",
+    "vuepress-theme-hope": "2.0.0-beta.237",
     "vuepress-vite": "2.0.0-beta.67",
     "vuepress-webpack": "2.0.0-beta.67"
   }
