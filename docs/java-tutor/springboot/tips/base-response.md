@@ -173,3 +173,48 @@ import java.util.HashMap;
   }  
 }
 ```
+
+
+## 一种简单的方法
+
+
+```java
+  
+import lombok.Data;  
+  
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;  
+  
+/**  
+ * @author yzqde  
+ */@Data  
+public class RestResponse<T> {  
+  // 约定好的，业务状态响应码。  
+  private int code;  
+  // 业务状态提示信息。  
+  private String msg;  
+  
+  private T data; //接口处理完成后，返回的数据结果。  
+  private String timestamp;  
+  
+  public RestResponse(ResultCode code, T data) {  
+    this.code = code.getCode();  
+    this.msg = code.getMsg();  
+    this.data = data;  
+    this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));  
+  }  
+  
+  public static <T> RestResponse<T> success(T data) {  
+    return new RestResponse<T>(ResultCode.SUCCESS, data);  
+  }  
+  
+  public static <T> RestResponse<T> error(T data) {  
+    return new RestResponse<T>(ResultCode.ERROR, data);  
+  }  
+  
+  public static <T> RestResponse<T> error(ResultCode code, T data) {  
+    return new RestResponse<T>(code, data);  
+  }  
+  
+}
+```

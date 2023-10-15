@@ -92,3 +92,31 @@ blogConfigMapper.exists(KtQueryWrapper(BlogConfig::class.java).eq(BlogConfig::co
 ```
 
 [例子](https://github.com/baomidou/mybatis-plus/blob/master/mybatis-plus-extension/src/test/kotlin/com/baomidou/mybatisplus/test/kotlin/WrapperTest.kt)
+
+
+## mybatis把xml放在java文件夹的方法
+
+
+```xml
+<build>
+  <resources>
+      <resource>
+          <!-- xml放在java目录下-->
+          <directory>src/main/java</directory>
+          <includes>
+              <include>**/*.xml</include>
+          </includes>
+      </resource>
+      <!--指定资源的位置（xml放在resources下，可以不用指定）-->
+      <resource>
+          <directory>src/main/resources</directory>
+      </resource>
+  </resources>
+</build>
+
+```
+
+application.properties配置
+```
+mybatis-plus.mapper-locations=classpath*:**/*.xml
+```

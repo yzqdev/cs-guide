@@ -244,7 +244,7 @@ public class HsApi {
                 "/swagger-resources/**",
                 "/configuration/ui",
                 "/configuration/security",
-                "/swagger-ui.html/**",
+                "/swagger-ui/**",
                 "/webjars/**" );
     }
 ```

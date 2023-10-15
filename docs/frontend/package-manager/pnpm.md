@@ -16,7 +16,11 @@ pnpm config set auto-install-peers true
 ## 介绍
 
 全称performant npm(高性能的npm)，见名知意，就是一个npm的替代品，至于为什么高性能，用什么样的方式解决了依赖包体积趋近于黑洞的问题,解决了什么问题呢?可以参考大佬的说明[掘金](https://juejin.cn/post/6932046455733485575),[官网](https://pnpm.io/zh/motivation)
+:::tip
+注意: pnpm在固态硬盘上性能最好,机械硬盘上安装时间可能需要半小时,
+推荐在固态硬盘使用pnpm,在机械硬盘使用yarn
 
+:::
 ## 安装
 
 :::warning

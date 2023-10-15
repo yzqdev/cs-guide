@@ -6,14 +6,16 @@
 ```java
  
   
-import com.google.gson.Gson;  
-import com.mybatisflex.core.util.ClassUtil;  
-import com.mybatisflex.core.util.StringUtil;  
+import com.fasterxml.jackson.core.JsonProcessingException;  
+import com.fasterxml.jackson.databind.ObjectMapper;  
+  
 import jakarta.servlet.http.HttpServletRequest;  
-import org.apache.ibatis.javassist.ClassPool;  
-import org.apache.ibatis.javassist.CtClass;  
-import org.apache.ibatis.javassist.CtMethod;  
-import org.apache.ibatis.javassist.NotFoundException;  
+import javassist.ClassPool;  
+import javassist.CtClass;  
+import javassist.CtMethod;  
+import javassist.NotFoundException;  
+  
+  
 import org.aspectj.lang.ProceedingJoinPoint;  
 import org.aspectj.lang.annotation.Around;  
 import org.aspectj.lang.annotation.Aspect;  
@@ -35,7 +37,7 @@ public class WebLogAspect {
   private static int maxOutputLengthOfParaValue = 512;  
   
   
-  @Pointcut("execution(public * ab.yzq.flex.flexbatis.controller.*.*(..))")  
+  @Pointcut("execution(public * ab.yzq.jv.mini.controller.*.*(..))")  
   public void webLog() {  
   }  
   
@@ -75,20 +77,20 @@ public class WebLogAspect {
     return result;  
   }  
   
-  private static String getResponseText(Object result) {  
+  private static String getResponseText(Object result) throws JsonProcessingException {  
     if (result instanceof ModelAndView && ((ModelAndView) result).isReference()) {  
       return ((ModelAndView) result).getViewName();  
     }  
   
     String originalText;  
-    Gson gson = new Gson();  
+    ObjectMapper objectMapper=new ObjectMapper();  
     if (result instanceof String) {  
       originalText = (String) result;  
     } else {  
-      originalText = gson.toJson(result);  
+      originalText = objectMapper.writeValueAsString(result);  
     }  
   
-    if (StringUtil.isBlank(originalText)) {  
+    if (originalText.isBlank()) {  
       return "";  
     }  
   
@@ -112,11 +114,12 @@ public class WebLogAspect {
   
   
   private int getLineNumber(Class<?> controllerClass, Method method) throws NotFoundException {  
-    CtClass ctClass = ClassPool.getDefault().get(ClassUtil.getUsefulClass(controllerClass).getName());  
-    ClassPool.getDefault().get(ClassUtil.getUsefulClass(controllerClass).getName());  
-    String desc = WebLogUtil.getMethodDescWithoutName(method);  
-    CtMethod ctMethod = ctClass.getMethod(method.getName(), desc);  
-    return ctMethod.getMethodInfo().getLineNumber(0);  
+  
+    CtClass cc  = ClassPool.getDefault().get(controllerClass .getName());  
+  
+    CtMethod methodX = cc.getDeclaredMethod(method.getName());  
+    int xlineNumber = methodX.getMethodInfo().getLineNumber(0);  
+    return  xlineNumber;  
   }  
   
   

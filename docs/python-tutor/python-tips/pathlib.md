@@ -1,4 +1,4 @@
-
+## pathlib用法
 ## os替代品pathlib
 
  | [`os`](https://docs.python.org/3/library/os.html#module-os) and [`os.path`](https://docs.python.org/3/library/os.path.html#module-os.path) | [`pathlib`](https://docs.python.org/3/library/pathlib.html#module-pathlib) |

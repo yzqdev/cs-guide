@@ -74,3 +74,11 @@ Windows Registry Editor Version 5.00
 把其中的install.inf、zh_CN.ini以及其他存在的文件都解压到cudatext的data\lang文件夹下，重新运行软件点击【Options】-【translations】选择【zh_CN】即可。
 下载所有插件  
 [https://sourceforge.net/projects/cudatext/files/addons_all/](https://sourceforge.net/projects/cudatext/files/addons_all/)
+
+
+# 编码问题
+
+这几天工作中用到不少字符集，Unicode、utf-8、GB2312等，但是在windows命令行里敲notepad进入文本编辑页面。保存时需要选择编码方式，但是不存在GB，却有ANSI，于是纳闷，回来一查，才恍然大悟：原来在简体中文系统下，ANSI 编码代表 GB2312 编码。
+为使计算机支持更多语言，通常使用 0x80~0xFF 范围的 2 个字节来表示 1 个字符。比如：汉字 '中' 在中文操作系统中，使用 [0xD6,0xD0] 这两个字节存储。
+不同的国家和地区制定了不同的标准，由此产生了 GB2312, BIG5, JIS 等各自的编码标准。这些使用 2 个字节来代表一个字符的各种汉字延伸编码方式，称为 ANSI 编码。在简体中文系统下，ANSI 编码代表 GB2312 编码，在日文操作系统下，ANSI 编码代表 JIS 编码。
+不同 ANSI 编码之间互不兼容，当信息在国际间交流时，无法将属于两种语言的文字，存储在同一段 ANSI 编码的文本中。
