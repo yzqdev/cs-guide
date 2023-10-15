@@ -17,13 +17,3 @@
 ```vue
 <econ name='python' size='25px' />
 ```
-
-## 我的icon列表
-
-<icon-display link="//at.alicdn.com/t/font_2410206_mfj6e1vbwo.css"/>
-
-:::tip
-vscode-icons
-:::
-
-<icon-display link='//at.alicdn.com/t/font_3267094_0pfgirl8r8qg.css' />

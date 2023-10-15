@@ -10,12 +10,7 @@
 ```python
 print("hello %s, this is %d" %('world',45))
 ```
-
-变量替换:  
-
-```python
-
-```
+ 
 
 ## 新式字符串格式化（str.format）
 
