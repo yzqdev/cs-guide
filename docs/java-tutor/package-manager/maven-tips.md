@@ -50,3 +50,24 @@ mvn -DskipTests package
 
 ## maven打包可执行jar
 https://www.baeldung.com/executable-jar-with-maven
+
+## 配置项目内镜像
+
+
+```xml
+
+<repositories>  
+  <repository>  
+    <id>central</id>  
+    <name>aliyun</name>  
+    <layout>default</layout>  
+    <url>https://maven.aliyun.com/repository/central</url>  
+    <releases>  
+      <enabled>true</enabled>  
+    </releases>  
+    <snapshots>  
+      <enabled>false</enabled>  
+    </snapshots>  
+  </repository>  
+</repositories>
+```

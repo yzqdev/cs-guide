@@ -13,6 +13,8 @@ order: 1
 - [faker](https://github.com/joke2k/faker)
 - [pyautogui](https://github.com/asweigart/pyautogui)
 - [arrow](https://github.com/arrow-py/arrow )
+- https://github.com/tiangolo/typer
+- https://github.com/pallets/click
 
 ## 爬虫
 
@@ -29,9 +31,30 @@ order: 1
 - [legit](https://frostming.github.io/legit/)
 - [black](https://github.com/psf/black)
 - pipenv
+- [poetry](https://github.com/python-poetry/poetry)
 - isort
 - pipx
 - mitmproxy
+-  [mycli](https://github.com/dbcli/mycli)
+- pgcli
+- [cookiecutter](https://github.com/audreyr/cookiecutter) - A command-line utility that creates projects from cookiecutters (project templates).
+- [copier](https://github.com/pykong/copier) - A library and command-line utility for rendering projects templates.
+- [doitlive](https://github.com/sloria/doitlive) - A tool for live presentations in the terminal.
+- [howdoi](https://github.com/gleitz/howdoi) - Instant coding answers via the command line.
+- [Invoke](https://github.com/pyinvoke/invoke#readme) - A tool for managing shell-oriented subprocesses and organizing executable Python code into CLI-invokable tasks.
+- [PathPicker](https://github.com/facebook/PathPicker) - Select files out of bash output.
+- [percol](https://github.com/mooz/percol) - Adds flavor of interactive selection to the traditional pipe concept on UNIX.
+- [thefuck](https://github.com/nvbn/thefuck) - Correcting your previous console command.
+- [tmuxp](https://github.com/tony/tmuxp) - A [tmux](https://github.com/tmux/tmux) session manager.
+- [try](https://github.com/timofurrer/try) - A dead simple CLI to try out python packages - it's never been easier.
+ 命令行加强
+  - [httpie](https://github.com/jakubroztocil/httpie) - A command line HTTP client, a user-friendly cURL replacement.
+  - [iredis](https://github.com/laixintao/iredis) - Redis CLI with autocompletion and syntax highlighting.
+  - [kube-shell](https://github.com/cloudnativelabs/kube-shell) - An integrated shell for working with the Kubernetes CLI.
+  - [litecli](https://github.com/dbcli/litecli) - SQLite CLI with autocompletion and syntax highlighting.
+  - [mycli](https://github.com/dbcli/mycli) - MySQL CLI with autocompletion and syntax highlighting.
+  - [pgcli](https://github.com/dbcli/pgcli) - PostgreSQL CLI with autocompletion and syntax highlighting.
+  - [saws](https://github.com/donnemartin/saws) - A Supercharged [aws-cli](https://github.com/aws/aws-cli).
 
 ## 查看awesome-python
 
@@ -53,6 +76,7 @@ order: 1
 - flask
 - django
 - torado
+- sanic
 
 ## 界面编写
 
@@ -75,26 +99,9 @@ poetry  [https://github.com/python-poetry/poetry](https://github.com/python-poet
 pyinstaller
 auto-py-to-exe
 
-## cli工具
+ 
 
-- [cookiecutter](https://github.com/audreyr/cookiecutter) - A command-line utility that creates projects from cookiecutters (project templates).
-- [copier](https://github.com/pykong/copier) - A library and command-line utility for rendering projects templates.
-- [doitlive](https://github.com/sloria/doitlive) - A tool for live presentations in the terminal.
-- [howdoi](https://github.com/gleitz/howdoi) - Instant coding answers via the command line.
-- [Invoke](https://github.com/pyinvoke/invoke#readme) - A tool for managing shell-oriented subprocesses and organizing executable Python code into CLI-invokable tasks.
-- [PathPicker](https://github.com/facebook/PathPicker) - Select files out of bash output.
-- [percol](https://github.com/mooz/percol) - Adds flavor of interactive selection to the traditional pipe concept on UNIX.
-- [thefuck](https://github.com/nvbn/thefuck) - Correcting your previous console command.
-- [tmuxp](https://github.com/tony/tmuxp) - A [tmux](https://github.com/tmux/tmux) session manager.
-- [try](https://github.com/timofurrer/try) - A dead simple CLI to try out python packages - it's never been easier.
-- CLI Enhancements
-  - [httpie](https://github.com/jakubroztocil/httpie) - A command line HTTP client, a user-friendly cURL replacement.
-  - [iredis](https://github.com/laixintao/iredis) - Redis CLI with autocompletion and syntax highlighting.
-  - [kube-shell](https://github.com/cloudnativelabs/kube-shell) - An integrated shell for working with the Kubernetes CLI.
-  - [litecli](https://github.com/dbcli/litecli) - SQLite CLI with autocompletion and syntax highlighting.
-  - [mycli](https://github.com/dbcli/mycli) - MySQL CLI with autocompletion and syntax highlighting.
-  - [pgcli](https://github.com/dbcli/pgcli) - PostgreSQL CLI with autocompletion and syntax highlighting.
-  - [saws](https://github.com/donnemartin/saws) - A Supercharged [aws-cli](https://github.com/aws/aws-cli).
+
 
 ## 常用python网站
 
