@@ -18,22 +18,9 @@ export default defineUserConfig({
         href: `/cs-guide/images/cs-guide.webp`,
       },
     ],
-    [
-      'link',
-      {
-        rel: 'stylesheet',
-        href: '//at.alicdn.com/t/font_2410206_mfj6e1vbwo.css',
-      },
-    ],
+  
     ['meta', { name: 'referrer', content: 'no-referrer' }],
-    [
-      'link',
-      //我的vscodeiconfont库
-      {
-        rel: 'stylesheet',
-        href: '//at.alicdn.com/t/c/font_3267094_jzj9r2z5jjt.css',
-      },
-    ],
+ 
   ],
 
   locales: {

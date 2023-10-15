@@ -87,14 +87,14 @@ tkinter
 ## python常用包管理工具
 
 pip 见本文档目录
+
+poetry  [https://github.com/python-poetry/poetry](https://github.com/python-poetry/poetry)  还行,跟npm差不多
 [pipenv](https://github.com/pypa/pipenv) pipenv   推荐使用!  
 anaconda 见本文档
 
 virtual env    [https://virtualenv.pypa.io/en/latest/](https://virtualenv.pypa.io/en/latest/)
 
-​
 
-poetry  [https://github.com/python-poetry/poetry](https://github.com/python-poetry/poetry)  还行,跟npm差不多
 打包工具
 pyinstaller
 auto-py-to-exe
@@ -107,3 +107,36 @@ auto-py-to-exe
 
 - [https://magic.iswbm.com/](https://magic.iswbm.com/)
 - <https://github.com/sivel/speedtest-cli>
+
+
+## mimesis
+
+一个造假数据的库
+
+## pyautogui
+
+控制电脑鼠标和键盘的库
+## yagmail
+
+一行代码发送邮件
+
+## leveldb
+
+https://github.com/wbolster/plyvel
+https://github.com/giampaolo/psutil
+https://github.com/rthalley/dnspython
+
+https://github.com/autocracy/python-ipy
+
+## fake-useragent
+造假useragent
+
+## 情感分析
+ textblob  
+snownlp
+## sh
+命令行工具
+
+## httpstat
+
+美化curl
