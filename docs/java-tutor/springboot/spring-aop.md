@@ -1,6 +1,12 @@
 
 # spring aop用法
 
+
+需要安装
+```
+implementation("org.javassist:javassist:3.29.2-GA")
+```
+
 ## weblog
 
 ```java

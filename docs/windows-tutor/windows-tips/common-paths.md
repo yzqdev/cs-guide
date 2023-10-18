@@ -33,7 +33,8 @@ Win + R打开搜索框，输入`regedit` 打开注册表
 :::
 ### rust
 
-cargo环境变量
+[cargo环境变量](https://rust-lang.github.io/rustup/environment-variables.html)
+
 
 cargo默认cache在`~/.cargo`路径,要更改这个路径,可以修改`CARGO_HOME`为`D:\configuration\.cargo`
 
