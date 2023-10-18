@@ -21,3 +21,77 @@ public void updateUser(Userinfos u) {
     userRepository.save(userFromDb);
 }
 ```
+
+
+## jpa的dialect
+
+
+只有sqlite需要community dialect,其他的hibernate-core包含了
+
+
+### sqlite
+
+
+```
+驱动
+
+implementation("org.xerial:sqlite-jdbc")
+implementation("org.hibernate.orm:hibernate-community-dialects")
+```
+
+下面需要依赖`org.hibernate.orm:hibernate-community-dialects`
+
+```
+spring.jpa.hibernate.ddl-auto=update  
+spring.jpa.show-sql=true  
+#org.hibernate.community.dialect  
+spring.jpa.database-platform=org.hibernate.community.dialect.SQLiteDialect  
+spring.datasource.url=jdbc:sqlite:./demo-sqlite.db  
+#spring.datasource.url=jdbc:sqlite:${user.home}/demo-sqlite.db  
+spring.datasource.username=  
+spring.datasource.password=  
+spring.datasource.driver-class-name=org.sqlite.JDBC
+```
+
+### postgres
+
+```
+驱动
+runtimeOnly("org.postgresql:postgresql")
+```
+
+```
+spring.jpa.hibernate.ddl-auto=update  
+spring.jpa.show-sql=true  
+#org.hibernate.community.dialect  
+spring.datasource.username=postgres  
+spring.datasource.password=123456  
+spring.datasource.driver-class-name=org.postgresql.Driver  
+spring.datasource.url=jdbc:postgresql://localhost:5432/rose?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
+```
+
+
+### mariadb
+
+```
+驱动
+runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
+```
+
+```
+spring.jpa.hibernate.ddl-auto=update  
+spring.jpa.show-sql=true  
+#org.hibernate.community.dialect  
+spring.jpa.database-platform=org.hibernate.dialect.MariaDBDialect  
+spring.datasource.username=postgres  
+spring.datasource.password=123456  
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver  
+spring.datasource.url=jdbc:mariadb://localhost:3307/rose?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
+```
+
+### mysql
+
+```
+驱动
+
+```

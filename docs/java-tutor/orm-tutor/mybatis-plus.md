@@ -120,3 +120,53 @@ application.properties配置
 ```
 mybatis-plus.mapper-locations=classpath*:**/*.xml
 ```
+
+
+## postgres使用mybatis-plus自增主键
+
+实体类上添加
+
+```java
+@Getter  
+@Setter  
+@RequiredArgsConstructor  
+@AllArgsConstructor  
+@KeySequence(value = "company_seq", dbType = DbType.POSTGRE_SQL)  
+public class Company implements Serializable {  
+  @Serial  
+  private static final long serialVersionUID=1L;  
+  @TableId(  type = IdType.INPUT)  
+  
+  private Long id;  
+  private String name;  
+  private Integer age;  
+  private String address;  
+  private Integer salary;  
+  private String description;  
+  
+}
+```
+
+然后再配置文件中加入`keyGenerator`
+```java
+
+  
+@Configuration  
+@MapperScan("com.learn.pgbatis.mapper")  
+public class MybatisPlusConfig {  
+  @Bean  
+  public IKeyGenerator keyGenerator() {  
+    return new PostgreKeyGenerator();  
+  }  
+    /**  
+     * 添加分页插件  
+     */  
+    @Bean  
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {  
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();  
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));//如果配置多个插件,切记分页最后添加  
+        //interceptor.addInnerInterceptor(new PaginationInnerInterceptor()); 如果有多数据源可以不配具体类型 否则都建议配上具体的DbType  
+        return interceptor;  
+    }  
+}
+```

@@ -62,3 +62,23 @@ order: 2
     }
 </script>
 ```
+
+## 编写nodejs 命令行
+
+
+推荐使用pnpm
+
+
+在项目目录执行
+
+```
+pnpm link --global
+```
+
+如果要删除全局链接,要使用
+
+```
+pnpm uninstall --global <package>
+
+`pnpm unlink` only removes the links in your current directory
+```
