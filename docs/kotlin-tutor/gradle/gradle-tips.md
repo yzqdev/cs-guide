@@ -307,9 +307,93 @@ dependencies{
 
 > 与compile对应，功能完全一样，会添加依赖到编译路径，并且会将依赖打包到输出（aar或apk），与implementation不同，这个依赖可以传递，其他module无论在编译时和运行时都可以访问这个依赖的实现，也就是会泄漏一些不应该不使用的实现。举个例子，A依赖B，B依赖C，如果都是使用api配置的话，A可以直接使用C中的类（编译时和运行时），而如果是使用implementation配置的话，在编译时，A是无法访问C中的类的。
 
+
+:::tip
+详细说明:
+
+假设你开发了一个工具包，你想将这个工具包打包成 `jar` 文件使得其他人可以使用，一般可以这样做：
+```groovy
+plugins {
+	id 'java-library'
+	id 'maven-publish' // 使用这个插件打包
+}
+// ... 其他配置省略
+dependencies {
+	// 这个引入是为了说明 api 和其他方式的区别
+	implementation("org.apache.commons:commons-lang3:3.8.1")
+}
+
+
+```
+执行以下命令即可在项目目录下的 `build/libs` 下发现打好的 `jar` 文件。
+```
+gradle clean build
+或者
+gradle clean publishToMavenLocal
+这个如果是从远端引用依赖,而不是下载jar包就没问题,远端引用依赖会自动下载pom里面的依赖
+```
+
+此时将 `jar` 包拷贝给别人的 `lib` 目录下使用，发现对方无法使用 `org.apache.commons:commons-lang3` 包下的工具类，需要手动引入一下才行。因为用 `implementation` 方式引入的依赖在打包后只作用于 `runtime` ，只有使用 `api` 的方式才会同时作用于 `compile` 和 `runtime` ，同理， `compileOnlyApi` 就是只作用于 `compile` 。
+```groovy
+plugins {
+	id 'java-library'
+	id 'maven-publish' // 使用这个插件打包
+}
+// ... 其他配置省略
+dependencies {
+	// 这个引入是为了说明 api 和其他方式的区别
+	api("org.apache.commons:commons-lang3:3.8.1")
+}
+
+
+```
+
+上面代码打包为jar,给别人引用就可以使用commons-lang3里面的方法了,
+
+注意,只能是`api(project(":util"))`这种,如果是使用打包的jar包,就不行,需要你的jar把依赖的文件打包进去
+
+```kotlin
+dependencies{
+api(fileTree("libs"){  
+  include("*.jar")  
+})
+}
+```
+
+java-library打包依赖到jar包的方法,注意这时候,api和implementation就不起作用了,因为已经打包进jar里面了
+```kotlin
+tasks.jar {  
+   
+  from(configurations.runtimeClasspath.get().map {  
+    if (it.isDirectory) it else zipTree(it)  
+  })  
+  val sourcesMain = sourceSets.main.get()  
+  sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }  
+  from(sourcesMain.output)  
+  manifest {  
+    attributes["Manifest-Version"] = "1.0"  
+    attributes["Multi-Release"] = "true"  
+  
+  }  
+  
+}
+```
+
+
+别人使用gradle引用的方法大概是这样
+
+```
+dependencies {
+	// 这个引入是为了说明 api 和其他方式的区别
+	api("org.apache.commons:commons-lang3:3.8.1")
+}
+
+```
+:::
+
 - **implementation**
 
-> 与compile对应，会添加依赖到编译路径，并且会将依赖打包到输出（aar或apk），但是**在编译时不会将依赖的实现暴露给其他module**，也就是只有在运行时其他module才能访问这个依赖中的实现;
+> 与compile对应，会添加依赖到编译路径，并且会将依赖打包到输出（aar或apk），但是**在编译时不会将依赖的实现暴露给其他module**，也就是只有在运行时其他module才能访问这个依赖中的实现;((打包出来不包含他依赖的库,需要自行添加))
 
 > 简单的说，就是使用implementation指令的依赖不会传递;
 
@@ -317,11 +401,11 @@ dependencies{
 
 - **compileOnly**
 
-> 与provided对应，Gradle把依赖加到编译路径，编译时使用，不会打包到输出（aar或apk）。这可以减少输出的体积，在只在编译时需要，在运行时可选的情况，很有用
+> 与provided对应，Gradle把依赖加到编译路径，编译时使用，不会打包到输出（aar或apk）。这可以减少输出的体积，在只在编译时需要，在运行时可选的情况，很有用,比如lombok
 
-- **apk**
+- **runtimeOnly**
 
-> 只在生成apk的时候参与打包，编译时不会参与，很少用。
+>  表示引入的依赖不参与编译，只在运行时才用得到。比如： `数据库驱动`。
 
 - **testImplementation**
 
