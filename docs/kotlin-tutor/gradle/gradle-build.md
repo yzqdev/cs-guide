@@ -81,3 +81,26 @@ bootJar {
     }
 }
 ```
+
+
+## 打包java-library然后把依赖也打包进去
+
+
+```kotlin
+
+tasks.jar {  
+   
+  from(configurations.runtimeClasspath.get().map {  
+    if (it.isDirectory) it else zipTree(it)  
+  })  
+  val sourcesMain = sourceSets.main.get()  
+  sourcesMain.allSource.forEach { println("add from sources: ${it.name}") }  
+  from(sourcesMain.output)  
+  manifest {  
+    attributes["Manifest-Version"] = "1.0"  
+    attributes["Multi-Release"] = "true"  
+  
+  }  
+  
+}
+```

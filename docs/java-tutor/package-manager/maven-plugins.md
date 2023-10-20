@@ -150,6 +150,13 @@ Archtype指项目的骨架，Maven初学者最开始执行的Maven命令可能�
 
 maven-assembly-plugin的用途是制作项目分发包，该分发包可能包含了项目的可执行文件、源代码、readme、平台脚本等等。 maven-assembly-plugin支持各种主流的格式如zip、tar.gz、jar和war等，具体打包哪些文件是高度可控的，例如用户可以 按文件级别的粒度、文件集级别的粒度、模块级别的粒度、以及依赖级别的粒度控制打包，此外，包含和排除配置也是支持的。maven-assembly- plugin要求用户使用一个名为assembly.xml的元数据文件来表述打包，它的single目标可以直接在命令行调用，也可以被绑定至生命周期。
 
+## maven-shade-plugin
+
+  [https://maven.apache.org/plugins/maven-shade-plugin/examples/attached-artifact.html](https://maven.apache.org/plugins/maven-shade-plugin/examples/attached-artifact.html)；
+
+1. 将依赖的jar包打包到当前jar包（常规打包是不会将所依赖jar包打进来的）；
+2. 对依赖的jar包进行重命名（用于类的隔离）；
+
 ## **maven-dependency-plugin**
 
 [http://maven.apache.org/plugins/maven-dependency-plugin/](http://maven.apache.org/plugins/maven-dependency-plugin/)
@@ -301,8 +308,4 @@ exec-maven-plugin很好理解，顾名思义，它能让你运行任何本地的
       </plugin>
 ```
 
-## **小结**
-
-本文介绍了一些最常用的Maven插件，这里指的“常用”是指经常需要进行配置的插件，事实上我们用Maven的时候很多其它插件也是必须的，例如 默认的编译插件maven-compiler-plugin和默认的打包插件maven-jar-plugin，但因为很少需要对它们进行配置，因此不在 本文讨论范围。了解常用的Maven插件能帮助你事倍功半地完成项目构建任务，反之你就可能会因为经常遇到一些难以解决的问题而感到沮丧。本文介绍的插件 基本能覆盖大部分Maven用户的日常使用需要，如果你真有非常特殊的需求，自行编写一个Maven插件也不是难事，更何况还有这么多开放源代码的插件供 你参考。
-
-本文的这个插件列表并不是一个完整列表，读者有兴趣的话也可以去仔细浏览一下Apache和Codehaus Mojo的Maven插件列表，以的到一个更为全面的认识。最后，在线的Maven仓库搜索引擎如[http://search.maven.org/](http://search.maven.org/)也能帮助你快速找到自己感兴趣的Maven插件。创建环境
+ 
