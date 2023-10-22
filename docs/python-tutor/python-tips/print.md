@@ -10,7 +10,6 @@
 ```python
 print("hello %s, this is %d" %('world',45))
 ```
- 
 
 ## 新式字符串格式化（str.format）
 
@@ -35,12 +34,14 @@ print(s.substitute(who='tim', what='kung pao'))
 d=dict(who='tim')
 Template('$who likes $what').safe_substitute(d)
 ```
+
 - **r** means **raw**
 - **b** means **bytes**
 - **u** means **unicode**
 - **f** means **format**
 
 rstring会返回原始字符串
+
 ```python
  dat = r"E:\PycharmProjects\a.py"
 ```
