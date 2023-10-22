@@ -108,6 +108,7 @@ HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
 - krita
 - inkscape
 - blender
+- dupeguru  重复文件查找工具
 
 ### 开发工具
 
