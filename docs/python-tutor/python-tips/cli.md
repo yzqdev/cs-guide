@@ -228,11 +228,12 @@ from lib_cmd.cmd.http_cmd import http_cmd
 
 
 @click.group()
+ 
 def cli():
     pass
 
 
-@cli.command()
+@cli.command("root")
 @click.option("--count", default=1, help="Number of greetings.")
 @click.option("--name", prompt="Your name", help="The person to greet.")
 def root_cli(count, name):
@@ -252,7 +253,7 @@ import click
 import colorama
 from click.core import Command
  
-@click.group()
+@click.group("http")
 def http_cmd() -> Command:
     """
     初始化数据库
