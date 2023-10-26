@@ -17,12 +17,14 @@ import hope from 'vuepress-theme-hope/package.json'
 import vuePkg from 'vue/package.json'
 import ElementPkg from 'element-plus/package.json'
 import vp from 'vuepress/package.json'
+import routerVersion from 'vue-router/package.json'
 import Preview from './components/Preview.vue'
 import ImgPreview from './components/ImgPreview.vue'
 function showBadge(name, version, nameStyle, versionStyle) {
   console.log('%c '.concat(name, ' %c ').concat(version, ' '), 'padding: 1px; border-radius: 3px 0 0 3px; color: #fff; background: '.concat(nameStyle, ';'), 'padding: 1px; border-radius: 0 3px 3px 0; color: #fff; background: '.concat(versionStyle, ';'))
 }
 showBadge('vue', vuePkg.version, '#606060', 'RGB(20,117,178)')
+showBadge('vue-router', routerVersion.version, '#606060', 'RGB(20,117,178)')
 showBadge('vuepress', vp.version, '#606060', 'RGB(20,117,178)')
 showBadge('vuepress-theme-hope', hope.version, '#606060', 'RGB(20,117,178)')
 showBadge('element-plus', ElementPkg.version, '#606060', 'RGB(20,117,178)')

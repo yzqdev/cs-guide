@@ -5,6 +5,7 @@ order: 5
 
 :::tip
 
+- geany (推荐)
 - kate(推荐)
 - emeditor
 - editor-plus
@@ -26,6 +27,28 @@ order: 5
 :::
 
 ---
+
+## 使用geany打开文件(注册表)
+
+先安装geany
+
+```powershell
+scoop install geany
+```
+
+在`HKEY_CLASSES_ROOT\*\shell`新建项,命名为`用geany打开`
+在`HKEY_CLASSES_ROOT\*\shell\用geany打开`新建项,命名为`command`,右边会出现一个默认,修改这个默认值为`D:\scoop\apps\geany\2.0\bin\geany.exe %1`
+设置icon,在command项的父级(上一层),新建值(字符串),icon 即`HKEY_CLASSES_ROOT\*\shell\用geany打开\icon`,然后设置内容为`D:\scoop\apps\geany\2.0\bin\geany.exe`即可
+
+```reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\*\shell\geany打开]
+"Icon"="D:\\scoop\\apps\\geany\\2.0\\bin\\geany.exe"
+
+[HKEY_CLASSES_ROOT\*\shell\geany打开\command]
+@="D:\\scoop\\apps\\geany\\2.0\\bin\\geany.exe %1"
+```
 
 ## 使用emeditor打开文件
 
@@ -74,7 +97,6 @@ Windows Registry Editor Version 5.00
 把其中的install.inf、zh_CN.ini以及其他存在的文件都解压到cudatext的data\lang文件夹下，重新运行软件点击【Options】-【translations】选择【zh_CN】即可。
 下载所有插件  
 [https://sourceforge.net/projects/cudatext/files/addons_all/](https://sourceforge.net/projects/cudatext/files/addons_all/)
-
 
 # 编码问题
 
