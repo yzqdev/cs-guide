@@ -69,6 +69,142 @@ Object.keys(modules).forEach(item => {
 })
 ```
 
+## 打包分离js和css
+
+### 只是分离vendor和文件路径
+
+```ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  esbuild: {
+    drop: ["console", "debugger"],
+  },
+  build: {
+    
+    target: "es2020",
+    // minify: "terser",
+    // rollup 配置
+    rollupOptions: {
+      output: {
+        chunkFileNames: "js/[name]-[hash].js", // 引入文件名的名称
+        entryFileNames: "js/[name]-[hash].js", // 包的入口文件名称
+        assetFileNames: "[ext]/[name]-[hash].[ext]", // 资源文件像 字体，图片等
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
+    },
+
+    // terserOptions: {
+    //   compress: {
+    //     // 生产环境时移除console
+    //     drop_console: true,
+    //     drop_debugger: true,
+    //   },
+    // },
+  },
+});
+
+```
+
+### code split
+
+```ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+const dev=process.env.NODE_ENV==='development'
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  esbuild: {
+    drop: dev ? [] : ["console", "debugger"],
+  },
+  build: {
+    target: "es2020",
+     
+    rollupOptions: {
+      output: {
+        chunkFileNames: "js/[name]-[hash].js", // 引入文件名的名称
+        entryFileNames: "js/[name]-[hash].js", // 包的入口文件名称
+        assetFileNames: "[ext]/[name]-[hash].[ext]", // 资源文件像 字体，图片等
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+           const arr = id.toString().split("node_modules/")[1].split("/");
+           switch (arr[0]) {
+             case "antd": // 自然框架
+             case "react":
+             case "react-dom":
+             case "react-router-dom": // UI 库
+           
+               return "_" + arr[0];
+               break;
+             default:
+               return "__vendor";
+               break;
+           }
+          }
+        },
+        
+      },
+    },
+
+ 
+  },
+});
+
+```
+
+### 另一种code split的方法(根据package.json中的dependencies)
+
+```ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+const dev=process.env.NODE_ENV==='development'
+import { dependencies } from "./package.json";
+const globalVendorPackages = ["react", "react-dom", "react-router-dom"];
+
+function renderChunks(deps: Record<string, string>) {
+  let chunks = {};
+  Object.keys(deps).forEach((key) => {
+    if (globalVendorPackages.includes(key)) return;
+    chunks[key.replace('/', '_').replace('@', '_')] = [key];
+  });
+  return chunks;
+}
+ 
+export default defineConfig({
+  plugins: [react()],
+  esbuild: {
+    drop: dev ? [] : ["console", "debugger"],
+  },
+  build: {
+    target: "es2020",
+     
+    rollupOptions: {
+      output: {
+        chunkFileNames: "js/[name]-[hash].js", // 引入文件名的名称
+        entryFileNames: "js/[name]-[hash].js", // 包的入口文件名称
+        assetFileNames: "[ext]/[name]-[hash].[ext]", // 资源文件像 字体，图片等
+        manualChunks : {
+          vendor: globalVendorPackages,
+          ...renderChunks(dependencies),
+        },
+        
+      },
+    },
+
+ 
+  },
+})
+
+```
+
 ## vite配置
 
 ```ts
@@ -171,4 +307,77 @@ export default defineConfig({
   }
 })
 ```
+
+## 使用cdn实例
+
+```ts
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'node:path'
+import { dependencies } from "./package.json";
+import { vitePluginForArco } from "@arco-plugins/vite-react";
+import {cdn} from 'vite-plugin-cdn2'
+import {unpkg} from 'vite-plugin-cdn2/url.js'
+const globalVendorPackages = [  ]; //['react', 'react-dom', 'react-router-dom']
+const externalPackages = [
+  "react",
+  "react-dom",
+  "axios",
+  
+];
+function renderChunks(deps: Record<string, string>) {
+  let chunks = {};
+  Object.keys(deps).forEach((key) => {
+    if (globalVendorPackages.includes(key)) return;
+    if (externalPackages.includes(key)) return;
+    chunks[key.replace("/", "_").replace("@", "_")] = [key];
+  });
+  return chunks;
+}
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    vitePluginForArco({
+      style: "css",
+    }),
+    cdn({
+       url: unpkg,
+      modules: externalPackages,
+
+      resolve(baseURL, { name, version, relativeModule }) {
+        
+        if(name=='axios'){
+          return "https://unpkg.com/axios@1.6.0/dist/axios.min.js";
+        }
+        else {
+          const ur = new URL(
+            `${name}/${version}/${path.basename(relativeModule)}`,
+            baseURL
+          ).href;
+          console.log(ur);
+          return ur;
+        }
+      },
+    }),
+  ],
+  build: {
+    rollupOptions: {
+      external: externalPackages,
+      output: {
+        chunkFileNames: "js/[name].js", // 引入文件名的名称
+        entryFileNames: "js/[name].js", // 包的入口文件名称
+        assetFileNames: "[ext]/[name].[ext]", // 资源文件像 字体，图片等
+        manualChunks: {
+          vendor: globalVendorPackages,
+          ...renderChunks(dependencies),
+        },
+      },
+    },
+  },
+});
+
+```
+
 <https://github.com/antfu/vite-plugin-inspect>

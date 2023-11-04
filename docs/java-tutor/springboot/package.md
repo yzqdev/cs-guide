@@ -1,8 +1,7 @@
 
-#  打包
+# 打包
 
 ## gradle打包
-
 
 ```
 ./gradlew bootJar
@@ -32,8 +31,8 @@ tasks.register<BootJar>("thin") {
 }
 ```
 
-
 groovy版本
+
 ```groovy
 task customJar(type: BootJar) {  
   archiveBaseName = 'custom-spring-boot'  

@@ -10,8 +10,8 @@
     "docs:vite": "vuepress  dev docs"
   },
   "dependencies": {
-    "@vue/repl": "^2.5.8",
-    "axios": "1.5.1",
+    "@vue/repl": "^2.6.1",
+    "axios": "1.6.0",
     "element-plus": "2.4.1",
     "highlight.js": "11.9.0"
   },
@@ -26,8 +26,8 @@
     "sass-loader": "13.3.2",
     "vue": "3.3.7",
     "vuepress": "2.0.0-beta.67",
-    "vuepress-shared": "2.0.0-beta.240",
-    "vuepress-theme-hope": "2.0.0-beta.240",
+    "vuepress-shared": "2.0.0-beta.242",
+    "vuepress-theme-hope": "2.0.0-beta.242",
     "vuepress-vite": "2.0.0-beta.67",
     "vuepress-webpack": "2.0.0-beta.67"
   }

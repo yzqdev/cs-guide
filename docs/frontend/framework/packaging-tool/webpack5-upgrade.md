@@ -8,9 +8,11 @@
 
 ```bash
 "watch": "webpack --watch"
+
+```
+
 自动编译模块!!!
 唯一的缺点是，为了看到修改后的实际效果，你需要刷新浏览器。如果能够自动刷新浏览器就更好了，可以尝试使用 webpack-dev-server，恰好可以实现我们想要的功能。
-```
 
 ### webpack-dev-server
 

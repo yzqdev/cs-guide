@@ -66,7 +66,7 @@
 
 ## 或者使用babel.config.js
 
-```json
+```ts
 module.exports = function (api) {
   api.cache(true);
 
