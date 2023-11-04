@@ -1,8 +1,7 @@
 
 ## scoop地址
 
-
-https://scoop.sh/#/
+<https://scoop.sh/#/>
 
 # scoop用法
 
@@ -20,7 +19,7 @@ irm get.scoop.sh | iex
 
 ## 修改路径
 
--  用户安装的程序和scoop本身位于`C:\Users<user>\scoop`。
+- 用户安装的程序和scoop本身位于`C:\Users<user>\scoop`。
 - 全局安装的程序（–global）位于`C:\ProgramData\scoop`
 
 可以通过环境变量更改这些设置。具体步骤如下
@@ -32,13 +31,15 @@ $env:SCOOP='D:\scoop'
 $env:SCOOP_GLOBAL='E:\GlobalScoopApps'
 [Environment]::SetEnvironmentVariable('SCOOP_GLOBAL', $env:SCOOP_GLOBAL, 'Machine')
 ```
+
 ## 仓库
 
 一个好用的仓库
-https://github.com/chawyehsu/dorado
+<https://github.com/chawyehsu/dorado>
 
 小公举仓库
-https://github.com/kodybrown/scoop-nirsoft
+<https://github.com/kodybrown/scoop-nirsoft>
+
 ## 一些命令
 
 ```powershell
@@ -65,6 +66,7 @@ scoop config rm proxy
 ```
 
 ## 问题
+
 系统找不到指定的路径。
 
 请查看下面的注册表路径是否正确
@@ -72,6 +74,7 @@ scoop config rm proxy
 ```
 HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
 ```
+
 ## 一些软件
 
 - 7zip
@@ -82,6 +85,10 @@ HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
 - hugo-extended
 - lazygit
 - oh-my-posh
+- scoop install main/mingw
+- scoop install extras/nsis
+- scoop install extras/notepad3
+- scoop install extras/notepadnext
 - onefetch
 - quarkus-cli
 - perl
@@ -99,12 +106,43 @@ HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
 - busybox
 - scoop install main/clink
 - scoop install extras/scoop-completion
-- geek uninstaller
+- geekuninstaller
 - croc
+- lazarus
+- upx
+- scoop install main/flyway
+- scoop install extras/ilspy
+- scoop install main/pwsh
+- scoop install main/curlie
+- scoop install extras/waterfox
 
 ### 软件
 
+- amulet-map-editor
+- dismplusplus
+- registry-finder
+- vlc
+- filezilla
+- total-registry
+- mobaxterm
 - electerm
+- imageglass
+- scoop install extras/sysinternals
+- scoop install versions/systeminformer-nightly
+- scoop install extras/podman-desktop
+- scoop install main/gh
+- scoop install extras/xnviewmp
+- scoop install extras/nirlauncher
+- scoop install extras/calibre
+- scoop install extras/q-dir
+- scoop install extras/fastcopy
+- scoop install extras/ipscan
+- scoop install extras/explorerplusplus
+- scoop install main/fastfetch
+- scoop install main/imagemagick
+- scoop install extras/detect-it-easy
+- scoop install extras/scene-builder
+- scoop install main/pandoc
 - krita
 - inkscape
 - blender
@@ -120,11 +158,10 @@ HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
 - kate
 - nginx
 - jd-gui
-- https://github.com/ipinfo/cli
+- <https://github.com/ipinfo/cli>
 - nmap
 - potplayer
 - cmake
-
 
 ## rust工具
 

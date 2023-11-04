@@ -1,5 +1,37 @@
 # maven注意事项
 
+## maven命令
+
+```powershell
+mvn compile
+
+mvn clean
+
+mvn install 
+#跳过测试
+mvn package -DskipTests #这个还是会编译的,推荐用下面的
+mvn package -Dmaven.test.skip=true  # 不编译测试class
+# powershell上需要
+mvn package "-Dmaven.test.skip=true"
+mvn clean package -pl module-a
+
+
+# 多模块带有依赖需要加上-am
+
+mvn clean package -pl log-app -am
+
+等同于
+mvn install && mvn clean package -pl log-app
+
+```
+
+:::warning
+对于idea ,多模块打包必须先install,上面带参数这种方法不适用
+多模块要指定`<relativePath>../pom.xml</relativePath>`
+:::
+
+## 打包注意
+
 maven 默认的打包类型为 jar，
 在项目聚合的时候，需要显式的将 父项目的 packing 指定为 pom，子项目可以定义为jar或者war
 然后再指定所属的子模块，如下所示：
@@ -20,26 +52,26 @@ maven 默认的打包类型为 jar，
 参考官网：
 [http://maven.apache.org/guides/introduction/introduction-to-the-pom.html](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html)
 
-
 ## maven配置项目jdk版本
 
-
-https://www.baeldung.com/maven-java-version
+<https://www.baeldung.com/maven-java-version>
 
 ## maven跳过测试
 
 ### maven跳过测试编译过程
 
-
-```
+```powershell
 mvn -Dmaven.test.skip package
 
-powershell使用
+# powershell使用
 
- 
-mvn clean install --% -Dmaven.test.skip=true
+mvn package `-Dmaven.test.skip=true
+#  或者
+mvn package '-Dmaven.test.skip=true'
+# 或者
+mvn clean package --% -Dmaven.test.skip=true
 
-mvnd  -pl aspect-main package --%   -Dmaven.test.skip
+mvnd  -pl aspect-main package --%  -Dmaven.test.skip
  
 ```
 
@@ -50,17 +82,18 @@ mvnd  -pl aspect-main package --%   -Dmaven.test.skip
     <maven.test.skip>true</maven.test.skip>
 </properties>
 ```
+
 ### maven跳过测试执行过程
 
-```
+```powershell
 mvn -DskipTests package
 ```
 
 ## maven打包可执行jar
-https://www.baeldung.com/executable-jar-with-maven
+
+<https://www.baeldung.com/executable-jar-with-maven>
 
 ## 配置项目内镜像
-
 
 ```xml
 
@@ -80,21 +113,18 @@ https://www.baeldung.com/executable-jar-with-maven
 </repositories>
 ```
 
-
 ## 错误   [Maven: Non-resolvable parent POM](https://stackoverflow.com/questions/7612309/maven-non-resolvable-parent-pom)
 
 需要先在主目录`mvn install`一下,然后再打包`mvn -pl app package`
-
+或者`mvn -pl app -am package`
 
 ## maven打包fatjar
 
 最好使用maven-shade-plugin,专门用来打fatjar(uber-jar)的
 
-
 ### 使用maven-assembly-plugin
 
-
-https://maven.apache.org/plugins/maven-dependency-plugin/examples/copying-project-dependencies.html
+<https://maven.apache.org/plugins/maven-dependency-plugin/examples/copying-project-dependencies.html>
 
 自定义的打包结构，也可以定制依赖项等
 
@@ -129,10 +159,9 @@ https://maven.apache.org/plugins/maven-dependency-plugin/examples/copying-projec
 
 ### 使用maven-jar-plugin
 
-
 默认的打包方式，用来打普通的project JAR包，**此方式是没有真正打包到一个独立jar**
 
-https://maven.apache.org/shared/maven-archiver/examples/classpath.html
+<https://maven.apache.org/shared/maven-archiver/examples/classpath.html>
 
 ```xml
 <plugin>
@@ -151,27 +180,27 @@ https://maven.apache.org/shared/maven-archiver/examples/classpath.html
 ```xml
 <!-- 拷贝依赖包 -->
 <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-dependency-plugin</artifactId>
-	<executions>
-		<execution>
-			<id>copy</id>
-			<phase>package</phase>
-			<goals>
-				<goal>copy-dependencies</goal>
-			</goals>
-			<configuration>
-				<outputDirectory>${project.build.directory}/lib</outputDirectory>
-			</configuration>
-		</execution>
-	</executions>
+ <groupId>org.apache.maven.plugins</groupId>
+ <artifactId>maven-dependency-plugin</artifactId>
+ <executions>
+  <execution>
+   <id>copy</id>
+   <phase>package</phase>
+   <goals>
+    <goal>copy-dependencies</goal>
+   </goals>
+   <configuration>
+    <outputDirectory>${project.build.directory}/lib</outputDirectory>
+   </configuration>
+  </execution>
+ </executions>
 </plugin>
 ```
 
- ### 使用maven-shade-plugin
+### 使用maven-shade-plugin
 
 用来打可执行jar包，也就是所谓的uber jar包;
-https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html
+<https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html>
 
 ```xml
 
@@ -207,12 +236,9 @@ https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html
 </plugin>
 ```
 
-
 ## 使用javapackager
 
-
-https://github.com/fvarrui/JavaPackager
-
+<https://github.com/fvarrui/JavaPackager>
 
 ```xml
 
@@ -254,7 +280,6 @@ https://github.com/fvarrui/JavaPackager
 需要再项目中的pom.xml配置
 注意这个`edu.sc.seis.launch4j:launch4j不在maven仓库而是再gradle plugin 仓库
 
-
 ```xml
 <repositories>  
   <repository>  
@@ -279,7 +304,6 @@ https://github.com/fvarrui/JavaPackager
 
 然后.m2/settings.xml中需要把这个id exclude掉,避免全局的仓库覆盖本地仓库
 
-
 ```xml
 <mirror>  
   <id>nexus-tencentyun</id>  
@@ -287,4 +311,57 @@ https://github.com/fvarrui/JavaPackager
   <name>Nexus tencentyun</name>  
   <url>http://mirrors.cloud.tencent.com/nexus/repository/maven-public/</url>  
 </mirror>
+```
+
+## gradle打包
+
+```
+./gradlew bootJar
+```
+
+依赖分离打包
+
+在build.gradle.kts中加入下面的代码,然后运行`./gradlew thin`和`./gradlew bootJar`同时打包thin包和fatjar
+
+```kotlin
+  
+tasks.register<BootJar>("thin") {  
+  dependsOn("clearLib") //依赖清除和拷贝lib任务  
+  dependsOn("copyLib")  
+  exclude("**/*.jar") //打包时排除jar文件（不打包成fat jar）  
+  mainClass.set("ab.yzq.jv.mini.MiniApp")  
+  archiveBaseName="spring-min-thin"  
+  targetJavaVersion = JavaVersion.VERSION_17  
+  manifest {  
+    attributes["Manifest-Version"] = "1.0"  
+    attributes["Multi-Release"] = "true"  
+//    attributes["Main-Class"] = "org.springframework.boot.loader.JarLauncher" //main方法所在的class，我这个例子是用的Kotlin所以带有Kt后缀  
+    attributes["Class-Path"] =  
+      configurations.runtimeClasspath.get().files.joinToString(" ") { "lib/${it.name}" }  //构建出 lib/包名 的字符串并用空格分隔  
+  }  
+  with(tasks.named("bootJar").get() as CopySpec)  
+}
+```
+
+groovy版本
+
+```groovy
+task customJar(type: BootJar) {  
+  archiveBaseName = 'custom-spring-boot'  
+  version = '0.1.0'  
+  mainClass = 'ab.yzq.springdemo.SpringDemoApp'  
+  targetJavaVersion = JavaVersion.VERSION_17  
+  dependsOn("clearLib") //依赖清除和拷贝lib任务  
+  dependsOn("copyLib")  
+  exclude("**/*.jar") //打包时排除jar文件（不打包成fat jar）  
+  manifest {  
+    attributes["Manifest-Version"] = "1.0"  
+    attributes["Multi-Release"] = "true"  
+//    attributes["Main-Class"] = "org.springframework.boot.loader.JarLauncher" //main方法所在的class，我这个例子是用的Kotlin所以带有Kt后缀  
+    attributes['Class-Path'] = configurations.runtimeClasspath.collect { 'lib/' + it.getName() }.join(' ')  
+  }  
+  println("below is bootjar")  
+  print(bootJar)  
+  with bootJar    
+}
 ```

@@ -27,6 +27,10 @@ hexo-theme-butterfly
 > 主题推荐
 
 - [NexT - Theme for Hexo (theme-next.js.org)](https://theme-next.js.org/)
+- [hexo-theme-shoka](https://github.com/amehime/hexo-theme-shoka)
+- [hexo-theme-material](https://github.com/iblh/hexo-theme-material)
+- [hexo-theme-indigo](https://github.com/yscoder/hexo-theme-indigo)
+- [hexo-theme-cactus](https://github.com/probberechts/hexo-theme-cactus)
 
 ## hugo
 

@@ -1,15 +1,5 @@
 # webpack教程
 
-## loader兼容性
-
-| 名称                      | 版本                  |
-| ------------------------- | --------------------- |
-| less-loader(建议用7.3.0)  | 8.0.0以上最低webpack5 |
-| sass-loader(建议用10.0.1) | 11.0.0最低webpack5    |
-|                           |                       |
-|                           |                       |
-|                           |                       |
-
 ## 复制资源的插件:copy-webpack-plugin
 
 ```javascript
@@ -31,7 +21,7 @@ module.exports = {
 
 ## 压缩的插件:terser-webpack-plugin
 
-## 插件地址
+### 插件地址
 
 [https://github.com/webpack-contrib/terser-webpack-plugin](https://github.com/webpack-contrib/terser-webpack-plugin)
 ​
@@ -42,7 +32,7 @@ module.exports = {
 yarn add terser-webpack-plugin
 ```
 
-## 配置
+### 配置
 
 ```js
 const TerserPlugin = require("terser-webpack-plugin");
@@ -70,6 +60,41 @@ module.exports = {
       }),
     ],
   },
+};
+
+```
+
+## webpack多页面
+
+```ts
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+let htmlPageNames = ['example1', 'example2', 'example3', 'example4'];
+let multipleHtmlPlugins = htmlPageNames.map(name => {
+  return new HtmlWebpackPlugin({
+    template: `./src/${name}.html`, // relative path to the HTML files
+    filename: `${name}.html`, // output HTML files
+    chunks: [`${name}`] // respective JS files
+  })
+});
+
+module.exports = {
+  entry: {
+    main: './js/main.js',
+    example1: './js/example1.js',
+    //... repeat until example 4
+  },
+  module: { 
+       //.. your rules
+  };
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      chunks: ['main']
+    })
+  ].concat(multipleHtmlPlugins)
+  
 };
 
 ```
