@@ -5,10 +5,17 @@
 - [elementui (vue2)](http://element-cn.eleme.io/#/zh-CN)
 - [element-plus(vue3)](https://element-plus.org/)
 - [antdv](https://antdv.com/)
-- [vuetify](https://vuetifyjs.com/)
+- [vuetify](https://vuetifyjs.com/) vite
 - [quasar](https://quasar.dev/)
 - [keenui](https://josephuspaye.github.io/Keen-UI/#/ui-alert)
-- [naive ui](https://www.naiveui.com/)
+- [naive ui](https://www.naiveui.com/) vite
+- [vant](https://vant-ui.github.io/vant/)
+- [arco](https://arco.design/)  vite
+- [varilet]( https://github.com/varletjs/varlet) vite
+- [nutui](https://nutui.jd.com/#/)  vite
+- [idux](https://github.com/IDuxFE/idux) vite
+- [https://primevue.org/](https://primevue.org/)   vite
+- [https://vue-devui.github.io/quick-start/](https://vue-devui.github.io/quick-start/) esbuild
 
 ## react的ui库
 
