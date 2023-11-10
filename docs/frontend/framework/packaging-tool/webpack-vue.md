@@ -82,3 +82,208 @@ module.exports = {
     }
 };
 ```
+
+## 一个webpack配置vue的例子
+
+webpack.base.ts
+
+```ts
+import path from "node:path";
+import HtmlwebpackPlugin from "html-webpack-plugin";
+import webpack from "webpack";
+import {VueLoaderPlugin}   from "vue-loader";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import "webpack-dev-server";
+import { Configuration } from "webpack/types";
+const conf: Configuration = {
+  mode: "development",
+  entry: path.resolve(__dirname, "./src/main.ts"),
+  target: "web",
+  devtool: "source-map",
+  devServer: {
+    port: 3211,
+    host: "0.0.0.0",
+    hot: true,
+    historyApiFallback: true,
+  },
+  resolve: {
+    extensions: [".js", ".ts"],
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].[contenthash:8].js",
+    publicPath: "/",
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: "vue-loader",
+        options: {
+          // reactivityTransform: true,
+        },
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        type: "asset/resource",
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          { loader: "svg-sprite-loader", options: { symbolId: "icon-[name]" } },
+        ],
+      },
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: "css-loader",
+      //       options: {
+      //         modules: true,
+      //       },
+      //     },
+      //   ],
+      // },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        oneOf: [
+          // 这里匹配 `<style module>`
+          {
+            resourceQuery: /module/,
+            use: [
+              MiniCssExtractPlugin.loader,
+              {
+                loader: "css-loader",
+                options: {
+                  modules: true,
+
+                },
+              },
+              "sass-loader",
+            ],
+          },
+          // 这里匹配普通的 `<style>` 或 `<style scoped>`
+          {
+            use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+          },
+        ],
+      },
+      {
+        test: /\.ts$/,
+        use: [
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: true,
+              appendTsSuffixTo: [/\.vue$/],
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new VueLoaderPlugin(),
+    new HtmlwebpackPlugin({
+      title: "vue Template",
+      filename: "index.html",
+      template: "./public/index.html",
+      inject: true,
+      // chunks: ["index"],
+      hash: true,
+      path: "./",
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false,
+    }),
+  ],
+};
+export default  conf
+
+
+```
+
+webpack.dev.ts
+
+```ts
+import * as path from "path";
+import * as webpack from "webpack";
+// const Dotenv = require('dotenv-webpack');
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import HtmlwebpackPlugin from "html-webpack-plugin";
+// import * as CopyWebpackPlugin from 'copy-webpack-plugin'
+import base from "./webpack.base";
+import { merge } from "webpack-merge";
+import "webpack-dev-server";
+import "dotenv/config";
+console.log(process.env.BASE_URL);
+const conf = merge(base, {
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+    }),
+  ],
+});
+export default conf;
+
+```
+
+webpack.prod.ts
+
+```ts
+import * as path from "path";
+import * as webpack from "webpack";
+import dotenv from "dotenv";
+dotenv.config({
+  path: path.resolve(__dirname, "./.env.production"),
+});
+// const Dotenv = require('dotenv-webpack');
+import CompressionPlugin from 'compression-webpack-plugin'
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import HtmlwebpackPlugin from "html-webpack-plugin";
+// import * as CopyWebpackPlugin from 'copy-webpack-plugin'
+import base from "./webpack.base";
+import { merge } from "webpack-merge";
+import "webpack-dev-server";
+const conf = merge(base, {
+  mode: "production",
+  devtool: false,
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      maxSize: 1024 * 1024,
+    },
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+    }),
+        new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.(js|css)$/,
+      threshold: 10240,
+      deleteOriginalAssets: false,
+      minRatio: 0.8
+    })
+  ],
+});
+export default conf;
+
+
+```
+
+.env.development
+
+```env
+BASE_URL="/"
+
+```

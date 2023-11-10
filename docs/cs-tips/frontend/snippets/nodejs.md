@@ -1,5 +1,12 @@
 # nodejs
 
+## nodejs使用tsx执行命令行
+
+```
+node  --require tsx/cjs node_modules/gulp-cli/bin/gulp.js
+
+```
+
 ## 添加jsdoc的type提示
 
 /** @type {import('@sveltejs/kit').Config} */
