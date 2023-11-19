@@ -26,7 +26,7 @@ tutorialspoint: [https://www.tutorialspoint.com/powershell/](https://www.tutoria
 
 [https://github.com/dahlbyk/posh-git](https://github.com/dahlbyk/posh-git)
 
-# powershell常用命令
+## powershell常用命令
 
 1. my-module整个文件夹需要放在 $profile 的 Modules 文件夹下
 1. 整个目录结构相对简单

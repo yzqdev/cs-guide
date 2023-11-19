@@ -15,5 +15,5 @@ imgui 一个很小的界面框架    [https://github.com/ocornut/imgui#usage](ht
 ​
 
 qt   wxwidgets不用说了吧
-[https://gitee.com/deepin-community-store/spark-store/blob/non-dtk/src/spklogging.cpp](https://gitee.com/deepin-community-store/spark-store/blob/non-dtk/src/spklogging.cpp)
+[deepin](https://gitee.com/deepin-community-store/spark-store/blob/non-dtk/src/spklogging.cpp)
 painter地址如下 [http://www.painterengine.com/index.html](http://www.painterengine.com/index.html)

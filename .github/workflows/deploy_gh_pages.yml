@@ -16,19 +16,17 @@ jobs:
         with:
           fetch-depth: 0
 
-
+    
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-
-
-
-      - name: install dependencies
-        run: yarn install
+          node-version: 20
+           
       - name: Build VuePress site
-        run: yarn run docs:build
+        run: npm install
+      - name: Build VuePress site
+        run: npm run docs:build
         env:
           NODE_OPTIONS: --max_old_space_size=8192
       - name: Deploy to GitHub Pages

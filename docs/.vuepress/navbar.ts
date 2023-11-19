@@ -1,47 +1,47 @@
 import { navbar } from 'vuepress-theme-hope'
 
 export default navbar([
-  { text: '前端教程', icon: 'mdi:language-html5', link: '/frontend/' },
-  { text: 'node教程', icon: 'tabler:brand-nodejs', link: '/node-tutor/' },
+  { text: '前端教程', icon: 'vscode-icons:file-type-html', link: '/frontend/' },
+  { text: 'node教程', icon: 'vscode-icons:file-type-node', link: '/node-tutor/' },
 
-  { text: 'go教程', icon: 'fa6-brands:golang', link: '/go-tutor/' },
-  { text: 'java教程', icon: 'fa6-brands:java', link: '/java-tutor/' },
+  { text: 'go教程', icon: 'vscode-icons:file-type-go', link: '/go-tutor/' },
+  { text: 'java教程', icon: 'vscode-icons:file-type-java', link: '/java-tutor/' },
 
   {
     text: '系统教程',
-    icon: 'simple-icons:linux',
+    icon: 'logos:linux-tux',
     children: [
       {
         text: 'linux',
-        icon: 'simple-icons:linux',
+        icon: 'logos:linux-tux',
         link: '/linux-tutor/',
       },
-      { text: 'windows', icon: 'gg:windows', link: '/windows-tutor/' },
-      { text: 'git教程', icon: 'bi:git', link: '/git-tutor/' },
+      { text: 'windows', icon: 'logos:microsoft-windows-icon', link: '/windows-tutor/' },
+      { text: 'git教程', icon: 'vscode-icons:file-type-git', link: '/git-tutor/' },
     ],
   },
-  { text: 'python教程', icon: 'carbon:logo-python', link: '/python-tutor/' },
+  { text: 'python教程', icon: 'vscode-icons:file-type-python', link: '/python-tutor/' },
 
-  { text: 'c#教程', icon: 'mdi:language-csharp', link: '/csharp-tutor/' },
+  { text: 'c#教程', icon: 'vscode-icons:file-type-csharp', link: '/csharp-tutor/' },
 
   {
     text: '安卓',
-    icon: 'ant-design:android-filled',
+    icon: 'devicon:android',
     children: [
-      { text: '安卓基础', link: '/android-tutor/' },
-      { text: '安卓tips', link: '/android-tips/' },
-      { text: 'flutter', link: '/flutter-tutor/' },
-      { text: 'kotlin', link: '/kotlin-tutor/' },
+      { text: '安卓基础', icon: 'ph:android-logo-bold', link: '/android-tutor/' },
+      { text: '安卓tips', icon: 'mdi:robot-excited-outline', link: '/android-tips/' },
+      { text: 'flutter', icon: 'vscode-icons:file-type-flutter', link: '/flutter-tutor/' },
+      { text: 'kotlin', icon: 'logos:kotlin-icon', link: '/kotlin-tutor/' },
     ],
   },
   {
     text: 'mc教程',
-    icon: 'solar:gamepad-no-charge-bold',
+    icon: 'twemoji:video-game',
     link: '/mc-tutor/',
   },
   {
     text: '技巧',
-    icon: 'ic:sharp-whatshot',
+    icon: 'emojione:fire',
     link: '/cs-tips/',
   },
   {

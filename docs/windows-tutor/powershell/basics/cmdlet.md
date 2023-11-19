@@ -146,3 +146,12 @@ PowerShell基本cmdlet命令如下表所示：
 | `Unregister-ScheduledJob` | 删除本地计算机上的计划作业                             |
 | `Update-Help`             | 用于下载并在计算机上安装最新的帮助文件。               |
 | `Write-Output`            | 将特定对象沿管道发送到下一个命令。                     |
+
+## cmd和powershell的对比
+
+| 作用         | cmd命令 | powershell命令 |
+| ------------ | ------- | -------------- |
+| 打印字符     | echo    | Write-Output   |
+| 进入路径     | cd      | Set-Location   |
+| 获取指令路径 | no      | Get-Command    |
+|获取文件列表|ls|Get-ChildItem|

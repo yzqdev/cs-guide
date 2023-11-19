@@ -5,16 +5,28 @@
 [https://www.powershellgallery.com/](https://www.powershellgallery.com/)  
 部分教程  [链接](https://www.computerperformance.co.uk/powershell/)
 
+## 执行某个ps脚本的一个function
+
+```powershell
+powershell -command "& { . <path>\script1.ps1; My-Func }"
+
+# 如果只是想在命令行执行
+. .\script.ps1
+My-Func
+```
+
 ## 获取内置的变量
 
 ```
 get-varible
 ```
+
 ## 遍历删除文件夹下的.git目录
 
 ```powershell
 ls * -include  .git  -Force -recurse |Remove-Item -r -Force
 ```
+
 ## Start-Process，别名：start + 路径， 打开当前文件夹
 
 ```powershell
@@ -206,7 +218,8 @@ Where-Object { $_.PSIsContainer -eq $false } |
 Measure-Object |  Select-Object -ExpandProperty Count
 Write-Host  "文件数量检测完毕" -ForegroundColor Cyan
 ```
-##   Run String as Command in PowerShell
+
+## Run String as Command in PowerShell
 
  使用Invoke-Expression
 
@@ -220,6 +233,7 @@ $command = "Get-Process | Sort-Object -Property CPU -Descending | Select-Object 
 
 Invoke-Expression -Command $command
 ```
+
 使用&运算符
 
 ```powershell
@@ -239,6 +253,7 @@ Invoke-Expression -Command $command
 ```
 
 使用c#代码
+
 ```powershell
 $commandString = "Get-ChildItem C:\TEST1"
 
@@ -248,7 +263,6 @@ $commandBlock = [scriptblock]::Create($commandString)
 ```
 
 来自<https://java2blog.com/powershell-remove-special-characters-from-string/>
-
 
 ## 创建windows服务
 
