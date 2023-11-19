@@ -1,6 +1,6 @@
 # 别名alias
 
-```powershellpowershell
+```powershell
 function fluship{
     ipconfig /flushdns
 }
@@ -36,7 +36,7 @@ _以下命令中的大小写不敏感_：
 
 - 查看此Session中已经设定的所有别名：`Get-Alias`或`gal`
 
-```powershelltext
+```text
  Get-Alias
 CommandType     Name
 -----------     ----

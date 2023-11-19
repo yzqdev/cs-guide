@@ -1,10 +1,11 @@
 # vue3使用jsx
 
-
 ## 写法
+
 有两种写法
 第一种写法
-```vue
+
+```tsx
 import {defineComponent} from 'vue'
  
 export default defineComponent({
@@ -21,8 +22,10 @@ export default defineComponent({
  
 })
 ```
+
  第二种使用render(options语法)
- ```vue
+
+ ```tsx
  import {defineComponent} from 'vue'
  
 export default defineComponent({

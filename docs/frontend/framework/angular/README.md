@@ -1,3 +1,3 @@
-# react教程
+# angular教程
 
 <AutoCatalog   />

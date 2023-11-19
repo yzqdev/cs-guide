@@ -69,12 +69,12 @@ deno uninstall file_server
 }
 
 ```
+
 ## deno内部npm镜像
 
-https://github.com/denoland/deno/issues/16105
+<https://github.com/denoland/deno/issues/16105>
 
 配置环境变量`NPM_CONFIG_REGISTRY`即可
-
 
 ## deno 使用npm包
 
@@ -82,9 +82,10 @@ https://github.com/denoland/deno/issues/16105
 // @deno-types="npm:@types/express@4.17.15"
 import express from "npm:express@4.18.2";
 ```
+
 ## 添加types
 
-```
+```ts
 在主文件添加
  
 /// <reference types="./foo.d.ts" />

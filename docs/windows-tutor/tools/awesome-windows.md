@@ -150,4 +150,4 @@ ssh工具,很好看
 - [PicGo](https://molunerfinn.com/PicGo/)：自定义图床客户端，支持微博、七牛、腾讯云、Imgur、GitHub 等图床
 - [f.lux](https://justgetflux.com/)：过滤蓝光，屏幕色温自动调节（觉得效果比自带的夜间模式要好些）
 - Splash!-Unsplash Wallpaper（UWP 版）：Unsplash 高清壁纸自动更换
-- [Inpaint](https://www.theinpaint.com/)：图片去瑕，去除图片中不需要的内容 
+- [Inpaint](https://www.theinpaint.com/)：图片去瑕，去除图片中不需要的内容
