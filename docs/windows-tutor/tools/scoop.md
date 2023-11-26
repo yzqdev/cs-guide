@@ -95,6 +95,7 @@ HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
 - winfetch
 - wixtoolset
 - gsudo
+- wingetui
 - gitui
 - watchexec
 - fselect
@@ -143,6 +144,7 @@ HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
 - scoop install extras/detect-it-easy
 - scoop install extras/scene-builder
 - scoop install main/pandoc
+- localsend
 - krita
 - inkscape
 - blender

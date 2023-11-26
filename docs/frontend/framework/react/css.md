@@ -6,6 +6,18 @@
 
 - <https://styled-components.com/>
 - <https://emotion.sh/docs/introduction>
+- <https://github.com/cristianbote/goober>
+- <https://vanilla-extract.style/>
+- <https://github.com/callstack/linaria>
+- <https://panda-css.com/>
+- <https://github.com/ben-rogerson/twin.macro>
+- <https://github.com/vercel/styled-jsx>
+- <https://github.com/cssinjs/jss>
+- <https://github.com/parcel-bundler/lightningcss>
+
+## pandacss
+
+<https://panda-css.com/>
 
 ## emotion 和vite搭配
 
@@ -40,6 +52,46 @@ export default defineConfig({
   "compilerOptions": {
     "jsxImportSource": "@emotion/react"
   }
+}
+```
+
+### 使用方法
+
+使用antd的组件
+
+```tsx
+import { Icon } from 'antd';
+const DarkHoverStyle = styled(Icon)`
+  color: gray;
+  :hover {
+    color: palevioletred;
+  }
+`;
+```
+
+覆盖样式
+
+```tsx
+const GlobalStyle = createGlobalStyle`
+  .ant-tooltip-inner {
+    background-color: palevioletred;
+    color: black;
+  }
+`;
+```
+
+最后使用
+
+```tsx
+export default function App() {
+  return (
+    <FlexBox>
+      <GlobalStyle />
+      <Tooltip title="Github Icon">
+        <DarkHoverStyle type="github" style={{ fontSize: 100 }} />
+      </Tooltip>
+    </FlexBox>
+  );
 }
 ```
 

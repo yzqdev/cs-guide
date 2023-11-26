@@ -143,6 +143,7 @@ export PATH="$GOMODPATH/bin:$GOMODPATH/golangmod/bin:$OPENPATH/sbin:$NODEPATH/bi
 
 四、常用的环境变量
 
+```text
 BASH Bash Shell的全路径
 CDPATH       用于快速进入某个目录。
 PATH       决定了shell将到哪些目录中寻找命令或程序
@@ -154,6 +155,7 @@ SHELL       当前用户Shell类型
 LANGUGE       语言相关的环境变量，多语言可以修改此环境变量
 MAIL       当前用户的邮件存放目录
 PS1       基本提示符，对于root用户是#，对于普通用户是$
+```
 
 Reference
 [1] /etc/profile、/etc/bashrc、~~/.bash_profile、~~/.bashrc

@@ -37,7 +37,7 @@ yarn config set cache-folder <path> 配置缓存目录。
 
 ```bash
 yarn config 查看配置
-C:\Users\用户>yarn config get bin-links   查看某一项配置
+ yarn config get bin-links   查看某一项配置
 true
 yarn config set registry 'https://registry.npm.taobao.org'  转成淘宝镜像
 ```
@@ -159,6 +159,7 @@ yarn查找全局安装包: `yarn global dir`
 问题描述： npm 和  yarn 的一些缓存和全局安装的包，默认都会在C盘存储，这个对于C盘的宝贵空间来说，实在是不能忍啊。
 于是乎，百度了如何改变npm默认的缓存位置
 在CMD命令行中执行
+
 # 1.改变npm 全局安装位置
 
 ```bash
@@ -188,6 +189,7 @@ npm config set cache "D:\appCache\nodejs\node_cache"
 Yarn 的安装： 在官网下载 安装包。
 修改全局安装位置 和 缓存位置
 在CMD命令行中执行
+
 # 1.改变 yarn 全局安装位置
 
 ```bash
@@ -195,6 +197,7 @@ yarn config  set global-folder "你的磁盘路径"
 ```
 
 # 2.然后你会在你的用户目录找到 `.yarnrc` 的文件，打开它，找到 `global-folder` ，改为 `--global-folder`
+
 # 这里是我的路径
 
 ```bash
