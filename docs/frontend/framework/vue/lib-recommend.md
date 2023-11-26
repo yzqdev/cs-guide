@@ -36,6 +36,9 @@
 - <https://rebassjs.org/>
 - [mantine](https://mantine.dev/pages/getting-started/)
 - [nextui](https://nextui.org/)
+- [https://zagjs.com/](https://zagjs.com/)
+- [https://www.radix-ui.com/](https://www.radix-ui.com/)
+- [shandui](https://ui.shadcn.com/)
 
 ## 手机端
 

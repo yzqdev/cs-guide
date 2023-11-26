@@ -3,6 +3,7 @@
 ## 简介
 
 PM2 是 node 进程管理工具，可以利用它来简化很多 node应用管理的繁琐任务，如性能监控、自动重启、负载均衡等，而且使用非常简单。
+[文档](https://pm2.keymetrics.io/docs/usage/quick-start/)
 
 ## 安装
 
@@ -48,13 +49,13 @@ pm2 restart app.js
 
 停止特定的应用。可以先通过`pm2 list`获取应用的名字（--name指定的）或者进程id。
 
-```undefined
+```shell
 pm2 stop app_name|app_id
 ```
 
 如果要停止所有应用，可以
 
-```undefined
+```shell
 pm2 stop all
 ```
 
@@ -62,14 +63,14 @@ pm2 stop all
 
 类似`pm2 stop`，如下
 
-```undefined
+```shell
 pm2 stop app_name|app_id
 pm2 stop all
 ```
 
 ### 从进程列表删除进程
 
-```cpp
+```shell
 // pm2 delete [appname] | id
 pm2 delete app  // 指定进程名删除
 pm2 delete 0    // 指定进程id删除
@@ -77,13 +78,13 @@ pm2 delete 0    // 指定进程id删除
 
 ### 删除进程列表中所有进程
 
-```cpp
+```shell
 pm2 delete all
 ```
 
 ### 查看进程状态
 
-```cpp
+```shell
 pm2 list
 // 或者
 pm2 ls
@@ -91,7 +92,7 @@ pm2 ls
 
 ### 查看某个进程的信息
 
-```undefined
+```shell
 pm2 describe 0
 ```
 
@@ -110,7 +111,7 @@ pm2 start app.js -i max # 根据机器CPU核数，开启对应数目的进程
 
 比如某个 node 服务突然异常重启了，那么可以通过 pm2 提供的日志工具来查看实时日志，看是不是脚本出错之类导致的异常重启。
 
-```undefined
+```shell
 pm2 logs
 ```
 
@@ -126,11 +127,60 @@ pm2 logs
 
 运行如下命令，查看当前通过pm2运行的进程的状态。
 
-```undefined
+```shell
 pm2 monit
 ```
 
 ## 通过pm2配置文件来自动部署项目
+
+### 使用自带的命令生成
+
+```shell
+pm2 init simple
+#或者
+pm2 ecosystem
+
+
+
+```
+
+然后会生成一个ecosystem.config.js文件，里面有默认配置。运行nodejs项目需要像下面一样配置
+
+```js
+
+module.exports = {
+  apps: [{
+    name: 'nest-mock',
+    script: './node_modules/@nestjs/cli/bin/nest.js',
+    args: ' start --watch',
+    watch: '.',
+    error_file: "./log/err.log",
+    out_file: "./log/out.log",
+  },],
+
+
+};
+```
+
+然后`pm2 start .\ecosystem.config.js`即可
+
+```shell
+
+# Start all applications
+pm2 start ecosystem.config.js
+
+# Stop all
+pm2 stop ecosystem.config.js
+
+# Restart all
+pm2 restart ecosystem.config.js
+
+# Reload all
+pm2 reload ecosystem.config.js
+
+# Delete all
+pm2 delete ecosystem.config.js
+```
 
 ### 在项目根目录下新建一个 deploy.yaml 文件
 
@@ -164,7 +214,7 @@ deploy:                     # 部署脚本
 1. 在服务器中生成rsa公钥和私钥，当前是 **centos7** 下进行
 2. 前提服务器要安装git，没有安装的先安装git，已安装的跳过
 
-```undefined
+```shell
 yum –y install git
 ```
 
