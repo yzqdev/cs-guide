@@ -3,19 +3,63 @@ order: 3
 ---
 # windows好用的软件
 
-## 日常工具
+## 看图软件
 
-### 音视频看图软件
+## jpegview
 
-- imageglass
+[jpegview](https://github.com/sylikc/jpegview/)
+
+### imageglass
+
+[imageglas](https://imageglass.org/)  
+
+```powershell
+scoop install imageglass
+
+```
+
+### picview
+
+ [https://picview.org/](https://picview.org/)  
+[github](https://github.com/Ruben2776/PicView)
+![预览](https://picview.org/assets/screenshots/UI-Theme/UI-Dark-Theme-Magenta%20935w.webp)
+
+### irfanview
+
+[irfanview](https://www.irfanview.com/)
+
+### xnviwe mp
+
+[xnview](https://www.xnview.com/en/xnviewmp/)
+
+### honey view
+
+ [honeyview](https://www.bandisoft.com/honeyview/)
+
+### acd see
+
+<https://www.acdsee.com/en/products/acdsee-free/>
+
+### nomacs
+
+[github地址](https://github.com/nomacs/nomacs)
+
+### wps图片
+
+wps图片,现在已经被整合进wps里面了..
+
+### 2345看图
+
+<https://pic.2345.cc/>
+
 - MassiGra
 - Gifcam
-- [https://picview.org/](https://picview.org/)
-- wps图片,现在已经被整合进wps里面了..
-- [honeyview](https://www.bandisoft.com/honeyview/) 类似bandizip
-- [potplayer](http://potplayer.tv/?lang=zh_CN)
+  
 - okular   kde的pdf阅读器
 - Calibre
+
+## 音视频软件
+
 - [HandBrake](https://github.com/HandBrake/HandBrake) 视频格式转换
 
 - [music bee](https://getmusicbee.com/)
@@ -23,7 +67,13 @@ order: 3
 - <https://github.com/digimezzo/Dopamine>
 - [foobar](https://www.foobar2000.org/)
 
-#### linux图片处理软件
+### potplayer
+
+[potplayer](http://potplayer.tv/?lang=zh_CN)
+
+### vlc
+
+### linux图片处理软件
 
 - Pinta
 - gimp
@@ -31,32 +81,119 @@ order: 3
 - krita
 - blender (steam商店下载)
 
-### 截屏录屏软件
+## 截屏软件
 
-- [verycapture](https://verycapture.com/cn/index.html)
-- [ShareX](https://github.com/ShareX/ShareX) 是一个免费开源的截图工具(windows应用商店,steam商店),steam商店可以下载
-- [obs](https://obsproject.com/) steam可以下载
-- [screentogif](https://www.screentogif.com/)
-- snipaste (微软应用商店)
+### pixpin
+
+<https://www.appinn.com/pixpin/>
+
+## eSearch
+
+<https://github.com/xushengfeng/eSearch>
+
+## snipaste
+
+微软商店可以下载
+
+## sharex
+
+ 这是一个开源软件
+
+ [ShareX](https://github.com/ShareX/ShareX) 是一个免费开源的截图工具(windows应用商店,steam商店),steam商店可以下载
+
+## pickpick
+
+这个也挺好用
+
 - fastone capture
-- pickpick
+-
 - snagit
-- bandicam
-- 迅捷屏幕录像工具
-- [ev录屏](https://www.ieway.cn/)
+
 - [verycapture](https://verycapture.com/cn/index.html)
-- [potplayer](http://potplayer.tv/?lang=zh_CN)
-- foobar ,
-- [honeyview](https://cn.bandisoft.com/honeyview/)
-- [bandizip](https://cn.bandisoft.com/bandizip/)
 
-### 剪辑软件
+## 录屏软件
 
-- [剪映](https://lv.ulikecam.com/)
-- [必剪](https://bcut.drawyoo.com/)
-- [shortcut](https://www.shotcut.org/)
+### obs studio
+
+  [obs](https://obsproject.com/) steam可以下载
+
+### bandicam
+
+网上找
+
+### captura
+
+<https://github.com/MathewSachin/Captura>
+
+### ev录屏
+
+[ev录屏](https://www.ieway.cn/)
+
+### 迅捷屏幕录像工具
+
+<https://www.xunjieshipin.com/luping>
+
+## BB FlashBack
+
+网上找
+
+## apowersoft录屏
+
+<https://www.apowersoft.cn/free-online-screen-recorder>
+<https://www.apowersoft.cn/record-all-screen>
+
+### GifCapture
+
+<https://github.com/chenjing1294/GifCapture>
+
+### screen to gif
+
+<https://github.com/NickeManarin/ScreenToGif>
+
+### Honeycam
+
+## 剪辑软件
+
+### 剪映
+
+抖音出品
+<https://www.capcut.cn/>
+
+### 必剪
+
+b站出品
+[必剪](https://bcut.bilibili.cn/)
+
+### 开源软件shotcut
+
+ [shotcut](https://www.shotcut.org/)
 
 <https://www.iplaysoft.com/best-windows-apps-2022.html>
+
+### 达芬奇软件
+
+<https://www.blackmagicdesign.com/cn/products/davinciresolve/studio>
+![预览](https://images.blackmagicdesign.com/images/products/davinciresolve/studio/hero/hero-xl.jpg?_v=1603923503)
+
+### vegas pro
+
+<https://www.vegascreativesoftware.com/int/vegas-pro/>
+
+## 福听视频剪辑
+
+<https://www.pdf365.cn/foxit-clip/>
+
+## 蜂蜜剪辑
+
+<https://beecut.cn/?apptype=octopus>
+
+## 迅捷剪辑
+
+<https://www.xunjieshipin.com/video-clip?zhczk>
+
+## 万兴喵影
+
+<https://miao.wondershare.cn/.html>
 
 ## 下载工具
 
@@ -70,7 +207,7 @@ order: 3
 
 ## 图标工具
 
-### png转icon
+## png转icon
 
 [Greenfish Icon Editor Pro](http://greenfishsoftware.org/gfie.php)
 [icofx(收费)](https://icofx.ro/)
@@ -151,3 +288,5 @@ ssh工具,很好看
 - [f.lux](https://justgetflux.com/)：过滤蓝光，屏幕色温自动调节（觉得效果比自带的夜间模式要好些）
 - Splash!-Unsplash Wallpaper（UWP 版）：Unsplash 高清壁纸自动更换
 - [Inpaint](https://www.theinpaint.com/)：图片去瑕，去除图片中不需要的内容
+
+字幕软件<https://arctime.org/download.html>
