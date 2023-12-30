@@ -75,6 +75,13 @@ scoop config rm proxy
 HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
 ```
 
+### scoop安装go语言
+
+```powershell
+#要先配置GOPATH!!!
+scoop install go
+```
+
 ## 一些软件
 
 - 7zip
@@ -116,6 +123,7 @@ HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
 - scoop install main/pwsh
 - scoop install main/curlie
 - scoop install extras/waterfox
+- scoop install main/nano
 
 ### 软件
 
