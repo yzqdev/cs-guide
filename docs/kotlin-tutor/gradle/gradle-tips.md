@@ -1,4 +1,5 @@
- 
+# gradle技巧
+
 ## gradle添加ext
 
 ## 使用extra
@@ -198,12 +199,14 @@ roomImpl()
 ```
 
 - build.gradle引用使用
+
 ```groovy
 ext.set("coreDeps","y")  
 apply from:"../compat.gradle"  
 apply from:"../sign.gradle"
 compatImpl()
 ```
+
 ## 关于gradle插件  
 
 agp(android gradle plugin)的定义
@@ -307,25 +310,27 @@ dependencies{
 
 > 与compile对应，功能完全一样，会添加依赖到编译路径，并且会将依赖打包到输出（aar或apk），与implementation不同，这个依赖可以传递，其他module无论在编译时和运行时都可以访问这个依赖的实现，也就是会泄漏一些不应该不使用的实现。举个例子，A依赖B，B依赖C，如果都是使用api配置的话，A可以直接使用C中的类（编译时和运行时），而如果是使用implementation配置的话，在编译时，A是无法访问C中的类的。
 
-
 :::tip
 详细说明:
 
 假设你开发了一个工具包，你想将这个工具包打包成 `jar` 文件使得其他人可以使用，一般可以这样做：
+
 ```groovy
 plugins {
-	id 'java-library'
-	id 'maven-publish' // 使用这个插件打包
+ id 'java-library'
+ id 'maven-publish' // 使用这个插件打包
 }
 // ... 其他配置省略
 dependencies {
-	// 这个引入是为了说明 api 和其他方式的区别
-	implementation("org.apache.commons:commons-lang3:3.8.1")
+ // 这个引入是为了说明 api 和其他方式的区别
+ implementation("org.apache.commons:commons-lang3:3.8.1")
 }
 
 
 ```
+
 执行以下命令即可在项目目录下的 `build/libs` 下发现打好的 `jar` 文件。
+
 ```
 gradle clean build
 或者
@@ -334,15 +339,16 @@ gradle clean publishToMavenLocal
 ```
 
 此时将 `jar` 包拷贝给别人的 `lib` 目录下使用，发现对方无法使用 `org.apache.commons:commons-lang3` 包下的工具类，需要手动引入一下才行。因为用 `implementation` 方式引入的依赖在打包后只作用于 `runtime` ，只有使用 `api` 的方式才会同时作用于 `compile` 和 `runtime` ，同理， `compileOnlyApi` 就是只作用于 `compile` 。
+
 ```groovy
 plugins {
-	id 'java-library'
-	id 'maven-publish' // 使用这个插件打包
+ id 'java-library'
+ id 'maven-publish' // 使用这个插件打包
 }
 // ... 其他配置省略
 dependencies {
-	// 这个引入是为了说明 api 和其他方式的区别
-	api("org.apache.commons:commons-lang3:3.8.1")
+ // 这个引入是为了说明 api 和其他方式的区别
+ api("org.apache.commons:commons-lang3:3.8.1")
 }
 
 
@@ -361,6 +367,7 @@ api(fileTree("libs"){
 ```
 
 java-library打包依赖到jar包的方法,注意这时候,api和implementation就不起作用了,因为已经打包进jar里面了
+
 ```kotlin
 tasks.jar {  
    
@@ -379,16 +386,16 @@ tasks.jar {
 }
 ```
 
-
 别人使用gradle引用的方法大概是这样
 
 ```
 dependencies {
-	// 这个引入是为了说明 api 和其他方式的区别
-	api("org.apache.commons:commons-lang3:3.8.1")
+ // 这个引入是为了说明 api 和其他方式的区别
+ api("org.apache.commons:commons-lang3:3.8.1")
 }
 
 ```
+
 :::
 
 - **implementation**
@@ -405,7 +412,7 @@ dependencies {
 
 - **runtimeOnly**
 
->  表示引入的依赖不参与编译，只在运行时才用得到。比如： `数据库驱动`。
+> 表示引入的依赖不参与编译，只在运行时才用得到。比如： `数据库驱动`。
 
 - **testImplementation**
 
@@ -590,7 +597,6 @@ defaultConfig{
 }
 ```
 
-
 ## gradle 设置buildDir
 
 `Project.getBuildDir()` returns a non-lazy `File` which risks ordering issues between plugins and build file that read this before the value is changed.
@@ -598,3 +604,58 @@ defaultConfig{
 `ProjectLayout. getBuildDirectory()` was introduced in Gradle 4.1, so I think it's time to retire the old API by deprecating it in 8.0 and removing it in 9.0.
 
 I am less concerned about `Project.setBuildDir()` has it's really the same as calling `ProjectLayout. getBuildDirectory().set()` but obviously deprecating/removing it would keep things consistent.
+
+```kotlin
+allprojects{
+    // 将构建文件统一输出到项目根目录下的 build 文件夹
+    layout.buildDirectory = File(rootDir, "build/${path.replace(':', '/')}")
+}
+```
+
+## 使用includeBuild
+
+添加插件
+
+```kotlin
+pluginManagement {
+    repositories {
+      maven("https://jitpack.io")
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+  includeBuild(System.getenv("gradle_plugin_bom")+"\\deps")
+}
+```
+
+然后就可以在子项目使用插件了
+
+```kotlin
+plugins {
+    id("com.github.your-repo-name.your-plugin-name")
+}
+```
+
+### 添加外部library
+
+- 第一种方法
+
+```kotlin
+//`settings.gradle.kts`
+include(":compLib")
+project(":compLib").projectDir=file(System.getenv("gradle_plugin_bom")+"\\compLib")
+//子项目中使用
+dependencies {
+ implementation(project(":compLib"))
+}
+```
+
+- 第二中方法
+
+```kotlin
+//
+includeBuild(System.getenv("gradle_plugin_bom")+"\\klee")
+//子项目中使用
+
+implementation("ab.yzq.klee:klee:1.0.0")
+```

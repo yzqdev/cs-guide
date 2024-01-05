@@ -27,8 +27,8 @@ dependencyResolutionManagement {
 
 create中的lib为创建的目录名，可以自己定义,将来使用`implementation(libs.core.ktx)`,`-`会被转化为`.`
 
-
 ## 引入外部`libs.version.toml`文件
+
 groovy版本
 
 ```groovy
@@ -38,6 +38,7 @@ versionCatalogs {
   }  
 }
 ```
+
 kts版本
 
 ```kotlin
@@ -48,6 +49,7 @@ versionCatalogs {
 }
 
 ```
+
 ### 添加版本号
 
 第一种
@@ -187,7 +189,7 @@ android {
 
 ```kotlin
 dependencies{
-	 api(lib.bundles.kotlin)
+  api(lib.bundles.kotlin)
     api(lib.bundles.coroutines)
     //所有module只需要这一句就能依赖所有
     api(androidEx.bundles.common)
@@ -206,7 +208,6 @@ bundle("kotlin",listOf("",""))
 
 :::
 
-
 ## 如何使用bom
 
 ```toml
@@ -223,7 +224,6 @@ dependencies {
   implementation libs.deps.okhttp.logging.interceptor
 }
 ```
-
 
 例子
 
