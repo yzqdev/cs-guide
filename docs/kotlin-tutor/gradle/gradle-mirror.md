@@ -6,9 +6,10 @@
 
 ## 全局镜像源
 
- ## dependencyResolutionManagement(gradle7使用)
+## dependencyResolutionManagement(gradle7使用)
 
- 在`.gradle`文件夹添加下面这个`<UserDir>/.gradle/init.gradle.kts`:
+ 在`.gradle`文件夹添加下面这个`<UserDir>/.gradle/init.d/init.gradle.kts`:
+
 ```kotlin
  
 val urlMappings1 = mapOf(
@@ -47,9 +48,7 @@ gradle.beforeSettings {
  
 ```
 
-# 修改单个项目
-
- 
+## 修改单个项目
 
 需要在根路径的`setting.gradle`添加
 
@@ -66,7 +65,7 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-	        maven { url 'https://jitpack.io' }
+         maven { url 'https://jitpack.io' }
         google()
         mavenCentral()
     
