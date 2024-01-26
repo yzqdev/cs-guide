@@ -1,7 +1,5 @@
 # 一些安卓技巧
 
-
-
 ## 添加依赖
 
 ```groovy
@@ -24,11 +22,10 @@ implementation(fileTree("src/main/libs") {
 
 ## 批量删除apk
 
-```
-要在git bash下用
+```shell
+# 要在git bash下用
 adb shell "pm list packages ab.yzq | cut -c9- | xargs -n 1 sh /system/bin/pm uninstall"
 ```
-
 
 ## gradle用法
 
@@ -36,4 +33,3 @@ adb shell "pm list packages ab.yzq | cut -c9- | xargs -n 1 sh /system/bin/pm uni
 org.gradle.daemon=true
 org.gradle.parallel=true
 ```
-
