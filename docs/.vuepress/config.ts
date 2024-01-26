@@ -1,9 +1,10 @@
 import { autoCatalogPlugin } from 'vuepress-plugin-auto-catalog'
+import { viteBundler } from '@vuepress/bundler-vite'
 import { path } from '@vuepress/utils'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import theme from './themeConfig'
 import { prismjsPlugin } from '@vuepress/plugin-prismjs'
-import { defineUserConfig } from 'vuepress-vite'
+import { defineUserConfig } from 'vuepress'
 export default defineUserConfig({
   base: '/cs-guide/',
   // base: "/",
@@ -39,6 +40,7 @@ export default defineUserConfig({
       handleImportPath: (str) => str.replace(/^@/, path.resolve(__dirname, './')),
     },
   },
+  bundler: viteBundler(),
   theme,
   plugins: [
     prismjsPlugin({

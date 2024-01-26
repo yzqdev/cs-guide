@@ -56,7 +56,7 @@ git am  patch-file
 # 查看指定文件修改历史
 git blame file-name
 
-复制代码
+
 ```
 
 ### Git常用命令
@@ -69,7 +69,7 @@ git clone url
 
 # 将远程git仓库克隆到本地
 git clone -b branch url 
-复制代码
+
 ```
 
 #### git stash
@@ -95,7 +95,7 @@ git stash drop stash@{1}
 
 # 删除所有缓存的stash
 git stash clear
-复制代码
+
 ```
 
 #### git config
@@ -110,7 +110,7 @@ git config --global user.name name
 git config --global user.email email
 # 设置当前项目提交代码的用户名 
 git config user.name name  
-复制代码
+
 ```
 
 #### git remote
@@ -127,7 +127,7 @@ git remote remove name
 
 # 获取指定远程仓库的详细信息
 git remote show origin
-复制代码
+
 ```
 
 #### git add
@@ -148,7 +148,7 @@ git add dir
 
 # 添加所有src目录下main开头的所有文件到Staging区    
 git add src/main*  
-复制代码
+
 ```
 
 #### git commit
@@ -165,7 +165,7 @@ git commit --amend -m "message"
 
 # 修改上次提交的用户名和邮箱
 git commit --amend --author="name <email>" --no-edit
-复制代码
+
 ```
 
 #### git branch
@@ -194,7 +194,7 @@ git branch --set-upstream-to origin/master
 
 # 本地分支重命名
 git branch -m old-branch new-branch
-复制代码
+
 ```
 
 #### git checkout
@@ -211,7 +211,7 @@ git checkout branch-name
 
 # 撤销工作区文件的修改，跟上次Commit一样
 git checkout commit-file  
-复制代码
+
 ```
 
 #### git tag
@@ -231,7 +231,7 @@ git tag tag-name commit-id
 
 # 删除标签
 git tag -d tag-name   
-复制代码
+
 ```
 
 #### git push
@@ -263,7 +263,7 @@ git push origin :refs/tags/tag-name
 
 # 将本地dev分支push到远程master分支
 git push origin dev:master
-复制代码
+
 ```
 
 #### git reset
@@ -286,7 +286,7 @@ git reset --hard HEAD~3
 
 回退到指定commit
 git reset --hard commit-id     
-复制代码
+
 ```
 
 #### git diff
@@ -303,7 +303,7 @@ git diff branch-name file-name
 
 # 查看两次提交的区别
 git diff commit-id commit-id  
-复制代码
+
 ```
 
 #### git show
@@ -314,7 +314,7 @@ git show tag-name
 
 # 查看具体的某次改动
 git show commit-id 
-复制代码
+
 ```
 
 #### git log
@@ -336,7 +336,7 @@ git log --pretty='%aN' | sort | uniq -c | sort -k1 -n -r | head -n 5
 
 # 查看指定用户添加代码行数，和删除代码行数
 git log --author="iisheng" --pretty=tformat: --numstat | awk '{ add += $1 ; subs += $2 } END { printf "added lines: %s removed lines : %s \n",add,subs }'
-复制代码
+
 ```
 
 #### git rebase
@@ -350,7 +350,7 @@ git rebase -i commit-id
 
 # 执行commit id 将rebase 停留在 项目首次commit处
 git rebase -i --root
-复制代码
+
 ```
 
 #### git restore
@@ -361,7 +361,7 @@ git restore --staged file
 
 # 移除staging区的文件，同 git checkout
 git restore file
-复制代码
+
 ```
 
 #### git revert
@@ -375,7 +375,7 @@ git revert HEAD^
 
 # 撤销指定某次commit
 git revert commit-id
-复制代码
+
 ```
 
 ## Git骚操作
@@ -396,7 +396,7 @@ brew install bash-completion
  if [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
  fi
-复制代码
+
 ```
 
 > `shell`有不同种类，我这里使用的是`bash`。
@@ -407,14 +407,14 @@ brew install bash-completion
 
 ```bash
 git stash
-复制代码
+
 ```
 
 还原暂存的代码
 
 ```bash
 git stash apply
-复制代码
+
 ```
 
 #### 怎么合并其他分支的指定Commit？
@@ -423,7 +423,7 @@ git stash apply
 
 ```bash
 git cherry-pick 指定commit-id
-复制代码
+
 ```
 
 #### 本地临时代码不想提交，怎么一次性清空？
@@ -432,14 +432,14 @@ git cherry-pick 指定commit-id
 
 ```bash
 git reset --hard
-复制代码
+
 ```
 
 还原包含`commit`的代码，到跟远程分支相同
 
 ```bash
 git reset --hard origin/master
-复制代码
+
 ```
 
 #### 已经提交的代码，不需要了，怎么当做没提交过？
@@ -448,21 +448,21 @@ git reset --hard origin/master
 
 ```bash
 git reset --hard HEAD^
-复制代码
+
 ```
 
 还原到当前之前的几次`commit`
 
 ```bash
 git reset --hard HEAD~2
-复制代码
+
 ```
 
 强制推送到远程分支，确保没有其他人在`push`，不然可能会丢失代码
 
 ```bash
 git push origin develop --force
-复制代码
+
 ```
 
 #### 历史commit作者邮箱写错了，怎么一次性改过来？
@@ -497,14 +497,14 @@ export GIT_AUTHOR_NAME="$CORRECT_NAME"
 export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
 fi
 ' --tag-name-filter cat -- --branches --tags
-复制代码
+
 ```
 
 强制推送替换
 
 ```bash
 git push --force --tags origin 'refs/heads/*'
-复制代码
+
 ```
 
 #### 不小心把不该提交的文件commit了，怎么永久删除？
@@ -515,21 +515,32 @@ git push --force --tags origin 'refs/heads/*'
 git filter-branch --force --index-filter \
   "git rm --cached --ignore-unmatch FILE-PATH-AND-NAME" \
   --prune-empty --tag-name-filter cat -- --all
-复制代码
+
 ```
 
 强制推送覆盖远程分支。
 
 ```bash
 git push origin --force --all
-复制代码
+
 ```
 
 强制推送覆盖远程`tag`。
 
 ```bash
 git push origin --force --tags
-复制代码
+
+```
+
+### 删除文件
+
+```shell
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch walterlv.xml' --prune-empty --tag-name-filter cat -- --all
+# 删除文件夹多了一个-r
+git filter-branch --force --index-filter 'git rm --cached -r --ignore-unmatch folder' --prune-empty --tag-name-filter cat -- --all
+
+# 然后强制推送
+git push origin main -f
 ```
 
 #### 怎么保证团队成员提交的代码都是可运行的？
@@ -570,7 +581,7 @@ AddKeysToAgent yes
 IdentityFile ~/.ssh/gitlab_id_rsa
 UseKeychain yes
 User iisheng
-复制代码
+
 ```
 
 #### Git commits历史如何变得清爽起来？
@@ -585,7 +596,7 @@ git checkout feature
 
 # 将当前分支代码变基为基于master
 git rebase master
-复制代码
+
 ```
 
 然后我们再切换到`master`分支，执行`git merge feature`，就可以进行快进式合并了，`commmits`历史就不会有交叉了。后文我们会详细讲解。
@@ -608,7 +619,7 @@ git rebase master
 
 ```Java
 git fsck --lost-found
-复制代码
+
 ```
 
 执行之后，可以找到相关丢失的`commit-id`，然后`merge`一下即可。
@@ -654,7 +665,7 @@ $ git merge dev
 Auto-merging 111.txt
 CONFLICT (content): Merge conflict in 111.txt
 Automatic merge failed; fix conflicts and then commit the result.
-复制代码
+
 ```
 
 我们可以在合并冲突后的任意时刻使用`git status`命令来查看那些因包含合并冲突而处于未合并`unmerged`状态的文件。
@@ -671,7 +682,7 @@ Unmerged paths:
  both modified:   111.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
-复制代码
+
 ```
 
 待解决冲突的文件`Git`会以未合并的状态标识出来，出现冲突的文件会出现一些特殊的区段，看起来像下面的样子。
@@ -682,7 +693,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 =======
 111b
 >>>>>>> dev
-复制代码
+
 ```
 
 `<<<<<<<`后面的是当前分支的引用，我们的例子中，就代表`master`分支。`>>>>>>>`后面表示的是要合并到当前分支的分支，即`dev`分支。`=======`的上半部分，表示当前分支的代码。下半部分表示`dev`分支的代码。
@@ -691,7 +702,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ```bash
 111aaa
-复制代码
+
 ```
 
 在解决了所有文件里的冲突之后，对每个文件使用`git add`命令来将其标记为冲突已解决。
@@ -703,7 +714,7 @@ $ git status
 On branch master
 All conflicts fixed but you are still merging.
   (use "git commit" to conclude merge)
-复制代码
+
 ```
 
 然后，我们根据提示执行`git commit`。
@@ -726,7 +737,7 @@ Merge branch 'dev'
 # On branch master
 # All conflicts fixed but you are still merging.
 #
-复制代码
+
 ```
 
 然后，我们保存这次提交就完成了这次冲突合并。
@@ -768,7 +779,7 @@ $ find .git/objects
 .git/objects
 .git/objects/pack
 .git/objects/info
-复制代码
+
 ```
 
 接着，我们写一个文件`echo '1111' > 111.txt`，并执行`git add`之后，再查看。
@@ -780,7 +791,7 @@ $ find .git/objects
 .git/objects/5f/2f16bfff90e6620509c0cf442e7a3586dad8fb
 .git/objects/pack
 .git/objects/info
-复制代码
+
 ```
 
 我们发现`.git/objects`目录下，多了个文件和目录。实际上，`Git`会将我们的文件数据外加一个头部信息`header`一起做`SHA-1`校验运算而得到校验和。然后，校验和的前2个字符用于命名子目录，余下的38个字符则用作文件名。
@@ -790,7 +801,7 @@ $ find .git/objects
 ```bash
 $ git cat-file -p 5f2f16bfff90e6620509c0cf442e7a3586dad8fb
 1111
-复制代码
+
 ```
 
 这就是我们在上文写入的文件内容。
@@ -808,7 +819,7 @@ $ git cat-file -p 5f2f16bfff90e6620509c0cf442e7a3586dad8fb
 ```bash
 $ git write-tree
 b716c7b049ccd9048b0566a57cfd516c17c1e39f
-复制代码
+
 ```
 
 查看该树对象的内容。
@@ -816,7 +827,7 @@ b716c7b049ccd9048b0566a57cfd516c17c1e39f
 ```bash
 $ git cat-file -p b716c7b049ccd9048b0566a57cfd516c17c1e39f
 100644 blob 5f2f16bfff90e6620509c0cf442e7a3586dad8fb 111.txt
-复制代码
+
 ```
 
 ### 提交对象
@@ -830,7 +841,7 @@ $ git cat-file -p b716c7b049ccd9048b0566a57cfd516c17c1e39f
 ```bash
 $ git log --oneline 
 5281f7e (HEAD -> master) first commit
-复制代码
+
 ```
 
 接着，我们查看一下该提交对象的内容。
@@ -842,7 +853,7 @@ author iisheng <***@gmail.com> 1596073568 +0800
 committer iisheng <***@gmail.com> 1596073568 +0800
 
 first commit
-复制代码
+
 ```
 
 提交对象的格式很简单：它先指定一个顶层树对象，代表当前项目快照；然后是可能存在的父提交（前面描述的提交对象并不存在任何父提交）；之后是作者/提交者信息（依据你的`user.name`和`user.email`配置来设定，外加一个时间戳）；留空一行，最后是提交注释。
