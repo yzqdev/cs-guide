@@ -1,3 +1,3 @@
 # java笔记
 
-<AutoCatalog />
+<Catalog />

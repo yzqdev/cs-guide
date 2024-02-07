@@ -1,3 +1,3 @@
 # react教程
 
-<AutoCatalog   />
+<Catalog   />

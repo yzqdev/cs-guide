@@ -1,3 +1,3 @@
 # uniapp教程
 
-<AutoCatalog   />
+<Catalog   />

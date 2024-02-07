@@ -1,2 +1,3 @@
 # java tip
-<AutoCatalog   />
+
+<Catalog   />

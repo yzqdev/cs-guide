@@ -1,3 +1,3 @@
 # 工具
 
-<AutoCatalog />
+<Catalog />

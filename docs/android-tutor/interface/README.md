@@ -1,3 +1,3 @@
 # 界面
 
-<AutoCatalog   />
+<Catalog   />

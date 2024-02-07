@@ -1,10 +1,33 @@
 # pip使用
 
+## 安装python
+
+在 Python Releases for Windows 页面下载你需要的那个版本的 Windows embeddable package (64-bit) 文件，这样就得到一个 python-x.x.x-embed-amd64.zip 文件。将这个压缩包文件解压到任意目录下
+
+在目录中找到 `pythonxxx._pth` 文件，去掉 `import site` 前的注释符，使 Lib\site-packages 加入 sys.path 中。
+
+现在执行 .\python.exe 命令就可以先进入嵌入式环境，然后我们要下载 get-pip 文件并安装 pip 命令：
+
+```shell
+
+curl -o "get-pip.py" "https://bootstrap.pypa.io/get-pip.py"
+.\python.exe get-pip.py
+
+```
+
+这个时候目录下会产生两个新的 Lib 和 Scripts 文件夹，接下来就可以试试安装一个用于生成假数据的 Faker 库：
+
+```
+.\python.exe -m pip install faker
+```
+
+后续可以安装poetry,pipx,pipenv等库,不需要安装virualenv了
+
 :::tip
 常用的全局包
 
 ```python
-pip install -U you-get pipenv rembg pyinstaller auto-py-to-exe
+pip install -U you-get pipenv rembg pyinstaller auto-py-to-exe httpie ipython mycli iredis pgcli
 ```
 
 :::

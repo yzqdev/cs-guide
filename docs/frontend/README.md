@@ -1,3 +1,3 @@
 # 前端笔记
 
-<AutoCatalog   />
+<Catalog   />

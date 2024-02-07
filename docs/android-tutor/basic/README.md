@@ -1,3 +1,3 @@
 # tutor
 
-<AutoCatalog   />
+<Catalog   />

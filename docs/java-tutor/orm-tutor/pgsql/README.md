@@ -1,2 +1,3 @@
 # sql说明
-<AutoCatalog />
+
+<Catalog />

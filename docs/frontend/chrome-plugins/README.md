@@ -1,2 +1,3 @@
 # chrome插件
-<AutoCatalog />
+
+<Catalog />

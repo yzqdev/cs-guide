@@ -1,3 +1,3 @@
 # python笔记
 
-<AutoCatalog />
+<Catalog />

@@ -1,2 +1,3 @@
 # 一些snip
-<AutoCatalog />
+
+<Catalog />

@@ -1,2 +1,3 @@
 # python tip
-<AutoCatalog   />
+
+<Catalog   />

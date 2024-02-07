@@ -1,3 +1,3 @@
 # autohotkey
 
-<AutoCatalog />
+<Catalog />

@@ -1,4 +1,4 @@
 
 # minecraft
 
-<AutoCatalog />
+<Catalog />

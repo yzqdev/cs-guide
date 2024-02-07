@@ -1,2 +1,3 @@
 # 前端
-<AutoCatalog   />
+
+<Catalog   />

@@ -1,3 +1,3 @@
 # stackoverflow文档
 
-<AutoCatalog   />
+<Catalog   />

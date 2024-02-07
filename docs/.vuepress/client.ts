@@ -1,4 +1,4 @@
-import { defineClientConfig } from '@vuepress/client'
+import { defineClientConfig } from 'vuepress/client'
 import RegTest from './components/RegTest.vue'
 import SvgList from './components/SvgList.vue'
 import CreateSvg from './components/CreateSvg.vue'
