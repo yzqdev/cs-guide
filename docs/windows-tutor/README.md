@@ -1,3 +1,3 @@
 # windows笔记
 
-<AutoCatalog />
+<Catalog />

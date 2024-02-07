@@ -1,3 +1,3 @@
 # angular教程
 
-<AutoCatalog   />
+<Catalog   />

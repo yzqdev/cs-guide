@@ -1,2 +1,3 @@
 # mongodb
-<AutoCatalog />
+
+<Catalog />

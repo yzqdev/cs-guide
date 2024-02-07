@@ -2,4 +2,5 @@
 order: 4
 ---
 # 爬虫教程
-<AutoCatalog />
+
+<Catalog />

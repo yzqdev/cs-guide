@@ -1,3 +1,3 @@
 # 关于
 
-<AutoCatalog />
+<Catalog />

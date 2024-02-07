@@ -1,3 +1,3 @@
 # kotlin教程
 
-<AutoCatalog   />
+<Catalog   />

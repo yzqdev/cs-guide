@@ -1,3 +1,3 @@
 # uniapp
 
-<AutoCatalog   />
+<Catalog   />

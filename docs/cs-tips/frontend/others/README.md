@@ -1,4 +1,4 @@
 
 # z.其他
 
-<AutoCatalog />
+<Catalog />

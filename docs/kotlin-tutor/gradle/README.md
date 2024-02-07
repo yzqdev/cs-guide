@@ -1,3 +1,3 @@
 # gradle教程
 
-<AutoCatalog   />
+<Catalog   />

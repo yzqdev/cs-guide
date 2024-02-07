@@ -1,3 +1,3 @@
 # 安卓等
 
-<AutoCatalog />
+<Catalog />

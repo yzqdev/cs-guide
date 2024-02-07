@@ -1,3 +1,3 @@
 # solidjs
 
-<AutoCatalog   />
+<Catalog   />

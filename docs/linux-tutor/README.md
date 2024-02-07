@@ -3,4 +3,4 @@ icon: linux
 ---
 # linux-tutor
 
-<AutoCatalog />
+<Catalog />

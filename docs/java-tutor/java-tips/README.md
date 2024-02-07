@@ -1,4 +1,4 @@
 
 # java技巧
 
-<AutoCatalog />
+<Catalog />

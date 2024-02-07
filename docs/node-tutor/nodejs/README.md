@@ -1,3 +1,4 @@
 
 # nodejs
-<AutoCatalog   />
+
+<Catalog   />

@@ -1,2 +1,3 @@
 # node api
-<AutoCatalog   />
+
+<Catalog   />

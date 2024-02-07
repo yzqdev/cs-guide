@@ -1,3 +1,3 @@
 # csharp笔记
 
-<AutoCatalog />
+<Catalog />

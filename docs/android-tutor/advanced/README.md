@@ -1,3 +1,3 @@
 # 高级
 
-<AutoCatalog   />
+<Catalog   />

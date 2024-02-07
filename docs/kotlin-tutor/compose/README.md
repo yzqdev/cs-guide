@@ -1,3 +1,3 @@
 # compose教程
 
-<AutoCatalog   />
+<Catalog   />

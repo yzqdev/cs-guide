@@ -1,3 +1,3 @@
 # node教程
 
-<AutoCatalog />
+<Catalog />

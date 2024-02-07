@@ -1,3 +1,3 @@
 # dart教程
 
-<AutoCatalog   />
+<Catalog   />

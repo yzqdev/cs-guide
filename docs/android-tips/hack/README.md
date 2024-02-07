@@ -1,3 +1,3 @@
 # hack
 
-<AutoCatalog   />
+<Catalog   />

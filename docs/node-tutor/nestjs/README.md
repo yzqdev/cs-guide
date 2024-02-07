@@ -1,2 +1,3 @@
 # nestjs教程
-<AutoCatalog   />
+
+<Catalog   />

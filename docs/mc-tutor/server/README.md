@@ -1,2 +1,3 @@
 # 服务器开发
-<AutoCatalog />
+
+<Catalog />

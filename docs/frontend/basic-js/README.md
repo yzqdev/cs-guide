@@ -4,4 +4,4 @@ dir:
 ---
 # js基础教程
 
-<AutoCatalog />
+<Catalog />

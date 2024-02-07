@@ -1,3 +1,3 @@
 # rust笔记
 
-<AutoCatalog />
+<Catalog />

@@ -1,3 +1,3 @@
 # ts教程
 
-<AutoCatalog />
+<Catalog />
