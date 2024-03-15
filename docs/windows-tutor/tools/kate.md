@@ -24,6 +24,7 @@ order: 5
 - okular
 - kile
 - filelight
+
 :::
 
 ---
@@ -49,6 +50,8 @@ Windows Registry Editor Version 5.00
 [HKEY_CLASSES_ROOT\*\shell\geany打开\command]
 @="D:\\scoop\\apps\\geany\\2.0\\bin\\geany.exe %1"
 ```
+
+注意上面要吧`%1`加双引号
 
 ## 使用emeditor打开文件
 

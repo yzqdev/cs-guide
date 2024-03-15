@@ -28,3 +28,39 @@ spring api 版本控制
         </dependency>
 
 ```
+
+## java读取文件
+
+```java
+try(BufferedReader br = Files.newBufferedReader(Paths.get("testBufferedWriter.txt"))){
+    String inValue;
+    while((inValue = br.readLine())!=null){
+        System.out.println("Files.newBufferedReader="+inValue);
+    }
+}
+
+List<String> lines = Files.readAllLines(Paths.get("testBufferedWriter.txt"));
+
+for(String line:lines)System.out.println("Files.readAllLines=="+line);
+
+try(BufferedWriter bw = Files.newBufferedWriter(Paths.get("testNewBufferedWriter.txt"))){
+    for(String d:data){
+        bw.write(d);
+        bw.newLine();
+
+    }
+}
+```
+
+## gradle java编码
+
+```kotlin
+allprojects {
+  // 将构建文件统一输出到项目根目录下的 build 文件夹
+  layout.buildDirectory = File(rootDir, "build/${path.replace(':', '/')}")
+  tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+  }
+}
+
+```
