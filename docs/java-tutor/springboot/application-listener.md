@@ -1,10 +1,4 @@
-# 监听器
-
-大家都知道，在 Spring 框架中事件和监听无处不在，打通了 Spring 框架的任督二脉，事件和监听也是 Spring 框架必学的核心知识之一。
-
-一般来说，我们很少会使用到应用程序事件，但我们也不要忘了它们的存在，比如说在 Spring 框架内部都使用了各种不同的事件来处理不同的任务。
-
-毫无疑问，在 Spring Boot 框架中，事件和监听也得到了发扬光大，除了常用的 Spring Framework 事件（例如：ContextRefreshedEvent）之外，Spring Boot 在启动过程中还发送一系列其他的应用程序事件。
+# 监听器 listener
 
 ## **Spring Boot 启动事件顺序**
 

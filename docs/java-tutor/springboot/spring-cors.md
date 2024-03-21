@@ -14,7 +14,7 @@
 ### 第一种
 
 ```java
-package com.site.blog.filters;
+ 
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
