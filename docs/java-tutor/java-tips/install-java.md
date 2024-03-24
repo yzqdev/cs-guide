@@ -10,8 +10,6 @@
 
 ### java
 
-​
-
 oracle 的jdk 1.8之后已经不可以商用了,建议使用adoptopenjdk,比较推荐openj9版本的,内存占用少
   [清华镜像](https://mirror.tuna.tsinghua.edu.cn/AdoptOpenJDK/)
 :::tip

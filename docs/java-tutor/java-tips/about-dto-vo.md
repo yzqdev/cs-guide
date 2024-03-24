@@ -31,6 +31,7 @@ private string pass;
 这就是他们三个的区别。
 PS： dto 和 entity 里面的字段应该是一样的，dto 只是 entity 到 vo，或者 vo 到 entity 的中间过程，如果没有这个过程，你仍然可以做到增删改查，这是根据具体公司规范来的 。
 ​
+常用地转换工具,beanutils或者mapstruct
 
 ​
 
