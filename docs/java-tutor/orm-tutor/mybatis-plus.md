@@ -15,7 +15,7 @@
 <dependency>
     <groupId>com.baomidou</groupId>
     <artifactId>mybatis-plus-generator</artifactId>
-    <version>3.5.2</version>
+    <version>3.5.5</version>
 </dependency>
 
 ```
@@ -93,9 +93,7 @@ blogConfigMapper.exists(KtQueryWrapper(BlogConfig::class.java).eq(BlogConfig::co
 
 [例子](https://github.com/baomidou/mybatis-plus/blob/master/mybatis-plus-extension/src/test/kotlin/com/baomidou/mybatisplus/test/kotlin/WrapperTest.kt)
 
-
 ## mybatis把xml放在java文件夹的方法
-
 
 ```xml
 <build>
@@ -117,10 +115,10 @@ blogConfigMapper.exists(KtQueryWrapper(BlogConfig::class.java).eq(BlogConfig::co
 ```
 
 application.properties配置
+
 ```
 mybatis-plus.mapper-locations=classpath*:**/*.xml
 ```
-
 
 ## postgres使用mybatis-plus自增主键
 
@@ -148,6 +146,7 @@ public class Company implements Serializable {
 ```
 
 然后再配置文件中加入`keyGenerator`
+
 ```java
 
   

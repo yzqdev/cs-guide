@@ -1,8 +1,6 @@
 # spring 技巧
 
-
 ## 优雅的设置下载文件的名字
-
 
 ```java
 @RestController  
@@ -115,5 +113,82 @@ public void zipDownload (HttpServletRequest request, HttpServletResponse respons
     }  
   }  
 }
+}
+```
+
+## Spring factory用法
+
+(1)使用spring.factories加载类，一般情况，加载的类和当前微服务的Java包(Package)没有共同包前缀，需借助@EnableAutoConfiguration注解扫描../META-INF/spring.factories。
+
+(2)使用@Component注解加载类，一般是加载的类和当前微服务Java包(Package)有共同的包前缀，比如都在 com.hub.example目录下。
+
+## SpringBoot 四种获取ApplicationContext的方式
+
+先定义一个util
+
+```java
+ 
+public class SpringBeanUtils  {
+    private static ApplicationContext applicationContext;
+    public static void setApplicationContext(ApplicationContext applicationContext){
+        SpringBeanUtils.applicationContext = applicationContext;
+    }
+}
+
+```
+
+1. 实现ApplicationContextInitializer接口
+
+```java
+public class SecondApplicationContextInitializer implements ApplicationContextInitializer {
+  @Override
+  public void initialize(ConfigurableApplicationContext applicationContext) {    
+     SpringBeanUtils.setApplicationContext(applicationContext);
+  }
+}
+
+```
+
+2. 实现ApplicationListener接口
+
+```java
+public class CustApplicationListener implements ApplicationListener<ApplicationContextEvent> {
+  @Override
+  public void onApplicationEvent(ApplicationContextEvent event) {        
+     SpringBeanUtils.setApplicationContext(event.getApplicationContext());
+  }
+}
+```
+
+实现此步骤之后，还需要将此类注入到Spring容器中，有两种方式
+第一种： 在此类上加@Component注解
+第二种：在  `resources/META-INF/spring.factories`文件中添加以下配置
+
+```
+org.springframework.context.ApplicationListener=\
+CustApplicationListener的路径
+```
+
+3. 放在启动类main方法中设置
+
+```java
+@SpringBootApplication
+public class SpSpringApplication {
+    public static void main(String[] args) {
+        ConfigurableApplicationContext applicationContext = SpringApplication.run(WangMikeSpringApplication.class, args);        
+        SpringBeanUtils.setApplicationContext(applicationContext);
+    }
+}
+```
+
+4. 实现ApplicationContextAware接口
+
+```java
+@Component
+public class SpringBeanUtils implements ApplicationContextAware {
+    private static ApplicationContext applicationContext;
+    public  void setApplicationContext(ApplicationContext applicationContext){
+        SpringBeanUtils.applicationContext = applicationContext;
+    }
 }
 ```
