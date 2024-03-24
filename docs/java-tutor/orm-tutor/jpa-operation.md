@@ -22,18 +22,14 @@ public void updateUser(Userinfos u) {
 }
 ```
 
-
 ## jpa的dialect
-
 
 只有sqlite需要community dialect,其他的hibernate-core包含了
 
-
 ### sqlite
 
-
-```
-驱动
+```kotlin
+ 
 
 implementation("org.xerial:sqlite-jdbc")
 implementation("org.hibernate.orm:hibernate-community-dialects")
@@ -41,7 +37,7 @@ implementation("org.hibernate.orm:hibernate-community-dialects")
 
 下面需要依赖`org.hibernate.orm:hibernate-community-dialects`
 
-```
+```propeties
 spring.jpa.hibernate.ddl-auto=update  
 spring.jpa.show-sql=true  
 #org.hibernate.community.dialect  
@@ -60,7 +56,7 @@ spring.datasource.driver-class-name=org.sqlite.JDBC
 runtimeOnly("org.postgresql:postgresql")
 ```
 
-```
+```properties
 spring.jpa.hibernate.ddl-auto=update  
 spring.jpa.show-sql=true  
 #org.hibernate.community.dialect  
@@ -69,7 +65,6 @@ spring.datasource.password=123456
 spring.datasource.driver-class-name=org.postgresql.Driver  
 spring.datasource.url=jdbc:postgresql://localhost:5432/rose?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
 ```
-
 
 ### mariadb
 
@@ -87,11 +82,4 @@ spring.datasource.username=postgres
 spring.datasource.password=123456  
 spring.datasource.driver-class-name=org.mariadb.jdbc.Driver  
 spring.datasource.url=jdbc:mariadb://localhost:3307/rose?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
-```
-
-### mysql
-
-```
-驱动
-
 ```

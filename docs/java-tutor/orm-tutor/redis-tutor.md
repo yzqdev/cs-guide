@@ -60,6 +60,34 @@
 [https://github.com/cc20110101/RedisView](https://github.com/cc20110101/RedisView)
 [https://github.com/qishibo/AnotherRedisDesktopManager/](https://github.com/qishibo/AnotherRedisDesktopManager/)
 
+## springboot使用redis存储乱码
+
+需要配置一下redisTemplate
+
+```java
+@Configuration
+public class RedisConfig {
+    @Bean
+    public StringRedisTemplate redisTemplate(RedisConnectionFactory factory) {
+        StringRedisTemplate redisTemplate = new StringRedisTemplate(factory);
+
+        ObjectMapper om = new ObjectMapper();
+        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,false);
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.deactivateDefaultTyping( );
+      Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(om,
+        Object.class);
+        //设置完这个可以直接将对象以json格式存入redis中，但是取出来的时候要用JSON.parseArray(Json.toJsonString(object),Object.class)解析一下
+        redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+        redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+        //调用后完成设置
+        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
+}
+
+```
+
 ## Redis常用的数据类型
 
 - String
