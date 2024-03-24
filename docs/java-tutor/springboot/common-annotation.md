@@ -1,29 +1,14 @@
 # 常用注解解析
 
-## 1. 有这么一个故事，从xml配置文件的bean说起
-
-Spring用xml配置文件的时候（不知道阅读这篇文章的你用没用过，我用过一段时间，那是黑暗伤痛的回忆QQQ），一个xml配置文件里面有很多个bean。类似这样：
-
-```
-<bean id="helloWorld" class="com.test.spring.beans.HelloWorld">
-        <property name="name" value="Spring"></property>
-</bean>
-```
-
 每个bean都对应着一个class，可能是controller，可能是service，可能是dao，xml配置文件就是告诉Spring，我这里有哪些bean，他们都叫啥名字（例如helloworld），他们的class文件在哪（com.test.spring.beans.HelloWorld），他们都有哪些属性。这样，当项目启动时，Spring就回去管理这些类了。
 
 ## 2. 进入@Configuration时代
 
-你现在使用`@Service`、`@Repository`、`@Component`这些注解放在java的类上用来告诉Spring：“我标注的这些类请你来管理”。在以前就是要在xml配置文件里写上面这样的bean，有一个类写一个bean（实在是太麻烦了。。。。。，不方便码代码，不方便阅读，不方便修改），一个xml配置文件写好多bean。
+你现在使用`@Service`、`@Repository`、`@Component`这些注解放在java的类上用来告诉Spring：“我标注的这些类请你来管理”。在以前就是要在xml配置文件里写上面这样的bean，有一个类写一个bean
 **总结一下：**
 
 - `@Configuration`注解就相当于xml配置文件，告诉Spring我这里有好多bean要交给你管理
 - `@Bean`注解就相当于xml配置文件里面的bean，告诉Spring这个被注解的类就交给你管理了
-到这里，Spring发展史中注解替换xml配置文件的故事就讲完了，是不是很简单！
-
-=十万个为什么的分割线=======
-那，既然问题都解决了，有@Component啥事？？？
-年轻人，sometimes naive
 
 ## 3. @Component粉墨登场
 
@@ -62,4 +47,4 @@ public class MyClass {
 
 ## 4. 让我们以一点小干货结束今天的故事
 
-Spring管理的Bean我们需要通过`@Autowired`或者`@Resource`导入来使用，这两的区别啥的你可以自己去搜索一下，这里只说一个问题。`@Autowired`是按照类型装配的，`@Resource`是按照名称装配的，加入同一类型有多个bean，只是名字不一样，`@Autowired`直接导入会报错。这时候课题通过`@Resource(name="name")`或者`@Autowired@Qualifier("name")`来按名称装配，解决问题。
+Spring管理的Bean我们需要通过`@Autowired`或者`@Resource`导入来使用，这两的区别啥的你可以自己去搜索一下，这里只说一个问题。`@Autowired`是按照类型装配的，`@Resource`是按照名称装配的，如果同一类型有多个bean，只是名字不一样，`@Autowired`直接导入会报错。这时候课题通过`@Resource(name="name")`或者`@Autowired@Qualifier("name")`来按名称装配，解决问题。

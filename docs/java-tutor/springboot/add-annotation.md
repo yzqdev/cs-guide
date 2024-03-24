@@ -269,7 +269,7 @@ Java 1.8 引入的注解。该注释会强制编译器`javac`检查一个接口�
 
 #### 注解
 
-```
+```java
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.FIELD, ElementType.METHOD})
 public @interface MyAnno {   
@@ -337,7 +337,7 @@ public class Test {
 
 最终希望看到效果是这样的
 
-```
+```java
 @CmdMapping(Cmd.LOGIN)
 public class LoginHandler implements ICmdHandler {
     @Override
@@ -362,7 +362,7 @@ public class LogoutHandler implements ICmdHandler {
 具体的实现是使用`Spring`和一个自定义的注解
 定义`@CmdMapping`注解
 
-```
+```java
 @Documented
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
@@ -377,7 +377,7 @@ public @interface CmdMapping {
 
 然后是`CMD`接口，存储命令。
 
-```
+```java
 public interface Cmd {
     int REGISTER = 1;
     int LOGIN    = 2;
@@ -387,7 +387,7 @@ public interface Cmd {
 
 之后是处理类接口，现实情况接口会复杂得多，这里简化了。
 
-```
+```java
 public interface ICmdHandler { 
     void handle();   
 }

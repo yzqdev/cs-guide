@@ -129,7 +129,6 @@ public class Student
         this.score = score;
         System.out.println("Student "+  name +"'s score is " + score);
     }
-     
     public static void main(String[] args)
     {
         /*lambda表达式的用法：

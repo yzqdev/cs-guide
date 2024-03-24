@@ -4,6 +4,14 @@
 [https://github.com/longguikeji/arkid](https://github.com/longguikeji/arkid)
 ​
 
+添加依赖
+
+```
+// https://mvnrepository.com/artifact/com.auth0/java-jwt
+implementation("com.auth0:java-jwt:4.4.0")
+或者
+```
+
 JwtUtil.java
 
 ```java

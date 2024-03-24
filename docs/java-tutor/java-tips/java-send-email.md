@@ -1,27 +1,13 @@
 # java发送邮件
 
-javax.email已经被弃用了
-
-```xml
- 
-<dependency>
-                <groupId>com.sun.mail</groupId>
-                <artifactId>javax.mail</artifactId>
-                <version>1.6.2</version>
-            </dependency>
-```
-
 ​
 
 使用新的Jakartaapi
 
-```xml
-<!-- https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail -->
-<dependency>
-    <groupId>com.sun.mail</groupId>
-    <artifactId>jakarta.mail</artifactId>
-    <version>2.0.1</version>
-</dependency>
+```kotlin
+// https://mvnrepository.com/artifact/org.eclipse.angus/jakarta.mail
+implementation("org.eclipse.angus:jakarta.mail:2.0.3")
+
 ```
 
 ## java基本数据类型有哪些
@@ -40,14 +26,13 @@ Jakarta Mail的前生是JavaMail。JavaMail最后一个版本是于2018年8月�
 
 ### 依赖
 
-注意Jakarta Mail引用的包名与JavaMail不同，我写demo时用的是2.0.0版。
-
-```xml
-<dependency>
-    <groupId>com.sun.mail</groupId>
-    <artifactId>jakarta.mail</artifactId>
-    <version>{version}</version>
-</dependency>
+```kotlin
+// https://mvnrepository.com/artifact/org.eclipse.angus/jakarta.mail
+implementation("org.eclipse.angus:jakarta.mail:2.0.3")
+或者
+// https://mvnrepository.com/artifact/org.eclipse.angus/angus-mail
+implementation("org.eclipse.angus:angus-mail:2.0.3")
+这两个包内容相同
 ```
 
 所有jar清单：
