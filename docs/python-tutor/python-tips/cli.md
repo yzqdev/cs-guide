@@ -1,10 +1,24 @@
 # python 命令行编写
 
-# 命令行
+## 命令行
 
 打包命令 <https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-a-local-src-tree>
 
 <https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/>
+:::
+我的全局包 `pipx install mycli`
+
+```
+git-filter-repo
+ipython
+mycli
+pgcli
+httpie
+poetry
+ 
+```
+
+:::
 
 ## click
 

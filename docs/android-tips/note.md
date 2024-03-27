@@ -36,7 +36,6 @@ basicTv.setTextColor(Color.argb(0,200,0,0))
 basicTv.setTextColor(Color.parseColor("#00ff00"))
 ```
 
-
 ## 安卓打包修改名字
 
 ### 关于打包的定义
@@ -80,6 +79,7 @@ def releaseTime() {
     return new Date().format("yyyy-MM-dd-HH-mm", TimeZone.getTimeZone("Asia/Shanghai"))
 }
 ```
+
 ## 在build.gradle.kts引入function.gradle中方法
 
 ```kotlin
@@ -87,4 +87,75 @@ import groovy.lang.Closure
 apply(from="functions.gradle")
 val buildVersionName: Closure<Any> by ext
 buildVersionName()
+```
+
+## 获取所有的provider
+
+```kotlin
+
+@Composable
+
+fun ThirdScreen() {
+  val ctx = LocalContext.current as ComponentActivity
+  Button(onClick = {
+    for (pack in ctx.getPackageManager().getInstalledPackages(PackageManager.GET_PROVIDERS)) {
+      val providers = pack.providers
+      if (providers != null) {
+        for (provider in providers) {
+          if (provider.toString().contains("neofileprovider")){
+            XLog.d(  "provider: " + provider.authority)
+            XLog.d(ctx.getPackageName() )
+          }
+
+        }
+      }
+    }
+  }) {
+    Text(text = "provide")
+  }
+}
+```
+
+## provider冲突解决办法
+
+添加一个MiniProvider继承FileProvider,authority都要`${applicationId}..multi_image.provider`这种,然后使用`requireActivity().getPackageName()+".multi_image.provider"`,
+
+```
+FileProvider.getUriForFile(  requireActivity(),  requireActivity().getPackageName()+".multi_image.provider",  mTmpFile)
+```
+
+### 使用fragmentutils
+
+```kotlin
+  FragmentUtils.add(supportFragmentManager, frags, R.id.lib_frag, 0)
+    val callback = object : OnBackPressedCallback(
+      true // default to enabled
+    ) {
+      override fun handleOnBackPressed() {
+        XLog.enableStackTrace(2).d( FragmentUtils.getTopShow(supportFragmentManager))
+        if (FragmentUtils.getTopShow(supportFragmentManager) is LiblistFragment){
+          finish()
+        }else{
+          FragmentUtils.replace(supportFragmentManager,LiblistFragment(),R.id.lib_frag)
+        }
+      }
+    }
+    this.onBackPressedDispatcher.addCallback(callback)
+```
+
+## kotlin获取appllication实例
+
+```kotlin
+class MyApp: Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+    }
+
+    companion object {
+        lateinit var instance: MyApp
+            private set
+    }
+}
 ```

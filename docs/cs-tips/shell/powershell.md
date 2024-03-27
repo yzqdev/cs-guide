@@ -6,7 +6,7 @@
 
 ## 删除命令
 
-```
+```powershell
 # 删除指定文件
  Remove-Item * -Include *.json -Recurse
 # 删除文件而保留文件夹
@@ -20,13 +20,13 @@ Remove-Item * -Recurse -Include *bin*
 
 ## 获取文件夹内文件个数
 
-```
+```powershell
 @(Get-ChildItem -Exclude .\node_modules\,.cache,.temp -r).Count
 ```
 
 ## 获取文件夹大小
 
-```
+```powershell
 switch((ls -r|measure -sum Length).Sum) {
   {$_ -gt 1GB} {
     '{0:0.0} GiB' -f ($_/1GB)
@@ -57,7 +57,7 @@ Get-ChildItem -Path E:\WebstormProjects\  -Exclude node_module*|Get-ChildItem -r
 
 ## 删除._文件
 
-```
+```powershell
 dir ._* /a/s 
 
 del ._* /a/s
@@ -79,7 +79,7 @@ del ._* /a/s
 
 ## 命令行运行wpf
 
-```
+```powershell
 dotnet watch run
 ```
 
@@ -90,7 +90,7 @@ dotnet watch run
 
 发布单文件
 
-```
+```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
