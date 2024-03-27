@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>element-plus</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-plus/dist/index.css"
+    />
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/element-plus"></script>
+  </head>
+  <body>
+    <div id="app">
+      <el-button type="primary" @click="showMsg">element-plus</el-button>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            msg: "hhhhh",
+          };
+        },
+        methods: {
+          showMsg() {
+            ElementPlus.ElMessage("hhh");
+          },
+        },
+      });
+      app.use(ElementPlus);
+      app.mount("#app");
+      // 使用setup
+      // const { createApp, reactive, toRefs } = Vue;
+      // const data = reactive({
+      //   state: 12,
+      // });
+      // const app = createApp({
+      //   setup() {
+      //     return {
+      //       ...toRefs(data),
+      //     };
+      //   },
+      // });
+      // app.mount("#app");
+    </script>
+  </body>
+</html>

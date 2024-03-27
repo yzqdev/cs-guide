@@ -1,0 +1,286 @@
+import{_ as p,r as o,o as l,c as i,d as n,e as s,b as e,a as t}from"./app-BO2oONDQ.js";const c={},r=t(`<h1 id="powershell美化" tabindex="-1"><a class="header-anchor" href="#powershell美化"><span>powershell美化</span></a></h1><h2 id="改造powershell" tabindex="-1"><a class="header-anchor" href="#改造powershell"><span><strong>改造PowerShell</strong></span></a></h2><p>默认的PowerShell并不美观，仅仅是将原来“傻大黑”变成了“傻大蓝”。（由于我的PowerShell已经改造过了所以我这里就没有办法截图了）我们的做法是在PowerShell里面加一个PowerLine，然后剩下的，在Terminal中配置。</p><h3 id="安装posh-git" tabindex="-1"><a class="header-anchor" href="#安装posh-git"><span>安装posh-git</span></a></h3><div class="language-powershell line-numbers-mode" data-ext="powershell" data-title="powershell"><pre class="language-powershell"><code>PowerShellGet\\<span class="token function">Install-Module</span> posh-git <span class="token operator">-</span>Scope CurrentUser <span class="token operator">-</span>Force
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="安装psreadline" tabindex="-1"><a class="header-anchor" href="#安装psreadline"><span>安装PSReadLine</span></a></h3><div class="language-powershell line-numbers-mode" data-ext="powershell" data-title="powershell"><pre class="language-powershell"><code><span class="token function">Install-Module</span> <span class="token operator">-</span>Name PowerShellGet <span class="token operator">-</span>Force
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="安装terminal-icons" tabindex="-1"><a class="header-anchor" href="#安装terminal-icons"><span>安装terminal-icons</span></a></h3>`,8),u={href:"https://github.com/devblackops/Terminal-Icons",target:"_blank",rel:"noopener noreferrer"},d=t(`<div class="language-powershell line-numbers-mode" data-ext="powershell" data-title="powershell"><pre class="language-powershell"><code><span class="token function">Install-Module</span> <span class="token operator">-</span>Name Terminal-Icons <span class="token operator">-</span>Repository PSGallery
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>然后在<code>$profile</code>加入</p><div class="language-powershell line-numbers-mode" data-ext="powershell" data-title="powershell"><pre class="language-powershell"><code><span class="token function">Import-Module</span> <span class="token operator">-</span>Name Terminal-Icons
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="安装psscripttools" tabindex="-1"><a class="header-anchor" href="#安装psscripttools"><span>安装PSScriptTools</span></a></h2>`,4),k={href:"https://github.com/jdhitsolutions/PSScriptTools",target:"_blank",rel:"noopener noreferrer"},v=n("h2",{id:"安装yarn-completion",tabindex:"-1"},[n("a",{class:"header-anchor",href:"#安装yarn-completion"},[n("span",null,"安装yarn completion")])],-1),m={href:"https://github.com/PowerShell-Completion/yarn-completion",target:"_blank",rel:"noopener noreferrer"},b=n("h2",{id:"安装maven-completion",tabindex:"-1"},[n("a",{class:"header-anchor",href:"#安装maven-completion"},[n("span",null,"安装maven completion")])],-1),y={href:"https://github.com/krymtkts/MavenAutoCompletion",target:"_blank",rel:"noopener noreferrer"},h=n("h3",{id:"startship",tabindex:"-1"},[n("a",{class:"header-anchor",href:"#startship"},[n("span",null,"startship")])],-1),q={href:"https://starship.rs/zh-CN/guide/#%F0%9F%9A%80-%E5%AE%89%E8%A3%85",target:"_blank",rel:"noopener noreferrer"},g=t(`<div class="language-text line-numbers-mode" data-ext="text" data-title="text"><pre class="language-text"><code>scoop install starship
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="startship配置" tabindex="-1"><a class="header-anchor" href="#startship配置"><span>startship配置</span></a></h3><div class="language-toml line-numbers-mode" data-ext="toml" data-title="toml"><pre class="language-toml"><code><span class="token key property">scan_timeout</span> <span class="token punctuation">=</span> <span class="token number">10</span>
+<span class="token key property">command_timeout</span> <span class="token punctuation">=</span> <span class="token number">3000</span>
+<span class="token punctuation">[</span><span class="token table class-name">directory</span><span class="token punctuation">]</span>
+<span class="token key property">truncation_length</span> <span class="token punctuation">=</span> <span class="token number">8</span>
+<span class="token key property">truncate_to_repo</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">[</span><span class="token table class-name">package</span><span class="token punctuation">]</span>
+<span class="token key property">disabled</span> <span class="token punctuation">=</span> <span class="token boolean">true</span>
+<span class="token comment"># [status]</span>
+<span class="token comment"># style = &quot;bg:blue&quot;</span>
+<span class="token comment"># symbol = &quot; &quot;</span>
+<span class="token comment"># format = &#39;[\\[$symbol $common_meaning$signal_name$maybe_int\\]]($style) &#39;</span>
+<span class="token comment"># map_symbol = true</span>
+<span class="token comment"># disabled = false</span>
+<span class="token comment"># [username]</span>
+<span class="token comment"># style_user = &quot;white bold&quot;</span>
+<span class="token comment"># style_root = &quot;black bold&quot;</span>
+<span class="token comment"># format = &quot;[$user]($style) &quot;</span>
+<span class="token comment"># disabled = false</span>
+<span class="token comment"># show_always = true</span>
+<span class="token comment"># truncation_symbol = &#39;…/&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">time</span><span class="token punctuation">]</span>
+<span class="token key property">disabled</span> <span class="token punctuation">=</span> <span class="token boolean">true</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;[\\[ $time \\]]($style) &#39;</span>
+<span class="token key property">time_format</span> <span class="token punctuation">=</span> <span class="token string">&quot;%T&quot;</span>
+<span class="token key property">utc_time_offset</span> <span class="token punctuation">=</span> <span class="token string">&quot;+8&quot;</span>
+<span class="token punctuation">[</span><span class="token table class-name">bun</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&quot;via [$symbol]($style)&quot;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">buf</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&quot;via [$symbol]($style)&quot;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">cmake</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&quot;via [$symbol]($style)&quot;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">cobol</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&quot;via [$symbol]($style)&quot;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">crystal</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&quot;via [$symbol]($style)&quot;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">daml</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&quot;via [$symbol]($style)&quot;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">dart</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&quot;via [$symbol]($style)&quot;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">deno</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&quot;via [$symbol]($style)&quot;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">dotnet</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&quot;[$symbol(🎯 $tfm )]($style)&quot;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">elixir</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">elm</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">erlang</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">fennel</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">golang</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">gradle</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">haxe</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">helm</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">java</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">julia</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">kotlin</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">lua</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">meson</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">nim</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">nodejs</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">ocaml</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol(\\($switch_indicator$switch_name\\) )]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">opa</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">perl</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">php</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">pulumi</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol$stack]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">purescript</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">python</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">raku</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">red</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">rlang</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">ruby</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">rust</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">solidity</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">swift</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">vagrant</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">vlang</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+
+<span class="token punctuation">[</span><span class="token table class-name">zig</span><span class="token punctuation">]</span>
+<span class="token key property">format</span> <span class="token punctuation">=</span> <span class="token string">&#39;via [$symbol]($style)&#39;</span>
+<span class="token punctuation">[</span><span class="token table class-name">git_branch</span><span class="token punctuation">]</span>
+<span class="token key property">disabled</span> <span class="token punctuation">=</span><span class="token boolean">false</span>
+<span class="token punctuation">[</span><span class="token table class-name">git_commit</span><span class="token punctuation">]</span>
+<span class="token key property">disabled</span> <span class="token punctuation">=</span><span class="token boolean">true</span>
+<span class="token punctuation">[</span><span class="token table class-name">git_state</span><span class="token punctuation">]</span>
+<span class="token key property">disabled</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">[</span><span class="token table class-name">git_metrics</span><span class="token punctuation">]</span>
+<span class="token key property">disabled</span> <span class="token punctuation">=</span> <span class="token boolean">true</span>
+<span class="token punctuation">[</span><span class="token table class-name">git_status</span><span class="token punctuation">]</span>
+<span class="token key property">disabled</span> <span class="token punctuation">=</span> <span class="token boolean">false</span>
+
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="安装oh-my-posh" tabindex="-1"><a class="header-anchor" href="#安装oh-my-posh"><span>安装oh-my-posh</span></a></h3><h3 id="linux安装" tabindex="-1"><a class="header-anchor" href="#linux安装"><span>linux安装</span></a></h3>`,5),f={href:"https://ohmyposh.dev/docs/installation/linux",target:"_blank",rel:"noopener noreferrer"},w=n("h3",{id:"windows安装",tabindex:"-1"},[n("a",{class:"header-anchor",href:"#windows安装"},[n("span",null,"windows安装")])],-1),_={href:"https://ohmyposh.dev/",target:"_blank",rel:"noopener noreferrer"},$=n("br",null,null,-1),S={href:"https://github.com/JanDeDobbeleer/oh-my-posh/releases",target:"_blank",rel:"noopener noreferrer"},x=n("code",null,"install-amd64.exe",-1),P=t(`<p>然后在<code>$profile</code>添加</p><div class="language-bash line-numbers-mode" data-ext="sh" data-title="sh"><pre class="language-bash"><code>oh-my-posh init pwsh <span class="token parameter variable">--config</span> <span class="token string">&quot;<span class="token variable">$env</span>:POSH_THEMES_PATH<span class="token entity" title="\\n">\\n</span>egligible.omp.json&quot;</span><span class="token operator">|</span>Invoke-Expression
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>安装PowerLine的方法很简单，我们要先安装oh-my-posh，首先打开一个PowerShell，输入</p><div class="language-powershell line-numbers-mode" data-ext="powershell" data-title="powershell"><pre class="language-powershell"><code><span class="token function">Install-Module</span> posh-git <span class="token operator">-</span>Scope CurrentUser
+https:<span class="token operator">/</span><span class="token operator">/</span>ohmyposh<span class="token punctuation">.</span>dev/
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>如果你使用管理员权限打开PowerShell并且想把oh-my-posh安装到所有用户，则输入</p><div class="language-powershell line-numbers-mode" data-ext="powershell" data-title="powershell"><pre class="language-powershell"><code><span class="token function">Install-Module</span> posh-git
+ 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div>`,6),T=n("strong",null,"如果你的电脑里没有安装Git，在输入",-1),C=n("code",null,"**Import-Module posh-git**",-1),E=n("strong",null,"会报错，解决方法是",-1),I={href:"https://git-scm.com/",target:"_blank",rel:"noopener noreferrer"},M=n("strong",null,"安装Git",-1),j=n("strong",null,"或者把这一行去掉。",-1),F=t(`<p>但是这次使用<code>Import-Module</code>的指令，再次启动PowerShell就会发现没有效果，这是因为这些指令仅限于本次会话的PowerShell有效，因此，若要使这一效果在每次启动的时候都有效，那就要将其添加到启动脚本中。</p><p>在PowerShell中输入<code>kate $profile</code> ，然后输入以下内容，保存。如果你没有安装kate，则使用<code>notepad $profile</code>。</p><div class="language-powershell line-numbers-mode" data-ext="powershell" data-title="powershell"><pre class="language-powershell"><code><span class="token function">Import-Module</span> posh-git
+ 
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>如果提示禁止执行脚本之类的错误信息，请将脚本执行策略更改为<code>RemoteSigned</code>。具体方法为使用具有管理员权限的PowerShell，然后输入</p><div class="language-powershell line-numbers-mode" data-ext="powershell" data-title="powershell"><pre class="language-powershell"><code><span class="token function">Set-ExecutionPolicy</span> RemoteSigned
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>这样，在每次PoweShell打开的时候都能启用PowerLine主题。</p><p>可是这样，PowerShell打开的时候仍有乱码（或者说，有违和感），这是因为没有给你使用的字体链接表情，乱码的地方其实就是表情符号。</p><p>我喜欢的oh-my-posh主题 <code>negligible</code> <code>pure</code> <code>ys</code><code>paradox</code> <code>powerlevel10k_classic</code>, <code>powerlevel10k_lean</code></p><blockquote><p>一个修改后的negligible主题</p></blockquote><div class="language-json line-numbers-mode" data-ext="json" data-title="json"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;$schema&quot;</span><span class="token operator">:</span> <span class="token string">&quot;https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;blocks&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;alignment&quot;</span><span class="token operator">:</span> <span class="token string">&quot;left&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;segments&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cyan&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;powerline&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;{{ if .WSL }}WSL at {{ end }}{{.Icon}}&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;os&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;cyan&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;properties&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;full&quot;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;plain&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot; {{ .Path }} &quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;path&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#F1502F&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;properties&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;fetch_status&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;plain&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;:: {{ .HEAD }}{{ .BranchStatus }}{{ if .Staging.Changed }} \\uf046 {{ .Staging.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Working.Changed }} \\uf044 {{ .Working.String }}{{ end }} &quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;git&quot;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;prompt&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;alignment&quot;</span><span class="token operator">:</span> <span class="token string">&quot;right&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;segments&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;red&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;plain&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;| root &quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;root&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#06A4CE&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;powerline&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;| \\ue798 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} &quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dart&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#6CA35E&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;powerline&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;| \\ue718 {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }}{{ .Full }} &quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;node&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#4584b6&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;properties&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;display_mode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;context&quot;</span><span class="token punctuation">,</span>
+            <span class="token property">&quot;fetch_virtual_env&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;plain&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;| \\ue235 {{ .Venv }} &quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;python&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dotnet&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;powerline&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#00ffff&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;| \\uE77F {{ .Full }} &quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;flutter&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;powerline&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#1389fd&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;| \\ue28e {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }} &quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;java&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;powerline&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;#ce2c00&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;| \\uE738 {{ .Full }}&quot;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;lightGreen&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;plain&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;| {{ .CurrentDate | date .Format }} &quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;time&quot;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;prompt&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;alignment&quot;</span><span class="token operator">:</span> <span class="token string">&quot;left&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;newline&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;segments&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">&quot;foreground&quot;</span><span class="token operator">:</span> <span class="token string">&quot;lightGreen&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;foreground_templates&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token string">&quot;{{ if gt .Code 0 }}red{{ end }}&quot;</span>
+          <span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;properties&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+            <span class="token property">&quot;always_enabled&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;style&quot;</span><span class="token operator">:</span> <span class="token string">&quot;powerline&quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;template&quot;</span><span class="token operator">:</span> <span class="token string">&quot;\\u279c &quot;</span><span class="token punctuation">,</span>
+          <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;exit&quot;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token string">&quot;prompt&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;version&quot;</span><span class="token operator">:</span> <span class="token number">2</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,10);function L(z,N){const a=o("ExternalLinkIcon");return l(),i("div",null,[r,n("p",null,[n("a",u,[s("github地址"),e(a)])]),d,n("p",null,[n("a",k,[s("https://github.com/jdhitsolutions/PSScriptTools"),e(a)])]),v,n("p",null,[n("a",m,[s("https://github.com/PowerShell-Completion/yarn-completion"),e(a)])]),b,n("p",null,[n("a",y,[s("https://github.com/krymtkts/MavenAutoCompletion"),e(a)])]),h,n("p",null,[n("a",q,[s("https://starship.rs/zh-CN/guide/#🚀-安装"),e(a)])]),g,n("p",null,[n("a",f,[s("https://ohmyposh.dev/docs/installation/linux"),e(a)])]),w,n("p",null,[s("地址"),n("a",_,[s("https://ohmyposh.dev/"),e(a)]),$,s(" 推荐在windows商店下载oh-my-sh或者在"),n("a",S,[s("https://github.com/JanDeDobbeleer/oh-my-posh/releases"),e(a)]),s("下载"),x,s("自行安装")]),P,n("p",null,[T,C,E,n("a",I,[M,e(a)]),j]),F])}const D=p(c,[["render",L],["__file","beautify-powershell.html.vue"]]),R=JSON.parse('{"path":"/windows-tutor/powershell/beautify-powershell.html","title":"powershell美化","lang":"zh-CN","frontmatter":{"description":"powershell美化 改造PowerShell 默认的PowerShell并不美观，仅仅是将原来“傻大黑”变成了“傻大蓝”。（由于我的PowerShell已经改造过了所以我这里就没有办法截图了）我们的做法是在PowerShell里面加一个PowerLine，然后剩下的，在Terminal中配置。 安装posh-git 安装PSReadLine 安装...","head":[["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/windows-tutor/powershell/beautify-powershell.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"powershell美化"}],["meta",{"property":"og:description","content":"powershell美化 改造PowerShell 默认的PowerShell并不美观，仅仅是将原来“傻大黑”变成了“傻大蓝”。（由于我的PowerShell已经改造过了所以我这里就没有办法截图了）我们的做法是在PowerShell里面加一个PowerLine，然后剩下的，在Terminal中配置。 安装posh-git 安装PSReadLine 安装..."}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2023-11-19T03:14:18.000Z"}],["meta",{"property":"article:author","content":"yzqdev"}],["meta",{"property":"article:modified_time","content":"2023-11-19T03:14:18.000Z"}],["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"powershell美化\\",\\"image\\":[\\"\\"],\\"dateModified\\":\\"2023-11-19T03:14:18.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"]]},"headers":[{"level":2,"title":"改造PowerShell","slug":"改造powershell","link":"#改造powershell","children":[{"level":3,"title":"安装posh-git","slug":"安装posh-git","link":"#安装posh-git","children":[]},{"level":3,"title":"安装PSReadLine","slug":"安装psreadline","link":"#安装psreadline","children":[]},{"level":3,"title":"安装terminal-icons","slug":"安装terminal-icons","link":"#安装terminal-icons","children":[]}]},{"level":2,"title":"安装PSScriptTools","slug":"安装psscripttools","link":"#安装psscripttools","children":[]},{"level":2,"title":"安装yarn completion","slug":"安装yarn-completion","link":"#安装yarn-completion","children":[]},{"level":2,"title":"安装maven completion","slug":"安装maven-completion","link":"#安装maven-completion","children":[{"level":3,"title":"startship","slug":"startship","link":"#startship","children":[]},{"level":3,"title":"startship配置","slug":"startship配置","link":"#startship配置","children":[]},{"level":3,"title":"安装oh-my-posh","slug":"安装oh-my-posh","link":"#安装oh-my-posh","children":[]},{"level":3,"title":"linux安装","slug":"linux安装","link":"#linux安装","children":[]},{"level":3,"title":"windows安装","slug":"windows安装","link":"#windows安装","children":[]}]}],"git":{"createdTime":1649171852000,"updatedTime":1700363658000,"contributors":[{"name":"yzqdev","email":"yzqdev@outlook.com","commits":10}]},"readingTime":{"minutes":3.56,"words":1067},"filePathRelative":"windows-tutor/powershell/beautify-powershell.md","localizedDate":"2022年4月5日","autoDesc":true}');export{D as comp,R as data};
