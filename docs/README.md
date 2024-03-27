@@ -64,11 +64,11 @@ features:
   - title: git教程
     details: 一个简单的git教程
     icon: git
-    link: https://yzqdev.github.io/git-tutor  
+    link: /git-tutor/ 
   - title: nodejs教程
     details: 一个简单的node教程
     icon: node
-    link: https://yzqdev.github.io/node-docs 
+    link: /node-tutor/
   - title: 安卓教程
     details: 一个简单的安卓教程
     icon: android

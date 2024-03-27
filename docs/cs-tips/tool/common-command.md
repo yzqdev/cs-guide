@@ -127,7 +127,7 @@ svelte prettier配置
 
 ## gitignore配置
 
-### 安装yarn3
+### 安装yarn4
 
 ```shell
 yarn set version stable
@@ -150,7 +150,7 @@ bundleVersion = 'berry';
 ```
 
 ```
-# Yarn 3
+# Yarn 4
 /.yarn/*
 # !/.yarn/patches
 # !/.yarn/plugins
@@ -211,20 +211,12 @@ return num
 语言更多的通过项目的实践，然后多写，慢慢就熟悉了。因为本身有java的开发经验，所以要用kotlin 写也不难的，另外开发工具还支持，拷贝java代码粘贴到kotlin文件就转化成kotlin的代码了，应急的时候这么做也是可以的。熟练之后，koltin开发还是很舒服的。
 ```
 
-美团拼好饭   山东烧鸡
-
-冰雪奇缘  <https://aidi.tv/play/33-1-1.html>
-
-电视剧 赘婿
-
 windows ui库   <https://slint-ui.com/>
 
 dotnet命令行工具  <https://learn.microsoft.com/zh-cn/dotnet/core/tools/global-tools-how-to-create>
 dotnet命令  <https://learn.microsoft.com/zh-cn/dotnet/core/tools/>
 
 <https://blog.csdn.net/seoalphas/article/details/81480271>
-
-<http://www.unityfly.com/>
 
 ### 浏览器推荐 brave浏览器,vivaldi浏览器,opera浏览器,tor浏览器
 
@@ -254,22 +246,3 @@ tauri打包慢：解决tauri的打包慢以及超时的方法
 
 android studio gbk错误
 <https://doracoin.cc/431/>
-
-gradle 乱码
-
-    tasks.withType(JavaCompile) {  
-       options.encoding = "UTF-8"  
-    }  
-
-## 错误Build was configured to prefer settings repositories over project repositories but repository 'MavenRepo' was added by plugin 'realm-android'
-
-it could be worked around by allowing project repos. This would require changing the settings.gradle in the Android project.
-
-Replace the line:
-repositoriesMode.set(RepositoriesMode.FAIL\_ON\_PROJECT\_REPOS)
-with
-repositoriesMode.set(RepositoriesMode.PREFER\_SETTINGS)
-
-That's a [gradle setting](https://docs.gradle.org/current/userguide/declaring_repositories.html#sub\:centralized-repository-declaration) which allows this to work.
-
-Out of curiosity were you using the Android Studio Canary?
