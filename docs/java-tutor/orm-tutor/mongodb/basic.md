@@ -1,5 +1,7 @@
 # 基本操作
+
 <https://www.mongodb.com/docs/manual/tutorial/insert-documents/>
+
 ## 添加数据库
 
 ```shell
@@ -44,11 +46,14 @@ db.postCollection.find({"author.name":"yzq"})
 ```shell
 db.postCollection.updateOne({"author.name":"yzq"},{$set:{"author.name":"qqman"}})
 ```
+
 ## 删除
 
 ```shell
 db.postCollection.deleteOne({"author.name":"qqman"})
 ```
+
 ## 导出数据
+
 下载mongodb database tools
 [地址](https://www.mongodb.com/try/download/database-tools)

@@ -63,17 +63,7 @@ public class FooController {
 }
 ```
 
- 在Spring3.x刚推出的时候，推荐使用注入的就是这种，笔者现在也基本没看到过这种注解方式，写起来麻烦，当初推荐Spring自然也有他的道理，这里我们引用一下Spring当时的原话:
-
-> The Spring team generally advocates setter injection, because large numbers of constructor arguments can get unwieldy, especially when properties are optional. Setter methods also make objects of that class amenable to reconfiguration or re-injection later. Management through [JMX MBeans](http://docs.spring.io/spring/docs/3.1.x/spring-framework-reference/html/jmx.html) is a compelling use case.
->
-> Some purists favor constructor-based injection. Supplying all object dependencies means that the object is always returned to client (calling) code in a totally initialized state. The disadvantage is that the object becomes less amenable to reconfiguration and re-injection.
-
- 咳咳，简单的翻译一下就是：构造器注入参数太多了，显得很笨重，另外**setter的方式能用让类在之后重新配置或者重新注入**。
-
- 那么后面为什么又换成构造器注入了呢？（喂喂喂，Spring你前一大版本还贬低构造器注入，后面就立刻捧人家了不好吧，不过能用于承认自己的错误，才是真正令人称赞的地方吧 (๑•̀ㅂ•́)و✧）
-
-## getbean
+### getbean
 
 其实还有一种方法,就是getbean
 通过context获取bean,并可以在各个地方使用
@@ -152,3 +142,32 @@ public class B {
 5. 提升了代码的可复用性
 
 另外，当有一个依赖有多个实现的使用，推荐使用field注入或者setter注入的方式来指定注入的类型。这是spring官方博客对[setter注入方式和构造器注入的比较](https://spring.io/blog/2007/07/11/setter-injection-versus-constructor-injection-and-the-use-of-required/)。
+
+## autowired和resource对比
+
+## 差异
+
+1. @Autowired和@Resource都可以用来装配bean，都可以写在字段上，或者方法上。
+
+2. @Autowired属于Spring的；@Resource为JSR-250标准的注释，属于J2EE的。
+
+3. @Autowired默认按类型装配，默认情况下必须要求依赖对象必须存在，如果要允许null值，可以设置它的required属性为false，例如：@Autowired(required=false) ，如果我们想使用名称装配可以结合@Qualifier注解进行使用，如下：
+
+```java
+@Autowired()
+@Qualifier("baseDao")
+private BaseDao baseDao;
+```
+
+4. @Resource，默认安装名称进行装配，名称可以通过name属性进行指定，如果没有指定name属性，当注解写在字段上时，默认取字段名进行安装名称查找，如果注解写在setter方法上默认取属性名进行装配。当找不到与名称匹配的bean时才按照类型进行装配。但是需要注意的是，如果name属性一旦指定，就只会按照名称进行装配。
+
+ 例如：
+
+```java
+@Resource(name="baseDao")
+private BaseDao baseDao;
+```
+
+:::tip
+ 推荐使用：@Resource注解在字段上，这样就不用写setter方法了，并且这个注解是属于J2EE的，减少了与spring的耦合。这样代码看起就比较优雅。
+:::

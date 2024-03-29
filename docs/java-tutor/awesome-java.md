@@ -13,6 +13,7 @@ jdk下载地址
 - <https://adoptium.net/>
 - <https://www.azul.com/downloads/?package=jdk#download-openjdk>
 - [使用哪个jdk](https://whichjdk.com/)
+
 :::
 
 ## 工具包
@@ -27,10 +28,8 @@ jdk下载地址
 
 ## json库
 
-- fastjson
 - jackson
 - gson
-- json-lib
 
 ## 其他
 

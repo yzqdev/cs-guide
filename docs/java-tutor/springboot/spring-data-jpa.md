@@ -14,7 +14,7 @@ JPA是Spring Data下的子项目,JPA是Java Persistence API的简称，中文名
 
 ## 整合
 
-#### 1. 导入jar包
+### 1. 导入jar包
 
 ```xml
 <dependency>
@@ -23,7 +23,7 @@ JPA是Spring Data下的子项目,JPA是Java Persistence API的简称，中文名
 </dependency>
 ```
 
-#### 2. yml配置文件
+### 2. yml配置文件
 
 ```dts
 spring:
@@ -49,7 +49,7 @@ spring:
 
 **我在初次创建时会设为create,创建好后改为validate.**
 
-#### 3.实体类
+### 3.实体类
 
 既然上边的参数可以帮助我们自动的去通过实体类来创建维护表,那么实体类该怎么写呢,又是怎么建立与表的映射
 
@@ -76,7 +76,7 @@ public class Person {
 
 创建好实体类并标注好注解后启动主启动类,应该就会在你配置的数据库中自动生成表.
 
-#### 4. Repository接口
+### 4. Repository接口
 
 personRepository接口如下,
 
@@ -121,13 +121,13 @@ public interface Specification<T> {
 [http://blog.csdn.net/dracotianlong/article/details/28445725](https://link.segmentfault.com/?enc=r05qZD5acNoUqNAnZib%2BPg%3D%3D.ICYoPanpFx1h4UshPIY005EW13XDmJd5ohahsQPAwikS%2BhefJYoYj2LIy26NBeUgEqCkcz0sqz61Lj4g8VxcQQ%3D%3D)
 [http://developer.51cto.com/art/200911/162722.htm](https://link.segmentfault.com/?enc=ehFpQucHYmD6HRnd3qpTdg%3D%3D.UgVVFVz%2FtdjdHP3wgL6FAdzal3C1FE%2BoQwDJ7oln%2FJerjmADbCyrWvHJ3YBteaGdO7CiB08xJZwccapqiam%2BJg%3D%3D)
 
-#### 5. Controller
+### 5. Controller
 
 然后我们可以直接在controller中编写代码即可(如果业务复杂,当然假如service层也是最好).
 
 简单crud:
 
-```typescript
+```java
 @RestController
 @RequestMapping(value = "person")
 public class PerconController {
@@ -277,7 +277,7 @@ void delAccount(int id);
 
 ## 补充
 
-#### 分页
+### 分页
 
 在上边说复杂查询的Repository接口时,其中的findAll方法,多传递一个pageable参数就可以自动的提供分页(pageable包含pageIndex和pageSize),相比较来说,省去了再引入pageHelper的步骤,更加简便.
 
