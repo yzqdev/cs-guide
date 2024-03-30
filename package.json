@@ -13,7 +13,7 @@
     "@vue/repl": "^4.1.1",
     "@vuepress/plugin-pwa": "^2.0.0-rc.20",
     "axios": "1.6.8",
-    "element-plus": "2.6.2",
+    "element-plus": "2.6.3",
     "highlight.js": "^11.9.0"
   },
   "devDependencies": {
@@ -24,7 +24,7 @@
     "sass-loader": "14.1.1",
     "vue": "^3.4.21",
     "vuepress": "^2.0.0-rc.9",
-    "vuepress-shared": "^2.0.0-rc.31",
-    "vuepress-theme-hope": "^2.0.0-rc.31"
+    "vuepress-shared": "^2.0.0-rc.32",
+    "vuepress-theme-hope": "^2.0.0-rc.32"
   }
 }
