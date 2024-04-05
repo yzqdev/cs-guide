@@ -1,6 +1,8 @@
- 
+
 # fragment 路由实例
+
 ## MainActivity
+
 ```kotlin
 import android.os.Bundle  
 import androidx.appcompat.app.AppCompatActivity  
@@ -34,7 +36,9 @@ class MainActivity : AppCompatActivity()  {
   
 }
 ```
+
 ## activity_main.xml
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
   
@@ -69,6 +73,7 @@ class MainActivity : AppCompatActivity()  {
   
 </LinearLayout>
 ```
+
 ## `res/navigation/home_nav.xml`
 
 ```xml
@@ -95,6 +100,7 @@ class MainActivity : AppCompatActivity()  {
 ```
 
 ## HomeFragment
+
 ```kotlin
   
 import android.os.Bundle  
