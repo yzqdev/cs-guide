@@ -2,12 +2,14 @@
 
 ## api服务
 
-- nestjs
-- midway
+- nestjs <https://docs.nestjs.com/>
+- midway <https://www.midwayjs.org/>
 - express
 - koa
-- fastify
+- fastify <https://fastify.dev/>
 - serverless [https://cn.serverless.com/](https://cn.serverless.com/)
+- elysia <https://elysiajs.com/>
+- hono
 
 ## 转webp的工具
 

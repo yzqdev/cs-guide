@@ -3,7 +3,7 @@
 ## path模块的引入
 
 ```js
-import path from 'path'// 直接引用node中自带的模块
+import path from 'node:path'// 直接引用node中自带的模块
 ```
 
 ## path.join()
