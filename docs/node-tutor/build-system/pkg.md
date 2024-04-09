@@ -9,6 +9,9 @@
 - vite
 - tsc
 - father
+- [bunchee](https://github.com/huozhi/bunchee)
+- [pkgroll](https://github.com/privatenumber/pkgroll)
+- [microbundle](https://github.com/developit/microbundle)
 <https://antfu.me/posts/publish-esm-and-cjs>
 - [pure esm](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c)
 - <https://publint.dev/>
@@ -23,7 +26,9 @@ external的意思是dependencies里面的依赖不会打包进去,而是需要�
 - grunt
 ## rollup
 
-默认会把dependencies里面的依赖源码全部打包,所以一般需要设置`external:['lodash']`之类的
+默认**不会**把dependencies里面的依赖源码全部打包,但是会出现warning,所以一般需要设置`external:['lodash']`之类的,如果实在想把dependency里面的依赖打包进你的库,需要用[@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)
+如下
+https://rollupjs.org/troubleshooting/#warning-treating-module-as-external-dependency
 
 ## 打包既支持esm又支持cjs的包
 
@@ -210,3 +215,4 @@ export default defineBuildConfig({
 });
 
 ```
+默认会把dependencies和peerdependencies放进external,所以要想像[@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve).一样吧node_modules里面的依赖打包进去,需要把`lodash-es`放进 devDependencies,然后`inlineDependencies:true`,不过这样是不推荐的, 因为如果用户安装了lodash-es,那么就会在你的库里和用户依赖都出现lodash-es
