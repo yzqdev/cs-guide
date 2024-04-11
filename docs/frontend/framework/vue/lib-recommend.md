@@ -21,7 +21,9 @@
 
 - [antdesign](https://ant.design/)
 - [materialui](https://mui.com/material-ui/)
+- [mantine](https://mantine.dev/)
 - [rsuit](https://rsuitejs.com/)
+- https://primereact.org/
 - [roit](https://riot.js.org/)
 - [iconic](https://github.com/ionic-team/ionic-framework)
 - [react-bootstrap](https://react-bootstrap.github.io)
@@ -34,7 +36,6 @@
 - [chakara](https://github.com/chakra-ui/chakra-ui)
 - [fluent ui](https://github.com/microsoft/fluentui)
 - <https://rebassjs.org/>
-- [mantine](https://mantine.dev/pages/getting-started/)
 - [nextui](https://nextui.org/)
 - [https://zagjs.com/](https://zagjs.com/)
 - [https://www.radix-ui.com/](https://www.radix-ui.com/)
