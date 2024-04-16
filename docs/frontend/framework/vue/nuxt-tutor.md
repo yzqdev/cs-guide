@@ -1,60 +1,17 @@
- # 数据获取
+# nuxt技巧
+ ## 数据获取
 
-三种获取数据的方案: fetch , `@nuxt/http`, `@nuxt/axios`
-@nuxt/axios只能用在pages的组件内,其余两个都可以用
-最推荐使用fetch:
-
-```html
-<template>
-  <p v-if="$fetchState.pending">Fetching mountains...</p>
-  <p v-else-if="$fetchState.error">An error occurred :(</p>
-  <div v-else>
-    <h1>Nuxt Mountains</h1>
-    <ul>
-      <li v-for="mountain of mountains">{{ mountain.title }}</li>
-    </ul>
-    <button @click="$fetch">Refresh</button>
-  </div>
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        mountains: []
-      }
-    },
-    async fetch() {
-      this.mountains = await fetch(
-        'https://api.nuxtjs.dev/mountains'
-      ).then(res => res.json())
-    }
-  }
+注意: 在使用动态数据(fetch或者axio请求的数据)时,使用onBeforeMount界面上无法看到数据的,也就是说,那些动态数据是无法被搜索引擎索引
+解决办法就是使用内置的获取树方法,同时不要使用`nuxt generate`,因为`nuxt generate`生成的是静态html,获取数据还是会使用接口,而不是服务端渲染
+```ts
+<script setup lang="ts">
+const { data: count } = await useFetch('/api/count')
 </script>
+
+<template>
+  <p>Page visits: {{ count }}</p>
+</template>
 ```
+这种方式,启动一个node服务器,返回的就是完整的html而不是缺少动态数据的html了,不过这种方式打包出来必须使用node启动`nuxt build`
 
-## 初始化vuex store
-
-nuxtServerInit函数不生效?
-需要在nuxt.config.js里面设置`ssr:true`:
-
-```js
-// ssr:true,
-  vite: { ssr: true },
-  // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
-```
-
-```javascript
-export const actions = {
-//!import 这里注意了,需要在nuxtconfig设置 ssr:true
-  //这里第一个参数是vuex,第二个参数才是context
-  // const {dispatch,commit,getters,state,rootState}= store
-  async nuxtServerInit(store, { $http }) {
-    const res = $http.$get('https://api.nuxtjs.dev/mountains')
-    await store.commit('setMountains', res)
-    store.commit('addUser')
-    store.commit('addNames')
-  }
-}
-```
+同理,astro也是这样,不过

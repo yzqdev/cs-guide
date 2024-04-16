@@ -368,3 +368,175 @@ const conf: webpack.Configuration = merge(base, {
 export default conf;
 
 ```
+
+
+## 使用cssmodules
+
+```js
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const path = require("path");
+const webpack = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+const Dotenv = require("dotenv-webpack");
+const uno = import("@unocss/webpack").then();
+/**
+ * @type import('webpack').Configuration
+ */
+module.exports = {
+  entry: {
+    app: path.resolve(__dirname, "./src/main.tsx"),
+  },
+
+  output: {
+    filename: "js/[name].[chunkhash:8].js",
+    path: path.resolve(__dirname, "./dist"),
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        loader: "babel-loader",
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              plugins: [
+                ...(process.env.NODE_ENV === "development"
+                  ? [require.resolve("react-refresh/babel")]
+                  : []),
+              ],
+            },
+          },
+
+          {
+            loader: "ts-loader",
+            options: {
+              transpileOnly: true,
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        exclude: /\.module\.(sa|sc|c)ss$/,
+
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader" },
+          "sass-loader",
+        ],
+      },
+      {
+        test: /\.module\.(sa|sc|c)ss$/,
+
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              esModule: false,
+              modules: {
+                localIdentName: "[local]--[contenthash:base64:5]",
+              },
+            },
+          },
+          "sass-loader",
+        ],
+      },
+
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        type: "asset/resource",
+        generator: {
+          filename: "imgs/[name].[contenthash:8].[ext]",
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024, // 4kb
+          },
+        },
+      },
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        type: "asset/resource",
+        generator: {
+          filename: "fonts/[name].[contenthash:8].[ext]",
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024, // 4kb
+          },
+        },
+      },
+      {
+        test: /\.(mp3)(\?.*)?$/,
+        type: "asset/resource",
+        generator: {
+          filename: "audios/[name].[contenthash:8].[ext]",
+        },
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024, // 4kb
+          },
+        },
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: "index.html",
+      template: path.resolve(__dirname, "./index.html"),
+      inject: true,
+    }),
+    new MiniCssExtractPlugin({
+      filename: "css/[name].[contenthash:8].css",
+    }),
+    new CleanWebpackPlugin(),
+    new Dotenv({
+      silent: true,
+    }),
+  ],
+};
+
+
+```
+
+需要配置
+```
+     {
+
+            loader: "css-loader",
+
+            options: {
+
+              importLoaders: 1,
+
+              esModule: false,
+
+              modules: {
+
+                localIdentName: "[local]--[hash:base64:5]",
+
+              },
+
+            },
+```
+
+否则导入scss需要使用
+```
+import * as styles from './styles.module.scss'
+```
+
+若使用`imort styles from './style.module.scss'`则会报错`# [Attempted import error: 'styles' is not exported from './styles.scss' (imported as 'styles') `
