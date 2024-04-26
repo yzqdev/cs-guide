@@ -25,9 +25,9 @@ pnpm config set auto-install-peers true
 
 :::warning
 
-推荐使用corepack
+scoop install pnpm
 
-建议直接`npm i -g pnpm`
+ 
 :::
 nodejs v16.13.0之后的版本内置了实验性的工具corepack，就是nodejs内置的一个管理包管理器的一个东西,[文档](https://github.com/nodejs/corepack/blob/main/README.md)
 
@@ -45,7 +45,7 @@ yarn版本[![npm version](https://img.shields.io/npm/v/yarn.svg)](https://www.np
 
 ```shell
 
-corepack prepare pnpm@x.x.x --activate
+corepack prepare pnpm@* --activate
 ```
 
 或者使用npm安装

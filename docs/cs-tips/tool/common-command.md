@@ -133,32 +133,7 @@ svelte prettier配置
 yarn set version stable
 ```
 
-如果出现如下不能成功下载，可以修改下载地址
-
-```
-Resolving berry to a url...
-Downloading https://github.com/yarnpkg/berry/raw/master/packages/berry-cli/bin/berry.js...
-error An unexpected error occurred: "https://github.com/yarnpkg/berry/raw/master/packages/berry-cli/bin/berry.js: getaddrinfo ENOENT raw.githubusercontent.com".
-```
-
- 修改node_modules\yarn\lib\cli.js中的berry.js下载地址
-
-```
-//bundleUrl = 'https://github.com/yarnpkg/berry/raw/master/packages/berry-cli/bin/berry.js';
-bundleUrl = 'https://ghproxy.com/https://raw.githubusercontent.com/yarnpkg/berry/master/packages/berry-cli/bin/berry.js';
-bundleVersion = 'berry';
-```
-
-```
-# Yarn 4
-/.yarn/*
-# !/.yarn/patches
-# !/.yarn/plugins
-!/.yarn/releases
-# !/.yarn/sdks
-# !/.yarn/cache
-```
-
+ 
 ## npm搭建私库
 
 <https://segmentfault.com/a/1190000040243909>
@@ -218,7 +193,28 @@ dotnet命令  <https://learn.microsoft.com/zh-cn/dotnet/core/tools/>
 
 <https://blog.csdn.net/seoalphas/article/details/81480271>
 
-### 浏览器推荐 brave浏览器,vivaldi浏览器,opera浏览器,tor浏览器
+### 浏览器推荐 
+
+
+https://thorium.rocks/
+https://github.com/ungoogled-software/ungoogled-chromium-windows
+brave浏览器
+vivaldi浏览器
+opera浏览器
+360极速浏览器
+tor浏览器
+cent browser <https://www.centbrowser.cn/>
+
+firefox浏览器
+firefox developer 浏览器
+waterfox浏览器
+https://www.runningcheese.com/firefox
+floorp浏览器 https://floorp.app/en/
+
+
+
+
+## 安卓
 
 <https://juejin.cn/post/6975689084173811743>
 

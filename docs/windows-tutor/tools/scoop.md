@@ -127,7 +127,6 @@ scoop install go
 
 ### 软件
 
-- amulet-map-editor
 - dismplusplus
 - registry-finder
 - vlc
@@ -136,6 +135,9 @@ scoop install go
 - mobaxterm
 - electerm
 - imageglass
+- scoop install games/amulet-map-editor
+- scoop install wiztree
+- scoop install extras/geekuninstaller
 - scoop install extras/sysinternals
 - scoop install versions/systeminformer-nightly
 - scoop install extras/podman-desktop
@@ -186,3 +188,38 @@ scoop install go
 - ☑️使用 `sd` 替换 `sed`
 - ☑️使用 `tealdeer` 替换 `tldr` 和 `man`
 - ☑️使用 `zoxide` 替换 `cd` 和 `z.lua`
+
+## 常用软件开发
+
+- git `scoop install git`
+- tortoisesvn `scoop install tortoisesvn` 安装时需要先`scoop bucket add extras`
+- oraclejdk `scoop install oraclejdk` 安装时需要先`scoop bucket add java`
+- ffmpeg `scoop install ffmpeg`
+- make `scoop install make`
+- cmake `scoop install cmake`
+- minGW `scoop install mingw`
+- mkcert `scoop install mkcert` 安装时需要先`scoop bucket add extras`
+- nasm `scoop install nasm`
+- nodejs `scoop install nodejs`
+- notepadplusplus `scoop install notepadplusplus` 安装时需要先`scoop bucket add extras`
+- qemu `scoop install qemu`
+- scrcpy `scoop install scrcpy`
+- sqlite `scoop install sqlite`
+- windterm `scoop install windterm` 安装时需要先`scoop bucket add extras`
+- wireshark `scoop install wireshark` 安装时需要先`scoop bucket add extras`
+- wiztree `scoop install wiztree` 安装时需要先`scoop bucket add extras`
+- x64dbg `scoop install x64dbg` 安装时需要先`scoop bucket add extras`
+- openvpn `scoop install openvpn` 安装时需要先`scoop bucket add extras`
+- rustup `scoop install rustup`
+- idea `scoop install idea` 安装时需要先`scoop bucket add extras`
+- mysql `scoop install mysql`
+- openssl `scoop install openssl`
+- wireguard-np `scoop install wireguard-np` 安装时需要先`scoop bucket add nonportable`
+- potplayer `scoop install potplayer` 安装时需要先`scoop bucket add extras`
+- openocd `scoop install openocd`
+- vagrant `scoop install vagrant`
+- draw.io `scoop install draw.io` 安装时需要先`scoop bucket add extras`
+ 
+- motrix `scoop install motrix` 安装时需要先`scoop bucket add extras`
+- obsidian `scoop install obsidian` 安装时需要先`scoop bucket add extras`
+ 

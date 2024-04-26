@@ -4,6 +4,10 @@
 
 需要用到corepack,先启用corepack
 
+每次都会自动添加packageManager,推荐设置环境变量COREPACK_ENABLE_STRICT=0和COREPACK_ENABLE_AUTO_PIN=0
+
+https://github.com/nodejs/corepack
+
 ```
 corepack enable
 # 然后安装yarn
