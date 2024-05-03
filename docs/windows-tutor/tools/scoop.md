@@ -84,7 +84,13 @@ scoop install go
 
 ## 一些软件
 
+
 - 7zip
+- scoop install main/imagemagick
+- scoop install extras/screentogif
+- scoop install main/ffmpeg
+- scoop install main/pandoc
+- scoop install main/libwebp
 - aria2
 - curl
 - fd
