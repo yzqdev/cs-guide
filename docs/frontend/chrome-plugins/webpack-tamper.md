@@ -94,81 +94,124 @@ package.json
 }
 ```
 
-webpack.dev.mts
+webpack.base.mts
 ```ts
 import webpack from "webpack";  
 import path from "node:path";  
-import { HeadersProps, UserscriptPlugin } from "webpack-userscript";  
+import {HeadersProps, UserscriptPlugin} from "webpack-userscript";  
+import {VueLoaderPlugin} from "vue-loader";  
+import {fileURLToPath, pathToFileURL} from "node:url";  
   
+const __dirname = path.dirname(fileURLToPath(import.meta.url));  
 const dev = process.env.NODE_ENV == "development";  
-console.log("");  
+import Components from "unplugin-vue-components/webpack";  
+import {ElementPlusResolver} from "unplugin-vue-components/resolvers";  
+import AutoImport from "unplugin-auto-import/webpack";  
+   
 const conf: webpack.Configuration = {  
-  entry: {  
-    simple: "./src/index.ts",  
-  },  
-  output: {  
-    path: path.resolve("dist"),  
-    filename: "[name].user.js",  
-  },  
-  resolve: {  
-    extensions: [".ts", ".tsx", ".js", ".json"],  
-  },  
-  module: {  
-    rules: [  
-      {  
-        test: /\.ts$/,  
-        use: [  
-          {  
-            loader: "ts-loader",  
-            options: {  
-              transpileOnly: true,  
-              appendTsSuffixTo: [/\.vue$/],  
+    entry: {  
+        usescriptPlus: "./src/main.ts",  
+    },  
+    output: {  
+        clean: true,  
+        path: path.resolve("dist"),  
+        filename: "[name].user.js",  
+    },  
+    resolve: {  
+        extensions: [".ts", ".tsx", ".js", ".json"],  
+    },  
+    module: {  
+        rules: [  
+            {  
+                test: /\.ts$/,  
+                use: [  
+                    {  
+                        loader: "ts-loader",  
+                        options: {  
+                            transpileOnly: true,  
+                            appendTsSuffixTo: [/\.vue$/],  
+                        },  
+                    },  
+                ],  
             },  
-          },  
+            {  
+                test: /\.vue$/,  
+                loader: "vue-loader",  
+                options: {  
+                    shadowMode: true  
+                },  
+            },  
+            {  
+                test: /\.scss$/,  
+                use: [{loader: 'style-loader', options: {}}, "css-loader", "sass-loader"],  
+            },  
+            {  
+                test: /\.css$/,  
+                use: [{loader: 'style-loader', options: {}}, "css-loader"],  
+            },  
+            {  
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,  
+                type: "asset/inline",  
+            },  
+            {  
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,  
+                type: "asset/inline",  
+            },  
         ],  
-      },  
-      {  
-        test: /\.vue$/,  
-        loader: "vue-loader",  
-        options: {},  
-      },  
-      {  
-        test: /\.css$/,  
-        use: ["style-loader", "css-loader"],  
-      },  
-      {  
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,  
-        type: "asset/inline",  
-      },  
-      {  
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,  
-        type: "asset/inline",  
-      },  
+    },  
+    externals: {  
+        vue: 'Vue',  
+        dayjs: "dayjs",  
+        'element-plus':"ElementPlus",  
+        "psl":"psl",  
+        'vue-i18n':'VueI18n',  
+        '@element-plus/icons-vue':'ElementPlusIconsVue'  
+    },  
+    plugins: [  
+        AutoImport({  
+  
+            resolvers: [ElementPlusResolver({importStyle:false})],  
+        }),  
+        Components({  
+            resolvers: [ElementPlusResolver({importStyle:false})],  
+        }),  
+        new VueLoaderPlugin(),  
+        new UserscriptPlugin({  
+  
+            headers(original: HeadersProps) {  
+                original.grant = ["GM.setValue"];  
+               original.resource={  
+                   'element': 'https://registry.npmmirror.com/element-plus/2.7.2/files/dist/index.css',  
+                   'animate':'https://registry.npmmirror.com/animate.css/4.1.1/files/animate.min.css'  
+               }  
+                original.require = [ "https://registry.npmmirror.com/vue/3.4.26/files/dist/vue.global.prod.js",  
+                    "https://registry.npmmirror.com/vue-i18n/9.13.1/files/dist/vue-i18n.global.prod.js",  
+                    'https://registry.npmmirror.com/psl/1.9.0/files/dist/psl.min.js',  
+  
+                    'https://registry.npmmirror.com/dayjs/1.11.11/files/dayjs.min.js',  
+                "https://registry.npmmirror.com/element-plus/2.7.2/files/dist/index.full.min.js",  
+                    'https://registry.npmmirror.com/@element-plus/icons-vue/2.3.1/files/dist/index.iife.js'  
+  
+            ]  
+                if (dev) {  
+                    // original.updateURL="https://github.com/trim21/webpack-userscript-template"  
+  
+                    return {  
+                        ...original,  
+                        version: `${original.version}-build.[buildNo]`,  
+                    };  
+                }  
+  
+                return original;  
+            },  
+            proxyScript: {  
+                // http://localhost:9020/userscriptPlus.user.js  
+                baseURL: pathToFileURL("./dist").href + "/",  
+                // baseURL: "http://localhost:9010",  
+                filename: "[basename].proxy.user.js",  
+            },  
+        }),  
     ],  
-  },  
-  plugins: [  
-    new UserscriptPlugin({  
-      headers(original: HeadersProps) {  
-        original.grant = ["GM.setValue"];  
-        if (dev) {  
-          // original.updateURL="https://github.com/trim21/webpack-userscript-template"  
-  
-          return {  
-            ...original,  
-            version: `${original.version}-build.[buildNo]`,  
-          };  
-        }  
-  
-        return original;  
-      },  
-   proxyScript: {  
-  // http://localhost:9010/simple.proxy.user.js  
-	  baseURL:   pathToFileURL('./dist')+"/",  
-  // baseURL: "http://localhost:9010",  
-	  filename: "[basename].proxy.user.js",  
-}, 
-    }),  
-  ],  
 };  
 export default conf;
 ```
@@ -181,28 +224,30 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";  
 import "webpack-dev-server";  
 import { styleText } from "node:util";  
-setInterval(() => {  
-  const errorMessage = styleText("red", `http://localhost:9010/simple.user.js`);  
-  console.log(errorMessage);  
-}, 60 * 1000);  
+import { type HeadersProps, UserscriptPlugin } from "webpack-userscript";  
+const dev = process.env.NODE_ENV == "development";  
+  
 const devConf = merge(base, {  
   mode: "development",  
+  
   devServer: {  
+    allowedHosts: "all",  
+    hot: false,  
+    devMiddleware: {  
+      writeToDisk: true,  
+    },  
+    client: {  
+      overlay: false,  
+      progress: true,  
+      reconnect: 3,  
+    },  
+  
     static: {  
       directory: fileURLToPath(new URL("./dist", import.meta.url)),  
     },  
-      client:{
-      overlay:false,
-      progress:true,
-      reconnect: 3
-
-    },
-    hot: false,  
-devMiddleware: {  
-  writeToDisk: true,  
-},
-    port: 9010,  
+    port: 9020,  
   },  
+  plugins: [],  
 });  
 export default devConf;
 ```

@@ -101,3 +101,8 @@ tsconfig.json 文件是 TypeScript 项目的核心配置文件，它包含了 ts
   "compileOnSave": true // 支持这个特性需要Visual Studio 2015， TypeScript1.8.4以上并且安装atom-typescript插件
 }
 ```
+
+
+## 错误`  Try `npm i --save-dev @types/node-fetch` if it exists or add a new declaration (.d.ts) file containing `declare module 'node-fetch';`
+
+tsconfig.json添加`skipLibCheck:true`或者`  "noImplicitAny": false,`

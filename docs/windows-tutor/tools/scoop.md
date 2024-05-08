@@ -134,6 +134,7 @@ scoop install go
 ### 软件
 
 - dismplusplus
+- scoop install extras/openark
 - registry-finder
 - vlc
 - filezilla

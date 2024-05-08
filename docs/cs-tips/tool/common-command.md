@@ -199,6 +199,7 @@ dotnet命令  <https://learn.microsoft.com/zh-cn/dotnet/core/tools/>
 https://thorium.rocks/
 https://github.com/ungoogled-software/ungoogled-chromium-windows
 brave浏览器
+ARC浏览器  https://arc.net/
 vivaldi浏览器
 opera浏览器
 360极速浏览器

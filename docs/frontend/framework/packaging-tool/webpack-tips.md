@@ -37,3 +37,7 @@ node --require // 只导入cjs用
 node --loader   //弃用
 
 :::
+
+**重载所有插件[advanced-extension-reloader](https://chromewebstore.google.com/detail/advanced-extension-reload/hagknokdofkmojolcpbddjfdjhnjdkae)**
+
+https://github.com/loftyshaky/advanced-extension-reloader/
