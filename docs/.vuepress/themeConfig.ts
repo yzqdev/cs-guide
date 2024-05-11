@@ -74,6 +74,7 @@ export default hopeTheme(
 
     plugins: {
       blog: false,
+      catalog:true,
       prismjs: {
         dark: 'tomorrow',
         light: 'tomorrow',

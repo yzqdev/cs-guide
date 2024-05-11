@@ -6,7 +6,6 @@ import SvgClock from './components/SvgClock.vue'
 import CanvasVSSvg from './components/CanvasVSSvg.vue'
 import CanvasSample from './components/CanvasSample.vue'
 import Gobang from './components/Gobang.vue'
-import IconDisplay from './components/IconDisplay'
 import Econ from './components/Econ.vue'
 import CodeSample from './components/CodeSample.vue'
  import CssDemo from './components/CssDemo.vue'
@@ -39,7 +38,6 @@ export default defineClientConfig({
     app.component('CanvasVSSvg', CanvasVSSvg)
     app.component('CanvasSample', CanvasSample)
     app.component('Gobang', Gobang)
-    app.component('IconDisplay', IconDisplay)
     app.component('Econ', Econ)
     app.component("CssColor",CssColor)
     app.component('CssDemo',CssDemo)

@@ -23,12 +23,7 @@ pnpm config set auto-install-peers true
 :::
 ## 安装
 
-:::warning
-
-scoop install pnpm
-
  
-:::
 nodejs v16.13.0之后的版本内置了实验性的工具corepack，就是nodejs内置的一个管理包管理器的一个东西,[文档](https://github.com/nodejs/corepack/blob/main/README.md)
 
 这个corepack就是版本之后默认自带的一个工具，专门用来管理这些安装依赖的这些个工具，自带npm,yarn,pnpm,不用我们手动安装
@@ -139,3 +134,25 @@ packages:
 ```
 
 :::
+
+
+## 清理
+
+```
+pnpm remove axios
+但是node_modules/.pnpm下面的文件还在怎么办
+
+pnpm prune
+清理没有引用的依赖
+
+```
+
+## 想引用依赖的依赖怎么办
+
+添加一个.npmrc
+```ini
+hoist=true
+public-hoist-pattern[]=vue-router
+//这是想要提升到node_modules文件夹的依赖
+
+```
