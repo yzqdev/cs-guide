@@ -10,7 +10,7 @@
   "name": "wp-simple",  
   "packageManager": "yarn@4.1.1",  
   "scripts": {  
-    "dev": "dotenv -v NODE_OPTIONS='--loader=ts-node/esm' --  webpack --config webpack.config.mts",  
+    "dev": "dotenv -v NODE_OPTIONS=\"--loader=ts-node/esm\" --  webpack --config webpack.config.mts",  
     "build": "webpack --config webpack.config.ts",  
     "build:tsx": "dotenv -v NODE_OPTIONS='--import=tsx/esm' --  webpack --config webpack.config.mts"  
   },  
@@ -29,7 +29,8 @@
 ```
 
 
-:::
+::: info
+
 node --import  //只导入esm
 
 node --require // 只导入cjs用

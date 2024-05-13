@@ -84,13 +84,13 @@ scoop install go
 
 ## 一些软件
 
-
 - 7zip
 - scoop install main/imagemagick
 - scoop install extras/screentogif
 - scoop install main/ffmpeg
 - scoop install main/pandoc
 - scoop install main/libwebp
+- scoop install main/kondo
 - aria2
 - curl
 - fd
@@ -226,7 +226,6 @@ scoop install go
 - openocd `scoop install openocd`
 - vagrant `scoop install vagrant`
 - draw.io `scoop install draw.io` 安装时需要先`scoop bucket add extras`
- 
+
 - motrix `scoop install motrix` 安装时需要先`scoop bucket add extras`
 - obsidian `scoop install obsidian` 安装时需要先`scoop bucket add extras`
- 

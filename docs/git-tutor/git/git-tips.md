@@ -1,4 +1,4 @@
--list# git-tips
+# git tips
 
 ## git忽略文件夹,但是添加文件
 
