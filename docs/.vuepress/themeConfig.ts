@@ -5,7 +5,7 @@ import sidebar from './sidebar'
 export default hopeTheme(
   {
     hostname: 'https://yzqdev.github.io/cs-guide',
-    pcBreakPoint: 1600,
+    // pcBreakPoint: 1600,
     author: {
       name: 'yzqdev',
       url: 'http://www.yzqdev.top',
