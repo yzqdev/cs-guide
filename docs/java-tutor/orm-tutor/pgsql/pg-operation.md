@@ -28,6 +28,13 @@ SELECT datname FROM pg_database;
 psql -f ./pg_backup.sql -U postgres
 ```
 
+
+使用powershell配置密码
+
+```
+$env:PGPASSWORD='123456'
+pg_dumpall.exe  -U postgres -w -E UTF8 -f pg_backup.sql
+```
 ## postgres升级
 
 1，使用pg_dumpall和psql -f的方式

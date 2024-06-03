@@ -45,3 +45,18 @@ DROP DATABASE test2;
 # 删除一个不确定的数据库
 drop database if exists test2;
 ```
+## 备份数据库和恢复数据库
+
+1. 使用heidisql备份所有
+2. 使用datagrip备份
+
+3 使用mysql_dump备份
+
+```
+mysqldump -uroot -p --all-databases > sqlbackup.sql
+```
+
+恢复数据库
+```
+mysql -uroot -p   < E:/tmp/sqlbackup.sql
+```

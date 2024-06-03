@@ -123,7 +123,7 @@ A normal Maven build will be executed, with the one important change that if the
 跳过test
 ./gradlew build -x test
 
-./gradlew wrapper --gradle-version=8.0.1 --distribution-type=bin
+./gradlew wrapper --gradle-version=8.8 --distribution-type=all
 
 ./gradlew tasks
 # Downloading https://services.gradle.org/distributions/gradle-8.0-bin.zip
