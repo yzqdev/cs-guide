@@ -147,8 +147,8 @@ postgres -D "C:\Program Files\PostgreSQL\12\data" >logfile 2>&1 &
 
 :::tip
 如果出现找不到postgres角色的错误  
-原因是：PostgreSQL角色没有被创建。运行命令：createuser -s -r postgres 即可。
+原因是：PostgreSQL角色没有被创建。运行命令：`createuser -s -r postgres` 即可。
 
-如果找不到createuser这个命令，可以在\PostgreSQL\14\bin中找到。添加到系统path中，或cd到这个文件夹再运行
+如果找不到createuser这个命令，可以在`\PostgreSQL\16\bin`中找到。添加到系统path中，或cd到这个文件夹再运行
 :::
 

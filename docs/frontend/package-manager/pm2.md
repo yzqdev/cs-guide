@@ -22,6 +22,13 @@ pm2 save
 ### 执行package.json的命令
 
 ```powershell
+
+pm2 start "npm run dev" --name myAppName
+
+pm2 logs "myAppName"
+
+
+
 pm2 start  npm -- run dev
 ```
 

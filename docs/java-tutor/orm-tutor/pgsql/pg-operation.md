@@ -1,6 +1,12 @@
 
 # postgres 操作
 
+## 环境变量
+
+- PG_HOME
+- PGDATA
+- PGPASSWORD   密码
+
 
 ## 删除所有数据
 
@@ -17,14 +23,22 @@ SELECT datname FROM pg_database;
 
 ## 备份数据
 
-使用pg_dumpall备份
+备份单个数据库
+```
+$env:PGPASSWORD='123456'
+pg_dump.exe -U postgres blog_ssm > blog_ssm_pg.sql
+```
+
+使用pg_dumpall备份所有
 
 ```
- C:\PostgreSQL\14\bin\pg_dumpall.exe -U postgres -E UTF8 -f pg_backup.sql
+$env:PGPASSWORD='123456'
+pg_dumpall.exe -U postgres -E UTF8 -f pg_backup.sql
 ```
 
-使用psql -f回复
+使用psql -f恢复数据
 ```
+$env:PGPASSWORD='123456'
 psql -f ./pg_backup.sql -U postgres
 ```
 
@@ -44,18 +58,20 @@ pg_dumpall.exe  -U postgres -w -E UTF8 -f pg_backup.sql
 2，pg_upgrade
 
 ```powershell
-pg_upgrade -b "C:\Program Files\PostgreSQL\10\bin" -B "C:\Program Files\PostgreSQL\12\bin" -d "C:\Program Files\PostgreSQL\10\data" -D "C:\Program Files\PostgreSQL\12\data" -U postgres
+$env:PGPASSWORD = '123456'
+pg_upgrade -b "D:\Program Files\PostgreSQL\15\bin" -B "D:\Program Files\PostgreSQL\16\bin" -d "D:\Program Files\PostgreSQL\15\data" -D "D:\Program Files\PostgreSQL\16\data" -U postgres
 ```
  
  例子
 ```powershell
- C:\PostgreSQL\15\bin\pg_upgrade.exe -b "C:\PostgreSQL\14\bin" -B "C:\PostgreSQL\15\bin" -d "C:\PostgreSQL\14\data" -D "C:\PostgreSQL\15\data" -U postgres
+$env:PGPASSWORD = '123456'
+pg_upgrade -b "D:\Program Files\PostgreSQL\15\bin" -B "D:\Program Files\PostgreSQL\16\bin" -d "D:\Program Files\PostgreSQL\15\data" -D "D:\Program Files\PostgreSQL\16\data" -U postgres
 ```
 
 带空格的命令
 
 ```powershell
-& "D:\Program Files\PostgreSQL\15\bin\pg_upgrade.exe" -b "C:\PostgreSQL\14\bin" -B "D:\Program Files\PostgreSQL\15\bin" -d "C:\PostgreSQL\14\data" -D "D:\Program Files\PostgreSQL\15\data" -U postgres
+& pg_upgrade -b "D:\Program Files\PostgreSQL\15\bin" -B "D:\Program Files\PostgreSQL\16\bin" -d "D:\Program Files\PostgreSQL\15\data" -D "D:\Program Files\PostgreSQL\16\data" -U postgres
 ```
 
 
