@@ -7,9 +7,17 @@
 
 ```java
   
+ 
+  
+import lombok.AllArgsConstructor;  
+import lombok.Getter;  
+  
 /**  
  * API 统一返回状态码  
  */  
+  
+@Getter  
+@AllArgsConstructor  
 public enum ResultCode {  
     /* 成功状态码 */    SUCCESS(0, "Request is successful"),  
     FAIL(1, "Request is failed"),  
@@ -20,18 +28,9 @@ public enum ResultCode {
   
     private Integer code;  
     private String message;  
-    ResultCode(Integer code, String message){  
-        this.code = code;  
-        this.message = message;  
-    }  
   
-    public Integer code(){  
-        return this.code;  
-    }  
   
-    public String message(){  
-        return this.message;  
-    }  
+  
 }
 ```
 
@@ -179,6 +178,7 @@ import java.util.HashMap;
 
 
 ```java
+ 
   
 import lombok.Data;  
   
@@ -199,7 +199,7 @@ public class RestResponse<T> {
   
   public RestResponse(ResultCode code, T data) {  
     this.code = code.getCode();  
-    this.msg = code.getMsg();  
+    this.msg = code.getMessage();  
     this.data = data;  
     this.timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));  
   }  
@@ -209,7 +209,7 @@ public class RestResponse<T> {
   }  
   
   public static <T> RestResponse<T> error(T data) {  
-    return new RestResponse<T>(ResultCode.ERROR, data);  
+    return new RestResponse<T>(ResultCode.FAIL, data);  
   }  
   
   public static <T> RestResponse<T> error(ResultCode code, T data) {  

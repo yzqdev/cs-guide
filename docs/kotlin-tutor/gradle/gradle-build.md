@@ -15,14 +15,15 @@
 
  然后直接修改jar这个task
 ```kotlin
- tasks.register<Delete>("clearLib") { //清除lib  
-  delete("$buildDir/libs/lib")  
+tasks.register<Delete>("clearLib") { //清除lib  
+  
+  delete(layout.buildDirectory.dir("libs/lib").get())  
 }  
   
 tasks.register<Copy>("copyLib") { //拷贝lib  
   from(configurations.runtimeClasspath) //从运行时目录  
-  into("$buildDir/libs/lib")  //到打包目录  
-}  
+  into(layout.buildDirectory.dir("libs/lib").get())  //到打包目录  
+}
   
 tasks.jar {  
   dependsOn("clearLib") //依赖清除和拷贝lib任务  

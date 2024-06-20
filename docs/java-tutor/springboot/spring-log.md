@@ -108,6 +108,12 @@ springboot 默认使用 logback 作为日志框架，默认的日志级别是 in
 
 ## 配置文件
 
+### 不要输出logback 的状态
+
+```xml
+<statusListener class="ch.qos.logback.core.status.NopStatusListener" />
+```
+
 下面是一个好看的日志文件配置  
 logback-spring.xml
 
@@ -116,7 +122,7 @@ logback-spring.xml
 <configuration scan="true" scanPeriod="10 seconds" debug="false">
   <!--引入相关依赖-->
   <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
-
+ <statusListener class="ch.qos.logback.core.status.NopStatusListener" />
   <!--引入Spring配置文件属性-->
   <springProperty scope="context" name="appName" source="spring.application.name" defaultValue="spring"/>
   <springProperty scope="context" name="rootLogLevel" source="logging.level.root" defaultValue="INFO"/>

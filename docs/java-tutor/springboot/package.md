@@ -12,7 +12,14 @@
 在build.gradle.kts中加入下面的代码,然后运行`./gradlew thin`和`./gradlew bootJar`同时打包thin包和fatjar
 
 ```kotlin
+tasks.register<Delete>("clearLib") { //清除lib  
   
+  delete(layout.buildDirectory.dir("libs/lib").get())  
+}  
+  
+tasks.register<Copy>("copyLib") { //拷贝lib  
+  from(configurations.runtimeClasspath) //从运行时目录  
+  into(layout.buildDirectory.dir("libs/lib").get())  //到打包目录  
 tasks.register<BootJar>("thin") {  
   dependsOn("clearLib") //依赖清除和拷贝lib任务  
   dependsOn("copyLib")  

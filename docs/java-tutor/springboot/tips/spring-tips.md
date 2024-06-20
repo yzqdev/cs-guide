@@ -1,5 +1,39 @@
 # spring 技巧
 
+## 启动时打印url
+```java
+  
+@SpringBootApplication  
+@Slf4j  
+public class SimpleSecApplication {  
+  
+  public static void main(String[] args) {  
+   var application= SpringApplication.run(SimpleSecApplication.class, args);  
+   
+    log.info("..######..##.....##..######...######..########..######...######.\n" +  
+      ".##....##.##.....##.##....##.##....##.##.......##....##.##....##\n" +  
+      ".##.......##.....##.##.......##.......##.......##.......##......\n" +  
+      "..######..##.....##.##.......##.......######....######...######.\n" +  
+      ".......##.##.....##.##.......##.......##.............##.......##\n" +  
+      ".##....##.##.....##.##....##.##....##.##.......##....##.##....##\n" +  
+      "..######...#######...######...######..########..######...######.");  
+    Environment env = application.getEnvironment();  
+    String ip = InetAddress.getLocalHost().getHostAddress();  
+    String port = env.getProperty("server.port");  
+    String path = env.getProperty("server.servlet.context-path");  
+    if (StringUtils.isEmpty(path)) {  
+      path = "";  
+    }  
+    log.info("\n----------------------------------------------------------\n\t" +  
+      "Application  is running! Access URLs:\n\t" +  
+      "Local访问网址: \t\thttp://localhost:" + port + path + "\n\t" +  
+      "External访问网址: \thttp://" + ip + ":" + port + path + "\n\t" +  
+      "----------------------------------------------------------");  
+  }  
+  
+}
+```
+
 ## 优雅的设置下载文件的名字
 
 ```java
