@@ -7,28 +7,26 @@
 @Slf4j  
 public class SimpleSecApplication {  
   
-  public static void main(String[] args) {  
+  public static void main(String[] args)  throws UnknownHostException{  
    var application= SpringApplication.run(SimpleSecApplication.class, args);  
    
-    log.info("..######..##.....##..######...######..########..######...######.\n" +  
-      ".##....##.##.....##.##....##.##....##.##.......##....##.##....##\n" +  
-      ".##.......##.....##.##.......##.......##.......##.......##......\n" +  
-      "..######..##.....##.##.......##.......######....######...######.\n" +  
-      ".......##.##.....##.##.......##.......##.............##.......##\n" +  
-      ".##....##.##.....##.##....##.##....##.##.......##....##.##....##\n" +  
-      "..######...#######...######...######..########..######...######.");  
-    Environment env = application.getEnvironment();  
-    String ip = InetAddress.getLocalHost().getHostAddress();  
-    String port = env.getProperty("server.port");  
-    String path = env.getProperty("server.servlet.context-path");  
-    if (StringUtils.isEmpty(path)) {  
-      path = "";  
-    }  
-    log.info("\n----------------------------------------------------------\n\t" +  
-      "Application  is running! Access URLs:\n\t" +  
-      "Local访问网址: \t\thttp://localhost:" + port + path + "\n\t" +  
-      "External访问网址: \thttp://" + ip + ":" + port + path + "\n\t" +  
-      "----------------------------------------------------------");  
+     
+log.info("""  
+  ..######..##.....##..######...######..########..######...######.  .##....##.##.....##.##....##.##....##.##.......##....##.##....##  .##.......##.....##.##.......##.......##.......##.......##......  ..######..##.....##.##.......##.......######....######...######.  .......##.##.....##.##.......##.......##.............##.......##  .##....##.##.....##.##....##.##....##.##.......##....##.##....##  ..######...#######...######...######..########..######...######.""");  
+Environment env = application.getEnvironment();  
+String ip = InetAddress.getLocalHost().getHostAddress();  
+String port = env.getProperty("server.port");  
+String path = env.getProperty("server.servlet.context-path");  
+if (StringUtils.isEmpty(path)) {  
+  path = "";  
+}  
+  
+log.info("""  
+  \n----------------------------------------------------------  
+    Application  is running! Access URLs:    Local访问网址:    http://localhost:{}{}  
+    External访问网址:  http://{}:{}{}  
+    swagger访问地址:   http://localhost:{}/swagger-ui/index.html  
+  ----------------------------------------------------------  """,port,path,ip,port,path,port);
   }  
   
 }

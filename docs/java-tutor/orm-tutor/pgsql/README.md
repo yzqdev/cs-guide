@@ -1,3 +1,3 @@
-# sql说明
+# postgresql用法
 
 <Catalog />

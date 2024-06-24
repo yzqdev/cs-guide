@@ -218,3 +218,41 @@ public class RestResponse<T> {
   
 }
 ```
+
+
+## 使用controllerAdvice
+```java
+@ControllerAdvice
+public class BaseResponseBodyAdvice implements ResponseBodyAdvice<Object> {
+
+
+    @Override
+    public boolean supports(MethodParameter returnType, Class converterType) {
+        return true;
+    }
+
+    @Override
+    public Object beforeBodyWrite(Object body, MethodParameter returnType,
+            MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request,
+            ServerHttpResponse response) {
+
+        // 遇到feign接口之类的请求, 不应该再次包装,应该直接返回
+        // 上述问题的解决方案: 可以在feign拦截器中,给feign请求头中添加一个标识字段, 表示是feign请求
+        // 在此处拦截到feign标识字段, 则直接放行 返回body.
+
+        System.out.println("响应拦截成功");
+        
+        // 如果返回值是String类型，那就手动把Result对象转换成JSON字符串
+        if(body instanceof String){
+        return this.objectMapper.writeValueAsString(Result.success(body));
+        }else if (body instanceof BaseResponse) {
+            return body;
+        } else if (body == null) {
+            return BaseResponse.ok();
+        } else {
+            return BaseResponse.ok(body);
+        }
+    }
+}
+
+```

@@ -2,6 +2,13 @@
 # cs-guide
 
 运行
+你需要使用pnpm,如果没有pnpm,请先运行`corepack enable`
+
+```bash
+corepack prepare pnpm@latest --activate
+```
+
+获取最新的pnpm
 
 ```bash
 
@@ -11,7 +18,13 @@ pnpm  docs:dev
 # 打包
 pnpm  docs:build
 
+# 格式化
+
+pnpm lint
+
 ```
+
+如果想添加插件,要在plugins目录添加
 
 ## 其他相关
 

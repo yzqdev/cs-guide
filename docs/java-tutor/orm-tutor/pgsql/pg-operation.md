@@ -23,10 +23,15 @@ SELECT datname FROM pg_database;
 
 ## 备份数据
 
-备份单个数据库
+备份恢复单个数据库
 ```
 $env:PGPASSWORD='123456'
 pg_dump.exe -U postgres blog_ssm > blog_ssm_pg.sql
+
+# 恢复单个数据库
+ $env:PGPASSWORD='123456'
+psql -U postgres -d kuang_bbs -f .\kuang_pg.sql
+ 
 ```
 
 使用pg_dumpall备份所有
@@ -36,7 +41,7 @@ $env:PGPASSWORD='123456'
 pg_dumpall.exe -U postgres -E UTF8 -f pg_backup.sql
 ```
 
-使用psql -f恢复数据
+使用psql -f恢复所有数据
 ```
 $env:PGPASSWORD='123456'
 psql -f ./pg_backup.sql -U postgres

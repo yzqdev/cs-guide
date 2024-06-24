@@ -7,7 +7,8 @@
     "docs:build": "vuepress  build docs --clean-cache",
     "docs:clean-dev": "vuepress  dev docs --clean-cache",
     "docs:dev": "vuepress dev docs --port 8989",
-    "docs:vite": "vuepress  dev docs"
+    "docs:vite": "vuepress  dev docs",
+    "lint": "prettier --write docs,plugins"
   },
   "dependencies": {
     "@vue/repl": "^4.2.1",
