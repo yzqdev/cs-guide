@@ -1,6 +1,6 @@
 # jpa操作postgres
 
-## 设置自增的主键
+## 设置自增的主键(推荐使用identity,而不是serial)
 
 方法1
 
