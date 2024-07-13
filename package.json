@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@vue/repl": "^4.3.1",
-    "@vuepress/plugin-pwa": "2.0.0-rc.28",
+    "@vuepress/plugin-pwa": "2.0.0-rc.37",
     "axios": "1.7.2",
     "element-plus": "2.7.6",
     "highlight.js": "^11.10.0" 
