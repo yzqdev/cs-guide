@@ -1,0 +1,10 @@
+import{_ as e,c as t,o as r,d as o}from"./app-CbULZrmi.js";const a={},n=o(`<h1 id="fiber教程" tabindex="-1"><a class="header-anchor" href="#fiber教程"><span>fiber教程</span></a></h1><h2 id="显示所有路由" tabindex="-1"><a class="header-anchor" href="#显示所有路由"><span>显示所有路由</span></a></h2><pre><code class="language-go">func createRouteMap(engine *fiber.App) {
+ routes := engine.Stack()
+ for _, route := range routes {
+  for _, r := range route {
+   color.Redln(&quot;[debug]&quot;, r.Method, r.Path, r.Params)
+  }
+ }
+
+}
+</code></pre>`,3),i=[n];function c(d,p){return r(),t("div",null,i)}const l=e(a,[["render",c],["__file","gofiber.html.vue"]]),m=JSON.parse('{"path":"/go-tutor/framework/gofiber.html","title":"fiber教程","lang":"zh-CN","frontmatter":{"description":"fiber教程 显示所有路由","head":[["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/go-tutor/framework/gofiber.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"fiber教程"}],["meta",{"property":"og:description","content":"fiber教程 显示所有路由"}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2022-07-26T16:41:58.000Z"}],["meta",{"property":"article:author","content":"yzqdev"}],["meta",{"property":"article:modified_time","content":"2022-07-26T16:41:58.000Z"}],["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"fiber教程\\",\\"image\\":[\\"\\"],\\"dateModified\\":\\"2022-07-26T16:41:58.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"]]},"headers":[{"level":2,"title":"显示所有路由","slug":"显示所有路由","link":"#显示所有路由","children":[]}],"git":{"createdTime":1657259339000,"updatedTime":1658853718000,"contributors":[{"name":"yzqdev","email":"yzqdev@outlook.com","commits":1}]},"readingTime":{"minutes":0.1,"words":31},"filePathRelative":"go-tutor/framework/gofiber.md","localizedDate":"2022年7月8日","autoDesc":true}');export{l as comp,m as data};

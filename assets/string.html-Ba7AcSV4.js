@@ -1,0 +1,15 @@
+import{_ as e,c as t,o as a,d as o}from"./app-CbULZrmi.js";const n={},s=o(`<h1 id="字符串" tabindex="-1"><a class="header-anchor" href="#字符串"><span>字符串</span></a></h1><h2 id="逐字字符串" tabindex="-1"><a class="header-anchor" href="#逐字字符串"><span>逐字字符串</span></a></h2><pre><code class="language-cs">string filePath = @&quot;C:\\Users\\scoleridge\\Documents\\&quot;;
+
+string quote = @&quot;Her name was &quot;&quot;Sara.&quot;&quot;&quot;;
+//Output: Her name was &quot;Sara.&quot;
+</code></pre><h2 id="原始字符串文本" tabindex="-1"><a class="header-anchor" href="#原始字符串文本"><span>原始字符串文本</span></a></h2><pre><code class="language-cs">string singleLine = &quot;&quot;&quot;Friends say &quot;hello&quot; as they pass by.&quot;&quot;&quot;;
+</code></pre><h2 id="字符串内插" tabindex="-1"><a class="header-anchor" href="#字符串内插"><span>字符串内插</span></a></h2><pre><code class="language-cs">string name = &quot;Mark&quot;;
+var date = DateTime.Now;
+
+// Composite formatting:
+Console.WriteLine(&quot;Hello, {0}! Today is {1}, it&#39;s {2:HH:mm} now.&quot;, name, date.DayOfWeek, date);
+// String interpolation:
+Console.WriteLine($&quot;Hello, {name}! Today is {date.DayOfWeek}, it&#39;s {date:HH:mm} now.&quot;);
+// Both calls produce the same output that is similar to:
+// Hello, Mark! Today is Wednesday, it&#39;s 19:40 now.
+</code></pre>`,7),i=[s];function r(c,l){return a(),t("div",null,i)}const p=e(n,[["render",r],["__file","string.html.vue"]]),u=JSON.parse('{"path":"/cs-tips/csharp-tip/string.html","title":"字符串","lang":"zh-CN","frontmatter":{"description":"字符串 逐字字符串 原始字符串文本 字符串内插","head":[["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/cs-tips/csharp-tip/string.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"字符串"}],["meta",{"property":"og:description","content":"字符串 逐字字符串 原始字符串文本 字符串内插"}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2023-05-25T04:34:06.000Z"}],["meta",{"property":"article:author","content":"yzqdev"}],["meta",{"property":"article:modified_time","content":"2023-05-25T04:34:06.000Z"}],["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"字符串\\",\\"image\\":[\\"\\"],\\"dateModified\\":\\"2023-05-25T04:34:06.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"]]},"headers":[{"level":2,"title":"逐字字符串","slug":"逐字字符串","link":"#逐字字符串","children":[]},{"level":2,"title":"原始字符串文本","slug":"原始字符串文本","link":"#原始字符串文本","children":[]},{"level":2,"title":"字符串内插","slug":"字符串内插","link":"#字符串内插","children":[]}],"git":{"createdTime":1684989246000,"updatedTime":1684989246000,"contributors":[{"name":"yzqdev","email":"yzqdev@outlook.com","commits":1}]},"readingTime":{"minutes":0.37,"words":112},"filePathRelative":"cs-tips/csharp-tip/string.md","localizedDate":"2023年5月25日","autoDesc":true}');export{p as comp,u as data};

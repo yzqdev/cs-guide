@@ -1,0 +1,257 @@
+import{_ as e,c as t,o as n,d as a}from"./app-CbULZrmi.js";const r={},o=a(`<h1 id="jpa教程生成id" tabindex="-1"><a class="header-anchor" href="#jpa教程生成id"><span>jpa教程生成id</span></a></h1><h2 id="jpa使用雪花id生成" tabindex="-1"><a class="header-anchor" href="#jpa使用雪花id生成"><span>jpa使用雪花id生成</span></a></h2><pre><code class="language-java">package im.zhaojun.zfile.util;
+
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.IdentifierGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
+
+import javax.annotation.PostConstruct;
+import java.io.Serializable;
+
+/**
+ * 雪花算法ID生成器
+ * @author mr ying
+ */
+@SuppressWarnings(&quot;all&quot;)
+@Component
+public class SnowFlakeIdGenerator implements IdentifierGenerator {
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+    /**
+     * 起始的时间戳
+     */
+    private final long twepoch = 1557825652094L;
+
+    /**
+     * 每一部分占用的位数
+     */
+    private final long workerIdBits = 5L;
+    private final long datacenterIdBits = 5L;
+    private final long sequenceBits = 12L;
+
+    /**
+     * 每一部分的最大值
+     */
+    private final long maxWorkerId = -1L ^ (-1L &lt;&lt; workerIdBits);
+    private final long maxDatacenterId = -1L ^ (-1L &lt;&lt; datacenterIdBits);
+    private final long maxSequence = -1L ^ (-1L &lt;&lt; sequenceBits);
+
+    /**
+     * 每一部分向左的位移
+     */
+    private final long workerIdShift = sequenceBits;
+    private final long datacenterIdShift = sequenceBits + workerIdBits;
+    private final long timestampShift = sequenceBits + workerIdBits + datacenterIdBits;
+
+    @Value(&quot;\${snowflake.datacenter-id:1}&quot;)
+    private long datacenterId; // 数据中心ID
+
+    @Value(&quot;\${snowflake.worker-id:0}&quot;)
+    private long workerId; // 机器ID
+
+    private long sequence = 0L; // 序列号
+    private long lastTimestamp = -1L; // 上一次时间戳
+
+    @PostConstruct
+    public void init() {
+        String msg;
+        if (workerId &gt; maxWorkerId || workerId &lt; 0) {
+            msg = String.format(&quot;worker Id can&#39;t be greater than %d or less than 0&quot;, maxWorkerId);
+            logger.error(msg);
+        }
+        if (datacenterId &gt; maxDatacenterId || datacenterId &lt; 0) {
+            msg = String.format(&quot;datacenter Id can&#39;t be greater than %d or less than 0&quot;, maxDatacenterId);
+            logger.error(msg);
+        }
+    }
+
+    @Transactional
+    public synchronized long nextId() {
+        long timestamp = timeGen();
+        if (timestamp &lt; lastTimestamp) {
+            try {
+                throw new Exception(String.format(
+                        &quot;Clock moved backwards.  Refusing to generate id for %d milliseconds&quot;, lastTimestamp - timestamp));
+            } catch (Exception e) {
+                e.printStackTrace();
+                TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+            }
+        }
+        if (timestamp == lastTimestamp) {
+            sequence = (sequence + 1) &amp; maxSequence;
+            if (sequence == 0L) {
+                timestamp = tilNextMillis();
+            }
+        } else {
+            sequence = 0L;
+        }
+        lastTimestamp = timestamp;
+
+        return (timestamp - twepoch) &lt;&lt; timestampShift // 时间戳部分
+                | datacenterId &lt;&lt; datacenterIdShift // 数据中心部分
+                | workerId &lt;&lt; workerIdShift // 机器标识部分
+                | sequence; // 序列号部分
+    }
+
+    private long tilNextMillis() {
+        long timestamp = timeGen();
+        while (timestamp &lt;= lastTimestamp) {
+            timestamp = timeGen();
+        }
+        return timestamp;
+    }
+
+    private long timeGen() {
+        return System.currentTimeMillis();
+    }
+ 
+ //重写IdentifierGenerator的方法
+    @Override
+    public Serializable generate(SharedSessionContractImplementor session, Object o) throws HibernateException {
+        return String.valueOf(nextId());
+    }
+
+}
+
+</code></pre><p>然后在<code>application.yml</code>配置</p><pre><code class="language-yml">#雪花算法
+snowflake:
+  datacenter-id: 1
+  worker-id: 0
+</code></pre><p>使用</p><pre><code class="language-java">    @Id
+    @GenericGenerator(name = &quot;idGenerator&quot;, strategy = &quot;im.zhaojun.zfile.util.SnowFlakeIdGenerator&quot;)
+    @GeneratedValue(generator = &quot;idGenerator&quot;)
+    private String id;
+</code></pre><h2 id="_1-spring-boot-jpa项目的构建" tabindex="-1"><a class="header-anchor" href="#_1-spring-boot-jpa项目的构建"><span>1.spring boot+jpa项目的构建</span></a></h2><p>请参考<a href="https://www.jianshu.com/p/b7c0115889ba" target="_blank" rel="noopener noreferrer">spring boot+jpa简单实现</a></p><h2 id="_2-id-generatedvalue四种id生成策略" tabindex="-1"><a class="header-anchor" href="#_2-id-generatedvalue四种id生成策略"><span>2.@Id+@GeneratedValue四种id生成策略</span></a></h2><p>使用<code>GenerationType.IDENTITY</code>(mysql要设置成自增)</p><pre><code class="language-java">package com.dancer4code.actuator.pojo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = &quot;student&quot;)
+public class Student implements Serializable{
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
+    private String name;
+    private Integer age;
+}
+</code></pre><p>JPA提供四种标准用法,由@GeneratedValue的源代码：</p><pre><code class="language-kotlin">    @Target({METHOD,FIELD})    
+    @Retention(RUNTIME)    
+    public @interface GeneratedValue{    
+        GenerationType strategy() default AUTO;    
+        String generator() default &quot;&quot;;    
+    }   
+</code></pre><p>其中GenerationType:</p><pre><code class="language-swift">public enum GenerationType{    
+    TABLE,    
+    SEQUENCE,    
+    IDENTITY,    
+    AUTO   
+} 
+</code></pre><p>JPA提供的四种标准用法为<code>TABLE</code>,<code>SEQUENCE</code>,<code>IDENTITY</code>,<code>AUTO</code>.</p><ul><li>TABLE：使用一个特定的数据库表格来保存主键。 GenerationType.TABLE：使用一个特定的数据库表格来保存主键,持久化引擎通过关系数据库的一张特定的表格来生成主键,这种策略的好处就是不依赖于外部环境和数据库的具体实现,在不同数据库间可以很容易的进行移植,但由于其不能充分利用数据库的特性,所以不会优先使用。该策略一般与另外一个注解一起使用@TableGenerator,@TableGenerator注解指定了生成主键的表(可以在实体类上指定也可以在主键字段或属性上指定),然后JPA将会根据注解内容自动生成一张表作为序列表(或使用现有的序列表)。如果不指定序列表,则会生成一张默认的序列表,表中的列名也是自动生成,数据库上会生成一张名为sequence的表(SEQ_NAME,SEQ_COUNT)。序列表一般只包含两个字段:第一个字段是该生成策略的名称,第二个字段是该关系表的最大序号,它会随着数据的插入逐渐累加。例如：</li></ul><pre><code class="language-kotlin">@Id  
+@GeneratedValue(strategy = GenerationType.TABLE, generator = &quot;id_sequence&quot;)  
+@TableGenerator(name = &quot;id_sequence&quot;, allocationSize = 1, table = &quot;sequence_table&quot;, pkColumnName = &quot;sequence_max_id&quot;, valueColumnName = &quot;sequence_count&quot;)  
+private int id;
+</code></pre><ul><li>SEQUENCE：根据底层数据库的序列来生成主键，条件是数据库支持序列。 GenerationType.SEQUENCE：在某些数据库中,不支持主键自增长,比如Oracle,其提供了一种叫做&quot;序列(sequence)&quot;的机制生成主键。此时,GenerationType.SEQUENCE就可以作为主键生成策略。该策略的不足之处正好与TABLE相反,由于只有部分数据库(Oracle,PostgreSQL,DB2)支持序列对象,所以该策略一般不应用于其他数据库。类似的,该策略一般与另外一个注解一起使用@SequenceGenerator,@SequenceGenerator注解指定了生成主键的序列.然后JPA会根据注解内容创建一个序列(或使用一个现有的序列)。如果不指定序列,则会自动生成一个序列SEQ_GEN_SEQUENCE。例如：</li></ul><pre><code class="language-kotlin">@Id  
+@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = &quot;id_sequence&quot;)  
+@SequenceGenerator(name = &quot;id_sequence&quot;, initialValue = 1, allocationSize = 1, sequenceName = &quot;ID_SEQUENCE&quot;)  
+private int id;
+</code></pre><ul><li>IDENTITY：主键由数据库自动生成（主要是自动增长型） GenerationType.IDENTITY：此种主键生成策略就是通常所说的主键自增长,数据库在插入数据时,会自动给主键赋值,比如MYSQL可以在创建表时声明&quot;auto_increment&quot; 来指定主键自增长。该策略在大部分数据库中都提供了支持(指定方法或关键字可能不同),但还是有少数数据库不支持,所以可移植性略差。使用自增长主键生成策略是只需要声明strategy = GenerationType.IDENTITY即可。例如：</li></ul><pre><code class="language-java">@Id  
+@GeneratedValue(strategy = GenerationType.IDENTITY)  
+private int id;
+</code></pre><ul><li>AUTO：主键由程序控制。 GenerationType.AUTO：把主键生成策略交给持久化引擎(persistence engine),持久化引擎会根据数据库在以上三种主键生成策略中选择其中一种。此种主键生成策略比较常用,由于JPA默认的生成策略就是GenerationType.AUTO,所以使用此种策略时.可以显式的指定@GeneratedValue(strategy = GenerationType.AUTO)也可以直接@GeneratedValue。例如：</li></ul><pre><code class="language-tsx">//如果不指定具体的生成规则，则默认为AUTO，即下列两种情况等价
+@Id  
+@GeneratedValue(strategy = GenerationType.AUTO) 
+private String id;
+
+@Id  
+private String id;
+</code></pre><p>常用数据库支持生成规则如下：</p><table><thead><tr><th style="text-align:center;"></th><th style="text-align:center;">mysql</th><th style="text-align:center;">Oracle</th><th style="text-align:center;">PostgreSQL</th></tr></thead><tbody><tr><td style="text-align:center;">GenerationType.TABLE</td><td style="text-align:center;">√</td><td style="text-align:center;">√</td><td style="text-align:center;">√</td></tr><tr><td style="text-align:center;">GenerationType.AUTO</td><td style="text-align:center;">√</td><td style="text-align:center;">√</td><td style="text-align:center;">√</td></tr><tr><td style="text-align:center;">GenerationType.IDENTITY</td><td style="text-align:center;">√</td><td style="text-align:center;">x</td><td style="text-align:center;">√</td></tr><tr><td style="text-align:center;">GenerationType.SEQUENCE</td><td style="text-align:center;">x</td><td style="text-align:center;">√</td><td style="text-align:center;">√</td></tr></tbody></table><h2 id="_3-hibernate主键策略生成" tabindex="-1"><a class="header-anchor" href="#_3-hibernate主键策略生成"><span>3.Hibernate主键策略生成</span></a></h2><p>hibernate-5.3.7.Final版本的默认工厂中有<code>14种</code>生成策略,具体可见org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory</p><pre><code class="language-java">public DefaultIdentifierGeneratorFactory() {
+        register( &quot;uuid2&quot;, UUIDGenerator.class );
+        register( &quot;guid&quot;, GUIDGenerator.class );            // can be done with UUIDGenerator + strategy
+        register( &quot;uuid&quot;, UUIDHexGenerator.class );         // &quot;deprecated&quot; for new use
+        register( &quot;uuid.hex&quot;, UUIDHexGenerator.class );     // uuid.hex is deprecated
+        register( &quot;assigned&quot;, Assigned.class );
+        register( &quot;identity&quot;, IdentityGenerator.class );
+        register( &quot;select&quot;, SelectGenerator.class );
+        register( &quot;sequence&quot;, SequenceStyleGenerator.class );
+        register( &quot;seqhilo&quot;, SequenceHiLoGenerator.class );
+        register( &quot;increment&quot;, IncrementGenerator.class );
+        register( &quot;foreign&quot;, ForeignGenerator.class );
+        register( &quot;sequence-identity&quot;, SequenceIdentityGenerator.class );
+        register( &quot;enhanced-sequence&quot;, SequenceStyleGenerator.class );
+        register( &quot;enhanced-table&quot;, TableGenerator.class );
+    }
+</code></pre><p>对几种比较常用的类型进行说明：</p><ul><li>uuid 采用128位的uuid算法生成主键，uuid被编码为一个32位16进制数字的字符串。 当使用strategy为uuid时，使用的时hibernate自己定义的UUID生成算法，此策略已过时，其具体实现参照org.hibernate.id. UUIDHexGenerator, 生成的字符串如402880876359adeb016359ae27190000当使用strategy为uuid2时，此为此版本推荐使用的uuid生成算法，其默认采用标准的生成策略StandardRandomStrategy，实现为使用jdk自带的uuid生成方法，生成的字符串如4af17c8e-8317-43e9-aff9-12d5590a71c6</li></ul><pre><code class="language-kotlin">@Id
+@GeneratedValue(generator = &quot;faceset_generator&quot;)
+@GenericGenerator(name = &quot;faceset_generator&quot;, strategy = &quot;uuid&quot;)
+</code></pre><ul><li>assigned 插入主键时，由程序来指定。相当于JPA中的AUTO。</li></ul><pre><code class="language-kotlin">@Id
+@GeneratedValue(generator = &quot;faceset_generator&quot;)
+@GenericGenerator(name = &quot;faceset_generator&quot;, strategy = &quot;assigned&quot;)
+</code></pre><ul><li>sequence</li></ul><pre><code class="language-kotlin">@Id
+@GeneratedValue(generator = &quot;faceset_generator&quot;)  
+@GenericGenerator(name = &quot;faceset_generator&quot;, strategy = &quot;sequence&quot;,    parameters = { @Parameter(name = &quot;sequence&quot;, value = &quot;faceset_seq&quot;) }) 
+</code></pre><ul><li>guid 采用数据库底层的guid算法机制，对应MYSQL的uuid()函数，SQL Server的newid()函数，ORACLE的rawtohex(sys_guid())函数等</li></ul><p>来自<a href="https://www.jianshu.com/p/ee87671a492b" target="_blank" rel="noopener noreferrer">SpringDataJpa-主键生成策略</a></p><h2 id="_4-自定义主键生成策略" tabindex="-1"><a class="header-anchor" href="#_4-自定义主键生成策略"><span>4.自定义主键生成策略</span></a></h2><pre><code class="language-dart">package com.dancer4code.actuator.pojo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: liangqing.zhao(zlq)
+ * Date: 2019/10/4 17:14
+ * Description:
+ */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = &quot;student&quot;)
+
+public class Student implements Serializable{
+    @Id
+    @GenericGenerator(name = &quot;my_id&quot;, strategy = &quot;com.dancer4code.actuator.utils.MyIdGenerator&quot; )
+    @GeneratedValue(generator = &quot;my_id&quot;)
+    private String id;
+    private String name;
+    private Integer age;
+}
+</code></pre><p><em>MyIdGenerator.java</em></p><pre><code class="language-swift">package com.dancer4code.actuator.utils;
+
+import org.hibernate.HibernateException;
+import org.hibernate.engine.spi.SharedSessionContractImplementor;
+import org.hibernate.id.IdentifierGenerator;
+
+import java.io.Serializable;
+import java.util.UUID;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: liangqing.zhao(zlq)
+ * Date: 2019/10/4 19:01
+ * Description:
+ */
+public class MyIdGenerator implements IdentifierGenerator {
+    @Override
+    public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
+        return &quot;d4c-&quot;+UUID.randomUUID();
+    }
+}
+</code></pre><p><em>成功实现自己的id生成</em></p><p><img src="https:////upload-images.jianshu.io/upload_images/19382524-45ae6b26ffdb8023.png?imageMogr2/auto-orient/strip|imageView2/2/w/495/format/webp" alt="img"></p><p>result</p><p>源码见gitee中<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgitee.com%2Fdancer4code%2Fspring-boot-lab" target="_blank" rel="noopener noreferrer">spring-boot-lab</a></p><p>如果还不够用请参考雪花算法 更多其他内容请参考<a href="https://www.jianshu.com/p/9d7ebe37215e" target="_blank" rel="noopener noreferrer">分布式全局唯一ID生成策略</a></p>`,48),i=[o];function l(s,d){return n(),t("div",null,i)}const c=e(r,[["render",l],["__file","jpa-id.html.vue"]]),u=JSON.parse('{"path":"/java-tutor/orm-tutor/jpa-id.html","title":"jpa教程生成id","lang":"zh-CN","frontmatter":{"description":"jpa教程生成id jpa使用雪花id生成 然后在application.yml配置 使用 1.spring boot+jpa项目的构建 请参考spring boot+jpa简单实现 2.@Id+@GeneratedValue四种id生成策略 使用GenerationType.IDENTITY(mysql要设置成自增) JPA提供四种标准用法,由@Ge...","head":[["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/java-tutor/orm-tutor/jpa-id.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"jpa教程生成id"}],["meta",{"property":"og:description","content":"jpa教程生成id jpa使用雪花id生成 然后在application.yml配置 使用 1.spring boot+jpa项目的构建 请参考spring boot+jpa简单实现 2.@Id+@GeneratedValue四种id生成策略 使用GenerationType.IDENTITY(mysql要设置成自增) JPA提供四种标准用法,由@Ge..."}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:image","content":"https:////upload-images.jianshu.io/upload_images/19382524-45ae6b26ffdb8023.png?imageMogr2/auto-orient/strip|imageView2/2/w/495/format/webp"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2022-05-16T16:26:27.000Z"}],["meta",{"property":"article:author","content":"yzqdev"}],["meta",{"property":"article:modified_time","content":"2022-05-16T16:26:27.000Z"}],["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"jpa教程生成id\\",\\"image\\":[\\"https:////upload-images.jianshu.io/upload_images/19382524-45ae6b26ffdb8023.png?imageMogr2/auto-orient/strip|imageView2/2/w/495/format/webp\\"],\\"dateModified\\":\\"2022-05-16T16:26:27.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"]]},"headers":[{"level":2,"title":"jpa使用雪花id生成","slug":"jpa使用雪花id生成","link":"#jpa使用雪花id生成","children":[]},{"level":2,"title":"1.spring boot+jpa项目的构建","slug":"_1-spring-boot-jpa项目的构建","link":"#_1-spring-boot-jpa项目的构建","children":[]},{"level":2,"title":"2.@Id+@GeneratedValue四种id生成策略","slug":"_2-id-generatedvalue四种id生成策略","link":"#_2-id-generatedvalue四种id生成策略","children":[]},{"level":2,"title":"3.Hibernate主键策略生成","slug":"_3-hibernate主键策略生成","link":"#_3-hibernate主键策略生成","children":[]},{"level":2,"title":"4.自定义主键生成策略","slug":"_4-自定义主键生成策略","link":"#_4-自定义主键生成策略","children":[]}],"git":{"createdTime":1652718387000,"updatedTime":1652718387000,"contributors":[{"name":"yzqdev","email":"yzqdev@outlook.com","commits":1}]},"readingTime":{"minutes":6.57,"words":1972},"filePathRelative":"java-tutor/orm-tutor/jpa-id.md","localizedDate":"2022年5月16日","autoDesc":true}');export{c as comp,u as data};

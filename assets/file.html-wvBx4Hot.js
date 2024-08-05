@@ -1,0 +1,310 @@
+import{_ as e,c as n,o,d as t}from"./app-CbULZrmi.js";const r={},a=t(`<h1 id="file" tabindex="-1"><a class="header-anchor" href="#file"><span>file</span></a></h1><div class="hint-container tip"><p class="hint-container-title">提示</p><p><a href="https://nodejs.dev/learn/the-nodejs-fs-module" target="_blank" rel="noopener noreferrer">https://nodejs.dev/learn/the-nodejs-fs-module</a></p></div><h2 id="使用readfile" tabindex="-1"><a class="header-anchor" href="#使用readfile"><span>使用readfile</span></a></h2><pre><code class="language-ts">import * as fs from &#39;fs&#39;
+
+fs.readFile(&#39;/Users/joe/test.txt&#39;, &#39;utf8&#39;, (err, data) =&gt; {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(data);
+});
+
+</code></pre><p>当然也可以使用同步的方式</p><pre><code class="language-ts">import * as fs from &#39;fs&#39;
+try {
+  const data = fs.readFileSync(&#39;/Users/joe/test.txt&#39;, &#39;utf8&#39;);
+  console.log(data);
+} catch (err) {
+  console.error(err);
+}
+</code></pre><p>使用promise格式的fs</p><pre><code class="language-ts">imort * as fsPromises from &#39;fs/promises&#39;
+async function example() {
+  try {
+    const data = await fsPromises.readFile(&#39;/Users/joe/test.txt&#39;, { encoding: &#39;utf8&#39; });
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+example();
+</code></pre><h2 id="写入文件" tabindex="-1"><a class="header-anchor" href="#写入文件"><span>写入文件</span></a></h2><pre><code class="language-ts">import * as fs from &#39;fs&#39;
+const content = &#39;Some content!&#39;;
+
+fs.writeFile(&#39;/Users/joe/test.txt&#39;, content, err =&gt; {
+  if (err) {
+    console.error(err);
+  }
+  // file written successfully
+});
+</code></pre><p>使用同步的写法</p><pre><code class="language-ts">import * as fs from &#39;fs&#39;
+const content = &#39;Some content!&#39;;
+
+try {
+  fs.writeFileSync(&#39;/Users/joe/test.txt&#39;, content);
+  // file written successfully
+} catch (err) {
+  console.error(err);
+}
+</code></pre><p>使用promise的写法</p><pre><code class="language-ts">imort * as fsPromises from &#39;fs/promises&#39;
+
+async function example() {
+  try {
+    const content = &#39;Some content!&#39;;
+    await fsPromises.writeFile(&#39;/Users/joe/test.txt&#39;, content);
+  } catch (err) {
+    console.log(err);
+  }
+}
+example();
+
+</code></pre><p>添加写入的flag</p><pre><code class="language-ts">fs.writeFile(&#39;/Users/joe/test.txt&#39;, content, { flag: &#39;a+&#39; }, err =&gt; {});
+
+</code></pre><p>r+:打开文件(写入或者读取)</p><h2 id="在末尾追加" tabindex="-1"><a class="header-anchor" href="#在末尾追加"><span>在末尾追加</span></a></h2><pre><code class="language-ts">const content = &#39;Some content!&#39;;
+
+fs.appendFile(&#39;file.log&#39;, content, err =&gt; {
+  if (err) {
+    console.error(err);
+  }
+  // done!
+});
+</code></pre><p>使用promise</p><pre><code class="language-ts">async function example() {
+  try {
+    const content = &#39;Some content!&#39;;
+    await fsPromises.appendFile(&#39;/Users/joe/test.txt&#39;, content);
+  } catch (err) {
+    console.log(err);
+  }
+}
+example();
+</code></pre><h2 id="写入流" tabindex="-1"><a class="header-anchor" href="#写入流"><span>写入流</span></a></h2><pre><code class="language-ts">import * as fs from &#39;fs&#39;
+let data = &#39;菜鸟教程官网地址：www.runoob.com&#39;;
+
+// 创建一个可以写入的流，写入到文件 output.txt 中
+let  writerStream = fs.createWriteStream(&#39;output.txt&#39;);
+
+// 使用 utf8 编码写入数据
+writerStream.write(data,&#39;UTF8&#39;);
+
+// 标记文件末尾
+writerStream.end();
+
+// 处理流事件 --&gt; finish、error
+writerStream.on(&#39;finish&#39;, function() {
+    console.log(&quot;写入完成。&quot;);
+});
+
+writerStream.on(&#39;error&#39;, function(err){
+   console.log(err.stack);
+});
+
+console.log(&quot;程序执行完毕&quot;);
+</code></pre><h3 id="小文件拷贝" tabindex="-1"><a class="header-anchor" href="#小文件拷贝"><span>小文件拷贝</span></a></h3><p>我们使用NodeJS内置的<code>fs</code>模块简单实现这个程序如下。</p><pre><code class="language-js"> import * as fs from &#39;fs&#39;
+
+ function copy(src, dst) {
+  fs.writeFileSync(dst, fs.readFileSync(src));
+ }
+
+ function main(argv) {
+  copy(argv[0], argv[1]);
+ }
+
+ main(process.argv.slice(2));
+</code></pre><p>以上程序使用<code>fs.readFileSync</code>从源路径读取文件内容，并使用<code>fs.writeFileSync</code>将文件内容写入目标路径。</p><blockquote><p><strong>豆知识：</strong> <code>process</code>是一个全局变量，可通过<code>process.argv</code>获得命令行参数。由于<code>argv[0]</code>固定等于NodeJS执行程序的绝对路径，<code>argv[1]</code>固定等于主模块的绝对路径，因此第一个命令行参数从<code>argv[2]</code>这个位置开始。</p></blockquote><h3 id="大文件拷贝" tabindex="-1"><a class="header-anchor" href="#大文件拷贝"><span>大文件拷贝</span></a></h3><p>上边的程序拷贝一些小文件没啥问题，但这种一次性把所有文件内容都读取到内存中后再一次性写入磁盘的方式不适合拷贝大文件，内存会爆仓。对于大文件，我们只能读一点写一点，直到完成拷贝。因此上边的程序需要改造如下。</p><pre><code class="language-js"> import * as fs from &#39;fs&#39;
+
+ function copy(src, dst) {
+  fs.createReadStream(src).pipe(fs.createWriteStream(dst));
+ }
+
+ function main(argv) {
+  copy(argv[0], argv[1]);
+ }
+
+ main(process.argv.slice(2));
+</code></pre><p>以上程序使用<code>fs.createReadStream</code>创建了一个源文件的只读数据流，并使用<code>fs.createWriteStream</code>创建了一个目标文件的只写数据流，并且用<code>pipe</code>方法把两个数据流连接了起来。连接起来后发生的事情，说得抽象点的话，水顺着水管从一个桶流到了另一个桶。</p><h2 id="api走马观花" tabindex="-1"><a class="header-anchor" href="#api走马观花"><span>API走马观花</span></a></h2><p>我们先大致看看NodeJS提供了哪些和文件操作有关的API。这里并不逐一介绍每个API的使用方法，官方文档已经做得很好了。</p><h3 id="buffer-数据块" tabindex="-1"><a class="header-anchor" href="#buffer-数据块"><span>Buffer（数据块）</span></a></h3><blockquote><p><strong>官方文档：</strong> <a href="http://nodejs.org/api/buffer.html" target="_blank" rel="noopener noreferrer">http://nodejs.org/api/buffer.html</a></p></blockquote><p>JS语言自身只有字符串数据类型，没有二进制数据类型，因此NodeJS提供了一个与<code>String</code>对等的全局构造函数<code>Buffer</code>来提供对二进制数据的操作。除了可以读取文件得到<code>Buffer</code>的实例外，还能够直接构造，例如：</p><pre><code class="language-js"> let bin = Buffer.from([ 0x68, 0x65, 0x6c, 0x6c, 0x6f ]);
+</code></pre><p><code>Buffer</code>与字符串类似，除了可以用<code>.length</code>属性得到字节长度外，还可以用<code>[index]</code>方式读取指定位置的字节，例如：</p><pre><code class="language-js"> bin[0]; // =&gt; 0x68;
+</code></pre><p><code>Buffer</code>与字符串能够互相转化，例如可以使用指定编码将二进制数据转化为字符串：</p><pre><code class="language-js"> let str = bin.toString(&#39;utf-8&#39;); // =&gt; &quot;hello&quot;
+</code></pre><p>或者反过来，将字符串转换为指定编码下的二进制数据：</p><pre><code class="language-js"> let bin = Buffer.from(&#39;hello&#39;, &#39;utf-8&#39;); // =&gt; &lt;Buffer 68 65 6c 6c 6f&gt;
+</code></pre><p><code>Buffer</code>与字符串有一个重要区别。字符串是只读的，并且对字符串的任何修改得到的都是一个新字符串，原字符串保持不变。至于<code>Buffer</code>，更像是可以做指针操作的C语言数组。例如，可以用<code>[index]</code>方式直接修改某个位置的字节。</p><pre><code class="language-js"> bin[0] = 0x48;
+</code></pre><p>而<code>.slice</code>方法也不是返回一个新的<code>Buffer</code>，而更像是返回了指向原<code>Buffer</code>中间的某个位置的指针，如下所示。</p><pre><code class="language-text"> [ 0x68, 0x65, 0x6c, 0x6c, 0x6f ]
+     ^           ^
+     |           |
+    bin     bin.slice(2)
+</code></pre><p>因此对<code>.slice</code>方法返回的<code>Buffer</code>的修改会作用于原<code>Buffer</code>，例如：</p><pre><code class="language-js"> let bin = Buffer.from([ 0x68, 0x65, 0x6c, 0x6c, 0x6f ]);
+ let sub = bin.slice(2);
+
+ sub[0] = 0x65;
+ console.log(bin); // =&gt; &lt;Buffer 68 65 65 6c 6f&gt;
+</code></pre><p>也因此，如果想要拷贝一份<code>Buffer</code>，得首先创建一个新的<code>Buffer</code>，并通过<code>.copy</code>方法把原<code>Buffer</code>中的数据复制过去。这个类似于申请一块新的内存，并把已有内存中的数据复制过去。以下是一个例子。</p><pre><code class="language-js"> let bin = Buffer.from([ 0x68, 0x65, 0x6c, 0x6c, 0x6f ]);
+ let dup = Buffer.from(bin.length);
+
+ bin.copy(dup);
+ dup[0] = 0x48;
+ console.log(bin); // =&gt; &lt;Buffer 68 65 6c 6c 6f&gt;
+ console.log(dup); // =&gt; &lt;Buffer 48 65 65 6c 6f&gt;
+</code></pre><p>总之，<code>Buffer</code>将JS的数据处理能力从字符串扩展到了任意二进制数据。</p><h3 id="stream-数据流" tabindex="-1"><a class="header-anchor" href="#stream-数据流"><span>Stream（数据流）</span></a></h3><blockquote><p><strong>官方文档：</strong> <a href="http://nodejs.org/api/stream.html" target="_blank" rel="noopener noreferrer">http://nodejs.org/api/stream.html</a></p></blockquote><p>当内存中无法一次装下需要处理的数据时，或者一边读取一边处理更加高效时，我们就需要用到数据流。NodeJS中通过各种<code>Stream</code>来提供对数据流的操作。</p><p>以上边的大文件拷贝程序为例，我们可以为数据来源创建一个只读数据流，示例如下：</p><pre><code class="language-js"> let rs = fs.createReadStream(pathname);
+
+ rs.on(&#39;data&#39;, function (chunk) {
+  doSomething(chunk);
+ });
+
+ rs.on(&#39;end&#39;, function () {
+  cleanUp();
+ });
+</code></pre><blockquote><p><strong>豆知识：</strong> <code>Stream</code>基于事件机制工作，所有<code>Stream</code>的实例都继承于NodeJS提供的<a href="http://nodejs.org/api/events.html" target="_blank" rel="noopener noreferrer">EventEmitter</a>。</p></blockquote><p>上边的代码中<code>data</code>事件会源源不断地被触发，不管<code>doSomething</code>函数是否处理得过来。代码可以继续做如下改造，以解决这个问题。</p><pre><code class="language-js"> let rs = fs.createReadStream(src);
+
+ rs.on(&#39;data&#39;, function (chunk) {
+  rs.pause();
+  doSomething(chunk, function () {
+   rs.resume();
+  });
+ });
+
+ rs.on(&#39;end&#39;, function () {
+  cleanUp();
+ });
+</code></pre><p>以上代码给<code>doSomething</code>函数加上了回调，因此我们可以在处理数据前暂停数据读取，并在处理数据后继续读取数据。</p><p>此外，我们也可以为数据目标创建一个只写数据流，示例如下：</p><pre><code class="language-js"> let rs = fs.createReadStream(src);
+ let ws = fs.createWriteStream(dst);
+
+ rs.on(&#39;data&#39;, function (chunk) {
+  ws.write(chunk);
+ });
+
+ rs.on(&#39;end&#39;, function () {
+  ws.end();
+ });
+</code></pre><p>我们把<code>doSomething</code>换成了往只写数据流里写入数据后，以上代码看起来就像是一个文件拷贝程序了。但是以上代码存在上边提到的问题，如果写入速度跟不上读取速度的话，只写数据流内部的缓存会爆仓。我们可以根据<code>.write</code>方法的返回值来判断传入的数据是写入目标了，还是临时放在了缓存了，并根据<code>drain</code>事件来判断什么时候只写数据流已经将缓存中的数据写入目标，可以传入下一个待写数据了。因此代码可以改造如下：</p><pre><code class="language-js"> let rs = fs.createReadStream(src);
+ let ws = fs.createWriteStream(dst);
+
+ rs.on(&#39;data&#39;, function (chunk) {
+  if (ws.write(chunk) === false) {
+   rs.pause();
+  }
+ });
+
+ rs.on(&#39;end&#39;, function () {
+  ws.end();
+ });
+
+ ws.on(&#39;drain&#39;, function () {
+  rs.resume();
+ });
+</code></pre><p>以上代码实现了数据从只读数据流到只写数据流的搬运，并包括了防爆仓控制。因为这种使用场景很多，例如上边的大文件拷贝程序，NodeJS直接提供了<code>.pipe</code>方法来做这件事情，其内部实现方式与上边的代码类似。</p><h3 id="file-system-文件系统" tabindex="-1"><a class="header-anchor" href="#file-system-文件系统"><span>File System（文件系统）</span></a></h3><blockquote><p><strong>官方文档：</strong> <a href="http://nodejs.org/api/fs.html" target="_blank" rel="noopener noreferrer">http://nodejs.org/api/fs.html</a></p></blockquote><p>NodeJS通过<code>fs</code>内置模块提供对文件的操作。<code>fs</code>模块提供的API基本上可以分为以下三类：</p><ul><li>文件属性读写。</li></ul><p>其中常用的有<code>fs.stat</code>、<code>fs.chmod</code>、<code>fs.chown</code>等等。</p><ul><li>文件内容读写。</li></ul><p>其中常用的有<code>fs.readFile</code>、<code>fs.readdir</code>、<code>fs.writeFile</code>、<code>fs.mkdir</code>等等。</p><ul><li>底层文件操作。</li></ul><p>其中常用的有<code>fs.open</code>、<code>fs.read</code>、<code>fs.write</code>、<code>fs.close</code>等等。</p><p>NodeJS最精华的异步IO模型在<code>fs</code>模块里有着充分的体现，例如上边提到的这些API都通过回调函数传递结果。以<code>fs.readFile</code>为例：</p><pre><code class="language-js"> fs.readFile(pathname, function (err, data) {
+  if (err) {
+   // Deal with error.
+  } else {
+   // Deal with data.
+  }
+ });
+</code></pre><p>如上边代码所示，基本上所有<code>fs</code>模块API的回调参数都有两个。第一个参数在有错误发生时等于异常对象，第二个参数始终用于返回API方法执行结果。</p><p>此外，<code>fs</code>模块的所有异步API都有对应的同步版本，用于无法使用异步操作时，或者同步操作更方便时的情况。同步API除了方法名的末尾多了一个<code>Sync</code>之外，异常对象与执行结果的传递方式也有相应变化。同样以<code>fs.readFileSync</code>为例：</p><pre><code class="language-js"> try {
+  let data = fs.readFileSync(pathname);
+  // Deal with data.
+ } catch (err) {
+  // Deal with error.
+ }
+</code></pre><p><code>fs</code>模块提供的API很多，这里不一一介绍，需要时请自行查阅官方文档。</p><h3 id="path-路径" tabindex="-1"><a class="header-anchor" href="#path-路径"><span>Path（路径）</span></a></h3><blockquote><p><strong>官方文档：</strong> <a href="http://nodejs.org/api/path.html" target="_blank" rel="noopener noreferrer">http://nodejs.org/api/path.html</a></p></blockquote><p>操作文件时难免不与文件路径打交道。NodeJS提供了<code>path</code>内置模块来简化路径相关操作，并提升代码可读性。以下分别介绍几个常用的API。</p><ul><li>path.normalize</li></ul><p>将传入的路径转换为标准路径，具体讲的话，除了解析路径中的<code>.</code>与<code>..</code>外，还能去掉多余的斜杠。如果有程序需要使用路径作为某些数据的索引，但又允许用户随意输入路径时，就需要使用该方法保证路径的唯一性。以下是一个例子：</p><pre><code class="language-js">  let cache = {};
+  
+  function store(key, value) {
+   cache[path.normalize(key)] = value;
+  }
+
+  store(&#39;foo/bar&#39;, 1);
+  store(&#39;foo//baz//../bar&#39;, 2);
+  console.log(cache);  // =&gt; { &quot;foo/bar&quot;: 2 }
+</code></pre><blockquote><p><strong>坑出没注意：</strong> 标准化之后的路径里的斜杠在Windows系统下是<code>\\</code>，而在Linux系统下是<code>/</code>。如果想保证任何系统下都使用<code>/</code>作为路径分隔符的话，需要用<code>.replace(/\\\\/g, &#39;/&#39;)</code>再替换一下标准路径。</p></blockquote><ul><li>path.join</li></ul><p>将传入的多个路径拼接为标准路径。该方法可避免手工拼接路径字符串的繁琐，并且能在不同系统下正确使用相应的路径分隔符。以下是一个例子：</p><pre><code class="language-js">  path.join(&#39;foo/&#39;, &#39;baz/&#39;, &#39;../bar&#39;); // =&gt; &quot;foo/bar&quot;
+</code></pre><ul><li>path.extname</li></ul><p>当我们需要根据不同文件扩展名做不同操作时，该方法就显得很好用。以下是一个例子：</p><p>path.extname(&#39;foo/bar.js&#39;); // =&gt; &quot;.js&quot;</p><p><code>path</code>模块提供的其余方法也不多，稍微看一下官方文档就能全部掌握。</p><h2 id="遍历目录" tabindex="-1"><a class="header-anchor" href="#遍历目录"><span>遍历目录</span></a></h2><p>遍历目录是操作文件时的一个常见需求。比如写一个程序，需要找到并处理指定目录下的所有JS文件时，就需要遍历整个目录。</p><h3 id="递归算法" tabindex="-1"><a class="header-anchor" href="#递归算法"><span>递归算法</span></a></h3><p>遍历目录时一般使用递归算法，否则就难以编写出简洁的代码。递归算法与数学归纳法类似，通过不断缩小问题的规模来解决问题。以下示例说明了这种方法。</p><pre><code class="language-js"> function factorial(n) {
+  if (n === 1) {
+   return 1;
+  } else {
+   return n * factorial(n - 1);
+  }
+ }
+</code></pre><p>上边的函数用于计算N的阶乘（N!）。可以看到，当N大于1时，问题简化为计算N乘以N-1的阶乘。当N等于1时，问题达到最小规模，不需要再简化，因此直接返回1。</p><blockquote><p><strong>陷阱：</strong> 使用递归算法编写的代码虽然简洁，但由于每递归一次就产生一次函数调用，在需要优先考虑性能时，需要把递归算法转换为循环算法，以减少函数调用次数。</p></blockquote><h3 id="遍历算法" tabindex="-1"><a class="header-anchor" href="#遍历算法"><span>遍历算法</span></a></h3><p>目录是一个树状结构，在遍历时一般使用深度优先+先序遍历算法。深度优先，意味着到达一个节点后，首先接着遍历子节点而不是邻居节点。先序遍历，意味着首次到达了某节点就算遍历完成，而不是最后一次返回某节点才算数。因此使用这种遍历方式时，下边这棵树的遍历顺序是<code>A &gt; B &gt; D &gt; E &gt; C &gt; F</code>。</p><pre><code class="language-text">           A
+          / \\
+         B   C
+        / \\   \\
+       D   E   F
+</code></pre><h3 id="同步遍历" tabindex="-1"><a class="header-anchor" href="#同步遍历"><span>同步遍历</span></a></h3><p>了解了必要的算法后，我们可以简单地实现以下目录遍历函数。</p><pre><code class="language-js"> function travel(dir, callback) {
+  fs.readdirSync(dir).forEach(function (file) {
+   let pathname = path.join(dir, file);
+
+   if (fs.statSync(pathname).isDirectory()) {
+    travel(pathname, callback);
+   } else {
+    callback(pathname);
+   }
+  });
+ }
+</code></pre><p>可以看到，该函数以某个目录作为遍历的起点。遇到一个子目录时，就先接着遍历子目录。遇到一个文件时，就把文件的绝对路径传给回调函数。回调函数拿到文件路径后，就可以做各种判断和处理。因此假设有以下目录：</p><pre><code>+ /home/user/
++ foo/
+   x.js
++ bar/
+   y.js
+  z.css
+</code></pre><p>使用以下代码遍历该目录时，得到的输入如下。</p><pre><code class="language-js"> travel(&#39;/home/user&#39;, function (pathname) {
+  console.log(pathname);
+ });
+
+ ------------------------
+ /home/user/foo/x.js
+ /home/user/bar/y.js
+ /home/user/z.css
+</code></pre><h3 id="异步遍历" tabindex="-1"><a class="header-anchor" href="#异步遍历"><span>异步遍历</span></a></h3><p>如果读取目录或读取文件状态时使用的是异步API，目录遍历函数实现起来会有些复杂，但原理完全相同。<code>travel</code>函数的异步版本如下。</p><pre><code class="language-js"> function travel(dir, callback, finish) {
+  fs.readdir(dir, function (err, files) {
+   (function next(i) {
+    if (i &lt; files.length) {
+     let pathname = path.join(dir, files[i]);
+
+     fs.stat(pathname, function (err, stats) {
+      if (stats.isDirectory()) {
+       travel(pathname, callback, function () {
+        next(i + 1);
+       });
+      } else {
+       callback(pathname, function () {
+        next(i + 1);
+       });
+      }
+     });
+    } else {
+     finish &amp;&amp; finish();
+    }
+   }(0));
+  });
+ }
+</code></pre><p>这里不详细介绍异步遍历函数的编写技巧，在后续章节中会详细介绍这个。总之我们可以看到异步编程还是蛮复杂的。</p><h2 id="文本编码" tabindex="-1"><a class="header-anchor" href="#文本编码"><span>文本编码</span></a></h2><p>使用NodeJS编写前端工具时，操作得最多的是文本文件，因此也就涉及到了文件编码的处理问题。我们常用的文本编码有<code>UTF8</code>和<code>GBK</code>两种，并且<code>UTF8</code>文件还可能带有BOM。在读取不同编码的文本文件时，需要将文件内容转换为JS使用的<code>UTF8</code>编码字符串后才能正常处理。</p><h3 id="bom的移除" tabindex="-1"><a class="header-anchor" href="#bom的移除"><span>BOM的移除</span></a></h3><p>BOM用于标记一个文本文件使用Unicode编码，其本身是一个Unicode字符（&quot;\\uFEFF&quot;），位于文本文件头部。在不同的Unicode编码下，BOM字符对应的二进制字节如下：</p><pre><code>     Bytes      Encoding
+ ----------------------------
+     FE FF       UTF16BE
+  FF FE       UTF16LE
+     EF BB BF    UTF8
+</code></pre><p>因此，我们可以根据文本文件头几个字节等于啥来判断文件是否包含BOM，以及使用哪种Unicode编码。但是，BOM字符虽然起到了标记文件编码的作用，其本身却不属于文件内容的一部分，如果读取文本文件时不去掉BOM，在某些使用场景下就会有问题。例如我们把几个JS文件合并成一个文件后，如果文件中间含有BOM字符，就会导致浏览器JS语法错误。因此，使用NodeJS读取文本文件时，一般需要去掉BOM。例如，以下代码实现了识别和去除UTF8 BOM的功能。</p><pre><code class="language-js"> function readText(pathname) {
+  let bin = fs.readFileSync(pathname);
+
+  if (bin[0] === 0xEF &amp;&amp; bin[1] === 0xBB &amp;&amp; bin[2] === 0xBF) {
+   bin = bin.slice(3);
+  }
+
+  return bin.toString(&#39;utf-8&#39;);
+ }
+</code></pre><h3 id="gbk转utf8" tabindex="-1"><a class="header-anchor" href="#gbk转utf8"><span>GBK转UTF8</span></a></h3><p>NodeJS支持在读取文本文件时，或者在<code>Buffer</code>转换为字符串时指定文本编码，但遗憾的是，GBK编码不在NodeJS自身支持范围内。因此，一般我们借助<code>iconv-lite</code>这个三方包来转换编码。使用NPM下载该包后，我们可以按下边方式编写一个读取GBK文本文件的函数。</p><pre><code class="language-js"> let iconv = require(&#39;iconv-lite&#39;);
+
+ function readGBKText(pathname) {
+  let bin = fs.readFileSync(pathname);
+
+  return iconv.decode(bin, &#39;gbk&#39;);
+ }
+</code></pre><h3 id="单字节编码" tabindex="-1"><a class="header-anchor" href="#单字节编码"><span>单字节编码</span></a></h3><p>有时候，我们无法预知需要读取的文件采用哪种编码，因此也就无法指定正确的编码。比如我们要处理的某些CSS文件中，有的用GBK编码，有的用UTF8编码。虽然可以一定程度可以根据文件的字节内容猜测出文本编码，但这里要介绍的是有些局限，但是要简单得多的一种技术。</p><p>首先我们知道，如果一个文本文件只包含英文字符，比如<code>Hello World</code>，那无论用GBK编码或是UTF8编码读取这个文件都是没问题的。这是因为在这些编码下，ASCII0~128范围内字符都使用相同的单字节编码。</p><p>反过来讲，即使一个文本文件中有中文等字符，如果我们需要处理的字符仅在ASCII0~128范围内，比如除了注释和字符串以外的JS代码，我们就可以统一使用单字节编码来读取文件，不用关心文件的实际编码是GBK还是UTF8。以下示例说明了这种方法。</p><pre><code class="language-js"> 1. GBK编码源文件内容：
+  let foo = &#39;中文&#39;;
+ 2. 对应字节：
+  76 61 72 20 66 6F 6F 20 3D 20 27 D6 D0 CE C4 27 3B
+ 3. 使用单字节编码读取后得到的内容：
+  let foo = &#39;{乱码}{乱码}{乱码}{乱码}&#39;;
+ 4. 替换内容：
+  let bar = &#39;{乱码}{乱码}{乱码}{乱码}&#39;;
+ 5. 使用单字节编码保存后对应字节：
+  76 61 72 20 62 61 72 20 3D 20 27 D6 D0 CE C4 27 3B
+ 6. 使用GBK编码读取后得到内容：
+  let bar = &#39;中文&#39;;
+</code></pre><p>这里的诀窍在于，不管大于0xEF的单个字节在单字节编码下被解析成什么乱码字符，使用同样的单字节编码保存这些乱码字符时，背后对应的字节保持不变。</p><p>NodeJS中自带了一种<code>binary</code>编码可以用来实现这个方法，因此在下例中，我们使用这种编码来演示上例对应的代码该怎么写。</p><pre><code class="language-js"> function replace(pathname) {
+  let str = fs.readFileSync(pathname, &#39;binary&#39;);
+  str = str.replace(&#39;foo&#39;, &#39;bar&#39;);
+  fs.writeFileSync(pathname, str, &#39;binary&#39;);
+ }
+</code></pre>`,135),c=[a];function s(l,d){return o(),n("div",null,c)}const p=e(r,[["render",s],["__file","file.html.vue"]]),f=JSON.parse('{"path":"/node-tutor/apis/file.html","title":"file","lang":"zh-CN","frontmatter":{"description":"file 提示 https://nodejs.dev/learn/the-nodejs-fs-module 使用readfile 当然也可以使用同步的方式 使用promise格式的fs 写入文件 使用同步的写法 使用promise的写法 添加写入的flag r+:打开文件(写入或者读取) 在末尾追加 使用promise 写入流 小文件拷贝 我们使用No...","head":[["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/node-tutor/apis/file.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"file"}],["meta",{"property":"og:description","content":"file 提示 https://nodejs.dev/learn/the-nodejs-fs-module 使用readfile 当然也可以使用同步的方式 使用promise格式的fs 写入文件 使用同步的写法 使用promise的写法 添加写入的flag r+:打开文件(写入或者读取) 在末尾追加 使用promise 写入流 小文件拷贝 我们使用No..."}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2024-04-08T04:01:15.000Z"}],["meta",{"property":"article:author","content":"yzqdev"}],["meta",{"property":"article:modified_time","content":"2024-04-08T04:01:15.000Z"}],["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"file\\",\\"image\\":[\\"\\"],\\"dateModified\\":\\"2024-04-08T04:01:15.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"]]},"headers":[{"level":2,"title":"使用readfile","slug":"使用readfile","link":"#使用readfile","children":[]},{"level":2,"title":"写入文件","slug":"写入文件","link":"#写入文件","children":[]},{"level":2,"title":"在末尾追加","slug":"在末尾追加","link":"#在末尾追加","children":[]},{"level":2,"title":"写入流","slug":"写入流","link":"#写入流","children":[{"level":3,"title":"小文件拷贝","slug":"小文件拷贝","link":"#小文件拷贝","children":[]},{"level":3,"title":"大文件拷贝","slug":"大文件拷贝","link":"#大文件拷贝","children":[]}]},{"level":2,"title":"API走马观花","slug":"api走马观花","link":"#api走马观花","children":[{"level":3,"title":"Buffer（数据块）","slug":"buffer-数据块","link":"#buffer-数据块","children":[]},{"level":3,"title":"Stream（数据流）","slug":"stream-数据流","link":"#stream-数据流","children":[]},{"level":3,"title":"File System（文件系统）","slug":"file-system-文件系统","link":"#file-system-文件系统","children":[]},{"level":3,"title":"Path（路径）","slug":"path-路径","link":"#path-路径","children":[]}]},{"level":2,"title":"遍历目录","slug":"遍历目录","link":"#遍历目录","children":[{"level":3,"title":"递归算法","slug":"递归算法","link":"#递归算法","children":[]},{"level":3,"title":"遍历算法","slug":"遍历算法","link":"#遍历算法","children":[]},{"level":3,"title":"同步遍历","slug":"同步遍历","link":"#同步遍历","children":[]},{"level":3,"title":"异步遍历","slug":"异步遍历","link":"#异步遍历","children":[]}]},{"level":2,"title":"文本编码","slug":"文本编码","link":"#文本编码","children":[{"level":3,"title":"BOM的移除","slug":"bom的移除","link":"#bom的移除","children":[]},{"level":3,"title":"GBK转UTF8","slug":"gbk转utf8","link":"#gbk转utf8","children":[]},{"level":3,"title":"单字节编码","slug":"单字节编码","link":"#单字节编码","children":[]}]}],"git":{"createdTime":1687669238000,"updatedTime":1712548875000,"contributors":[{"name":"yzqdev","email":"yzqdev@outlook.com","commits":2}]},"readingTime":{"minutes":14.74,"words":4422},"filePathRelative":"node-tutor/apis/file.md","localizedDate":"2023年6月25日","autoDesc":true}');export{p as comp,f as data};

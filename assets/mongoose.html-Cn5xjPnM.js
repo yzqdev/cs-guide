@@ -1,0 +1,12 @@
+import{_ as e,c as t,o,d as n}from"./app-CbULZrmi.js";const i={},d=n(`<h1 id="mongoose技巧" tabindex="-1"><a class="header-anchor" href="#mongoose技巧"><span>mongoose技巧</span></a></h1><h2 id="去掉-id-id转为string" tabindex="-1"><a class="header-anchor" href="#去掉-id-id转为string"><span>去掉_id,_id转为string</span></a></h2><pre><code class="language-js">new mongoose.Schema(yourSchema, {
+  toJSON: { 
+    transform: function(doc, ret) {
+      ret.id = ret._id;
+      delete ret._id;
+    }
+  }
+});
+</code></pre><h2 id="查询时去掉-id" tabindex="-1"><a class="header-anchor" href="#查询时去掉-id"><span>查询时去掉_id</span></a></h2><pre><code class="language-js">    const query = { _id: { $in: ids } };
+      const options = { lean: true };
+      const result = await model.find(query, {}, options);
+</code></pre>`,5),r=[d];function s(a,c){return o(),t("div",null,r)}const m=e(i,[["render",s],["__file","mongoose.html.vue"]]),l=JSON.parse('{"path":"/node-tutor/node-snippets/mongoose.html","title":"mongoose技巧","lang":"zh-CN","frontmatter":{"description":"mongoose技巧 去掉_id,_id转为string 查询时去掉_id","head":[["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/node-tutor/node-snippets/mongoose.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"mongoose技巧"}],["meta",{"property":"og:description","content":"mongoose技巧 去掉_id,_id转为string 查询时去掉_id"}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2024-04-05T07:30:35.000Z"}],["meta",{"property":"article:author","content":"yzqdev"}],["meta",{"property":"article:modified_time","content":"2024-04-05T07:30:35.000Z"}],["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"mongoose技巧\\",\\"image\\":[\\"\\"],\\"dateModified\\":\\"2024-04-05T07:30:35.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"]]},"headers":[{"level":2,"title":"去掉_id,_id转为string","slug":"去掉-id-id转为string","link":"#去掉-id-id转为string","children":[]},{"level":2,"title":"查询时去掉_id","slug":"查询时去掉-id","link":"#查询时去掉-id","children":[]}],"git":{"createdTime":1712302235000,"updatedTime":1712302235000,"contributors":[{"name":"yzqdev","email":"yzqdev@outlook.com","commits":1}]},"readingTime":{"minutes":0.15,"words":45},"filePathRelative":"node-tutor/node-snippets/mongoose.md","localizedDate":"2024年4月5日","autoDesc":true}');export{m as comp,l as data};

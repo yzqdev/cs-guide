@@ -1,0 +1,166 @@
+import{_ as t,c as n,o,d as e}from"./app-CbULZrmi.js";const a={},i=e(`<h1 id="广播接收器" tabindex="-1"><a class="header-anchor" href="#广播接收器"><span>广播接收器</span></a></h1><h2 id="android-广播接收器-broadcast-receivers" tabindex="-1"><a class="header-anchor" href="#android-广播接收器-broadcast-receivers"><span>Android 广播接收器（Broadcast Receivers）</span></a></h2><div class="hint-container tip"><p class="hint-container-title">提示</p><p>**广播接收器（Broadcast Receivers）**仅响应来自其他应用程序或系统本身的广播消息。这些消息有时称为事件或indent。例如，应用程序还可以启动广播，以使其他应用程序知道某些数据已下载到设备并可供他们使用，因此，这是广播接收器，它将拦截此通信并启动适当的操作。</p></div><p>要使<strong>Broadcast Receiver</strong>用于系统的广播意图，需要执行以下两个重要步骤-</p><ul><li><p>创建广播接收器</p></li><li><p>注册广播接收器</p><p>如果要实现您的自定义意图(indents)，还有另外一个步骤，那么您将必须创建并广播这些意图(indents)。</p></li></ul><h2 id="创建广播接收器" tabindex="-1"><a class="header-anchor" href="#创建广播接收器"><span>创建广播接收器</span></a></h2><p>广播接收器实现为<strong>BroadcastReceiver</strong>类的子类，并且重写<strong>onReceive()<strong>方法，在该方法中，每个消息均作为</strong>Intent</strong>对象参数接收。</p><pre><code class="language-java">  public class MyReceiver extends BroadcastReceiver {
+     @Override
+     public void onReceive(Context context, Intent intent) {
+        Toast.makeText(context, &quot;Intent Detected.&quot;, Toast.LENGTH_LONG).show();
+     }
+  }
+</code></pre><h2 id="注册广播接收器" tabindex="-1"><a class="header-anchor" href="#注册广播接收器"><span>注册广播接收器</span></a></h2><p>应用程序通过在AndroidManifest.xml文件中注册广播接收器来侦听特定的广播意图(indent)。考虑一下，我们将为系统生成的事件<strong>ACTION_BOOT_COMPLETED</strong>注册MyReceiver，一旦Android系统完成启动过程，系统就会触发该事件。</p><p><img src="https://www.jc2182.com/images/android/broadcastreceiver.jpg" alt="service"></p><pre><code class="language-xml">  &lt;application
+     android:icon=&quot;@drawable/ic_launcher&quot;
+     android:label=&quot;@string/app_name&quot;
+     android:theme=&quot;@style/AppTheme&quot; &gt;
+     &lt;receiver android:name=&quot;MyReceiver&quot;&gt;
+  
+        &lt;intent-filter&gt;
+           &lt;action android:name=&quot;android.intent.action.BOOT_COMPLETED&quot;&gt;
+           &lt;/action&gt;
+        &lt;/intent-filter&gt;
+  
+     &lt;/receiver&gt;
+  &lt;/application&gt;
+</code></pre><p>现在，每当您的Android设备启动时，它都会被BroadcastReceiver MyReceiver拦截，并且将执行onReceive()中的已实现逻辑。在Intent类中，有几个系统生成的事件定义为最终静态字段。下表列出了一些重要的系统事件。</p><table><thead><tr><th>事件</th><th>描述</th></tr></thead><tbody><tr><td><strong>android.intent.action.BATTERY_CHANGED</strong></td><td>粘滞广播，包含充电状态、电平和电池的其他信息。</td></tr><tr><td><strong>android.intent.action.BATTERY_LOW</strong></td><td>表示设备电量不足。</td></tr><tr><td><strong>android.intent.action.BATTERY_OKAY</strong></td><td>表示电池电量不足后现在是正常的。</td></tr><tr><td><strong>android.intent.action.BOOT_COMPLETED</strong></td><td>这将在系统完成引导后广播一次。</td></tr><tr><td><strong>android.intent.action.BUG_REPORT</strong></td><td>显示报告错误的活动。</td></tr><tr><td><strong>android.intent.action.CALL</strong></td><td>执行对数据指定的某人的调用。</td></tr><tr><td><strong>android.intent.action.CALL_BUTTON</strong></td><td>用户按下“呼叫”按钮到拨号器或其他适当的用户界面来进行呼叫。</td></tr><tr><td><strong>android.intent.action.DATE_CHANGED</strong></td><td>日期改了。</td></tr><tr><td><strong>android.intent.action.REBOOT</strong></td><td>让设备重新启动。</td></tr></tbody></table><h2 id="广播自定义意图-indent" tabindex="-1"><a class="header-anchor" href="#广播自定义意图-indent"><span>广播自定义意图(Indent)</span></a></h2><p>如果您希望应用程序本身应生成并发送自定义意图，则必须使用Activity类中的sendBroadcast()方法来创建并发送这些意图(Indent)。如果您使用sendStickyBroadcast(Intent)方法，则该Intent是粘性的，这意味着您要发送的Intent在广播完成后仍然存在。</p><pre><code class="language-java">  public void broadcastIntent(View view) {
+     Intent intent = new Intent();
+     intent.setAction(&quot;com.jc2182.demo.CUSTOM_INTENT&quot;);
+     sendBroadcast(intent);
+  }
+</code></pre><p>这个意图com.jc2182.demo.CUSTOM_INTENT也可以通过类似于我们重新注册系统生成的意图的方式进行注册。</p><pre><code class="language-xml">  &lt;application
+     android:icon=&quot;@drawable/ic_launcher&quot;
+     android:label=&quot;@string/app_name&quot;
+     android:theme=&quot;@style/AppTheme&quot; &gt;
+     &lt;receiver android:name=&quot;MyReceiver&quot;&gt;
+  
+        &lt;intent-filter&gt;
+           &lt;action android:name=&quot;com.jc2182.demo.CUSTOM_INTENT&quot;&gt;
+           &lt;/action&gt;
+        &lt;/intent-filter&gt;
+  
+     &lt;/receiver&gt;
+  &lt;/application&gt;
+</code></pre><h2 id="示例" tabindex="-1"><a class="header-anchor" href="#示例"><span>示例</span></a></h2><p>本示例将向您说明如何创建BroadcastReceiver来拦截自定义意图。熟悉自定义意图后，即可对应用程序进行编程以拦截系统生成的意图。因此，让我们按照以下步骤修改我们在<a href="https://www.jc2182.com/andriod/android-hello-world.html" target="_blank" rel="noopener noreferrer">Hello World示例</a>一章中创建的Android应用程序-</p><ol><li>您将使用Android Studio创建一个Android应用程序，并将其命名为HelloWorld，位于com.jc2182.demo.helloworld包下。</li><li>修改主活动文件MainActivity.java以添加broadcastIntent()方法。</li><li>在com.jc2182.demo.helloworld包下创建一个名为MyReceiver.java的新Java文件， 以定义BroadcastReceiver。</li><li>应用程序可以处理一个或多个自定义和系统意图，而没有任何限制。您要拦截的每个意图都必须使用&lt;receiver ... /&gt;标记注册到您的AndroidManifest.xml文件中</li><li>修改res/layout/activity_main.xml文件的默认内容，以包括一个用于广播意图的按钮。</li><li>运行该应用程序以启动Android模拟器并验证在该应用程序中所做更改的结果。</li></ol><p>以下是修改后的主要活动文件MainActivity.java的内容。该文件可以包括每个基本生命周期方法。我们添加了broadcastIntent()方法以广播自定义意图。</p><pre><code class="language-java">  
+  
+  import androidx.appcompat.app.AppCompatActivity;
+  
+  import android.content.ComponentName;
+  import android.content.Intent;
+  import android.os.Bundle;
+  import android.view.View;
+  
+  public class MainActivity extends AppCompatActivity {
+</code></pre><pre><code>  /** 在第一次创建activity时调用。 */
+  @Override
+
+  public void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.activity_main);
+  }
+
+
+  // 广播自定义意图。
+
+  public void broadcastIntent(View view){
+      Intent intent = new Intent();
+      intent.setAction(&quot;com.test.CUSTOM_INTENT&quot;);
+      // 这里ComponentName 第一个参数是 包名 ，第二个参数是广播接收器的类路径
+      intent.setComponent(new ComponentName(&quot;com.jc2182.helloworld&quot;,&quot;com.jc2182.helloworld.MyReceiver&quot;));
+      sendBroadcast(intent);
+  }
+</code></pre><p>}</p><pre><code>
+
+以下是MyReceiver.java的内容：
+
+\`\`\`java
+
+
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.widget.Toast;
+
+public class MyReceiver extends BroadcastReceiver {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        Toast.makeText(context, &quot;检测到意图。&quot;, Toast.LENGTH_LONG).show();
+    }
+}
+</code></pre><p>以下将修改AndroidManifest.xml文件的内容 。在这里，我们添加了&lt;receiver ... /&gt;标签以包括我们的广播接收器：</p><pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    package=&quot;com.jc2182.helloworld&quot;&gt;
+
+    &lt;application
+        android:allowBackup=&quot;true&quot;
+        android:icon=&quot;@mipmap/ic_launcher&quot;
+        android:label=&quot;@string/app_name&quot;
+        android:roundIcon=&quot;@mipmap/ic_launcher_round&quot;
+        android:supportsRtl=&quot;true&quot;
+        android:theme=&quot;@style/AppTheme&quot;&gt;
+        &lt;activity android:name=&quot;.MainActivity&quot;&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+
+                &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+
+        &lt;receiver android:name=&quot;.MyReceiver&quot; &gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name=&quot;com.test.CUSTOM_INTENT&quot;&gt;
+                &lt;/action&gt;
+            &lt;/intent-filter&gt;
+        &lt;/receiver&gt;
+
+    &lt;/application&gt;
+
+&lt;/manifest&gt;
+</code></pre><p>以下是res/layout/activity_main.xml文件的内容，其中包括广播我们的自定义意图的按钮-</p><pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:paddingLeft=&quot;@dimen/activity_horizontal_margin&quot;
+    android:paddingRight=&quot;@dimen/activity_horizontal_margin&quot;
+    android:paddingTop=&quot;@dimen/activity_vertical_margin&quot;
+    android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot;
+    tools:context=&quot;.MainActivity&quot;&gt;
+
+
+    &lt;TextView
+        android:id=&quot;@+id/textView1&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Broadcast 例子&quot;
+        android:layout_alignParentTop=&quot;true&quot;
+        android:layout_centerHorizontal=&quot;true&quot;
+        android:textSize=&quot;30dp&quot; /&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView2&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;蝴蝶教程 &quot;
+        android:textColor=&quot;#ff87ff09&quot;
+        android:textSize=&quot;30dp&quot;
+        android:layout_above=&quot;@+id/imageButton&quot;
+        android:layout_centerHorizontal=&quot;true&quot;
+        android:layout_marginBottom=&quot;40dp&quot; /&gt;
+
+    &lt;ImageButton
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:id=&quot;@+id/imageButton&quot;
+        android:src=&quot;@drawable/logo&quot;
+        android:layout_centerVertical=&quot;true&quot;
+        android:layout_centerHorizontal=&quot;true&quot; /&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/button2&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_below=&quot;@+id/imageButton&quot;
+        android:layout_centerHorizontal=&quot;true&quot;
+        android:layout_marginTop=&quot;55dp&quot;
+        android:onClick=&quot;broadcastIntent&quot;
+        android:text=&quot;广播意图&quot; /&gt;
+
+&lt;/RelativeLayout&gt;
+</code></pre><p>让我们尝试运行修改后的Hello World！我们刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后点击Android StudioRun图标工具栏中的“运行” 图标。Android Studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-</p><p><img src="https://www.jc2182.com/images/android/broadcastreceiver1.png" alt="service"></p><p>现在启动广播接收器，让我们单击“广播意图”按钮，这将启动广播接收器，一条广播消息将出现在模拟器的底部，如下所示：</p>`,34),d=[i];function r(c,l){return o(),n("div",null,d)}const s=t(a,[["render",r],["__file","boardcast.html.vue"]]),p=JSON.parse('{"path":"/android-tutor/basic/boardcast.html","title":"广播接收器","lang":"zh-CN","frontmatter":{"description":"广播接收器 Android 广播接收器（Broadcast Receivers） 提示 **广播接收器（Broadcast Receivers）**仅响应来自其他应用程序或系统本身的广播消息。这些消息有时称为事件或indent。例如，应用程序还可以启动广播，以使其他应用程序知道某些数据已下载到设备并可供他们使用，因此，这是广播接收器，它将拦截此通信并启...","head":[["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/android-tutor/basic/boardcast.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"广播接收器"}],["meta",{"property":"og:description","content":"广播接收器 Android 广播接收器（Broadcast Receivers） 提示 **广播接收器（Broadcast Receivers）**仅响应来自其他应用程序或系统本身的广播消息。这些消息有时称为事件或indent。例如，应用程序还可以启动广播，以使其他应用程序知道某些数据已下载到设备并可供他们使用，因此，这是广播接收器，它将拦截此通信并启..."}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:image","content":"https://www.jc2182.com/images/android/broadcastreceiver.jpg"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2023-06-25T05:00:38.000Z"}],["meta",{"property":"article:author","content":"yzqdev"}],["meta",{"property":"article:modified_time","content":"2023-06-25T05:00:38.000Z"}],["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"广播接收器\\",\\"image\\":[\\"https://www.jc2182.com/images/android/broadcastreceiver.jpg\\",\\"https://www.jc2182.com/images/android/broadcastreceiver1.png\\"],\\"dateModified\\":\\"2023-06-25T05:00:38.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"]]},"headers":[{"level":2,"title":"Android 广播接收器（Broadcast Receivers）","slug":"android-广播接收器-broadcast-receivers","link":"#android-广播接收器-broadcast-receivers","children":[]},{"level":2,"title":"创建广播接收器","slug":"创建广播接收器","link":"#创建广播接收器","children":[]},{"level":2,"title":"注册广播接收器","slug":"注册广播接收器","link":"#注册广播接收器","children":[]},{"level":2,"title":"广播自定义意图(Indent)","slug":"广播自定义意图-indent","link":"#广播自定义意图-indent","children":[]},{"level":2,"title":"示例","slug":"示例","link":"#示例","children":[]}],"git":{"createdTime":1684738995000,"updatedTime":1687669238000,"contributors":[{"name":"yzqdev","email":"yzqdev@outlook.com","commits":1}]},"readingTime":{"minutes":5.41,"words":1624},"filePathRelative":"android-tutor/basic/boardcast.md","localizedDate":"2023年5月22日","autoDesc":true}');export{s as comp,p as data};
