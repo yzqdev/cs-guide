@@ -3,6 +3,8 @@
 设置outlook的地址  
 [outlook设置](https://support.microsoft.com/zh-cn/office/outlook-com-%E7%9A%84-pop-imap-%E5%92%8C-smtp-%E8%AE%BE%E7%BD%AE-d088b986-291d-42b8-9564-9c414e2aa040)
 
+imap是双向协议,可以接受邮件可以发送邮件,pop是接受邮件,smtp是发送邮件
+
 ```python
 conf = ConnectionConfig(MAIL_USERNAME="Microsoft@outlook.com",
                         MAIL_PASSWORD="123456",
@@ -16,24 +18,51 @@ conf = ConnectionConfig(MAIL_USERNAME="Microsoft@outlook.com",
                         VALIDATE_CERTS=True)
 ```
 
-如下图
+```python
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
 
-| **电子邮件提供商** | **IMAP 设置** | **POP 设置** | **SMTP 设置** |
-| ------------------ | ------------- | ------------ | ------------- |
-| Microsoft 365      |
-Outlook
-Hotmail
-Live.com | 服务器：outlook.office365.com
-端口：993
-加密：SSL/TLS | 服务器：outlook.office365.com
-端口：995
-加密：SSL/TLS | 服务器：smtp.office365.com
-端口：587
-加密：STARTTLS |
-| MSN | 服务器：imap-mail.outlook.com
-端口：993
-加密：SSL/TLS | 服务器：pop-mail.outlook.com
-端口：995
-加密：SSL/TLS | 服务器：smtp-mail.outlook.com
-端口：587
-加密：STARTTLS |
+
+def send_outlook():
+    """
+    send 163 email
+    """
+
+    # 发件人的邮箱账号
+    sender = "111111@outlook.com"
+    # 发件人的邮箱密码（注意：这里是授权码，不是登录密码）
+    password = "1111111"
+    # 收件人的邮箱账号
+    receiver = "1111111@11.com"
+
+    # 邮件主题
+    subject = "这是邮件主题"
+    # 邮件正文
+    message = "这是邮件正文"
+
+    # 创建邮件对象
+    msg = MIMEText(message, "plain", "utf-8")
+    msg["Subject"] = Header(subject, "utf-8")
+    msg["From"] = sender
+    msg["To"] = receiver
+
+    # 发送邮件
+    try:
+        server = smtplib.SMTP(
+            "smtp-mail.outlook.com", 587
+        )  # 根据你的邮箱服务器进行修改
+        server.starttls()
+        # server.connect()
+
+        server.login(sender, password)
+        server.sendmail(sender, [receiver], msg.as_string())
+        server.quit()
+        print("邮件发送成功")
+    except Exception as e:
+        print("邮件发送失败", e)
+
+
+if __name__ == "__main__":
+    send_outlook()
+```
