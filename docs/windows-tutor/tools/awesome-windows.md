@@ -81,11 +81,13 @@ wps图片,现在已经被整合进wps里面了..
 - krita
 - blender (steam商店下载)
 
+### billfish(推荐)
+图片整理软件
 ## 截屏软件
 
 ### pixpin
 
-<https://www.appinn.com/pixpin/>
+<https://pixpinapp.com/>
 
 ## eSearch
 
@@ -290,3 +292,8 @@ ssh工具,很好看
 - [Inpaint](https://www.theinpaint.com/)：图片去瑕，去除图片中不需要的内容
 
 字幕软件<https://arctime.org/download.html>
+
+
+## ssh软件
+
+xterminal https://www.terminal.icu/

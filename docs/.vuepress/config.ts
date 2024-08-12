@@ -42,7 +42,7 @@ export default defineUserConfig({
   bundler: viteBundler(),
   theme,
   plugins: [
-     
+        
  
     docsearchPlugin({
       // ...

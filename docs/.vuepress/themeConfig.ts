@@ -75,10 +75,17 @@ export default hopeTheme(
     plugins: {
       blog: false,
       catalog:true,
-      prismjs: {
-        dark: 'tomorrow',
-        light: 'tomorrow',
+      prismjs:{
+        light:'one-light'
       },
+      // shiki: {
+      //   lineNumbers: 15,
+      //   notationDiff: true,
+      //   themes: {
+      //     light: "one-dark-pro",
+      //     dark: "one-dark-pro",
+      //   },
+      // },
       pwa: {
         update: 'hint',
         favicon: '/favicon.ico',

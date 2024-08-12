@@ -45,6 +45,7 @@ DROP DATABASE test2;
 # 删除一个不确定的数据库
 drop database if exists test2;
 ```
+
 ## 备份数据库和恢复数据库
 
 1. 使用heidisql备份所有
@@ -57,6 +58,19 @@ mysqldump -uroot -p --all-databases > sqlbackup.sql
 ```
 
 恢复数据库
+
 ```
 mysql -uroot -p   < E:/tmp/sqlbackup.sql
 ```
+
+如果使用powershell需要这样
+
+```powershell
+get-content .\sqlbackup.sql |mysql -uroot -p --default-character-set=utf8mb4
+
+```
+
+## 错误MySQL84 -- ERROR 1524 (HY000): Plugin ‘msql_native_password‘ is not loaded
+
+修改MySQL配置文件my.ini，在[mysqld]段添加mysql_native_password=ON。
+管理员身份启动mysql命令行，重启mysql
