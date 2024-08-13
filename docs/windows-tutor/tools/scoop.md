@@ -91,6 +91,7 @@ scoop install go
 - scoop install main/pandoc
 - scoop install main/libwebp
 - scoop install main/kondo
+- scoop install extras/hibit-uninstaller
 - aria2
 - curl
 - fd
