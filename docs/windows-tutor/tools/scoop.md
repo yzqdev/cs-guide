@@ -99,6 +99,7 @@ scoop install go
 - hugo-extended
 - lazygit
 - oh-my-posh
+- scoop install versions/innounp-unicode
 - scoop install main/mingw
 - scoop install extras/nsis
 - scoop install extras/notepad3
@@ -131,6 +132,7 @@ scoop install go
 - scoop install main/curlie
 - scoop install extras/waterfox
 - scoop install main/nano
+- scoop install extras/scene-builder
 
 ### 软件
 
@@ -162,6 +164,7 @@ scoop install go
 - scoop install extras/detect-it-easy
 - scoop install extras/scene-builder
 - scoop install main/pandoc
+- scoop install extras/detect-it-easy
 - localsend
 - krita
 - inkscape

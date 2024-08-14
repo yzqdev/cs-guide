@@ -34,13 +34,23 @@
 
 ### rustup镜像
 
+:::
+记得先添加环境变量
+
+```powershell
+$env:RUSTUP_DIST_SERVER="https://mirrors.tuna.tsinghua.edu.cn/rustup"
+ $ENV:RUSTC_BOOTSTRAP=1
+ $env:RUSTUP_HOME='c:/users/admin/.rustup'
+ $env:CARGO_HOME='c:/users/admin/.cargo'
+```
+
+:::
 安装rust前配置环境变量，指定 rustup 镜像源  
 
 > 华中科技大学  
-https://mirrors.hust.edu.cn/docs/rustup
+<https://mirrors.hust.edu.cn/docs/rustup>
 
-
- > 清华大学    
+ > 清华大学
 `RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup`
 
  > 中国科学技术大学  
@@ -51,23 +61,20 @@ RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
 ```
 
  > 上海交通大学  
- 
-`RUSTUP_DIST_SERVER=https://mirrors.sjtug.sjtu.edu.cn/rust-static/`
 
+`RUSTUP_DIST_SERVER=https://mirrors.sjtug.sjtu.edu.cn/rust-static/`
 
 ### crates镜像
 
-
 > 字节跳动
 
- https://rsproxy.cn
+ <https://rsproxy.cn>
 
- 对应的类似nvm, nrm的工具 https://github.com/wtklbm/crm
+ 对应的类似nvm, nrm的工具 <https://github.com/wtklbm/crm>
  可以切换镜像源
- 
 
 `rustup` 默认会将 Rust 的工具链和 Cargo 的家目录设置在用户的主目录下的隐藏文件夹 `.cargo` 中。`CARGO_HOME` 环境变量可以被认为是依赖下载的文件夹，而 `RUSTUP_HOME` 环境变量是rust工具链的文件夹,注意一定要保证`$CARGO_HOME/bin`在path环境变量中,这样cargo才可以使用
- 
+
 在`$HOME/.cargo/config.toml`中添加
 
 ```ini
