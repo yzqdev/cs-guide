@@ -214,7 +214,7 @@ disabled = false
 
 ```
 
-### 安装oh-my-posh
+### 安装oh-my-posh(不推荐,太卡了)
 
 ### linux安装
 

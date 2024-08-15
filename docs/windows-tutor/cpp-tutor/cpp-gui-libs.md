@@ -1,13 +1,9 @@
 # cpp的gui库
 
-[https://www.gtk.org/](https://www.gtk.org/)
-​
-
-qt [链接](https://qt.io)
-​
-
-[https://www.wxwidgets.org/](https://www.wxwidgets.org/)
-[https://github.com/idea4good/GuiLite](https://github.com/idea4good/GuiLite)
+- [https://www.gtk.org/](https://www.gtk.org/)
+- qt [链接](https://qt.io)
+- [https://www.wxwidgets.org/](https://www.wxwidgets.org/)
+- [https://github.com/idea4good/GuiLite](https://github.com/idea4good/GuiLite)
 
 ## cpp图形界面框架
 

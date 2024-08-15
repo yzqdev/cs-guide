@@ -21,7 +21,6 @@
 
 `"terminal.integrated.env.windows": { "PYTHONPATH": "${workspaceFolder}" }`
 
-
 ## vscode加载appdata里面的types怎么办
 
 配置`settings.json`,设置`typescript.disableAutomaticTypeAcquisition`
