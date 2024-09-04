@@ -137,6 +137,8 @@ scoop install go
 ### 软件
 
 - dismplusplus
+- ditto (剪切板软件,Win10的话用Win+V就可以了)
+- scrcpy  (手机投屏软件,还有<https://cn.anlinksoft.com/>, <https://landrop.app/>)
 - scoop install extras/openark
 - registry-finder
 - vlc

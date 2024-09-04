@@ -76,7 +76,9 @@ export default hopeTheme(
       blog: false,
       catalog:true,
       prismjs:{
-        light:'one-light'
+themes:{
+  light:'one-light',dark:'one-dark'
+}
       },
       // shiki: {
       //   lineNumbers: 15,

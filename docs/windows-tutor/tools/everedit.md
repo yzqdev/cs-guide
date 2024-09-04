@@ -1,6 +1,24 @@
 ---
 order: 5
 ---
+
+## 右键添加使用everedit打开
+
+新建a.reg文件
+
+```
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\everedit]
+"Icon"="D:\\programs\\EverEdit\\EverEdit.exe"
+@="用EverEdit打开"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\*\shell\everedit\command]
+@="\"D:\\programs\\EverEdit\\EverEdit.exe\" \"%1\""
+
+
+```
+
 # 使用kate代替记事本
 
 :::tip
