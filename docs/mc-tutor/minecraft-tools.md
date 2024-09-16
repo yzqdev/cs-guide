@@ -15,11 +15,9 @@ depixel
 1.12.2及以下版本用mcedit，全版本请用mcaselector
 
 fx下载地址 [https://gluonhq.com/products/javafx/](https://gluonhq.com/products/javafx/)
-​
 
 Open the command prompt and run `java --module-path <path to unzipped folder>/lib --add-modules ALL-MODULE-PATH -jar <path to mcaselector-1.16.3.jar>` where you replace everything in `<>`with the appropriate paths.
 
-​
 
 ### mcedit
 
@@ -30,7 +28,6 @@ Open the command prompt and run `java --module-path <path to unzipped folder>/li
 - [amuletmc](https://www.amuletmc.com)
 - [nbt-studio](https://github.com/tryashtar/nbt-studio)(是NBTExplore的改进版,
 - [NBTExplorer](https://github.com/jaquadro/NBTExplorer)
-​
 
 mcaselector 运行的话java8以上需要javafx(下载javafx)
 
@@ -44,26 +41,28 @@ mcaselector 运行的话java8以上需要javafx(下载javafx)
 [give指令](https://minecraft.fandom.com/zh/wiki/%E5%91%BD%E4%BB%A4/give)
 
 ```txt
-    /give @s minecraft:diamond_sword{Enchantments:[{id:"minecraft:sharpness",lvl:10}]} 1
+    /give @s minecraft:diamond_sword{Enchantments:[{id:"minecraft:sharpness",lvl:10}]} 1   锋利10的钻石剑
+
+/give @s minecraft:iron_sword{Enchantments:[{id:"minecraft:unbreaking",lvl:256}]} 1   无限耐久的铁剑
 ```
 
 附魔指令 [链接](https://minecraft.fandom.com/zh/wiki/%E9%99%84%E9%AD%94)
 
 ### mc给物品添加指令
 
-输入`/powertool` 你要的指令
-比如`/powetool msg` 就给你手上的物品添加了/msg指令
+输入 `/powertool` 你要的指令
+比如 `/powetool msg` 就给你手上的物品添加了/msg指令
 就能把该指令绑定到你手上的物品
 
 ## mc效果代码
 
 - 清除效果 — clear  速度 1 speed
 - 缓慢 2 slowness
-- 急迫 3 haste  
+- 急迫 3 haste
 - 挖掘疲劳 4 mining_fatigue
 - 力量 5 strength
 - 瞬间治疗 6 instant_health
-- 瞬间伤害 7 instant_damage  
+- 瞬间伤害 7 instant_damage
 - 跳跃提升 8 jump_boost           -235 63 250
 - 反胃 9 nausea
 - 生命恢复 10 regeneration
