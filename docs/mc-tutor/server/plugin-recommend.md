@@ -3,7 +3,6 @@ order: 2
 ---
 # mc服务器插件推荐
 
- 
 - [auth-me](https://dev.bukkit.org/projects/authme-reloaded/files)
 - [ancient-gates](https://www.spigotmc.org/resources/ancient-gates.6583/)
 - [beehivetrees](https://www.spigotmc.org/resources/beehivestrees-grow-trees-from-saplings-with-bees.73394/)
@@ -41,5 +40,5 @@ order: 2
 - vault
 - [veinminer](https://www.spigotmc.org/resources/veinminer.12038/)
 - trmenu   [链接](http://repo.iroselle.com/#browse/browse:maven-public:me) 新的 [链接](https://www.mcbbs.net/thread-1240856-1-1.html)
-
 - [plan-player-analytics](https://www.spigotmc.org/resources/plan-player-analytics.32536/)
+- [tab](https://www.spigotmc.org/resources/tab-1-5-1-21-1.57806/)

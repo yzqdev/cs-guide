@@ -44,6 +44,17 @@ mcaselector 运行的话java8以上需要javafx(下载javafx)
     /give @s minecraft:diamond_sword{Enchantments:[{id:"minecraft:sharpness",lvl:10}]} 1   锋利10的钻石剑
 
 /give @s minecraft:iron_sword{Enchantments:[{id:"minecraft:unbreaking",lvl:256}]} 1   无限耐久的铁剑
+/give @p minecraft:netherite_pickaxe{Unbreakable:1b}  无限耐久的下界合金镐子(1.20.6之前)
+/give @p netherite_pickaxe[unbreakable={}] 1   (1.20.6之后)
+
+Netherite sword with 9999 attack damage: 
+/give @p netherite_sword[attribute_modifiers=[{id:"attack_damage",type:"generic.attack_damage",amount:9999,operation:"add_value",slot:"mainhand"}]] 1
+
+Dirt with 10 attack damage:
+/give @p dirt[attribute_modifiers=[{id:"attack_damage",type:"generic.attack_damage",amount:10,operation:"add_value",slot:"mainhand"}]] 1
+
+Netherite sword with hidden attack damage:
+/give @p netherite_sword[attribute_modifiers={modifiers:[{id:"attack_damage",type:"generic.attack_damage",amount:1,operation:"add_value",slot:"mainhand"}],show_in_tooltip:false}] 1
 ```
 
 附魔指令 [链接](https://minecraft.fandom.com/zh/wiki/%E9%99%84%E9%AD%94)
