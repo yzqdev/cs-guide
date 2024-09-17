@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>element-plus</title>
+     
+  </head>
+  <body>
+    <div id="app">
+      <button type="primary" @click="showMsg">element-plus</button>
+    </div>
+
+    <script type="module">
+       
+     
+         import {  createApp, reactive, toRefs } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+         
+      // 使用setup
+     
+      const data = reactive({
+        state: 12,
+      });
+      const app = createApp({
+        setup() {
+          function showMsg( ) {
+            alert("hhh")
+          }
+          return {
+showMsg,
+            ...toRefs(data),
+          };
+        },
+      });
+    
+      app.mount("#app");
+    </script>
+  </body>
+</html>
