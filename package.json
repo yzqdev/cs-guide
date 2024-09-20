@@ -10,23 +10,23 @@
     "lint": "prettier --write docs"
   },
   "dependencies": {
-    "@vue/repl": "^4.3.1",
+    "@vue/repl": "^4.4.2",
     "@vuepress/bundler-vite": "2.0.0-rc.14",
     "@vuepress/plugin-docsearch": "2.0.0-rc.39",
     "@vuepress/plugin-prismjs": "2.0.0-rc.39",
     "@vuepress/plugin-pwa": "2.0.0-rc.39",
-    "@vueuse/core": "^10.11.1",
-    "axios": "1.7.3",
-    "element-plus": "2.8.0",
+    "@vueuse/core": "^11.1.0",
+    "axios": "1.7.7",
+    "element-plus": "2.8.3",
     "highlight.js": "^11.10.0",
-    "sass": "^1.78.0",
-    "sass-loader": "^14.2.1",
-    "vue": "^3.5.0",
+    "sass": "^1.79.2",
+    "sass-loader": "^16.0.2",
+    "vue": "^3.5.6",
     "vuepress": "2.0.0-rc.14",
-    "vuepress-shared": "2.0.0-rc.52",
-    "vuepress-theme-hope": "2.0.0-rc.52"
+    "vuepress-shared": "2.0.0-rc.53",
+    "vuepress-theme-hope": "2.0.0-rc.53"
   },
   "devDependencies": {
-    "@types/node": "^22.5.3"
+    "@types/node": "^22.5.5"
   }
 }

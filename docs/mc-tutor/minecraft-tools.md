@@ -2,7 +2,9 @@
 order: 3
 ---
 # mc工具
+## mc使用java推荐
 
+https://zh.minecraft.wiki/w/Tutorial:%E6%9B%B4%E6%96%B0Java#%E9%80%89%E6%8B%A9Java%E5%8F%91%E8%A1%8C%E7%89%88
 ## 资源包
 
 faithful
