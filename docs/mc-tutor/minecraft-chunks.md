@@ -43,3 +43,8 @@ Px, Pz的类型均为浮点型(float), Cx, Cz, Rx, Rz均为整数型(int)
 
 也就是说只要知道玩家坐标 (Px , Pz)
 便可获知区块坐标 (Px / 16 , Pz / 16) 和 .mca文件名 r.`Px/512`.`Pz/512`.mca
+
+
+## 关于seed
+
+在level.dat里面把seed由1改为2,那么删掉poi和region文件夹之后,重新进入世界就是seed为2的地图了
