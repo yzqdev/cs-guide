@@ -3,7 +3,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { path } from 'vuepress/utils'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 import theme from './themeConfig'
- 
+ import { prismjsPlugin } from '@vuepress/plugin-prismjs'
 import { defineUserConfig } from 'vuepress'
 export default defineUserConfig({
   base: '/cs-guide/',
@@ -43,7 +43,7 @@ export default defineUserConfig({
   theme,
   plugins: [
         
- 
+    
     docsearchPlugin({
       // ...
       appId: '34G1OD781X',

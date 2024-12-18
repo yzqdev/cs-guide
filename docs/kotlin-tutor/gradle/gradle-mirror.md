@@ -11,17 +11,17 @@
  在`.gradle`文件夹添加下面这个`<UserDir>/.gradle/init.d/init.gradle.kts`:
 
 ```kotlin
- 
-val urlMappings1 = mapOf(
+ val urlMappings1 = mapOf(
     "https://repo.maven.apache.org/maven2" to "https://maven.aliyun.com/repository/public/",
     "https://dl.google.com/dl/android/maven2" to "https://maven.aliyun.com/repository/google/",
     "https://plugins.gradle.org/m2" to "https://maven.aliyun.com/repository/gradle-plugin/"
 )
-val urlMappings  = mapOf(
+val urlMappings = mapOf(
     "https://repo.maven.apache.org/maven2" to "https://mirrors.tencent.com/nexus/repository/maven-public/",
     "https://dl.google.com/dl/android/maven2" to "https://mirrors.tencent.com/nexus/repository/maven-public/",
     "https://plugins.gradle.org/m2" to "https://mirrors.tencent.com/nexus/repository/gradle-plugins/"
 )
+
 fun RepositoryHandler.enableMirror() {
     all {
         if (this is MavenArtifactRepository) {
@@ -33,6 +33,38 @@ fun RepositoryHandler.enableMirror() {
         }
     }
 }
+gradle.beforeSettings {
+   rootProject{
+       println("当前gradle版本:"+gradle.gradleVersion)
+   }
+}
+// init.gradle.kts
+gradle.afterProject {
+    val wrapperPropertiesFile = file("gradle/wrapper/gradle-wrapper.properties")
+    if (wrapperPropertiesFile.exists()) {
+        val properties = java.util.Properties()
+        wrapperPropertiesFile.inputStream().use { properties.load(it) }
+
+        // Modify the distributionUrl here
+        val newDistributionUrl =
+            "https://services.gradle.org/distributions/gradle-" + System.getenv("gradleVersion") + "-all.zip"
+
+        val useGradle7 = this.extra.has("useGradle7")
+        if (useGradle7  ) {
+            properties["distributionUrl"] ="https://services.gradle.org/distributions/gradle-7.6.2-all.zip"
+            println("change dist url=> " + newDistributionUrl)
+            wrapperPropertiesFile.outputStream().use { properties.store(it, null) }
+        }else{
+            properties["distributionUrl"] = newDistributionUrl
+            println("change dist url=> " + newDistributionUrl)
+            wrapperPropertiesFile.outputStream().use { properties.store(it, null) }
+        }
+
+        // Save the modified properties back to the file
+
+    }
+}
+
 gradle.allprojects {
     buildscript {
         repositories.enableMirror()
@@ -40,7 +72,7 @@ gradle.allprojects {
     repositories.enableMirror()
 }
 
-gradle.beforeSettings { 
+gradle.beforeSettings {
     pluginManagement.repositories.enableMirror()
     dependencyResolutionManagement.repositories.enableMirror()
 }

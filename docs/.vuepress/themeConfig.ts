@@ -71,15 +71,53 @@ export default hopeTheme(
     //   global:true,
     //  admin:'123456'
     // },
+    markdown: {
+      tabs: true,
+      codeTabs:true,
+      demo: true,
+      sub: true,
+      sup: true,
+      footnote: true,
+      mark: true,
+      vuePlayground: true,
 
+      //start playground 配置
+      playground: {
+        presets: [
+          'ts',
+          'vue',
+          {
+            name: 'playground#language',
+            component: 'PlaygroundComponent',
+            propsGetter: (playgroundData): Record<string, string> => ({
+              // playground props
+            }),
+          },
+        ],
+        config: {
+          ts: {
+            // ...
+          },
+          vue: {
+            // ...
+          },
+        },
+      },
+      //end playground 配置
+      highlighter: {
+        type: 'prismjs',
+        lineNumbers: 15,
+        notationDiff: true,
+        themes: {
+          light: 'one-dark',
+          dark: 'one-dark',
+        },
+      },
+    },
     plugins: {
       blog: false,
-      catalog:true,
-      prismjs:{
-themes:{
-  light:'one-light',dark:'one-dark'
-}
-      },
+      catalog: true,
+
       // shiki: {
       //   lineNumbers: 15,
       //   notationDiff: true,
@@ -139,40 +177,6 @@ themes:{
       },
       components: {
         components: ['BiliBili', 'PDF', 'StackBlitz'],
-      },
-      mdEnhance: {
-        tabs: true,
-        codetabs: true,
-        demo: true,
-        sub: true,
-        sup: true,
-        footnote: true,
-        mark: true,
-        vuePlayground: true,
-
-        //start playground 配置
-        playground: {
-          presets: [
-            'ts',
-            'vue',
-            {
-              name: 'playground#language',
-              component: 'PlaygroundComponent',
-              propsGetter: (playgroundData): Record<string, string> => ({
-                // playground props
-              }),
-            },
-          ],
-          config: {
-            ts: {
-              // ...
-            },
-            vue: {
-              // ...
-            },
-          },
-        },
-        //end playground 配置
       },
     },
   },
