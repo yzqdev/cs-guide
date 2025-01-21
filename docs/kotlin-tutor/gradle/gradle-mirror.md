@@ -11,7 +11,7 @@
  在`.gradle`文件夹添加下面这个`<UserDir>/.gradle/init.d/init.gradle.kts`:
 
 ```kotlin
- val urlMappings1 = mapOf(
+val urlMappings1 = mapOf(
     "https://repo.maven.apache.org/maven2" to "https://maven.aliyun.com/repository/public/",
     "https://dl.google.com/dl/android/maven2" to "https://maven.aliyun.com/repository/google/",
     "https://plugins.gradle.org/m2" to "https://maven.aliyun.com/repository/gradle-plugin/"
@@ -33,15 +33,22 @@ fun RepositoryHandler.enableMirror() {
         }
     }
 }
-gradle.beforeSettings {
-   rootProject{
-       println("当前gradle版本:"+gradle.gradleVersion)
-   }
-}
+ 
 // init.gradle.kts
-gradle.afterProject {
+gradle.beforeSettings{
+
+    println("设置镜像")
+    pluginManagement.repositories.enableMirror()
+    dependencyResolutionManagement.repositories.enableMirror()
+
+    println("当前gradle版本:"+gradle.gradleVersion)
+}
+gradle.beforeProject {
+ 
+   
     val wrapperPropertiesFile = file("gradle/wrapper/gradle-wrapper.properties")
     if (wrapperPropertiesFile.exists()) {
+        println("设置wrapper版本")
         val properties = java.util.Properties()
         wrapperPropertiesFile.inputStream().use { properties.load(it) }
 
@@ -51,7 +58,7 @@ gradle.afterProject {
 
         val useGradle7 = this.extra.has("useGradle7")
         if (useGradle7  ) {
-            properties["distributionUrl"] ="https://services.gradle.org/distributions/gradle-7.6.2-all.zip"
+            properties["distributionUrl"] ="https://services.gradle.org/distributions/gradle-7.6.4-all.zip"
             println("change dist url=> " + newDistributionUrl)
             wrapperPropertiesFile.outputStream().use { properties.store(it, null) }
         }else{
@@ -70,12 +77,10 @@ gradle.allprojects {
         repositories.enableMirror()
     }
     repositories.enableMirror()
+    
 }
 
-gradle.beforeSettings {
-    pluginManagement.repositories.enableMirror()
-    dependencyResolutionManagement.repositories.enableMirror()
-}
+
 
  
 ```
