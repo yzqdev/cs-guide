@@ -10,7 +10,7 @@ export default hopeTheme(
       name: 'yzqdev',
       url: 'http://www.yzqdev.top',
     },
-    iconAssets: 'iconify',
+   
     // iconPrefix: 'iconfont icon-',
 
     logo: '/ayaka.webp',
@@ -117,7 +117,7 @@ export default hopeTheme(
     plugins: {
       blog: false,
       catalog: true,
-
+ icon:{assets:'iconify'},
       // shiki: {
       //   lineNumbers: 15,
       //   notationDiff: true,

@@ -5,8 +5,8 @@
     "outDir": "dist",
     "target": "ES2022",
     "lib": ["ESNext"],
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "strict": false,
 
     "experimentalDecorators": true,
