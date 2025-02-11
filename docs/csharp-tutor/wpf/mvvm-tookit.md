@@ -153,3 +153,42 @@ public partial class TookitView : Window
 }
 
 ```
+
+## 注意事项
+
+```csharp
+  public RelayCommand IoCommand=new RelayCommand(() => { });
+  public RelayCommand IoCommand=>new RelayCommand(() => { });
+
+
+```
+
+第一种是field定义:初始化RelayCommand一次,实例在对象的整个生命周期中保持不变(mvvm中无法生效)
+
+改为下面可以生效(单例)
+
+```csharp
+private RelayCommand _ioCommand;
+ public RelayCommand IoCommand => _ioCommand ??= new RelayCommand(ExecuteIoCommand);
+```
+
+第二种是只读的property定义:定义IoCommand为只读的property, RelayCommand的实例每次都会创建,不推荐使用,等同于
+
+```csharp
+public RelayCommand IoCommand
+{
+    get { return new RelayCommand(() => { }); }
+}
+```
+
+推荐的写法
+
+```csharp
+public RelayCommand IoCommand { get; }
+
+public ViewModel()
+{
+    IoCommand = new RelayCommand(() => { });
+}
+
+```

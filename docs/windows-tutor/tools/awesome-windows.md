@@ -82,7 +82,9 @@ wps图片,现在已经被整合进wps里面了..
 - blender (steam商店下载)
 
 ### billfish(推荐)
+
 图片整理软件
+
 ## 截屏软件
 
 ### pixpin
@@ -276,6 +278,17 @@ Dism++提供了开放的清理以及优化功能，用户可以自定义Dism++�
 
 ssh工具,很好看
 
+## allen explore
+
+<https://www.allenxiang.com/index.html>
+
+## one commander
+
+<https://onecommander.com/>
+
+## q-dir
+<http://www.q-dir.com/>
+
 ## wiztree
 
 - [wiztree](https://diskanalyzer.com/?ref=wiztree) 查看文件夹打小,又快又好
@@ -293,7 +306,6 @@ ssh工具,很好看
 
 字幕软件<https://arctime.org/download.html>
 
-
 ## ssh软件
 
-xterminal https://www.terminal.icu/
+xterminal <https://www.terminal.icu/>
