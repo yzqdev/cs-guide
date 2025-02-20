@@ -31,7 +31,32 @@ poetry export -f requirements.txt --output requirements.txt
 poetry提供了全局config配置和特定项目的config配置。
 windows下的全局config配置文件：`%APPDATA%\pypoetry/config.yoml`
 
+```powershell
+start $env:APPDATA/pypoetry\
+```
+
+我的配置
+
+```toml
+[virtualenvs]
+in-project = true
+prompt = "{project_name}"
+
+ 
+[repositories.pypi]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+
+```
+
 ### 指定pip源
+
+这是全局的
+
+```powershell
+poetry config repositories.pypi https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+下面这个每个项目都要指定
 
 ```
 [[tool.poetry.source]]

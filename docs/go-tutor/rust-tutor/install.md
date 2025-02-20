@@ -1,7 +1,7 @@
 # 安装rust
 
 :::tip
-下载程序: <https://www.rust-lang.org/learn/get-started>
+下载程序: [https://www.rust-lang.org/learn/get-started](https://www.rust-lang.org/learn/get-started)
 
 关于包管理器
 
@@ -12,9 +12,9 @@
 - publish a library to crates.io with `cargo publish`
 - To test that you have Rust and Cargo installed, you can run this in your terminal of choice:`cargo --version`
 
-# 基础知识
+## 基础知识
 
-## rust包管理
+### rust包管理
 
 :::tip
 仓库搜索
@@ -22,76 +22,53 @@
 - [https://crates.io/](https://crates.io/)
 - [https://docs.rs/](https://docs.rs/)
 
-建议使用镜像  
+建议使用镜像
 [http://mirrors.ustc.edu.cn/help/crates.io-index.html](http://mirrors.ustc.edu.cn/help/crates.io-index.html)
 :::
 
 ## 安装
 
-<https://www.rust-lang.org/tools/install>
+[https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install)
 
 ## 添加镜像
 
 ### rustup镜像
 
-:::
-记得先添加环境变量
+下载rust-init.exe之后,先添加环境变量
 
-```powershell
-$env:RUSTUP_DIST_SERVER="https://mirrors.tuna.tsinghua.edu.cn/rustup"
- $ENV:RUSTC_BOOTSTRAP=1
- $env:RUSTUP_HOME='c:/users/admin/.rustup'
- $env:CARGO_HOME='c:/users/admin/.cargo'
+```text
+
+RUSTUP_DIST_SERVER    https://mirrors.hust.edu.cn/rustup
+RUSTUP_UPDATE_ROOT    https://mirrors.hust.edu.cn/rustup/rustup
+
+CARGO_HOME            F:\deps\.cargo
+RUSTC_BOOTSTRAP       1
+RUSTUP_HOME           F:\deps\.rustup
 ```
-
-:::
-安装rust前配置环境变量，指定 rustup 镜像源  
-
-> 华中科技大学  
-<https://mirrors.hust.edu.cn/docs/rustup>
-
- > 清华大学
-`RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup`
-
- > 中国科学技术大学  
-
-```shell
-RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
-RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
-```
-
- > 上海交通大学  
-
-`RUSTUP_DIST_SERVER=https://mirrors.sjtug.sjtu.edu.cn/rust-static/`
 
 ### crates镜像
 
 > 字节跳动
 
- <https://rsproxy.cn>
+ [https://rsproxy.cn](https://rsproxy.cn)
 
- 对应的类似nvm, nrm的工具 <https://github.com/wtklbm/crm>
+ 建议使用工具crm
+
+ [https://github.com/wtklbm/crm](https://github.com/wtklbm/crm)
+先配置一下临时的下载源
+<https://rsproxy.cn/#getStarted>,用来下载crm,不配置会很慢
+
+```powershell
+cargo install crm
+```
+
+crm会在CARGO_HOME添加一个config.toml文件用来设置镜像
+
  可以切换镜像源
 
-`rustup` 默认会将 Rust 的工具链和 Cargo 的家目录设置在用户的主目录下的隐藏文件夹 `.cargo` 中。`CARGO_HOME` 环境变量可以被认为是依赖下载的文件夹，而 `RUSTUP_HOME` 环境变量是rust工具链的文件夹,注意一定要保证`$CARGO_HOME/bin`在path环境变量中,这样cargo才可以使用
+`rustup` 默认会将 Rust 的工具链和 Cargo 的家目录设置在用户的主目录下的隐藏文件夹 `.cargo` 中。`CARGO_HOME` 环境变量可以被认为是依赖下载的文件夹，而 `RUSTUP_HOME` 环境变量是rust工具链的文件夹,注意一定要保证 `$CARGO_HOME/bin`在path环境变量中,这样cargo才可以使用
 
-在`$HOME/.cargo/config.toml`中添加
-
-```ini
-[source.crates-io]
-replace-with = 'ustc'
-
-[source.ustc]
-registry = "git://mirrors.ustc.edu.cn/crates.io-index"
-```
-
-如果所处的环境中不允许使用 git 协议，可以把上述地址改为：
-
-```ini
-registry = "https://mirrors.ustc.edu.cn/crates.io-index"
-```
-
-升级rust
+ 升级rust
 
 ```shell
 rustup update stable
@@ -101,7 +78,7 @@ rustup update
 
 ## 配置config.toml
 
-下面是一个配置文件,路径`$HOME/.cargo/config.toml`
+下面是一个配置文件,路径 `$HOME/.cargo/config.toml`
 
 ```toml
 paths = ["/path/to/override"] # 覆盖 `Cargo.toml` 中通过 path 引入的本地依赖
