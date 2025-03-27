@@ -309,3 +309,25 @@ ssh工具,很好看
 ## ssh软件
 
 xterminal <https://www.terminal.icu/>
+
+## 浏览器推荐
+
+- chrome
+- edge
+- brave
+- cent browser
+- vivaldi 浏览器
+- run cheese chrome
+- [chrome portable](https://github.com/zzp198/Google-Chrome-Portable)
+- opera 浏览器
+- Thorium
+- ungoogled-chromium
+- slimjet浏览器
+- Tor Browser
+- chrome go
+
+firefox系列
+
+- water fox
+- firefox
+- floorp

@@ -26,7 +26,8 @@ order: 2
 [viasfora](https://marketplace.visualstudio.com/items?itemName=TomasRestrepo.Viasfora)
 
 ## resx manger
-https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager
+
+<https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager>
 
 ### codemaid
 
@@ -95,3 +96,6 @@ Codist is a Visual Studio extension which strives to provide better coding exper
 ## [Roslynator2022](https://marketplace.visualstudio.com/items?itemName=josefpihrt.Roslynator2022)
 
 ## [SolutionErrorVisualizer2022](https://marketplace.visualstudio.com/items?itemName=VisualStudioPlatformTeam.SolutionErrorVisualizer2022)
+
+## wpfui
+<https://marketplace.visualstudio.com/items?itemName=lepo.WPF-UI>
