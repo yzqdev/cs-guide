@@ -325,6 +325,8 @@ xterminal <https://www.terminal.icu/>
 - slimjet浏览器
 - Tor Browser
 - chrome go
+- catxp https://www.catsxp.com/
+- zen browser https://zen-browser.app/download/
 
 firefox系列
 
