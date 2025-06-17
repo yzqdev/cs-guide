@@ -34,11 +34,7 @@ export default navbar([
       { text: 'kotlin', icon: 'logos:kotlin-icon', link: '/kotlin-tutor/' },
     ],
   },
-  {
-    text: 'mc教程',
-    icon: 'twemoji:video-game',
-    link: '/mc-tutor/',
-  },
+ 
   {
     text: '技巧',
     icon: 'emojione:fire',

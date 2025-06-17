@@ -1,4 +1,4 @@
-import { ref, h, computed, defineComponent, Plugin, watch } from "vue";
+import { ref, h, computed, defineComponent,   watch } from "vue";
 import hljs from "highlight.js/lib/core";
 import "highlight.js/styles/atom-one-dark.css";
 export function escapeHtml(value: string): string {
