@@ -2,6 +2,10 @@
 order: 3
 ---
 # windows好用的软件
+## 其他
+
+- unigetui
+https://github.com/marticliment/UniGetUI
 
 ## 看图软件
 
@@ -70,6 +74,8 @@ wps图片,现在已经被整合进wps里面了..
 ### potplayer
 
 [potplayer](http://potplayer.tv/?lang=zh_CN)
+
+potplayer 不显示缩略图, 解决方法: 直接下载 K-Lite Codec Pack 这个工具 (https://www.codecguide.com/download_k-lite_codec_pack_standard.htm)
 
 ### vlc
 
