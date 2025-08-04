@@ -255,3 +255,5 @@ use
 final void Function()? onPressed; // Good
 final VoidCallback? onPressed; // Good
 ```
+## 开发flutter plugin没有代码提示  
+我们需要用android studio打开`example`里面的android文件夹,(不是插件根目录的android,根目录里面的没有flutter的ffi代码),然后等他加载完毕就好了,一定要是example里面的android文件夹哦
