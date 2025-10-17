@@ -37,9 +37,9 @@ q::after {
 :::
  一个todo
 
- :::normal-demo
+:::normal-demo
 
- ```html
+```html
  <ul>
   <li>Buy milk</li>
   <li>Take the dog for a walk</li>

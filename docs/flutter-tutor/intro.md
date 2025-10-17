@@ -24,8 +24,17 @@ FLUTTER_STORAGE_BASE_URL: https://storage.flutter-io.cn
 PUB_HOSTED_URL: https://pub.flutter-io.cn
 ```
 
-:::
 
+
+:::
+## 使用fvm安装
+
+记得挂全局代理 (tun模式)
+
+<https://fvm.app/documentation/getting-started>
+```
+fvm use 3.29.3
+```
 ## 常用命令
 
 ```powershell

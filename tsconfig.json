@@ -1,19 +1,14 @@
-
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "outDir": "dist",
-    "target": "ES2022",
-    "lib": ["ESNext"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "strict": false,
-
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    //"verbatimModuleSyntax": true,
-    "resolveJsonModule": true
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022"
   },
-  "include": ["./__tests__/**/*.ts", "./scripts/**/*.ts", "./docs/.vuepress/**/*.ts", "./docs/.vuepress/**/*.vue", "./typings/**/*.ts", "eslint.config.js"]
+  "include": [
+    "docs/.vuepress/**/*.ts",
+    "docs/.vuepress/**/*.vue"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

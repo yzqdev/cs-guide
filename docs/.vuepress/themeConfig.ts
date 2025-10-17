@@ -79,7 +79,7 @@ export default hopeTheme(
       sup: true,
       footnote: true,
       mark: true,
-      vuePlayground: true,
+      vuePlayground: false,
 
       //start playground 配置
       playground: {
