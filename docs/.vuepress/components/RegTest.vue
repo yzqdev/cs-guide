@@ -644,16 +644,16 @@ onMounted(() => {
                     </template>
                     <el-checkbox-group v-model="checkboxGroupValue">
                       <el-space direction="vertical" size="small">
-                        <el-checkbox label="g">
+                        <el-checkbox label="g" value="g">
                           全局搜索 <strong> -g</strong>
                         </el-checkbox>
-                        <el-checkbox label="i">
+                        <el-checkbox label="i" value="i">
                           忽略大小写<strong> -i</strong>
                         </el-checkbox>
-                        <el-checkbox label="m">
+                        <el-checkbox label="m" value="m">
                           多行模式<strong> -m</strong>
                         </el-checkbox>
-                        <el-checkbox label="s">
+                        <el-checkbox label="s" value="s">
                           包括换行符<strong> -s</strong>
                         </el-checkbox>
                         <hr />

@@ -47,5 +47,5 @@ jobs:
           # 部署文档
           token: ${{ secrets.ACCESS_TOKEN }}
           branch: gh-pages
-          folder: docs/.vuepress/dist
+          folder: ./dist
           single-commit: true
