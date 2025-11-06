@@ -24,17 +24,18 @@ FLUTTER_STORAGE_BASE_URL: https://storage.flutter-io.cn
 PUB_HOSTED_URL: https://pub.flutter-io.cn
 ```
 
-
-
 :::
+
 ## 使用fvm安装
 
 记得挂全局代理 (tun模式)
 
 <https://fvm.app/documentation/getting-started>
+
 ```
 fvm use 3.29.3
 ```
+
 ## 常用命令
 
 ```powershell
@@ -107,3 +108,30 @@ flutter run -d chrome --web-port=8080 --web-hostname=127.0.0.1
 在android studio中,如何在android studio中运行chrome web, 以便支持热更新, 进行以下配置:
 
 Run> Run...>Edit configurations> Additional run args 增加参数: `--web-port=8080 --web-hostname=127.0.0.1`
+
+## flutter build
+
+<https://docs.flutter.dev/release/breaking-changes/default-abi-filters-android>
+
+### 方法1
+
+```powershell
+flutter build apk --splits-per-abi
+
+```
+
+### 第二种
+
+```kts
+android {
+    buildTypes {
+        release {
+            // Clear the automatically set filters.
+            ndk.abiFilters.clear()
+            // Set your custom filters.
+            ndk.abiFilters.addAll(listOf("arm64-v8a"))
+        }
+    }
+}
+
+```
