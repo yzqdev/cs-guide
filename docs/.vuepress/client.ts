@@ -19,6 +19,9 @@ import vp from 'vuepress/package.json'
 import routerVersion from 'vue-router/package.json'
 import Preview from './components/Preview.vue'
 import ImgPreview from './components/ImgPreview.vue'
+import { ID_INJECTION_KEY, ZINDEX_INJECTION_KEY } from 'element-plus'
+let current = 0
+const prefix = Math.floor(Math.random() * 10000)
 function showBadge(name, version, nameStyle, versionStyle) {
   console.log('%c '.concat(name, ' %c ').concat(version, ' '), 'padding: 1px; border-radius: 3px 0 0 3px; color: #fff; background: '.concat(nameStyle, ';'), 'padding: 1px; border-radius: 0 3px 3px 0; color: #fff; background: '.concat(versionStyle, ';'))
 }
@@ -30,7 +33,14 @@ showBadge('element-plus', ElementPkg.version, '#606060', 'RGB(20,117,178)')
 
 export default defineClientConfig({
   enhance({ app, router, siteData }) {
-    app.use(ElementPlus)
+    app
+      .use(ElementPlus)
+
+     app .provide(ZINDEX_INJECTION_KEY, { current: 0 })
+     app .provide(ID_INJECTION_KEY, {
+        prefix: 1024,
+        current: 0,
+      })
     app.component('RegTest', RegTest)
     app.component('SvgList', SvgList)
     app.component('CreateSvg', CreateSvg)
