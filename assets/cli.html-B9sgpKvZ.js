@@ -1,0 +1,175 @@
+import{_ as s,c as a,a as p,o as e}from"./app-B6vXTniy.js";const t={};function l(i,n){return e(),a("div",null,[...n[0]||(n[0]=[p(`<h1 id="python-命令行编写" tabindex="-1"><a class="header-anchor" href="#python-命令行编写"><span>python 命令行编写</span></a></h1><h2 id="命令行" tabindex="-1"><a class="header-anchor" href="#命令行"><span>命令行</span></a></h2><p>打包命令 <a href="https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-a-local-src-tree" target="_blank" rel="noopener noreferrer">https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-a-local-src-tree</a></p><p><a href="https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/" target="_blank" rel="noopener noreferrer">https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/</a> ::: 我的全局包 <code>pipx install mycli</code></p><div class="language-text" data-highlighter="prismjs" data-ext="text"><pre><code class="language-text"><span class="line">git-filter-repo</span>
+<span class="line">ipython</span>
+<span class="line">mycli</span>
+<span class="line">pgcli</span>
+<span class="line">httpie</span>
+<span class="line">poetry</span>
+<span class="line"> </span>
+<span class="line"></span></code></pre></div><p>:::</p><h2 id="click" tabindex="-1"><a class="header-anchor" href="#click"><span>click</span></a></h2><p>使用多个命令 <a href="https://zhuanlan.zhihu.com/p/444506577" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/444506577</a></p><h2 id="本地执行" tabindex="-1"><a class="header-anchor" href="#本地执行"><span>本地执行</span></a></h2><p>其中py是alias</p><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token keyword">function</span> runPython <span class="token punctuation">{</span></span>
+<span class="line">   <span class="token comment"># param (</span></span>
+<span class="line">    <span class="token comment">#    [string] $file</span></span>
+<span class="line">   <span class="token comment"># )</span></span>
+<span class="line">    <span class="token variable">$env</span>:PYTHONPATH=<span class="token function">pwd</span></span>
+<span class="line">   <span class="token comment"># Write-Host $args -BackgroundColor Cyan</span></span>
+<span class="line">     &amp; <span class="token string">&quot;<span class="token variable">$pwd</span>\\.venv\\Scripts\\python.exe&quot;</span>  <span class="token variable">$args</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre></div><div class="language-bash" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line"> py .<span class="token punctuation">\\</span>pytool<span class="token punctuation">\\</span>hello.py <span class="token parameter variable">--count</span> <span class="token number">3</span></span>
+<span class="line"></span></code></pre></div><p>我们横向对比下argparse、docopt、click 和 fire 库的各项功能和特点</p><div class="language-python line-numbers-mode" data-highlighter="prismjs" data-ext="py"><pre><code class="language-python"><span class="line"><span class="token keyword">from</span> setuptools <span class="token keyword">import</span> setup</span>
+<span class="line">setup<span class="token punctuation">(</span></span>
+<span class="line">    name<span class="token operator">=</span><span class="token string">&#39;py_tool&#39;</span><span class="token punctuation">,</span></span>
+<span class="line">    version<span class="token operator">=</span><span class="token string">&#39;0.0.2&#39;</span><span class="token punctuation">,</span></span>
+<span class="line">    packages<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">&#39;&#39;</span><span class="token punctuation">]</span><span class="token punctuation">,</span></span>
+<span class="line">    url<span class="token operator">=</span><span class="token string">&#39;&#39;</span><span class="token punctuation">,</span></span>
+<span class="line">    license<span class="token operator">=</span><span class="token string">&#39;MIT&#39;</span><span class="token punctuation">,</span></span>
+<span class="line">    author<span class="token operator">=</span><span class="token string">&#39;yzqdev&#39;</span><span class="token punctuation">,</span></span>
+<span class="line">    author_email<span class="token operator">=</span><span class="token string">&#39;&#39;</span><span class="token punctuation">,</span></span>
+<span class="line">    description<span class="token operator">=</span><span class="token string">&#39;&#39;</span><span class="token punctuation">,</span></span>
+<span class="line">    install_requires<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">&#39;click&#39;</span><span class="token punctuation">]</span><span class="token punctuation">,</span></span>
+<span class="line">    entry_points<span class="token operator">=</span><span class="token punctuation">{</span></span>
+<span class="line">        <span class="token string">&#39;console_scripts&#39;</span><span class="token punctuation">:</span> <span class="token punctuation">[</span></span>
+<span class="line">            <span class="token string">&#39;say = hello:main&#39;</span><span class="token punctuation">,</span></span>
+<span class="line">        <span class="token punctuation">]</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"><span class="token punctuation">)</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul><li>install_requires 是安装的与依赖</li><li>entry_points  console_scripts指的是命令行工具 say是生成的exe名字,hello是模块名称,main是方法名称</li></ul><h2 id="安装到scripts目录-安装到python安装目录的lib下" tabindex="-1"><a class="header-anchor" href="#安装到scripts目录-安装到python安装目录的lib下"><span>安装到scripts目录(安装到python安装目录的lib下)</span></a></h2><div class="language-bash" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line">python setup.py <span class="token function">install</span></span>
+<span class="line"></span></code></pre></div><p>或者</p><div class="language-bash" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line">pip <span class="token function">install</span> <span class="token parameter variable">-e</span> <span class="token builtin class-name">.</span></span>
+<span class="line"></span></code></pre></div><p>不是用setup.py</p><h2 id="使用pyproject-toml" tabindex="-1"><a class="header-anchor" href="#使用pyproject-toml"><span>使用pyproject.toml</span></a></h2><div class="language-toml line-numbers-mode" data-highlighter="prismjs" data-ext="toml"><pre><code class="language-toml"><span class="line"><span class="token punctuation">[</span><span class="token table class-name">build-system</span><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">requires</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">&quot;setuptools&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;setuptools-scm&quot;</span><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">build-backend</span> <span class="token punctuation">=</span> <span class="token string">&quot;setuptools.build_meta&quot;</span></span>
+<span class="line">  </span>
+<span class="line"><span class="token punctuation">[</span><span class="token table class-name">project</span><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">name</span> <span class="token punctuation">=</span> <span class="token string">&quot;my_package&quot;</span></span>
+<span class="line"><span class="token key property">authors</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span></span>
+<span class="line">    <span class="token punctuation">{</span><span class="token key property">name</span> <span class="token punctuation">=</span> <span class="token string">&quot;Josiah Carberry&quot;</span><span class="token punctuation">,</span> <span class="token key property">email</span> <span class="token punctuation">=</span> <span class="token string">&quot;josiah_carberry@brown.edu&quot;</span><span class="token punctuation">}</span><span class="token punctuation">,</span></span>
+<span class="line"><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">description</span> <span class="token punctuation">=</span> <span class="token string">&quot;My package description&quot;</span></span>
+<span class="line"><span class="token key property">readme</span> <span class="token punctuation">=</span> <span class="token string">&quot;README.rst&quot;</span></span>
+<span class="line"><span class="token key property">requires-python</span> <span class="token punctuation">=</span> <span class="token string">&quot;&gt;=3.7&quot;</span></span>
+<span class="line">  </span>
+<span class="line"><span class="token key property">keywords</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">&quot;one&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;two&quot;</span><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">license</span> <span class="token punctuation">=</span> <span class="token punctuation">{</span><span class="token key property">text</span> <span class="token punctuation">=</span> <span class="token string">&quot;BSD-3-Clause&quot;</span><span class="token punctuation">}</span></span>
+<span class="line"><span class="token key property">classifiers</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span></span>
+<span class="line">    <span class="token string">&quot;Framework :: Django&quot;</span><span class="token punctuation">,</span></span>
+<span class="line">    <span class="token string">&quot;Programming Language :: Python :: 3&quot;</span><span class="token punctuation">,</span></span>
+<span class="line"><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">dependencies</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span></span>
+<span class="line">    <span class="token string">&quot;requests&quot;</span><span class="token punctuation">,</span></span>
+<span class="line">    <span class="token string">&#39;importlib-metadata; python_version&lt;&quot;3.8&quot;&#39;</span><span class="token punctuation">,</span></span>
+<span class="line"><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">dynamic</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">&quot;version&quot;</span><span class="token punctuation">]</span></span>
+<span class="line">  </span>
+<span class="line"><span class="token punctuation">[</span><span class="token table class-name">project.optional-dependencies</span><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">pdf</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">&quot;ReportLab&gt;=1.2&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;RXP&quot;</span><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">rest</span> <span class="token punctuation">=</span> <span class="token punctuation">[</span><span class="token string">&quot;docutils&gt;=0.3&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;pack ==1.1, ==1.3&quot;</span><span class="token punctuation">]</span></span>
+<span class="line">  </span>
+<span class="line"><span class="token punctuation">[</span><span class="token table class-name">project.scripts</span><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">my-script</span> <span class="token punctuation">=</span> <span class="token string">&quot;my_package.module:function&quot;</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><a href="https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html" target="_blank" rel="noopener noreferrer">https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html</a></p><h2 id="使用pipx安装本地poetry包" tabindex="-1"><a class="header-anchor" href="#使用pipx安装本地poetry包"><span>使用pipx安装本地poetry包</span></a></h2><p>poetry的pyproject.toml添加脚本</p><div class="language-toml" data-highlighter="prismjs" data-ext="toml"><pre><code class="language-toml"><span class="line">\`\`\`python</span>
+<span class="line"><span class="token punctuation">[</span><span class="token table class-name">tool.poetry.scripts</span><span class="token punctuation">]</span></span>
+<span class="line"><span class="token key property">my-script</span> <span class="token punctuation">=</span> <span class="token string">&quot;my_package.log_revision:start&quot;</span></span>
+<span class="line"></span></code></pre></div><p>项目目录如下</p><div class="language-python" data-highlighter="prismjs" data-ext="py"><pre><code class="language-python"><span class="line">my_package</span>
+<span class="line">├── my_package</span>
+<span class="line">│   ├── __init__<span class="token punctuation">.</span>py</span>
+<span class="line">│   └── log_revision<span class="token punctuation">.</span>py</span>
+<span class="line">└── pyproject<span class="token punctuation">.</span>toml</span>
+<span class="line"></span></code></pre></div><p>然后</p><div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line">poetry <span class="token function">install</span></span>
+<span class="line">poetry run my-script</span>
+<span class="line">想要安装到本地可执行文件</span>
+<span class="line">pipx <span class="token function">install</span> <span class="token builtin class-name">.</span></span>
+<span class="line">更新代码之后重新部署</span>
+<span class="line">pipx <span class="token function">install</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">--force</span></span>
+<span class="line">或者 </span>
+<span class="line">pipx upgrade my_package</span>
+<span class="line"> </span>
+<span class="line"></span>
+<span class="line">然后可执行文件就是 my-script</span>
+<span class="line">卸载</span>
+<span class="line">pipx uninstall my_package</span>
+<span class="line">想要打包发布</span>
+<span class="line">poetry build</span>
+<span class="line">poetry publish</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>安装本地cli <a href="https://github.com/pypa/pipx/issues/216" target="_blank" rel="noopener noreferrer">https://github.com/pypa/pipx/issues/216</a></p><p>如果找不到setuptools 就需要</p><div class="language-bash" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line">poetry <span class="token function">add</span> setuptools</span>
+<span class="line"></span></code></pre></div><h2 id="一个python的cli项目模板" tabindex="-1"><a class="header-anchor" href="#一个python的cli项目模板"><span>一个python的cli项目模板</span></a></h2><h3 id="目录" tabindex="-1"><a class="header-anchor" href="#目录"><span>目录</span></a></h3><div class="language-text" data-highlighter="prismjs" data-ext="text"><pre><code class="language-text"><span class="line"> .</span>
+<span class="line">├──  config.py</span>
+<span class="line">├──  lib_cmd</span>
+<span class="line">│   ├──  __init__.py</span>
+<span class="line">│   ├──  base_cmd.py</span>
+<span class="line">│   ├──  cmd</span>
+<span class="line">│   │   └──  http_cmd.py</span>
+<span class="line">│   └──  main.py</span>
+<span class="line">├──  poetry.lock</span>
+<span class="line">├──  pyproject.toml</span>
+<span class="line">├──  README.md</span>
+<span class="line">├──  settings.toml</span>
+<span class="line"></span></code></pre></div><h3 id="pyproject-toml" tabindex="-1"><a class="header-anchor" href="#pyproject-toml"><span>pyproject.toml</span></a></h3><p>注意<code>packages</code>这个字段和下面的<code>tool.poetry.scripts</code>字段,<code>poetry install</code>会把script这个命令写进临时环境变量<br> 如果找不到,请用powershell命令<code>gcm python</code>看下python所在位置,正确位置是当前目录的<code>.venv/scripts/python.exe</code><br> 如果位置不对,请运行<code>./venv/scripts/activate</code>让环境变量生效</p><div class="language-ini line-numbers-mode" data-highlighter="prismjs" data-ext="ini"><pre><code class="language-ini"><span class="line"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">tool.poetry</span><span class="token punctuation">]</span></span></span>
+<span class="line"><span class="token key attr-name">name</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">py-libs</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">version</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">0.1.0</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">description</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;&quot;</span></span>
+<span class="line"><span class="token key attr-name">authors</span> <span class="token punctuation">=</span> <span class="token value attr-value">[&quot;yzqdev &lt;yzqdev@outlook.com&gt;&quot;]</span></span>
+<span class="line"><span class="token key attr-name">readme</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">README.md</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">packages</span> <span class="token punctuation">=</span> <span class="token value attr-value">[{ include = &quot;lib_cmd&quot; }]</span></span>
+<span class="line"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">tool.poetry.dependencies</span><span class="token punctuation">]</span></span></span>
+<span class="line"><span class="token key attr-name">python</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">^3.11</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">pymysql</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">^1.1.0</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">dynaconf</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">^3.2.3</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">qrcode</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">^7.4.2</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">click</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">^8.1.7</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">colorama</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">^0.4.6</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">rich</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">^13.6.0</span>&quot;</span></span>
+<span class="line"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">tool.poetry.scripts</span><span class="token punctuation">]</span></span></span>
+<span class="line"><span class="token key attr-name">pylib</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">lib_cmd.main:main</span>&quot;</span></span>
+<span class="line"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">build-system</span><span class="token punctuation">]</span></span></span>
+<span class="line"><span class="token key attr-name">requires</span> <span class="token punctuation">=</span> <span class="token value attr-value">[&quot;poetry-core&quot;]</span></span>
+<span class="line"><span class="token key attr-name">build-backend</span> <span class="token punctuation">=</span> <span class="token value attr-value">&quot;<span class="token inner-value">poetry.core.masonry.api</span>&quot;</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="main-py" tabindex="-1"><a class="header-anchor" href="#main-py"><span>main.py</span></a></h3><p>分开是为了防止循环依赖</p><div class="language-python" data-highlighter="prismjs" data-ext="py"><pre><code class="language-python"><span class="line"><span class="token keyword">from</span> lib_cmd<span class="token punctuation">.</span>base_cmd <span class="token keyword">import</span> cli</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></span>
+<span class="line">    cli<span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre></div><h3 id="base-cmd-py" tabindex="-1"><a class="header-anchor" href="#base-cmd-py"><span>base_cmd.py</span></a></h3><div class="language-python line-numbers-mode" data-highlighter="prismjs" data-ext="py"><pre><code class="language-python"><span class="line"><span class="token keyword">import</span> click</span>
+<span class="line"></span>
+<span class="line"><span class="token keyword">from</span> lib_cmd<span class="token punctuation">.</span>cmd<span class="token punctuation">.</span>http_cmd <span class="token keyword">import</span> http_cmd</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span class="token decorator annotation punctuation">@click<span class="token punctuation">.</span>group</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="line"> </span>
+<span class="line"><span class="token keyword">def</span> <span class="token function">cli</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></span>
+<span class="line">    <span class="token keyword">pass</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span class="token decorator annotation punctuation">@cli<span class="token punctuation">.</span>command</span><span class="token punctuation">(</span><span class="token string">&quot;root&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token decorator annotation punctuation">@click<span class="token punctuation">.</span>option</span><span class="token punctuation">(</span><span class="token string">&quot;--count&quot;</span><span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token builtin">help</span><span class="token operator">=</span><span class="token string">&quot;Number of greetings.&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token decorator annotation punctuation">@click<span class="token punctuation">.</span>option</span><span class="token punctuation">(</span><span class="token string">&quot;--name&quot;</span><span class="token punctuation">,</span> prompt<span class="token operator">=</span><span class="token string">&quot;Your name&quot;</span><span class="token punctuation">,</span> <span class="token builtin">help</span><span class="token operator">=</span><span class="token string">&quot;The person to greet.&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">def</span> <span class="token function">root_cli</span><span class="token punctuation">(</span>count<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">:</span></span>
+<span class="line">    <span class="token triple-quoted-string string">&quot;&quot;&quot;Simple program that greets NAME for a total of COUNT times.&quot;&quot;&quot;</span></span>
+<span class="line">    <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">:</span></span>
+<span class="line">        click<span class="token punctuation">.</span>echo<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f&quot;Hello </span><span class="token interpolation"><span class="token punctuation">{</span>name<span class="token punctuation">}</span></span><span class="token string">!&quot;</span></span><span class="token punctuation">)</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">cli<span class="token punctuation">.</span>add_command<span class="token punctuation">(</span>http_cmd<span class="token punctuation">)</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="http-cmd-py" tabindex="-1"><a class="header-anchor" href="#http-cmd-py"><span>http_cmd.py</span></a></h3><div class="language-python line-numbers-mode" data-highlighter="prismjs" data-ext="py"><pre><code class="language-python"><span class="line"><span class="token keyword">import</span> click</span>
+<span class="line"><span class="token keyword">import</span> colorama</span>
+<span class="line"><span class="token keyword">from</span> click<span class="token punctuation">.</span>core <span class="token keyword">import</span> Command</span>
+<span class="line"> </span>
+<span class="line"><span class="token decorator annotation punctuation">@click<span class="token punctuation">.</span>group</span><span class="token punctuation">(</span><span class="token string">&quot;http&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">def</span> <span class="token function">http_cmd</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> Command<span class="token punctuation">:</span></span>
+<span class="line">    <span class="token triple-quoted-string string">&quot;&quot;&quot;</span>
+<span class="line">    初始化数据库</span>
+<span class="line"></span>
+<span class="line">    &quot;&quot;&quot;</span></span>
+<span class="line">    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">&quot;hello&quot;</span><span class="token punctuation">)</span></span>
+<span class="line">    <span class="token keyword">pass</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span class="token decorator annotation punctuation">@http_cmd<span class="token punctuation">.</span>command</span><span class="token punctuation">(</span><span class="token string">&quot;drop&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token keyword">def</span> <span class="token function">dropdb</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></span>
+<span class="line">    <span class="token triple-quoted-string string">&quot;&quot;&quot;</span>
+<span class="line">    删除数据库</span>
+<span class="line">    :return:</span>
+<span class="line">    &quot;&quot;&quot;</span></span>
+<span class="line">    click<span class="token punctuation">.</span>echo<span class="token punctuation">(</span><span class="token string">&quot;Dropped the database&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>在命令行运行<code>pylib</code>就可以看到帮助命令</p>`,47)])])}const o=s(t,[["render",l]]),u=JSON.parse('{"path":"/python-tutor/python-tips/cli.html","title":"python 命令行编写","lang":"zh-CN","frontmatter":{"description":"python 命令行编写 命令行 打包命令 https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-a-local-src-tree https://pip.pypa.io/en/stable/reference/build-system...","head":[["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"python 命令行编写\\",\\"image\\":[\\"\\"],\\"dateModified\\":\\"2024-03-27T13:03:42.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"],["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/python-tutor/python-tips/cli.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"python 命令行编写"}],["meta",{"property":"og:description","content":"python 命令行编写 命令行 打包命令 https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-a-local-src-tree https://pip.pypa.io/en/stable/reference/build-system..."}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2024-03-27T13:03:42.000Z"}],["meta",{"property":"article:modified_time","content":"2024-03-27T13:03:42.000Z"}]]},"git":{"createdTime":1697339432000,"updatedTime":1711544622000,"contributors":[{"name":"yzqdev","username":"yzqdev","email":"yzqdev@outlook.com","commits":4,"url":"https://github.com/yzqdev"}]},"readingTime":{"minutes":2.26,"words":679},"filePathRelative":"python-tutor/python-tips/cli.md","autoDesc":true}');export{o as comp,u as data};

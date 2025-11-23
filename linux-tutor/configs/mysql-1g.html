@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="VuePress 2.0.0-rc.26" />
+    <meta name="theme" content="VuePress Theme Hope 2.0.0-rc.98" />
+    <style>
+      :root {
+        --vp-c-bg: #fff;
+      }
+
+      [data-theme="dark"] {
+        --vp-c-bg: #1b1b1f;
+      }
+
+      html,
+      body {
+        background: var(--vp-c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem("vuepress-theme-hope-scheme");
+      const systemDarkMode =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+      if (userMode === "dark" || (userMode !== "light" && systemDarkMode)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"mysql配置","image":[""],"dateModified":"2022-05-26T11:39:36.000Z","author":[{"@type":"Person","name":"yzqdev","url":"http://www.yzqdev.top"}]}</script><meta property="og:url" content="https://yzqdev.github.io/cs-guide/cs-guide/linux-tutor/configs/mysql-1g.html"><meta property="og:site_name" content="cs-guide"><meta property="og:title" content="mysql配置"><meta property="og:description" content="mysql配置 配置mysql-1g mysql-8g mysql-windows"><meta property="og:type" content="article"><meta property="og:locale" content="zh-CN"><meta property="og:updated_time" content="2022-05-26T11:39:36.000Z"><meta property="article:modified_time" content="2022-05-26T11:39:36.000Z"><link rel="icon" href="/cs-guide/images/cs-guide.webp"><meta name="referrer" content="no-referrer"><meta name="mobile-web-app-capable" content="yes"><meta name="theme-color" content="#46bd87"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="manifest" href="/cs-guide/manifest.webmanifest" crossorigin="use-credentials"><link rel="apple-touch-icon" href="/cs-guide/assets/icon/apple-icon-152.png"><title>mysql配置 | cs-guide</title><meta name="description" content="mysql配置 配置mysql-1g mysql-8g mysql-windows">
+    <link rel="preload" href="/cs-guide/assets/style-DoR5BGWI.css" as="style"><link rel="stylesheet" href="/cs-guide/assets/style-DoR5BGWI.css">
+    <link rel="modulepreload" href="/cs-guide/assets/app-B6vXTniy.js"><link rel="modulepreload" href="/cs-guide/assets/mysql-1g.html-Bju8TANM.js">
+    
+  </head>
+  <body>
+    <div id="app"><!--[--><!--[--><!--[--><span tabindex="-1"></span><a href="#main-content" class="vp-skip-link sr-only">跳至主要內容</a><!--]--><!--[--><div class="theme-container external-link-icon has-toc" vp-container><!--[--><header id="navbar" class="vp-navbar" vp-navbar><div class="vp-navbar-start"><button type="button" class="vp-toggle-sidebar-button" title="Toggle Sidebar"><span class="icon"></span></button><!--[--><a class="route-link vp-brand" href="/cs-guide/" aria-label="带我回家"><img class="vp-nav-logo" src="/cs-guide/ayaka.webp" alt><!----><span class="vp-site-name hide-in-pad">cs-guide</span></a><!--]--></div><div class="vp-navbar-center"><!--[--><nav class="vp-nav-links"><div class="vp-nav-item hide-in-mobile"><a class="route-link auto-link" href="/cs-guide/frontend/" aria-label="前端教程"><!--[--><iconify-icon class="vp-icon" icon="vscode-icons:file-type-html" sizing="height" height="1em"></iconify-icon><!--]-->前端教程<!----></a></div><div class="vp-nav-item hide-in-mobile"><a class="route-link auto-link" href="/cs-guide/node-tutor/" aria-label="node教程"><!--[--><iconify-icon class="vp-icon" icon="vscode-icons:file-type-node" sizing="height" height="1em"></iconify-icon><!--]-->node教程<!----></a></div><div class="vp-nav-item hide-in-mobile"><a class="route-link auto-link" href="/cs-guide/go-tutor/" aria-label="go教程"><!--[--><iconify-icon class="vp-icon" icon="vscode-icons:file-type-go" sizing="height" height="1em"></iconify-icon><!--]-->go教程<!----></a></div><div class="vp-nav-item hide-in-mobile"><a class="route-link auto-link" href="/cs-guide/java-tutor/" aria-label="java教程"><!--[--><iconify-icon class="vp-icon" icon="vscode-icons:file-type-java" sizing="height" height="1em"></iconify-icon><!--]-->java教程<!----></a></div><div class="vp-nav-item hide-in-mobile"><div class="vp-dropdown-wrapper"><button type="button" class="vp-dropdown-title" aria-label="系统教程"><!--[--><iconify-icon class="vp-icon" icon="logos:linux-tux" sizing="height" height="1em"></iconify-icon>系统教程<!--]--><span class="arrow"></span><ul class="vp-dropdown"><li class="vp-dropdown-item"><a class="route-link route-link-active auto-link" href="/cs-guide/linux-tutor/" aria-label="linux"><!--[--><iconify-icon class="vp-icon" icon="logos:linux-tux" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->linux<!----></a></li><li class="vp-dropdown-item"><a class="route-link auto-link" href="/cs-guide/windows-tutor/" aria-label="windows"><!--[--><iconify-icon class="vp-icon" icon="logos:microsoft-windows-icon" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->windows<!----></a></li><li class="vp-dropdown-item"><a class="route-link auto-link" href="/cs-guide/git-tutor/" aria-label="git教程"><!--[--><iconify-icon class="vp-icon" icon="vscode-icons:file-type-git" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->git教程<!----></a></li></ul></button></div></div><div class="vp-nav-item hide-in-mobile"><a class="route-link auto-link" href="/cs-guide/python-tutor/" aria-label="python教程"><!--[--><iconify-icon class="vp-icon" icon="vscode-icons:file-type-python" sizing="height" height="1em"></iconify-icon><!--]-->python教程<!----></a></div><div class="vp-nav-item hide-in-mobile"><a class="route-link auto-link" href="/cs-guide/csharp-tutor/" aria-label="c#教程"><!--[--><iconify-icon class="vp-icon" icon="vscode-icons:file-type-csharp" sizing="height" height="1em"></iconify-icon><!--]-->c#教程<!----></a></div><div class="vp-nav-item hide-in-mobile"><div class="vp-dropdown-wrapper"><button type="button" class="vp-dropdown-title" aria-label="安卓"><!--[--><iconify-icon class="vp-icon" icon="devicon:android" sizing="height" height="1em"></iconify-icon>安卓<!--]--><span class="arrow"></span><ul class="vp-dropdown"><li class="vp-dropdown-item"><a class="route-link auto-link" href="/cs-guide/android-tutor/" aria-label="安卓基础"><!--[--><iconify-icon class="vp-icon" icon="ph:android-logo-bold" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->安卓基础<!----></a></li><li class="vp-dropdown-item"><a class="route-link auto-link" href="/cs-guide/android-tips/" aria-label="安卓tips"><!--[--><iconify-icon class="vp-icon" icon="mdi:robot-excited-outline" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->安卓tips<!----></a></li><li class="vp-dropdown-item"><a class="route-link auto-link" href="/cs-guide/flutter-tutor/" aria-label="flutter"><!--[--><iconify-icon class="vp-icon" icon="vscode-icons:file-type-flutter" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->flutter<!----></a></li><li class="vp-dropdown-item"><a class="route-link auto-link" href="/cs-guide/kotlin-tutor/" aria-label="kotlin"><!--[--><iconify-icon class="vp-icon" icon="logos:kotlin-icon" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->kotlin<!----></a></li></ul></button></div></div><div class="vp-nav-item hide-in-mobile"><a class="route-link auto-link" href="/cs-guide/cs-tips/" aria-label="技巧"><!--[--><iconify-icon class="vp-icon" icon="emojione:fire" sizing="height" height="1em"></iconify-icon><!--]-->技巧<!----></a></div><div class="vp-nav-item hide-in-mobile"><div class="vp-dropdown-wrapper"><button type="button" class="vp-dropdown-title" aria-label="其他"><!--[--><iconify-icon class="vp-icon" icon="material-symbols:event-note" sizing="height" height="1em"></iconify-icon>其他<!--]--><span class="arrow"></span><ul class="vp-dropdown"><li class="vp-dropdown-item"><a class="auto-link external-link" href="https://yzqbooks.github.io/think-in-java/" aria-label="java编程思想" rel="noopener noreferrer" target="_blank"><!--[--><iconify-icon class="vp-icon" icon="fa6-brands:java" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->java编程思想<!----></a></li><li class="vp-dropdown-item"><a class="auto-link external-link" href="https://yzqdev.github.io/git-tutor" aria-label="git教程" rel="noopener noreferrer" target="_blank"><!--[--><iconify-icon class="vp-icon" icon="bi:git" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->git教程<!----></a></li><li class="vp-dropdown-item"><a class="auto-link external-link" href="https://yzqdev.github.io/node-docs" aria-label="node教程" rel="noopener noreferrer" target="_blank"><!--[--><iconify-icon class="vp-icon" icon="tabler:brand-nodejs" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->node教程<!----></a></li><li class="vp-dropdown-item"><a class="auto-link external-link" href="https://yzqdev.github.io/html-tutor" aria-label="css教程" rel="noopener noreferrer" target="_blank"><!--[--><iconify-icon class="vp-icon" icon="ion:logo-css3" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->css教程<!----></a></li><li class="vp-dropdown-item"><a class="auto-link external-link" href="https://yzqbooks.github.io/wangdoc" aria-label="wandoc" rel="noopener noreferrer" target="_blank"><!--[--><iconify-icon class="vp-icon" icon="material-symbols:chrome-reader-mode" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->wandoc<!----></a></li><li class="vp-dropdown-item"><a class="auto-link external-link" href="https://yzqdev.github.io/cg-tutor" aria-label="cg教程" rel="noopener noreferrer" target="_blank"><!--[--><iconify-icon class="vp-icon" icon="mdi:blender-software" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->cg教程<!----></a></li></ul></button></div></div></nav><!--]--></div><div class="vp-navbar-end"><!--[--><!----><div class="vp-nav-item vp-action"><a class="vp-action-link" href="https://github.com/yzqdev/cs-guide" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" class="icon github-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="github icon" name="github" style="width:1.25rem;height:1.25rem;vertical-align:middle;"><path d="M511.957 21.333C241.024 21.333 21.333 240.981 21.333 512c0 216.832 140.544 400.725 335.574 465.664 24.49 4.395 32.256-10.07 32.256-23.083 0-11.69.256-44.245 0-85.205-136.448 29.61-164.736-64.64-164.736-64.64-22.315-56.704-54.4-71.765-54.4-71.765-44.587-30.464 3.285-29.824 3.285-29.824 49.195 3.413 75.179 50.517 75.179 50.517 43.776 75.008 114.816 53.333 142.762 40.79 4.523-31.66 17.152-53.377 31.19-65.537-108.971-12.458-223.488-54.485-223.488-242.602 0-53.547 19.114-97.323 50.517-131.67-5.035-12.33-21.93-62.293 4.779-129.834 0 0 41.258-13.184 134.912 50.346a469.803 469.803 0 0 1 122.88-16.554c41.642.213 83.626 5.632 122.88 16.554 93.653-63.488 134.784-50.346 134.784-50.346 26.752 67.541 9.898 117.504 4.864 129.834 31.402 34.347 50.474 78.123 50.474 131.67 0 188.586-114.73 230.016-224.042 242.09 17.578 15.232 33.578 44.672 33.578 90.454v135.85c0 13.142 7.936 27.606 32.854 22.87C862.25 912.597 1002.667 728.747 1002.667 512c0-271.019-219.648-490.667-490.71-490.667z"></path></svg></a></div><div class="vp-nav-item hide-in-mobile"><button type="button" class="vp-color-mode-switch" id="color-mode-switch"><svg xmlns="http://www.w3.org/2000/svg" class="icon auto-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="auto icon" name="auto" style="display:block;"><path d="M512 992C246.92 992 32 777.08 32 512S246.92 32 512 32s480 214.92 480 480-214.92 480-480 480zm0-840c-198.78 0-360 161.22-360 360 0 198.84 161.22 360 360 360s360-161.16 360-360c0-198.78-161.22-360-360-360zm0 660V212c165.72 0 300 134.34 300 300 0 165.72-134.28 300-300 300z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon dark-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="dark icon" name="dark" style="display:none;"><path d="M524.8 938.667h-4.267a439.893 439.893 0 0 1-313.173-134.4 446.293 446.293 0 0 1-11.093-597.334A432.213 432.213 0 0 1 366.933 90.027a42.667 42.667 0 0 1 45.227 9.386 42.667 42.667 0 0 1 10.24 42.667 358.4 358.4 0 0 0 82.773 375.893 361.387 361.387 0 0 0 376.747 82.774 42.667 42.667 0 0 1 54.187 55.04 433.493 433.493 0 0 1-99.84 154.88 438.613 438.613 0 0 1-311.467 128z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" class="icon light-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="light icon" name="light" style="display:none;"><path d="M952 552h-80a40 40 0 0 1 0-80h80a40 40 0 0 1 0 80zM801.88 280.08a41 41 0 0 1-57.96-57.96l57.96-58a41.04 41.04 0 0 1 58 58l-58 57.96zM512 752a240 240 0 1 1 0-480 240 240 0 0 1 0 480zm0-560a40 40 0 0 1-40-40V72a40 40 0 0 1 80 0v80a40 40 0 0 1-40 40zm-289.88 88.08-58-57.96a41.04 41.04 0 0 1 58-58l57.96 58a41 41 0 0 1-57.96 57.96zM192 512a40 40 0 0 1-40 40H72a40 40 0 0 1 0-80h80a40 40 0 0 1 40 40zm30.12 231.92a41 41 0 0 1 57.96 57.96l-57.96 58a41.04 41.04 0 0 1-58-58l58-57.96zM512 832a40 40 0 0 1 40 40v80a40 40 0 0 1-80 0v-80a40 40 0 0 1 40-40zm289.88-88.08 58 57.96a41.04 41.04 0 0 1-58 58l-57.96-58a41 41 0 0 1 57.96-57.96z"></path></svg></button></div><!--[--><div id="docsearch-container" style="display:none;"></div><div><button type="button" aria-label="搜索文档" aria-keyshortcuts="Control+k" class="DocSearch DocSearch-Button"><span class="DocSearch-Button-Container"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" class="DocSearch-Search-Icon"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"><kbd class="DocSearch-Button-Key DocSearch-Button-Key--ctrl">Ctrl</kbd><kbd class="DocSearch-Button-Key DocSearch-Button-Key--pressed">K</kbd></span></button></div><!--]--><!--]--><button type="button" class="vp-toggle-navbar-button" aria-label="Toggle Navbar" aria-expanded="false" aria-controls="nav-screen"><span><span class="vp-top"></span><span class="vp-middle"></span><span class="vp-bottom"></span></span></button></div></header><!----><!--]--><!----><div class="toggle-sidebar-wrapper"><span class="arrow start"></span></div><aside id="sidebar" class="vp-sidebar" vp-sidebar><!----><ul class="vp-sidebar-links"><li><a class="route-link auto-link vp-sidebar-link" href="/cs-guide/linux-tutor/" aria-label="linux-tutor"><!--[--><iconify-icon class="vp-icon" icon="linux" sizing="both" width="1em" height="1em"></iconify-icon><!--]-->linux-tutor<!----></a></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">Linux基础</span><span class="vp-arrow end"></span></button><!----></section></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">linux技巧</span><span class="vp-arrow end"></span></button><!----></section></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">linux教程</span><span class="vp-arrow end"></span></button><!----></section></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">一些工具</span><span class="vp-arrow end"></span></button><!----></section></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">一些很有用的shell</span><span class="vp-arrow end"></span></button><!----></section></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable" type="button"><!----><span class="vp-sidebar-title">常见的问题</span><span class="vp-arrow end"></span></button><!----></section></li><li><section class="vp-sidebar-group"><button class="vp-sidebar-header clickable active" type="button"><!----><span class="vp-sidebar-title">配置文件</span><span class="vp-arrow down"></span></button><ul class="vp-sidebar-links"><li><a class="route-link auto-link vp-sidebar-link" href="/cs-guide/linux-tutor/configs/" aria-label="配置文件"><!---->配置文件<!----></a></li><li><a class="route-link route-link-active auto-link vp-sidebar-link active" href="/cs-guide/linux-tutor/configs/mysql-1g.html" aria-label="mysql配置"><!---->mysql配置<!----></a></li><li><a class="route-link auto-link vp-sidebar-link" href="/cs-guide/linux-tutor/configs/nginx.html" aria-label="nginx配置"><!---->nginx配置<!----></a></li></ul></section></li></ul><!----></aside><!--[--><main id="main-content" class="vp-page"><!--[--><!----><!----><nav class="vp-breadcrumb disable"></nav><div class="vp-page-title"><h1><!---->mysql配置</h1><div class="page-info"><span class="page-author-info" aria-label="作者🖊" data-balloon-pos="up"><svg xmlns="http://www.w3.org/2000/svg" class="icon author-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="author icon" name="author"><path d="M649.6 633.6c86.4-48 147.2-144 147.2-249.6 0-160-128-288-288-288s-288 128-288 288c0 108.8 57.6 201.6 147.2 249.6-121.6 48-214.4 153.6-240 288-3.2 9.6 0 19.2 6.4 25.6 3.2 9.6 12.8 12.8 22.4 12.8h704c9.6 0 19.2-3.2 25.6-12.8 6.4-6.4 9.6-16 6.4-25.6-25.6-134.4-121.6-240-243.2-288z"></path></svg><span><a class="page-author-item" href="http://www.yzqdev.top" target="_blank" rel="noopener noreferrer">yzqdev</a></span><span property="author" content="yzqdev"></span></span><!----><span class="page-date-info" aria-label="写作日期📅" data-balloon-pos="up"><svg xmlns="http://www.w3.org/2000/svg" class="icon calendar-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="calendar icon" name="calendar"><path d="M716.4 110.137c0-18.753-14.72-33.473-33.472-33.473-18.753 0-33.473 14.72-33.473 33.473v33.473h66.993v-33.473zm-334.87 0c0-18.753-14.72-33.473-33.473-33.473s-33.52 14.72-33.52 33.473v33.473h66.993v-33.473zm468.81 33.52H716.4v100.465c0 18.753-14.72 33.473-33.472 33.473a33.145 33.145 0 01-33.473-33.473V143.657H381.53v100.465c0 18.753-14.72 33.473-33.473 33.473a33.145 33.145 0 01-33.473-33.473V143.657H180.6A134.314 134.314 0 0046.66 277.595v535.756A134.314 134.314 0 00180.6 947.289h669.74a134.36 134.36 0 00133.94-133.938V277.595a134.314 134.314 0 00-133.94-133.938zm33.473 267.877H147.126a33.145 33.145 0 01-33.473-33.473c0-18.752 14.72-33.473 33.473-33.473h736.687c18.752 0 33.472 14.72 33.472 33.473a33.145 33.145 0 01-33.472 33.473z"></path></svg><span data-allow-mismatch="text">2022/5/26</span><meta property="datePublished" content="2022-05-26T11:39:36.000Z"></span><!----><!----><span class="page-reading-time-info" aria-label="阅读时间⌛" data-balloon-pos="up"><svg xmlns="http://www.w3.org/2000/svg" class="icon timer-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="timer icon" name="timer"><path d="M799.387 122.15c4.402-2.978 7.38-7.897 7.38-13.463v-1.165c0-8.933-7.38-16.312-16.312-16.312H256.33c-8.933 0-16.311 7.38-16.311 16.312v1.165c0 5.825 2.977 10.874 7.637 13.592 4.143 194.44 97.22 354.963 220.201 392.763-122.204 37.542-214.893 196.511-220.2 389.397-4.661 5.049-7.638 11.651-7.638 19.03v5.825h566.49v-5.825c0-7.379-2.849-13.981-7.509-18.9-5.049-193.016-97.867-351.985-220.2-389.527 123.24-37.67 216.446-198.453 220.588-392.892zM531.16 450.445v352.632c117.674 1.553 211.787 40.778 211.787 88.676H304.097c0-48.286 95.149-87.382 213.728-88.676V450.445c-93.077-3.107-167.901-81.297-167.901-177.093 0-8.803 6.99-15.793 15.793-15.793 8.803 0 15.794 6.99 15.794 15.793 0 80.261 63.69 145.635 142.01 145.635s142.011-65.374 142.011-145.635c0-8.803 6.99-15.793 15.794-15.793s15.793 6.99 15.793 15.793c0 95.019-73.789 172.82-165.96 177.093z"></path></svg><span>小于 1 分钟</span><meta property="timeRequired" content="PT1M"></span></div><hr></div><!----><div class="" vp-content><!----><div id="markdown-content"><h1 id="mysql配置" tabindex="-1"><a class="header-anchor" href="#mysql配置"><span>mysql配置</span></a></h1><h2 id="配置mysql-1g" tabindex="-1"><a class="header-anchor" href="#配置mysql-1g"><span>配置mysql-1g</span></a></h2><div class="language-cnf line-numbers-mode" data-highlighter="prismjs" data-ext="cnf"><pre><code class="language-cnf"><span class="line"></span>
+<span class="line"># 适用于 Mysql 5.6</span>
+<span class="line"># 该配置适合 1G 内存左右的机子，储存类型为 InnoDB</span>
+<span class="line"># 官网配置说明：http://dev.mysql.com/doc/refman/5.6/en/mysqld-option-tables.html</span>
+<span class="line"># 官网状态值说明：http://dev.mysql.com/doc/refman/5.6/en/server-status-variables.html</span>
+<span class="line"># 官网环境变量说明：http://dev.mysql.com/doc/refman/5.6/en/server-system-variables.html</span>
+<span class="line"># 在线生成配置工具：http://tools.percona.com（只是起到一个参考作用，生成的配置文件里面的参数名有的是用符号：-，而官网是用：_，所以这个也要注意改掉。）</span>
+<span class="line"># 资料参考：https://blog.linuxeye.com/379.html</span>
+<span class="line"># 注释内容为注释行下面的配置的解释</span>
+<span class="line"># 这是一个综合配置，不是单独为主库或是从库考虑</span>
+<span class="line"></span>
+<span class="line"># ============================================================================================================</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># 客户端设置</span>
+<span class="line">[mysql]</span>
+<span class="line">port = 3306</span>
+<span class="line">socket = /usr/program/mysql/data/mysql.sock</span>
+<span class="line">default-character-set = utf8</span>
+<span class="line"></span>
+<span class="line"># ============================================================================================================</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># 服务端设置</span>
+<span class="line">[mysqld]</span>
+<span class="line">user = mysql</span>
+<span class="line">port = 3306</span>
+<span class="line">default-storage-engine = InnoDB</span>
+<span class="line">socket = /usr/program/mysql/data/mysql.sock</span>
+<span class="line">pid-file = /usr/program/mysql/data/mysql.pid</span>
+<span class="line"></span>
+<span class="line">collation-server = utf8_general_ci</span>
+<span class="line">init_connect = &#39;SET NAMES utf8&#39;</span>
+<span class="line">character-set-server = utf8</span>
+<span class="line">basedir = /usr/program/mysql</span>
+<span class="line">datadir = /usr/program/mysql/data</span>
+<span class="line">log-error = /usr/program/mysql/data/mysql-error.log</span>
+<span class="line"></span>
+<span class="line"># （重点修改）表示是本机的序号为1,一般配合设置主从的时候一定要修改的地方</span>
+<span class="line">server-id = 1</span>
+<span class="line"></span>
+<span class="line"># 从库特有的设置 start</span>
+<span class="line">read_only = true</span>
+<span class="line"># 从库不自动开启主从设置，需要使用命令：START SLAVE;</span>
+<span class="line">skip-slave-start = true</span>
+<span class="line">log-slave-updates = true</span>
+<span class="line">relay-log = /usr/program/mysql/data/relay-bin</span>
+<span class="line"># 单位秒</span>
+<span class="line">slave-net-timeout = 60</span>
+<span class="line">sync_master_info = 1</span>
+<span class="line">sync_relay_log = 1</span>
+<span class="line">sync_relay_log_info = 1</span>
+<span class="line"># 从库特有的设置 end</span>
+<span class="line"></span>
+<span class="line"># back_log 值指出在 MySQL 暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。如果 MySQL 的连接数据达到 max_connections 时，新来的请求将会被存在堆栈中，以等待某一连接释放资源，该堆栈的数量即 back_log，如果等待连接的数量超过 back_log，将不被授予连接资源。</span>
+<span class="line"># 另外，这值（back_log）限于您的操作系统对到来的 TCP/IP 连接的侦听队列的大小。你的操作系统在这个队列大小上有它自己的限制（可以检查你的 OS 文档找出这个变量的最大值），试图设定 back_log 高于你的操作系统的限制将是无效的。  </span>
+<span class="line">back_log = 512</span>
+<span class="line"></span>
+<span class="line"># MySQL 的最大并发连接数</span>
+<span class="line">max_connections = 1000</span>
+<span class="line"># 网络传输中一次小心传输量的最大值（最大值为 1G）；增加该变量的值十分安全，这是因为仅当需要时才会分配额外内存。例如，仅当你发出长查询或 MySQL 必须返回大的结果行时 MySQL 才会分配更多内存。该变量之所以取较小默认值是一种预防措施，以捕获客户端和服务器之间的错误信息包，并确保不会因偶然使用大的信息包而导致内存溢出。  </span>
+<span class="line">max_allowed_packet = 16M</span>
+<span class="line"># 对于同一主机，如果有超出该参数值个数的中断错误连接，则该主机将被禁止连接。如需对该主机进行解禁，执行 Mysql 命令：FLUSH HOST。</span>
+<span class="line">max_connect_errors = 1000000</span>
+<span class="line"># 禁止MySQL对外部连接进行DNS解析，使用这一选项可以消除MySQL进行DNS解析的时间。但需要注意，如果开启该选项，则所有远程主机连接授权都要使用IP地址方式，否则MySQL将无法正常处理连接请求 </span>
+<span class="line">skip-name-resolve</span>
+<span class="line"># MySQL打开的文件描述符限制</span>
+<span class="line">open_files_limit = 65535</span>
+<span class="line"># MySQL 每打开一个表，都会读入一些数据到 table_open_cache 缓存中，当 MySQL 在这个缓存中找不到相应信息时，才会去磁盘上读取。默认值 400，最大值：524288。假定系统有 200 个并发连接，则需将此参数设置为 200*N (N 为每个连接所需的文件描述符数目)；当把 table_open_cache 设置为很大时，如果系统处理不了那么多文件描述符，那么就会出现客户端失效，连接不上  </span>
+<span class="line">table_open_cache = 2048 </span>
+<span class="line"></span>
+<span class="line"># 一个事务，在没有提交的时候，产生的日志，记录到 Cache 中；等到事务提交需要提交的时候，则把日志持久化到磁盘。默认 binlog_cache_size 大小32K</span>
+<span class="line">binlog_cache_size = 1M</span>
+<span class="line"># 定义了用户可以创建的内存表(memory table)的大小。这个值用来计算内存表的最大行数值。这个变量支持动态改变  </span>
+<span class="line">max_heap_table_size = 32M</span>
+<span class="line"># MySQL的heap（堆积）表缓冲大小。如果超过该值，则会将临时表写入磁盘。其范围值:1KB~4GB</span>
+<span class="line">tmp_table_size = 32M</span>
+<span class="line"></span>
+<span class="line"># MySQL读入缓冲区大小。该参数对应的分配内存也是每连接独享，所以，如果有100连接，那占用的内存是：100X2M=200M，所以4G内存的服务器，建议该值是6~8M</span>
+<span class="line">read_buffer_size = 2M</span>
+<span class="line"># MySQL的随机读缓冲区大小。</span>
+<span class="line">read_rnd_buffer_size = 8M</span>
+<span class="line"># MySQL执行排序使用的缓冲大小。该参数对应的分配内存也是每连接独享，所以，如果有100连接，那占用的内存是：100X2M=200M，所以4G内存的服务器，建议该值是6~8M</span>
+<span class="line">sort_buffer_size = 2M</span>
+<span class="line"># 联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享，所以，如果有100连接，那占用的内存是：100X4M=400M，所以4G内存的服务器，建议该值是6~8M</span>
+<span class="line">join_buffer_size = 4M</span>
+<span class="line"># 指定用于索引的缓冲区大小，增加它可得到更好处理的索引(对所有读和多重写)，对于4GB内存的服务器，该参数可以设置为：256M或384M</span>
+<span class="line">key_buffer_size = 64M</span>
+<span class="line"># 这个值（默认8）表示可以重新利用保存在缓存中线程的数量，当断开连接时如果缓存中还有空间，那么客户端的线程将被放到缓存中，  </span>
+<span class="line"># 根据物理内存设置规则如下：  </span>
+<span class="line"># 1G  —&gt; 8  </span>
+<span class="line"># 2G  —&gt; 16  </span>
+<span class="line"># 3G  —&gt; 32  </span>
+<span class="line"># 大于3G  —&gt; 64  </span>
+<span class="line">thread_cache_size = 8</span>
+<span class="line"></span>
+<span class="line"># 每个线程的堆栈大小，值范围：128K ~ 4GB，默认是192KB</span>
+<span class="line">thread_stack = 256k</span>
+<span class="line"></span>
+<span class="line"># 0是关闭高速缓存，1是开启高速缓存</span>
+<span class="line">query_cache_type = 1</span>
+<span class="line"># 查询缓冲区的大小，如果是4G内存建议设置为64M。具体设置值还要根据运行环境来判断，你可以执行这个SQL语句：show status like &#39;Qcache%&#39;;</span>
+<span class="line"># 从SQL语句查询的结果中，查看Qcache_lowmem_prunes的值非常大表示查询缓冲不够，你应该增加该设置值</span>
+<span class="line">query_cache_size = 8M</span>
+<span class="line">query_cache_limit = 2M</span>
+<span class="line"></span>
+<span class="line"># 分词词汇最小长度，默认4  </span>
+<span class="line">ft_min_word_len = 4</span>
+<span class="line"></span>
+<span class="line">log-bin = /usr/program/mysql/data/mysql-bin</span>
+<span class="line">binlog-format = mixed</span>
+<span class="line">expire_logs_days = 30</span>
+<span class="line"># 该参数的说明：http://blog.csdn.net/wulantian/article/details/9965905</span>
+<span class="line">sync_binlog = 0</span>
+<span class="line"></span>
+<span class="line"># 是否开启慢查询记录，1表示开启，0表示关闭，如果是主从环境下，主库不要开启，从库开启</span>
+<span class="line">slow_query_log = 1</span>
+<span class="line"># 慢查询时间 超过3秒则为慢查询  </span>
+<span class="line">long_query_time = 3</span>
+<span class="line">slow_query_log_file = /usr/program/mysql/data/mysql-slow.log  </span>
+<span class="line"></span>
+<span class="line">performance_schema = 0</span>
+<span class="line"># 改参数的说明：http://www.cnblogs.com/digdeep/p/4727715.html</span>
+<span class="line">explicit_defaults_for_timestamp = true</span>
+<span class="line"></span>
+<span class="line"># 数据库库名/表名是否区分大小写，0：区分大小写，1：不区分大小写</span>
+<span class="line">lower_case_table_names = 1</span>
+<span class="line"></span>
+<span class="line"># MySQL选项以避免外部锁定，减少出错几率，增强稳定性</span>
+<span class="line">skip_external_locking</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># 在网络上不允许TCP/IP连接到MySQL。所有到MySQL的连接必须经由Unix socket进行。如果要允许TCP/IP连接，则注释当前行即可</span>
+<span class="line"># skip-networking</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">table_definition_cache = 1024</span>
+<span class="line"></span>
+<span class="line"># 该设置值取值为：服务器机子的逻辑CPU数量X2，比如你的服务器机子是 Linux 系统你可以执行：grep &#39;processor&#39; /proc/cpuinfo | sort -u | wc -l，可以查看到逻辑CPU数量值，比如我取到的值是24，那我这里应该设置为：24X2=48</span>
+<span class="line">thread_concurrency = 2</span>
+<span class="line"></span>
+<span class="line"># 强制为 innodb类型</span>
+<span class="line">innodb = FORCE</span>
+<span class="line">innodb_file_per_table = 1</span>
+<span class="line"># 限制Innodb能打开的表的数据，如果库里的表特别多的情况，请增加这个。这个值默认是300  </span>
+<span class="line">innodb_open_files = 500</span>
+<span class="line"># InnoDB使用一个缓冲池来保存索引和原始数据, 不像MyISAM.  </span>
+<span class="line"># 这里你设置越大,你在存取表里面数据时所需要的磁盘I/O越少.  </span>
+<span class="line"># 在一个独立使用的数据库服务器上,你可以设置这个变量到服务器物理内存大小的70%左右  </span>
+<span class="line"># 不要设置过大,否则,由于物理内存的竞争可能导致操作系统的换页颠簸.  </span>
+<span class="line">innodb_buffer_pool_size = 592M</span>
+<span class="line"></span>
+<span class="line"># innodb使用后台线程处理数据页上的读写 I/O(输入输出)请求,根据你的 CPU 核数来更改,默认是4  </span>
+<span class="line"># 注:这两个参数不支持动态改变,需要把该参数加入到my.cnf里，修改完后重启MySQL服务,允许值的范围从 1-64  </span>
+<span class="line">innodb_write_io_threads = 4</span>
+<span class="line">innodb_read_io_threads = 4</span>
+<span class="line"></span>
+<span class="line"># 默认设置为 0,表示不限制并发数，这里推荐设置为0，更好去发挥CPU多核处理能力，提高并发量  </span>
+<span class="line">innodb_thread_concurrency = 0</span>
+<span class="line">innodb_purge_threads = 1</span>
+<span class="line">innodb_flush_log_at_trx_commit = 1</span>
+<span class="line">innodb_log_buffer_size = 2M</span>
+<span class="line">innodb_log_file_size = 64M</span>
+<span class="line">innodb_log_files_in_group = 3</span>
+<span class="line">innodb_max_dirty_pages_pct = 90</span>
+<span class="line">innodb_lock_wait_timeout = 120</span>
+<span class="line">innodb_additional_mem_pool_size = 2M</span>
+<span class="line">bulk_insert_buffer_size = 8M</span>
+<span class="line"># 用于设置在 REPAIR TABLE 和 CREATE INDEX 创建索引或 ALTER TABLE 的过程中排序索引所分配的缓冲区大小，可设置范围：4MB~4GB，默认8MB，4G内存的服务器可以设置为32M~64M</span>
+<span class="line">myisam_sort_buffer_size = 8M</span>
+<span class="line"># 32位系统默认值是2147483648=2G，64位系统，默认值是9223372036854775807，单位是bytes.</span>
+<span class="line">myisam_max_sort_file_size = 100G</span>
+<span class="line">myisam_repair_threads = 1</span>
+<span class="line"></span>
+<span class="line"># 服务器关闭交互式连接前等待活动的秒数。单位秒</span>
+<span class="line">interactive_timeout = 28800</span>
+<span class="line"># 服务器关闭非交互连接之前等待活动的秒数。单位秒。通过show processlist命令查看当前系统的连接状态，如果发现有大量的sleep状态的连接进程，则说明该参数设置的过大。默认值:28800 </span>
+<span class="line">wait_timeout = 3600</span>
+<span class="line"></span>
+<span class="line"># ============================================================================================================</span>
+<span class="line"></span>
+<span class="line">[mysqldump]</span>
+<span class="line">quick</span>
+<span class="line"># 服务器发送和接受的最大包长度</span>
+<span class="line">max_allowed_packet = 16M</span>
+<span class="line"></span>
+<span class="line">[myisamchk]</span>
+<span class="line">key_buffer_size = 8M</span>
+<span class="line">sort_buffer_size = 8M</span>
+<span class="line">read_buffer = 4M</span>
+<span class="line">write_buffer = 4M</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-cnf line-numbers-mode" data-highlighter="prismjs" data-ext="cnf"><pre><code class="language-cnf"><span class="line"></span>
+<span class="line"># 适用于 Mysql 5.6</span>
+<span class="line"># 该配置适合 1G 内存左右的机子，储存类型为 InnoDB</span>
+<span class="line"># 官网配置说明：http://dev.mysql.com/doc/refman/5.6/en/mysqld-option-tables.html</span>
+<span class="line"># 官网状态值说明：http://dev.mysql.com/doc/refman/5.6/en/server-status-variables.html</span>
+<span class="line"># 官网环境变量说明：http://dev.mysql.com/doc/refman/5.6/en/server-system-variables.html</span>
+<span class="line"># 在线生成配置工具：http://tools.percona.com（只是起到一个参考作用，生成的配置文件里面的参数名有的是用符号：-，而官网是用：_，所以这个也要注意改掉。）</span>
+<span class="line"># 资料参考：https://blog.linuxeye.com/379.html</span>
+<span class="line"># 注释内容为注释行下面的配置的解释</span>
+<span class="line"># 这是一个综合配置，不是单独为主库或是从库考虑</span>
+<span class="line"></span>
+<span class="line"># ============================================================================================================</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># 客户端设置</span>
+<span class="line">[mysql]</span>
+<span class="line">port = 3306</span>
+<span class="line">socket = /usr/program/mysql/data/mysql.sock</span>
+<span class="line">default-character-set = utf8</span>
+<span class="line"></span>
+<span class="line"># ============================================================================================================</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># 服务端设置</span>
+<span class="line">[mysqld]</span>
+<span class="line">user = mysql</span>
+<span class="line">port = 3306</span>
+<span class="line">default-storage-engine = InnoDB</span>
+<span class="line">socket = /usr/program/mysql/data/mysql.sock</span>
+<span class="line">pid-file = /usr/program/mysql/data/mysql.pid</span>
+<span class="line"></span>
+<span class="line">collation-server = utf8_general_ci</span>
+<span class="line">init_connect = &#39;SET NAMES utf8&#39;</span>
+<span class="line">character-set-server = utf8</span>
+<span class="line">basedir = /usr/program/mysql</span>
+<span class="line">datadir = /usr/program/mysql/data</span>
+<span class="line">log-error = /usr/program/mysql/data/mysql-error.log</span>
+<span class="line"></span>
+<span class="line"># （重点修改）表示是本机的序号为1,一般配合设置主从的时候一定要修改的地方</span>
+<span class="line">server-id = 1</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># back_log 值指出在 MySQL 暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。如果 MySQL 的连接数据达到 max_connections 时，新来的请求将会被存在堆栈中，以等待某一连接释放资源，该堆栈的数量即 back_log，如果等待连接的数量超过 back_log，将不被授予连接资源。</span>
+<span class="line"># 另外，这值（back_log）限于您的操作系统对到来的 TCP/IP 连接的侦听队列的大小。你的操作系统在这个队列大小上有它自己的限制（可以检查你的 OS 文档找出这个变量的最大值），试图设定 back_log 高于你的操作系统的限制将是无效的。  </span>
+<span class="line">back_log = 512</span>
+<span class="line"></span>
+<span class="line"># MySQL 的最大并发连接数</span>
+<span class="line">max_connections = 1000</span>
+<span class="line"># 网络传输中一次小心传输量的最大值（最大值为 1G）；增加该变量的值十分安全，这是因为仅当需要时才会分配额外内存。例如，仅当你发出长查询或 MySQL 必须返回大的结果行时 MySQL 才会分配更多内存。该变量之所以取较小默认值是一种预防措施，以捕获客户端和服务器之间的错误信息包，并确保不会因偶然使用大的信息包而导致内存溢出。  </span>
+<span class="line">max_allowed_packet = 16M</span>
+<span class="line"># 对于同一主机，如果有超出该参数值个数的中断错误连接，则该主机将被禁止连接。如需对该主机进行解禁，执行 Mysql 命令：FLUSH HOST。</span>
+<span class="line">max_connect_errors = 1000000</span>
+<span class="line"># 禁止MySQL对外部连接进行DNS解析，使用这一选项可以消除MySQL进行DNS解析的时间。但需要注意，如果开启该选项，则所有远程主机连接授权都要使用IP地址方式，否则MySQL将无法正常处理连接请求 </span>
+<span class="line">skip-name-resolve</span>
+<span class="line"># MySQL打开的文件描述符限制</span>
+<span class="line">open_files_limit = 65535</span>
+<span class="line"># MySQL 每打开一个表，都会读入一些数据到 table_open_cache 缓存中，当 MySQL 在这个缓存中找不到相应信息时，才会去磁盘上读取。默认值 400，最大值：524288。假定系统有 200 个并发连接，则需将此参数设置为 200*N (N 为每个连接所需的文件描述符数目)；当把 table_open_cache 设置为很大时，如果系统处理不了那么多文件描述符，那么就会出现客户端失效，连接不上  </span>
+<span class="line">table_open_cache = 2048 </span>
+<span class="line"></span>
+<span class="line"># 一个事务，在没有提交的时候，产生的日志，记录到 Cache 中；等到事务提交需要提交的时候，则把日志持久化到磁盘。默认 binlog_cache_size 大小32K</span>
+<span class="line">binlog_cache_size = 1M</span>
+<span class="line"># 定义了用户可以创建的内存表(memory table)的大小。这个值用来计算内存表的最大行数值。这个变量支持动态改变  </span>
+<span class="line">max_heap_table_size = 32M</span>
+<span class="line"># MySQL的heap（堆积）表缓冲大小。如果超过该值，则会将临时表写入磁盘。其范围值:1KB~4GB</span>
+<span class="line">tmp_table_size = 32M</span>
+<span class="line"></span>
+<span class="line"># MySQL读入缓冲区大小。该参数对应的分配内存也是每连接独享，所以，如果有100连接，那占用的内存是：100X2M=200M，所以4G内存的服务器，建议该值是6~8M</span>
+<span class="line">read_buffer_size = 2M</span>
+<span class="line"># MySQL的随机读缓冲区大小。</span>
+<span class="line">read_rnd_buffer_size = 8M</span>
+<span class="line"># MySQL执行排序使用的缓冲大小。该参数对应的分配内存也是每连接独享，所以，如果有100连接，那占用的内存是：100X2M=200M，所以4G内存的服务器，建议该值是6~8M</span>
+<span class="line">sort_buffer_size = 2M</span>
+<span class="line"># 联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享，所以，如果有100连接，那占用的内存是：100X4M=400M，所以4G内存的服务器，建议该值是6~8M</span>
+<span class="line">join_buffer_size = 4M</span>
+<span class="line"># 指定用于索引的缓冲区大小，增加它可得到更好处理的索引(对所有读和多重写)，对于4GB内存的服务器，该参数可以设置为：256M或384M</span>
+<span class="line">key_buffer_size = 64M</span>
+<span class="line"># 这个值（默认8）表示可以重新利用保存在缓存中线程的数量，当断开连接时如果缓存中还有空间，那么客户端的线程将被放到缓存中，  </span>
+<span class="line"># 根据物理内存设置规则如下：  </span>
+<span class="line"># 1G  —&gt; 8  </span>
+<span class="line"># 2G  —&gt; 16  </span>
+<span class="line"># 3G  —&gt; 32  </span>
+<span class="line"># 大于3G  —&gt; 64  </span>
+<span class="line">thread_cache_size = 8</span>
+<span class="line"></span>
+<span class="line"># 每个线程的堆栈大小，值范围：128K ~ 4GB，默认是192KB</span>
+<span class="line">thread_stack = 256k</span>
+<span class="line"></span>
+<span class="line"># 0是关闭高速缓存，1是开启高速缓存</span>
+<span class="line">query_cache_type = 0</span>
+<span class="line"># 查询缓冲区的大小，如果是4G内存建议设置为64M。具体设置值还要根据运行环境来判断，你可以执行这个SQL语句：show status like &#39;Qcache%&#39;;</span>
+<span class="line"># 从SQL语句查询的结果中，查看Qcache_lowmem_prunes的值非常大表示查询缓冲不够，你应该增加该设置值</span>
+<span class="line">query_cache_size = 0</span>
+<span class="line">query_cache_limit = 2M</span>
+<span class="line"></span>
+<span class="line"># 分词词汇最小长度，默认4  </span>
+<span class="line">ft_min_word_len = 4</span>
+<span class="line"></span>
+<span class="line">log-bin = /usr/program/mysql/data/mysql-bin</span>
+<span class="line">binlog-format = mixed</span>
+<span class="line">expire_logs_days = 30</span>
+<span class="line"># 该参数的说明：http://blog.csdn.net/wulantian/article/details/9965905</span>
+<span class="line">sync_binlog = 1</span>
+<span class="line"></span>
+<span class="line"># 是否开启慢查询记录，1表示开启，0表示关闭，如果是主从环境下，主库不要开启，从库开启</span>
+<span class="line">slow_query_log = 0</span>
+<span class="line"># 慢查询时间 超过3秒则为慢查询  </span>
+<span class="line">long_query_time = 3</span>
+<span class="line">slow_query_log_file = /usr/program/mysql/data/mysql-slow.log  </span>
+<span class="line"></span>
+<span class="line">performance_schema = 0</span>
+<span class="line"># 改参数的说明：http://www.cnblogs.com/digdeep/p/4727715.html</span>
+<span class="line">explicit_defaults_for_timestamp = true</span>
+<span class="line"></span>
+<span class="line"># 数据库库名/表名是否区分大小写，0：区分大小写，1：不区分大小写</span>
+<span class="line">lower_case_table_names = 1</span>
+<span class="line"></span>
+<span class="line"># MySQL选项以避免外部锁定，减少出错几率，增强稳定性</span>
+<span class="line">skip_external_locking</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># 在网络上不允许TCP/IP连接到MySQL。所有到MySQL的连接必须经由Unix socket进行。如果要允许TCP/IP连接，则注释当前行即可</span>
+<span class="line"># skip-networking</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">table_definition_cache = 1024</span>
+<span class="line"></span>
+<span class="line"># 该设置值取值为：服务器机子的逻辑CPU数量X2，比如你的服务器机子是 Linux 系统你可以执行：grep &#39;processor&#39; /proc/cpuinfo | sort -u | wc -l，可以查看到逻辑CPU数量值，比如我取到的值是24，那我这里应该设置为：24X2=48</span>
+<span class="line">thread_concurrency = 2</span>
+<span class="line"></span>
+<span class="line"># 强制为 innodb类型</span>
+<span class="line">innodb = FORCE</span>
+<span class="line">innodb_file_per_table = 1</span>
+<span class="line"># 限制Innodb能打开的表的数据，如果库里的表特别多的情况，请增加这个。这个值默认是300  </span>
+<span class="line">innodb_open_files = 500</span>
+<span class="line"># InnoDB使用一个缓冲池来保存索引和原始数据, 不像MyISAM.  </span>
+<span class="line"># 这里你设置越大,你在存取表里面数据时所需要的磁盘I/O越少.  </span>
+<span class="line"># 在一个独立使用的数据库服务器上,你可以设置这个变量到服务器物理内存大小的70%左右  </span>
+<span class="line"># 不要设置过大,否则,由于物理内存的竞争可能导致操作系统的换页颠簸.  </span>
+<span class="line">innodb_buffer_pool_size = 592M</span>
+<span class="line"></span>
+<span class="line"># innodb使用后台线程处理数据页上的读写 I/O(输入输出)请求,根据你的 CPU 核数来更改,默认是4  </span>
+<span class="line"># 注:这两个参数不支持动态改变,需要把该参数加入到my.cnf里，修改完后重启MySQL服务,允许值的范围从 1-64  </span>
+<span class="line">innodb_write_io_threads = 4</span>
+<span class="line">innodb_read_io_threads = 4</span>
+<span class="line"></span>
+<span class="line"># 默认设置为 0,表示不限制并发数，这里推荐设置为0，更好去发挥CPU多核处理能力，提高并发量  </span>
+<span class="line">innodb_thread_concurrency = 0</span>
+<span class="line">innodb_purge_threads = 1</span>
+<span class="line">innodb_flush_log_at_trx_commit = 1</span>
+<span class="line">innodb_log_buffer_size = 2M</span>
+<span class="line">innodb_log_file_size = 64M</span>
+<span class="line">innodb_log_files_in_group = 3</span>
+<span class="line">innodb_max_dirty_pages_pct = 90</span>
+<span class="line">innodb_lock_wait_timeout = 120</span>
+<span class="line">innodb_additional_mem_pool_size = 2M</span>
+<span class="line">bulk_insert_buffer_size = 8M</span>
+<span class="line"># 用于设置在 REPAIR TABLE 和 CREATE INDEX 创建索引或 ALTER TABLE 的过程中排序索引所分配的缓冲区大小，可设置范围：4MB~4GB，默认8MB，4G内存的服务器可以设置为32M~64M</span>
+<span class="line">myisam_sort_buffer_size = 8M</span>
+<span class="line"># 32位系统默认值是2147483648=2G，64位系统，默认值是9223372036854775807，单位是bytes.</span>
+<span class="line">myisam_max_sort_file_size = 100G</span>
+<span class="line">myisam_repair_threads = 1</span>
+<span class="line"></span>
+<span class="line"># 服务器关闭交互式连接前等待活动的秒数。单位秒</span>
+<span class="line">interactive_timeout = 28800</span>
+<span class="line"># 服务器关闭非交互连接之前等待活动的秒数。单位秒。通过show processlist命令查看当前系统的连接状态，如果发现有大量的sleep状态的连接进程，则说明该参数设置的过大。默认值:28800 </span>
+<span class="line">wait_timeout = 3600</span>
+<span class="line"></span>
+<span class="line"># ============================================================================================================</span>
+<span class="line"></span>
+<span class="line">[mysqldump]</span>
+<span class="line">quick</span>
+<span class="line"># 服务器发送和接受的最大包长度</span>
+<span class="line">max_allowed_packet = 16M</span>
+<span class="line"></span>
+<span class="line">[myisamchk]</span>
+<span class="line">key_buffer_size = 8M</span>
+<span class="line">sort_buffer_size = 8M</span>
+<span class="line">read_buffer = 4M</span>
+<span class="line">write_buffer = 4M</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-cnf line-numbers-mode" data-highlighter="prismjs" data-ext="cnf"><pre><code class="language-cnf"><span class="line"></span>
+<span class="line"># 适用于 Mysql 5.6</span>
+<span class="line"># 该配置适合 1G 内存左右的机子，储存类型为 InnoDB</span>
+<span class="line"># 官网配置说明：http://dev.mysql.com/doc/refman/5.6/en/mysqld-option-tables.html</span>
+<span class="line"># 官网状态值说明：http://dev.mysql.com/doc/refman/5.6/en/server-status-variables.html</span>
+<span class="line"># 官网环境变量说明：http://dev.mysql.com/doc/refman/5.6/en/server-system-variables.html</span>
+<span class="line"># 在线生成配置工具：http://tools.percona.com（只是起到一个参考作用，生成的配置文件里面的参数名有的是用符号：-，而官网是用：_，所以这个也要注意改掉。）</span>
+<span class="line"># 资料参考：https://blog.linuxeye.com/379.html</span>
+<span class="line"># 注释内容为注释行下面的配置的解释</span>
+<span class="line"># 这是一个综合配置，不是单独为主库或是从库考虑</span>
+<span class="line"># 如果你需要主、从配置可以看：</span>
+<span class="line"># 主的配置可以看：https://github.com/judasn/Linux-Tutorial/blob/master/MySQL-Settings/MySQL-5.6/1G-Memory-Machine/my-for-master.cnf</span>
+<span class="line"># 从的配置可以看：https://github.com/judasn/Linux-Tutorial/blob/master/MySQL-Settings/MySQL-5.6/1G-Memory-Machine/my-for-salve.cnf</span>
+<span class="line"></span>
+<span class="line"># ============================================================================================================</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># 客户端设置</span>
+<span class="line">[mysql]</span>
+<span class="line">port = 3306</span>
+<span class="line">socket = /usr/program/mysql/data/mysql.sock</span>
+<span class="line">default-character-set = utf8</span>
+<span class="line"></span>
+<span class="line"># ============================================================================================================</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># 服务端设置</span>
+<span class="line">[mysqld]</span>
+<span class="line">user = mysql</span>
+<span class="line">port = 3306</span>
+<span class="line">default-storage-engine = InnoDB</span>
+<span class="line">socket = /usr/program/mysql/data/mysql.sock</span>
+<span class="line">pid-file = /usr/program/mysql/data/mysql.pid</span>
+<span class="line"></span>
+<span class="line">collation-server = utf8_general_ci</span>
+<span class="line">init_connect = &#39;SET NAMES utf8&#39;</span>
+<span class="line">character-set-server = utf8</span>
+<span class="line">basedir = /usr/program/mysql</span>
+<span class="line">datadir = /usr/program/mysql/data</span>
+<span class="line">log-error = /usr/program/mysql/data/mysql-error.log</span>
+<span class="line"></span>
+<span class="line"># （重点修改）表示是本机的序号为1,一般配合设置主从的时候一定要修改的地方</span>
+<span class="line">server-id = 1</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># back_log 值指出在 MySQL 暂时停止回答新请求之前的短时间内多少个请求可以被存在堆栈中。如果 MySQL 的连接数据达到 max_connections 时，新来的请求将会被存在堆栈中，以等待某一连接释放资源，该堆栈的数量即 back_log，如果等待连接的数量超过 back_log，将不被授予连接资源。</span>
+<span class="line"># 另外，这值（back_log）限于您的操作系统对到来的 TCP/IP 连接的侦听队列的大小。你的操作系统在这个队列大小上有它自己的限制（可以检查你的 OS 文档找出这个变量的最大值），试图设定 back_log 高于你的操作系统的限制将是无效的。  </span>
+<span class="line">back_log = 512</span>
+<span class="line"></span>
+<span class="line"># MySQL 的最大并发连接数</span>
+<span class="line">max_connections = 1000</span>
+<span class="line"># 网络传输中一次小心传输量的最大值（最大值为 1G）；增加该变量的值十分安全，这是因为仅当需要时才会分配额外内存。例如，仅当你发出长查询或 MySQL 必须返回大的结果行时 MySQL 才会分配更多内存。该变量之所以取较小默认值是一种预防措施，以捕获客户端和服务器之间的错误信息包，并确保不会因偶然使用大的信息包而导致内存溢出。  </span>
+<span class="line">max_allowed_packet = 16M</span>
+<span class="line"># （这个参数有疑问）对于同一主机，如果有超出该参数值个数的中断错误连接，则该主机将被禁止连接。如需对该主机进行解禁，执行 Mysql 命令：FLUSH HOST。</span>
+<span class="line">max_connect_errors = 1000000</span>
+<span class="line"># 禁止MySQL对外部连接进行DNS解析，使用这一选项可以消除MySQL进行DNS解析的时间。但需要注意，如果开启该选项，则所有远程主机连接授权都要使用IP地址方式，否则MySQL将无法正常处理连接请求 </span>
+<span class="line">skip-name-resolve</span>
+<span class="line"># MySQL打开的文件描述符限制</span>
+<span class="line">open_files_limit = 65535</span>
+<span class="line"># MySQL 每打开一个表，都会读入一些数据到 table_open_cache 缓存中，当 MySQL 在这个缓存中找不到相应信息时，才会去磁盘上读取。默认值 400，最大值：524288。假定系统有 200 个并发连接，则需将此参数设置为 200*N (N 为每个连接所需的文件描述符数目)；当把 table_open_cache 设置为很大时，如果系统处理不了那么多文件描述符，那么就会出现客户端失效，连接不上  </span>
+<span class="line">table_open_cache = 2048 </span>
+<span class="line"></span>
+<span class="line"># 一个事务，在没有提交的时候，产生的日志，记录到 Cache 中；等到事务提交需要提交的时候，则把日志持久化到磁盘。默认 binlog_cache_size 大小32K</span>
+<span class="line">binlog_cache_size = 1M</span>
+<span class="line"># 定义了用户可以创建的内存表(memory table)的大小。这个值用来计算内存表的最大行数值。这个变量支持动态改变  </span>
+<span class="line">max_heap_table_size = 32M</span>
+<span class="line"># MySQL的heap（堆积）表缓冲大小。如果超过该值，则会将临时表写入磁盘。其范围值:1KB~4GB</span>
+<span class="line">tmp_table_size = 32M</span>
+<span class="line"></span>
+<span class="line"># MySQL读入缓冲区大小。该参数对应的分配内存也是每连接独享，所以，如果有100连接，那占用的内存是：100X2M=200M，所以4G内存的服务器，建议该值是6~8M</span>
+<span class="line">read_buffer_size = 2M</span>
+<span class="line"># MySQL的随机读缓冲区大小。</span>
+<span class="line">read_rnd_buffer_size = 8M</span>
+<span class="line"># MySQL执行排序使用的缓冲大小。该参数对应的分配内存也是每连接独享，所以，如果有100连接，那占用的内存是：100X2M=200M，所以4G内存的服务器，建议该值是6~8M</span>
+<span class="line">sort_buffer_size = 2M</span>
+<span class="line"># 联合查询操作所能使用的缓冲区大小，和sort_buffer_size一样，该参数对应的分配内存也是每连接独享，所以，如果有100连接，那占用的内存是：100X4M=400M，所以4G内存的服务器，建议该值是6~8M</span>
+<span class="line">join_buffer_size = 4M</span>
+<span class="line"># 指定用于索引的缓冲区大小，增加它可得到更好处理的索引(对所有读和多重写)，对于4GB内存的服务器，该参数可以设置为：256M或384M</span>
+<span class="line">key_buffer_size = 64M</span>
+<span class="line"># 这个值（默认8）表示可以重新利用保存在缓存中线程的数量，当断开连接时如果缓存中还有空间，那么客户端的线程将被放到缓存中，  </span>
+<span class="line"># 根据物理内存设置规则如下：  </span>
+<span class="line"># 1G  —&gt; 8  </span>
+<span class="line"># 2G  —&gt; 16  </span>
+<span class="line"># 3G  —&gt; 32  </span>
+<span class="line"># 大于3G  —&gt; 64  </span>
+<span class="line">thread_cache_size = 8</span>
+<span class="line"></span>
+<span class="line"># 每个线程的堆栈大小，值范围：128K ~ 4GB，默认是192KB</span>
+<span class="line">thread_stack = 256k</span>
+<span class="line"></span>
+<span class="line"># 0是关闭高速缓存，1是开启高速缓存</span>
+<span class="line">query_cache_type = 1</span>
+<span class="line"># 查询缓冲区的大小，如果是4G内存建议设置为64M。具体设置值还要根据运行环境来判断，你可以执行这个SQL语句：show status like &#39;Qcache%&#39;;</span>
+<span class="line"># 从SQL语句查询的结果中，查看Qcache_lowmem_prunes的值非常大表示查询缓冲不够，你应该增加该设置值</span>
+<span class="line">query_cache_size = 8M</span>
+<span class="line">query_cache_limit = 2M</span>
+<span class="line"></span>
+<span class="line"># 分词词汇最小长度，默认4  </span>
+<span class="line">ft_min_word_len = 4</span>
+<span class="line"></span>
+<span class="line">log-bin = /usr/program/mysql/data/mysql-bin</span>
+<span class="line">binlog-format = mixed</span>
+<span class="line">expire_logs_days = 30</span>
+<span class="line"># 该参数的说明：http://blog.csdn.net/wulantian/article/details/9965905</span>
+<span class="line">sync_binlog = 0</span>
+<span class="line"></span>
+<span class="line"># 是否开启慢查询记录，1表示开启，0表示关闭，如果是主从环境下，主库不要开启，从库开启</span>
+<span class="line">slow_query_log = 1</span>
+<span class="line"># 慢查询时间 超过3秒则为慢查询  </span>
+<span class="line">long_query_time = 3</span>
+<span class="line">slow_query_log_file = /usr/program/mysql/data/mysql-slow.log  </span>
+<span class="line"></span>
+<span class="line">performance_schema = 0</span>
+<span class="line"># 改参数的说明：http://www.cnblogs.com/digdeep/p/4727715.html</span>
+<span class="line">explicit_defaults_for_timestamp = true</span>
+<span class="line"></span>
+<span class="line"># 数据库库名/表名是否区分大小写，0：区分大小写，1：不区分大小写</span>
+<span class="line">lower_case_table_names = 1</span>
+<span class="line"></span>
+<span class="line"># MySQL选项以避免外部锁定，减少出错几率，增强稳定性</span>
+<span class="line">skip_external_locking</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"># 在网络上不允许TCP/IP连接到MySQL。所有到MySQL的连接必须经由Unix socket进行。如果要允许TCP/IP连接，则注释当前行即可</span>
+<span class="line"># skip-networking</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">table_definition_cache = 1024</span>
+<span class="line"></span>
+<span class="line"># 该设置值取值为：服务器机子的逻辑CPU数量X2，比如你的服务器机子是 Linux 系统你可以执行：grep &#39;processor&#39; /proc/cpuinfo | sort -u | wc -l，可以查看到逻辑CPU数量值，比如我取到的值是24，那我这里应该设置为：24X2=48</span>
+<span class="line">thread_concurrency = 2</span>
+<span class="line"></span>
+<span class="line"># 强制为 innodb类型</span>
+<span class="line">innodb = FORCE</span>
+<span class="line">innodb_file_per_table = 1</span>
+<span class="line"># 限制Innodb能打开的表的数据，如果库里的表特别多的情况，请增加这个。这个值默认是300  </span>
+<span class="line">innodb_open_files = 500</span>
+<span class="line"># InnoDB使用一个缓冲池来保存索引和原始数据, 不像MyISAM.  </span>
+<span class="line"># 这里你设置越大,你在存取表里面数据时所需要的磁盘I/O越少.  </span>
+<span class="line"># 在一个独立使用的数据库服务器上,你可以设置这个变量到服务器物理内存大小的70%左右  </span>
+<span class="line"># 不要设置过大,否则,由于物理内存的竞争可能导致操作系统的换页颠簸.  </span>
+<span class="line">innodb_buffer_pool_size = 592M</span>
+<span class="line"></span>
+<span class="line"># innodb使用后台线程处理数据页上的读写 I/O(输入输出)请求,根据你的 CPU 核数来更改,默认是4  </span>
+<span class="line"># 注:这两个参数不支持动态改变,需要把该参数加入到my.cnf里，修改完后重启MySQL服务,允许值的范围从 1-64  </span>
+<span class="line">innodb_write_io_threads = 4</span>
+<span class="line">innodb_read_io_threads = 4</span>
+<span class="line"></span>
+<span class="line"># 默认设置为 0,表示不限制并发数，这里推荐设置为0，更好去发挥CPU多核处理能力，提高并发量  </span>
+<span class="line">innodb_thread_concurrency = 0</span>
+<span class="line">innodb_purge_threads = 1</span>
+<span class="line">innodb_flush_log_at_trx_commit = 1</span>
+<span class="line">innodb_log_buffer_size = 2M</span>
+<span class="line">innodb_log_file_size = 64M</span>
+<span class="line">innodb_log_files_in_group = 3</span>
+<span class="line">innodb_max_dirty_pages_pct = 90</span>
+<span class="line">innodb_lock_wait_timeout = 120</span>
+<span class="line">innodb_additional_mem_pool_size = 2M</span>
+<span class="line">bulk_insert_buffer_size = 8M</span>
+<span class="line"># 用于设置在 REPAIR TABLE 和 CREATE INDEX 创建索引或 ALTER TABLE 的过程中排序索引所分配的缓冲区大小，可设置范围：4MB~4GB，默认8MB，4G内存的服务器可以设置为32M~64M</span>
+<span class="line">myisam_sort_buffer_size = 8M</span>
+<span class="line"># 32位系统默认值是2147483648=2G，64位系统，默认值是9223372036854775807，单位是bytes.</span>
+<span class="line">myisam_max_sort_file_size = 100G</span>
+<span class="line">myisam_repair_threads = 1</span>
+<span class="line"></span>
+<span class="line"># 服务器关闭交互式连接前等待活动的秒数。单位秒</span>
+<span class="line">interactive_timeout = 28800</span>
+<span class="line"># 服务器关闭非交互连接之前等待活动的秒数。单位秒。通过show processlist命令查看当前系统的连接状态，如果发现有大量的sleep状态的连接进程，则说明该参数设置的过大。默认值:28800 </span>
+<span class="line">wait_timeout = 3600</span>
+<span class="line"></span>
+<span class="line"># ============================================================================================================</span>
+<span class="line"></span>
+<span class="line">[mysqldump]</span>
+<span class="line">quick</span>
+<span class="line"># 服务器发送和接受的最大包长度</span>
+<span class="line">max_allowed_packet = 16M</span>
+<span class="line"></span>
+<span class="line">[myisamchk]</span>
+<span class="line">key_buffer_size = 8M</span>
+<span class="line">sort_buffer_size = 8M</span>
+<span class="line">read_buffer = 4M</span>
+<span class="line">write_buffer = 4M</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="mysql-8g" tabindex="-1"><a class="header-anchor" href="#mysql-8g"><span>mysql-8g</span></a></h2><div class="language-cnf line-numbers-mode" data-highlighter="prismjs" data-ext="cnf"><pre><code class="language-cnf"><span class="line">[mysql]</span>
+<span class="line">port = 3306</span>
+<span class="line">socket = /usr/program/mysql/data/mysql.sock</span>
+<span class="line">default-character-set = utf8</span>
+<span class="line"></span>
+<span class="line">[mysqld]</span>
+<span class="line">user = mysql</span>
+<span class="line">port = 3306</span>
+<span class="line">server-id = 100866</span>
+<span class="line">default-storage-engine = InnoDB</span>
+<span class="line">socket = /usr/program/mysql/data/mysql.sock</span>
+<span class="line">pid-file = /usr/program/mysql/data/mysql.pid</span>
+<span class="line">collation-server = utf8_general_ci</span>
+<span class="line">init_connect = &#39;SET NAMES utf8&#39;</span>
+<span class="line">character-set-server = utf8</span>
+<span class="line">basedir = /usr/program/mysql</span>
+<span class="line">datadir = /usr/program/mysql/data</span>
+<span class="line">log-error = /usr/program/mysql/data/mysql-error.log</span>
+<span class="line"></span>
+<span class="line">back_log = 512</span>
+<span class="line">max_connections = 1000</span>
+<span class="line">max_allowed_packet = 120M</span>
+<span class="line">max_connect_errors = 1000000</span>
+<span class="line">skip-name-resolve</span>
+<span class="line">open_files_limit = 65535</span>
+<span class="line">table_open_cache = 2048 </span>
+<span class="line">binlog_cache_size = 20M</span>
+<span class="line">max_heap_table_size = 40M</span>
+<span class="line">tmp_table_size = 64M</span>
+<span class="line">read_buffer_size = 20M</span>
+<span class="line">read_rnd_buffer_size = 20M</span>
+<span class="line">sort_buffer_size = 20M</span>
+<span class="line">join_buffer_size = 20M</span>
+<span class="line">key_buffer_size = 40M</span>
+<span class="line">thread_cache_size = 100</span>
+<span class="line">thread_stack = 20M</span>
+<span class="line"></span>
+<span class="line"># 5.6.8之后这个不再建议开启了，所以要关掉</span>
+<span class="line">query_cache_type = 0</span>
+<span class="line">query_cache_size = 40M</span>
+<span class="line">query_cache_limit = 10M</span>
+<span class="line">ft_min_word_len = 4</span>
+<span class="line">log-bin = /usr/program/mysql/data/mysql-bin</span>
+<span class="line">binlog-format = mixed</span>
+<span class="line">expire_logs_days = 14</span>
+<span class="line">sync_binlog = 0</span>
+<span class="line">log-queries-not-using-indexes = 1</span>
+<span class="line">slow_query_log = 0</span>
+<span class="line">long_query_time = 3</span>
+<span class="line">slow_query_log_file = /usr/program/mysql/data/mysql-slow.log  </span>
+<span class="line">performance_schema = 0</span>
+<span class="line">explicit_defaults_for_timestamp = true</span>
+<span class="line">lower_case_table_names = 1</span>
+<span class="line">skip_external_locking</span>
+<span class="line">table_definition_cache = 1024</span>
+<span class="line">thread_concurrency = 2</span>
+<span class="line">innodb = FORCE</span>
+<span class="line">innodb_flush_method = O_DIRECT</span>
+<span class="line">innodb_file_per_table = 1</span>
+<span class="line">innodb_open_files = 500</span>
+<span class="line">innodb_thread_concurrency = 0</span>
+<span class="line">innodb_purge_threads = 1</span>
+<span class="line">innodb_flush_log_at_trx_commit = 1</span>
+<span class="line">innodb_log_buffer_size = 20M</span>
+<span class="line">innodb_log_file_size = 256M</span>
+<span class="line">innodb_log_files_in_group = 2</span>
+<span class="line">innodb_lock_wait_timeout = 120</span>
+<span class="line">innodb_additional_mem_pool_size = 20M</span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line">innodb_buffer_pool_size = 3G</span>
+<span class="line">innodb_read_io_threads = 8</span>
+<span class="line">innodb_write_io_threads = 8</span>
+<span class="line">innodb_io_capacity = 2000</span>
+<span class="line">innodb_max_dirty_pages_pct = 90</span>
+<span class="line"></span>
+<span class="line">bulk_insert_buffer_size = 64M</span>
+<span class="line">myisam_sort_buffer_size = 64M</span>
+<span class="line">myisam_max_sort_file_size = 10G</span>
+<span class="line">myisam_repair_threads = 1</span>
+<span class="line">interactive_timeout = 28800</span>
+<span class="line">wait_timeout = 3600</span>
+<span class="line"></span>
+<span class="line">[mysqldump]</span>
+<span class="line">quick</span>
+<span class="line">max_allowed_packet = 120M</span>
+<span class="line"></span>
+<span class="line">[myisamchk]</span>
+<span class="line">key_buffer_size = 20M</span>
+<span class="line">sort_buffer_size = 20M</span>
+<span class="line">read_buffer = 20M</span>
+<span class="line">write_buffer = 20M</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="mysql-windows" tabindex="-1"><a class="header-anchor" href="#mysql-windows"><span>mysql-windows</span></a></h2><div class="language-ini line-numbers-mode" data-highlighter="prismjs" data-ext="ini"><pre><code class="language-ini"><span class="line"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">client</span><span class="token punctuation">]</span></span></span>
+<span class="line">no-beep</span>
+<span class="line"><span class="token key attr-name">port</span><span class="token punctuation">=</span><span class="token value attr-value">3306</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">mysql</span><span class="token punctuation">]</span></span></span>
+<span class="line"><span class="token key attr-name">default-character-set</span><span class="token punctuation">=</span><span class="token value attr-value">utf8</span></span>
+<span class="line"></span>
+<span class="line"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">mysqld</span><span class="token punctuation">]</span></span></span>
+<span class="line"><span class="token key attr-name">port</span><span class="token punctuation">=</span><span class="token value attr-value">3306</span></span>
+<span class="line"><span class="token key attr-name">basedir</span><span class="token punctuation">=</span><span class="token value attr-value">&quot;<span class="token inner-value">C:/Program Files/MySQL/MySQL Server 5.6/</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">datadir</span><span class="token punctuation">=</span><span class="token value attr-value">&quot;<span class="token inner-value">C:/ProgramData/MySQL/MySQL Server 5.6/data\</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">character-set-server</span><span class="token punctuation">=</span><span class="token value attr-value">utf8</span></span>
+<span class="line"><span class="token key attr-name">default-storage-engine</span><span class="token punctuation">=</span><span class="token value attr-value">INNODB</span></span>
+<span class="line"><span class="token key attr-name">sql-mode</span><span class="token punctuation">=</span><span class="token value attr-value">&quot;<span class="token inner-value">STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">log-output</span><span class="token punctuation">=</span><span class="token value attr-value">NONE</span></span>
+<span class="line"><span class="token key attr-name">general-log</span><span class="token punctuation">=</span><span class="token value attr-value">0</span></span>
+<span class="line"><span class="token key attr-name">general_log_file</span><span class="token punctuation">=</span><span class="token value attr-value">&quot;<span class="token inner-value">AJBC-1540.log</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">slow-query-log</span><span class="token punctuation">=</span><span class="token value attr-value">0</span></span>
+<span class="line"><span class="token key attr-name">slow_query_log_file</span><span class="token punctuation">=</span><span class="token value attr-value">&quot;<span class="token inner-value">AJBC-1540-slow.log</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">long_query_time</span><span class="token punctuation">=</span><span class="token value attr-value">10</span></span>
+<span class="line"><span class="token key attr-name">log-error</span><span class="token punctuation">=</span><span class="token value attr-value">&quot;<span class="token inner-value">AJBC-1540.err</span>&quot;</span></span>
+<span class="line"><span class="token key attr-name">max_connections</span><span class="token punctuation">=</span><span class="token value attr-value">1000</span></span>
+<span class="line"><span class="token key attr-name">query_cache_size</span><span class="token punctuation">=</span><span class="token value attr-value">10M</span></span>
+<span class="line"><span class="token key attr-name">table_open_cache</span><span class="token punctuation">=</span><span class="token value attr-value">2000</span></span>
+<span class="line"><span class="token key attr-name">tmp_table_size</span><span class="token punctuation">=</span><span class="token value attr-value">37M</span></span>
+<span class="line"><span class="token key attr-name">thread_cache_size</span><span class="token punctuation">=</span><span class="token value attr-value">32</span></span>
+<span class="line"><span class="token key attr-name">myisam_max_sort_file_size</span><span class="token punctuation">=</span><span class="token value attr-value">100G</span></span>
+<span class="line"><span class="token key attr-name">myisam_sort_buffer_size</span><span class="token punctuation">=</span><span class="token value attr-value">72M</span></span>
+<span class="line"><span class="token key attr-name">key_buffer_size</span><span class="token punctuation">=</span><span class="token value attr-value">256M</span></span>
+<span class="line"><span class="token key attr-name">read_buffer_size</span><span class="token punctuation">=</span><span class="token value attr-value">6M</span></span>
+<span class="line"><span class="token key attr-name">read_rnd_buffer_size</span><span class="token punctuation">=</span><span class="token value attr-value">8M</span></span>
+<span class="line"><span class="token key attr-name">sort_buffer_size</span><span class="token punctuation">=</span><span class="token value attr-value">2M</span></span>
+<span class="line"><span class="token key attr-name">innodb_additional_mem_pool_size</span><span class="token punctuation">=</span><span class="token value attr-value">5M</span></span>
+<span class="line"><span class="token key attr-name">innodb_flush_log_at_trx_commit</span><span class="token punctuation">=</span><span class="token value attr-value">1</span></span>
+<span class="line"><span class="token key attr-name">innodb_log_buffer_size</span><span class="token punctuation">=</span><span class="token value attr-value">3M</span></span>
+<span class="line"><span class="token key attr-name">innodb_buffer_pool_size</span><span class="token punctuation">=</span><span class="token value attr-value">592M</span></span>
+<span class="line"><span class="token key attr-name">innodb_log_file_size</span><span class="token punctuation">=</span><span class="token value attr-value">64M</span></span>
+<span class="line"><span class="token key attr-name">innodb_thread_concurrency</span><span class="token punctuation">=</span><span class="token value attr-value">9</span></span>
+<span class="line"><span class="token key attr-name">innodb_autoextend_increment</span><span class="token punctuation">=</span><span class="token value attr-value">64M</span></span>
+<span class="line"><span class="token key attr-name">innodb_buffer_pool_instances</span><span class="token punctuation">=</span><span class="token value attr-value">8</span></span>
+<span class="line"><span class="token key attr-name">innodb_concurrency_tickets</span><span class="token punctuation">=</span><span class="token value attr-value">5000</span></span>
+<span class="line"><span class="token key attr-name">innodb_old_blocks_time</span><span class="token punctuation">=</span><span class="token value attr-value">1000</span></span>
+<span class="line"><span class="token key attr-name">innodb_open_files</span><span class="token punctuation">=</span><span class="token value attr-value">500</span></span>
+<span class="line"><span class="token key attr-name">innodb_stats_on_metadata</span><span class="token punctuation">=</span><span class="token value attr-value">0</span></span>
+<span class="line"><span class="token key attr-name">innodb_file_per_table</span><span class="token punctuation">=</span><span class="token value attr-value">1</span></span>
+<span class="line"><span class="token key attr-name">innodb_checksum_algorithm</span><span class="token punctuation">=</span><span class="token value attr-value">0</span></span>
+<span class="line"><span class="token key attr-name">back_log</span><span class="token punctuation">=</span><span class="token value attr-value">512</span></span>
+<span class="line"><span class="token key attr-name">flush_time</span><span class="token punctuation">=</span><span class="token value attr-value">0</span></span>
+<span class="line"><span class="token key attr-name">join_buffer_size</span><span class="token punctuation">=</span><span class="token value attr-value">4M</span></span>
+<span class="line"><span class="token key attr-name">max_allowed_packet</span><span class="token punctuation">=</span><span class="token value attr-value">50M</span></span>
+<span class="line"><span class="token key attr-name">max_connect_errors</span><span class="token punctuation">=</span><span class="token value attr-value">1000000</span></span>
+<span class="line"><span class="token key attr-name">open_files_limit</span><span class="token punctuation">=</span><span class="token value attr-value">65535</span></span>
+<span class="line"><span class="token key attr-name">query_cache_type</span><span class="token punctuation">=</span><span class="token value attr-value">1</span></span>
+<span class="line"><span class="token key attr-name">table_definition_cache</span><span class="token punctuation">=</span><span class="token value attr-value">1400</span></span>
+<span class="line"><span class="token key attr-name">binlog_row_event_max_size</span><span class="token punctuation">=</span><span class="token value attr-value">8K</span></span>
+<span class="line"><span class="token key attr-name">sync_master_info</span><span class="token punctuation">=</span><span class="token value attr-value">10000</span></span>
+<span class="line"><span class="token key attr-name">sync_relay_log</span><span class="token punctuation">=</span><span class="token value attr-value">10000</span></span>
+<span class="line"><span class="token key attr-name">sync_relay_log_info</span><span class="token punctuation">=</span><span class="token value attr-value">10000</span></span>
+<span class="line"><span class="token key attr-name">innodb_write_io_threads</span> <span class="token punctuation">=</span> <span class="token value attr-value">4</span></span>
+<span class="line"><span class="token key attr-name">innodb_read_io_threads</span> <span class="token punctuation">=</span> <span class="token value attr-value">4</span></span>
+<span class="line"><span class="token key attr-name">innodb_purge_threads</span> <span class="token punctuation">=</span> <span class="token value attr-value">1</span></span>
+<span class="line"><span class="token key attr-name">innodb_log_files_in_group</span> <span class="token punctuation">=</span> <span class="token value attr-value">3</span></span>
+<span class="line"><span class="token key attr-name">innodb_max_dirty_pages_pct</span> <span class="token punctuation">=</span> <span class="token value attr-value">90</span></span>
+<span class="line"><span class="token key attr-name">innodb_lock_wait_timeout</span> <span class="token punctuation">=</span> <span class="token value attr-value">120</span></span>
+<span class="line"><span class="token key attr-name">max_heap_table_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">32M</span></span>
+<span class="line"><span class="token key attr-name">thread_stack</span> <span class="token punctuation">=</span> <span class="token value attr-value">256k</span></span>
+<span class="line"><span class="token key attr-name">ft_min_word_len</span> <span class="token punctuation">=</span> <span class="token value attr-value">4</span></span>
+<span class="line"><span class="token key attr-name">performance_schema</span> <span class="token punctuation">=</span> <span class="token value attr-value">0</span></span>
+<span class="line"><span class="token key attr-name">explicit_defaults_for_timestamp</span> <span class="token punctuation">=</span> <span class="token value attr-value">true</span></span>
+<span class="line">skip_external_locking</span>
+<span class="line"><span class="token key attr-name">bulk_insert_buffer_size</span> <span class="token punctuation">=</span> <span class="token value attr-value">8M</span></span>
+<span class="line"><span class="token key attr-name">wait_timeout</span> <span class="token punctuation">=</span> <span class="token value attr-value">3600</span></span>
+<span class="line"><span class="token key attr-name">interactive_timeout</span> <span class="token punctuation">=</span> <span class="token value attr-value">28800</span></span>
+<span class="line"><span class="token key attr-name">myisam_repair_threads</span> <span class="token punctuation">=</span> <span class="token value attr-value">1</span></span>
+<span class="line"><span class="token key attr-name">query_cache_limit</span> <span class="token punctuation">=</span> <span class="token value attr-value">5M</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div><!----><!----><!----></div><footer class="vp-page-meta"><div class="vp-meta-item edit-link"><a class="auto-link external-link vp-meta-label" href="https://github.com/yzqdev/cs-guide/edit/main/docs/linux-tutor/configs/mysql-1g.md" aria-label="编辑此页" rel="noopener noreferrer" target="_blank"><!--[--><svg xmlns="http://www.w3.org/2000/svg" class="icon edit-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="edit icon" name="edit"><path d="M430.818 653.65a60.46 60.46 0 0 1-50.96-93.281l71.69-114.012 7.773-10.365L816.038 80.138A60.46 60.46 0 0 1 859.225 62a60.46 60.46 0 0 1 43.186 18.138l43.186 43.186a60.46 60.46 0 0 1 0 86.373L588.879 565.55l-8.637 8.637-117.466 68.234a60.46 60.46 0 0 1-31.958 11.229z"></path><path d="M728.802 962H252.891A190.883 190.883 0 0 1 62.008 771.98V296.934a190.883 190.883 0 0 1 190.883-192.61h267.754a60.46 60.46 0 0 1 0 120.92H252.891a69.962 69.962 0 0 0-69.098 69.099V771.98a69.962 69.962 0 0 0 69.098 69.098h475.911A69.962 69.962 0 0 0 797.9 771.98V503.363a60.46 60.46 0 1 1 120.922 0V771.98A190.883 190.883 0 0 1 728.802 962z"></path></svg><!--]-->编辑此页<!----></a></div><div class="vp-meta-item git-info"><div class="update-time"><span class="vp-meta-label">最近更新: </span><time class="vp-meta-info" datetime="2022-05-26T11:39:36.000Z" data-allow-mismatch>2022/5/26 11:39</time></div><div class="contributors"><span class="vp-meta-label">贡献者: </span><!--[--><!--[--><span class="vp-meta-info" title="email: yzqdev@outlook.com">yzqdev</span><!--]--><!--]--></div></div></footer><nav class="vp-page-nav"><a class="route-link route-link-active auto-link prev" href="/cs-guide/linux-tutor/configs/" aria-label="配置文件"><div class="hint"><span class="arrow start"></span>上一页</div><div class="link"><!---->配置文件</div></a><a class="route-link auto-link next" href="/cs-guide/linux-tutor/configs/nginx.html" aria-label="nginx配置"><div class="hint">下一页<span class="arrow end"></span></div><div class="link">nginx配置<!----></div></a></nav><div id="comment" class="giscus-wrapper input-top vp-comment" vp-comment style="display:block;"><div style="display: flex;align-items: center;justify-content: center;height: 96px"><span style="--loading-icon: url(&quot;data:image/svg+xml;utf8,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; preserveAspectRatio=&#39;xMidYMid&#39; viewBox=&#39;25 25 50 50&#39;%3E%3CanimateTransform attributeName=&#39;transform&#39; type=&#39;rotate&#39; dur=&#39;2s&#39; keyTimes=&#39;0;1&#39; repeatCount=&#39;indefinite&#39; values=&#39;0;360&#39;%3E%3C/animateTransform%3E%3Ccircle cx=&#39;50&#39; cy=&#39;50&#39; r=&#39;20&#39; fill=&#39;none&#39; stroke=&#39;currentColor&#39; stroke-width=&#39;4&#39; stroke-linecap=&#39;round&#39;%3E%3Canimate attributeName=&#39;stroke-dasharray&#39; dur=&#39;1.5s&#39; keyTimes=&#39;0;0.5;1&#39; repeatCount=&#39;indefinite&#39; values=&#39;1,200;90,200;1,200&#39;%3E%3C/animate%3E%3Canimate attributeName=&#39;stroke-dashoffset&#39; dur=&#39;1.5s&#39; keyTimes=&#39;0;0.5;1&#39; repeatCount=&#39;indefinite&#39; values=&#39;0;-35px;-125px&#39;%3E%3C/animate%3E%3C/circle%3E%3C/svg%3E&quot;);--icon-size: 48px;display: inline-block;width: var(--icon-size);height: var(--icon-size);background-color: currentcolor;-webkit-mask-image: var(--loading-icon);mask-image: var(--loading-icon)"></span></div></div><!----><!--]--></main><!--]--><!----></div><!--]--><!--]--><!--[--><!----><div id="pwa-install"><!----><div id="install-modal-wrapper" style="display:none;"><div class="background"></div><div class="install-modal"><div class="header"><button type="button" class="close-button" aria-label="关闭"><svg xmlns="http://www.w3.org/2000/svg" class="icon close-icon" viewBox="0 0 1024 1024" fill="currentColor" aria-label="close icon"><path d="M589.654 511.965 1007.212 84.22a49.777 49.777 0 0 0-.73-70.02 49.046 49.046 0 0 0-69.687.665L519.967 441.946 85.882 14.2a49.08 49.08 0 0 0-69.687.664 49.777 49.777 0 0 0 .664 70.019l433.454 427.082L16.859 939.048a49.777 49.777 0 0 0-.664 70.019 49.013 49.013 0 0 0 69.687.663l434.085-427.746 416.828 427.083A49.013 49.013 0 0 0 972.037 1024a48.416 48.416 0 0 0 34.512-14.27 49.777 49.777 0 0 0 .73-70.019z"></path></svg></button><div class="logo"><!----><div class="title"><h1></h1><p class="desc">该应用可以安装在你的 PC 或移动设备上。这将使该 Web 应用程序外观和行为与其他应用程序相同。它将在出现在应用程序列表中，并可以固定到主屏幕，开始菜单或任务栏。此 Web 应用程序还将能够与其他应用程序和你的操作系统安全地进行交互。</p></div></div></div><div class="content"><div class="highlight"><!----><!----></div><div class="description"><h3>详情</h3><p></p></div></div><div class="button-wrapper"><button type="button" class="install-button">安装<span></span></button><button type="button" class="cancel-button">取消</button></div></div></div></div><!----><!--[--><!--]--><!--]--><!--]--></div>
+    <script type="module" src="/cs-guide/assets/app-B6vXTniy.js" defer></script>
+  </body>
+</html>
