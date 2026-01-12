@@ -57,19 +57,34 @@ go run .\main.go D:\Documents\Windows11.iso
 import hashlib
 import sys
 import time
-
+import hashlib
+import sys
+import time
 
 def main(file_name):
     start = time.time()
-    with open(file_name, 'rb') as f:
-        data = f.read()
-    file_md5 = hashlib.md5(data).hexdigest()
+
+    # 创建MD5哈希对象
+    hash_md5 = hashlib.md5()
+
+    # 以二进制读取模式打开文件
+    with open(file_name, "rb") as f:
+        # 循环读取文件块，避免一次性加载
+        for chunk in iter(lambda: f.read(4096), b""):
+            # 逐步更新MD5计算
+            hash_md5.update(chunk)
+
+    # 获取最终的MD5哈希值
+    file_md5 = hash_md5.hexdigest()
     print("md5=>" + file_md5)
+
     end = time.time()
     print('用时:' + str(end - start) + "s")
 
-
 if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python script.py <filename>")
+        sys.exit(1)
     file_name = sys.argv[1]
     main(file_name)
 ```
