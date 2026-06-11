@@ -1,56 +1,58 @@
-# powershell美化
+# PowerShell 美化
 
-## **改造PowerShell**
+## 改造 PowerShell
 
-默认的PowerShell并不美观，仅仅是将原来“傻大黑”变成了“傻大蓝”。（由于我的PowerShell已经改造过了所以我这里就没有办法截图了）我们的做法是在PowerShell里面加一个PowerLine，然后剩下的，在Terminal中配置。
+默认的 PowerShell 并不美观，仅仅是将原来"傻大黑"变成了"傻大蓝"。（由于我的 PowerShell 已经改造过了所以我这里就没有办法截图了）我们的做法是在 PowerShell 里面加一个 PowerLine，然后剩下的，在 Terminal 中配置。
 
-### 安装posh-git
+### 安装 posh-git
 
 ```powershell
 PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
 ```
 
-### 安装PSReadLine
+### 安装 PSReadLine
 
 ```powershell
 Install-Module -Name PowerShellGet -Force
 ```
 
-### 安装terminal-icons
+### 安装 terminal-icons
 
-[github地址](https://github.com/devblackops/Terminal-Icons)
+GitHub 地址：<https://github.com/devblackops/Terminal-Icons>
 
 ```powershell
 Install-Module -Name Terminal-Icons -Repository PSGallery
 ```
 
-然后在`$profile`加入
+然后在 `$profile` 加入：
 
 ```powershell
 Import-Module -Name Terminal-Icons
 ```
 
-## 安装PSScriptTools
+## 安装 PSScriptTools
 
 <https://github.com/jdhitsolutions/PSScriptTools>
 
-## 安装yarn completion
+## 安装 yarn completion
 
 <https://github.com/PowerShell-Completion/yarn-completion>
 
-## 安装maven completion
+## 安装 maven completion
 
 <https://github.com/krymtkts/MavenAutoCompletion>
 
-### startship
+## Starship
+
+### 安装
 
 <https://starship.rs/zh-CN/guide/#%F0%9F%9A%80-%E5%AE%89%E8%A3%85>
 
-```
+```powershell
 scoop install starship
 ```
 
-### startship配置
+### Starship 配置
 
 ```toml
 scan_timeout = 10
@@ -202,74 +204,70 @@ format = 'via [$symbol]($style)'
 [zig]
 format = 'via [$symbol]($style)'
 [git_branch]
-disabled =false
+disabled = false
 [git_commit]
-disabled =true
+disabled = true
 [git_state]
 disabled = false
 [git_metrics]
 disabled = true
 [git_status]
 disabled = false
-
 ```
 
-### 安装oh-my-posh(不推荐,太卡了)
+## 安装 oh-my-posh（不推荐，太卡了）
 
-### linux安装
+### Linux 安装
 
 <https://ohmyposh.dev/docs/installation/linux>
 
-### windows安装
+### Windows 安装
 
-地址[https://ohmyposh.dev/](https://ohmyposh.dev/)  
-推荐在windows商店下载oh-my-sh或者在[https://github.com/JanDeDobbeleer/oh-my-posh/releases](https://github.com/JanDeDobbeleer/oh-my-posh/releases)下载`install-amd64.exe`自行安装
+地址：<https://ohmyposh.dev/>
 
-然后在`$profile`添加
+推荐在 Windows 商店下载 oh-my-posh 或者在 <https://github.com/JanDeDobbeleer/oh-my-posh/releases> 下载 `install-amd64.exe` 自行安装。
 
-```shell
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\negligible.omp.json"|Invoke-Expression
+然后在 `$profile` 添加：
+
+```powershell
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\negligible.omp.json" | Invoke-Expression
 ```
 
-安装PowerLine的方法很简单，我们要先安装oh-my-posh，首先打开一个PowerShell，输入
+安装 PowerLine 的方法很简单，我们要先安装 oh-my-posh，首先打开一个 PowerShell，输入：
 
 ```powershell
 Install-Module posh-git -Scope CurrentUser
-https://ohmyposh.dev/
 ```
 
-如果你使用管理员权限打开PowerShell并且想把oh-my-posh安装到所有用户，则输入
+如果你使用管理员权限打开 PowerShell 并且想把 oh-my-posh 安装到所有用户，则输入：
 
 ```powershell
 Install-Module posh-git
- 
 ```
 
-**如果你的电脑里没有安装Git，在输入**`**Import-Module posh-git**`**会报错，解决方法是**[**安装Git**](https://git-scm.com/)**或者把这一行去掉。**
+**如果你的电脑里没有安装 Git，在输入 `Import-Module posh-git` 会报错，解决方法是 [安装 Git](https://git-scm.com/) 或者把这一行去掉。**
 
-但是这次使用`Import-Module`的指令，再次启动PowerShell就会发现没有效果，这是因为这些指令仅限于本次会话的PowerShell有效，因此，若要使这一效果在每次启动的时候都有效，那就要将其添加到启动脚本中。
+但是这次使用 `Import-Module` 的指令，再次启动 PowerShell 就会发现没有效果，这是因为这些指令仅限于本次会话的 PowerShell 有效，因此，若要使这一效果在每次启动的时候都有效，那就要将其添加到启动脚本中。
 
-在PowerShell中输入`kate $profile` ，然后输入以下内容，保存。如果你没有安装kate，则使用`notepad $profile`。
+在 PowerShell 中输入 `kate $profile`，然后输入以下内容，保存。如果你没有安装 kate，则使用 `notepad $profile`。
 
 ```powershell
 Import-Module posh-git
- 
 ```
 
-如果提示禁止执行脚本之类的错误信息，请将脚本执行策略更改为`RemoteSigned`。具体方法为使用具有管理员权限的PowerShell，然后输入
+如果提示禁止执行脚本之类的错误信息，请将脚本执行策略更改为 `RemoteSigned`。具体方法为使用具有管理员权限的 PowerShell，然后输入：
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned
 ```
 
-这样，在每次PoweShell打开的时候都能启用PowerLine主题。
+这样，在每次 PowerShell 打开的时候都能启用 PowerLine 主题。
 
-可是这样，PowerShell打开的时候仍有乱码（或者说，有违和感），这是因为没有给你使用的字体链接表情，乱码的地方其实就是表情符号。
+可是这样，PowerShell 打开的时候仍有乱码（或者说，有违和感），这是因为没有给你使用的字体链接表情，乱码的地方其实就是表情符号。
 
-我喜欢的oh-my-posh主题 `negligible` `pure` `ys`
-`paradox` `powerlevel10k_classic`, `powerlevel10k_lean`
+我喜欢的 oh-my-posh 主题：`negligible`、`pure`、`ys`、`paradox`、`powerlevel10k_classic`、`powerlevel10k_lean`
 
-> 一个修改后的negligible主题
+> 一个修改后的 negligible 主题
 
 ```json
 {

@@ -1,145 +1,172 @@
-# 我的posh片段
+# 我的 Posh 片段
 
-## Powershell的库
+> PowerShell 常用命令、别名对照及实用代码片段速查。
 
-[https://www.powershellgallery.com/](https://www.powershellgallery.com/)  
-部分教程  [链接](https://www.computerperformance.co.uk/powershell/)
+---
 
-## 执行某个ps脚本的一个function
+## 目录
+
+- [PowerShell 库](#powershell-的库)
+- [执行脚本中的函数](#执行某个-ps-脚本的-function)
+- [内置变量](#获取内置的变量)
+- [CMD → PowerShell 命令对照](#windows-上替代-cmd-的一些命令)
+- [文件与目录操作](#文件与目录操作)
+- [进程管理](#进程管理)
+- [网络相关](#网络相关)
+- [其他实用命令](#其他实用命令)
+- [进阶技巧](#进阶技巧)
+
+---
+
+## PowerShell 的库
+
+- [PowerShell Gallery](https://www.powershellgallery.com/)
+- 部分教程：<https://www.computerperformance.co.uk/powershell/>
+
+---
+
+## 执行某个 PS 脚本的 Function
 
 ```powershell
-powershell -command "& { . <path>\script1.ps1; My-Func }"
+# 方式一：通过命令行调用
+powershell -Command "& { . <path>\script1.ps1; My-Func }"
 
-# 如果只是想在命令行执行
+# 方式二：在当前会话中加载并执行
 . .\script.ps1
 My-Func
 ```
 
+---
+
 ## 获取内置的变量
 
-```
-get-varible
+```powershell
+Get-Variable
 ```
 
-## 遍历删除文件夹下的.git目录
+---
+
+## Windows 上替代 CMD 的一些命令
+
+| CMD | PowerShell | 说明 |
+| --- | ---------- | ---- |
+| `ping` | `Test-NetConnection` | 网络连通性 |
+| `ping -t` | `Test-Connection` | 持续 Ping |
+| `ipconfig` | `Get-NetIPAddress` | IP 地址 |
+| `ipconfig /flushdns` | `Clear-DnsClientCache` | 清除 DNS 缓存 |
+| `tracert` | `Test-NetConnection -TraceRoute` | 路由追踪 |
+| `netstat -ano` | `Get-NetTCPConnection` | TCP 连接 |
+| `nslookup` | `Resolve-DnsName` | DNS 查询 |
+
+---
+
+## 文件与目录操作
+
+### 遍历删除文件夹下的 `.git` 目录
 
 ```powershell
-ls * -include  .git  -Force -recurse |Remove-Item -r -Force
+Get-ChildItem * -Include .git -Force -Recurse | Remove-Item -Recurse -Force
 ```
 
-## Start-Process，别名：start + 路径， 打开当前文件夹
+### 打开当前文件夹（`Start-Process`，别名：`start`）
 
 ```powershell
-# 以管理员身份启动Powershell
-start -FilePath "powershell" -Verb RunAs
+# 以管理员身份启动 PowerShell
+Start-Process -FilePath "powershell" -Verb RunAs
 ```
 
-## Get-History，别名：history、h，列出之前的操作命令
+### 当前目录位置（`Get-Location`，别名：`pwd`）
+
+```powershell
+Get-Location
+```
+
+### 获取命令的位置
+
+```powershell
+Get-Command -Name npm
+```
+
+### 获取命令所在目录并打开
+
+```powershell
+Start-Process (Get-Item (Get-Command -Name npm).Source).Directory
+```
+
+### 输出文件内容到控制台（`Get-Content`，别名：`cat`）
+
+```powershell
+Get-Content file.txt
+```
+
+### 删除文件或目录（`Remove-Item`，别名：`rm`、`del`）
+
+```powershell
+Remove-Item path\to\file_or_folder
+```
+
+### 重命名
+
+```powershell
+Rename-Item FileName -NewName NewFileName
+```
+
+### 批量重命名
+
+```powershell
+$i = 0
+
+Get-ChildItem -Path D:\pictures -Filter *.jpg |
+    ForEach-Object {
+        $extension = $_.Extension
+        $newName = 'pic_{0:d6}{1}' -f $i, $extension
+        $i++
+        Rename-Item -Path $_.FullName -NewName $newName
+    }
+```
+
+### 新建空文件
+
+```powershell
+# CMD 风格
+$null > a.txt
+
+# PowerShell 风格
+New-Item -ItemType File -Name a.txt
+```
+
+### 获取文件夹大小
+
+```powershell
+param (
+    [string] $folder
+)
+
+Get-ChildItem -Path $folder -Force -Recurse -ErrorAction SilentlyContinue |
+    Where-Object { $_.PSIsContainer -eq $false } |
+    Measure-Object |
+    Select-Object -ExpandProperty Count
+
+Write-Host "文件数量检测完毕" -ForegroundColor Cyan
+```
+
+---
+
+## 进程管理
+
+### 列出之前的操作命令（`Get-History`，别名：`history`、`h`）
 
 ```powershell
 history
 ```
 
-## Get-Process， 别名：ps，查找进程, 可以通过进程名称或者进程ID来获取特定进程
+### 查找进程（`Get-Process`，别名：`ps`）
 
 ```powershell
 Get-Process qq
 ```
 
-## remove-item，别名： rm、del, 删除或删除文件
-
-```powershell
-
-```
-
-## get-location，别名：pwd, 当前目录位置
-
-## get-help, 缩写help，查看命令的帮助
-
-```powershell
-help get-process
-```
-
-## get-host
-
-## get-date, 别名：date，获取系统当前时间
-
-```powershell
-get-date
-```
-
-## get-content，别名：cat, 输出文件内容到控制台
-
-## 获取命令的位置
-
-```powershell
- Get-Command -Name npm
-```
-
-### 获取命令所在目录
-
-```powershell
-start (Get-Item (Get-Command -Name npm).Source).Directory
-```
-
-## 获取系统的编码
-
-```powershell
-chcp
-活动代码页: 936 这个是gbk编码
-```
-
-## 下载文件
-
-```powershell
-
-iwr "http://p9.pstatp.com" -Outfile a.webp
-或者
-curl 'http:www.baidu.com' -o a.webp
-```
-
-可以使用openfiles这个命令，和linux下的lsof差不多
-不过系统默认是关闭这个功能，要使用这个功能，需要先激活。
-激活命令：
-
-```powershell
-openfiles /local on
-```
-
-然后重启电脑
-然后就可以使用了，下面命令可以查询。
-
-```powershell
-openfiles /query /v
-```
-
-不用了别忘记关闭它
-
-```powershell
-openfiles /local off
-```
-
-## 执行exe或者可执行文件
-
-```powershell
-.\fileName 
-```
-
-## 清屏
-
-```powershell
-clear|cls 
-```
-
-## 查看版本
-
-```powershell
-$host.version
-#  或者
-Get-Host
-```
-
-## 获取当前进程
+### 获取当前所有进程
 
 ```powershell
 Get-Process
@@ -148,124 +175,265 @@ Get-Process
 ### 关闭某进程
 
 ```powershell
-$process ="*powershellw*"
-# 查找和powershellw相关的进程
-Get-CimInstance Win32_Process | Where {$_.CommandLine -like $process } | select -ExpandProperty CommandLine # | Measure-Object -Line
-# 关闭powershellw进程
-Get-CimInstance Win32_Process | Where {$_.CommandLine -like $process} | Remove-CimInstance
+$process = "*powershellw*"
+
+# 查找相关进程
+Get-CimInstance Win32_Process |
+    Where-Object { $_.CommandLine -like $process } |
+    Select-Object -ExpandProperty CommandLine
+
+# 关闭进程
+Get-CimInstance Win32_Process |
+    Where-Object { $_.CommandLine -like $process } |
+    Remove-CimInstance
 ```
 
 ### 查看进程的命令行
 
 ```powershell
-# 获取powershell进程的命令行
-Get-CimInstance Win32_Process -Filter "name = 'powershell.exe'" | Select-Object CommandLine
-# 获取命令行带有zfile.jar的命令行
-Get-CimInstance Win32_Process  | Where-Object CommandLine -Match 'zfile'| Remove-CimInstance
+# 获取 powershell.exe 的命令行
+Get-CimInstance Win32_Process -Filter "name = 'powershell.exe'" |
+    Select-Object CommandLine
 
-# 关闭某进程
+# 获取命令行带有 zfile.jar 的进程并关闭
+Get-CimInstance Win32_Process |
+    Where-Object CommandLine -Match 'zfile' |
+    Remove-CimInstance
+
+# 直接通过 ID 关闭进程
 Stop-Process -Id 34328
 ```
 
-## 查看端口被哪个进程占用
+---
+
+## 网络相关
+
+### 查看端口被哪个进程占用
 
 ```powershell
 Get-Process -Id (Get-NetTCPConnection -LocalPort 5000).OwningProcess
 ```
 
-## 重命名
+### 下载文件
 
 ```powershell
-Rename-Item FileName -NewName NewFileName
+Invoke-WebRequest "http://p9.pstatp.com" -OutFile a.webp
+
+# 或者使用 curl 别名
+curl 'http://www.baidu.com' -o a.webp
 ```
 
-## 批量重命名
+### 查看打开的文件（类似 Linux `lsof`）
+
+> 系统默认关闭此功能，使用前需先激活。
 
 ```powershell
-$i = 0
- 
-Get-ChildItem -Path D:\pictures -Filter *.jpg |
-ForEach-Object {
-    $extension = $_.Extension
-    $newName = 'pic_{0:d6}{1}' -f $i, $extension
-    $i++
-    Rename-Item -Path $_.FullName -NewName $newName
-}
+# 激活
+openfiles /local on
+
+# 重启电脑后使用
+openfiles /query /v
+
+# 关闭功能
+openfiles /local off
 ```
+
+---
+
+## 其他实用命令
+
+### 查看帮助（`Get-Help`，别名：`help`）
 
 ```powershell
-type > %~dp0\a.txt
-# 新建文件
-echo a 2>FileName
+help Get-Process
 ```
 
-## 添加参数
+### 获取主机信息（`Get-Host`）
+
+```powershell
+Get-Host
+```
+
+### 获取系统当前时间（`Get-Date`，别名：`date`）
+
+```powershell
+Get-Date
+```
+
+### 清屏
+
+```powershell
+clear  # 或 cls
+```
+
+### 查看 PowerShell 版本
+
+```powershell
+$host.Version
+# 或者
+Get-Host
+```
+
+### 获取系统编码
+
+```powershell
+chcp
+# 活动代码页: 936  （GBK 编码）
+```
+
+### 执行可执行文件
+
+```powershell
+.\fileName.exe
+```
+
+---
+
+## 进阶技巧
+
+### 添加脚本参数
 
 @[code powershell](./res/addParam.ps1)
 
-使用`.\addParam.ps1 -Type` 输入 `-`会自动弹出-Type
+使用 ` .\addParam.ps1 -Type` 输入 `-` 会自动弹出 `-Type` 提示。
 
-## 获取文件夹大小
+### 将字符串作为命令执行
 
-```powershell
-
-param (
-    [string] $folder
-)
-    
-Get-ChildItem -Path $folder -Force -Recurse -ErrorAction SilentlyContinue |
-Where-Object { $_.PSIsContainer -eq $false } |
-Measure-Object |  Select-Object -ExpandProperty Count
-Write-Host  "文件数量检测完毕" -ForegroundColor Cyan
-```
-
-## Run String as Command in PowerShell
-
- 使用Invoke-Expression
+#### 方式一：`Invoke-Expression`
 
 ```powershell
 $command = "notepad.exe"
-
 Invoke-Expression $command
 
-  
 $command = "Get-Process | Sort-Object -Property CPU -Descending | Select-Object -First 5"
-
 Invoke-Expression -Command $command
 ```
 
-使用&运算符
+#### 方式二：`&` 运算符
 
 ```powershell
 $command = "notepad.exe"
-
 & $command
 ```
 
-使用双引号
+#### 方式三：使用变量插值（双引号）
 
 ```powershell
 $filename = "File1.txt"
-
-$command = "Get-Process | Out-File -FilePath <code>"E:\$filename</code>""
-
+$command = "Get-Process | Out-File -FilePath `"E:\$filename`""
 Invoke-Expression -Command $command
 ```
 
-使用c#代码
+#### 方式四：使用 C# 代码创建 ScriptBlock
 
 ```powershell
 $commandString = "Get-ChildItem C:\TEST1"
-
 $commandBlock = [scriptblock]::Create($commandString)
-
 & $commandBlock
 ```
 
-来自<https://java2blog.com/powershell-remove-special-characters-from-string/>
+> 参考：[PowerShell Remove Special Characters From String](https://java2blog.com/powershell-remove-special-characters-from-string/)
 
-## 创建windows服务
+### 创建 Windows 服务
 
 ```powershell
-New-Service -Name Redis -DisplayName Redis7 -BinaryPathName 'D:\programs\Redis-7.0.13-Windows-x64-with-Service\RedisService.exe' -StartupType Automatic
+New-Service -Name Redis `
+    -DisplayName Redis7 `
+    -BinaryPathName 'D:\programs\Redis-7.0.13-Windows-x64-with-Service\RedisService.exe' `
+    -StartupType Automatic
 ```
+
+---
+
+## CMD → PowerShell 常见命令对照表
+
+下面是一份**「CMD → PowerShell 常见命令对照表」**，只列**真正常用、可替代**的，不是那种生僻的。
+
+### 一、网络相关（最常见）
+
+| CMD | PowerShell | 说明 |
+| --- | ---------- | ---- |
+| `ping` | `Test-NetConnection` | 网络连通性 |
+| `ping -t` | `Test-Connection` | 持续 ping |
+| `ipconfig` | `Get-NetIPAddress` | IP 地址 |
+| `ipconfig /flushdns` | `Clear-DnsClientCache` | 清 DNS 缓存 |
+| `tracert` | `Test-NetConnection -TraceRoute` | 路由追踪 |
+| `netstat -ano` | `Get-NetTCPConnection` | TCP 连接 |
+| `nslookup` | `Resolve-DnsName` | DNS 查询 |
+
+示例：
+
+```powershell
+Test-NetConnection www.baidu.com
+Resolve-DnsName www.baidu.com
+Clear-DnsClientCache
+```
+
+### 二、文件 / 目录操作
+
+| CMD | PowerShell | 说明 |
+| --- | ---------- | ---- |
+| `dir` | `Get-ChildItem` / `ls` | 列出文件 |
+| `cd` | `Set-Location` / `cd` | 切换目录 |
+| `md` | `New-Item -ItemType Directory` | 新建目录 |
+| `rd /s /q` | `Remove-Item -Recurse -Force` | 删除目录 |
+| `copy` | `Copy-Item` / `cp` | 复制 |
+| `move` | `Move-Item` | 移动 |
+| `del` | `Remove-Item` / `rm` | 删除 |
+
+示例：
+
+```powershell
+Get-ChildItem
+Remove-Item test.txt
+Remove-Item old -Recurse -Force
+```
+
+### 三、系统 & 进程
+
+| CMD | PowerShell | 说明 |
+| --- | ---------- | ---- |
+| `tasklist` | `Get-Process` | 进程列表 |
+| `taskkill /PID` | `Stop-Process -Id` | 杀进程 |
+| `systeminfo` | `Get-ComputerInfo` | 系统信息 |
+| `hostname` | `hostname` / `$env:COMPUTERNAME` | 主机名 |
+| `whoami` | `whoami` / `$env:USERNAME` | 当前用户 |
+
+示例：
+
+```powershell
+Get-Process chrome
+Stop-Process -Name chrome -Force
+```
+
+### 四、服务管理
+
+| CMD | PowerShell | 说明 |
+| --- | ---------- | ---- |
+| `sc query` | `Get-Service` | 查服务 |
+| `sc start` | `Start-Service` | 启动 |
+| `sc stop` | `Stop-Service` | 停止 |
+| `sc config` | `Set-Service` | 配置 |
+
+示例：
+
+```powershell
+Get-Service | Where-Object {$_.Status -eq 'Running'}
+Restart-Service spooler
+```
+
+### 五、用户 & 权限
+
+| CMD | PowerShell | 说明 |
+| --- | ---------- | ---- |
+| `net user` | `Get-LocalUser` | 本地用户 |
+| `net group` | `Get-LocalGroup` | 本地组 |
+| `icacls` | `Get-Acl` / `Set-Acl` | 权限 |
+
+### 六、网络端口测试（CMD 没有的）
+
+```powershell
+Test-NetConnection www.baidu.com -Port 443
+```
+
+👉 **比 telnet 好用太多**

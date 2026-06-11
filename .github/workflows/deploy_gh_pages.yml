@@ -3,7 +3,7 @@ name: 部署文档
 on:
   push:
     branches:
-      - main
+    - main
 
 permissions:
   contents: write
@@ -12,40 +12,39 @@ jobs:
   deploy-gh-pages:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          # 如果你文档需要 Git 子模块，取消注释下一行
-          # submodules: true
+    - name: Checkout
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+        # 如果你文档需要 Git 子模块，取消注释下一行
+        # submodules: true
 
-      - name: 设置 pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+    - name: 设置 pnpm
+      uses: pnpm/action-setup@v6
+      with:
+        version: 10
 
-      - name: 设置 Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
+    - name: 设置 Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: 24
+        cache: pnpm
 
-      - name: 安装依赖
-        run: |
-          corepack enable
-          pnpm install --frozen-lockfile
+    - name: 安装依赖
+      run: |
+        corepack enable
+        pnpm install --frozen-lockfile
 
-      - name: 构建文档
-        env:
-          NODE_OPTIONS: --max_old_space_size=8192
-        run:   pnpm run docs:build
-           
+    - name: 构建文档
+      env:
+        NODE_OPTIONS: --max_old_space_size=8192
+      run: pnpm run docs:build
 
-      - name: 部署文档
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          # 部署文档
-          token: ${{ secrets.ACCESS_TOKEN }}
-          branch: gh-pages
-          folder: ./dist
-          single-commit: true
+    - name: 部署文档
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        # 部署文档
+        token: ${{ secrets.ACCESS_TOKEN }}
+        branch: gh-pages
+        folder: ./dist
+        single-commit: true

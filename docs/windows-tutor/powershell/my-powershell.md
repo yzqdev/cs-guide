@@ -1,8 +1,7 @@
-# 我的ps配置
+# 我的 PS 配置
 
 :::tip
-查询 `profile`位置: `$PROFILE`
-
+查询 `profile` 位置：`$PROFILE`
 :::
 
 ## 配置文件
@@ -35,7 +34,7 @@
 
 ```powershell
 Get-ChildItem -Path "d:\flutter" -Force -Recurse -ErrorAction SilentlyContinue |
- Where-Object { $_.PSIsContainer -eq $false } |
- Measure-Object | 
- Select-Object -ExpandProperty Count
+    Where-Object { $_.PSIsContainer -eq $false } |
+    Measure-Object |
+    Select-Object -ExpandProperty Count
 ```

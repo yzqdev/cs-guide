@@ -1,11 +1,13 @@
 # 网络相关
 
+常用命令：
+
 - ping
 - telnet
 - nslookup
 - netsh
 
--
+## Get-NetTCPConnection
 
 ```powershell
 Get-NetTCPConnection
