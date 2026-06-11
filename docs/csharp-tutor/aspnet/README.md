@@ -1,3 +1,3 @@
-# aspnetcore教程
+# ASP.NET Core 教程
 
 <Catalog />

@@ -1,4 +1,4 @@
-# xaml标记
+# XAML 标记
 
 ```xml
 <Page
@@ -23,18 +23,18 @@
 </Page>
 ```
 
-其中xmlns:i使用方法(需要安装[Microsoft.Xaml.Behaviors.Wpf](https://github.com/microsoft/XamlBehaviorsWpf))
+其中 `xmlns:i` 使用方法（需要安装 [Microsoft.Xaml.Behaviors.Wpf](https://github.com/microsoft/XamlBehaviorsWpf)）：
 
 ```xml
-  <ComboBox
-      DisplayMemberPath="LangName"
-      ItemsSource="{Binding ViewModel.Langs}"
-      SelectionChanged="ComboBox_SelectionChanged">
+<ComboBox
+    DisplayMemberPath="LangName"
+    ItemsSource="{Binding ViewModel.Langs}"
+    SelectionChanged="ComboBox_SelectionChanged">
 
-      <i:Interaction.Triggers>
-          <i:EventTrigger EventName="SelectionChanged">
-              <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" />
-          </i:EventTrigger>
-      </i:Interaction.Triggers>
-  </ComboBox>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="SelectionChanged">
+            <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+</ComboBox>
 ```

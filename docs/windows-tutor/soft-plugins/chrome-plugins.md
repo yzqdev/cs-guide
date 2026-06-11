@@ -1,55 +1,64 @@
-# chrome插件
+# Chrome 浏览器插件推荐
 
-## Redux DevTools
+以下是一些实用的 Chrome 浏览器插件，提升您的浏览体验。
 
-## React Developer Tools
+## 前端开发类
 
-## igg谷歌访问助手
+### React Developer Tools
+- **功能**: React 应用调试工具，可查看组件树、props、state 等
+- **适用**: React 开发者必备
 
-##
+### Redux DevTools
+- **功能**: Redux 状态管理调试工具，支持时间旅行调试
+- **适用**: 使用 Redux 的项目
 
-## tampermonkey
+### Vue.js Devtools
+- **功能**: Vue.js 应用调试工具，查看组件结构和状态
+- **适用**: Vue.js 开发者
 
-##
+### FeHelper（前端助手）
+- **功能**: 集成分时器、JSON格式化、二维码生成、代码美化等多种工具
+- **特点**: 前端开发效率神器
 
-## chrome浏览器书签同步管理工具
+### WhatFont
+- **功能**: 快速识别网页上的字体名称和样式
 
-##
+### Wappalyzer
+- **功能**: 识别网站使用的技术栈（框架、CMS、服务器等）
 
-## userscript+
+## 效率工具类
 
-##
+### 沙拉查词
+- **功能**: 划词翻译，支持多种词典，翻译精准
 
-## csdn浏览器助手
+### Infinity 新标签页
+- **功能**: 美观实用的新标签页，支持自定义背景、快捷方式等
 
-##
+### Better OneTab
+- **功能**: 将多个标签页合并为一个列表，节省内存
 
-## FeHelper(前端助手)
+### 快捷扩展管理
+- **功能**: 快速启用/禁用浏览器扩展，提升浏览器性能
 
-##
+## 代码相关类
 
-## GitCodeTree
+### Refined GitHub
+- **功能**: 增强 GitHub 界面，添加实用功能和美化样式
 
-##
+### GitCodeTree
+- **功能**: 以树形结构展示 GitHub 仓库文件
 
-## Infinity新标签页
+## 辅助工具类
 
-##
+### Tampermonkey
+- **功能**: 用户脚本管理器，支持安装各类自定义脚本
+- **扩展**: 配合油猴脚本可实现各种网页增强功能
 
-## Refined Github
+### UserScript+
+- **功能**: 用户脚本管理工具，与 Tampermonkey 类似
 
-##
+### CSDN 浏览器助手
+- **功能**: 优化 CSDN 阅读体验，去除广告等
 
-## Vue.js Devtools
-
-##
-
-## Wappalyzer
-
-## WhatFont
-
-## Better-onetab
-
-## 快捷拓展管理
-
-## 沙拉查词
+### iGG 谷歌访问助手
+- **功能**: 帮助访问 Google 等国外网站

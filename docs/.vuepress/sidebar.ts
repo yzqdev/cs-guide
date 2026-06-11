@@ -10,6 +10,7 @@ export default sidebar({
   '/csharp-tutor/': 'structure',
   '/git-tutor/': 'structure',
   '/windows-tutor/': 'structure',
+  '/mc-tutor/': 'structure',
   '/android-tutor/': [
     {
       text: '指南',

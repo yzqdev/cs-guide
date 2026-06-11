@@ -1,40 +1,30 @@
----
-order: 3
----
 # 安装包制作工具
 
-## inno setup
+## Inno Setup
 
-[https://jrsoftware.org/isinfo.php](https://jrsoftware.org/isinfo.php)
+[官方网站](https://jrsoftware.org/isinfo.php)
 
-## advanced installer(收费)
+## Advanced Installer（收费）
 
-[https://www.advancedinstaller.com/](https://www.advancedinstaller.com/)
+[官方网站](https://www.advancedinstaller.com/)
 
-## installshield(收费)
+## InstallShield（收费）
 
-[https://www.revenera.com/install/products/installshield.html](https://www.revenera.com/install/products/installshield.html)
+[官方网站](https://www.revenera.com/install/products/installshield.html)
 
-## nsis (开源)
+## NSIS（开源）
 
-[https://nsis.sourceforge.io/Download](https://nsis.sourceforge.io/Download)
+[官方网站](https://nsis.sourceforge.io/Download)
 
-## wix tool set
+## WiX Tool Set
 
-[https://wixtoolset.org/](https://wixtoolset.org/)
+[官方网站](https://wixtoolset.org/)
 
-## createinstall
+## CreateInstall
 
-[https://www.createinstall.com/](https://www.createinstall.com/)
-[https://github.com/Fody/Home](https://github.com/Fody/Home)
-​
+[官方网站](https://www.createinstall.com/)
 
 ## 开源工具
 
-[https://www.moneymanagerex.org/](https://www.moneymanagerex.org/)
-​
-
-[https://github.com/Fody/Home](https://github.com/Fody/Home)
-​
-
-[https://github.com/zsh2401/AutumnBox](https://github.com/zsh2401/AutumnBox)
+- [MoneyManagerEx](https://www.moneymanagerex.org/)
+- [AutumnBox](https://github.com/zsh2401/AutumnBox)

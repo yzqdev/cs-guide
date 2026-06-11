@@ -1,8 +1,4 @@
----
-order: 4
----
-# 制作exe图标
+# 制作 EXE 图标
 
-- [用着工具转化png为icon](https://imagemagick.org/)
-
-- [https://iconarchive.com/](https://iconarchive.com/)
+- [ImageMagick - 用这个工具转化 PNG 为 ICON](https://imagemagick.org/)
+- [Icon Archive](https://iconarchive.com/)

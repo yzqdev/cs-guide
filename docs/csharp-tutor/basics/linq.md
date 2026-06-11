@@ -1,4 +1,3 @@
-# linq用法
+# LINQ 用法
 
-
-https://learn.microsoft.com/zh-cn/dotnet/csharp/linq/
+[官方文档](https://learn.microsoft.com/zh-cn/dotnet/csharp/linq/)

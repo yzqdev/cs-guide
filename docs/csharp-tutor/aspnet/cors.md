@@ -1,12 +1,14 @@
-# asp运行局域网访问
+# ASP.NET 运行局域网访问
 
-> 注意: `launchSettings.json`在开发环境优先级高于`appsettings.json`
-打开properties文件夹下面的`launchSettings.json`然后使用`"applicationUrl": "http://0.0.0.0:5059",`
+:::warning
+注意：`launchSettings.json` 在开发环境优先级高于 `appsettings.json`
+:::
 
-下面是例子
+打开 `properties` 文件夹下面的 `launchSettings.json` 然后使用 `"applicationUrl": "http://0.0.0.0:5059"`。
+
+下面是例子：
 
 ```json
-
 {
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
@@ -38,10 +40,9 @@
     }
   }
 }
-
 ```
 
-## 打包exe设置端口(硬编码)
+## 打包 EXE 设置端口（硬编码）
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -53,13 +54,12 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 ```
 
-## 打包后配置url
+## 打包后配置 URL
 
-在`appsettings.json`设置url
+在 `appsettings.json` 设置 URL：
 
 ```json
 {
-   
   "appName": "mock name",
   "Logging": {
     "LogLevel": {
@@ -68,56 +68,58 @@ app.Run();
     }
   },
   "AllowedHosts": "*",
-   "Urls": "http://*:5411"
+  "Urls": "http://*:5411"
 }
-
 ```
 
-前提示没有在代码中硬编码
+前提是没有在代码中硬编码：
 
 ```csharp
 builder.WebHost.UseUrls("http://*:3045");
 ```
 
-## 读取appsettings.json的配置
+## 读取 appsettings.json 的配置
 
-Confservice.cs
+### ConfService.cs
 
 ```csharp
-  public class ConfService
-  {
+public class ConfService
+{
     private readonly IConfiguration _cfg;
     public ConfService(IConfiguration cfg) => _cfg = cfg;
 
     public void Foo()
     {
-      // 支持冒号分层
-      string conn = _cfg["BookStoreDatabase:ConnectionString"];
-      string db   = _cfg["appName"];
-      Console.WriteLine(db);
+        // 支持冒号分层
+        string conn = _cfg["BookStoreDatabase:ConnectionString"];
+        string db = _cfg["appName"];
+        Console.WriteLine(db);
     }
-  }
+}
 ```
 
-Program.cs
+### Program.cs
 
 ```csharp
- builder.Services.AddSingleton<ConfService>();
-
+builder.Services.AddSingleton<ConfService>();
 ```
 
-然后在controller使用
+### 然后在 Controller 使用
 
 ```csharp
 [ApiController]
 [Route("/index")]
-public class IndexController : ControllerBase {
+public class IndexController : ControllerBase
+{
     private readonly ConfService _confService;
-    public IndexController(ConfService confService) {
+    public IndexController(ConfService confService)
+    {
         _confService = confService;
     }
+
     [HttpGet("/count")]
-    public int Index() {
+    public int Index()
+    {
         _confService.Foo();
         return 1222;
     }

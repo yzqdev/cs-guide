@@ -6,6 +6,7 @@ export default navbar([
 
   { text: 'go教程', icon: 'vscode-icons:file-type-go', link: '/go-tutor/' },
   { text: 'java教程', icon: 'vscode-icons:file-type-java', link: '/java-tutor/' },
+  { text: 'mc教程', icon: 'material-icon-theme:minecraft', link: '/mc-tutor/' },
 
   {
     text: '系统教程',

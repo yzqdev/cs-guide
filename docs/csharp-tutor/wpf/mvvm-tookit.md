@@ -1,8 +1,8 @@
-# mvvm绑定工具
+# MVVM 绑定工具
 
 ## 例子
 
-TookitModel.cs
+### TookitModel.cs
 
 ```csharp
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -30,7 +30,7 @@ public partial class TookitModel : ObservableObject
     }
 
     /// <summary>
-    /// 1.使用relaycommand
+    /// 1. 使用 RelayCommand
     /// </summary>
     public RelayCommand ClickCommand { get; }
 
@@ -45,7 +45,6 @@ public partial class TookitModel : ObservableObject
     {
         Name = "初始名字";
         ClickCommand = new RelayCommand(Show);
-
         DownloadTextCommand = new AsyncRelayCommand(DownloadTextAsync);
     }
 
@@ -56,7 +55,7 @@ public partial class TookitModel : ObservableObject
     }
 
     /// <summary>
-    ///2. 也可以使用attribute
+    /// 2. 也可以使用 attribute
     /// </summary>
     [RelayCommand]
     public void open()
@@ -86,10 +85,9 @@ public partial class TookitModel : ObservableObject
         }
     }
 }
-
 ```
 
-TookitView.xaml
+### TookitView.xaml
 
 ```xml
 <Window
@@ -119,10 +117,9 @@ TookitView.xaml
         <Button Command="{Binding openCommand}">打开文件</Button>
     </StackPanel>
 </Window>
-
 ```
 
-TookitView.Xaml.cs
+### TookitView.Xaml.cs
 
 ```csharp
 using System;
@@ -151,28 +148,20 @@ public partial class TookitView : Window
         InitializeComponent();
     }
 }
-
 ```
 
 ## 注意事项
 
-```csharp
-  public RelayCommand IoCommand=new RelayCommand(() => { });
-  public RelayCommand IoCommand=>new RelayCommand(() => { });
-
-
-```
-
-第一种是field定义:初始化RelayCommand一次,实例在对象的整个生命周期中保持不变(mvvm中无法生效)
-
-改为下面可以生效(单例)
+### 错误写法
 
 ```csharp
-private RelayCommand _ioCommand;
- public RelayCommand IoCommand => _ioCommand ??= new RelayCommand(ExecuteIoCommand);
+public RelayCommand IoCommand = new RelayCommand(() => { });
+public RelayCommand IoCommand => new RelayCommand(() => { });
 ```
 
-第二种是只读的property定义:定义IoCommand为只读的property, RelayCommand的实例每次都会创建,不推荐使用,等同于
+第一种是 field 定义：初始化 RelayCommand 一次，实例在对象的整个生命周期中保持不变（MVVM 中无法生效）。
+
+第二种是只读的 property 定义：定义 IoCommand 为只读的 property，RelayCommand 的实例每次都会创建，不推荐使用，等同于：
 
 ```csharp
 public RelayCommand IoCommand
@@ -181,7 +170,16 @@ public RelayCommand IoCommand
 }
 ```
 
-推荐的写法
+### 正确写法
+
+改为下面可以生效（单例）：
+
+```csharp
+private RelayCommand _ioCommand;
+public RelayCommand IoCommand => _ioCommand ??= new RelayCommand(ExecuteIoCommand);
+```
+
+推荐的写法：
 
 ```csharp
 public RelayCommand IoCommand { get; }
@@ -190,5 +188,4 @@ public ViewModel()
 {
     IoCommand = new RelayCommand(() => { });
 }
-
 ```

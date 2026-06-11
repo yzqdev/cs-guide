@@ -1,5 +1,5 @@
 # 基础
 
-<https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/tokens/interpolated>
+[官方文档](https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/tokens/interpolated)
 
 <Catalog />

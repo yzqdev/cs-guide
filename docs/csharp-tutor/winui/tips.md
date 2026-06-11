@@ -1,25 +1,24 @@
-# 问题
+# 常见问题
 
-如何打包<https://blog.panpili.com/2022/coding/dotnet/quit-winui-now/>
+## 如何打包
 
-## unpackage模式找不到ApplicationData.Current
+[参考文章](https://blog.panpili.com/2022/coding/dotnet/quit-winui-now/)
 
-Windows.Storage.ApplicationData.Current only applies to packaged apps that have an identity (UWP apps and Desktop Bridge apps). Unpackaged Win32 EXE don't have the concept of their own isolated app data.
+## Unpackage 模式找不到 ApplicationData.Current
 
-It's not clear why you need to this here, or what you are trying to accomplish. This shouldn't have anything to do with cracks in the audio playback.
+`Windows.Storage.ApplicationData.Current` 仅适用于具有身份的打包应用程序（UWP 应用和 Desktop Bridge 应用）。未打包的 Win32 EXE 没有自己的独立应用数据的概念。
 
-## win双击exe就可以运行的配置
+不清楚为什么需要在这里使用这个，或者你想要完成什么。这不应该与音频播放中的裂缝有任何关系。
 
+## Win 双击 exe 就可以运行的配置
+
+```xml
+<WindowsPackageType>None</WindowsPackageType>
+<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 ```
 
-  <WindowsPackageType>None</WindowsPackageType>
-  <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
-```
-
-打包
+## 打包命令
 
 ```powershell
-
 dotnet publish ..\UI\UI.csproj -c $(Configuration) -r win10-x64 -p:PublishSingleFile=true -p:Platform=x64 -o ..\Executables\UI
-
 ```

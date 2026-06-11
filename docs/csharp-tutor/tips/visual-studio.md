@@ -1,101 +1,143 @@
 ---
 order: 2
 ---
-# visual studio 配置
+# Visual Studio 配置
 
 ## 技巧
 
 ## 配置格式化
 
-<https://github.com/yzqdev/my-configs.git>
-格式化快捷键  `ctrl+k, ctrl+f`
+[配置文件仓库](https://github.com/yzqdev/my-configs.git)
 
-要在调试停止时自动关闭控制台，请启用“工具”->“选项”->“调试”->“调试停止时自动关闭控制台”。
+格式化快捷键：`Ctrl+K, Ctrl+F`
+
+要在调试停止时自动关闭控制台，请启用"工具" → "选项" → "调试" → "调试停止时自动关闭控制台"。
 
 ## 常用配置
 
-- 配置editorconfig和gitignore
-- 配置自动补全,搜索 删除字符后显示完整列表,并打上勾
+- 配置 `.editorconfig` 和 `.gitignore`
+- 配置自动补全、搜索：删除字符后显示完整列表，并打上勾
 
 ## 插件推荐
 
-<https://github.com/microsoft/TemplateStudio>
+[Template Studio](https://github.com/microsoft/TemplateStudio)
 
-### viasfora
+### Viasfora
 
-[viasfora](https://marketplace.visualstudio.com/items?itemName=TomasRestrepo.Viasfora)
+[Viasfora](https://marketplace.visualstudio.com/items?itemName=TomasRestrepo.Viasfora)
 
-## resx manger
+### ResX Manager
 
-<https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager>
+[ResX Manager](https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager)
 
-### codemaid
+### CodeMaid
 
-[codemaid](https://marketplace.visualstudio.com/items?itemName=SteveCadwallader.CodeMaidVS2022)
+[CodeMaid](https://marketplace.visualstudio.com/items?itemName=SteveCadwallader.CodeMaidVS2022)
 
-### xaml styler
+### XAML Styler
 
-[xaml styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022)
+[XAML Styler](https://marketplace.visualstudio.com/items?itemName=TeamXavalon.XAMLStyler2022)
 
-### file icons
+### File Icons
 
-[file icons](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.FileIcons)
+[File Icons](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.FileIcons)
 
 ### Visual Studio IntelliCode
 
-### open command line
+### Open Command Line
 
-## [indent rainbow](https://marketplace.visualstudio.com/items?itemName=chingucoding.IndentRainbow)
+### Indent Rainbow
 
-### rainbow
+[Indent Rainbow](https://marketplace.visualstudio.com/items?itemName=chingucoding.IndentRainbow)
+
+### Rainbow Braces
 
 [Rainbow Braces](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.RainbowBraces)
 
-## EntityFramework Reverse POCO Generator
+### EntityFramework Reverse POCO Generator
 
 [EntityFramework Reverse POCO Generator](https://marketplace.visualstudio.com/items?itemName=SimonHughes.EntityFrameworkReversePOCOGenerator)
 
-## [PostSharp](https://marketplace.visualstudio.com/items?itemName=PostSharpTechnologies.PostSharp)
+### PostSharp
 
-## [EFCorePowerTools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools)
+[PostSharp](https://marketplace.visualstudio.com/items?itemName=PostSharpTechnologies.PostSharp)
 
-## [powershell tool](https://marketplace.visualstudio.com/items?itemName=AdamRDriscoll.PowerShellToolsforVisualStudio2017-18561)
+### EF Core Power Tools
 
-## [markdown editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)
+[EF Core Power Tools](https://marketplace.visualstudio.com/items?itemName=ErikEJ.EFCorePowerTools)
 
-## [Code Converter (VB - C#)](https://marketplace.visualstudio.com/items?itemName=SharpDevelopTeam.CodeConverter)
+### PowerShell Tools
 
-## [VSColorOutput64](https://marketplace.visualstudio.com/items?itemName=MikeWard-AnnArbor.VSColorOutput64)
+[PowerShell Tools](https://marketplace.visualstudio.com/items?itemName=AdamRDriscoll.PowerShellToolsforVisualStudio2017-18561)
 
-## [Codist](https://marketplace.visualstudio.com/items?itemName=wmj.Codist)
+### Markdown Editor
 
-Codist is a Visual Studio extension which strives to provide better coding experience and productivity for C# programmers.
+[Markdown Editor](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2)
 
-## [rest client](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.RestClient)
+### Code Converter (VB - C#)
 
-## [Visual Studio Show Inline Errors](https://marketplace.visualstudio.com/items?itemName=AlexanderGayko.ShowInlineErrors&ssr=false#overview)
+[Code Converter](https://marketplace.visualstudio.com/items?itemName=SharpDevelopTeam.CodeConverter)
 
-## [FormatdocumentonSave](https://marketplace.visualstudio.com/items?itemName=mynkow.FormatdocumentonSave)
+### VSColorOutput64
 
-## [word highlight](https://marketplace.visualstudio.com/items?itemName=TrungKienPhan.WordHighlight-18439)
+[VSColorOutput64](https://marketplace.visualstudio.com/items?itemName=MikeWard-AnnArbor.VSColorOutput64)
 
-## [spell checker](https://marketplace.visualstudio.com/items?itemName=EWoodruff.VisualStudioSpellCheckerVS2022andLater)
+### Codist
 
-## [visual commander](https://marketplace.visualstudio.com/items?itemName=SergeyVlasov.VisualCommander)
+[Codist](https://marketplace.visualstudio.com/items?itemName=wmj.Codist) - Codist is a Visual Studio extension which strives to provide better coding experience and productivity for C# programmers.
 
-## [cshapier](https://marketplace.visualstudio.com/items?itemName=csharpier.CSharpier)
+### REST Client
 
-## [project reunion](https://marketplace.visualstudio.com/items?itemName=ProjectReunion.MicrosoftProjectReunion)
+[REST Client](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.RestClient)
 
-## [ILSpy2022](https://marketplace.visualstudio.com/items?itemName=SharpDevelopTeam.ILSpy2022)
+### Visual Studio Show Inline Errors
 
-## [Avalonia for Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AvaloniaTeam.AvaloniaVS)
+[Visual Studio Show Inline Errors](https://marketplace.visualstudio.com/items?itemName=AlexanderGayko.ShowInlineErrors&ssr=false#overview)
 
-## [powermode](https://marketplace.visualstudio.com/items?itemName=BigEgg.PowerMode)
+### Format Document On Save
 
-## [Roslynator2022](https://marketplace.visualstudio.com/items?itemName=josefpihrt.Roslynator2022)
+[Format Document On Save](https://marketplace.visualstudio.com/items?itemName=mynkow.FormatdocumentonSave)
 
-## [SolutionErrorVisualizer2022](https://marketplace.visualstudio.com/items?itemName=VisualStudioPlatformTeam.SolutionErrorVisualizer2022)
+### Word Highlight
 
-## wpfui
-<https://marketplace.visualstudio.com/items?itemName=lepo.WPF-UI>
+[Word Highlight](https://marketplace.visualstudio.com/items?itemName=TrungKienPhan.WordHighlight-18439)
+
+### Spell Checker
+
+[Spell Checker](https://marketplace.visualstudio.com/items?itemName=EWoodruff.VisualStudioSpellCheckerVS2022andLater)
+
+### Visual Commander
+
+[Visual Commander](https://marketplace.visualstudio.com/items?itemName=SergeyVlasov.VisualCommander)
+
+### CSharpier
+
+[CSharpier](https://marketplace.visualstudio.com/items?itemName=csharpier.CSharpier)
+
+### Project Reunion
+
+[Project Reunion](https://marketplace.visualstudio.com/items?itemName=ProjectReunion.MicrosoftProjectReunion)
+
+### ILSpy 2022
+
+[ILSpy 2022](https://marketplace.visualstudio.com/items?itemName=SharpDevelopTeam.ILSpy2022)
+
+### Avalonia for Visual Studio 2022
+
+[Avalonia for Visual Studio 2022](https://marketplace.visualstudio.com/items?itemName=AvaloniaTeam.AvaloniaVS)
+
+### Power Mode
+
+[Power Mode](https://marketplace.visualstudio.com/items?itemName=BigEgg.PowerMode)
+
+### Roslynator 2022
+
+[Roslynator 2022](https://marketplace.visualstudio.com/items?itemName=josefpihrt.Roslynator2022)
+
+### Solution Error Visualizer 2022
+
+[Solution Error Visualizer 2022](https://marketplace.visualstudio.com/items?itemName=VisualStudioPlatformTeam.SolutionErrorVisualizer2022)
+
+### WPF-UI
+
+[WPF-UI](https://marketplace.visualstudio.com/items?itemName=lepo.WPF-UI)
