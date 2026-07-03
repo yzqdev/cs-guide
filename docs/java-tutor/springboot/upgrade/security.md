@@ -1,4 +1,6 @@
-# spring-security
+# Spring Security 配置迁移
+
+> WebSecurityConfigurerAdapter 废弃后的新配置方式。
 
 :::tip
 <https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter>

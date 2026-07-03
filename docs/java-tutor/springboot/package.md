@@ -1,5 +1,6 @@
+# 打包部署
 
-# 打包
+> Spring Boot 项目打包：fat jar、thin jar、依赖分离。
 
 ## gradle打包
 

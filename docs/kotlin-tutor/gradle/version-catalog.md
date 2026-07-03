@@ -132,7 +132,7 @@ lib.androidx.fragment.kts
 extra["compileSdk"]=33
 extra["minSdk"]=21
 extra["targetSdk"]=33
-``
+```
 然后在app目录的`build.gradle.kts`使用
 ```kotlin
 android {

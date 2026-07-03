@@ -1,4 +1,6 @@
-# java json处理
+# JSON 处理
+
+> Jackson、Gson、Fastjson 三大 JSON 库的使用与配置。
 
 ## jackson
 

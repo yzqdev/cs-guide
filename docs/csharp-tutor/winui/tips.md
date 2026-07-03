@@ -20,5 +20,16 @@
 ## 打包命令
 
 ```powershell
-dotnet publish ..\UI\UI.csproj -c $(Configuration) -r win10-x64 -p:PublishSingleFile=true -p:Platform=x64 -o ..\Executables\UI
+dotnet publish ..\UI\UI.csproj -c $(Configuration) -r win10-x64 -p:PublishSingleFile=true -p:Platform=x64 -o ..\publish
+```
+
+## 报错en-us不对
+:::
+ 
+F:\deps\Nuget\.nuget\packages\microsoft.windows.sdk.buildtools.msix\1.7.251221100\build\Microsoft.Windows.SDK.BuildTools.MSIX.MrtCore.PriGen.targets(1340,5): error APPX1685: Default language 'en-US' is not valid. For a list of supported values, see http://go.microsoft.com/fwlink/?LinkID=252020.
+
+The build failed. Fix the build errors and run again.
+:::
+```
+$env:DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0; dotnet run
 ```

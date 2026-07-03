@@ -1,4 +1,6 @@
-# springboot升级
+# Spring Boot 版本升级
+
+> Spring Boot 升级中的语法变更和注意事项。
 
 ## 1.jpa语法升级
 

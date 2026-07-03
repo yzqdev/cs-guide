@@ -1,4 +1,6 @@
-# 其他api框架
+# 其他框架
+
+> 除 Spring 外，Java 生态中其他值得关注的 Web 框架。
 
 > vert.x
 

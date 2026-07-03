@@ -1,4 +1,6 @@
-# 一些封装
+# 统一返回值封装
+
+> API 统一状态码、RestResponse 封装、@ControllerAdvice 统一包装。
 
 ## 统一返回值
 

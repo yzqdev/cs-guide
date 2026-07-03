@@ -1,6 +1,8 @@
 # 环境变量配置
 
-## 环境变量示例
+> 文件名中的 "varibles" 是 "variables" 的常见拼写变体，内容无误。
+
+## 系统环境变量示例
 
 ```text
 %SystemRoot%\system32;%INTEL_DEV_REDIST%redist\intel64\compiler;%JAVA_HOME%\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;%SYSTEMROOT%\System32\OpenSSH\;C:\Program Files\dotnet\;%NVM_HOME%;%NVM_SYMLINK%;C:\Android_Reverse\apkTool;C:\Go\bin;C:\Program Files (x86)\dotnet-core-uninstall\;C:\codeblocks-20.03mingw-nosetup\MinGW\bin;C:\Program Files\Memurai\;C:\Users\yzqde\AppData\Local\Yarn\bin;C:\Users\yzqde\.conda\envs\condapkg;C:\Program Files\Git\cmd

@@ -1,4 +1,6 @@
-# springboot使用controller传递参数
+# Controller 参数传递
+
+> Spring Boot Controller 层接收参数的多种方式。
 
 :::tip
 

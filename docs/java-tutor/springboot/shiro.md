@@ -1,4 +1,6 @@
-# shiro教程
+# Shiro 整合
+
+> Apache Shiro 与 Spring Boot 整合配置。
 
 ## 添加依赖
 

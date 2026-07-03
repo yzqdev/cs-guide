@@ -1,4 +1,6 @@
-# 初始化执行操作
+# 启动初始化操作
+
+> 服务启动时自动执行代码的几种方式：@PostConstruct、CommandLineRunner、ApplicationListener。
 
 通常的我们的项目开发中，经常会遇到那种在服务一启动就需要自动执行一些业务代码的情况。比如将数据库中的配置信息或者数据字典之类的缓存到redis，或者在服务启动的时候将一些配置化的定时任务开起来。关于spring mvc或者springboot如何在项目启动的时候就执行一些代码
 

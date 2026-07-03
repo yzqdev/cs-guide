@@ -1,4 +1,6 @@
-# 注解的作用
+# Spring 注解解析
+
+> @Component vs @Bean、@Autowired vs @Resource、@ControllerAdvice 等注解详解。
 
 本文打算介绍几个不太容易说出其区别，或者用途的 Spring 注解，比如 @Component 与 @Bean 的比较，@ControllerAdvice 是如何处理自定义异常的等等。
 

@@ -11,14 +11,12 @@
 
 ```powershell
 $variable_name = value1, value2, value3, ..... ,ValueN
-Shell
 ```
 
 **示例：**要创建和初始化`$k`数组，该数组包含五个整数值：`10`,`15`,`20`,`50`,`99`。在PowerShell中键入以下命令：
 
 ```powershell
 $k = 10, 15, 20, 50, 99
-Shell
 ```
 
 还可以使用范围运算符来初始化数组。
@@ -26,7 +24,6 @@ Shell
 
 ```powershell
 $arr = 2..10
-Shell
 ```
 
 ## 2.访问数组元素
@@ -37,21 +34,18 @@ Shell
 # 例如: 假设数组$array1包含值：11,20,30,50,66,99。 在PowerShell上键入以下命令以显示数组的所有值：
 $array1=11,20,30,50,66,99
 $array1
-Shell
 ```
 
 还可以使用索引号从数组访问元素，将索引号括在方括号中。以下语句是显示指定位置的值的语法：
 
 ```powershell
 $variable_name [index_number]
-Shell
 ```
 
 例如：假设您要显示数组`$array1`的第二个元素，使用以下命令：
 
 ```powershell
 $array1[2]
-Shell
 ```
 
 可以通过使用范围运算符访问索引来访问数组的一部分。
@@ -59,7 +53,6 @@ Shell
 
 ```powershell
 $array1[2..5]
-Shell
 ```
 
 可以使用负数访问数组的最后一部分，这些负数用于从数组末尾开始计数元素。 数字`-1`表示数组的最后一个元素。
@@ -67,14 +60,12 @@ Shell
 
 ```powershell
 $array1[-1]
-Shell
 ```
 
 要以索引的升序显示数组的最后四个元素，使用以下命令：
 
 ```powershell
 $array1[-4..-1]
-Shell
 ```
 
 上面示例执行结果如下：
@@ -86,14 +77,12 @@ Shell
 
 ```powershell
 $variable_name.Length
-Shell
 ```
 
 **例如：**如果创建一个新数组`$a`，其中包含五个元素。`$a = 20,25,35,50,68`。要获取此数组的大小，使用以下命令：
 
 ```powershell
 $a.Length
-Shell
 ```
 
 上面示例执行结果如下：
@@ -102,7 +91,6 @@ Shell
 PS C:\Users\hema> $a = 20,25,35,50,68
 PS C:\Users\hema> $a.Length
 5
-Shell
 ```
 
 ## 4.数组操作
@@ -112,21 +100,18 @@ Shell
 
 ```powershell
 $p[2]=20
-Shell
 ```
 
 还可以使用`+=`运算符将值添加到数组。使用以下语法将值添加到现有数组：
 
 ```powershell
 $variable_name += value
-Shell
 ```
 
 **例如：** 要将元素添加到数组`$a`，请键入以下命令：
 
 ```powershell
 $a += 15
-Shell
 ```
 
 ## 5.初始化一个空数组
@@ -135,7 +120,6 @@ Shell
 
 ```powershell
 $variable_name = @()
-Shell
 ```
 
 ## 6.从数组中删除元素

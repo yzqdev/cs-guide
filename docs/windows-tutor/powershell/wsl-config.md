@@ -1,5 +1,7 @@
 # WSL 配置
 
+> 在 PowerShell 中管理 WSL（Windows Subsystem for Linux）的相关配置。
+
 ## 配置
 
 资源管理器中输入：`\\wsl$`

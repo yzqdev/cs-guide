@@ -1,4 +1,6 @@
-# @Configuration、@Bean注解的使用详解
+# @Configuration / @Bean 详解
+
+> Spring 配置类与 Bean 注解的完整使用指南。
 
 ## 1，基本介绍
 

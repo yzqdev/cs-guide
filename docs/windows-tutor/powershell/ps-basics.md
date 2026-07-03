@@ -20,7 +20,15 @@ dotnet tool update --global PowerShell
 
 变量都是以 `$` 开头，是强类型语言，语言是大小写不敏感的。
 
-提一提变量保护与常量的声明：`New-Variable num -Value 100 -Force -Option readonly` 这样就得到一个受保护的变量 `$num`，如果要销毁它只能通过 `del $num` 删除。如果要声明常量则用 `New-Variable num -Value 100 -Force -Option constant`。
+提一下变量保护与常量的声明：
+
+```powershell
+# 受保护的变量（只读，可删除）
+New-Variable num -Value 100 -Force -Option readonly
+
+# 常量（不可删除不可修改）
+New-Variable num -Value 100 -Force -Option constant
+```
 
 :::tip
 一些基础的变量需要在环境变量里面找：`$env:tmp`、`$env:userprofile`

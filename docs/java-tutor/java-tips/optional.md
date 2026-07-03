@@ -1,4 +1,6 @@
-# java的optional类用法
+# Optional 用法
+
+> Optional 是 Java 8 引入的容器类，用于避免 NullPointerException。
 
 1. 简介
 本文简要介绍一下Java 8 引入的 Optional 类。引入Optional 类的主要目的是为使用可选值代替 null 提供类型级解决方案。如果，你想知道为什么需要更深入的了解和使用 Optional 类，可以参考甲骨文官方文章。

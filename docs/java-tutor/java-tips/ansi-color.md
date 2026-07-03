@@ -1,4 +1,6 @@
-# java打印彩色文字
+# 控制台彩色文字
+
+> 在 Java 控制台输出带颜色的文字，使用 ANSI 转义码实现。
 
 ```java
 package com.yzq.util;

@@ -1,5 +1,9 @@
 # 变量
 
+> 文件名中的 "varibles" 是 "variables" 的常见拼写变体，内容无误。
+
+PowerShell 中变量以 `$` 开头，由系统自动维护。以下列出 PowerShell 中的自动变量（也称为内置变量），它们在脚本编写中非常常用。
+
 自动变量是存储 Windows PowerShell 状态的那些变量。这些变量将包含用户和系统的信息，默认变量，运行时变量和 PowerShell 设置。这些变量可以由 Windows PowerShell 创建和维护。
 
 以下是 PowerShell 中自动变量的列表：

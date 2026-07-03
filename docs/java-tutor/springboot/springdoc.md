@@ -1,4 +1,6 @@
-# spring-openapi-ui使用
+# API 文档（Swagger/SpringDoc）
+
+> SpringDoc OpenAPI 配置、Swagger 集成与安全放行。
 
 :::warning
 

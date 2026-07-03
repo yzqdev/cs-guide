@@ -1,4 +1,6 @@
-# 监听器 listener
+# 应用启动事件与监听器
+
+> Spring Boot 启动过程中的事件顺序及自定义监听器。
 
 ## **Spring Boot 启动事件顺序**
 

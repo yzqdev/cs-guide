@@ -1,4 +1,6 @@
-# springboot错误
+# Spring Boot 常见错误
+
+> YAML 错误、包找不到、CORS、LocalDateTime 精度等问题的解决方案。
 
 ## yaml错误
 

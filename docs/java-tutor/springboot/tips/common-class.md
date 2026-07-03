@@ -1,4 +1,6 @@
-# 常用类
+# 常用类与接口
+
+> Spring 中常用的工具类和接口：ApplicationContextAware、ApplicationListener、CommandLineRunner 等。
 
 fetch请求没用application/json会出现302错误
 

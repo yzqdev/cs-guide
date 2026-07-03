@@ -1,4 +1,6 @@
-# java-jwt使用
+# JWT 认证
+
+> 使用 java-jwt 库生成和验证 JSON Web Token。
 
 单点登录
 [https://github.com/longguikeji/arkid](https://github.com/longguikeji/arkid)

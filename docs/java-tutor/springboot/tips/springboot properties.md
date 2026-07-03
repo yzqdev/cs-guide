@@ -1,4 +1,6 @@
-# 一些好用的properties属性
+# 常用 Properties 配置
+
+> Spring Boot 中好用的 application.properties 配置项。
 
 ## jackson不显示null的值
 ```

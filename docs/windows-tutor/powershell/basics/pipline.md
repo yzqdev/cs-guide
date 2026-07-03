@@ -1,54 +1,36 @@
 # 管道
 
-## 1.  管道（pipeline）是什么
+## 1. 管道（pipeline）是什么
 
-在Shell中一个重要的基本概念就是管道（pipeline），即在一组命令中，输出的命令结果成为下一个命令的输入参数。管道的概念与真实生活中的生产线比较相似：在不同的生产环节进行连续的再加工，如下图例子：
-
-```powershell
-# Get-ChildItem |Where-Object {$_.Length -gt 200}|Sort-Object -Descending Name
-
-    Directory: E:\tmp\ps
-
-Mode                 LastWriteTime         Length Name
-----                 -------------         ------ ----
--a---            2022/4/2    23:34           4318 test.txt
--a---            2022/4/2    23:34           4318 Test.md
--a---            2022/4/2    23:34           4318 test-name.md
--a---            2022/4/2    23:34           4318 test-name - 副本.md
--a---            2022/4/2    23:34           4318 test - 副本.txt
--a---            2022/4/2    23:34           4318 Test - 副本.md
--a---           2022/5/11    10:11            559 teeResult.txt
--a---           2022/5/11    10:39            753 outfile.txt
--a---           2022/5/11    10:35            209 ateeResult.txt
-```
+在 Shell 中一个重要的基本概念就是管道（pipeline），即在一组命令中，输出的命令结果成为下一个命令的输入参数。管道的概念与真实生活中的生产线比较相似：在不同的生产环节进行连续的再加工。
 
 ```powershell
-Get-ChildItem |Where-Object {$_.Length -gt 200}|Sort-Object -Descending Name
+Get-ChildItem | Where-Object {$_.Length -gt 200} | Sort-Object -Descending Name
 ```
 
- `Get-ChildItem`意思是获取当前路径的所有项目，`|Where-Object {$_.Length -gt 200}`意思是查看上一步结果，取所有长度大于200的项目， `|Sort-Object -Descending Name`意思是查看上一步结果，按照Name进行倒叙排列。
+`Get-ChildItem` 意思是获取当前路径的所有项目，`| Where-Object {$_.Length -gt 200}` 意思是查看上一步结果，取所有长度大于200的项目，`| Sort-Object -Descending Name` 意思是查看上一步结果，按照 Name 进行倒序排列。
 
-**在PowerShell****中，使用管道符号（|****）来划分管道中的每个命令，上述例子说明了管道的强大功能，同时PowerShell****在管道中传递的是高保真对象，不仅仅是文本描述。**
+**在 PowerShell 中，使用管道符号（`|`）来划分管道中的每个命令。上述例子说明了管道的强大功能，同时 PowerShell 在管道中传递的是高保真对象，不仅仅是文本描述。**
 
-下面主要给大家介绍一下常用的管道处理命令。
+下面主要介绍常用的管道处理命令。
 
 ## 2.  Where-Object：过滤列表项或命令输出结果
 
 可以使用Where-Object（别名是where和?）从列表或者命令输出结果中过滤选择你需要的项目。
 
-对于输入的每一项，Where-Object都会根据{}中定义的脚本块对输入进行计算，如果返回True，则输出，否则不输出。如下例子：
+对于输入的每一项，Where-Object都会根据`{}`中定义的脚本块对输入进行计算，如果返回 `True`，则输出，否则不输出。
+
 :::tip
-其中的where-object可以用where和?代替
+Where-Object 可以用 `where` 和 `?` 代替：
 
 ```powershell
 Get-ChildItem |? {$_.Length -gt 200}|Sort-Object -Descending Name
 ```
-
 :::
 
-{}表示一个脚本块，可以输入一系列PowerShell命令，其中`$_`代表当前输入对象，在这个例子中，`$_`就代表一个文件项目。-gt是比较操作符，意思是大于，关于比较操作符的介绍如下：
+`{}` 表示一个脚本块，可以输入一系列 PowerShell 命令，其中 `$_` 代表当前输入对象，在这个例子中，`$_` 就代表一个文件项目。`-gt` 是比较操作符，意思是大于。关于比较操作符的介绍如下：
 
-PowerShell中比较操作符是用于对表达式进行比较的。默认情况比较操作符不区分大小写，如果想要区分，需要使用-C前缀，不需要区分的，使用-I前缀。
+PowerShell 中比较操作符是用于对表达式进行比较的。默认情况比较操作符不区分大小写，如果想要区分大小写，使用 `-c` 前缀（如 `-clike`），明确不区分的，使用 `-i` 前缀（如 `-ilike`）。
 
 ```powershell
 # Get-ChildItem|Where-Object {$_.Name -ilike "Test*"}

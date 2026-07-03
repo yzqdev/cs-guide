@@ -1,4 +1,6 @@
-# spring跨域处理
+# CORS 跨域配置
+
+> Spring Boot 中跨域问题的多种解决方案。
 
 :::warning
 注意:使用springsecurity时会出现跨域问题!在websecurityconfig上面加上.cors()方法!!!!!!

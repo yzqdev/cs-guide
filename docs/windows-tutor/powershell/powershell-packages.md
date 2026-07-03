@@ -1,31 +1,35 @@
 # PowerShell 好用的包
 
 :::tip
-- 国内资源站：<https://www.pstips.net/>
-- 微软官方教程：<https://docs.microsoft.com/en-us/learn/modules/introduction-to-powershell/>
-- tutorialspoint：<https://www.tutorialspoint.com/powershell/>
-- 一个好玩的教程：<https://github.com/vexx32/PSKoans>
-:::
+
+- 国内资源站：[https://www.pstips.net/](https://www.pstips.net/)
+- 微软官方教程：[https://docs.microsoft.com/en-us/learn/modules/introduction-to-powershell/](https://docs.microsoft.com/en-us/learn/modules/introduction-to-powershell/)
+- tutorialspoint：[https://www.tutorialspoint.com/powershell/](https://www.tutorialspoint.com/powershell/)
+- 一个好玩的教程：[https://github.com/vexx32/PSKoans](https://github.com/vexx32/PSKoans)
+
+  :::
 
 ## PowerShellGet 用来管理自己的包
 
 ## PowerShell IDE
 
-<https://www.sapien.com/software/powershell_studio>
+[https://www.sapien.com/software/powershell_studio](https://www.sapien.com/software/powershell_studio)
 
 ## Awesome PowerShell
 
-<https://github.com/janikvonrotz/awesome-powershell>
+[https://github.com/janikvonrotz/awesome-powershell](https://github.com/janikvonrotz/awesome-powershell)
 
 ## PSReadLine PowerShell 强化工具
 
-<https://github.com/PowerShell/PSReadLine>
+[https://github.com/PowerShell/PSReadLine](https://github.com/PowerShell/PSReadLine)
 
 ## posh-git Git 增强工具
 
-<https://github.com/dahlbyk/posh-git>
+[https://github.com/dahlbyk/posh-git](https://github.com/dahlbyk/posh-git)
 
 ## PowerShell 常用命令
+
+### 创建并加载模块
 
 1. `my-module` 整个文件夹需要放在 `$profile` 的 Modules 文件夹下
 2. 整个目录结构相对简单：
@@ -53,7 +57,7 @@ $profile
 
 5. 重启 PowerShell 后就可以了
 
-## 如何配置
+### 如何配置模块
 
 1. 需要在 `my-module.psd1` 配置 `RootModule` 文件：
 

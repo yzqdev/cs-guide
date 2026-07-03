@@ -1,4 +1,6 @@
-# jpa教程
+# Spring Data JPA
+
+> Spring Data JPA 完整教程 —— 整合、实体、Repository、复杂查询、分页。
 
 <https://segmentfault.com/a/1190000037755804>
 首先了解Spring Date JPA是什么?

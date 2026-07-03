@@ -1,4 +1,24 @@
-# 观察者模式
+# 观察者模式 (Observer)
+
+> **定义一对多依赖关系，当一个对象状态发生变化时，所有依赖它的对象都得到通知并自动更新。** 观察者模式也被称为发布-订阅模式（Publish-Subscribe）。
+
+## 场景
+
+- 微信公众号：用户订阅后，每次发布新文章自动推送
+- 事件驱动系统：按钮点击、鼠标移动等事件监听
+- 消息队列 / 消息总线的订阅消费模型
+- Java 中的 `java.util.Observer` / `Observable`（已弃用）
+
+## 核心角色
+
+| 角色 | 说明 | 类比 |
+|------|------|------|
+| **Subject（被观察者）** | 维护观察者列表，提供注册/取消注册方法 | 微信公众号 |
+| **Observer（观察者）** | 定义接收通知的接口 | 微信用户 |
+| **ConcreteSubject（具体被观察者）** | 状态变化时触发通知 | 某个具体的公众号 |
+| **ConcreteObserver（具体观察者）** | 实现接收通知后的具体行为 | 订阅了公众号的某个用户 |
+
+## 代码示例
 
 ```java
 
@@ -92,3 +112,18 @@ public class ObserverDemo {
 }
 
 ```
+
+## 优缺点
+
+| 优点 | 缺点 |
+|------|------|
+| ✅ 符合开闭原则：无需修改发布者即可增加新的观察者 | ❌ 通知顺序不可控（观察者杂乱触发） |
+| ✅ 建立对象间的松耦合关系 | ❌ 观察者过多时通知耗时 |
+| ✅ 支持广播通信，一对多 | ❌ 可能出现循环依赖导致死循环 |
+
+## JDK 中的应用
+
+- `java.util.EventListener`（Swing 事件模型）
+- `java.util.Observer` / `Observable`（Java 9 起标记为弃用）
+- `javax.servlet.ServletRequestListener`（Servlet 请求监听）
+- Spring 中的 `ApplicationListener` / `ApplicationEvent`

@@ -1,4 +1,6 @@
-# 常用注解解析
+# 常用注解
+
+> Spring 常见注解解析：@Configuration、@Component、@ControllerAdvice 等。
 
 每个bean都对应着一个class，可能是controller，可能是service，可能是dao，xml配置文件就是告诉Spring，我这里有哪些bean，他们都叫啥名字（例如helloworld），他们的class文件在哪（com.test.spring.beans.HelloWorld），他们都有哪些属性。这样，当项目启动时，Spring就回去管理这些类了。
 

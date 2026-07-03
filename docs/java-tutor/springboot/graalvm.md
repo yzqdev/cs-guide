@@ -1,4 +1,6 @@
-# 使用graalvm
+# GraalVM 原生编译
+
+> 使用 GraalVM 将 Spring Boot 项目编译为原生可执行文件。
 
 ## 下载安装
 
