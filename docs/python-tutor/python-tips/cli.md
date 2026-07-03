@@ -1,12 +1,14 @@
-# python 命令行编写
+# Python 命令行编写
+
+> 使用 Python 开发命令行工具的方法和最佳实践，涵盖 click、poetry、pipx、setup.py、pyproject.toml 等。
 
 ## 命令行
 
-打包命令 <https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-a-local-src-tree>
+打包命令参考：<https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-a-local-src-tree>
 
 <https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/>
-:::
-我的全局包 `pipx install mycli`
+
+我的全局包（通过 `pipx install` 安装）：
 
 ```
 git-filter-repo
@@ -15,33 +17,27 @@ mycli
 pgcli
 httpie
 poetry
- 
 ```
-
-:::
 
 ## click
 
-使用多个命令
-<https://zhuanlan.zhihu.com/p/444506577>
+click 是 Python 最流行的 CLI 库之一，比 argparse 更简洁。
+
+使用多个命令：<https://zhuanlan.zhihu.com/p/444506577>
 
 ## 本地执行
 
-其中py是alias
+下面的 PowerShell 函数可以在当前项目的虚拟环境中运行脚本。其中 `py` 是 alias。
 
 ```powershell
 function runPython {
-   # param (
-    #    [string] $file
-   # )
-    $env:PYTHONPATH=pwd
-   # Write-Host $args -BackgroundColor Cyan
-     & "$pwd\.venv\Scripts\python.exe"  $args
+    $env:PYTHONPATH=pwd
+    & "$pwd\.venv\Scripts\python.exe" $args
 }
 ```
 
 ```shell
- py .\pytool\hello.py --count 3
+py .\pytool\hello.py --count 3
 ```
 
 我们横向对比下argparse、docopt、click 和 fire 库的各项功能和特点
@@ -126,12 +122,11 @@ my-script = "my_package.module:function"
 poetry的pyproject.toml添加脚本
 
 ```toml
-```python
 [tool.poetry.scripts]
 my-script = "my_package.log_revision:start"
 ```
 
- 项目目录如下
+项目目录如下
 
 ```python
 my_package
