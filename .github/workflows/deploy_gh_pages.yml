@@ -21,8 +21,7 @@ jobs:
 
     - name: 设置 pnpm
       uses: pnpm/action-setup@v6
-      with:
-        version: 10
+ 
 
     - name: 设置 Node.js
       uses: actions/setup-node@v6
@@ -30,10 +29,8 @@ jobs:
         node-version: 24
         cache: pnpm
 
-    - name: 安装依赖
-      run: |
-        corepack enable
-        pnpm install --frozen-lockfile
+    - name: Install deps
+      run: pnpm ci
 
     - name: 构建文档
       env:
