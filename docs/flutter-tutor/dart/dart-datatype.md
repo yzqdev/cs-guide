@@ -1,246 +1,342 @@
 ---
 order: 3
 ---
-# dart数据类型
+# Dart 数据类型
 
-## 声明变量类型
+[官方文档](https://dart.dev/language/built-in-types)
 
-变量声明总结
+## 变量声明总结
 
-- var: 如果没有初始值，可以变成任何类型
-- dynamic:动态任意类型，编译阶段不检查类型
-- Object 动态任意类型，编译阶段检查类型
-区别：  
-唯一区别 var 如果有初始值，类型被是锁定
+| 关键字 | 特点 | 示例 |
+|--------|------|------|
+| `var` | 类型推断，赋值后类型锁定 | `var name = '张三';` |
+| `dynamic` | 动态类型，编译时不检查 | `dynamic x = 'hello'; x = 42;` |
+| `Object` | 动态类型，编译时检查 | `Object x = 'hello';` |
+| `final` | 运行时常量，只能赋值一次 | `final now = DateTime.now();` |
+| `const` | 编译时常量，值必须编译期确定 | `const pi = 3.14;` |
 
-> 注意:final 可以不用先赋值，const 声明时必须赋值，不然会报错，
+```dart
+// var 与类型锁定
+var name = '张三';
+// name = 42; // ❌ 编译错误
 
-## 变量类型
+// dynamic 可随意改变类型
+dynamic value = 'hello';
+value = 42; // ✅ 可以
 
-来自[https://juejin.cn/post/6844903683147169800](https://juejin.cn/post/6844903683147169800),作者:cekiasoo
+// Object 编译时检查
+Object obj = 'world';
+// obj.length; // ❌ Object 没有 length 属性
+if (obj is String) {
+  print(obj.length); // ✅ 类型提升后可以
+}
+```
 
-### 一、Dart 有哪些数据类型
+## 一、Dart 有哪些数据类型
 
-Dart 内置的数据类型有描述数字的 int 和 double，字符串的 String 类型，布尔 bool 类型，列表 List 类型，具有映射关系的  Map 类型。
+Dart 内置的数据类型：
 
-### 二、数字类型
+- **数字**：`int`、`double`、`num`
+- **字符串**：`String`
+- **布尔**：`bool`
+- **列表**：`List`
+- **映射**：`Map`
+- **集合**：`Set`（Dart 2.0+）
+- **符号**：`Symbol`
+- **空值**：`Null`
 
-数字类型有 int 和 double 还有 num，
+## 二、数字类型
 
-#### （一）int 类型
+### int 类型
 
-int 是 整型，即整数，如 1， 2， 10， 20 等
+整型，即整数，如 1、2、10、20 等。
 
 ```dart
 int number = 10;
+var count = 20; // 类型推断为 int
+int hex = 0xFF; // 十六进制
+print(hex); // 255
 ```
 
-或
+### double 类型
 
-```dart
-var number = 10;
-```
-
-#### （二）double 类型
-
-double 是浮点型，即包含小数的，如 0.1，0.2，10.1， 10.2 等,
+浮点型，即包含小数的数字。
 
 ```dart
 double number = 10.1;
+var price = 19.99; // 类型推断为 double
+double scientific = 1.23e5; // 科学计数法
+print(scientific); // 123000.0
 ```
 
-或
+### num 类型
 
-```dart
-var number = 10.1;
-```
-
-double 是包含小数类型的，如果赋予整数会报错
-
-![a1f2feb72ddc6f9a0720bc6282da439f](./img/65c2b81c80c673d8f1daae723eab392f.webp)
-
-#### （三）num 类型
-
-num 可以是整数或浮点数的类型，毕竟 num 是 int 和 double 的父类，
-
-![745283daa4dd665e29d38d7e1667c739](./img/ef77f4df3338237d3340a9cc6c69e30a.webp)
-
-![1c6eb7049dfc258dc646ec83e467bb6f](./img/3af47f75d826de2b8e63dc04e384f9ed.webp)
-
-再来看一下 num 源码中的注释是怎么说的，嗯，整数或浮点数
-
-![7ffa7afd530547ffc75c1c0feb3980ca](./img/1802a7177fd35794b16ab9db59565435.webp)
-
-num 是可以这样定义的
+num 是 int 和 double 的父类，可以是整数或浮点数。
 
 ```dart
 num number = 1;
+number = 1.01; // ✅ 可以切换类型
+
+// 类型转换
+int a = 42;
+double b = a.toDouble(); // int → double
+int c = b.toInt();       // double → int
+
+// 字符串 → 数字
+var one = int.parse('1');
+var pi = double.parse('3.14');
+
+// 数字 → 字符串
+String str = 42.toString();        // '42'
+String hex = 255.toRadixString(16); // 'ff'
+String fixed = 3.14159.toStringAsFixed(2); // '3.14'
 ```
 
-或浮点型
+### 位运算
 
 ```dart
-num number = 1.01;
+print(3 << 1);  // 6 (0011 << 1 = 0110)
+print(3 >> 1);  // 1 (0011 >> 1 = 0001)
+print(3 | 4);   // 7 (0011 | 0100 = 0111)
+print(3 & 4);   // 0 (0011 & 0100 = 0000)
+print(3 ^ 4);   // 7 (0011 ^ 0100 = 0111)
+print(~3);      // -4 (按位取反)
 ```
 
-num 既然可以是整型或浮点型，那么 num 类型的变量赋了整型的数也可以改为浮点型的数，
+## 三、字符串类型
+
+### 基本用法
 
 ```dart
-num number = 1;
-num number = 1.01;
+// 单引号或双引号都可以
+String s1 = 'hello';
+String s2 = "world";
+
+// 多行字符串（三个引号）
+String multi = """
+你可以像这样，创建一个
+包含了多行的字符串内容
+""";
+
+// 原始字符串（r 前缀，不转义）
+String path = r'D:\workspace\code';
+print(path); // D:\workspace\code
 ```
 
-这样做是没问题的，
-
-![dcb91e8bcb0b2759e2c21c2ebcb22d47](./img/e5888f002da7e387e747cac42dd8c8dd.webp)
-
-运行也是没问题的
-
-![2862e066fb6d4739ad5c249afd42ccae](./img/a70c6c8ef18115fae5a09e55d1c63eaa.webp)
-
-### 三、字符串类型
-
-字符串类型在 Dart 中是用 String 表示，数据用单引号或双引号扩起来，
+### 拼接与插值
 
 ```dart
-String name = 'xiaoming';
+var name = '张三';
+var age = 25;
+
+// 字符串插值
+print('hello, $name');         // hello, 张三
+print('${name}今年${age}岁');  // 张三今年25岁
+print('明年${age + 1}岁');     // 明年26岁
+
+// 表达式插值
+var s = 'link';
+print('click ${s.toUpperCase()}'); // click LINK
+
+// + 拼接
+var greet = 'hello' + ' ' + 'world';
+
+// 字符串比较（== 比较内容）
+print('hello' == 'world'); // false
+print('hello' == 'hello'); // true
 ```
 
-或
+### 常用方法
 
 ```dart
-String name = "xiaoming";
+var text = 'Hello Dart';
+
+print(text.length);               // 10
+print(text.toUpperCase());        // HELLO DART
+print(text.toLowerCase());        // hello dart
+print(text.contains('Dart'));     // true
+print(text.startsWith('Hello'));  // true
+print(text.endsWith('Dart'));     // true
+print(text.indexOf('Dart'));      // 6
+print(text.substring(0, 5));      // Hello
+print(text.replaceAll('Dart', 'Flutter')); // Hello Flutter
+print('  hello  '.trim());        // hello
+print(text.split(' '));           // [Hello, Dart]
+print(''.isEmpty);                // true
+print('   '.isNotEmpty);          // true
 ```
 
-也可以用 var
+## 四、布尔类型
 
 ```dart
-var name = 'xiaoming';
+bool isEnabled = true;
+bool isHidden = false;
+
+// 注意：Dart 中不能使用 0/非0 或 null/非null 代表 true/false
+// if (1) { }        // ❌ 编译错误
+// if ('hello') { }  // ❌ 编译错误
+
+bool? flags; // 可空布尔
+print(flags); // null (默认值)
 ```
 
-字符串还有一种是多行字符串用 '''（三个单引号） 或 """（三个双引号） 括起来，可以多行而不报错，
+## 五、列表类型（List）
+
+### 创建与访问
 
 ```dart
-  String description = '''
-  这
-  是
-  描述''';
+// 创建列表
+var list = [1, 2, 3];
+List<int> numbers = [1, 2, 3]; // 指定类型
+var mixed = [1, 'hello', true]; // 任意类型
+
+// 访问元素
+print(list[0]);      // 1
+print(list.length);  // 3
+
+// 修改
+list[0] = 10;
+list.add(4);
+list.addAll([5, 6]);
+
+// 不可变列表
+var constantList = const [1, 2, 3];
+// constantList[0] = 10; // ❌ 运行时错误
+
+// 空安全
+List<int>? nullableList;
+// print(nullableList?.length); // null（使用 dart-null-safety 语法）
 ```
 
-或
+### 常用方法
 
 ```dart
-  String description = """
-  这
-  是
-  描述""";
+var list = [3, 1, 4, 1, 5];
+
+list.add(9);               // 添加
+list.insert(0, 0);         // 插入到索引0
+list.remove(1);            // 移除值为1的元素
+list.removeAt(0);          // 移除索引0的元素
+list.removeLast();         // 移除最后一个
+print(list.contains(4));   // true
+print(list.indexOf(4));    // 查看索引
+list.sort();               // 排序
+print(list.reversed);      // 反转
+list.shuffle();            // 打乱
+print(list.join(', '));    // 转字符串
+list.clear();              // 清空
 ```
 
-输出到控制台也是多行的，
+## 六、映射类型（Map）
 
-![45205c463249afb1799c6a6bc40a7824](./img/765a0ee3f9ca4bf2efbe7abcc7ea4045.webp)
-
-字符串类型还可以用 $ 和其他类型拼接，
+### 创建与访问
 
 ```dart
-  int a = 1;
-  String str = "a = $a";
-  print(str);
+// 字面量创建
+var gifts = {
+  'first': 'partridge',
+  'second': 'turtledoves',
+  'fifth': 'golden rings',
+};
+
+// 构造函数创建
+var map = <String, int>{};
+map['a'] = 1;
+map['b'] = 2;
+
+// 指定泛型
+Map<int, String> numbers = {
+  1: 'one',
+  2: 'two',
+  3: 'three',
+};
+
+// 访问
+print(gifts['first']);   // partridge
+print(gifts['unknown']); // null（键不存在不抛异常）
+print(gifts.length);     // 3
 ```
 
-![0af1701b010cd4bba776eed43eeb0375](./img/1532b880efa1973a21fb09f105a3f13f.webp)
-
-### 四、布尔类型
-
-布尔类型比较简单，它的值只有 true 或 false，在 Dart 中用 bool 表示，
+### 常用方法
 
 ```dart
-bool error = false;
+var map = {'a': 1, 'b': 2, 'c': 3};
+
+print(map.keys);       // (a, b, c)
+print(map.values);     // (1, 2, 3)
+print(map.containsKey('a')); // true
+print(map.containsValue(2)); // true
+
+// 添加/更新
+map['d'] = 4;        // 添加
+map['a'] = 10;       // 更新
+
+map.putIfAbsent('e', () => 5); // 不存在则添加
+map.update('a', (v) => v + 10); // 更新
+map.addAll({'f': 6, 'g': 7});   // 批量添加
+
+// 遍历
+map.forEach((key, value) => print('$key: $value'));
+
+// 移除
+map.remove('a');
+map.removeWhere((key, value) => value < 3);
 ```
 
-或
+## 七、集合类型（Set）
 
 ```dart
-bool error = true;
+// 创建 Set（元素唯一）
+var set = {1, 2, 3, 3, 2, 1};
+print(set); // {1, 2, 3}（重复自动去重）
+
+set.add(4);
+set.addAll([5, 6]);
+set.remove(1);
+
+print(set.contains(2)); // true
+
+// 集合运算
+var a = {1, 2, 3, 4};
+var b = {3, 4, 5, 6};
+
+print(a.union(b));        // {1, 2, 3, 4, 5, 6}
+print(a.intersection(b)); // {3, 4}
+print(a.difference(b));   // {1, 2}
 ```
 
-### 五、列表类型
-
-列表简单来说就是存放着排成一列的数据，可以理解为一个存放数据的容器，列表中的每个数据称为元素，在 Dart 中用 List 表示，数据用 "[]" 括起来，元素之间用 "," 隔开，如果不指定 List 中存放的数据类型的话是可以存放任意类型的数据的，
+## 八、类型判断与转换
 
 ```dart
-List list = ['a', 'b', 'c', 1, 2, 3, true, false];
+var value = 'hello';
+
+// is 判断类型
+print(value is String);  // true
+print(value is int);     // false
+print(value is! int);    // true
+
+// as 类型转换（不成功会抛异常）
+String str = value as String;
+
+// 推荐：用 is 先判断再使用
+if (value is String) {
+  print(value.length); // 自动类型提升
+}
 ```
 
-列表可以直接用 print 输出到控制台，
+## 数据类型速查表
 
-![cbd6356d3f094ab0da88752313025011](./img/89081a6abcdc613bbeae1b1d8dc60138.webp)
+| 类型 | 默认值 | 描述 | 示例 |
+|------|--------|------|------|
+| `int` | `null` | 整数 | `42` |
+| `double` | `null` | 浮点数 | `3.14` |
+| `num` | `null` | int 或 double | `42` 或 `3.14` |
+| `String` | `null` | 字符串 | `'hello'` |
+| `bool` | `null` | 布尔值 | `true` / `false` |
+| `List` | `null` | 有序列表 | `[1, 2, 3]` |
+| `Map` | `null` | 键值对 | `{'a': 1}` |
+| `Set` | `null` | 不重复集合 | `{1, 2, 3}` |
+| `dynamic` | `null` | 动态类型 | 任意值 |
+| `Null` | `null` | 仅 null | `null` |
 
-![359f9740977eda4883ad4fe919fa949b](./img/2db37487b3beb6ab3d6d20b3fc4d3ce2.webp)
-
-如果想要获取列表中的某个元素，可以用 列表名[元素在列表中的位置] 获取，列表元素的第一个位置是从 0 开始的，所以想要获取第一个位置的元素就是
-
-```dart
-List list = ['a', 'b', 'c'];
-var element = list[0];
-```
-
-获取元素时，位置不能大于列表存放元素的个数 - 1，也不能小于 0，即位置的取值范围是 [0, 元素的个数 - 1]，全闭区间，超过列表存放元素的个数 - 1 或小于 0 是会报错的，比如列表存放着 3 个数据，取的时候用 list[5] ，5 比 3-1 大，会报错，
-
-![7a71d2a363e6c29d8e65df420a5753bc](./img/e9b7b091bb240c4836b8b7404c4fe8d3.webp)
-
-![cf0511a94dd212cb579ffb06aad17887](./img/ef5c1ce47b97a4582b19d5e2be8b437c.webp)
-
-列表的元素个数可以用 列表名.length 获取
-
-```dart
-int length = list.length;
-```
-
-如果只想存一种数据类型的数据，那要借助泛型，
-
-```dart
-List<String> list3 = <String>['a', 'b', 'c'];
-```
-
-添加别的元素就会报错，
-
-![0421db5859f53fdd2d180a4842770855](./img/b928bbb2f44ba03290b3112997b91881.webp)
-
-### 六、Map 类型
-
-Map 就是存放具有键值对关系的数据的容器，在 Dart 中就是用 Map 表示，键是唯一的，值可以不相同，比如人的身份证，身份证号是唯一的，名字可以相同，如果两个人的身份证号相同那就乱了，Map 的数据是用 "{}" 括起来，里面的数据用 "键 : 值", 数据之间用 "," 隔开，如果没指定数据类型，键值的数据类型可以是任意的，
-
-```dart
-Map map = {'Apple' : '苹果', 'Banana' : '香蕉', 'Peach' : '桃子', 1 : '1', true : 0};
-```
-
-Map 也是可以直接用 print 输出的，
-
-![5adb502debb33aab4c11726ed02c4b04](./img/994d90f1ba44ab3c1419de4bf9c63737.webp)
-
-![e5acf16657739ba0ab031837a2c2841b](./img/3288360c3aa4f4987b5a1dfc7e34fe62.webp)
-
-想获取某个键的值就用 "Map的名['键的名']"
-
-```dart
-Map map = {'Apple' : '苹果', 'Banana' : '香蕉', 'Peach' : '桃子'};
-String value = map['Apple'];
-print(value);
-```
-
-![979db7ea64ddc382c9d439125d2abfcf](./img/7229a475473e294b82ee447e0b6fb2e5.webp)
-
-Map 的键和值的数据类型也可以是指定的，
-
-```dart
-Map<int, String> map = <int, String>{1 : 'a', 2 : 'b', 3 : 'c'};
-```
-
-存放其他的类型是会报错的，
-
-```dart
-Map<int, String> map2 = <int, String>{1 : 'a', 2 : 'b', 3 : 'c', 4 : 'd', '5' : 'e'};
-```
-
-![313f44614c2f9e39bc351b0d7b9fc3d8](./img/b10c4ec323cdbf62a29a1256c6973642.webp)
+> 提示：Dart 中所有类型的默认值都是 `null`（包括数字和布尔类型）。

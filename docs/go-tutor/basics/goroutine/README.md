@@ -1,3 +1,22 @@
-# 并发编程
+# Go 并发编程
 
-goroutine类似java的线程,不过它更简单,是由go的运行时来调度和管理的,并会被智能的分配给各个cpu.我们并不需要进程、线程、协程,而是直接用goroutine
+[官方文档](https://go.dev/tour/concurrency)
+
+Go 语言内置并发支持，通过 **goroutine**（轻量级线程）和 **channel**（通信机制）实现。
+
+详细内容请查看 [go-concurrency.md](../go-concurrency)。
+
+## 快速示例
+
+```go
+func main() {
+	ch := make(chan string)
+
+	go func() {
+		ch <- "Hello from goroutine!"
+	}()
+
+	msg := <-ch
+	fmt.Println(msg)
+}
+```

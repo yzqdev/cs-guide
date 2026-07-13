@@ -1,9 +1,5 @@
 # 魔法方法
 
-有时候修改文章，真的修改到想死。真的很耗时间，很烦的。
-
-好吧，每次都是安慰自己，快完结了，快更新完了。
-
 # 目录 #
 
 ![](http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-10-14-Python%20%E7%9A%84%20Magic%20Method.png)
@@ -517,12 +513,5 @@ num1 >= num2 ? --------> False
 | `__lshift__(self, other)`   | 实现了位操作 `<<`                                                                          |
 | `__rshift__(self, other)`   | 实现了位操作 `>>`                                                                          |
 | `__and__(self, other)`      | 实现了位操作 `&`                                                                           |
-| `__or__(self, other)`       | 实现了位操作 `                                                                             | ` |
+| `__or__(self, other)`       | 实现了位操作 `                                                                             |` |
 | `__xor__(self, other)`      | 实现了位操作 `^`                                                                           |
-
-
-可以关注下公众号：
-
-这个公号可能很少更新，但是一更新，就是把整理的一系列文章更新上去。
-
-![](http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-10-14-WechatIMG697.jpeg)

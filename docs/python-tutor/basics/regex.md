@@ -411,15 +411,11 @@ https://s-media-cache-ak0.pinimg.com/originals/a8/c4/9e/a8c49ef606e0e1f3ee39a7b2
 ('img', 'https://s-media-cache-ak0.pinimg.com/originals/a8/c4/9e/a8c49ef606e0e1f3ee39a7b219b5c05e.jpg')
 ```
 
-最后，正则表达式是非常厉害的工具，通常可以用来解决字符串内置函数无法解决的问题，而且正则表达式大部分语言都是有的。python 的用途很多，但在爬虫和数据分析这连个模块中都是离不开正则表达式的。所以正则表达式对于学习 Python 来说，真的很重要。最后，附送一些常用的正则表达式和正则表达式和 Python 支持的正则表达式元字符和语法文档。
+最后，正则表达式是非常厉害的工具，通常可以用来解决字符串内置函数无法解决的问题，而且正则表达式大部分语言都是有的。Python 的用途很多，但在爬虫和数据分析这两个模块中都是离不开正则表达式的。所以正则表达式对于学习 Python 来说非常重要。最后，附送一些常用的正则表达式和 Python 支持的正则表达式元字符和语法文档。
 
 github：<https://github.com/TwoWater/Python/blob/master/python14/%E5%B8%B8%E7%94%A8%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.md>
 
-欢迎大家 start ，<https://github.com/TwoWater/Python> 一下，这是草根学 Python 系列博客的库。也可以关注我的微信公众号：
-
-![http://twowater.com.cn/images/20171204192251900.gif](http://twowater.com.cn/images/20171204192251900.gif)
-
-#
+欢迎大家 star <https://github.com/TwoWater/Python>，这是草根学 Python 系列博客的库。
 
 # 常用的正则表达式
 

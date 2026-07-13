@@ -1,248 +1,462 @@
-# 一些说明
+# C# 开发实用笔记
 
-[https://docs.microsoft.com/zh-cn/dotnet/csharp/](https://docs.microsoft.com/zh-cn/dotnet/csharp/)
-1、命名空间
-可以认为类是属于命名空间的。
-如果在当前项目中没有这个类的命名空间，需要我们手动的导入这个类所在的
-命名空间。
-1)、用鼠标去点
-2)、alt+shift+F10
-3)、记住命名空间，手动的去引用
+本文档整理 C# 学习与开发过程中的常见知识点和注意事项。
 
-2、在一个项目中引用另一个项目的类
-1)、添加引用
-2)、引用命名空间
+## 命名空间
 
-3、值类型和引用类型
-区别：
-1、值类型和引用类型在内存上存储的地方不一样。
-2、在传递值类型和传递引用类型的时候，传递的方式不一样。
-值类型我们称之为值传递，引用类型我们称之为引用传递。
-我们学的值类型和引用类型：
-值类型：int、double、bool、char、decimal、struct、enum
-引用类型：string、自定义类、数组
-存储：
-值类型的值是存储在内存的栈当中。
-引用类型的值是存储在内存的堆中。
-
-3、字符串
-1)、字符串的不可变性
-当你给一个字符串重新赋值之后，老值并没有销毁，而是重新开辟一块空间存储新值。
-
-当程序结束后，GC扫描整个内存，如果发现有的空间没有被指向，则立即把它销毁。
-
-2)、我们可以讲字符串看做是char类型的一个只读数组。
-ToCharArray();将字符串转换为char数组
-new string(char[] chs):能够将char数组转换为字符串
-
-4、字符串提供的各种方法
-1)、Length：获得当前字符串中字符的个数
-2)、ToUpper():将字符转换成大写形式
-3)、ToLower():将字符串转换成小写形式
-4)、Equals(lessonTwo,StringComparison.OrdinalIgnoreCase):比较两个字符串，可以忽略大小写
-5)、Split()：分割字符串，返回字符串类型的数组。
-6)、Substring()：解决字符串。在截取的时候包含要截取的那个位置。
-7)、IndexOf():判断某个字符串在字符串中第一次出现的位置，如果没有返回-1、值类型和引用类型在内存上存储的地方不一样。
-8)、LastIndexOf()：判断某个字符串在字符串中最后一次出现的位置，如果没有同样返回-1
-9)、StartsWith():判断以....开始
-10)、EndsWith():判断以...结束
-11)、Replace():将字符串中某个字符串替换成一个新的字符串
-12)、Contains():判断某个字符串是否包含指定的字符串
-13)、Trim():去掉字符串中前后的空格
-14)、TrimEnd()：去掉字符串中结尾的空格
-15)、TrimStart()：去掉字符串中前面的空格
-16)、string.IsNullOrEmpty():判断一个字符串是否为空或者为null
-17)、string.Join()：将数组按照指定的字符串连接，返回一个字符串。
-
-5、继承
-我们可能会在一些类中，写一些重复的成员，我们可以将这些重复的成员，
-单独的封装到一个类中，作为这些类的父类。
-Student、Teacher、Driver  子类  派生类
-Person         父类  基类
-子类继承了父类，那么子类从父类那里继承过来了什么？
-首先，子类继承了父类的属性和方法，但是子类并没有继承父类的私有字段。
-问题：子类有没有继承父类的构造函数？
-答：子类并没有继承父类的构造函数，但是。子类会默认的调用父类无参数的构造函数，
-创建父类对象，让子类可以使用父类中的成员。
-所以，如果在父类中重新写了一个有参数的构造函数之后，那个无参数的就被干掉了，
-子类就调用不到了，所以子类会报错。
-解决办法：
-1)、在父类中重新写一个无参数的构造函数。
-2)、在子类中显示的调用父类的构造函数，使用关键字:base()
-
-6、继承的特性
-1、继承的单根性：一个子类只能有一个父类。
-2、继承的传递性
-
-7、查看类图
-
-8、object是所有类的基类。
-
-9、new关键字
-1)、创建对象
-2)、隐藏从父类那里继承过来的同名成员。
-隐藏的后果就是子类调用不到父类的成员。
-
-1、绝对路径和相对路径
-绝对路径：通过给定的这个路径直接能在我的电脑中找到这个文件。
-相对路径：文件相对于应用程序的路径。
-结论：
-我们在开发中应该去尽量的使用相对路径。
-
-2、装箱、拆箱
-装箱：就是将值类型转换为引用类型。
-拆箱：将引用类型转换为值类型。
-看两种类型是否发生了装箱或者拆箱，要看，这两种类型是否存在继承关系。
-
-3、将创建文件流对象的过程写在using当中，会自动的帮助我们释放流所占用的资源。
-
-4、实现多态的手段
-1)、虚方法
-步骤：
-1、将父类的方法标记为虚方法 ，使用关键字 virtual，这个函数可以被子类重新写一个遍。
-
-2)、抽象类
-当父类中的方法不知道如何去实现的时候，可以考虑将父类写成抽象类，将方法写成抽象方法。
-
-​
-
-1、我们在Main()函数中，调用Test()函数，我们管Main()函数称之为调用者，
-管Test()函数称之为被调用者。
-如果被调用者想要得到调用者的值：
-1)、传递参数。
-2)、使用静态字段来模拟全局变量。
-如果调用者想要得到被调用者的值：
-1)、返回值
-
-2、
-不管是实参还是形参，都是在内存中开辟了空间的。
-
-3、方法的功能一定要单一。
-GetMax(int n1,int n2)
-方法中最忌讳的就是出现提示用户输入的字眼。
-
-4、out、ref、params
-1)、out参数。
-如果你在一个方法中，返回多个相同类型的值的时候，可以考虑返回一个数组。
-但是，如果返回多个不同类型的值的时候，返回数组就不行了，那么这个时候，
-我们可以考虑使用out参数。
-out参数就侧重于在一个方法中可以返回多个不同类型的值。
-
-2)、ref参数
-能够将一个变量带入一个方法中进行改变，改变完成后，再讲改变后的值带出方法。
-ref参数要求在方法外必须为其赋值，而方法内可以不赋值。
-
-3)、params可变参数
-将实参列表中跟可变参数数组类型一致的元素都当做数组的元素去处理。
-params可变参数必须是形参列表中的最后一个元素。
-
-5、方法的重载
-概念：方法的重载指的就是方法的名称相同给，但是参数不同。
-参数不同，分为两种情况
-1)、如果参数的个数相同，那么参数的类型就不能相同。
-2)、如果参数的类型相同，那么参数的个数就不能相同。
-***方法的重载跟返回值没有关系。
-
-6、方法的递归
-方法自己调用自己。
-找出一个文件夹中所有的文件。
-
-1、new关键字
-1)、创建对象
-2)、隐藏从父类那里继承过来的成员
-
-2、访问修饰符
-public:公开的，公共的
-private:私有的，只能在当前类的内部访问，类中成员们，如果不加访问修饰符，默认就是private
-procteced：受保护的，可以在当前类的内部访问，也可以在该类的子类中访问
-internal：在当前项目中都可以访问。
-protected internal：
-能够修饰类的访问修饰符只有两个，internal和public
-
-3、常用的关键字
-this
-1、当前类的对象
-2、调用自己的构造函数
-base
-调用父类的成员
-new
-1、创建对象
-2、隐藏父类的成员
-virtual
-标记一个方法是虚方法
-abstract
-抽象的
-override
-重写
-interface
-接口
-partial
-部分类
-sealed
-密封类：不允许被继承
-return
-1、在方法中返回要返回的值
-2、立即结束本次方法
-break
-跳出当前循环
-continue
-结束本次循环，回到循环条件进行判断
-static
-静态的
-struct
-结构
-enum
-枚举
-const
-常量
-
-4、字符串
-1、字符串的不可变性
-2、字符串可以看做是char类型的只读数组
-
-5、集合
+命名空间用于组织类，类似于 Java 的包。
 
 ```csharp
-ArrayList
-Hashtable
-List<T>
-Dictionary<TKey,TValue>
+// 类属于命名空间，使用 using 导入
+using System;
+using System.Collections.Generic;
+
+namespace MyApp.Models
+{
+    public class User { }
+}
+
+// 导入方式
+// 1. 在文件顶部写 using 语句
+// 2. 在 VS 中鼠标悬停 → 灯泡图标 → 引入
+// 3. 快捷键：Alt+Shift+F10 → 自动导入
+// 4. 手动输入完整命名空间
 ```
 
-6装箱或者拆箱
-装箱：就是将值类型转换为引用类型
-拆箱:就是将引用类型转换为值类型。
-值类型:bool int double char struct enum decimal
-引用类型：string 数组 集合 interface object 自定义类
-拆箱或者装箱的两种类型必须具有继承关系
+### 跨项目引用
 
-7、结构和类的区别
-1、类当中写了一个新的构造函数之后，默认的无参数的就被干掉了。
-但是在结构中，写了一个新的构造函数之后，默认的那个无参数的还在。
-在结构的构造函数当中，必须给所有的字段赋值，这样也就限制了结构中最多
-只能有两个构造函数，一个是默认的无参数的构造函数，一个是全参数的构造函数。
+1. 添加项目引用：右键依赖项 → 添加项目引用
+2. 引用目标项目的命名空间
 
-2、结构的new关键字只干了一件事儿，就是调用结构的构造函数。
+## 值类型与引用类型
 
-3、结构不能继承于类，而类也不能继承于结构。
-结构不具备面向对象的特征。
-而类才是面向对象的产物。
+### 区别
 
-4、如果不给结构创建对象的话，不允许调用结构中的非静态方法。
+| 特性 | 值类型 | 引用类型 |
+|------|--------|----------|
+| 存储位置 | 栈（Stack） | 堆（Heap） |
+| 传递方式 | 值传递（复制） | 引用传递（共享） |
+| 默认值 | 0 / false / '\0' | null |
+
+### 类型分类
+
+| 类型 | 分类 |
+|------|------|
+| **值类型** | `int`, `double`, `bool`, `char`, `decimal`, `struct`, `enum` |
+| **引用类型** | `string`, 数组, 自定义类, `interface`, `object`, 集合 |
+
+```csharp
+// 值类型：赋值时复制数据
+int a = 10;
+int b = a;     // b 是 a 的副本
+b = 20;
+Console.WriteLine(a); // 10（不受影响）
+
+// 引用类型：赋值时复制引用
+int[] arr1 = { 1, 2, 3 };
+int[] arr2 = arr1;   // 指向同一个数组
+arr2[0] = 99;
+Console.WriteLine(arr1[0]); // 99（受影响）
+```
+
+## 字符串
+
+### 不可变性
+
+字符串一旦创建，内容不可改变。任何修改操作都会创建新字符串。
+
+```csharp
+string s1 = "Hello";
+string s2 = s1.ToUpper(); // 返回新字符串，s1 不变
+
+Console.WriteLine(s1); // Hello
+Console.WriteLine(s2); // HELLO
+```
+
+### 字符串与字符数组
+
+```csharp
+string text = "Hello";
+
+// 字符串 → char 数组（允许修改）
+char[] chars = text.ToCharArray();
+chars[0] = 'h';
+
+// char 数组 → 字符串
+string modified = new string(chars);
+Console.WriteLine(modified); // hello
+
+// 字符串可通过索引访问（只读）
+Console.WriteLine(text[0]);  // H
+// text[0] = 'h';            // ❌ 编译错误
+```
+
+### 常用字符串方法
+
+```csharp
+string str = "  Hello, World!  ";
+
+int len = str.Length;                    // 长度
+string upper = str.ToUpper();            // 大写化
+string lower = str.ToLower();            // 小写化
+bool eq = str.Equals("hello", StringComparison.OrdinalIgnoreCase); // 忽略大小写比较
+
+string[] parts = str.Split(',');         // 分割
+string sub = str.Substring(2, 5);        // 截取
+int idx = str.IndexOf("World");          // 查找位置（-1 表示未找到）
+int lastIdx = str.LastIndexOf("o");      // 最后一次出现位置
+
+bool starts = str.StartsWith("  He");    // 以...开头
+bool ends = str.EndsWith("!  ");         // 以...结尾
+string replaced = str.Replace("World", "C#"); // 替换
+bool contains = str.Contains("Hello");    // 是否包含
+
+string trimmed = str.Trim();             // 去除首尾空格
+string trimStart = str.TrimStart();      // 去除开头空格
+string trimEnd = str.TrimEnd();          // 去除结尾空格
+
+bool isNullOrEmpty = string.IsNullOrEmpty(str);   // 是否为空或 null
+string joined = string.Join(", ", new[] { "A", "B", "C" }); // 拼接
+```
+
+## 继承
+
+### 基础概念
+
+把多个类中重复的成员提取到父类中，子类通过继承获得父类的成员。
+
+```csharp
+// 父类（基类）
+class Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public void Introduce() => Console.WriteLine($"我是{Name}");
+}
+
+// 子类（派生类）
+class Student : Person
+{
+    public string Grade { get; set; }
+}
+
+class Teacher : Person
+{
+    public string Subject { get; set; }
+}
+```
+
+### 继承的要点
+
+- 子类继承父类的**属性和方法**（非 `private` 成员）
+- 子类**不继承**父类的私有字段
+- 子类**不继承**父类的构造函数
+- 子类默认调用父类的**无参数构造函数**
+
+```csharp
+class Animal
+{
+    public string Name { get; set; }
+
+    public Animal() { }                    // 无参构造函数
+    public Animal(string name)             // 有参构造函数
+    {
+        Name = name;
+    }
+}
+
+class Dog : Animal
+{
+    public Dog(string name) : base(name)   // 显式调用父类构造函数
+    {
+    }
+}
+```
+
+### 继承的特性
+
+1. **单根性**：一个子类只能有一个直接父类
+2. **传递性**：子类继承父类，父类继承祖父类，祖孙类具有所有祖先的成员
+
+### 查看类图
+
+在 Visual Studio 中：右键项目 → 查看 → 类图（Class Diagram）
+
+### object — 所有类的基类
+
+`System.Object` 是所有类型的最终基类，提供：
+
+```csharp
+object obj = new Student();
+Type type = obj.GetType();     // 获取运行时类型
+bool equal = obj.Equals(obj);  // 比较
+int hash = obj.GetHashCode();  // 哈希码
+string str = obj.ToString();   // 字符串表示
+```
+
+## new 关键字
+
+```csharp
+// 1. 创建对象
+Person p = new Person();
+
+// 2. 隐藏父类同名成员
+class Base
+{
+    public void Method() { }
+}
+class Derived : Base
+{
+    public new void Method() { } // 隐藏基类方法
+}
+```
+
+## 装箱与拆箱
+
+```csharp
+int num = 42;
+
+// 装箱：值类型 → 引用类型（耗性能）
+object boxed = num;
+
+// 拆箱：引用类型 → 值类型（需显式转换）
+int unboxed = (int)boxed;
+```
+
+> 判断是否发生装箱/拆箱：看两种类型是否存在**继承关系**。
+
+通常会引发装箱/拆箱的操作：
+- `ArrayList` 和 `Hashtable`（旧集合，存储 object）→ 应使用 `List<T>` 和 `Dictionary<TKey, TValue>`
+
+## 多态的两种实现
+
+### 虚方法（virtual / override）
+
+```csharp
+class Animal
+{
+    public virtual void Speak() => Console.WriteLine("动物叫声");
+}
+class Dog : Animal
+{
+    public override void Speak() => Console.WriteLine("汪汪！");
+}
+
+// 多态调用
+Animal a = new Dog();
+a.Speak(); // 汪汪！（运行时确定具体实现）
+```
+
+### 抽象类（abstract）
+
+```csharp
+abstract class Shape
+{
+    public abstract double GetArea(); // 抽象方法：无实现
+}
+class Circle : Shape
+{
+    public double Radius { get; set; }
+    public override double GetArea() => Math.PI * Radius * Radius;
+}
+```
+
+## out / ref / params
+
+### out 参数
+
+用于方法返回多个不同类型的值，调用方无需初始化，被调用方必须赋值。
+
+```csharp
+bool TryDivide(int a, int b, out int result)
+{
+    if (b == 0)
+    {
+        result = 0;
+        return false;
+    }
+    result = a / b;
+    return true;
+}
+```
+
+### ref 参数
+
+将变量传入方法中修改，修改后带出。调用方必须初始化。
+
+```csharp
+void Swap(ref int a, ref int b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+int x = 5, y = 10;
+Swap(ref x, ref y);
+```
+
+### params 可变参数
+
+```csharp
+int Sum(params int[] numbers)
+{
+    int total = 0;
+    foreach (int n in numbers) total += n;
+    return total;
+}
+
+Console.WriteLine(Sum(1, 2, 3));     // 6
+Console.WriteLine(Sum(1, 2, 3, 4));  // 10
+```
+
+> `params` 参数必须是方法参数的**最后一个**。
+
+## 方法的重载
+
+方法名相同，参数列表不同（参数类型不同 或 参数数量不同）。
+
+```csharp
+class Calc
+{
+    public int Add(int a, int b) => a + b;
+    public double Add(double a, double b) => a + b;  // 参数类型不同
+    public int Add(int a, int b, int c) => a + b + c; // 参数数量不同
+
+    // ❌ 重载跟返回值无关
+    // public double Add(int a, int b) => a + b; // 编译错误
+}
+```
+
+## 方法的递归
+
+方法自己调用自己。
+
+```csharp
+// 阶乘
+int Factorial(int n)
+{
+    if (n <= 1) return 1;
+    return n * Factorial(n - 1);
+}
+
+// 遍历文件夹
+void FindAllFiles(string path)
+{
+    foreach (string file in Directory.GetFiles(path))
+        Console.WriteLine(file);
+
+    foreach (string dir in Directory.GetDirectories(path))
+        FindAllFiles(dir); // 递归调用
+}
+```
+
+## 访问修饰符
+
+| 修饰符 | 范围 | 说明 |
+|--------|------|------|
+| `public` | 任何地方 | 公开访问 |
+| `private` | 仅当前类 | 默认的类成员访问级别 |
+| `protected` | 当前类 + 派生类 | 受保护的 |
+| `internal` | 当前项目 | 程序集内访问 |
+| `protected internal` | 当前项目 + 派生类 | 并集 |
+
+> 类级别的访问修饰符只有两种：`public` 和 `internal`（默认）
+
+## 常用关键字速查
+
+| 关键字 | 用途 |
+|--------|------|
+| `this` | 当前类的对象 / 调用自己的构造函数 |
+| `base` | 调用父类的成员 |
+| `new` | 创建对象 / 隐藏父类成员 |
+| `virtual` | 标记方法可被重写 |
+| `override` | 重写父类的虚方法 |
+| `abstract` | 抽象类或抽象方法 |
+| `sealed` | 密封类（禁止继承） |
+| `partial` | 分部类（拆分到多个文件） |
+| `static` | 静态成员（属于类型本身） |
+| `const` | 编译时常量 |
+| `readonly` | 运行时常量（可在构造函数赋值） |
+| `interface` | 接口 |
+| `struct` | 结构体 |
+| `enum` | 枚举 |
+
+## 集合类型
+
+```csharp
+// 非泛型（旧，不推荐，有装箱问题）
+ArrayList list = new ArrayList();
+Hashtable table = new Hashtable();
+
+// 泛型（推荐）
+List<int> numbers = new List<int>();
+Dictionary<string, int> scores = new Dictionary<string, int>();
+```
+
+## 结构与类的区别
+
+| 对比项 | 结构体（struct） | 类（class） |
+|--------|------------------|-------------|
+| 类型 | 值类型 | 引用类型 |
+| 构造函数 | 有无参默认构造，写新构造后默认还在 | 写新构造后默认构造被覆盖 |
+| 构造函数要求 | 必须给所有字段赋值 | 无限制 |
+| 继承 | 不能继承类/被继承 | 支持单继承 |
+| 默认成员访问 | `private` | `private` |
+
+```csharp
+// 结构体构造函数特点
+struct Point
+{
+    public int X;
+    public int Y;
+
+    // 在构造函数中必须给所有字段赋值
+    public Point(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+    // 默认无参构造函数仍然存在（类中不存在）
+}
+```
+
+> 结构体不具备面向对象的全部特征，它更多用于表示轻量级数据结构。
+> 如果不创建结构体对象（不使用 new），则不能调用其非静态方法。
 
 ## 语法糖
 
-### 范围运算符
+### 范围运算符 `..`
 
-### string操作
+```csharp
+int[] numbers = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+int[] slice = numbers[2..5];  // { 2, 3, 4 }
+Console.WriteLine(string.Join(", ", slice));
+```
 
-```cs
-   string text = "fwobz the fwutzle";
+### 字符串操作优化
 
-        //  Violation: allocations by Substring are wasteful.
-        string s1 = text.Substring(10) + "---" + text.Substring(0, 5);
+```csharp
+string text = "fwobz the fwutzle";
 
-        //  Fixed: using AsSpan avoids allocations of temporary strings.
-        string s2 = string.Concat(text.AsSpan(10), "---", text.AsSpan(0, 5));
+// ❌ 每次 Substring 都会分配新字符串
+string s1 = text.Substring(10) + "---" + text.Substring(0, 5);
 
+// ✅ 使用 AsSpan 避免临时字符串分配
+string s2 = string.Concat(text.AsSpan(10), "---", text.AsSpan(0, 5));
+```
+
+## 资源释放
+
+```csharp
+// 使用 using 确保资源自动释放
+using (var reader = new StreamReader("file.txt"))
+{
+    string content = reader.ReadToEnd();
+}
+
+// using 声明（C# 8+）
+using var writer = new StreamWriter("output.txt");
+writer.WriteLine("Hello");
+// 方法结束时自动释放
 ```

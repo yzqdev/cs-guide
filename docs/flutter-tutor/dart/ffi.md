@@ -1,309 +1,240 @@
-# Dart ffi使用
+# Dart FFI 使用
 
-本篇博客研究Dart语言如何调用C语言代码混合编程，最后我们实现一个简单示例，在C语言中编写简单加解密函数，使用dart调用并传入字符串，返回加密结果，调用解密函数，恢复字符串内容。
+[官方文档](https://dart.dev/interop/c-interop)
 
-**随着Dart SDK版本迭代，本文章部分内容已过时，最新版本教程已经上传B站，请查看 [Dart FFI 入门](https://www.bilibili.com/video/BV1v44y1i7ed)**
+FFI（Foreign Function Interface）允许 Dart 直接调用 C 语言代码，实现高性能计算或复用现有 C 库。
 
 ## 环境准备
 
 ### 编译器环境
 
-如未安装过VS编译器，则推荐使用GCC编译器，下载一个64位Windows版本的GCC——`MinGW-W64`
-[下载地址](https://sourceforge.net/projects/mingw-w64/files/)
+安装 GCC 编译器（Windows 推荐 MinGW-W64）：
 
-如上，它有两个版本，`sjlj`和`seh`后缀表示异常处理模式，`seh` 性能较好，但不支持 32位。 `sjlj` 稳定性好，可支持 32位，推荐下载`seh` 版本
+- 下载 [MinGW-W64](https://sourceforge.net/projects/mingw-w64/files/)
+- 选择 `seh` 异常处理模式（性能好），安装后配置环境变量
+- 验证：`gcc -v`
 
-将编译器安装到指定的目录，完成安装后，还需要配置一下环境变量，将安装目录下的`bin`目录加入到系统Path环境变量中，`bin`目录下包含`gcc.exe`、`make.exe`等工具链。
+### Dart SDK
 
-**测试环境**
-配置完成后，检测一下环境是否搭建成功，打开`cmd`命令行，输入`gcc -v`能查看版本号则成功。
+Dart 2.12+ 内置 `dart:ffi` 库，无需额外安装。
 
-### Dart SDK环境
-
-去往Dart 官网下载最新的2.3 版本SDK，注意，旧版本不支持`ffi` [下载地址](https://dart.dev/tools/sdk/archive)
-
-下载安装后，同样需要配置环境变量，将`dart-sdk\bin`配置到系统Path环境变量中。
-
-## 测试Dart `ffi`接口
-
-关于C语言相关的各种知识，包括构建、动态库编译与加载，请学习我的[《C语言专栏》](https://blog.csdn.net/yingshukun/category_9291402.html)，只有掌握这些基础知识，才能应对各种报错问题。
-
-### 简单示例
-
-创建测试工程，打开`cmd`命令行
-
-```
-mkdir ffi-proj
-cd ffi-proj
-mkdir bin src
+```bash
+dart --version  # 确保 >= 2.12
 ```
 
-创建工程目录`ffi-proj`，在其下创建`bin`、`src`文件夹，在`bin`中创建`main.dart`文件，在`src`中创建`test.c`文件
+## 基本流程
 
-编写`test.c`
-我们在其中包含了windows头文件，用于`showBox`函数，调用Win32 API，创建一个对话框
+1. 编写 C 代码 → 编译为动态库（.dll/.so/.dylib）
+2. 在 Dart 中加载动态库
+3. 定义函数签名映射
+4. 调用 C 函数
+
+## 简单示例
+
+### C 代码
 
 ```c
-#include<windows.h>
+// src/test.c
+#include <windows.h>
 
-int add(int a, int b){
+int add(int a, int b) {
     return a + b;
 }
 
-
-void showBox(){
-    MessageBox(NULL,"Hello Dart","Title",MB_OK);
+void showBox() {
+    MessageBox(NULL, "Hello Dart", "Title", MB_OK);
 }
 ```
 
-进入`src`目录下，使用gcc编译器，将C语言代码编译为dll动态库
-
-```shell
+```bash
+# 编译为动态库
+cd src
 gcc test.c -shared -o test.dll
 ```
 
-编写`main.dart`
+### Dart 代码
 
 ```dart
-import  'dart:ffi'  as ffi;
-import  'dart:io'  show Platform;
+// bin/main.dart
+import 'dart:ffi' as ffi;
+import 'dart:io' show Platform;
 
-/// 根据C中的函数来定义方法签名（所谓方法签名，就是对一个方法或函数的描述，包括返回值类型，形参类型）
-/// 这里需要定义两个方法签名，一个是C语言中的，一个是转换为Dart之后的
-typedef NativeAddSign = ffi.Int32 Function(ffi.Int32,ffi.Int32);
-typedef DartAddSign = int Function(int, int);
+// Native 函数签名（对应 C 类型）
+typedef NativeAdd = ffi.Int32 Function(ffi.Int32, ffi.Int32);
+typedef NativeShow = ffi.Void Function();
 
-/// showBox函数方法签名
-typedef NativeShowSign = ffi.Void Function();
-typedef DartShowSign = void Function();
+// Dart 函数签名（对应 Dart 类型）
+typedef DartAdd = int Function(int, int);
+typedef DartShow = void Function();
 
-void main(List<String> args) {
+void main() {
   if (Platform.isWindows) {
-    // 加载dll动态库
-    ffi.DynamicLibrary dl = ffi.DynamicLibrary.open("../src/test.dll");
+    // 加载动态库
+    ffi.DynamicLibrary dl =
+        ffi.DynamicLibrary.open('src/test.dll');
 
-    // lookupFunction有两个作用，1、去动态库中查找指定的函数；2、将Native类型的C函数转化为Dart的Function类型
-    var add = dl.lookupFunction<NativeAddSign, DartAddSign>("add");
-    var showBox = dl.lookupFunction<NativeShowSign, DartShowSign>("showBox");
+    // 查找并转换函数
+    var add = dl.lookupFunction<NativeAdd, DartAdd>('add');
+    var showBox = dl.lookupFunction<NativeShow, DartShow>('showBox');
 
-    // 调用add函数
-    print(add(8, 9));
- // 调用showBox函数
-    showBox();
+    print(add(8, 9)); // 17
+    showBox();         // 弹出消息框
   }
 }
 ```
 
-### 深入用法
+## 字符串处理
 
-这里写一个稍微深入一点的示例，我们在C语言中写一个简单加密算法，然后使用dart调用C函数加密解密
-
-编写`encrypt_test.c`，这里写一个最简单的异或加密算法，可以看到加密和解密实际上是一样的
+### 使用 `Pointer<Utf8>`（推荐，Dart 2.12+）
 
 ```c
+// src/encrypt.c
 #include <string.h>
- 
-#define KEY 'abc'
- 
-void encrypt(char *str, char *r, int r_len){
-    int len = strlen(str);
-    for(int i = 0; i < len && i < r_len; i++){
-        r[i] = str[i] ^ KEY;
-    }
 
-    if (r_len > len) r[len] = '\0';
-    else r[r_len] = '\0';
-    
+#define KEY 'x'
+
+void encrypt(char *str, char *out, int out_len) {
+    int len = strlen(str);
+    for (int i = 0; i < len && i < out_len; i++) {
+        out[i] = str[i] ^ KEY;
+    }
+    if (out_len > len) out[len] = '\0';
+    else out[out_len] = '\0';
 }
 
-void decrypt(char *str, char *r, int r_len){
+void decrypt(char *str, char *out, int out_len) {
+    // 异或加密是对称的，解密与加密相同
     int len = strlen(str);
-    for(int i = 0; i < len && i < r_len; i++){
-        r[i] = str[i] ^ KEY;
+    for (int i = 0; i < len && i < out_len; i++) {
+        out[i] = str[i] ^ KEY;
     }
-
-    if (r_len > len) r[len] = '\0';
-    else r[r_len] = '\0';
+    if (out_len > len) out[len] = '\0';
+    else out[out_len] = '\0';
 }
 ```
 
-编译为动态库
-
-```
-gcc encrypt_test.c -shared -o encrypt_test.dll
+```bash
+gcc src/encrypt.c -shared -o src/encrypt.dll
 ```
 
-编写`main.dart`
+### Dart 调用字符串函数
 
 ```dart
 import 'dart:ffi';
-import 'dart:io' show Platform;
-import "dart:convert";
+import 'package:ffi/ffi.dart'; // 需要 pub add ffi
 
+typedef NativeEncrypt = Void Function(
+    Pointer<Utf8>, Pointer<Utf8>, Int32);
+typedef DartEncrypt = void Function(
+    Pointer<Utf8>, Pointer<Utf8>, int);
 
-/// encrypt函数方法签名，注意，这里encrypt和decrypt的方法签名实际上是一样的，两个函数返回值类型和参数类型完全相同
-typedef NativeEncrypt = Void Function(CString,CString,Int32);
-typedef DartEncrypt = void Function(CString,CString,int);
+void main() {
+  final dl = DynamicLibrary.open('src/encrypt.dll');
 
+  final encrypt = dl.lookupFunction<NativeEncrypt, DartEncrypt>('encrypt');
+  final decrypt = dl.lookupFunction<NativeEncrypt, DartEncrypt>('decrypt');
 
-void main(List<String> args) {
-  if (Platform.isWindows) {
-    // 加载dll动态库
-    DynamicLibrary dl = DynamicLibrary.open("../src/encrypt_test.dll");
-    var encrypt = dl.lookupFunction<NativeEncrypt, DartEncrypt>("encrypt");
-    var decrypt = dl.lookupFunction<NativeEncrypt, DartEncrypt>("decrypt");
+  // 分配 Dart 字符串并转为 C 字符串
+  final data = 'Hello, World!'.toNativeUtf8();
+  final out = calloc<Uint8>(100);
+  final outPtr = out.cast<Utf8>();
 
+  // 加密
+  encrypt(data, outPtr, 100);
+  print('加密后：${outPtr.toDartString()}');
 
-    CString data = CString.allocate("helloworld");
-    CString enResult = CString.malloc(100);
-    encrypt(data,enResult,100);
-    print(CString.fromUtf8(enResult));
+  // 解密
+  final result = calloc<Uint8>(100);
+  final resultPtr = result.cast<Utf8>();
+  decrypt(outPtr, resultPtr, 100);
+  print('解密后：${resultPtr.toDartString()}');
 
-    print("-------------------------");
-
-    CString deResult = CString.malloc(100);
-    decrypt(enResult,deResult,100);
-    print(CString.fromUtf8(deResult));
-  }
-}
-
-/// 创建一个类继承Pointer<Int8>指针，用于处理C语言字符串和Dart字符串的映射
-class CString extends Pointer<Int8> {
-
-  /// 申请内存空间，将Dart字符串转为C语言字符串
-  factory CString.allocate(String dartStr) {
-    List<int> units = Utf8Encoder().convert(dartStr);
-    Pointer<Int8> str = allocate(count: units.length + 1);
-    for (int i = 0; i < units.length; ++i) {
-      str.elementAt(i).store(units[i]);
-    }
-    str.elementAt(units.length).store(0);
-
-    return str.cast();
-  }
-
- // 申请指定大小的堆内存空间
-  factory CString.malloc(int size) {
-    Pointer<Int8> str = allocate(count: size);
-    return str.cast();
-  }
-
-  /// 将C语言中的字符串转为Dart中的字符串
-  static String fromUtf8(CString str) {
-    if (str == null) return null;
-    int len = 0;
-    while (str.elementAt(++len).load<int>() != 0);
-    List<int> units = List(len);
-    for (int i = 0; i < len; ++i) units[i] = str.elementAt(i).load();
-    return Utf8Decoder().convert(units);
-  }
+  // 释放内存
+  calloc.free(data);
+  calloc.free(out);
+  calloc.free(result);
 }
 ```
 
-可以看到将`"helloworld"`字符串加密后变成一串乱码，解密字符串后，恢复内容
-
-#### 完善代码
-
-上述代码虽然实现了我们的目标，但是存在明显的内存泄露，我们使用CString 的`allocate`和`malloc`申请了堆内存，但是却没有手动释放，这样运行一段时间后可能会耗尽内存空间，手动管理内存往往是`C/C++`中最容易出问题的地方，这里我们只能进行一个简单的设计来回收内存
-
-```dart
-/// 创建Reference 类来跟踪CString申请的内存
-class Reference {
-   final List<Pointer<Void>> _allocations = [];
-
-    T ref<T extends Pointer>(T ptr) {
-     _allocations.add(ptr.cast());
-     return ptr;
-   }
-
- // 使用完后手动释放内存
-    void finalize() {
-     for (final ptr in _allocations) {
-       ptr.free();
-     }
-     _allocations.clear();
-  }
-}
-```
-
-修改代码
+### 内存管理
 
 ```dart
 import 'dart:ffi';
-import 'dart:io' show Platform;
-import "dart:convert";
+import 'package:ffi/ffi.dart';
 
+class NativeAllocator {
+  final List<Pointer> _allocations = [];
 
-/// encrypt函数方法签名，注意，这里encrypt和decrypt的方法签名实际上是一样的，两个函数返回值类型和参数类型完全相同
-typedef NativeEncrypt = Void Function(CString,CString,Int32);
-typedef DartEncrypt = void Function(CString,CString,int);
+  Pointer<T> alloc<T extends NativeType>(int count) {
+    final ptr = calloc<T>(count);
+    _allocations.add(ptr);
+    return ptr;
+  }
 
+  Pointer<Utf8> allocString(String str) {
+    final ptr = str.toNativeUtf8(allocator: calloc);
+    _allocations.add(ptr);
+    return ptr;
+  }
 
-void main(List<String> args) {
-  if (Platform.isWindows) {
-    // 加载dll动态库
-    DynamicLibrary dl = DynamicLibrary.open("../src/hello.dll");
-    var encrypt = dl.lookupFunction<NativeEncrypt, DartEncrypt>("encrypt");
-    var decrypt = dl.lookupFunction<NativeEncrypt, DartEncrypt>("decrypt");
-
- // 创建Reference 跟踪CString
-    Reference ref = Reference();
-
-    CString data = CString.allocate("helloworld",ref);
-    CString enResult = CString.malloc(100,ref);
-    encrypt(data,enResult,100);
-    print(CString.fromUtf8(enResult));
-
-    print("-------------------------");
-
-    CString deResult = CString.malloc(100,ref);
-    decrypt(enResult,deResult,100);
-    print(CString.fromUtf8(deResult));
-
- // 用完后手动释放
-    ref.finalize();
+  void dispose() {
+    for (final ptr in _allocations) {
+      calloc.free(ptr);
+    }
+    _allocations.clear();
   }
 }
 
-class CString extends Pointer<Int8> {
-
-  /// 开辟内存控件，将Dart字符串转为C语言字符串
-  factory CString.allocate(String dartStr, [Reference ref]) {
-    List<int> units = Utf8Encoder().convert(dartStr);
-    Pointer<Int8> str = allocate(count: units.length + 1);
-    for (int i = 0; i < units.length; ++i) {
-      str.elementAt(i).store(units[i]);
-    }
-    str.elementAt(units.length).store(0);
-
-    ref?.ref(str);
-    return str.cast();
-  }
-
-  factory CString.malloc(int size, [Reference ref]) {
-    Pointer<Int8> str = allocate(count: size);
-    ref?.ref(str);
-    return str.cast();
-  }
-
-  /// 将C语言中的字符串转为Dart中的字符串
-  static String fromUtf8(CString str) {
-    if (str == null) return null;
-    int len = 0;
-    while (str.elementAt(++len).load<int>() != 0);
-    List<int> units = List(len);
-    for (int i = 0; i < len; ++i) units[i] = str.elementAt(i).load();
-    return Utf8Decoder().convert(units);
+// 使用
+void main() {
+  final alloc = NativeAllocator();
+  try {
+    final str = alloc.allocString('测试');
+    print(str.toDartString());
+  } finally {
+    alloc.dispose();
   }
 }
 ```
 
-## 总结
+## 完整示例：调用系统 API
 
-`dart:ffi`包目前正处理开发中，暂时释放的只有基础功能，且使用`dart:ffi`包后，Dart代码不能进行`aot`编译，不过Dart开发了`ffi`接口后，极大的扩展了dart语言的能力边界，就如同的Java的Jni一样，如果`ffi`接口开发得足够好用，Dart就能像Python那样成为一门真正的胶水语言。
+```dart
+import 'dart:ffi';
 
-大家如果有兴趣进一步研究，可以查看`dart:ffi`包源码，目前该包总共才5个dart文件，源码很少，适合学习。
+// 获取当前进程 ID
+final kernel32 = DynamicLibrary.open('kernel32.dll');
+final getProcId = kernel32.lookupFunction<
+    Int32 Function(),
+    int Function()>('GetCurrentProcessId');
 
-参考资料：
-[dart:ffi 源码](https://github.com/dart-lang/sdk/tree/master/sdk/lib/ffi)
-[dart:ffi 官方示例](https://github.com/dart-lang/sdk/blob/master/samples/ffi/sqlite/docs/sqlite-tutorial.md)
+void main() {
+  print('PID: ${getProcId()}');
+}
+```
+
+## 常用类型映射
+
+| C 类型 | Native 签名 | Dart 签名 |
+|--------|-------------|-----------|
+| `int` | `Int32` / `Int64` | `int` |
+| `float` | `Float` | `double` |
+| `double` | `Double` | `double` |
+| `char*` | `Pointer<Utf8>` | `Pointer<Utf8>` |
+| `void*` | `Pointer<Void>` | `Pointer<Void>` |
+| `void` | `Void` | `void` |
+| `int*` | `Pointer<Int32>` | `Pointer<Int32>` |
+| `struct` | `Pointer<Struct>` | `Pointer<Struct>` |
+
+## 注意事项
+
+1. **内存管理**：`Pointer.fromNativeUtf8()` 分配的内存必须手动释放
+2. **平台差异**：Windows 用 `.dll`，Linux 用 `.so`，macOS 用 `.dylib`
+3. **AOT 编译**：使用 `dart:ffi` 后仍可 AOT 编译（Dart 2.12+）
+4. **推荐包**：添加 `ffi` 包到 pubspec：`dart pub add ffi`
+
+## 参考
+
+- [dart:ffi 官方文档](https://dart.dev/interop/c-interop)
+- [package:ffi](https://pub.dev/packages/ffi)
+- [FFI 示例：SQLite](https://github.com/dart-lang/samples/tree/main/ffi)

@@ -1,202 +1,343 @@
-
 # 标准输入输出流
 
-- `stdin`
-- `stdout`
-- `stderr`
+[官方文档](https://api.dart.dev/stable/dart-io/dart-io-library.html)
+
+`dart:io` 提供了 `stdin`、`stdout`、`stderr` 三个标准流对象。
 
 ```dart
-// 导入io包
 import 'dart:io';
 
 void main() {
-  // 向标准输出流写字符串
-  stdout.write('root\$:');
-  // 从标准输入流读取一行字符串
+  // 向标准输出流写字符串（不换行）
+  stdout.write('请输入用户名：');
+
+  // 从标准输入流读取一行
   var input = stdin.readLineSync();
-  // 带换行符的写数据
-  stdout.writeln("input data:$input");
-  // 向标准错误流写数据
-  stderr.writeln("has not error");
+
+  // 带换行的输出
+  stdout.writeln('你好，$input！');
+
+  // 向标准错误流写入
+  stderr.writeln('这只是一个演示');
+}
+
+// 读取一个字节
+void readByte() {
+  stdout.write('按任意键继续...');
+  stdin.readByteSync();
+  stdout.writeln('继续执行');
+}
+
+// 循环读取
+void readLoop() {
+  while (true) {
+    stdout.write('输入 q 退出：');
+    var line = stdin.readLineSync();
+    if (line == 'q') break;
+    stdout.writeln('你输入了：$line');
+  }
 }
 ```
-
-`stdin`除了可以使用`readLineSync`读一行字符串，还可以使用`readByteSync`读取一个字节。
 
 # 文件操作
 
 ## 写文件
 
-一种简便的操作方式，无需手动关闭文件，文件写入完成后会自动关闭
+### 简便方式（自动关闭）
 
 ```dart
 import 'dart:io';
 
-void main() async{
-  // 创建文件
-  File file = new File('test.txt');
-  String content = 'The easiest way to write text to a file is to create a File';
+void main() async {
+  var file = File('test.txt');
+  var content = '这是写入的内容';
 
   try {
-    // 向文件写入字符串
     await file.writeAsString(content);
-    print('Data written.');
+    print('写入完成');
   } catch (e) {
-    print(e);
+    print('写入失败：$e');
   }
 }
 ```
 
-`writeAsString`原型
+`writeAsString` 参数说明：
 
-```dart
-  Future<File> writeAsString(String contents,
-      {FileMode mode: FileMode.write,
-      Encoding encoding: utf8,
-      bool flush: false})
-```
+| 参数 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `mode` | `FileMode` | `FileMode.write` | 写入模式 |
+| `encoding` | `Encoding` | `utf8` | 字符编码 |
+| `flush` | `bool` | `false` | 是否立即刷新 |
 
-- `mode` 文件模式，这里默认为写模式
-- `encoding` 字符编码，默认为utf-8
-- `flush` 是否立刻刷新缓存，默认为false
+### 文件模式
 
-文件模式`FileMode`的常量
-|常量值| 说明  |
-|:--|:--|
-| read | 只读模式 |
-| write | 可读可写模式，如果文件存在则会覆盖 |
-| append | 追加模式，可读可写，文件存在则往末尾追加 |
-| writeOnly | 只写模式  |
-| writeOnlyAppend | 只写模式下的追加模式，不可读 |
+| 常量 | 说明 |
+|------|------|
+| `FileMode.read` | 只读 |
+| `FileMode.write` | 可写，文件存在则覆盖 |
+| `FileMode.append` | 追加模式 |
+| `FileMode.writeOnly` | 只写，文件存在则覆盖 |
+| `FileMode.writeOnlyAppend` | 只写追加 |
 
-除了`writeAsString`方法外，还可以使用`writeAsBytes`写入一个字节列表。需要注意的是，这两个方法都是异步执行的，返回值都是`Future`，如果有必要，也可以使用同步方法执行写入操作
-
-- `writeAsStringSync`
-- `writeAsBytesSync`
-
-如需要更灵活的控制，可以使用如下方式操作文件，但是需要手动关闭文件
+### 追加写入
 
 ```dart
 import 'dart:io';
 
-void main() async{
-  // 创建文件
-  File file = new File('test.txt');
-  // 文件模式设置为追加
-  IOSink isk = file.openWrite(mode: FileMode.append);
+void main() async {
+  var file = File('log.txt');
 
-  // 多次写入
-  isk.write('A woman is like a tea bag');
-  isk.writeln('you never know how strong it is until it\'s in hot water.');
-  isk.writeln('-Eleanor Roosevelt');
-  await isk.close();
-  print('Done!');
+  // 追加模式
+  await file.writeAsString(
+    '${DateTime.now()}: 日志条目\n',
+    mode: FileMode.append,
+  );
+}
+```
+
+### 灵活写入（需手动关闭）
+
+```dart
+import 'dart:io';
+
+void main() async {
+  var file = File('output.txt');
+  var sink = file.openWrite(mode: FileMode.append);
+
+  sink.write('第一行');
+  sink.writeln('第二行（带换行）');
+  sink.writeAll(['第三行', '第四行'], '\n');
+  sink.writeln('第五行');
+
+  await sink.close();
+  print('写入完成');
+}
+```
+
+### 写入二进制数据
+
+```dart
+import 'dart:io';
+
+void main() async {
+  var file = File('data.bin');
+  var bytes = <int>[0x48, 0x65, 0x6C, 0x6C, 0x6F]; // "Hello"
+
+  await file.writeAsBytes(bytes);
+  print('二进制数据写入完成');
 }
 ```
 
 ## 读文件
 
-简便的方式
-
-- `readAsBytes`
-- `readAsBytesSync`
-- `readAsString`
-- `readAsStringSync`
-- `readAsLines`
-- `readAsLinesSync`
+### 简便方式
 
 ```dart
-void main() async{
-  File file = new File('test.txt');
-  try{
+import 'dart:io';
+
+void main() async {
+  var file = File('test.txt');
+
+  try {
+    // 读取全部文本
     String content = await file.readAsString();
     print(content);
-  }catch(e){
-    print(e);
+
+    // 按行读取
+    List<String> lines = await file.readAsLines();
+    lines.forEach(print);
+
+    // 读取为字节
+    List<int> bytes = await file.readAsBytes();
+  } catch (e) {
+    print('读取失败：$e');
   }
 }
 ```
 
-另一种更低级别的方式
+### 流式读取（适合大文件）
 
 ```dart
 import 'dart:io';
 import 'dart:convert';
 
-void main() async{
+void main() async {
+  var file = File('large_file.txt');
+
   try {
-    // LineSplitter Dart语言封装的换行符，此处将文本按行分割
-    Stream lines = new File('test.txt').openRead()
-     .transform(utf8.decoder).transform(const LineSplitter());
+    // 使用 Stream 逐行读取，避免一次加载整个文件
+    var lines = file
+        .openRead()
+        .transform(utf8.decoder)
+        .transform(const LineSplitter());
 
     await for (var line in lines) {
-      print(line);
+      print('行：$line');
     }
-  } catch (_) {}
+  } catch (e) {
+    print('读取失败：$e');
+  }
 }
 ```
 
-## 文件的其他操作
+## 文件其他操作
 
 ```dart
 import 'dart:io';
 
-void main() async{
-  File file = new File('test.txt');
+void main() async {
+  var file = File('test.txt');
 
-  // 判断文件是否存在
-  if(await file.exists()){
-    print("文件存在");
-  }else{
-    print("文件不存在");
+  // 判断是否存在
+  if (await file.exists()) {
+    print('文件存在');
   }
 
-  // 复制文件
-  await file.copy("test-1.txt");
+  // 复制
+  await file.copy('backup.txt');
 
-  // 修改文件名。当传入不同路径时，可用来移动文件
-  await file.rename("test-2.txt");
-  
-  // 获取文件 size
-  print(await file.length());
+  // 重命名 / 移动
+  await file.rename('new_name.txt');
+
+  // 获取大小
+  print('文件大小：${await file.length()} 字节');
+
+  // 删除
+  await file.delete();
+
+  // 获取文件信息
+  var stat = await file.stat();
+  print('修改时间：${stat.modified}');
+  print('创建时间：${stat.changed}');
+  print('类型：${stat.type}');
 }
 ```
 
-相应的，这些方法还有一个带`Sync`后缀的同步版本方法，例如`copySync`、`renameSync`等。
-
-要获取文件更多的信息，还可以使用`File`等多个类的超类`FileSystemEntity`来操作
+## 目录操作
 
 ```dart
 import 'dart:io';
 
-void main() async{
-  String path = 'test.txt';
+void main() async {
+  // 创建目录
+  var dir = Directory('my_folder');
+  if (!await dir.exists()) {
+    await dir.create(recursive: true); // recursive 创建所有父目录
+  }
 
-  // 判断路径是否是文件夹
-  if (!await FileSystemEntity.isDirectory(path)) {
-    print('$path is not a directory');
-  } 
+  // 遍历目录
+  await for (var entity in dir.list()) {
+    if (entity is File) {
+      print('文件：${entity.path}');
+      var stat = await entity.stat();
+      print('  大小：${stat.size} 字节');
+    } else if (entity is Directory) {
+      print('目录：${entity.path}');
+    }
+  }
 
- Directory dir = Directory(r'D:\workspace\dart_space\Tutorial');
- // 目录是否存在
- if(await dir.exists()){
-   // 从目录的list方法获取FileSystemEntity对象
-   Stream<FileSystemEntity> fse = await dir.list();
-   await for (FileSystemEntity entity in fse) {
-     if(entity is File){
-       print("entity is file");
-     }
+  // 删除目录（递归）
+  await dir.delete(recursive: true);
+}
 
-     // 打印文件信息
-     print(await entity.stat());
-     // 删除
-     await entity.delete();
-   }
- }else{
-   // 不存在则创建。recursive为true时，创建路径上所有不存在的目录
-   await dir.create(recursive: true);
- }
+// 递归遍历目录树
+Future<void> listDirRecursive(String path) async {
+  var dir = Directory(path);
+  if (!await dir.exists()) return;
+
+  await for (var entity in dir.list()) {
+    print(entity.path);
+    if (entity is Directory) {
+      await listDirRecursive(entity.path);
+    }
+  }
 }
 ```
 
-需注意，`delete`中包含一个可选的参数，原型`Future<FileSystemEntity> delete({bool recursive: false})`，`recursive`默认为false，当删除目录时，目录必须为空才能删除；当`recursive`设置为true时，将删除目录下的所有子目录及文件。
+## 路径处理
+
+```dart
+import 'dart:io';
+
+void main() {
+  // 拼接路径
+  var path =  Path('docs') / 'flutter' / 'dart.md';
+  print(path); // docs/flutter/dart.md（跨平台）
+
+  // 获取文件名
+  print(Path.basename('a/b/file.txt')); // file.txt
+
+  // 获取目录名
+  print(Path.dirname('a/b/file.txt'));  // a/b
+
+  // 获取扩展名
+  print(Path.extension('file.txt'));    // .txt
+
+  // 判断是否为绝对路径
+  print(Path.isAbsolute('/a/b'));       // true
+
+  // 当前目录
+  print(Directory.current.path);
+}
+```
+
+## 实际案例
+
+### 文件复制工具
+
+```dart
+import 'dart:io';
+
+Future<void> copyFile(String source, String dest) async {
+  var srcFile = File(source);
+  var destFile = File(dest);
+
+  if (!await srcFile.exists()) {
+    throw FileSystemException('源文件不存在', source);
+  }
+
+  // 确保目标目录存在
+  await destFile.parent.create(recursive: true);
+
+  // 流式复制（大文件友好）
+  var reader = srcFile.openRead();
+  var writer = destFile.openWrite();
+  await reader.pipe(writer);
+
+  print('已复制：$source → $dest');
+}
+```
+
+### 日志写入器
+
+```dart
+import 'dart:io';
+
+class Logger {
+  final File _file;
+  final IOSink _sink;
+
+  Logger(String path)
+      : _file = File(path),
+        _sink = File(path).openWrite(mode: FileMode.append);
+
+  void log(String message) {
+    var time = DateTime.now().toString().substring(0, 19);
+    _sink.writeln('[$time] $message');
+  }
+
+  Future<void> close() async {
+    await _sink.flush();
+    await _sink.close();
+  }
+}
+
+// 使用
+void main() async {
+  var logger = Logger('app.log');
+  logger.log('应用启动');
+  logger.log('用户登录');
+  logger.log('数据加载完成');
+  await logger.close();
+}
+```
