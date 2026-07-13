@@ -1,154 +1,242 @@
-[[toc]]
+# PostgreSQL 安装与快速入门
 
-# 安装postgres
+> PostgreSQL 是一个功能强大的开源关系型数据库，支持 JSON、全文检索、窗口函数等高级特性。
 
-## 1.1 PostgreSQL 下载
+## 安装 PostgreSQL
 
-- 首先打开[PostgreSQL 官网](https://www.postgresql.org/)，我们可以看到如下内容
-  ![20220325234721164822324116148.png](./res/20220325234721164822324116148.png)
-- 点击上图中的 下载按钮 ，我们可以看到下面的界面
-  ![20220325234722164822324229419.png](./res/20220325234722164822324229419.png)
-- 点击后我们会来到这个界面
-  ![20220325234722164822324261720.png](./res/20220325234722164822324261720.png)
-- 再次点击后进入这个界面，这才是真正的下载页面。
-  ![20220325234723164822324367356.png](./res/20220325234723164822324367356.png)
-- 下载完成后，管理员权限运行安装即可。
+### Windows 安装
 
-## 1.2 配置环境变量
+1. 从 [PostgreSQL 官网](https://www.postgresql.org/download/windows/) 下载安装包
+2. 运行安装程序，按向导完成安装
+3. 安装过程中设置 postgres 超级用户密码
+4. 默认端口为 **5432**
+5. 勾选安装 pgAdmin 4（图形化管理工具）
 
-新建环境变量如下：
+### macOS 安装
 
 ```bash
-PG_HOME
-C:\Program Files\PostgreSQL\12
+# 使用 Homebrew（推荐）
+brew install postgresql@16
+
+# 启动
+brew services start postgresql@16
+
+# 验证
+psql --version
 ```
 
-如图所示：  
-![20220325234723164822324384269.png](./res/20220325234723164822324384269.png)  
-追加Path 环境变量如下：
-
-```
-%PG_HOME%\bin\
-```
-
-如图所示：  
-![20220325234723164822324394325.png](./res/20220325234723164822324394325.png)  
-新建环境变量，配置内容如下：
-
-```
-PGDATA
-C:\Program Files\PostgreSQL\12\data
-```
-
-如图所示:  
-![20220325234723164822324350232.png](./res/20220325234723164822324350232.png)  
-配置这个是为了简化命令执行,待会详细解释。
-
-> 如果没有-D选项，服务器将尝试使用环境变量PGDATA命名的目录。如果这个环境变量也没有提供则导致失败。
-
-## 1.3 PostgreSQL 初始化
-
-- 安装完成后我们需要对数据库进行初始化，初始化方法是执行initdb.exe.  
-
-![在这里插入图片描述](./res/20220325234724164822324442515.png)
-:::tip
-
-- `C:\Program Files\PostgreSQL\12\data` 初始化执行之前是空的
-- `C:\Program Files\PostgreSQL\12\data` 初始化执行之后会看到多了很多文件。  
-   ![20220325234724164822324435889.png](./res/20220325234724164822324435889.png)  
-- 其中包括一个很核心的文件postgresql.conf
-- 正如下面我们打开它后看到的，默认只能本地localhost 或127.0.0.1 访问
-:::
-
- ```xml
- #listen_addresses = 'localhost'  # what IP address(es) to listen on;
-      # comma-separated list of addresses;
-      # defaults to 'localhost'; use '*' for all
-      # (change requires restart) 
- ```
-
-> - 如果需要配置远程登录，则需要修改这个`postgresql.conf` 配置文件，添加IP即可。
-
-## 1.4 创建postgres用户
-
-- 在`C:\Program Files\PostgreSQL\12\bin`目录下执行如下命令：
+### Linux 安装（Ubuntu/Debian）
 
 ```bash
-createuser -s -r postgres
+# 导入官方源
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+
+# 安装
+sudo apt-get install -y postgresql-16 postgresql-client-16
+
+# 查看状态
+sudo systemctl status postgresql
+
+# 开机自启
+sudo systemctl enable postgresql
 ```
 
-## 1.5 启动postgresql
-
-由于我们之前配置了PGDATA 环境变量，因此双击postgres.exe 即可启动
-如果没有配置那么需要执行命令
+### Docker 安装（推荐开发环境）
 
 ```bash
-postgres.exe -D  "C:\Program Files\PostgreSQL\12\data"
+# 拉取并启动
+docker run --name pg16 \
+  -e POSTGRES_PASSWORD=123456 \
+  -e POSTGRES_DB=testdb \
+  -p 5432:5432 \
+  -d postgres:16
+
+# 进入容器
+docker exec -it pg16 psql -U postgres -d testdb
+
+# 挂载数据卷（持久化存储）
+docker run --name pg16 \
+  -v pgdata:/var/lib/postgresql/data \
+  -e POSTGRES_PASSWORD=123456 \
+  -p 5432:5432 \
+  -d postgres:16
 ```
 
-这种方式其实不是很友好，最佳实践是让他后台启动运行。  
-如果想做到这样，只需要输入如下命令即可：
+## 配置 PostgreSQL
+
+### 核心配置文件
+
+| 文件 | 路径 | 作用 |
+|------|------|------|
+| `postgresql.conf` | `/etc/postgresql/16/main/postgresql.conf` | 主配置（监听地址、内存、日志等） |
+| `pg_hba.conf` | `/etc/postgresql/16/main/pg_hba.conf` | 客户端认证配置 |
+| `pg_ident.conf` | `/etc/postgresql/16/main/pg_ident.conf` | 用户名映射 |
+
+### 开启远程访问
 
 ```bash
-postgres -D "C:\Program Files\PostgreSQL\12\data" >logfile 2>&1 &
+# 1. 修改 postgresql.conf，监听所有地址
+sudo vim /etc/postgresql/16/main/postgresql.conf
+```
+```conf
+listen_addresses = '*'
+port = 5432
 ```
 
-:::tip
- 除此之外我们也可以执行如下命令启动
+```bash
+# 2. 修改 pg_hba.conf，允许远程连接
+sudo vim /etc/postgresql/16/main/pg_hba.conf
+```
+```conf
+# 格式: TYPE  DATABASE  USER  ADDRESS  METHOD
+# 允许任何用户从任何 IP 通过密码连接任何数据库
+host    all             all             0.0.0.0/0               scram-sha-256
+# 或者使用 md5（兼容旧客户端）
+host    all             all             0.0.0.0/0               md5
+```
 
- ```bash
-  pg_ctl start -l logfile
- ```
+```bash
+# 3. 重启服务
+sudo systemctl restart postgresql
 
- 或
+# 4. 检查监听状态
+netstat -an | grep 5432
+```
 
- ```bash
-  su postgres -c 'pg_ctl start -D /usr/local/pgsql/data -l serverlog' 
- ```
+## 连接 PostgreSQL
 
- 其实还有一种方法，配置成系统服务
+### 使用 psql 命令行
 
-- 注册成系统服务： `pg_ctl register -N PostgreSQL`
-- 取消注册成系统服务: `pg_ctl unregister –N PostgreSQL`
-- 删除服务`sc delete PostgreSQL`
-:::
+```bash
+# 连接本地数据库
+psql -U postgres
 
-## 1.6 客户端连接测试
+# 连接到指定数据库
+psql -U postgres -d mydb -h localhost -p 5432
 
-### 1.6.1 SQL Shell (psql)命令行连接测试
+# 执行 SQL 并退出
+psql -U postgres -d mydb -c "SELECT version();"
 
- 安装完成后自带了一个命令行连接工具  
-![20220325234724164822324449215.png](./res/20220325234724164822324449215.png)  
- 会依次提示你输入要连接的相关信息，最后登录完成后可以看到 有一个`postgres=#`  
-![20220325234724164822324451728.png](./res/20220325234724164822324451728.png)  
+# 执行 SQL 文件
+psql -U postgres -d mydb -f script.sql
 
-### 1.6.2 客户端 pdAdmin 4 连接测试
+# Windows PowerShell 中设置密码（避免交互）
+$env:PGPASSWORD='123456'; psql -U postgres -d mydb -c "SELECT 1"
+```
 
-安装完成后，其实这个软件自带了一个连接工具  
-![20220325234725164822324591978.png](./res/20220325234725164822324591978.png)  
-点击后默认打开网址 <http://127.0.0.1:50010/browser/>  
-点击图中的Add New Server ，创建一个服务器连接  
-![20220325234725164822324589420.png](./res/20220325234725164822324589420.png)  
+### 使用 pgAdmin 4
 
-> 和刚才类似，输入相关信息就可以了。
+安装后访问 `http://localhost:54321/browser/`，添加服务器连接：
 
-之后我们可以看到如下内容
-![20220325234725164822324586011.png](./res/20220325234725164822324586011.png)
+| 字段 | 值 |
+|------|-----|
+| 地址 | `localhost` |
+| 端口 | `5432` |
+| 用户名 | `postgres` |
+| 密码 | 安装时设置的密码 |
 
-### 1.6.3 客户端Navicat Permium 连接测试
+### 使用 DBeaver / Navicat
 
- ![20220325234726164822324696619.png](./res/20220325234726164822324696619.png)
+推荐使用 DBeaver（免费、跨平台），连接方式同上。
 
-> - 账号就是刚才创建的用户，密码就是安装过程中输入的密码。
-> - 默认端口是5432
+## 创建第一个数据库
 
-连接成功后如下所示  
-![20220325234726164822324680736.png](./res/20220325234726164822324680736.png)
+```sql
+-- 查看现有数据库
+\l
 
-:::tip
-如果出现找不到postgres角色的错误  
-原因是：PostgreSQL角色没有被创建。运行命令：`createuser -s -r postgres` 即可。
+-- 创建数据库
+CREATE DATABASE mydb;
 
-如果找不到createuser这个命令，可以在`\PostgreSQL\16\bin`中找到。添加到系统path中，或cd到这个文件夹再运行
-:::
+-- 切换到数据库
+\c mydb
 
+-- 创建表
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(200) UNIQUE,
+    age INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 插入数据
+INSERT INTO users (name, email, age) VALUES
+('张三', 'zhangsan@test.com', 25),
+('李四', 'lisi@test.com', 30);
+
+-- 查询
+SELECT * FROM users;
+
+-- 查看表结构
+\d users
+```
+
+## 服务管理命令
+
+```bash
+# systemd（Ubuntu/Debian/CentOS 7+）
+sudo systemctl start postgresql
+sudo systemctl stop postgresql
+sudo systemctl restart postgresql
+sudo systemctl status postgresql
+
+# SysV init
+sudo service postgresql start
+sudo service postgresql stop
+sudo service postgresql restart
+
+# Windows（以管理员身份运行）
+net start postgresql-16
+net stop postgresql-16
+```
+
+## 卸载 PostgreSQL
+
+```bash
+# Ubuntu/Debian
+sudo service postgresql stop
+sudo apt-get --purge remove postgresql\*
+sudo rm -rf /etc/postgresql/
+sudo rm -rf /var/lib/postgresql/
+sudo userdel -r postgres
+sudo groupdel postgres
+```
+
+## 常见问题
+
+### 连接被拒绝：没有 pg_hba.conf 条目
+
+```
+FATAL: no pg_hba.conf entry for host "192.168.1.100"
+```
+
+**解决：** 在 `pg_hba.conf` 中添加：
+
+```conf
+host all all 0.0.0.0/0 scram-sha-256
+```
+
+### 密码认证失败
+
+```bash
+# 方法一：在 psql 中修改密码
+psql -U postgres
+ALTER USER postgres WITH PASSWORD 'newpassword';
+
+# 方法二：重置 Linux 用户 postgres 的密码
+sudo passwd -d postgres
+sudo -u postgres passwd
+```
+
+### 端口被占用
+
+```bash
+# 查看端口占用
+sudo lsof -i :5432
+
+# 修改端口：在 postgresql.conf 中修改 port 字段
+port = 5433
+```

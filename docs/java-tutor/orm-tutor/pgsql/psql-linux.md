@@ -1,181 +1,205 @@
-# linux安装postgres
+# psql 命令参考大全
 
-## 1. 官网
+> psql 是 PostgreSQL 自带的命令行工具，功能强大，支持交互式查询和脚本编写。
 
-```shell
-https://www.postgresql.org/download/linux/ubuntu/
+## 交互式命令（元命令）
+
+所有元命令以 `\` 开头，不区分大小写。
+
+### 连接与信息
+
+| 命令 | 说明 | 示例 |
+|------|------|------|
+| `\c [db] [user]` | 切换数据库 | `\c mydb postgres` |
+| `\conninfo` | 显示当前连接信息 | `\conninfo` |
+| `\l` | 列出所有数据库 | `\l` |
+| `\dt` | 列出所有表 | `\dt+` 显示更多信息 |
+| `\d [table]` | 查看表结构 | `\d users` |
+| `\di` | 列出索引 | `\di` |
+| `\ds` | 列出序列 | `\ds` |
+| `\dv` | 列出视图 | `\dv` |
+| `\df` | 列出函数 | `\df+` 显示函数源码 |
+| `\dn` | 列出 Schema | `\dn` |
+| `\db` | 列出表空间 | `\db` |
+| `\du` | 列出用户/角色 | `\du` |
+| `\dp [table]` | 显示表权限 | `\dp users` |
+
+### 查看对象定义
+
+```sql
+-- 查看表的创建语句
+\d+ users
+
+-- 查看视图定义
+\dv+ user_view
+
+-- 查看函数源码
+\df+ my_function
+
+-- 查看索引定义
+\di+ idx_users_email
+
+-- 查看所有扩展
+\dx
 ```
 
-## 2. 安装
+### 执行与输出
 
-```shell
-sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sudo apt-get update
-sudo apt-get -y install postgresql # 默认安装最新14
+| 命令 | 说明 | 示例 |
+|------|------|------|
+| `\g` | 重新执行上一条命令 | `\g` |
+| `\i file.sql` | 执行外部 SQL 文件 | `\i /tmp/backup.sql` |
+| `\o file.txt` | 将输出写入文件 | `\o result.txt` |
+| `\o` | 恢复输出到终端 | `\o` |
+| `\copy` | 导入/导出文件 | `\copy users TO 'users.csv' CSV` |
+| `\! cmd` | 执行操作系统的命令 | `\! ls -la` |
+
+### 格式化
+
+| 命令 | 说明 |
+|------|------|
+| `\x` | 切换扩展显示（每行一字段，适合宽表） |
+| `\a` | 切换对齐/非对齐模式 |
+| `\H` | 切换 HTML 输出格式 |
+| `\t` | 切换只显示行（不显示列名） |
+| `\pset` | 设置输出格式 | `\pset border 2` |
+| `\encoding` | 显示/设置编码 | `\encoding UTF8` |
+
+```sql
+-- 扩展显示示例：查询宽表时更易读
+\x
+SELECT * FROM users WHERE id = 1;
+-- 输出：
+-- -[ RECORD 1 ]-------------------------
+-- id         | 1
+-- name       | 张三
+-- email      | zhangsan@test.com
+-- created_at | 2024-01-15 14:30:25
+
+-- 导出 CSV 格式
+\pset format csv
+SELECT id, name, email FROM users;
 ```
 
-## 3. 初始化账号密码
+### 帮助
 
-```shell
+| 命令 | 说明 |
+|------|------|
+| `\?` | 列出所有元命令 |
+| `\h` | 查看 SQL 命令帮助 |
+| `\h SELECT` | 查看 SELECT 语法 |
+| `\help` | 同 `\?` |
+
+### 编辑与历史
+
+| 命令 | 说明 |
+|------|------|
+| `\e` | 在编辑器中编辑当前查询 |
+| `\ef [func]` | 编辑函数定义 |
+| `\s` | 显示历史命令 |
+| `\s file.txt` | 将历史保存到文件 |
+| `\r` | 重置输入缓冲区（取消当前输入） |
+| `\q` | 退出 psql |
+
+## 连接参数
+
+### 连接方式
+
+```bash
+# 完整参数连接
+psql -h localhost -p 5432 -U postgres -d mydb
+
+# 使用连接字符串
+psql "postgresql://postgres:password@localhost:5432/mydb"
+
+# 默认连接（使用操作系统用户名）
+psql
+
+# 使用 sudo 切换用户
 sudo -u postgres psql
-postgres=# \password;
-please enter password:
-please reenter password:
-# 若要删除该管理员的密码（非必须）
-# sudo -u postgres psql -d postgres
 ```
 
-## 4. 配置远程访问
+### 常用连接选项
 
-```shell
-sudo vim /etc/postgresql/14/main/postgresql.conf
+| 参数 | 说明 | 示例 |
+|------|------|------|
+| `-h` | 主机地址 | `-h 192.168.1.100` |
+| `-p` | 端口 | `-p 5432` |
+| `-U` | 用户名 | `-U postgres` |
+| `-d` | 数据库名 | `-d mydb` |
+| `-W` | 强制密码提示 | `-W` |
+| `-f` | 执行 SQL 文件 | `-f script.sql` |
+| `-c` | 执行单条 SQL | `-c "SELECT 1"` |
+| `-l` | 列出所有数据库后退出 | `-l` |
+
+## 非交互模式
+
+适合在脚本中使用：
+
+```bash
+# 执行单条 SQL
+psql -U postgres -d mydb -c "SELECT count(*) FROM users"
+
+# 执行 SQL 文件
+psql -U postgres -d mydb -f /path/to/script.sql
+
+# 通过管道输入
+echo "SELECT version();" | psql -U postgres
+
+# 通过标准输入
+psql -U postgres -d mydb < backup.sql
 ```
 
-![img](https://img2020.cnblogs.com/blog/1586673/202112/1586673-20211228142507326-2131564313.png)
+## 常用操作快捷命令
 
-```shell
-sudo vim /etc/postgresql/14/main/pg_hba.conf
+```sql
+-- MySQL 用户习惯的命令对照
+-- MySQL: SHOW DATABASES; → PostgreSQL: \l
+-- MySQL: USE mydb;       → PostgreSQL: \c mydb
+-- MySQL: SHOW TABLES;    → PostgreSQL: \dt
+-- MySQL: DESC users;     → PostgreSQL: \d users
+-- MySQL: SHOW INDEX;     → PostgreSQL: \di
 ```
 
-![img](https://img2020.cnblogs.com/blog/1586673/202112/1586673-20211228142622085-560736052.png)
+## 定时任务与维护
 
- 重启服务生效
+```sql
+-- 查看耗时最长的 5 个查询
+SELECT
+    pid,
+    now() - pg_stat_activity.query_start AS duration,
+    query,
+    state
+FROM pg_stat_activity
+WHERE state != 'idle'
+ORDER BY duration DESC
+LIMIT 5;
 
-```shell
-sudo systemctl restart postgresql.service
+-- 查看当前锁等待
+SELECT relation::regclass, * FROM pg_locks WHERE NOT granted;
+
+-- 查看表大小
+SELECT
+    relname,
+    pg_size_pretty(pg_relation_size(relid)) AS size
+FROM pg_catalog.pg_statio_user_tables
+ORDER BY pg_relation_size(relid) DESC;
 ```
 
-### 1. 修改linux系统postgres用户的密码
+## 练习
 
-PostgreSQL会创建一个默认的linux用户postgres，修改该用户密码的方法如下：
+```bash
+# 1. 用 psql 连接数据库并查看所有表
+psql -U postgres -d mydb
+\l
+\dt
 
-步骤一：删除用户postgres的密码
+# 2. 在非交互模式下执行查询
+psql -U postgres -d mydb -c "SELECT table_name FROM information_schema.tables WHERE table_schema='public'"
 
-```shell
-sudo` `passwd` `-d postgre
+# 3. 将查询结果导出到 CSV 文件
+psql -U postgres -d mydb -c "\copy (SELECT id, name, email FROM users) TO '/tmp/users.csv' CSV HEADER"
+
+# 4. 执行 SQL 脚本
+psql -U postgres -d mydb -f init.sql
 ```
-
-步骤二：设置用户postgres的密码
-
-```shell
-sudo` `-u postgres ``passwd
-```
-
-系统提示输入新的密码
-
-Enter new UNIX password:
-
-Retype new UNIX password:
-
-```shell
-passwd``: password updated successfully
-```
-
-### 2. 修改PostgreSQL数据库默认用户postgres的密码
-
-PostgreSQL数据库创建一个postgres用户作为数据库的管理员，密码随机，所以需要修改密码，方式如下：
-
-步骤一：登录PostgreSQL
-
-```shell
-sudo` `-u postgres psql
-```
-
-步骤二：修改登录PostgreSQL密码
-
-```shell
-ALTER USER postgres WITH PASSWORD ``'postgres'``;
-```
-
-**注：**
-
-- 密码postgres要用引号引起来
-- 命令最后有分号
-\5. 测试远程访问，输入之前修改的密码即可
-
-```shell
-master@master:~$ psql -U postgres -h 192.168.10.248 
-Password for user postgres: 
-psql (13.5 (Ubuntu 13.5-1.pgdg18.04+1), server 14.1 (Ubuntu 14.1-1.pgdg18.04+1))
-WARNING: psql major version 13, server major version 14.
-         Some psql features might not work.
-SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
-Type "help" for help.
-
-postgres=# 
-```
-
-\6. 常用操作
-
-```shell
-sudo systemctl restart postgresql.service
-sudo systemctl start postgresql.service
-sudo systemctl stop postgresql.service
-sudo systemctl status postgresql.service
-# or
-sudo /etc/init.d/postgresql status
-sudo /etc/init.d/postgresql start
-sudo /etc/init.d/postgresql stop
-sudo /etc/init.d/postgresql restart
-# or
-sudo service postgresql restart
-sudo service postgresql start
-sudo service postgresql stop
-sudo service postgresql status
-```
-
-\6. 卸载
-
-```shell
-tester@fabu:~$ sudo dpkg --get-selections | grep postgres  # 或者sudo dpkg -l | grep postgres
-postgresql                                      install
-postgresql-14                                   install
-postgresql-client-14                            install
-postgresql-client-common                        install
-postgresql-common                               install
-sudo service postgresql stop 
-sudo apt-get --purge remove postgresql\*
-sudo rm -r /etc/postgresql/
-sudo rm -r /etc/postgresql-common/
-sudo rm -r /var/lib/postgresql/
-sudo userdel -r postgres
-sudo groupdel postgres
-```
-
-配置密码
-
-如何安全地修改密码：
-
-方式1
-使用psql，连接到Postgres Server：
-
-test1=> \password
-Enter new password:
-Enter it again:
-test1=>
-我将原密码hello，修改为hellojava.123456
-这种修改方式相当于向postgres server 发送了如下命令：
-
-ALTER USER postgres PASSWORD ' md53175af154as54df5as4d5f45sd6af';
-后面的字符串是  hellojava经过md5加密后的字符串
-12345
-注意：尽量不要使用postgres作为用户密码，防止被攻击。
-
-方式2：可以直接发送sql修改：
-
-`这种方式不仅仅限于psql了，其余客户端也能修改，如pgadmin等
-
-ALTER USER test1 PASSWORD 'secret'
-弊端：通过sql修改，有可能会将修改语句记录在相关工具的log里。
-例如：通过psql 运行该条sql，则在.psql_history文件中会有相应语句的记录
-      有密码泄露的风险
-
-## 常见错误
-
-### 连接pg数据库报错：no pg_hba.conf entry for host
-
-解决办法：
-修改pg_hba.conf，在第一行添加一行：
-host all all 0.0.0.0/0 md5
-表示允许任何用户连接到任何数据库，用一个加密的密码

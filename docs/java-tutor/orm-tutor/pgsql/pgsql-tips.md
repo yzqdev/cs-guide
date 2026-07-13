@@ -1,261 +1,362 @@
-# postgres技巧
+# PostgreSQL 性能调优与配置
 
-## 字符集
+> PostgreSQL 的性能取决于合理的配置和索引设计。掌握这些优化技巧，让你的数据库跑得更快。
 
-:::tip
-字符是各种文字和符号的统称，包括各个国家文字、标点符号、表情、数字等等。 字符集 就是一系列字符的集合。字符集的种类较多，每个字符集可以表示的字符范围通常不同，就比如说有些字符集是无法表示汉字的
-:::
+## postgresql.conf 核心配置
 
-对于mysql来说,有两种常见编码实现: `utf8`和`utf8mb4`,用`utf8`的话,存储emoji 符号和一些比较复杂的汉字、繁体字就会出错,`utf8mb4`则不会
+配置文件位置：`/etc/postgresql/16/main/postgresql.conf` 或 `PGDATA/postgresql.conf`
 
-## spring使用postgres
+### 内存配置
 
-在安装好了PostgreSQL之后，下面我们尝试一下在Spring Boot中使用PostgreSQL数据库。
+```conf
+# 共享缓冲区（通常设为物理内存的 25%）
+shared_buffers = 2GB
 
-第一步：创建一个基础的Spring Boot项目（如果您还不会，可以参考这篇文章：快速入门）
+# 排序/哈希操作使用的内存（每个操作）
+work_mem = 64MB
 
-第二步：在pom.xml中引入访问PostgreSQL需要的两个重要依赖：
+# 维护操作内存（VACUUM、CREATE INDEX）
+maintenance_work_mem = 512MB
 
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-jpa</artifactId>
-</dependency>
+# 缓存查询计划
+shared_plan_cache = 8MB
 
-<dependency>
-    <groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <scope>runtime</scope>
-</dependency>
+# 写入缓冲区
+wal_buffers = 16MB
+
+# 并行查询（每个查询最多使用的 CPU）
+max_parallel_workers_per_gather = 4
+parallel_setup_cost = 1000
+parallel_tuple_cost = 0.1
 ```
 
-这里postgresql是必须的，spring-boot-starter-data-jpa的还可以替换成其他的数据访问封装框架，比如：MyBatis等，具体根据你使用习惯来替换依赖即可。因为已经是更上层的封装，所以基本使用与之前用MySQL是类似的，所以你也可以参考之前MySQL的文章进行配置，但数据源部分需要根据下面的部分配置。
+### 磁盘写入配置
 
-第三步：在配置文件中为PostgreSQL数据库配置数据源、以及JPA的必要配置。
+```conf
+# 推荐 SSD 设置为 ON，HDD 设置为 OFF
+synchronous_commit = on
 
-```
-spring.datasource.url=jdbc:postgresql://localhost:5432/test
-spring.datasource.username=postgres
-spring.datasource.password=123456
-spring.datasource.driver-class-name=org.postgresql.Driver
+# 检查点间隔
+checkpoint_timeout = 15min
+checkpoint_completion_target = 0.9
 
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
-spring.jpa.properties.hibernate.hbm2ddl.auto=create
-```
+# WAL 日志大小
+max_wal_size = 4GB
+min_wal_size = 1GB
 
-第四步：创建用户信息实体，映射user_info表（最后完成可在pgAdmin中查看）
-
-```java
-@Entity
-@Data
-@NoArgsConstructor
-public class UserInfo {
-
-/**
- * 设置自增id
- */
-      @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_id_seq")
-    @SequenceGenerator(name = "student_id_seq", sequenceName = "student_id_seq")
-    @Column(name = "id")
-    private Long id;
-
-    private String name;
-    private Integer age;
-
-    public UserInfo(String name, Integer age) {
-        this.name = name;
-        this.age = age;
-    }
-}
+# 写入方式（SSD 推荐 direct）
+wal_init_zero = on
+wal_recycle = on
 ```
 
-第五步：创建用户信息实体的增删改查
+### 连接配置
 
-```java
-public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
+```conf
+# 最大连接数（每个连接约占用 2MB）
+max_connections = 100
 
-    UserInfo findByName(String name);
-
-    UserInfo findByNameAndAge(String name, Integer age);
-
-    @Query("from UserInfo u where u.name=:name")
-    UserInfo findUser(@Param("name") String name);
-
-}
+# 保留给超级用户的连接数
+superuser_reserved_connections = 3
 ```
 
-第六步：创建单元测试，尝试一下增删改查操作。
+### 自动清理配置
 
-```java
-@Slf4j
-@SpringBootTest
-public class ApplicationTests {
+```conf
+# 自动 VACUUM
+autovacuum = on
+autovacuum_naptime = 1min
+autovacuum_max_workers = 3
 
-    @Autowired
-    private UserInfoRepository userRepository;
+# 何时触发 VACUUM（表中有 20% + 50 行被修改时）
+autovacuum_vacuum_scale_factor = 0.2
+autovacuum_vacuum_threshold = 50
 
-    @Test
-    public void test() throws Exception {
-        // 创建10条记录
-        userRepository.save(new UserInfo("AAA", 10));
-        userRepository.save(new UserInfo("BBB", 20));
-        userRepository.save(new UserInfo("CCC", 30));
-        userRepository.save(new UserInfo("DDD", 40));
-        userRepository.save(new UserInfo("EEE", 50));
-        userRepository.save(new UserInfo("FFF", 60));
-        userRepository.save(new UserInfo("GGG", 70));
-        userRepository.save(new UserInfo("HHH", 80));
-        userRepository.save(new UserInfo("III", 90));
-        userRepository.save(new UserInfo("JJJ", 100));
-
-        // 测试findAll, 查询所有记录
-        Assertions.assertEquals(10, userRepository.findAll().size());
-
-        // 测试findByName, 查询姓名为FFF的User
-        Assertions.assertEquals(60, userRepository.findByName("FFF").getAge().longValue());
-
-        // 测试findUser, 查询姓名为FFF的User
-        Assertions.assertEquals(60, userRepository.findUser("FFF").getAge().longValue());
-
-        // 测试findByNameAndAge, 查询姓名为FFF并且年龄为60的User
-        Assertions.assertEquals("FFF", userRepository.findByNameAndAge("FFF", 60).getName());
-
-        // 测试删除姓名为AAA的User
-        userRepository.delete(userRepository.findByName("AAA"));
-
-        // 测试findAll, 查询所有记录, 验证上面的删除是否成功
-        Assertions.assertEquals(9, userRepository.findAll().size());
-
-    }
-
-}
+# 何时触发 ANALYZE
+autovacuum_analyze_scale_factor = 0.1
+autovacuum_analyze_threshold = 50
 ```
 
-把单元测试跑起来：
+### 不同场景的推荐配置
 
-## 修改自增的id
+| 场景 | 内存 | shared_buffers | work_mem | max_connections |
+|------|------|---------------|----------|----------------|
+| 个人开发（4GB RAM） | 4GB | 1GB | 32MB | 20 |
+| 小型应用（8GB RAM） | 8GB | 2GB | 64MB | 50 |
+| 中型应用（16GB RAM） | 16GB | 4GB | 128MB | 100 |
+| 大型应用（32GB RAM） | 32GB | 8GB | 256MB | 200 |
 
-### postgresql主键自增
-
-### 一、创建表时设置主键自增
-
- 1、mysql主键自增使用AUTO_INCREMENT关键字，postgresql自增使用SERIAL关键字
-
-  2、postgresql创建表
-
-语句如下：
+### 查看当前配置
 
 ```sql
-CREATE TABLE tb_ins
-(
-id serial PRIMARY KEY,
-name VARCHAR,
-age VARCHAR
-)
+-- 查看当前配置值
+SHOW shared_buffers;
+SHOW work_mem;
+SHOW max_connections;
 
+-- 查看所有配置（含默认值）
+SELECT name, setting, unit, context FROM pg_settings
+WHERE category = 'Resource Usage / Memory';
+
+-- 查看需要重启才能生效的配置
+SELECT name, setting FROM pg_settings WHERE pending_restart = true;
 ```
 
-  3、postgresql向表中插入数据
-注意values里必须是单引号
+## EXPLAIN 查询分析
 
-在pg中的sql，单引号用来标识实际的值，双引号用来标识表名（table name）或列名（column name）等数据库中存在的值。
+### 使用 EXPLAIN
 
 ```sql
-INSERT INTO tb_ins(name,age) VALUES( '小明',  '小红');
-INSERT INTO tb_ins(name,age) VALUES( '小1',  '小红');
-INSERT INTO tb_ins(name,age) VALUES( '小2',  '小红');
-INSERT INTO tb_ins(name,age) VALUES( '小3',  '小红');
+-- 查看查询计划（不执行）
+EXPLAIN SELECT * FROM users WHERE email = 'test@test.com';
 
+-- 执行并查看实际时间
+EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'test@test.com';
+
+-- 查看更详细的计划
+EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON) SELECT * FROM users WHERE email = 'test@test.com';
 ```
 
-  4、postgresql查询表中数据
-  级的查询前要先改编码`chcp 936`不然会乱码
+### 扫描方式
+
+| 方式 | 说明 | 速度 |
+|------|------|------|
+| `Seq Scan` | 全表扫描（从头到尾） | 慢 ❌ |
+| `Index Scan` | 索引扫描（找到行再回表） | 快 ✅ |
+| `Index Only Scan` | 索引覆盖扫描（不回表） | 最快 ✅✅ |
+| `Bitmap Index Scan` | 位图索引扫描（用于多个索引组合） | 中等 |
+
+### 优化示例
 
 ```sql
-select * from tb_ins;
+-- ❌ 全表扫描（未建索引）
+EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'a@b.com';
+-- Seq Scan on users (cost=0.00..734.00 rows=1 width=42)
 
-test=# select * from tb_ins;
- id | name | age
-----+------+------
-  1 | 小明 | 小红
-  2 | 小1  | 小红
-  3 | 小2  | 小红
-  4 | 小3  | 小红
-(4 rows)
+-- ✅ 创建索引后变为索引扫描
+CREATE INDEX idx_users_email ON users(email);
+EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'a@b.com';
+-- Index Scan using idx_users_email (cost=0.28..8.29 rows=1 width=42)
 
-test=# 
+-- ❌ 排序不走索引
+EXPLAIN ANALYZE SELECT * FROM users ORDER BY created_at DESC;
+-- Sort (cost=1000.00..1200.00 rows=10000 width=42)
+
+-- ✅ 排序走索引
+CREATE INDEX idx_users_created_at ON users(created_at DESC);
 ```
 
-以上查询验证自增关键字SERIAL是可用的
-
-### 二、修改menu表id字段为主键自增
-
-:::tip
-
-```
-SELECT * FROM pg_class c WHERE c.relkind = 'S';
-```
-
-通过上面的sql文可以查到postgresql内所有的sequence序列名。
-:::
-1、在PostgreSQL当中，我们实现ID自增首先创建一个关联序列，以下sql语句是创建一个序列：
+### 常见优化场景
 
 ```sql
-CREATE SEQUENCE menu_id_seq START 1;
+-- 1. LIMIT + OFFSET 分页优化
+-- ❌ 慢（OFFSET 越大越慢，需要扫描所有跳过的行）
+EXPLAIN ANALYZE SELECT * FROM users ORDER BY id LIMIT 10 OFFSET 100000;
+
+-- ✅ 快（利用索引跳过）
+EXPLAIN ANALYZE SELECT * FROM users
+WHERE id > 100000 ORDER BY id LIMIT 10;
+
+-- 2. JOIN 优化（确保关联字段有索引）
+-- 在 foreign key 字段上建索引（PostgreSQL 不会自动建立外键索引）
+CREATE INDEX idx_posts_author_id ON posts(author_id);
+
+-- 3. 避免 WHERE 中使用函数（索引会失效）
+-- ❌
+EXPLAIN ANALYZE SELECT * FROM users WHERE DATE(created_at) = '2024-01-15';
+-- ✅
+EXPLAIN ANALYZE SELECT * FROM users
+WHERE created_at >= '2024-01-15' AND created_at < '2024-01-16';
 ```
 
-序列名称是menu_id_seq，起始数为1。
-
-2、然后在字段默认值里设 `nextval('menu_id_seq'::regclass)`即可。
-
-![res](https://img2020.cnblogs.com/blog/2203909/202102/2203909-20210203110131791-2075873613.png)
-
-或者
+## 字符集与编码
 
 ```sql
-CREATE SEQUENCE menu_id_seq START 你当前id的最大;
-ALTER TABLE public.menu ALTER COLUMN id SET DEFAULT nextval('menu_id_seq'::regclass);
+-- 查看数据库编码
+\l
+
+-- 查看客户端编码
+SHOW client_encoding;
+
+-- 设置编码
+SET client_encoding TO 'UTF8';
+
+-- Windows 命令行下编码问题（出现乱码时）
+-- 先切换代码页
+chcp 65001  -- UTF-8
+chcp 936    -- GBK
+
+-- 创建数据库时指定编码
+CREATE DATABASE mydb WITH ENCODING 'UTF8' LC_COLLATE 'zh_CN.UTF-8' LC_CTYPE 'zh_CN.UTF-8';
 ```
 
-### 三、修改id的自增起始数
-
-把当前最大的id做为当前的id自增起始数
+## 时区处理
 
 ```sql
-select setval('gx_history_id_seq',(select max(id) from gx_history))
+-- 查看当前时区
+SHOW timezone;
+
+-- 设置会话时区
+SET timezone TO 'Asia/Shanghai';
+SET timezone TO 'UTC';
+
+-- 数据库级别时区
+ALTER DATABASE mydb SET timezone TO 'Asia/Shanghai';
+
+-- 时间戳类型选择
+-- TIMESTAMP → 对应 Java LocalDateTime（不存时区）
+-- TIMESTAMPTZ → 对应 Java Instant（存 UTC，查询时转为当前时区）
+
+CREATE TABLE events (
+    id SERIAL PRIMARY KEY,
+    event_name TEXT,
+    -- 如果不需要时区转换（如记录的本地时间）
+    local_time TIMESTAMP,
+    -- 如果需要自动时区转换（如用户操作时间）
+    utc_time TIMESTAMPTZ
+);
 ```
 
-:::tip
-也可以使用下面的语句生成自增的id
+## 连接池配置
+
+### HikariCP（Spring Boot 默认）
+
+```yaml
+spring:
+  datasource:
+    hikari:
+      # 核心配置
+      maximum-pool-size: 10        # 最大连接数
+      minimum-idle: 2               # 最小空闲连接
+      connection-timeout: 30000     # 获取连接超时（毫秒）
+      idle-timeout: 600000          # 空闲超时（10分钟）
+      max-lifetime: 1800000         # 最大存活时间（30分钟）
+
+      # PostgreSQL 推荐设置
+      connection-test-query: SELECT 1
+      validation-timeout: 3000
+      leak-detection-threshold: 60000  # 连接泄漏检测
+```
+
+### 查看连接池状态
 
 ```sql
-create table test (id int  GENERATED BY DEFAULT AS IDENTITY (cache 100), info text);  
-CREATE TABLE  
+-- 查看当前连接数
+SELECT count(*) FROM pg_stat_activity;
+
+-- 查看每个连接的来源
+SELECT
+    pid,
+    usename,
+    application_name,
+    client_addr,
+    state,
+    query_start
+FROM pg_stat_activity
+WHERE state != 'idle'
+ORDER BY query_start;
 ```
 
-在navicat中要把虚拟类型改为`GENERATED BY DEFAULT AS IDENTITY`
-:::
+## VACUUM 与维护
 
-## 关于时区
+### 为什么需要 VACUUM？
 
-### 使用时区
+PostgreSQL 的 MVCC 机制会产生"死元组"（dead tuples），需要定期清理释放空间。
 
-postgresql的timestamp等于mysql的datetime
-postgres的timestamptz等于mysql的timestamp
+```sql
+-- 查看表死元组数量
+SELECT
+    relname,
+    n_dead_tup,
+    n_live_tup,
+    round(n_dead_tup * 100.0 / nullif(n_live_tup + n_dead_tup, 0), 2) AS dead_pct,
+    last_autovacuum,
+    last_autoanalyze
+FROM pg_stat_user_tables
+ORDER BY n_dead_tup DESC;
 
-```java
+-- 手动 VACUUM
+VACUUM users;                        -- 回收空间（不影响读写）
+VACUUM ANALYZE users;                -- 回收空间 + 更新统计信息
+VACUUM FULL users;                   -- 彻底整理（会锁表，谨慎使用！）
 
-private Instant createTime
+-- 查看表大小变化
+SELECT pg_size_pretty(pg_total_relation_size('users'));
 ```
 
-数组库设置create_time为`timestamptz`
+### 自动 VACUUM
 
-### 不使用时区
+确保 `autovacuum = on`（默认开启）。自动 VACUUM 是 PostgreSQL 的一大优势，无需像 MySQL 那样手动执行 optimize。
 
-```java
+## 常见问题排查
 
-private LocalDatetime createTime
+### 连接被拒绝
+
+```
+FATAL: no pg_hba.conf entry for host "192.168.1.100"
 ```
 
-数组库设置create_time为`timestamp`
+在 `pg_hba.conf` 添加：
+
+```conf
+host all all 0.0.0.0/0 scram-sha-256
+```
+
+### 查询突然变慢
+
+```sql
+-- 1. 查看是否有锁等待
+SELECT * FROM pg_stat_activity WHERE wait_event IS NOT NULL;
+
+-- 2. 分析表更新统计信息
+ANALYZE users;
+
+-- 3. 查看是否有大量死元组
+SELECT relname, n_dead_tup FROM pg_stat_user_tables ORDER BY n_dead_tup DESC;
+
+-- 4. 检查索引是否需要重建
+REINDEX TABLE users;
+```
+
+### 连接数耗尽
+
+```sql
+-- 查看当前连接数
+SELECT count(*) FROM pg_stat_activity;
+
+-- 查看最大连接数
+SHOW max_connections;
+
+-- 终止空闲连接
+SELECT pg_terminate_backend(pid)
+FROM pg_stat_activity
+WHERE state = 'idle'
+  AND backend_start < NOW() - INTERVAL '1 hour';
+```
+
+### 磁盘空间不足
+
+```sql
+-- 查看数据库大小排名
+SELECT
+    datname,
+    pg_size_pretty(pg_database_size(datname)) AS size
+FROM pg_database
+ORDER BY pg_database_size(datname) DESC;
+
+-- 查看表大小排名
+SELECT
+    relname,
+    pg_size_pretty(pg_total_relation_size(relid)) AS total_size
+FROM pg_catalog.pg_statio_user_tables
+ORDER BY pg_total_relation_size(relid) DESC
+LIMIT 10;
+```
+
+## 练习
+
+```sql
+-- 1. 查看当前数据库中哪个表最大
+-- 2. 找到执行时间最长的查询
+-- 3. 分析一个慢查询并用 EXPLAIN 找出问题
+-- 4. 检查 autovacuum 是否正常工作
+```

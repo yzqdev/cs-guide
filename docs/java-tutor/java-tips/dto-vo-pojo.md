@@ -1,67 +1,94 @@
 # DTO / VO / PO / BO / POJO 详解
 
-> 理清 Java 后端开发中这些绕口的"对象"概念。
+> 理清 Java 后端开发中这些绕口的"对象"概念及其区别。
 
-1、entity 里的每一个字段，与数据库相对应，
-2、vo 里的每一个字段，是和你前台 html 页面相对应，
-3、dto 这是用来转换从 entity 到 vo，或者从 vo 到 entity 的中间的东西 。（DTO中拥有的字段应该是entity中或者是vo中的一个子集）
-举个例子：
-你的html页面上有三个字段，name，pass，age
-你的数据库表里，有两个字段，name，pass ， 注意没有 age。
-而你的 vo 里，就应该有下面三个成员变量 ，因为对应 html 页面上三个字段 。
+## 基本概念
+
+所有 POJO（Plain Old Java Object）都是一个简单的 Java 对象，而 PO、DTO、VO、BO 都属于 POJO 的范畴，只是在不同的分层中承担不同的职责。
+
+| 缩写 | 全称 | 职责 |
+|------|------|------|
+| **PO** | Persistent Object | 持久化对象，与数据库表字段一一对应 |
+| **DTO** | Data Transfer Object | 数据传输对象，用于前端与后端之间的数据传输 |
+| **VO** | View Object | 表现层对象，对应前端页面展示的数据 |
+| **BO** | Business Object | 业务对象，封装业务逻辑，可能包含多个类 |
+| **POJO** | Plain Old Java Object | 普通 Java 对象，以上所有对象的统称 |
+| **DAO** | Data Access Object | 数据访问对象，用于数据库增删改查 |
+
+## 通俗理解
+
+Entity（实体类）中的每一个字段与数据库相对应；
+VO 中的每一个字段与前端 HTML 页面相对应；
+DTO 是用于从 Entity 到 VO（或从 VO 到 Entity）转换的中间对象，其字段是 Entity 或 VO 的一个子集。
+
+### 举个例子
+
+你的 HTML 页面上有三个字段：`name`、`pass`、`age`。
+你的数据库表里有两个字段：`name`、`pass`（注意没有 `age`）。
+
+**VO** — 对应前端的三个字段：
 
 ```java
-private string name；
-
-private string pass; 
-
-private string age;
+private String name;
+private String pass;
+private String age;
 ```
 
-这个时候，你的 entity 里，就应该有两个成员变量 ，因为对应数据库表中的 2 个字段 。
+**Entity** — 对应数据库的两个字段：
 
 ```java
-private string name；
-
-private string pass;
+private String name;
+private String pass;
 ```
 
-到了这里，好了，业务经理让你做这样一个业务“年龄大于 20 的才能存入数据库，这个时候，你就要用到 dto 了，
-1）你要先从页面上拿到 vo，然后判断 vo 中的 age 是不是大于 20。
-2）如果大于 20，就把 vo 中的 name 和 pass 拿出来，放到 dto 中。
-3）然后在把 dto 中的 name 和 pass 原封不动的给 entity，然后根据 entity 的值，在传入数据库。
-这就是他们三个的区别。
-PS： dto 和 entity 里面的字段应该是一样的，dto 只是 entity 到 vo，或者 vo 到 entity 的中间过程，如果没有这个过程，你仍然可以做到增删改查，这是根据具体公司规范来的 。
-​
-常用地转换工具,beanutils或者mapstruct
+### 何时使用 DTO？
 
-​
+业务场景：年龄大于 20 的才能存入数据库。
 
-## 知乎回答
+1. 先从页面上拿到 VO，判断 VO 中的 age 是否大于 20
+2. 如果大于 20，将 VO 中的 name 和 pass 拿出来放到 DTO 中
+3. 再将 DTO 中的 name 和 pass 原封不动地赋给 Entity
 
-DO我不确定有没有这个东西，就暂时不说了， POJO PO BO DTO VO 我归在一起，因为PO DTO VO BO 都叫是POJO，就是个简单的java对象；DAO 的话就是进行数据库增删改查的类。
-下面重点说下这几个，他们都是POJO
-PO 持久对象，数据；
-BO 业务对象，封装对象、复杂对象 ，里面可能包含多个类；
-DTO 传输对象，前端调用时传输 ；
-VO 表现对象，前端界面展示。
-当你业务足够简单时，一个POJO 也完全当做PO BO DTO VO 看，下面是例子：
-比如有个用户类 只有 name 以及 phone
-对于数据库层面也就两列，业务层面，传输，和前台展示时 都只有这两项。
-然后说下他们区别开来的例子：
-1 、还是用户类 name phone 加了个password。
-那么你后端的PO属性也是这3个，一般数据库里这个表有几个字段你的PO就有多少属性，但是传输到前台或者展现时，我们不应该把password 密码这种东西也一起传过去，所以他们的DTO VO 就还是 name + phone
-po : name phone password
-dto : name phone
-vo : name phone
-2、现在又加了一个 枚举的状态位 status 表示用户的一些特殊状态，前台不会直接显示，可能会根据这个状态产生后续的操作，
-po : name phone password status
-dto : name phone status
-vo : name phone
-3、接着看下BO ，一个用户下面 肯定会关联很多其他的表
-比如用户设置 用户信息等，那么这个BO 下 不但有用户本身的一些属性，还包含了用户设置 和用户信息这两个类。
-​
+```java
+// 常用转换工具：BeanUtils 或 MapStruct
+BeanUtils.copyProperties(dto, entity);
+```
 
-​
+:::tip
+DTO 和 Entity 的字段通常是一致的，DTO 只是 Entity 到 VO（或 VO 到 Entity）的中间过程。没有 DTO 仍然可以完成增删改查，具体取决于公司规范。
+:::
 
-​
+## 区别详解
+
+当业务足够简单时，一个 POJO 完全可以同时充当 PO、BO、DTO、VO 的角色。
+
+### 示例：用户类
+
+**基础情况：** 只有 name 和 phone
+- 数据库两列，业务、传输、前台展示都只有这两项
+- PO = DTO = VO = `{name, phone}`
+
+**加入 password：**
+- 传输到前台时不应把密码传过去
+- PO: `{name, phone, password}`
+- DTO: `{name, phone}`
+- VO: `{name, phone}`
+
+**加入状态枚举 status：**
+- status 用于后续操作，前台不直接显示
+- PO: `{name, phone, password, status}`
+- DTO: `{name, phone, status}`
+- VO: `{name, phone}`
+
+**加入 BO：**
+- 一个用户关联了用户设置、用户信息等其他表
+- BO 不但有用户本身的属性，还包含了用户设置和用户信息这两个类
+
+### 总结
+
+| 对象 | 层级 | 说明 |
+|------|------|------|
+| PO | DAO 层 | 持久对象，与数据库记录对应 |
+| DTO | Service 层 | 传输对象，前后端数据交互 |
+| VO | Controller 层 | 表现对象，前端展示 |
+| BO | Service 层 | 业务对象，封装复杂业务逻辑 |

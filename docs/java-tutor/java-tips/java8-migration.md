@@ -2,160 +2,119 @@
 
 > Java 8 → 9 → 11 → 17 → 21 的演进中，部分 API 被移除或替换，以下是最常见的迁移问题。
 
-​
+## javax.annotation 被废弃
 
-## 缺少javafx和javax,添加javax
+JDK 9+ 移除了 `javax.annotation` 模块，`@Resource` 等注解不可用。请使用 Jakarta Annotation API 替代：
+
+```xml
+<!-- https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api -->
+<dependency>
+    <groupId>jakarta.annotation</groupId>
+    <artifactId>jakarta.annotation-api</artifactId>
+    <version>2.1.0-B1</version>
+</dependency>
+```
+
+相关依赖如 [easy-captcha](https://mvnrepository.com/artifact/com.github.whvcse/easy-captcha) 也已迁移到 Jakarta 命名空间。
+
+## JavaFX 在 JDK 11+ 中缺失
+
+JDK 11+ 已将 JavaFX 从 JDK 中移除，需要单独引入。
+
+### 下载 JavaFX SDK
+
+- 下载地址：[https://gluonhq.com/products/javafx/](https://gluonhq.com/products/javafx/)
+
+### 运行时添加模块
+
+```bash
+java --module-path <path>/lib --add-modules ALL-MODULE-PATH -jar app.jar
+```
+
+### Maven 依赖
 
 ```xml
 <dependency>
-    <groupId>javax.annotation</groupId>
-    <artifactId>javax.annotation-api</artifactId>
-    <version>1.3.2</version>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-controls</artifactId>
+    <version>17.0.2</version>
 </dependency>
-
+<dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-fxml</artifactId>
+    <version>17.0.2</version>
+</dependency>
 ```
 
-## 如何在java8以上版本使用javafx?
+## BASE64Decoder 替代方案
 
-fx下载地址 [https://gluonhq.com/products/javafx/](https://gluonhq.com/products/javafx/)
-​
-Open the command prompt and run `java --module-path <path to unzipped folder>/lib --add-modules ALL-MODULE-PATH -jar <path to mcaselector-1.16.3.jar>` where you replace everything in `<>` with the appropriate paths.
-
-## JDK1.8 找不到 sun.misc.BASE64Decoder 的解决方法
-
-使用JDK.18 自带
+JDK 1.8 中 `sun.misc.BASE64Decoder` 已不建议使用，请使用 `java.util.Base64`：
 
 ```java
-java.util.Base64
-java.util.Base64.Encoder;
-java.util.Base64.Decoder;
-
-```
-
-代替sun.misc.BASE64Decoder
-例子1
-
-```java
+// 旧写法（不推荐）
 BASE64Decoder base64 = new BASE64Decoder();
 byte[] buffer = base64.decodeBuffer(publicKeyStr);
 
+// 新写法（推荐）
+import java.util.Base64;
+import java.util.Base64.Decoder;
+import java.util.Base64.Encoder;
+
+Decoder decoder = Base64.getMimeDecoder(); // 注意不要使用 .getDecoder()
+byte[] buffer = decoder.decode(publicKeyStr);
 ```
 
-替代方法
+## 文件写入方式演进
+
+### Java 7+ 推荐方式（NIO Files）
 
 ```java
-Decoder decoder=Base64.getMimeDecoder(); //注不要使用.getDecoder();
-byte[] buffer =decoder.decode(publicKeyStr);
+// 写文本文件
+List<String> lines = Arrays.asList("The first line", "The second line");
+Path file = Paths.get("the-file-name.txt");
+Files.write(file, lines, Charset.forName("UTF-8"));
+// Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
 
+// 写二进制文件
+byte[] data = ...;
+Path file = Paths.get("the-file-name");
+Files.write(file, data);
+// Files.write(file, data, StandardOpenOption.APPEND);
 ```
 
-## 问：在java里最简单的创建文件写文件的方法是什么
+### 最简单方式
 
-### 最佳答案
-
-创建一个文本文件（注意：如果该文件存在，则会覆盖该文件）
-
-````java
+```java
+// 文本文件
 PrintWriter writer = new PrintWriter("the-file-name.txt", "UTF-8");
 writer.println("The first line");
 writer.println("The second line");
 writer.close();
-````
 
-创建一个二进制文件（同样会覆盖这文件）
-
-````java
-byte data[] = ...
+// 二进制文件
+byte[] data = ...;
 FileOutputStream out = new FileOutputStream("the-file-name");
 out.write(data);
 out.close();
-````
+```
 
-Java 7+ 用户可以用[`File`](http://docs.oracle.com/javase/7/docs/api/index.html?java/nio/file/Files.html)类来写文件
-创建一个文本文件
+### Java 7+ try-with-resources
 
-````java
-List<String> lines = Arrays.asList("The first line", "The second line");
-Path file = Paths.get("the-file-name.txt");
-Files.write(file, lines, Charset.forName("UTF-8"));
-//Files.write(file, lines, Charset.forName("UTF-8"), StandardOpenOption.APPEND);
-````
-
-创建一个二进制文件
-
-````java
-byte data[] = ...
-Path file = Paths.get("the-file-name");
-Files.write(file, data);
-//Files.write(file, data, StandardOpenOption.APPEND);
-````
-
-### 其他的答案（1）
-
-在Java 7+中
-
-````java
-try (Writer writer =new BufferedWriter(new OutputStreamWriter(
-              new FileOutputStream("filename.txt"), "utf-8"))) {
-   writer.write("something");
+```java
+try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+        new FileOutputStream("filename.txt"), "utf-8"))) {
+    writer.write("something");
 }
-````
+```
 
-还有一些实用的方法如下：
+### 工具类
 
-* [`FileUtils.writeStringtoFile(..)`](https://commons.apache.org/proper/commons-io/apidocs/org/apache/commons/io/FileUtils.html#writeStringToFile%28java.io.File,%20java.lang.String,%20java.nio.charset.Charset%29) 来自于 commons-io 包
-* [`Files.write(..)`](http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/io/Files.html#write%28java.lang.CharSequence,%20java.io.File,%20java.nio.charset.Charset%29) 来自于 guava
+- [`FileUtils.writeStringToFile(..)`](https://commons.apache.org/proper/commons-io/apidocs/org/apache/commons/io/FileUtils.html#writeStringToFile%28java.io.File,%20java.lang.String,%20java.nio.charset.Charset%29) — commons-io
+- [`Files.write(..)`](http://docs.guava-libraries.googlecode.com/git/javadoc/com/google/common/io/Files.html#write%28java.lang.CharSequence,%20java.io.File,%20java.nio.charset.Charset%29) — Guava
 
-Note also that you can use a FileWriter, but it uses the default encoding,
-which is often a bad idea - it's best to specify the encoding explicitly.
-还要注意可以使用 `FileWriter`，但是它使用的是默认编码，这不是很好的方法，最好是明确指定编码
+### Java 8+ 批量操作
 
-下面是来自于prior-to-java-7的原始方法
-
-````java
-Writer writer = null;
-
-try {
-    writer = Buffer.fromedWriter(new OutputStreamWriter(
-          new FileOutputStream("filename.txt"), "utf-8"));
-    writer.write("Something");
-} catch (IOException ex) {
-  // report
-} finally {
-   try {writer.close();} catch (Exception ex) {/*ignore*/}
-}
-````
-
-可以看[`Reading, Writing, and Creating Files`](http://docs.oracle.com/javase/tutorial/essential/io/file.html)(包含NIO2)
-
-### 其他答案（2）
-
-````java
-public class Program {
-    public static void main(String[] args) {
-        String text = "Hello world";
-        BufferedWriter output = null;
-        try {
-            File file = new File("example.txt");
-            output = Buffer.fromedWriter(new FileWriter(file));
-            output.write(text);
-        } catch ( IOException e ) {
-            e.printStackTrace();
-        } finally {
-            if ( output != null ) output.close();
-        }
-    }
-}
-````
-
-### 其他答案（3）
-
-如果已经有想要写到文件中的内容，[`java.nio.file.Files`](https://docs.oracle.com/javase/7/docs/api/java/nio/file/Files.html) 作为 Java 7 附加部分的native I/O，提供了简单高效的方法来实现你的目标
-
-基本上创建文件，写文件只需要一行，而且是只需一个方法调用！
-下面的例子创建并且写了6个不同的文件来展示是怎么使用的
-
-````java
+```java
 Charset utf8 = StandardCharsets.UTF_8;
 List<String> lines = Arrays.asList("1st line", "2nd line");
 byte[] data = {1, 2, 3, 4, 5};
@@ -172,13 +131,46 @@ try {
 } catch (IOException e) {
     e.printStackTrace();
 }
-````
+```
 
-### 其他答案（4）
+### Java 7 之前的方式
 
-下面是一个小程序来创建和写文件。该版本的代码比较长，但是可以容易理解
+```java
+Writer writer = null;
+try {
+    writer = new BufferedWriter(new OutputStreamWriter(
+          new FileOutputStream("filename.txt"), "utf-8"));
+    writer.write("Something");
+} catch (IOException ex) {
+    // 报告异常
+} finally {
+   try { writer.close(); } catch (Exception ex) { /*ignore*/ }
+}
+```
 
-````java
+参考：[Reading, Writing, and Creating Files (NIO2)](http://docs.oracle.com/javase/tutorial/essential/io/file.html)
+
+### 其他示例
+
+```java
+public class Program {
+    public static void main(String[] args) {
+        String text = "Hello world";
+        BufferedWriter output = null;
+        try {
+            File file = new File("example.txt");
+            output = new BufferedWriter(new FileWriter(file));
+            output.write(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (output != null) output.close();
+        }
+    }
+}
+```
+
+```java
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -186,14 +178,13 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-public class writer {
+public class WriterExample {
     public void writing() {
         try {
-            //Whatever the file path is.
             File statText = new File("E:/Java/Reference/bin/images/statsTest.txt");
             FileOutputStream is = new FileOutputStream(statText);
             OutputStreamWriter osw = new OutputStreamWriter(is);    
-            Writer w = Buffer.fromedWriter(osw);
+            Writer w = new BufferedWriter(osw);
             w.write("POTATO!!!");
             w.close();
         } catch (IOException e) {
@@ -201,29 +192,13 @@ public class writer {
         }
     }
 
-    public static void main(String[]args) {
-        writer write = new writer();
+    public static void main(String[] args) {
+        WriterExample write = new WriterExample();
         write.writing();
     }
 }
-````
-
-stackoverflow链接：
-<http://stackoverflow.com/questions/2885173/how-to-create-a-file-and-write-to-a-file-in-java>
-
----
-
-## javax.annotation 被废弃的替代方案
-
-`@Resource` 找不到？`javax.annotation` 已经被废弃，请使用 Jakarta annotation API：
-
-```xml
-<!-- https://mvnrepository.com/artifact/jakarta.annotation/jakarta.annotation-api -->
-<dependency>
-    <groupId>jakarta.annotation</groupId>
-    <artifactId>jakarta.annotation-api</artifactId>
-    <version>2.1.0-B1</version>
-</dependency>
 ```
 
-[easy-captcha](https://mvnrepository.com/artifact/com.github.whvcse/easy-captcha) 等库也已迁移到 Jakarta 命名空间。
+## 参考链接
+
+- StackOverflow: [How to create a file and write to a file in Java](http://stackoverflow.com/questions/2885173/how-to-create-a-file-and-write-to-a-file-in-java)
