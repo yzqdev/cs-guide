@@ -132,6 +132,53 @@ public static final Block DEEPSLATE_RUBY_ORE = registerBlock(
     ));
 ```
 
+### 矿词标签 (Tags)
+
+将矿石添加到对应标签中，让镐子能正确挖掘：
+
+```java
+// 在 ModItemGroups 或单独的 Tag 类中
+public class ModTags {
+    public static final TagKey<Block> RUBY_ORES = TagKey.of(
+        RegistryKeys.BLOCK, Identifier.of(MyMod.MOD_ID, "ruby_ores"));
+}
+
+// 添加到原版标签
+public class ModBlockTags {
+    public static void init() {
+        // 使用 Fabric API 的 Tag API
+    }
+}
+```
+
+```json
+// data/mymod/tags/block/ruby_ores.json
+{
+    "replace": false,
+    "values": [
+        "mymod:ruby_ore",
+        "mymod:deepslate_ruby_ore"
+    ]
+}
+
+// data/minecraft/tags/block/needs_iron_tool.json
+{
+    "replace": false,
+    "values": [
+        "mymod:ruby_ore",
+        "mymod:deepslate_ruby_ore"
+    ]
+}
+
+// data/minecraft/tags/block/mineable/pickaxe.json
+{
+    "replace": false,
+    "values": [
+        "mymod:ruby_ore"
+    ]
+}
+```
+
 ### 矿石战利品表
 
 ```json
@@ -217,6 +264,186 @@ public class DirectionalBlock extends HorizontalFacingBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
+    }
+}
+```
+
+## 方块变体
+
+### 楼梯、台阶、栅栏、门（木材全套）
+
+```java
+// ModBlocks.java — 全套方块变体
+public class ModBlocks {
+    // 基础方块
+    public static final Block RUBY_BLOCK = registerBlock("ruby_block", ...);
+
+    // 楼梯 (Stairs)
+    public static final Block RUBY_STAIRS = registerBlock("ruby_stairs",
+        new StairsBlock(RUBY_BLOCK.getDefaultState(),
+            AbstractBlock.Settings.copyOf(RUBY_BLOCK)));
+
+    // 台阶 (Slab)
+    public static final Block RUBY_SLAB = registerBlock("ruby_slab",
+        new SlabBlock(AbstractBlock.Settings.copyOf(RUBY_BLOCK)));
+
+    // 栅栏 (Fence)
+    public static final Block RUBY_FENCE = registerBlock("ruby_fence",
+        new FenceBlock(AbstractBlock.Settings.copyOf(RUBY_BLOCK)));
+
+    // 栅栏门 (Fence Gate)
+    public static final Block RUBY_FENCE_GATE = registerBlock("ruby_fence_gate",
+        new FenceGateBlock(WoodType.OAK,
+            AbstractBlock.Settings.copyOf(RUBY_BLOCK)));
+
+    // 墙 (Wall)
+    public static final Block RUBY_WALL = registerBlock("ruby_wall",
+        new WallBlock(AbstractBlock.Settings.copyOf(RUBY_BLOCK)));
+
+    // 按钮 (Button) — 木按钮或石按钮
+    public static final Block RUBY_BUTTON = registerBlock("ruby_button",
+        new ButtonBlock(BlockSetType.IRON, 20,
+            AbstractBlock.Settings.copyOf(RUBY_BLOCK)));
+
+    // 压力板 (Pressure Plate)
+    public static final Block RUBY_PRESSURE_PLATE = registerBlock("ruby_pressure_plate",
+        new PressurePlateBlock(BlockSetType.IRON,
+            AbstractBlock.Settings.copyOf(RUBY_BLOCK)));
+
+    // 门 (Door)
+    public static final Block RUBY_DOOR = registerBlockWithoutItem("ruby_door",
+        new DoorBlock(BlockSetType.IRON,
+            AbstractBlock.Settings.copyOf(RUBY_BLOCK).nonOpaque()));
+    // 注意：门需要单独注册物品 (BlockItem)，且方块模型使用 door_bottom/ door_top
+
+    // 活板门 (Trapdoor)
+    public static final Block RUBY_TRAPDOOR = registerBlock("ruby_trapdoor",
+        new TrapdoorBlock(BlockSetType.IRON,
+            AbstractBlock.Settings.copyOf(RUBY_BLOCK).nonOpaque()));
+}
+```
+
+### 模型文件示例
+
+```json
+// assets/mymod/models/block/ruby_stairs.json
+{
+    "parent": "minecraft:block/stairs",
+    "textures": {
+        "bottom": "mymod:block/ruby_block",
+        "side": "mymod:block/ruby_block",
+        "top": "mymod:block/ruby_block"
+    }
+}
+
+// assets/mymod/models/block/ruby_slab.json
+{
+    "parent": "minecraft:block/slab",
+    "textures": {
+        "bottom": "mymod:block/ruby_block",
+        "side": "mymod:block/ruby_block",
+        "top": "mymod:block/ruby_block"
+    }
+}
+```
+
+## 自定义碰撞箱
+
+使用 `VoxelShape` 定义方块的碰撞和选取形状：
+
+```java
+public class CustomChairBlock extends Block {
+    // 定义形状：底部一个半砖大小的方块
+    private static final VoxelShape SHAPE = VoxelShapes.cuboid(
+        0.0, 0.0, 0.0,  // 起始坐标 (x1, y1, z1)
+        1.0, 0.5, 1.0   // 结束坐标 (x2, y2, z2)
+    );
+
+    public CustomChairBlock(Settings settings) {
+        super(settings);
+    }
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world,
+                                       BlockPos pos, ShapeContext context) {
+        return SHAPE;
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockView world,
+                                        BlockPos pos, ShapeContext context) {
+        return SHAPE;
+    }
+}
+```
+
+多面体组合（如椅子带靠背）：
+
+```java
+private static final VoxelShape CHAIR_SHAPE = VoxelShapes.union(
+    VoxelShapes.cuboid(0.0, 0.0, 0.0, 1.0, 0.5, 1.0),  // 坐垫
+    VoxelShapes.cuboid(0.8, 0.0, 0.2, 1.0, 0.8, 0.8)   // 靠背
+);
+```
+
+## 带物品栏的方块实体 (Inventory BlockEntity)
+
+```java
+public class ModInventoryBlockEntity extends BlockEntity
+        implements ImplementedInventory {  // Fabric API 接口
+    private final SimpleInventory inventory = new SimpleInventory(9); // 9 格
+
+    public ModInventoryBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.INVENTORY_BLOCK_ENTITY, pos, state);
+    }
+
+    @Override
+    protected void writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        inventory.writeNbtList(nbt);  // 保存物品到 NBT
+    }
+
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        inventory.readNbtList(nbt);   // 从 NBT 读取物品
+    }
+
+    // 创建方块实体时调用
+    public static BlockEntity create(BlockPos pos, BlockState state) {
+        return new ModInventoryBlockEntity(pos, state);
+    }
+}
+```
+
+配合方块右键打开 GUI：
+
+```java
+public class InventoryBlock extends BlockWithEntity {
+    // ...
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos,
+                              PlayerEntity player, BlockHitResult hit) {
+        if (!world.isClient) {
+            // 打开箱子式界面
+            NamedScreenHandlerFactory screenHandlerFactory =
+                state.createScreenHandlerFactory(world, pos);
+            if (screenHandlerFactory != null) {
+                player.openHandledScreen(screenHandlerFactory);
+            }
+        }
+        return ActionResult.success(world.isClient);
+    }
+
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new ModInventoryBlockEntity(pos, state);
+    }
+
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;  // 正常渲染
     }
 }
 ```

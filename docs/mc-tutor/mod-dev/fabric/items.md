@@ -210,6 +210,46 @@ public static final Item CHEESE = registerItem("cheese",
     ));
 ```
 
+### 燃料物品
+
+让物品可以当作燃料烧炼：
+
+```java
+// 方法一：在物品属性中设置
+public static final Item COAL_DUST = registerItem("coal_dust",
+    new Item(new Item.Settings()));
+
+// 方法二：注册燃料（需要 Fabric API）
+FuelRegistryEvents.BUILD.register((builder, context) -> {
+    builder.add(ModItems.COAL_DUST, 400); // 400 ticks = 烧 4 个物品
+});
+```
+
+| 燃料 | ticks | 可烧物品数 |
+|------|-------|-----------|
+| 煤炭/木炭 | 1600 | 8 |
+| 木板 | 300 | 1.5 |
+| 熔岩桶 | 20000 | 100 |
+| 自定义燃料 | 自定义 | 自定义 |
+
+### 堆肥物品
+
+让物品可以用于堆肥桶：
+
+```java
+// 注册堆肥几率（需要 Fabric API）
+ComposterBlock.COMPOSTABLES.put(
+    ModItems.CHEESE.asItem(), 0.65f); // 65% 几率增加一层
+```
+
+| 堆肥几率 | 物品示例 |
+|----------|----------|
+| 0.3 (30%) | 小麦种子、甜菜种子 |
+| 0.5 (50%) | 小麦、胡萝卜、马铃薯 |
+| 0.65 (65%) | 苹果、甜菜根 |
+| 0.85 (85%) | 面包、南瓜派 |
+| 1.0 (100%) | 蛋糕 |
+
 ## 自定义物品行为
 
 ### 右键交互

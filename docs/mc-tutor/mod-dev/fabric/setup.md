@@ -125,19 +125,35 @@ public class MyModClient implements ClientModInitializer {
     },
     "license": "MIT",
     "icon": "assets/mymod/icon.png",
-    "environment": "*",
+    "environment": "*",               // *=通用, client=仅客户端, server=仅服务端
     "entrypoints": {
         "main": ["com.example.mymod.MyMod"],
-        "client": ["com.example.mymod.client.MyModClient"]
+        "client": ["com.example.mymod.client.MyModClient"],
+        "fabric-datagen": ["com.example.mymod.datagen.MyModDataGenerator"]
     },
+    "mixins": ["mymod.mixins.json"],
     "depends": {
         "fabricloader": ">=0.15.0",
         "minecraft": "~1.21",
         "java": ">=21",
         "fabric-api": "*"
+    },
+    "suggests": {
+        "another-mod": "*"             // 推荐安装但不强制
     }
 }
 ```
+
+| 字段 | 说明 |
+|------|------|
+| `id` | MOD 唯一标识符，全小写，用下划线或连字符 |
+| `entrypoints.main` | 服务端+客户端共用的入口 |
+| `entrypoints.client` | 仅客户端执行（渲染、按键等） |
+| `entrypoints.fabric-datagen` | 数据生成入口 |
+| `mixins` | Mixin 配置文件路径 |
+| `depends` | 强制依赖，缺少则无法加载 |
+| `suggests` | 推荐但非必需的依赖 |
+| `environment` | `*`=通用, `client`=仅客户端, `server`=仅服务端 |
 
 ### build.gradle
 
@@ -215,13 +231,112 @@ public class ModItems {
 }
 ```
 
-## Fabric vs NeoForge 对比
+## Mixin 配置
 
-| 特性 | Fabric | NeoForge |
-|------|--------|----------|
-| 加载器 | Fabric Loader | NeoForge |
-| API | Fabric API（可选） | 内置 |
-| 注册方式 | Registry.register | DeferredRegister |
-| Mixin | 内置支持 | 需额外配置 |
-| 更新速度 | 快 | 较慢 |
-| 社区 | 现代 MOD 首选 | 传统 MOD 首选 |
+Fabric 使用 Mixin 修改原版代码。详细用法见 [Mixin 完全指南](../mixin)。
+
+### 配置文件
+
+```json
+// src/main/resources/mymod.mixins.json
+{
+    "required": true,
+    "package": "com.example.mymod.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "ExampleMixin"
+    ],
+    "client": [
+        "ClientExampleMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
+```
+
+| 字段 | 说明 |
+|------|------|
+| `package` | Mixin 类所在的包路径 |
+| `mixins` | 通用 Mixin（服务端+客户端） |
+| `client` | 仅客户端加载的 Mixin |
+| `server` | 仅服务端加载的 Mixin |
+| `defaultRequire` | 找不到目标方法时的行为：1=警告，0=忽略 |
+
+### fabric.mod.json 引用
+
+```json
+{
+    "mixins": ["mymod.mixins.json"]
+}
+```
+
+> Fabric 使用 Fabric Loom 处理 Mixin，无需额外配置依赖。所有 Mixin 注解、注入方式、@Accessor/@Invoker 等详细用法请参考 [Mixin 完全指南](../mixin)。
+
+## 数据生成
+
+Fabric 提供内置数据生成 API，自动生成配方、战利品表、模型等 JSON 文件。
+
+### 启用数据生成
+
+```groovy
+// build.gradle
+fabricApi {
+    configureDataGeneration() {
+        client = true
+    }
+}
+```
+
+```java
+// MyModDataGenerator.java — 入口点
+public class MyModDataGenerator implements DataGeneratorEntrypoint {
+    @Override
+    public void onInitializeDataGenerator(FabricDataGenerator generator) {
+        FabricDataGenerator.Pack pack = generator.createPack();
+        // 添加提供者
+        pack.addProvider(MyRecipeProvider::new);
+        pack.addProvider(MyLootTableProvider::new);
+        pack.addProvider(MyModelProvider::new);
+    }
+}
+```
+
+### 提供者一览
+
+| 提供者 | 生成内容 |
+|--------|----------|
+| `FabricRecipeProvider` | 合成配方 |
+| `FabricBlockLootTableProvider` | 方块战利品表 |
+| `FabricModelProvider` | 方块/物品模型 |
+| `FabricLanguageProvider` | 语言文件 |
+| `FabricTagProvider` | 标签文件 |
+| `FabricAdvancementProvider` | 进度 |
+
+运行 `./gradlew runDatagen` 生成文件到 `src/main/generated`。
+
+## 常见问题与最佳实践
+
+### 开发规范
+
+```text
+✅ MOD ID 使用全小写，单词用连字符或下划线：my-mod 或 my_mod
+✅ 包名使用公司域名反转：com.github.username.mymod
+✅ 所有注册操作放在 onInitialize() 中
+✅ 客户端代码放在 client 包下，用 @Environment(EnvType.CLIENT) 标记
+✅ 所有资源文件放在对应路径：assets/<mod-id>/...
+
+❌ 不要硬编码 Identifer，使用 Identifier.of() 创建
+❌ 不要在服务端调用客户端 API（渲染、按键等）
+❌ 不要泄露 MOD 的 API 内部实现细节
+```
+
+### 常见编译错误
+
+| 错误 | 解决方案 |
+|------|----------|
+| `Could not find method loom()` | 确认 `build.gradle` 顶部有 `id 'fabric-loom'` 插件 |
+| `java.lang.NoClassDefFoundError` | 检查 `fabric.mod.json` 中的依赖配置 |
+| `Mixin target not found` | 检查 Mixin 配置中的目标方法名和 @At 位置 |
+| `Access widener not applied` | 检查 `fabric.mod.json` 中的 `accessWidener` 字段 |
+| `Outdated Loom version` | 在 [Fabric Maven](https://maven.fabricmc.net/) 检查最新版本 |

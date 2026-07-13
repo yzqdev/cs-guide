@@ -193,3 +193,64 @@ ModItems.ITEMS.register(modEventBus);
    - 安装 HotSwapAgent 插件
    - 使用 JRebel
 ```
+
+---
+
+## Mixin 配置
+
+NeoForge 同样使用 [SpongePowered Mixin](https://github.com/SpongePowered/Mixin) 进行字节码修改，API 与 Fabric 完全一致。详细用法见 [Mixin 完全指南](../mixin)。
+
+### Mixin 配置文件
+
+```json
+// src/main/resources/mymod.mixins.json
+{
+    "required": true,
+    "minVersion": "0.8.5",
+    "package": "com.example.mymod.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "refmap": "mymod.refmap.json",
+    "mixins": [
+        "ExampleMixin"
+    ],
+    "client": [
+        "ClientExampleMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
+```
+
+| 字段 | 说明 |
+|------|------|
+| `package` | Mixin 类所在的包路径 |
+| `mixins` | 通用 Mixin（服务端+客户端） |
+| `client` | 仅客户端加载的 Mixin |
+| `server` | 仅服务端加载的 Mixin |
+| `refmap` | 方法映射文件（NeoForge 必需，Fabric Loom 自动生成） |
+| `defaultRequire` | 找不到目标时：1=报错，0=忽略 |
+
+### 注册方式
+
+NeoForge 不会自动扫描 Mixin 配置文件，需要在 `mods.toml` 或 `@Mod` 中注册：
+
+```toml
+# META-INF/neoforge.mods.toml — 添加 mixinConfigs
+[[mods]]
+    modId="mymod"
+    # ...
+    [[mods.mixinConfigs]]
+    config="mymod.mixins.json"
+```
+
+或者在 `@Mod` 注解中声明：
+
+```java
+@Mod(value = MyMod.MODID, mixinConfigs = "mymod.mixins.json")
+public class MyMod {
+    // ...
+}
+```
+
+> **提示**: NeoForge 1.20.1+ 部分版本支持自动扫描，但手动声明更可靠。

@@ -121,7 +121,9 @@ UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
 
 ## Mixin
 
-Fabric 使用 Mixin 修改 Minecraft 代码，比事件系统更底层。
+Fabric 使用 Mixin 修改 Minecraft 代码，比事件系统更底层。详细用法见 [Mixin 完全指南](../mixin)。
+
+> Mixin 配置方式请参考 [setup.md 中的 Mixin 配置](./setup#mixin-配置)。
 
 ### Mixin 配置
 
@@ -146,28 +148,6 @@ Fabric 使用 Mixin 修改 Minecraft 代码，比事件系统更底层。
     ],
     "injectors": {
         "defaultRequire": 1
-    }
-}
-```
-
-### 简单 Mixin 示例
-
-```java
-// com/example/mymod/mixin/ExampleMixin.java
-@Mixin(CreeperEntity.class)
-public class ExampleMixin {
-    // 修改苦力怕爆炸威力
-    @Inject(method = "explode", at = @At("HEAD"), cancellable = true)
-    private void onExplode(CreeperEntity instance, CallbackInfo ci) {
-        // 让苦力怕爆炸威力翻倍
-        instance.setExplosionRadius(6);
-    }
-
-    // 修改生物掉落
-    @Inject(method = "dropLoot", at = @At("HEAD"))
-    private void onDropLoot(DamageSource source, boolean causedByPlayer,
-                            boolean dropEquipment, CallbackInfo ci) {
-        // 在掉落逻辑之前插入
     }
 }
 ```
@@ -224,6 +204,30 @@ public class MyModClient implements ClientModInitializer {
     }
 }
 ```
+
+## Fabric API 事件速查表
+
+| 事件 | 触发时机 | 返回值 | 常用场景 |
+|------|----------|--------|----------|
+| `ServerLifecycleEvents.SERVER_STARTED` | 服务器启动后 | void | 初始化服务器数据 |
+| `ServerLifecycleEvents.SERVER_STOPPING` | 服务器关闭前 | void | 保存数据 |
+| `PlayerBlockBreakEvents.AFTER` | 方块破坏后 | void | 额外掉落/经验 |
+| `PlayerBlockBreakEvents.BEFORE` | 方块破坏前 | boolean | 阻止破坏 |
+| `BlockPlaceCallback.EVENT` | 方块放置 | ActionResult | 限制放置 |
+| `UseBlockCallback.EVENT` | 右键方块 | ActionResult | 自定义交互 |
+| `UseItemCallback.EVENT` | 右键物品 | ActionResult | 自定义物品行为 |
+| `UseEntityCallback.EVENT` | 右键实体 | ActionResult | 与实体交互 |
+| `AttackEntityCallback.EVENT` | 攻击实体 | ActionResult | 修改伤害/取消攻击 |
+| `EntityJoinWorldCallback.EVENT` | 实体加入世界 | ActionResult | 修改实体生成 |
+| `LivingHurtCallback.EVENT` | 生物受伤 | float | 伤害修改 |
+| `LivingDeathCallback.EVENT` | 生物死亡 | ActionResult | 阻止死亡 |
+| `ExplosionStartCallback.EVENT` | 爆炸开始 | ActionResult | 取消爆炸 |
+| `LootTableLoadingCallback.EVENT` | 战利品表加载 | void | 修改掉落 |
+| `CommandRegistrationCallback.EVENT` | 命令注册 | void | 注册自定义命令 |
+| `FuelRegistryEvents.BUILD` | 燃料注册 | void | 添加燃料 |
+| `EntityAttributeModificationCallback.EVENT` | 实体属性修改 | void | 修改实体属性 |
+| `ClientTickEvents.END_CLIENT_TICK` | 客户端 tick 结束 | void | 客户端逻辑 |
+| `ClientTickEvents.START_CLIENT_TICK` | 客户端 tick 开始 | void | 客户端逻辑 |
 
 ## 事件优先级
 
