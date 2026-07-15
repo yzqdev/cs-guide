@@ -1,47 +1,53 @@
-# ssr部署
+# SSR 部署指南
 
-## astro
+## Astro 部署
 
-三种模式
-`output`设置为`"hybrid" | "static" | "server"`
+Astro 支持三种输出模式：
 
-static是纯静态html 即为ssg模式,此时用不上ssr, 只需要`astro build`然后把dist目录扔到服务器用nginx代理一下就行(注意动态路由必须使用`getStaticPaths`)
+| 模式 | output 配置 | 说明 | 部署方式 |
+|---|---|---|---|
+| **SSG** | `static` | 纯静态 HTML | `astro build` → nginx 代理 dist 目录 |
+| **Hybrid** | `hybrid` | 静态 + 动态混合 | 动态页面设 `prerender = false` → `node dist/server/entry.mjs` |
+| **SSR** | `server` | 纯服务端渲染 | `astro build` → `node dist/server/entry.mjs` |
 
-hybrid指的是静态html和动态html混合的,此时需要ssr,同时动态页面需要设置prerender为false,不能使用`getStaticPaths`,部署就是`astro build`然后`node .\dist\server\entry.mjs`就好了
-
-server指的是纯ssr,没有html,部署就是`astro build`然后`node .\dist\server\entry.mjs`就好了
-
-## nuxt部署
-
-设置ssr为true即为服务端渲染,设置为false生成为spa格式
-
-`nuxt build`,这种需要`node .output/server/index.mjs`启动,注意不要在`onBeforeMounted`请求数据,不然无法渲染出请求数据的html,要使用[文档](https://nuxt.com/docs/getting-started/data-fetching)里面的方法
-
-`nuxt generate`这是打包静态文件,把nuxt当做ssg来使用,把生成的html文件夹扔到服务器,用nginx代理即可
-
-## next部署
-
-
-`output: 'standalone'`这种打包需要`node .\.next\standalone\server.js`来运行,如果图片无法访问,需要把根目录的public和static复制到.next/standalone文件夹去, 服务器上只需要standalone文件夹即可,node standalone/server.js`运行
+```javascript
+// astro.config.mjs
+export default defineConfig({
+  output: 'hybrid' // 'static' | 'hybrid' | 'server'
+});
 ```
-public -> .next/standalone/public
-.next/static -> .next/standalone/static//这个是为了防止_next找不到
-```
-https://nextjs.org/docs/pages/api-reference/next-config-js/output
 
-:::
- This minimal server does not copy the `public` or `.next/static` folders by default as these should ideally be handled by a CDN instead, although these folders can be copied to the `standalone/public` and `standalone/.next/static` folders manually, after which `server.js` file will serve these automatically
+::: tip
+SSG 模式下动态路由必须使用 `getStaticPaths()`。
 :::
 
-`output: 'export'`,这种就是把next当做ssg来用,打包静态html,用nginx代理一下就行
+## Nuxt 部署
 
-`output: undefined`,不配置output,这种是传统模式,`next build`之后运行`next start`启动即可
-
-推荐配置(next.config.mjs)
+```javascript
+// nuxt.config.ts
+export default defineNuxtConfig({
+  ssr: true // true = SSR, false = SPA
+});
 ```
+
+| 命令 | 模式 | 部署方式 |
+|---|---|---|
+| `nuxt build` | SSR | `node .output/server/index.mjs` |
+| `nuxt generate` | SSG | HTML 文件用 nginx 代理 |
+
+::: warning
+SSR 模式下不要在 `onBeforeMounted` 中请求数据，应使用 Nuxt 的 [数据获取方法](https://nuxt.com/docs/getting-started/data-fetching)。
+:::
+
+## Next.js 部署
+
+### 方式一：Standalone（推荐）
+
+```javascript
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone",
+  output: 'standalone',
   assetPrefix: '/',
   reactStrictMode: true,
 };
@@ -49,4 +55,49 @@ const nextConfig = {
 export default nextConfig;
 ```
 
- 
+```bash
+# 构建
+next build
+
+# 运行
+node .next/standalone/server.js
+
+# 复制静态资源
+cp -r public .next/standalone/public
+cp -r .next/static .next/standalone/.next/static
+```
+
+::: tip
+服务器只需要 `standalone` 文件夹即可运行。
+:::
+
+### 方式二：Export（SSG）
+
+```javascript
+// next.config.mjs
+const nextConfig = {
+  output: 'export',
+};
+```
+
+```bash
+next build
+# 输出 out/ 目录，用 nginx 代理即可
+```
+
+### 方式三：传统模式
+
+不配置 `output`：
+
+```bash
+next build
+next start
+```
+
+## 部署对比
+
+| 框架 | SSR 命令 | SSG 命令 | 推荐方式 |
+|---|---|---|---|
+| Astro | `astro build` + node | `astro build` | Hybrid |
+| Nuxt | `nuxt build` + node | `nuxt generate` | 按需选择 |
+| Next | `next build` + `next start` | `next build` (export) | Standalone |

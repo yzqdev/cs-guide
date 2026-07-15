@@ -1,124 +1,80 @@
 # 静态网站生成器
 
 :::tip
-[https://jamstack.org/generators/](https://jamstack.org/generators/)
+更多生成器见 [Jamstack 官网](https://jamstack.org/generators/)
 :::
 
-## gridea
+## SSG 框架对比
 
-[https://gridea.dev/](https://gridea.dev/)
+| 框架 | 语言 | 特点 | 官网 |
+|---|---|---|---|
+| **Hexo** | Node.js | 博客首选，生态丰富 | [https://hexo.io/](https://hexo.io/) |
+| **Hugo** | Go | 构建速度最快 | [https://gohugo.io/](https://gohugo.io/) |
+| **VuePress** | Vue | Vue 生态，适合文档 | [https://v2.vuepress.vuejs.org/](https://v2.vuepress.vuejs.org/) |
+| **VitePress** | Vue + Vite | VuePress 下一代，更轻更快 | [https://vitepress.vuejs.org/](https://vitepress.vuejs.org/) |
+| **Docusaurus** | React | Facebook 出品，适合文档 | [https://www.docusaurus.io/](https://www.docusaurus.io/) |
+| **Docsify** | JavaScript | 无需构建，运行时生成 | [https://docsify.js.org/](https://docsify.js.org/) |
+| **Dumi** | React | 组件文档生成器 | [https://d.umijs.org/](https://d.umijs.org/) |
+| **Gridea** | Electron | 客户端写作，Git 同步 | [https://gridea.dev/](https://gridea.dev/) |
+| **Storybook** | React/Vue | UI 组件文档和预览 | [https://storybook.js.org/](https://storybook.js.org/) |
 
-## hexo
+## Hexo 主题推荐
 
-[Hexo](https://hexo.io/zh-cn/index.html)
+| 主题 | 地址 |
+|---|---|
+| NexT | [https://theme-next.js.org/](https://theme-next.js.org/) |
+| Butterfly | [GitHub](https://github.com/jerryc127/hexo-theme-butterfly) |
+| Fluid | [GitHub](https://github.com/fluid-dev/hexo-theme-fluid) |
+| Shoka | [GitHub](https://github.com/amehime/hexo-theme-shoka) |
+| Material | [GitHub](https://github.com/iblh/hexo-theme-material) |
+| Indigo | [GitHub](https://github.com/yscoder/hexo-theme-indigo) |
+| Cactus | [GitHub](https://github.com/probberechts/hexo-theme-cactus) |
 
-[https://github.com/next-theme/hexo-theme-next](https://github.com/next-theme/hexo-theme-next)
+NexT 主题版本历史：
 
-| 版本            | 年份        | 仓库                                                                                           |
-| --------------- | ----------- | ---------------------------------------------------------------------------------------------- |
-| v5.1.4 或更低   | 2014 ~ 2017 | [https://github.com/iissnan/hexo-theme-next](https://github.com/iissnan/hexo-theme-next)       |
-| v6.0.0 ~ v7.8.0 | 2018 ~ 2019 | [https://github.com/theme-next/hexo-theme-next](https://github.com/theme-next/hexo-theme-next) |
-| v8.0.0 或更高   | 2020        | [https://github.com/next-theme/hexo-theme-next](https://github.com/next-theme/hexo-theme-next) |
+| 版本 | 年份 | 仓库 |
+|---|---|---|
+| v5.1.4 及更低 | 2014~2017 | [iissnan/hexo-theme-next](https://github.com/iissnan/hexo-theme-next) |
+| v6.0.0 ~ v7.8.0 | 2018~2019 | [theme-next/hexo-theme-next](https://github.com/theme-next/hexo-theme-next) |
+| v8.0.0 及更高 | 2020~ | [next-theme/hexo-theme-next](https://github.com/next-theme/hexo-theme-next) |
 
-hexo-theme-butterfly
+更多 Hexo 资源：[EasyHexo](https://easyhexo.com/)
 
-[https://github.com/fluid-dev/hexo-theme-fluid](https://github.com/fluid-dev/hexo-theme-fluid)
+## VitePress 示例站点
 
-> 主题推荐
+- [Rollup 官网](https://rollupjs.org/)
+- [Vitest 官网](https://vitest.dev/)
+- [TresJS](https://tresjs.org/guide/)
+- [SveltePress](https://sveltepress.site/guide/introduction/)
 
-- [NexT - Theme for Hexo (theme-next.js.org)](https://theme-next.js.org/)
-- [hexo-theme-shoka](https://github.com/amehime/hexo-theme-shoka)
-- [hexo-theme-material](https://github.com/iblh/hexo-theme-material)
-- [hexo-theme-indigo](https://github.com/yscoder/hexo-theme-indigo)
-- [hexo-theme-cactus](https://github.com/probberechts/hexo-theme-cactus)
-
-## hugo
-
-[Hugo (gohugo.io)](https://gohugo.io/)
-
-## vuepress
-
-[VuePress](https://v2.vuepress.vuejs.org/zh/)  
-> 主题  
-
-[vuepress-theme-hope](https://vuepress-theme-hope.github.io/v2/)
-
-## vitepress
-
-[VitePress](https://vitepress.vuejs.org/)
-
-## dumi
-
-[dumi](https://d.umijs.org/zh-CN)
-
-## docsify
-
-[docsify](https://docsify.js.org/#/)
-
-## docusaurus
-
-[Docusaurus](https://www.docusaurus.io/)
-
-## docz
-
-[docz](https://github.com/doczjs/docz/)
-
-## storybook
-
-[storybook](https://github.com/storybookjs/storybook/)
-
-## 一些hexo主题
-
-- [https://easyhexo.com/](https://easyhexo.com/)
-
-----------------------------------------------------------------<!-- markdownlint-capture -->
-
-## 一些知识库
+## 知识库系统
 
 ### 非开源
 
-- [alfresco](https://www.alfresco.com/ecm-software/alfresco-community-editions)
-- **推荐**[语雀](https://www.yuque.com/)
-- **推荐**[我来](https://www.wolai.com/)
-- **推荐**[息流](https://flowus.cn/)
-- [看云](https://www.kancloud.cn/)
-- **推荐**[飞书](https://www.feishu.cn/)
-- **推荐**[baklib](https://www.baklib.com/)
-- **推荐**[seed](https://seed.pgyer.com/)
-- **推荐**[Worktile](https://worktile.com/)
-- **推荐**[为知笔记](https://www.wiz.cn/zh-cn)
-- **推荐**[石墨](https://shimo.im/welcome)
-- [flomoapp](https://flomoapp.com/)
-- **推荐**[documize](https://www.documize.com)
-- [无忧文档](http://knowledge.bctools.cn/#/login)
-- **推荐**[pingcode](https://pingcode.com/)
+| 产品 | 地址 | 特点 |
+|---|---|---|
+| 语雀 | [https://www.yuque.com/](https://www.yuque.com/) | 结构化知识库 |
+| 我来 wolai | [https://www.wolai.com/](https://www.wolai.com/) | 块编辑器 |
+| FlowUs | [https://flowus.cn/](https://flowus.cn/) | 多维表格 + 文档 |
+| 飞书文档 | [https://www.feishu.cn/](https://www.feishu.cn/) | 团队协作 |
+| 为知笔记 | [https://www.wiz.cn/](https://www.wiz.cn/) | 笔记 + 知识管理 |
+| 石墨文档 | [https://shimo.im/](https://shimo.im/) | 在线文档协同 |
+| Baklib | [https://www.baklib.com/](https://www.baklib.com/) | 帮助文档制作 |
+| Seed | [https://seed.pgyer.com/](https://seed.pgyer.com/) | API 文档 |
+| PingCode | [https://pingcode.com/](https://pingcode.com/) | 研发管理 |
 
 ### 开源
 
-- **推荐** [Ink-wash-docs](https://github.com/huangwei9527/Ink-wash-docs) 后端:nodejs,前端:nuxt+vue
-- **推荐**[mrdoc](https://github.com/zmister2016/MrDoc)   后端:python,前端:jquery
-- **推荐**[zyplayer-doc](https://gitee.com/zyplayer/zyplayer-doc) 后端:java,前端:vue
-- [蚂蚁笔记](https://github.com/leanote/leanote) 后端:go,前端:electron
-- <https://github.com/qjx378/wenku> 后端:java,前端:jquery
-- **推荐**<https://gitee.com/software-minister>  后端:java,前端:vue
-- **推荐**[思源](https://github.com/siyuan-note/siyuan) 后端:go,前端:vue
-- **推荐**[mindoc](https://github.com/mindoc-org/mindoc) 后端:go ,前端:jquery
-- **推荐**<https://github.com/phachon/mm-wiki> 后端:go,前端:jquery
-- <https://github.com/ryanlelek/Raneto>后端:nodejs,前端:jquery
-- <https://github.com/BookStackApp/BookStack> 后端:php,前端:jquery
-- **推荐**[书栈网](https://github.com/TruthHun/BookStack)后端:go,前端:jquery
-- <https://github.com/94fzb/zrlog> 后端:java,前端:jquery
-- <https://github.com/mdnice/markdown-nice> 前端:react
-- [pagesmanager](https://gitee.com/durcframework/pagesmanager) 后端:java,前端:vue
-- [wcps](http://wcp.wcpknow.com/) 后端:java ,前端:jquery
-- [https://gitee.com/durcframework/torna](https://gitee.com/durcframework/torna) 后端:java,前端:jquery
-- [小幺鸡](https://gitee.com/zhoujingjie/apiManager) 后端:java,前端:jquery
-
-## 一些例子
-
-### vitepress
-
-- <https://rollupjs.org/>
-- <https://vitest.dev/>
-- <https://tresjs.org/guide/>
-- <https://sveltepress.site/guide/introduction/>
+| 项目 | 技术栈 | 地址 |
+|---|---|---|
+| MrDoc | Python + jQuery | [GitHub](https://github.com/zmister2016/MrDoc) |
+| MM-Wiki | Go + jQuery | [GitHub](https://github.com/phachon/mm-wiki) |
+| BookStack (Go) | Go + jQuery | [GitHub](https://github.com/TruthHun/BookStack) |
+| 思源笔记 | Go + Vue | [GitHub](https://github.com/siyuan-note/siyuan) |
+| 蚂蚁笔记 | Go + Electron | [GitHub](https://github.com/leanote/leanote) |
+| MinDoc | Go + jQuery | [GitHub](https://github.com/mindoc-org/mindoc) |
+| Zyplayer-Doc | Java + Vue | [Gitee](https://gitee.com/zyplayer/zyplayer-doc) |
+| BookStack (PHP) | PHP + jQuery | [GitHub](https://github.com/BookStackApp/BookStack) |
+| Ink-wash-docs | Node.js + Nuxt | [GitHub](https://github.com/huangwei9527/Ink-wash-docs) |
+| Torna | Java + Vue | [Gitee](https://gitee.com/durcframework/torna) |
+| Markdown Nice | React | [GitHub](https://github.com/mdnice/markdown-nice) |

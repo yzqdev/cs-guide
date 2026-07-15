@@ -1,548 +1,532 @@
-# ES6 (ES2015)到es8
+# ES6 (ES2015) 到 ES8 (ES2017) 新特性
 
-直接看掘金上的文章不香吗??
-[https://juejin.cn/post/6844903775329583112](https://juejin.cn/post/6844903775329583112)
+本文档涵盖从 ES6 到 ES8 的核心 JavaScript 新特性。
 
-## ES7新特性（2016）
+## 目录
 
-ES2016添加了两个小的特性来说明标准化过程：
+- [ES6 (ES2015) 核心特性](#es6-es2015-核心特性)
+  - [1. let 和 const](#1-let-和-const)
+  - [2. 箭头函数](#2-箭头函数)
+  - [3. 模板字符串](#3-模板字符串)
+  - [4. 解构赋值](#4-解构赋值)
+  - [5. 默认参数 / Rest 参数 / 展开运算符](#5-默认参数--rest-参数--展开运算符)
+  - [6. 类 (Class)](#6-类-class)
+  - [7. 模块化 (Module)](#7-模块化-module)
+  - [8. Promise](#8-promise)
+  - [9. Symbol](#9-symbol)
+  - [10. Map 与 Set](#10-map-与-set)
+  - [11. 迭代器 (Iterator) 与生成器 (Generator)](#11-迭代器-iterator-与生成器-generator)
+  - [12. 数值新方法](#12-数值新方法)
+- [ES7 (ES2016) 新特性](#es7-es2016-新特性)
+  - [1. Array.prototype.includes()](#1-arrayprototypeincludes)
+  - [2. 指数运算符 `**`](#2-指数运算符-)
+- [ES8 (ES2017) 新特性](#es8-es2017-新特性)
+  - [1. async/await](#1-asyncawait)
+  - [2. Object.values()](#2-objectvalues)
+  - [3. Object.entries()](#3-objectentries)
+  - [4. String padding: padStart() / padEnd()](#4-string-padding-padstart--padend)
+  - [5. 函数参数列表结尾允许逗号](#5-函数参数列表结尾允许逗号)
+  - [6. Object.getOwnPropertyDescriptors()](#6-objectgetownpropertydescriptors)
+  - [7. SharedArrayBuffer 与 Atomics](#7-sharedarraybuffer-与-atomics)
 
-- 数组includes()方法，用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回true，否则返回false。
-- a ** b指数运算符，它与 Math.pow(a, b)相同。
+---
 
-### 1.Array.prototype.includes()
+## ES6 (ES2015) 核心特性
 
-`includes()` 函数用来判断一个数组是否包含一个指定的值，如果包含则返回 `true`，否则返回`false`。
+ES6 是 JavaScript 自诞生以来最大的一次更新，引入了大量新语法和特性，奠定了现代 JavaScript 的基础。
 
-`includes` 函数与 `indexOf` 函数很相似，下面两个表达式是等价的：
+### 1. let 和 const
+
+`let` 和 `const` 提供了块级作用域（block-scoped）的变量声明方式，取代了 `var` 的函数级作用域。
 
 ```js
-arr.includes(x)
-arr.indexOf(x) >= 0
-
-
-```
-
-接下来我们来判断数字中是否包含某个元素：
-
-> 在ES7之前的做法
-
-使用`indexOf()`验证数组中是否存在某个元素，这时需要根据返回值是否为-1来判断：
-
-```
-let arr = ['react', 'angular', 'vue'];
-
-if (arr.indexOf('react') !== -1)
+// let — 块级作用域变量
 {
-    console.log('react存在');
+  let x = 1
+  console.log(x) // 1
+}
+console.log(x) // ReferenceError: x is not defined
+
+// const — 块级作用域常量（引用不可变）
+const PI = 3.14159
+PI = 3 // TypeError: Assignment to constant variable
+
+// const 对象属性可变
+const obj = { a: 1 }
+obj.a = 2 // ✅ 允许
+obj = {} // ❌ 不允许
+
+// 暂时性死区 (TDZ)
+console.log(a) // ReferenceError
+let a = 1
+```
+
+### 2. 箭头函数
+
+箭头函数提供了更简洁的函数写法，并且没有自己的 `this`、`arguments`、`super` 或 `new.target`。
+
+```js
+// 基本语法
+const add = (a, b) => a + b
+
+// 单参数可省略括号
+const square = (x) => x * x
+
+// 多行函数体需要花括号和 return
+const sum = (a, b) => {
+  const result = a + b
+  return result
 }
 
+// 返回对象字面量需加括号
+const create = (name) => ({ id: 1, name })
 
+// 箭头函数没有自己的 this
+const obj = {
+  name: 'Alice',
+  greet1: function () {
+    setTimeout(function () {
+      console.log(this.name) // undefined (this 指向 window/global)
+    }, 100)
+  },
+  greet2: function () {
+    setTimeout(() => {
+      console.log(this.name) // 'Alice' (箭头函数捕获外层 this)
+    }, 100)
+  },
+}
 ```
 
-> 使用ES7的includes()
+### 3. 模板字符串
 
-使用includes()验证数组中是否存在某个元素，这样更加直观简单：
+模板字符串使用反引号 `` ` ``，支持嵌入表达式和多行字符串。
 
+```js
+const name = 'World'
+const greeting = `Hello, ${name}!` // Hello, World!
+
+// 多行字符串
+const html = `
+  <div>
+    <h1>${name}</h1>
+  </div>
+`
+
+// 带标签的模板字符串 (Tagged Template)
+function highlight(strings, ...values) {
+  return strings.reduce((result, str, i) => `${result}${str}<strong>${values[i] || ''}</strong>`, '')
+}
+const msg = highlight`Hello, ${name}!`
 ```
-let arr = ['react', 'angular', 'vue'];
 
-if (arr.includes('react'))
-{
-    console.log('react存在');
+### 4. 解构赋值
+
+从数组或对象中提取值并赋给变量。
+
+```js
+// 数组解构
+const [a, b, c] = [1, 2, 3]
+// a=1, b=2, c=3
+
+const [first, ...rest] = [1, 2, 3, 4]
+// first=1, rest=[2,3,4]
+
+// 默认值
+const [x = 0, y = 0] = [1]
+// x=1, y=0
+
+// 交换变量
+;[a, b] = [b, a]
+
+// 对象解构
+const person = { name: 'Alice', age: 30 }
+const { name, age } = person
+
+// 重命名 + 默认值
+const { name: userName, gender = 'unknown' } = person
+
+// 嵌套解构
+const data = { user: { id: 1, info: { email: 'a@b.com' } } }
+const {
+  user: {
+    info: { email },
+  },
+} = data
+
+// 函数参数解构
+function print({ name, age }) {
+  console.log(`${name} is ${age} years old`)
+}
+```
+
+### 5. 默认参数 / Rest 参数 / 展开运算符
+
+```js
+// 默认参数
+function greet(name = 'Guest') {
+  return `Hello, ${name}`
 }
 
-```
-
-### 2.指数操作符
-
-在ES7中引入了指数运算符`**`，`**`具有与`Math.pow(..)`等效的计算结果。
-
-> 不使用指数操作符
-
-使用自定义的递归函数calculateExponent或者Math.pow()进行指数运算：
-
-```
-function calculateExponent(base, exponent)
-{
-    if (exponent === 1)
-    {
-        return base;
-    }
-    else
-    {
-        return base * calculateExponent(base, exponent - 1);
-    }
+// Rest 参数 — 收集剩余参数为数组
+function sum(...numbers) {
+  return numbers.reduce((acc, n) => acc + n, 0)
 }
+sum(1, 2, 3, 4) // 10
 
-console.log(calculateExponent(2, 10)); // 输出1024
-console.log(Math.pow(2, 10)); // 输出1024
+// 展开运算符 — 展开数组/对象
+const arr1 = [1, 2, 3]
+const arr2 = [4, 5, 6]
+const merged = [...arr1, ...arr2] // [1,2,3,4,5,6]
 
+// 复制数组（浅拷贝）
+const copy = [...arr1]
+
+// 函数调用时展开
+Math.max(...[1, 5, 3]) // 5
 ```
 
-> 使用指数操作符
+### 6. 类 (Class)
 
-使用指数运算符**，就像+、-等操作符一样：
+ES6 的 `class` 语法糖，基于原型链的面向对象编程。
 
-```
-console.log(2**10);// 输出1024
+```js
+class Animal {
+  constructor(name) {
+    this.name = name
+  }
 
-```
+  speak() {
+    console.log(`${this.name} makes a sound.`)
+  }
 
-## ES8新特性（2017）
+  // 静态方法
+  static classify() {
+    return 'Animal'
+  }
 
-- async/await
-- `Object.values()`
-- `Object.entries()`
-- String padding: `padStart()`和`padEnd()`，填充字符串达到当前长度
-- 函数参数列表结尾允许逗号
-- `Object.getOwnPropertyDescriptors()`
-- `ShareArrayBuffer`和`Atomics`对象，用于从共享内存位置读取和写入
+  // Getter / Setter
+  get description() {
+    return `This is ${this.name}`
+  }
 
-### 1.async/await
-
-ES2018引入异步迭代器（asynchronous iterators），这就像常规迭代器，除了`next()`方法返回一个Promise。因此`await`可以和`for...of`循环一起使用，以串行的方式运行异步操作。例如：
-
-```
-async function process(array) {
-  for await (let i of array) {
-    doSomething(i);
+  set nickname(val) {
+    this.name = val
   }
 }
 
-```
+// 继承
+class Dog extends Animal {
+  constructor(name, breed) {
+    super(name) // 必须调用 super
+    this.breed = breed
+  }
 
-### 2.Object.values()
-
-`Object.values()`是一个与`Object.keys()`类似的新函数，但返回的是Object自身属性的所有值，不包括继承的值。
-
-假设我们要遍历如下对象`obj`的所有值：
-
-```
-const obj = {a: 1, b: 2, c: 3};
-
-```
-
-> 不使用Object.values() :ES7
-
-```
-const vals=Object.keys(obj).map(key=>obj[key]);
-console.log(vals);//[1, 2, 3]
-
-```
-
-> 使用Object.values() :ES8
-
-```
-const values=Object.values(obj1);
-console.log(values);//[1, 2, 3]
-
-```
-
-从上述代码中可以看出`Object.values()`为我们省去了遍历key，并根据这些key获取value的步骤。
-
-### 3.Object.entries()
-
-`Object.entries()`函数返回一个给定对象自身可枚举属性的键值对的数组。
-
-接下来我们来遍历上文中的`obj`对象的所有属性的key和value：
-
-> 不使用Object.entries() :ES7
-
-```
-Object.keys(obj).forEach(key=>{
- console.log('key:'+key+' value:'+obj[key]);
-})
-//key:a value:1
-//key:b value:2
-//key:c value:3
-
-```
-
-> 使用Object.entries() :ES8
-
-```
-for(let [key,value] of Object.entries(obj1)){
- console.log(`key: ${key} value:${value}`)
+  speak() {
+    console.log(`${this.name} barks!`)
+  }
 }
-//key:a value:1
-//key:b value:2
-//key:c value:3
-
-
 ```
 
-### 4.String padding
+### 7. 模块化 (Module)
 
-在ES8中String新增了两个实例函数`String.prototype.padStart`和`String.prototype.padEnd`，允许将空字符串或其他字符串添加到原始字符串的开头或结尾。
+ES6 原生支持模块化，使用 `import` / `export`。
 
-> String.padStart(targetLength,[padString])
+```js
+// 📁 math.js
+export const PI = 3.14159
+export function add(a, b) {
+  return a + b
+}
+export default class Calculator {
+  /* ... */
+}
 
-- targetLength:当前字符串需要填充到的目标长度。如果这个数值小于当前字符串的长度，则返回当前字符串本身。
-- padString:(可选)填充字符串。如果字符串太长，使填充后的字符串长度超过了目标长度，则只保留最左侧的部分，其他部分会被截断，此参数的缺省值为 " "。
-
-```
-console.log('0.0'.padStart(4,'10')) //10.0
-console.log('0.0'.padStart(20))// 0.00    
-
-```
-
-> String.padEnd(targetLength,padString])
-
-- targetLength:当前字符串需要填充到的目标长度。如果这个数值小于当前字符串的长度，则返回当前字符串本身。
-- padString:(可选) 填充字符串。如果字符串太长，使填充后的字符串长度超过了目标长度，则只保留最左侧的部分，其他部分会被截断，此参数的缺省值为 " "；
-
-```
-console.log('0.0'.padEnd(4,'0')) //0.00    
-console.log('0.0'.padEnd(10,'0'))//0.00000000
-
+// 📁 app.js
+import Calculator, { PI, add } from './math.js'
+import * as MathUtils from './math.js'
 ```
 
-### 5.函数参数列表结尾允许逗号
+### 8. Promise
 
-主要作用是方便使用git进行多人协作开发时修改同一个函数减少不必要的行变更。
+Promise 用于处理异步操作，避免回调地狱。[详见 Promise 专题](./promise.md)。
 
-### 6.Object.getOwnPropertyDescriptors()
+```js
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve('done'), 1000)
+})
 
-`Object.getOwnPropertyDescriptors()`函数用来获取一个对象的所有自身属性的描述符,如果没有任何自身属性，则返回空对象。
-
-> 函数原型：
-
+promise
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error))
+  .finally(() => console.log('complete'))
 ```
+
+### 9. Symbol
+
+Symbol 是唯一的、不可变的基本类型，常用于对象属性键。
+
+```js
+const sym1 = Symbol('desc')
+const sym2 = Symbol('desc')
+sym1 === sym2 // false
+
+// 用作对象属性
+const obj = {
+  [sym1]: 'value1',
+  [sym2]: 'value2',
+}
+
+// 内置 Symbol
+const arr = [1, 2, 3]
+const it = arr[Symbol.iterator]()
+```
+
+### 10. Map 与 Set
+
+```js
+// Map — 键可以是任意类型
+const map = new Map()
+map.set('key', 'value')
+map.set(obj, 'object value')
+map.get('key') // 'value'
+map.size // 2
+map.has('key') // true
+map.delete('key')
+
+// 遍历
+for (const [key, value] of map) {
+  /* ... */
+}
+
+// Set — 值唯一
+const set = new Set([1, 2, 2, 3, 3, 3])
+set.size // 3
+set.has(1) // true
+set.add(4)
+set.delete(1)
+```
+
+### 11. 迭代器 (Iterator) 与生成器 (Generator)
+
+```js
+// 迭代器协议
+const iterable = {
+  [Symbol.iterator]() {
+    let step = 0
+    return {
+      next() {
+        step++
+        if (step <= 3) return { value: step, done: false }
+        return { value: undefined, done: true }
+      },
+    }
+  },
+}
+for (const n of iterable) {
+  console.log(n)
+} // 1, 2, 3
+
+// 生成器 — 简化迭代器创建
+function* generator() {
+  yield 1
+  yield 2
+  yield 3
+}
+const gen = generator()
+gen.next() // { value: 1, done: false }
+gen.next() // { value: 2, done: false }
+```
+
+### 12. 数值新方法
+
+```js
+Number.isNaN(NaN) // true
+Number.isFinite(Infinity) // false
+Number.isInteger(1.5) // false
+Number.parseInt('42') // 42
+Number.parseFloat('3.14') // 3.14
+```
+
+---
+
+## ES7 (ES2016) 新特性
+
+ES2016 只添加了两个小特性，展示了 ECMAScript 的标准化流程：
+
+### 1. Array.prototype.includes()
+
+`includes()` 判断数组是否包含某个值，返回 `true` / `false`，比 `indexOf` 更直观。
+
+```js
+// ES7 之前 — 使用 indexOf
+const arr = ['react', 'angular', 'vue']
+if (arr.indexOf('react') !== -1) {
+  console.log('react 存在')
+}
+
+// ES7 — 使用 includes
+if (arr.includes('react')) {
+  console.log('react 存在')
+}
+
+// includes 能正确处理 NaN
+;[NaN].indexOf(NaN) // -1
+;[NaN].includes(NaN) // true
+```
+
+### 2. 指数运算符 `**`
+
+`**` 与 `Math.pow()` 等效，但更简洁。
+
+```js
+// 不使用指数操作符
+Math.pow(2, 10) // 1024
+
+// 使用指数操作符
+2 ** 10 // 1024
+
+// 结合赋值
+let a = 2
+a **= 3 // a = 8
+```
+
+---
+
+## ES8 (ES2017) 新特性
+
+### 1. async/await
+
+让异步代码像同步代码一样编写，详见 [async-await 专题](./async-await.md)。
+
+```js
+async function fetchData(url) {
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('请求失败:', error)
+  }
+}
+```
+
+### 2. Object.values()
+
+返回对象自身所有可枚举属性的值组成的数组。
+
+```js
+const obj = { a: 1, b: 2, c: 3 }
+
+// ES7 方式
+const vals = Object.keys(obj).map((key) => obj[key])
+console.log(vals) // [1, 2, 3]
+
+// ES8 方式
+console.log(Object.values(obj)) // [1, 2, 3]
+```
+
+### 3. Object.entries()
+
+返回对象自身可枚举属性的 `[key, value]` 对数组。
+
+```js
+const obj = { a: 1, b: 2, c: 3 }
+
+// ES7 方式
+Object.keys(obj).forEach((key) => {
+  console.log(`key: ${key} value: ${obj[key]}`)
+})
+
+// ES8 方式
+for (const [key, value] of Object.entries(obj)) {
+  console.log(`key: ${key} value: ${value}`)
+}
+
+// Object.entries 也可用于 Map 转换
+const map = new Map(Object.entries(obj))
+```
+
+### 4. String padding: padStart() / padEnd()
+
+用指定字符串填充原字符串到目标长度。
+
+```js
+// padStart — 从开头填充
+console.log('0.0'.padStart(4, '10')) // 10.0
+console.log('0.0'.padStart(20)) // '                0.0'
+
+// padEnd — 从结尾填充
+console.log('0.0'.padEnd(4, '0')) // 0.00
+console.log('0.0'.padEnd(10, '0')) // 0.00000000
+
+// 实际应用：数字补零、对齐
+console.log('5'.padStart(2, '0')) // '05'
+console.log('12'.padStart(2, '0')) // '12'
+```
+
+### 5. 函数参数列表结尾允许逗号
+
+方便多人协作开发时修改函数签名，减少不必要的行变更。
+
+```js
+// ES8 允许在参数列表末尾加逗号
+function foo(
+  param1,
+  param2,
+  param3, // 末尾逗号，git diff 更干净
+) {
+  // ...
+}
+```
+
+### 6. Object.getOwnPropertyDescriptors()
+
+获取对象所有自身属性的描述符。
+
+```js
+const obj = {
+  name: 'Jine',
+  get age() {
+    return '18'
+  },
+}
+
 Object.getOwnPropertyDescriptors(obj)
-
-```
-
-返回`obj`对象的所有自身属性的描述符，如果没有任何自身属性，则返回空对象。
-
-```
-const obj2 = {
- name: 'Jine',
- get age() { return '18' }
-};
-Object.getOwnPropertyDescriptors(obj2)
 // {
 //   age: {
 //     configurable: true,
 //     enumerable: true,
-//     get: function age(){}, //the getter function
+//     get: function age(){},
 //     set: undefined
 //   },
 //   name: {
 //     configurable: true,
 //     enumerable: true,
-//  value:"Jine",
-//  writable:true
+//     value: "Jine",
+//     writable: true
 //   }
 // }
 
+// 结合 Object.defineProperties 用于浅拷贝 getter/setter
+const clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj))
 ```
 
-### 7.SharedArrayBuffer对象
+### 7. SharedArrayBuffer 与 Atomics
 
-SharedArrayBuffer 对象用来表示一个通用的，固定长度的原始二进制数据缓冲区，类似于 ArrayBuffer 对象，它们都可以用来在共享内存（shared memory）上创建视图。与 ArrayBuffer 不同的是，SharedArrayBuffer 不能被分离。
+> 用于共享内存和原子操作，主要面向 Web Workers 多线程场景。
 
-```
-/**
- * 
- * @param {*} length 所创建的数组缓冲区的大小，以字节(byte)为单位。  
- * @returns {SharedArrayBuffer} 一个大小指定的新 SharedArrayBuffer 对象。其内容被初始化为 0。
- */
-new SharedArrayBuffer(length)
+```js
+// SharedArrayBuffer — 共享内存缓冲区
+const buffer = new SharedArrayBuffer(16)
+const view = new Int32Array(buffer)
 
-```
-
-### 8.Atomics对象
-
-Atomics 对象提供了一组静态方法用来对 SharedArrayBuffer 对象进行原子操作。
-
-这些原子操作属于 Atomics 模块。与一般的全局对象不同，Atomics 不是构造函数，因此不能使用 new 操作符调用，也不能将其当作函数直接调用。Atomics 的所有属性和方法都是静态的（与 Math  对象一样）。
-
-多个共享内存的线程能够同时读写同一位置上的数据。原子操作会确保正在读或写的数据的值是符合预期的，即下一个原子操作一定会在上一个原子操作结束后才会开始，其操作过程不会中断。
-
-- Atomics.add()
-
-> 将指定位置上的数组元素与给定的值相加，并返回相加前该元素的值。
-
-- Atomics.and()
-
-> 将指定位置上的数组元素与给定的值相与，并返回与操作前该元素的值。
-
-- Atomics.compareExchange()
-
-> 如果数组中指定的元素与给定的值相等，则将其更新为新的值，并返回该元素原先的值。
-
-- Atomics.exchange()
-
-> 将数组中指定的元素更新为给定的值，并返回该元素更新前的值。
-
-- Atomics.load()
-
-> 返回数组中指定元素的值。
-
-- Atomics.or()
-
-> 将指定位置上的数组元素与给定的值相或，并返回或操作前该元素的值。
-
-- Atomics.store()
-
-> 将数组中指定的元素设置为给定的值，并返回该值。
-
-- Atomics.sub()
-
-> 将指定位置上的数组元素与给定的值相减，并返回相减前该元素的值。
-
-- Atomics.xor()
-
-> 将指定位置上的数组元素与给定的值相异或，并返回异或操作前该元素的值。
-
-wait() 和 wake() 方法采用的是 Linux 上的 futexes 模型（fast user-space mutex，快速用户空间互斥量），可以让进程一直等待直到某个特定的条件为真，主要用于实现阻塞。
-
-- Atomics.wait()
-
-> 检测数组中某个指定位置上的值是否仍然是给定值，是则保持挂起直到被唤醒或超时。返回值为 "ok"、"not-equal" 或 "time-out"。调用时，如果当前线程不允许阻塞，则会抛出异常（大多数浏览器都不允许在主线程中调用 wait()）。
-
-- Atomics.wake()
-
-> 唤醒等待队列中正在数组指定位置的元素上等待的线程。返回值为成功唤醒的线程数量。
-
-- Atomics.isLockFree(size)
-
-> 可以用来检测当前系统是否支持硬件级的原子操作。对于指定大小的数组，如果当前系统支持硬件级的原子操作，则返回 true；否则就意味着对于该数组，Atomics 对象中的各原子操作都只能用锁来实现。此函数面向的是技术专家。-->
-
-## ES9新特性（2018）
-
-- 异步迭代
-- Promise.finally()
-- Rest/Spread 属性
-- [正则表达式命名捕获组](http://esnext.justjavac.com/proposal/regexp-named-groups.html)（Regular Expression Named Capture Groups）
-- [正则表达式反向断言](https://segmentfault.com/a/1190000006824133)（lookbehind）
-- 正则表达式dotAll模式
-- [正则表达式 Unicode 转义](https://juejin.im/post/6844903622870827022#heading-1)
-- [非转义序列的模板字符串](https://juejin.im/post/6844903622870827022#heading-1)
-
-### 1.异步迭代
-
-在`async/await`的某些时刻，你可能尝试在同步循环中调用异步函数。例如：
-
-```
-async function process(array) {
-  for (let i of array) {
-    await doSomething(i);
-  }
-}
-
+// Atomics — 原子操作
+Atomics.add(view, 0, 5) // 位置0加5，返回旧值
+Atomics.store(view, 0, 10)
+Atomics.load(view, 0) // 10
+Atomics.compareExchange(view, 0, 10, 20) // 如果值是10则换成20
 ```
 
-这段代码不会正常运行，下面这段同样也不会：
+---
 
-```
-async function process(array) {
-  array.forEach(async i => {
-    await doSomething(i);
-  });
-}
-
-```
-
-这段代码中，循环本身依旧保持同步，并在在内部异步函数之前全部调用完成。
-
-ES2018引入异步迭代器（asynchronous iterators），这就像常规迭代器，除了`next()`方法返回一个Promise。因此`await`可以和`for...of`循环一起使用，以串行的方式运行异步操作。例如：
-
-```
-async function process(array) {
-  for await (let i of array) {
-    doSomething(i);
-  }
-}
-
-```
-
-### 2.Promise.finally()
-
-一个Promise调用链要么成功到达最后一个`.then()`，要么失败触发`.catch()`。在某些情况下，你想要在无论Promise运行成功还是失败，运行相同的代码，例如清除，删除对话，关闭数据库连接等。
-
-`.finally()`允许你指定最终的逻辑：
-
-```
-function doSomething() {
-  doSomething1()
-  .then(doSomething2)
-  .then(doSomething3)
-  .catch(err => {
-    console.log(err);
-  })
-  .finally(() => {
-    // finish here!
-  });
-}
-
-```
-
-### 3.Rest/Spread 属性
-
-ES2015引入了[Rest参数](https://link.juejin.im?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FFunctions%2FRest_parameters)和[扩展运算符](https://link.juejin.im?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FJavaScript%2FReference%2FOperators%2FSpread_syntax)。三个点（...）仅用于数组。Rest参数语法允许我们将一个不定数量的参数表示为一个数组。
-
-```
-restParam(1, 2, 3, 4, 5);
-
-function restParam(p1, p2, ...p3) {
-  // p1 = 1
-  // p2 = 2
-  // p3 = [3, 4, 5]
-}
-
-```
-
-展开操作符以相反的方式工作，将数组转换成可传递给函数的单独参数。例如`Math.max()`返回给定数字中的最大值：
-
-```
-const values = [99, 100, -1, 48, 16];
-console.log( Math.max(...values) ); // 100
-
-```
-
-ES2018为对象解构提供了和数组一样的Rest参数（）和展开操作符，一个简单的例子：
-
-```
-const myObject = {
-  a: 1,
-  b: 2,
-  c: 3
-};
-
-const { a, ...x } = myObject;
-// a = 1
-// x = { b: 2, c: 3 }
-
-```
-
-或者你可以使用它给函数传递参数：
-
-```
-restParam({
-  a: 1,
-  b: 2,
-  c: 3
-});
-
-function restParam({ a, ...x }) {
-  // a = 1
-  // x = { b: 2, c: 3 }
-}
-
-```
-
-跟数组一样，Rest参数只能在声明的结尾处使用。此外，它只适用于每个对象的顶层，如果对象中嵌套对象则无法适用。
-
-扩展运算符可以在其他对象内使用，例如：
-
-```
-const obj1 = { a: 1, b: 2, c: 3 };
-const obj2 = { ...obj1, z: 26 };
-// obj2 is { a: 1, b: 2, c: 3, z: 26 }
-
-```
-
-可以使用扩展运算符拷贝一个对象，像是这样`obj2 = {...obj1}`，但是 **这只是一个对象的浅拷贝**。另外，如果一个对象A的属性是对象B，那么在克隆后的对象cloneB中，该属性指向对象B。
-
-### 4.正则表达式命名捕获组
-
-JavaScript正则表达式可以返回一个匹配的对象——一个包含匹配字符串的类数组，例如：以`YYYY-MM-DD`的格式解析日期：
-
-```
-const
-  reDate = /([0-9]{4})-([0-9]{2})-([0-9]{2})/,
-  match  = reDate.exec('2018-04-30'),
-  year   = match[1], // 2018
-  month  = match[2], // 04
-  day    = match[3]; // 30
-
-```
-
-这样的代码很难读懂，并且改变正则表达式的结构有可能改变匹配对象的索引。
-
-ES2018允许命名捕获组使用符号`?<name>`，在打开捕获括号`(`后立即命名，示例如下：
-
-```javascript
-const
-  reDate = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/,
-  match  = reDate.exec('2018-04-30'),
-  year   = match.groups.year,  // 2018
-  month  = match.groups.month, // 04
-  day    = match.groups.day;   // 30
-
-```
-
-任何匹配失败的命名组都将返回`undefined`。
-
-命名捕获也可以使用在`replace()`方法中。例如将日期转换为美国的 MM-DD-YYYY 格式：
-
-```
-const
-  reDate = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/,
-  d      = '2018-04-30',
-  usDate = d.replace(reDate, '$<month>-$<day>-$<year>');
-
-```
-
-### 5.正则表达式反向断言
-
-目前JavaScript在正则表达式中支持先行断言（lookahead）。这意味着匹配会发生，但不会有任何捕获，并且断言没有包含在整个匹配字段中。例如从价格中捕获货币符号：
-
-```
-const
-  reLookahead = /\D(?=\d+)/,
-  match       = reLookahead.exec('$123.89');
-
-console.log( match[0] ); // $
-
-```
-
-ES2018引入以相同方式工作但是匹配前面的反向断言（lookbehind），这样我就可以忽略货币符号，单纯的捕获价格的数字：
-
-```
-const
-  reLookbehind = /(?<=\D)\d+/,
-  match        = reLookbehind.exec('$123.89');
-
-console.log( match[0] ); // 123.89
-
-```
-
-以上是 **肯定反向断言**，非数字`\D`必须存在。同样的，还存在 **否定反向断言**，表示一个值必须不存在，例如：
-
-```
-const
-  reLookbehindNeg = /(?<!\D)\d+/,
-  match           = reLookbehind.exec('$123.89');
-
-console.log( match[0] ); // null
-
-```
-
-### 6.正则表达式dotAll模式
-
-正则表达式中点`.`匹配除回车外的任何单字符，标记`s`改变这种行为，允许行终止符的出现，例如：
-
-```
-/hello.world/.test('hello\nworld');  // false
-/hello.world/s.test('hello\nworld'); // true
-
-```
-
-### 7.正则表达式 Unicode 转义
-
-到目前为止，在正则表达式中本地访问 Unicode 字符属性是不被允许的。ES2018添加了 Unicode 属性转义——形式为`\p{...}`和`\P{...}`，在正则表达式中使用标记 `u` (unicode) 设置，在`\p`块儿内，可以以键值对的方式设置需要匹配的属性而非具体内容。例如：
-
-```
-const reGreekSymbol = /\p{Script=Greek}/u;
-reGreekSymbol.test('π'); // true
-
-```
-
-此特性可以避免使用特定 Unicode 区间来进行内容类型判断，提升可读性和可维护性。
-
-### 8.非转义序列的模板字符串
-
-之前，`\u`开始一个 unicode 转义，`\x`开始一个十六进制转义，`\`后跟一个数字开始一个八进制转义。这使得创建特定的字符串变得不可能，例如Windows文件路径 `C:\uuu\xxx\111`。更多细节参考[模板字符串](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings)。
+> 下一章 → [ES9 (ES2018) 到 ES12 (ES2021) 新特性](./es9-es12.md)

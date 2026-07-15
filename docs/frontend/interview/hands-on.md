@@ -1,60 +1,57 @@
-# 前端手写代码
+# 手写 JavaScript 代码
 
-## 实现call方法
+前端面试高频手写题，覆盖基础 API、设计模式、异步等方向。
+
+## 实现 call 方法
 
 ```javascript
-Function.prototype.myCall = function(context, ...args) {
-   if (context === null || context === undefined) {
-       // 指定为 null 和 undefined 的 this 值会自动指向全局对象(浏览器中为window)
-        context = window 
-    } else {
-        context = Object(context) // 值为原始值（数字，字符串，布尔值）的 this 会指向该原始值的实例对象
-    }
+Function.prototype.myCall = function (context, ...args) {
+  if (context === null || context === undefined) {
+    context = window;
+  } else {
+    context = Object(context);
+  }
   context.fn = this;
   const result = context.fn(...args);
   delete context.fn;
   return result;
-}
-
-getMessage.myCall(obj, 'name'); 
-
-立即执行getMessage方法，不过是以obj.getMessage的方式，
-所以这个时候getMessage内的this是obj，传入参数'name'。
-（obj可能压根就没有getMessage方法）
+};
 ```
 
-## 实现apply方法
+## 实现 apply 方法
 
 ```javascript
-Function.prototype.myApply = function(context, args) {
+Function.prototype.myApply = function (context, args = []) {
+  if (context === null || context === undefined) {
+    context = window;
+  } else {
+    context = Object(context);
+  }
   context.fn = this;
-  const result = context.fn(args);
+  const result = context.fn(...args);
   delete context.fn;
   return result;
-}
-
-getMessage.myApply(obj, ['name']); 
+};
 ```
 
-## 实现bind方法
+## 实现 bind 方法
 
 ```javascript
-Function.prototype.myBind = function(context, ...args) {
-    const fn = this
-    const bindFn = function (...newFnArgs) {
-        return fn.call(
-            this instanceof bindFn ? this : context,
-            ...args, ...newFnArgs
-        )
-    }
-    bindFn.prototype = Object.create(fn.prototype)
-    return bindFn
-}
- 
-
+Function.prototype.myBind = function (context, ...args) {
+  const fn = this;
+  const boundFn = function (...newArgs) {
+    return fn.call(
+      this instanceof boundFn ? this : context,
+      ...args,
+      ...newArgs
+    );
+  };
+  boundFn.prototype = Object.create(fn.prototype);
+  return boundFn;
+};
 ```
 
-## 实现new方法
+## 实现 new 操作符
 
 ```javascript
 function createNew(Ctor, ...args) {
@@ -62,533 +59,442 @@ function createNew(Ctor, ...args) {
   const ret = Ctor.apply(obj, args);
   return ret instanceof Object ? ret : obj;
 }
-
-1. 将构造函数的原型赋值给新建的obj的隐式原型__proto__。
-2. 在obj下执行构造函数，并传入参数，
-   这个时候构造函数内的this就是obj。
-3. 如果这个'构造函数'没有return对象格式的结果，
-   返回新创建的obj。
-
-function Person(name, age) {
-  this.name = name;
-  this.age = age;
-}
-Person.prototype.getName = function() {
-  console.log(this.name);
-}
-
-const xm = createNew(Person, 'xiaoming', 22);
-
 ```
 
-## 实现instanceof方法
+## 实现 instanceof
 
 ```javascript
 function myInstanceOf(left, right) {
-  let proto=Object.getPrototypeOf(left);
-  while(true) {
-    if(proto==null) {
-      return false;
-    }
-    if(left === right.prototype) {
-      return true;
-    }
-    left =Object.getPrototypeOf(proto);
+  let proto = Object.getPrototypeOf(left);
+  while (proto !== null) {
+    if (proto === right.prototype) return true;
+    proto = Object.getPrototypeOf(proto);
   }
+  return false;
 }
-
-instanceof的原理就是通过原型链查找，
-所以一直向上查找左侧的隐式原型__ptoto__是否等于右侧显式原型，
-原型链的尽头是null，没找到就返回false。
-
-myInstanceOf([1,2], Array);  // true
-
-
 ```
 
-## 实现forEach方法
+## 实现 Object.create
 
 ```javascript
-Array.prototype.myForEach = function(fn) {
-  const arr = this;
-  for(let i = 0; i < arr.length; i++) {
-    fn(arr[i], i, arr);
-  }
+function create(proto) {
+  function F() {}
+  F.prototype = proto;
+  return new F();
 }
-
-接受一个fn回调函数，传递给回调函数三个参数：
-每项的值，下标，自身。第二个参数有人用么？
-
-const arr = ['a','b','c'];
-arr.myForEach(item => {
-  console.log(item);  // a   b   c
-})
-
-
 ```
 
-## 实现map函数
+---
+
+## 数组方法
+
+### 实现 forEach
 
 ```javascript
-Array.prototype.myMap = function(fn) {
-  const arr = this;
-  const ret = [];
-  for(let i = 0; i < arr.length; i++) {
-    ret.push(fn(arr[i], i, arr));
+Array.prototype.myForEach = function (fn) {
+  for (let i = 0; i < this.length; i++) {
+    fn(this[i], i, this);
   }
-  return ret;
-}
+};
+```
 
-和forEach类似也是接受一个fn回调，
-不过会将回调处理的结果放入一个新的数组，
-所以map回调内的每一项需要return,
-因为要组成新的数组结果。
+### 实现 map
 
-const arr = ['a', 'b', 'c'];
-const newArr = arr.myMap(item => {  // a1   b1   c1
-  return item + 1; // 要return结果
-})
-//使用reduce实现
+```javascript
 Array.prototype.myMap = function (fn) {
-  return this.reduce((pre, cur, i) => {
-    return [...pre, fn(cur, i, this)]
-  }, [])
-}
+  const result = [];
+  for (let i = 0; i < this.length; i++) {
+    result.push(fn(this[i], i, this));
+  }
+  return result;
+};
 
-
+// 用 reduce 实现
+Array.prototype.myMap = function (fn) {
+  return this.reduce((acc, cur, i) => [...acc, fn(cur, i, this)], []);
+};
 ```
 
-## 实现filter方法
+### 实现 filter
 
 ```javascript
-Array.prototype.myFilter = function(fn) {
-  const arr = this;
-  const ret = [];
-  for(let i = 0; i < arr.length; i++) {
-    if(fn(arr[i], i, arr)) {
-      ret.push(arr[i]);
-    }
+Array.prototype.myFilter = function (fn) {
+  const result = [];
+  for (let i = 0; i < this.length; i++) {
+    if (fn(this[i], i, this)) result.push(this[i]);
   }
-  return ret;
-}
-
-大同小异，过滤出处理条件为true的值。
-
-返回数组中不重复的值：
-function repeat(arr) {
-  return arr.myFilter((v, i, a) => {
- return a.indexOf(v) === a.lastIndexOf(v);
-  })
-}
-
-const arr = [1,2,3,4,1,2,3,5,6,8,3];
-repeat(arr); // [4,5,6,8]
-
-
+  return result;
+};
 ```
 
-## 实现every函数
+### 实现 reduce
 
 ```javascript
-Array.prototype.myEvery = function(fn) {
-  const arr = this;
-  for(let i = 0; i < arr.length; i++) {
-    if(!fn(arr[i], i, arr)) {
-      return false;
-    }
+Array.prototype.myReduce = function (fn, initialValue) {
+  let acc = initialValue !== undefined ? initialValue : this[0];
+  const startIndex = initialValue !== undefined ? 0 : 1;
+  for (let i = startIndex; i < this.length; i++) {
+    acc = fn(acc, this[i], i, this);
   }
-  return true;
-}
-
-
+  return acc;
+};
 ```
 
-## 实现reduce函数
+### 实现 flat
 
 ```javascript
-Array.prototype.myReduce = function(fn, second) {
-  const arr = this;
-  let index = 0;
-  if(typeof second === 'undefined') { // 没传第二个参数
-    index = 1;
-    second = arr[0];
-  }
-  for(let i = index; i < arr.length; i++) {
-    const invoked = fn(second, arr[i], i, arr);
-    second = invoked;
-  }
-  return second;
-}
-
-一般会传入第二个参数作为初始值，如果没有传入，
-初始值就是数组的第一项，将处理的结果进行累计，
-最后返回累计的结果。
-
-返回数组中指定参数重复的次数：
-function count(arr, value) {
-  return arr.myReduce((f, s) => {
-    return Object.is(s, value) ? f + 1 : f + 0;
-  }, 0)
-}
-
-const arr = [1,2,3,4,1,2,3,2,1];
-count(arr, 2); // 3
-
-
+Array.prototype.myFlat = function (depth = 1) {
+  return depth > 0
+    ? this.reduce((acc, cur) =>
+        acc.concat(Array.isArray(cur) ? cur.myFlat(depth - 1) : cur), [])
+    : this.slice();
+};
 ```
 
-## debounce: 函数防抖
+---
+
+## 异步与并发
+
+### 防抖 debounce
 
 ```javascript
-function debounce(fn, delay = 1000) {
+function debounce(fn, delay = 300) {
   let timer;
-  return () => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      fn.apply(this, arguments);
-    }, delay)
-  }
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
 }
-函数防抖指的是一定时间内没有再次触发函数，就执行该函数，否则重新计时。
-wow为例：
-2.5s施法的寒冰箭，再读条的过程中，
-你身子抖动打断了施法，想再次触发技能时麻烦您重新读条。
-
 ```
 
-## throttle：函数节流
+### 节流 throttle
 
 ```javascript
-function throttle(fn, delay = 100) {
-  let timer;
-  return () => {
-    if (!timer) {
+function throttle(fn, interval = 300) {
+  let last = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - last >= interval) {
+      last = now;
+      fn.apply(this, args);
+    }
+  };
+}
+
+// 时间戳 + 定时器版本（保证最后一次也执行）
+function throttle(fn, interval = 300) {
+  let timer = null, last = 0;
+  return function (...args) {
+    const now = Date.now();
+    const remaining = interval - (now - last);
+    clearTimeout(timer);
+    if (remaining <= 0) {
+      last = now;
+      fn.apply(this, args);
+    } else {
       timer = setTimeout(() => {
-        fn.apply(this, arguments);
-        timer = null;
-      }, delay)
+        last = Date.now();
+        fn.apply(this, args);
+      }, remaining);
     }
-  }
+  };
 }
-函数节流指的是规定某个时间内只能执行一次函数。
-wow为例：
-火冲为瞬发技能，不过你规定cd为8s，
-所以即使8s内按了10次，也只能来1发，节省点体力吧。
 ```
 
-## deepClone：深拷贝
+### Promise.all
 
 ```javascript
-一般够用型
-function deepClone(source) {
-  if (typeof source !== 'object' || source == null) {
-    return source;
+function promiseAll(promises) {
+  return new Promise((resolve, reject) => {
+    const results = [];
+    let count = 0;
+    if (!promises.length) return resolve([]);
+    promises.forEach((p, i) => {
+      Promise.resolve(p).then(res => {
+        results[i] = res;
+        count++;
+        if (count === promises.length) resolve(results);
+      }, reject);
+    });
+  });
+}
+```
+
+### Promise.race
+
+```javascript
+function promiseRace(promises) {
+  return new Promise((resolve, reject) => {
+    promises.forEach(p => {
+      Promise.resolve(p).then(resolve, reject);
+    });
+  });
+}
+```
+
+### Promise.allSettled
+
+```javascript
+function promiseAllSettled(promises) {
+  return new Promise(resolve => {
+    const results = [];
+    let count = 0;
+    if (!promises.length) return resolve([]);
+    promises.forEach((p, i) => {
+      Promise.resolve(p).then(
+        val => { results[i] = { status: 'fulfilled', value: val }; },
+        err => { results[i] = { status: 'rejected', reason: err }; }
+      ).finally(() => {
+        count++;
+        if (count === promises.length) resolve(results);
+      });
+    });
+  });
+}
+```
+
+### Promise.any
+
+```javascript
+function promiseAny(promises) {
+  return new Promise((resolve, reject) => {
+    const errors = [];
+    let count = 0;
+    if (!promises.length) return reject(new AggregateError([], 'All promises were rejected'));
+    promises.forEach((p, i) => {
+      Promise.resolve(p).then(resolve, err => {
+        errors[i] = err;
+        count++;
+        if (count === promises.length) reject(new AggregateError(errors, 'All promises were rejected'));
+      });
+    });
+  });
+}
+```
+
+### 并发控制
+
+```javascript
+async function asyncPool(limit, tasks, iteratorFn) {
+  const results = [];
+  const executing = new Set();
+
+  for (const [index, task] of tasks.entries()) {
+    const p = Promise.resolve().then(() => iteratorFn(task, index));
+    results.push(p);
+    executing.add(p);
+
+    const clean = () => executing.delete(p);
+    p.then(clean, clean);
+
+    if (executing.size >= limit) {
+      await Promise.race(executing);
+    }
   }
+
+  return Promise.all(results);
+}
+```
+
+### 发布订阅模式
+
+```javascript
+class EventEmitter {
+  constructor() {
+    this.events = {};
+  }
+  on(event, fn) {
+    (this.events[event] = this.events[event] || []).push(fn);
+    return this;
+  }
+  emit(event, ...args) {
+    (this.events[event] || []).forEach(fn => fn.apply(this, args));
+    return this;
+  }
+  off(event, fn) {
+    if (!fn) {
+      this.events[event] = [];
+    } else {
+      this.events[event] = (this.events[event] || []).filter(f => f !== fn);
+    }
+    return this;
+  }
+  once(event, fn) {
+    const onceFn = (...args) => {
+      fn.apply(this, args);
+      this.off(event, onceFn);
+    };
+    this.on(event, onceFn);
+    return this;
+  }
+}
+```
+
+---
+
+## 深拷贝
+
+```javascript
+// 基础版
+function deepClone(source) {
+  if (typeof source !== 'object' || source === null) return source;
   const target = Array.isArray(source) ? [] : {};
   for (const key in source) {
     if (Object.prototype.hasOwnProperty.call(source, key)) {
-      if (typeof source[key] === 'object' && source[key] !== null) {
-        target[key] = deepClone(source[key]);
-      } else {
-        target[key] = source[key];
-      }
+      target[key] = typeof source[key] === 'object' && source[key] !== null
+        ? deepClone(source[key])
+        : source[key];
     }
   }
   return target;
 }
-解决循环引用和symblo类型
-function cloneDeep(source, hash = new WeakMap()) {
-  if (typeof source !== 'object' || source === null) {
-    return source;
+
+// 完整版（处理循环引用、Symbol、Date、RegExp）
+function deepClone(source, hash = new WeakMap()) {
+  if (source === null || typeof source !== 'object') return source;
+  if (source instanceof Date) return new Date(source);
+  if (source instanceof RegExp) return new RegExp(source);
+  if (hash.has(source)) return hash.get(source);
+
+  const target = Array.isArray(source) ? [] : {};
+  hash.set(source, target);
+
+  const keys = [...Object.keys(source), ...Object.getOwnPropertySymbols(source)];
+  for (const key of keys) {
+    target[key] = deepClone(source[key], hash);
   }
-  if (hash.has(source)) {
-    return hash.get(source);
-  }
-  const ret = Array.isArray(source) ? [] : {};
-  Reflect.ownKeys(source).forEach(key => {
-    const val = source[key];
-    if (typeof val === 'object' && val != null) {
-      ret[key] = cloneDeep(val, hash);
+  return target;
+}
+```
+
+## 深合并
+
+```javascript
+function deepMerge(target, source) {
+  for (const key of Object.keys(source)) {
+    if (source[key] && typeof source[key] === 'object') {
+      if (!target[key]) target[key] = Array.isArray(source[key]) ? [] : {};
+      deepMerge(target[key], source[key]);
     } else {
-      ret[key] = val;
+      target[key] = source[key];
     }
-  })
-  return ret;
+  }
+  return target;
 }
-复制代码
 ```
 
-## Promise：手写简易版
+---
+
+## 柯里化
 
 ```javascript
-class MyPromise {
-  constructor(fn) {
-    this.state = 'PENDING';
-    this.value = null
-    this.resolvedCallbacks = []
-    this.rejectedCallbacks = []
-    const resolve = value => {
-      if (this.state === 'PENDING') {
-        this.state = 'RESOLVED'
-        this.value = value
-        this.resolvedCallbacks.map(cb => cb())
-      }
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
     }
-    const reject = value => {
-      if (this.state === 'PENDING') {
-        this.state = 'REJECTED'
-        this.value = value
-        this.rejectedCallbacks.map(cb => cb())
-      }
-    }
-    try {
-      fn(resolve, reject)
-    } catch (e) {
-      reject(e)
-    }
-  }
-  
-  then(onFulfilled, onRejected) {
-    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : v => v
-    onRejected = typeof onRejected === 'function' ? onRejected : r => { throw r }
-    if (this.state === 'PENDING') {
-      this.resolvedCallbacks.push(() => {
-        onFulfilled(this.value) 
-      })
-      this.rejectedCallbacks.push(() => {
-        onRejected(this.value) 
-      })
-    }
-    if (this.state === 'RESOLVED') {
-      onFulfilled(this.value)
-    }
-    if (this.state === 'REJECTED') {
-      onRejected(this.value)
-    }
-  }
-  
-  catch(fn) {
-    return this.then(null, fn);
-  }
-  
-  static resolve(val) {
-    return new MyPromise(resolve => {
-      resolve(val);
-    })
-  }
-  
-  static reject(err) {
-    return new MyPromise((resolve, reject) => {
-      reject(err);
-    })
-  }
-  
-  static race(promises) {
-    return new MyPromise((resolve, reject) => {
-      for (let i = 0; i < promises.length; i++) {
-        promises[i].then(resolve, reject);
-      }
-    })
-  }
-  
-  static all(promises) {
-    const arr = [];
-    let i = 0;
-    function processData(index, data, resolve) {
-      arr[index] = data;
-      i++;
-      if (i === promises.length) {
-        resolve(arr);
-      }
-    }
-    return new MyPromise((resolve, reject) => {
-      for (let i = 0; i < promises.length; i++) {
-        promises[i].then(data => {
-          processData(i, data, resolve);
-        }, reject);
-      }
-    })
-  }
+    return (...moreArgs) => curried(...args, ...moreArgs);
+  };
 }
- 
+
+// 使用
+const add = curry((a, b, c) => a + b + c);
+add(1)(2)(3);    // 6
+add(1, 2)(3);    // 6
+add(1)(2, 3);    // 6
 ```
 
-## iterator：不使用`Generator`函数创建迭代器
+## 组合函数
 
 ```javascript
-function myIterator(items) {
-  let i = 0;
-  return {
-    next() {
-      const done = i >= items.length;
-      const value = !done ? items[i++] : undefined;
-      return {
-        done,  // 是否全部迭代完成
-        value  // 返回迭代的值
-      }
-    }
-  }
+function compose(...fns) {
+  return (x) => fns.reduceRight((acc, fn) => fn(acc), x);
 }
-const interator = myIterator([1, 2, 3]);
-interator.next();
- 
+
+// 从左到右
+function pipe(...fns) {
+  return (x) => fns.reduce((acc, fn) => fn(acc), x);
+}
 ```
 
-#### Events：事件中心管理
+## 延迟执行 / 异步串行
 
 ```javascript
-class Events {
-  constructor() {
-    this._evnets = Object.create(null);
-  }
-  
-  on(event, fn) {  // 往事件中心添加事件
-    if (Array.isArray(event)) {
-      for (let i = 0; i < event.length; i++) {
-        this.on(evnet[i], fn);
-      }
-    } else {
-      (this._evnets[event] || (this._evnets[event] = [])).push(fn);
-    }
-  }
-  
-  emit(event, ...args) {  // 触发事件中心对应事件
-    const cbs = this._evnets[event];
-    if (cbs) {
-      for (let i = 0; i < cbs.length; i++) {
-        cbs[i].apply(this, args);
-      }
-    }
-  }
-  
-  off(event, fn) {  // 移除事件
-    if (!arguments) {
-      this._evnets = Object.create(null);
-      return this;
-    }
-    if (Array.isArray(event)) {
-      for (let i = 0; i < event.length; i++) {
-        this.off(event[i], fn);
-      }
-      return this;
-    }
-    if (!fn) {
-      this._evnets[event] = null;
-      return this;
-    }
-    const cbs = this._evnets[event];
-    let i = cbs.length;
-    while (i--) {
-      const cb = cbs[i];
-      if (cb === fn || cb.fn === fn) {
-        cbs.splice(i, 1);
-        break;
-      }
-    }
-    return this;
-  }
-  
-  once(evnet, fn) {  // 只执行一次
-    function on() {
-      this.off(evnet, on);
-      fn.apply(this, arguments);
-    }
-    on.fn = fn;
-    this.on(evnet, on);
-    return this;
-  }
+// 按顺序执行 Promise 数组
+function serial(tasks) {
+  return tasks.reduce((prev, cur) => prev.then(cur), Promise.resolve());
 }
-const event = new Event();
-event.on('test', (name, sex) => { // 添加事件
-  console.log(`${name}:${sex}`);
-})
-event.emit('test', 'cc', 'man');  // 传参并触发事件
-evnet.off();  // 清空所有事件
- 
 ```
 
-## 迭代器
+---
 
-```javascript
-const queue = []
-const iterator = (hook, next) => {
-  hook(route, currnet, to => {
-    next(to)
-  })
-}
-const runQueue(queue, fn, cb) {
-  const step = index => {
-    if (index >= queue.length) {
-      cb()
-    } else {
-      if (queue[index]) {
-        fn(queue[index], () => {
-          step(index + 1)
-        })
-      } else {
-       step(index + 1)
-      }
-    }
-  }
-  step(0)
-}
-runQueue(queue, iterator, () => {
-  onComplete()
-})
-复制代码
-```
-
-## setInterval: 使用setTimeout模拟，并随时取消
+## 使用 setTimeout 模拟 setInterval
 
 ```javascript
 function mySetInterval(fn, delay) {
   let timer;
   const loop = () => {
     timer = setTimeout(() => {
-      loop();
       fn();
+      loop();
     }, delay);
   };
   loop();
-  return () => {
-    clearInterval(timer)
-  }
+  return () => clearTimeout(timer);
 }
-const stop = mySetInterval(() => {
-  console.log('test')
-}, 200);
-stop() // 停止
-复制代码
 ```
 
-## setInterval: 使用requestAnimationFrame模拟
+## 使用 requestAnimationFrame 模拟
 
 ```javascript
 function mySetInterval(fn, interval) {
-  const now = Date.now;
-  let startTime = now();
+  let start = Date.now();
   const loop = () => {
     const timer = requestAnimationFrame(loop);
-    if (now() - startTime >= interval) {
-      startTime = now();
-      fn.call(this, timer);
+    if (Date.now() - start >= interval) {
+      start = Date.now();
+      fn(timer);
     }
-  }
+  };
   loop();
 }
-一般来说是不建议使用setInterval的，
-如内部函数复杂就不能保证一定在规定时间内自动执行。
-一般是通过setTimeout模仿setInterval。
-那为什么要实现setInterval？
-因为它内部的实现是使用requestAnimationFrame实现的，
-该方法自带函数节流。
-如有持续的动画需要执行，
-基本会保证在16.6毫秒内执行一次，
-提高动画性能并延时也是精确的。
-mySetInterval(timer => {
-  console.log('a');
-  // cancelAnimationFram(timer); 取消当前定时器
-})
+```
+
+---
+
+## 迭代器协议
+
+```javascript
+function createIterator(items) {
+  let i = 0;
+  return {
+    next() {
+      const done = i >= items.length;
+      return { done, value: done ? undefined : items[i++] };
+    },
+    [Symbol.iterator]() {
+      return this;
+    }
+  };
+}
+```
+
+## 生成器模拟异步
+
+```javascript
+function* fetchGenerator() {
+  const data1 = yield fetch('/api/1').then(r => r.json());
+  const data2 = yield fetch('/api/2').then(r => r.json());
+  return [data1, data2];
+}
+
+function runGenerator(gen) {
+  const g = gen();
+  function step(value) {
+    const result = g.next(value);
+    if (result.done) return Promise.resolve(result.value);
+    return Promise.resolve(result.value).then(val => step(val));
+  }
+  return step();
+}
 ```

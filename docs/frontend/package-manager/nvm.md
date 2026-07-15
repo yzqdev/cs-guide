@@ -1,65 +1,83 @@
-# 使用nvm和fnm
+# Node.js 版本管理
+
+## nvm
+
+nvm（Node Version Manager）用于安装和切换不同版本的 Node.js。
 
 :::tip
-
-也可以使用[fnm](https://github.com/Schniz/fnm) 一个rust写的工具  
-nvm全名node.js version management，顾名思义是一个nodejs的版本管理工具。通过它可以安装和切换不同版本的nodejs。下面列出下载、安装及使用方法:
+推荐使用 [fnm](https://github.com/Schniz/fnm)，基于 Rust 编写，速度更快。
 :::
 
-## linux安装nvm
+### Linux 安装
 
-见 [https://github.com/nvm-sh/nvm](https://github.com/nvm-sh/nvm)
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
 
-## windows安装nvm
+参考: [nvm GitHub](https://github.com/nvm-sh/nvm)
 
-### 下载地址
+### Windows 安装
 
-[https://github.com/coreybutler/nvm-windows/releases](https://github.com/coreybutler/nvm-windows/releases)
+下载地址: [nvm-windows releases](https://github.com/coreybutler/nvm-windows/releases)
 
-```shell
-# nvm 设置淘宝镜像
-#windows版本
-# 设置npm_mirror:
+### 镜像配置
+
+```bash
+# 设置淘宝镜像（Windows）
 nvm npm_mirror https://npmmirror.com/mirrors/npm/
-
-#设置node_mirror:
 nvm node_mirror https://npmmirror.com/mirrors/node/
 ```
 
-之后就是安装nodejs了
+### 常用命令
 
 ```bash
-#安装最新的node
+# 安装最新版 Node.js
 nvm install node
 
-#使用某个版本
+# 使用指定版本
 nvm use 16.2.0
 
-#卸载某个版本
+# 查看已安装版本
+nvm ls
+
+# 卸载指定版本
 nvm uninstall 16.2.0
 ```
 
-## 安装nrm
+## fnm
 
-:::tip
-nrm可以随时切换镜像源
-:::
+[fnm](https://github.com/Schniz/fnm) 是基于 Rust 的跨平台 Node.js 版本管理器，速度比 nvm 快很多。
 
-```shell
-yarn global add nrm
+```bash
+# 安装
+curl -fsSL https://fnm.vercel.app/install | bash
 
+# 安装 Node.js
+fnm install 18
+
+# 使用指定版本
+fnm use 18
 ```
 
-输入`nrm ls`
+## nrm
 
-```text
-# nrm ls
+nrm 用于快速切换 npm 镜像源：
 
-  npm ---------- https://registry.npmjs.org/
-  yarn --------- https://registry.yarnpkg.com/
-  tencent ------ https://mirrors.cloud.tencent.com/npm/
-  cnpm --------- https://r.cnpmjs.org/
-  taobao ------- https://registry.npmmirror.com/
-  npmMirror ---- https://skimdb.npmjs.com/registry/
+```bash
+# 安装
+npm install -g nrm
 
+# 查看可用源
+nrm ls
+
+# 切换源
+nrm use taobao
 ```
+
+可用源：
+
+| 源 | 地址 |
+|-----|------|
+| npm | `https://registry.npmjs.org/` |
+| taobao | `https://registry.npmmirror.com/` |
+| tencent | `https://mirrors.cloud.tencent.com/npm/` |

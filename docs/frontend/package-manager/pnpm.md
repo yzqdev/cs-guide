@@ -1,158 +1,82 @@
-# pnpm教程
+# pnpm
+
+pnpm（performant npm）通过硬链接和内容寻址存储，解决了 `node_modules` 依赖体积膨胀的问题。
 
 :::tip
-注意,建议不要配置store-dir,这样他会在每个磁盘的根目录创建.pnpm-store文件夹来存储缓存
-
-原因:包存储应与安装的位置处于同一驱动器和文件系统上，否则，包将被复制，而不是被链接。 这是由于硬链接的工作方式带来的一个限制，因为一个文件系统上的文件无法寻址另一个文件系统中的位置
+建议在固态硬盘上使用 pnpm，机械硬盘上安装时间可能较长。推荐在机械硬盘上使用 yarn。
 :::
 
-```bash
-pnpm config set store-dir /path/to/.pnpm-store
-
-并且设置自动安装peerdependencies
-pnpm config set auto-install-peers true
-```
-
-## 介绍
-
-全称performant npm(高性能的npm)，见名知意，就是一个npm的替代品，至于为什么高性能，用什么样的方式解决了依赖包体积趋近于黑洞的问题,解决了什么问题呢?可以参考大佬的说明[掘金](https://juejin.cn/post/6932046455733485575),[官网](https://pnpm.io/zh/motivation)
-:::tip
-注意: pnpm在固态硬盘上性能最好,机械硬盘上安装时间可能需要半小时,
-推荐在固态硬盘使用pnpm,在机械硬盘使用yarn
-
-:::
 ## 安装
 
- 
-nodejs v16.13.0之后的版本内置了实验性的工具corepack，就是nodejs内置的一个管理包管理器的一个东西,[文档](https://github.com/nodejs/corepack/blob/main/README.md)
+### 通过 corepack（推荐）
 
-这个corepack就是版本之后默认自带的一个工具，专门用来管理这些安装依赖的这些个工具，自带npm,yarn,pnpm,不用我们手动安装
+Node.js v16.13.0+ 内置 corepack，可直接管理包管理器：
 
-切换到指定版本，接着按照pnpm官网的文档，先把实验性的corepack开启
-
-```shell
+```bash
 corepack enable
+corepack prepare pnpm@latest --activate
 ```
 
-通常corepack中的包管理器版本都不是最新的所以我们要升级到最新，关于最新的pnpm版本号，[![npm version](https://img.shields.io/npm/v/pnpm.svg)](https://www.npmjs.com/package/pnpm)可以去npmjs官网去看
-
-yarn版本[![npm version](https://img.shields.io/npm/v/yarn.svg)](https://www.npmjs.com/package/yarn)
-
-```shell
-
-corepack prepare pnpm@* --activate
-```
-
-或者使用npm安装
+### 通过 npm
 
 ```bash
 npm i -g pnpm
-
-
-pnpm安装包
-pnpm install
-
 ```
 
-### 安装全局包
-
-```shell
-pnpm add -g serve
-```
-
-workspace用于lerna项目,不需要在子项目做install的操作
-pnpm-workspace.yaml
+## 配置
 
 ```bash
-packages:
-  # all packages in subdirs of packages/ and components/
-  - 'packages/**'
-  - 'components/**'
-  # exclude packages that are inside test directories
-  - '!**/test/**'
+# 设置淘宝镜像
+pnpm config set registry https://registry.npmmirror.com
+
+# 自动安装 peerDependencies
+pnpm config set auto-install-peers true
 ```
 
-硬链接的优点：
+:::warning
+建议不要手动设置 `store-dir`，pnpm 会在每个磁盘根目录创建 `.pnpm-store`。包存储必须与安装位置在同一驱动器和文件系统上，否则包会被复制而非链接。
+:::
 
-- 兼容性好
-- 盘符被更改也不会受影响
-- 无需管理员的权限  
+## 常用命令
 
-硬链接的缺点：
+| 命令 | 说明 |
+|------|------|
+| `pnpm install` | 安装依赖 |
+| `pnpm add <pkg>` | 添加依赖 |
+| `pnpm add -g <pkg>` | 安装全局包 |
+| `pnpm remove <pkg>` | 移除依赖 |
+| `pnpm prune` | 清理未引用的依赖 |
 
-- 必须在同一个分区
-- 仅支持本地驱动器
-- 不支持为文件夹创建硬链接
-:::tip
-全局安装的包
+## 硬链接的优缺点
+
+| 优点 | 缺点 |
+|------|------|
+| 兼容性好 | 必须在同一分区 |
+| 盘符更改不受影响 | 仅支持本地驱动器 |
+| 无需管理员权限 | 不支持为文件夹创建硬链接 |
+
+## 依赖提升
+
+如果需要引用依赖的依赖，在项目根目录添加 `.npmrc`：
+
+```ini
+hoist=true
+public-hoist-pattern[]=vue-router
+```
+
+## 全局包推荐
 
 ```json
 {
   "dependencies": {
     "@antfu/ni": "^0.17.2",
     "@nestjs/cli": "^9.0.0",
-    "@neutralinojs/neu": "^9.3.1",
-    "@quasar/cli": "^1.3.2",
     "@vue/cli": "^5.0.8",
-    "@vue/devtools": "^6.1.4",
-    "create-quasar": "^1.0.28",
     "create-vite": "^3.0.0",
-    "electron": "^19.0.7",
-    "esno": "^0.16.3",
-    "fkill-cli": "^7.1.0",
-    "gulp-cli": "^2.3.0",
-    "hexo-cli": "^4.3.0",
-    "hugo-installer": "^3.1.0",
-    "increase-memory-limit-fixbug": "^1.0.0",
-    "iroiro": "^0.2.0",
-    "json-server": "^0.17.0",
     "lerna": "^5.1.6",
-    "less": "^4.1.2",
-    "local-web-server": "^5.2.0",
-    "nativefier": "^47.2.0",
-    "npkill": "^0.8.3",
-    "npm-check-updates": "^14.0.1",
-    "npm-home": "^2.0.0",
-    "nrm": "^1.2.5",
-    "pkg": "^5.7.0",
     "pm2": "^5.2.0",
-    "pm2-windows-service": "^0.2.1",
-    "pnpm": "^7.5.2",
     "prettier": "^2.7.1",
-    "pug-cli": "^1.0.0-alpha6",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.70.2",
-    "sass": "^1.51.0",
-    "stylus": "^0.57.0",
-    "taze": "^0.7.6",
-    "typeorm": "^0.3.6",
-    "typescript": "^4.6.3",
-    "vercel": "^27.0.2"
+    "typescript": "^4.6.3"
   }
 }
-
-```
-
-:::
-
-
-## 清理
-
-```
-pnpm remove axios
-但是node_modules/.pnpm下面的文件还在怎么办
-
-pnpm prune
-清理没有引用的依赖
-
-```
-
-## 想引用依赖的依赖怎么办
-
-添加一个.npmrc
-```ini
-hoist=true
-public-hoist-pattern[]=vue-router
-//这是想要提升到node_modules文件夹的依赖
-
 ```

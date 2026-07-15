@@ -1,5 +1,22 @@
 # 前端布局
 
+> **目录**
+> - [居中布局](#居中布局)
+>   - [水平居中](#水平居中)
+>   - [垂直居中](#垂直居中)
+>   - [水平垂直居中](#水平垂直居中)
+> - [多列布局](#多列布局)
+>   - [定宽+自适应](#定宽自适应)
+>   - [两列定宽+一列自适应](#两列定宽一列自适应)
+>   - [不定宽+自适应](#不定宽自适应)
+>   - [两列不定宽+一列自适应](#两列不定宽一列自适应)
+>   - [等分布局](#等分布局)
+>   - [定宽+自适应+两块高度一样高](#定宽自适应两块高度一样高)
+> - [全屏布局](#全屏布局)
+>   - [全屏布局的特点](#全屏布局的特点)
+>   - [全屏布局的方法](#全屏布局的方法)
+>   - [全屏布局相关方案的兼容性、性能和自适应一览表](#全屏布局相关方案的兼容性性能和自适应一览表)
+
 前端布局非常重要的一环就是页面框架的搭建，也是最基础的一环。在页面框架的搭建之中，又有居中布局、多列布局以及全局布局，今天我们就来总结总结前端干货中的CSS布局。
 
 ## 居中布局
@@ -282,7 +299,7 @@
 - 优点:只设置了parent
 - 缺点:兼容性存在一定问题
 
-### 多列布局
+## 多列布局
 
 ### 定宽+自适应
 
@@ -294,7 +311,7 @@
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -327,7 +344,7 @@
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -359,7 +376,7 @@
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -398,7 +415,7 @@
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -422,6 +439,8 @@
 }
 ```
 
+（3）优缺点
+
 5）使用flex
 （1）原理、用法
 
@@ -430,7 +449,7 @@
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -466,7 +485,7 @@
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -499,7 +518,7 @@
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -534,7 +553,7 @@
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -571,7 +590,7 @@
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -609,7 +628,7 @@
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -636,14 +655,10 @@
 
 ### 等分布局
 
-![](https://segmentfault.com/img/bV5ioR?w=619&h=362#crop=0&crop=0&crop=1&crop=1&errorMessage=unknown%20error&id=Filuk&originHeight=362&originWidth=619&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none&title=)
-
-```
+```text
 公式转化:
 l = w * n + g * (n-1) -> l = w * n + g * n - g -> l + g = （w + g） * n
 ```
-
-![](https://segmentfault.com/img/bV5ioO?w=610&h=375#crop=0&crop=0&crop=1&crop=1&id=uzu6G&originalType=binary&ratio=1&rotation=0&showTitle=false&status=uploading&style=none&title=)
 
 因此，我们需要解决两个问题：
 
@@ -658,7 +673,7 @@ l = w * n + g * (n-1) -> l = w * n + g * n - g -> l + g = （w + g） * n
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="column"><p>1</p></div>
     <div class="column"><p>2</p></div>
@@ -689,7 +704,7 @@ l = w * n + g * (n-1) -> l = w * n + g * n - g -> l + g = （w + g） * n
 
 （2）代码实例
 
-```
+```html
 <div class="parent-fix">
     <div class="parent">
         <div class="column"><p>1</p></div>
@@ -804,7 +819,7 @@ p{
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -836,7 +851,7 @@ p{
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">
         <p>left</p>
@@ -871,7 +886,7 @@ p{
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="left">left</div>
     <div class="right">right </div>
@@ -893,7 +908,7 @@ p{
 
 - 缺点:兼容性存在较大的问题
 
-### 全屏布局
+## 全屏布局
 
 ### 全屏布局的特点
 
@@ -901,8 +916,6 @@ p{
 - 浏览器变大时，撑满窗口
 
 ### 全屏布局的方法
-
-![](https://segmentfault.com/img/bV5im3?w=1144&h=776#crop=0&crop=0&crop=1&crop=1&id=kEZQ5&originalType=binary&ratio=1&rotation=0&showTitle=false&status=uploading&style=none&title=)
 
 1）使用position
 （1）原理、用法
@@ -912,7 +925,7 @@ p{
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="top">top</div>
     <div class="left">left</div>
@@ -979,7 +992,7 @@ body{
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="top">top</div>
     <div class="middle">
@@ -1032,8 +1045,6 @@ body{
 
 - 缺点：兼容性差，ie9及ie9以下不兼容
 
-![](https://segmentfault.com/img/bV5im4?w=1162&h=790#crop=0&crop=0&crop=1&crop=1&id=IvNos&originalType=binary&ratio=1&rotation=0&showTitle=false&status=uploading&style=none&title=)
-
 1）使用flex
 （1）原理、用法
 
@@ -1042,7 +1053,7 @@ body{
 
 （2）代码实例
 
-```
+```html
 <div class="parent">
     <div class="top">top</div>
     <div class="middle">
