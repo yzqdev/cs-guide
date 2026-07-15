@@ -154,3 +154,82 @@ Created                        Now
 ID                             1
 Shape                          Square
 ```
+
+## 5. 哈希表常用方法
+
+```powershell
+$hash = @{ ID = 1; Shape = "Square"; Color = "Blue" }
+
+# 检查键是否存在
+$hash.ContainsKey("ID")      # True
+$hash.ContainsValue("Blue")  # True
+
+# 获取键集合
+$hash.Keys
+$hash.Values
+
+# 克隆（浅拷贝）
+$clone = $hash.Clone()
+
+# 遍历
+$hash.GetEnumerator() | ForEach-Object {
+    "Key: $($_.Key), Value: $($_.Value)"
+}
+```
+
+## 6. 嵌套哈希表
+
+```powershell
+$config = @{
+    Database = @{
+        Server = "localhost"
+        Port = 3306
+        Name = "testdb"
+    }
+    App = @{
+        LogLevel = "Debug"
+        Timeout = 30
+    }
+}
+
+# 访问嵌套值
+$config.Database.Server  # localhost
+$config["App"]["Timeout"]  # 30
+```
+
+## 7. 哈希表与 PSCustomObject
+
+```powershell
+# 哈希表转 PSCustomObject
+$hash = @{ Name = "Alice"; Age = 30; City = "Beijing" }
+$obj = [PSCustomObject]$hash
+$obj.Name  # Alice
+
+# 创建对象并排序属性
+$obj2 = [PSCustomObject]@{
+    Name = "Bob"
+    Age = 25
+    City = "Shanghai"
+}
+```
+
+## 8. 常见用途：函数参数传递
+
+```powershell
+function Test-Function {
+    param(
+        [string]$Name,
+        [int]$Count,
+        [switch]$Verbose
+    )
+    Write-Host "Name: $Name, Count: $Count"
+}
+
+# 使用哈希表传递参数（splatting）
+$params = @{
+    Name = "Test"
+    Count = 5
+    Verbose = $true
+}
+Test-Function @params  # 使用 @ 而非 $
+```

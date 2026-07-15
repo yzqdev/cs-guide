@@ -1,94 +1,91 @@
-# tampermonkey相关的api
+# Tampermonkey API 参考
 
 :::tip
-
-文档见[链接](https://www.tampermonkey.net/documentation.php?ext=dhdg)
+完整文档见 [Tampermonkey 官方文档](https://www.tampermonkey.net/documentation.php?ext=dhdg)
 :::
 
-## 用户脚本 Header
+## 脚本头 (Metadata Block)
+
+脚本头以 `// ==UserScript==` 开始，`// ==/UserScript==` 结束，声明脚本的元信息。
 
 ### `@name`
+脚本名称，显示在 Tampermonkey 管理面板中。
 
-脚本名称
-
-### `@namesapce`
-
-脚本命名空间
+### `@namespace`
+脚本命名空间，用于区分同名脚本。通常使用网址。
 
 ### `@include`
-
-设置脚本在哪些网页中可以运行，允许设置多个标签。 `@include` 不支持URL hash参数。
+设置脚本运行的页面 URL。支持通配符 `*`。
 
 ```
-// @include http://123.com/*
-// @include https://123.com/*
+// @include http://example.com/*
+// @include https://example.com/*
 // @include https://*
 ```
 
 ### `@match`
-
-与 `@include` 标签类似，允许设置多个。
+与 `@include` 类似，但语法更严格，推荐使用。
 
 ```
-// @match http*://
+// @match http*://example.com/*
+// @match https://*/*
 ```
 
 ### `@exclude`
-
-排除的URL， 在这些页面不运行脚本， 即使地址包含在 `@include`或`@match`标签内。允许设置多个。
-
-### `@require`
-
-表示在运行脚本前需要加载和运行的JavaScript文件。允许设置多个。 注：如果加载的脚本使用`use strict`模式，用户脚本可能也会受严格模式影响
+排除的 URL，在这些页面不运行脚本。
 
 ```
-// @require https://code.jquery.com/jquery-2.1.4.min.js
-// @require https://code.jquery.com/jquery-2.1.3.min.js#sha256=23456...
-// @require https://code.jquery.com/jquery-2.1.2.min.js#md5=34567...,sha256=6789..
+// @exclude https://example.com/admin/*
+```
+
+### `@require`
+在脚本运行前加载的外部 JavaScript 文件。支持 SRI 完整性校验。
+
+```
+// @require https://code.jquery.com/jquery-3.7.1.min.js
+// @require https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js
+// @require https://example.com/lib.js#md5=abc123...
 ```
 
 ### `@resource`
-
-定义一些需要预加载的资源文件，这些资源可以在脚本中通过`GM_getResourceURL`，`GM_getResourceText`访问。允许设置多个。
+预加载的资源文件，可通过 `GM_getResourceURL` / `GM_getResourceText` 访问。
 
 ```
-// @resource icon2 /images/icon.png
-// @resource html http://www.tampermonkey.net/index.html
-// @resource xml http://www.tampermonkey.net/crx/tampermonkey.xml
-// @resource SRIsecured1 http://www.tampermonkey.net/favicon.ico#md5=123434...
+// @resource icon /images/icon.png
+// @resource page http://example.com/page.html
+// @resource data http://example.com/data.xml
 ```
 
 ### `@connect`
-
-设置允许通过`GM_xmlhttpRequest`连接访问的域名（包括子域名）。
+设置 `GM_xmlhttpRequest` 允许跨域访问的域名。
 
 ```
 // @connect *
-// @connect *://*.qidian.com/
+// @connect api.example.com
+// @connect self
 ```
 
-`@connect` 标签允许设置的值：
-
-- 域名，如`tampermonkey.net`, 设置后该域名下的所有子域名都是允许访问的
-- 子域名，如`safari.tampermonkey.net`
-- `self` 当前脚本正在运行的域名
+允许的值：
+- 域名：`tampermonkey.net`（含子域名）
+- 子域名：`api.tampermonkey.net`
+- `self`：当前脚本运行的域名
 - `localhost`
-- `1.2.3.4` 允许连接的IP地址
-- `*` 所有域名
+- IP 地址：`1.2.3.4`
+- `*`：所有域名
 
 ### `@run-at`
+设置脚本注入的时机。
 
-设置注入脚本的时间。`@run-at` defines the first possible moment a script wants to run.
-
-- `@run-at document-start` The script will be injected as fast as possible.
-- `@run-at document-body` The script will be injected if the body element exists.
-- `@run-at document-end` The script will be injected when or after the DOMContentLoaded event was dispatched.
-- `@run-at document-idle` The script will be injected after the DOMContentLoaded event was dispatched. This is the default value if no @run-at tag is given.
-- `@run-at content-menu` The script will be injected if it is clicked at the browser context menu (desktop Chrome-based browsers only).
+| 值 | 说明 |
+|----|------|
+| `document-start` | 尽可能早地注入（页面开始加载时） |
+| `document-body` | body 元素存在时注入 |
+| `document-end` | DOMContentLoaded 事件触发时或之后注入 |
+| `document-idle` | DOMContentLoaded 事件触发后注入（默认值） |
+| `content-menu` | 在浏览器右键菜单中点击时执行（仅桌面 Chrome） |
 
 ### `@grant`
-
-`@grant`标签用于设置`GM_*`方法， `unsafeWindow`对象， `window`对象方法的白名单。If no @grant tag is given TM guesses the scripts needs.
+声明脚本使用的 `GM_*` API 和 `unsafeWindow` 等。如果不声明，Tampermonkey 会自动推断。
 
 ```
 // @grant GM_setValue
@@ -96,152 +93,259 @@
 // @grant GM_setClipboard
 // @grant unsafeWindow
 // @grant window.close
-// @grant window.focus
 ```
 
-## API
+### `@noframes`
+禁止脚本在 iframe 中运行。
+
+### `@icon` / `@icon64`
+脚本图标 URL。
+
+---
+
+## API 详解
 
 ### `unsafeWindow`
+访问页面的原始 `window` 对象，用于调用页面中的 JS 变量和函数。
 
-通过`unsafeWindow`对象访问页面的js方法和变量
-
-### `Subresource Integrity`
-
-`@require``@resource`标签设置URL的hash部分
-
-```
-// @require https://code.jquery.com/jquery-2.1.1.min.js#md5=45eef...
-// @require https://code.jquery.com/jquery-2.1.2.min.js#md5=ac56d...,sha256=6e789.
+```js
+// 页面中定义了 function showAlert(msg) {...}
+unsafeWindow.showAlert('Hello')
 ```
 
 ### `GM_addStyle(css)`
+向页面注入 CSS 样式，返回注入的 style 元素。
 
-Adds the given style to the document and returns the injected style element.
+```js
+GM_addStyle(`
+  .my-widget {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #fff;
+    z-index: 99999;
+  }
+`)
+```
 
-### `GM_deleteValue(name)`
+### `GM_setValue(name, value)` / `GM_getValue(name, defaultValue)`
+持久化存储数据（类似 localStorage，但独立于页面）。
 
-Deletes 'name' from storage.
+```js
+// 存储
+GM_setValue('count', 42)
+GM_setValue('settings', { theme: 'dark' })
 
-### `GM_listValues()`
+// 读取
+const count = GM_getValue('count', 0)
+const settings = GM_getValue('settings', { theme: 'light' })
+```
 
-List all names of the storage.
+### `GM_deleteValue(name)` / `GM_listValues()`
+删除指定键 / 列出所有键。
 
-### `GM_addValueChangeListener(name, function(name, old_value, new_value, remote) {})`
+```js
+GM_deleteValue('temp_data')
+const allKeys = GM_listValues()
+```
 
-对storage存储的变量添加监听器，返回监听器ID。 `name`参数是要监听的变量名
+### `GM_addValueChangeListener(name, callback)` / `GM_removeValueChangeListener(id)`
+监听指定存储值的变化。`callback` 参数：`(name, oldValue, newValue, remote)`。
 
-### `GM_removeValueChangeListener(listener_id)`
+```js
+const id = GM_addValueChangeListener('count', (name, oldVal, newVal, remote) => {
+  console.log(`count 从 ${oldVal} 变为 ${newVal}`)
+})
+// 移除监听
+GM_removeValueChangeListener(id)
+```
 
-移除监听器
+### `GM_registerMenuCommand(name, fn, accessKey)` / `GM_unregisterMenuCommand(id)`
+在 Tampermonkey 菜单中注册命令。
 
-### `GM_setValue(name, value)`
+```js
+const id = GM_registerMenuCommand('显示提示', () => {
+  alert('菜单被点击了！')
+}, 's') // 快捷键 Alt+S
+// 注销
+GM_unregisterMenuCommand(id)
+```
 
-Set the value of 'name' to the storage.
+### `GM_openInTab(url, options)`
+在新标签页打开 URL。
 
-### `GM_getValue(name, defaultValue)`
-
-从storage里面获取'name'的值
-
-### `GM_log(message)`
-
-控制台输出日志
-
-### `GM_getResourceText(name)`
-
-获取在脚本头部用`@resource`标签预定义的的内容
-
-### `GM_getResourceURL(name)`
-
-获取在脚本头部用`@resource`标签预定义的的base64编码的URI
-
-### `GM_registerMenuCommand(name, fn, accessKey)`
-
-在脚本运行页面的Tampermonkey菜单中注册新的菜单，返回菜单command ID
-
-### `GM_unregisterMenuCommand(menuCmdId)`
-
-注销用`GM_registerMenuCommand`注册的菜单
-
-### `GM_openInTab(url, options), GM_openInTab(url, loadInBackground)`
-
-在新标签页打开URL。`options`可选的值：
-
-- `active` 定义焦点是否在新标签页上
-- `insert`
-- `setParent`
+```js
+// 后台打开
+GM_openInTab('https://example.com', { active: false, insert: true, setParent: true })
+```
 
 ### `GM_xmlhttpRequest(details)`
+发送跨域 HTTP 请求，不受 CORS 限制（需在 `@connect` 中声明域名）。
 
-Make an xmlHttpRequest.
+```js
+GM_xmlhttpRequest({
+  method: 'GET',
+  url: 'https://api.example.com/data',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  data: JSON.stringify({ key: 'value' }),
+  onload: function (res) {
+    console.log(res.responseText)
+  },
+  onerror: function (err) {
+    console.error('请求失败', err)
+  },
+  ontimeout: function () {
+    console.error('请求超时')
+  },
+})
+```
 
-### `GM_download(details), GM_download(url, name)`
+`details` 支持的属性：
+- `method` - 请求方法（GET/POST/PUT/DELETE...）
+- `url` - 请求地址
+- `headers` - 请求头对象
+- `data` - 请求体
+- `binary` - 是否二进制数据
+- `timeout` - 超时时间（毫秒）
+- `responseType` - 响应类型（text/json/blob/arraybuffer/document）
+- `overrideMimeType` - 覆盖 MIME 类型
+- `anonymous` - 不发送 cookie
+- `fetch` - 使用 fetch API（默认为 true）
+- `onload` - 成功回调
+- `onerror` - 失败回调
+- `onprogress` - 进度回调
+- `ontimeout` - 超时回调
+- `onreadystatechange` - 状态变化回调
 
-下载URL指定资源到本地磁盘
+### `GM_download(url, name)` / `GM_download(details)`
+下载文件到本地。
 
-`details` 可以有如下属性:
+```js
+// 简单方式
+GM_download('https://example.com/file.zip', 'backup.zip')
 
-- `url` - 下载地址 (必需)
-- `name` - 文件名 - 由于安全原因需要在Tampermonkey的配置页把文件扩展名设为白名单（*for security reasons the file extension needs to be whitelisted at Tampermonkey's options page*） (必需)
-- `headers` - 参见 `GM_xmlhttpRequest`
-- `saveAs` - `boolean`, 弹出“保存为”的弹框
-- `onerror` - 下载失败的回调
-- `onload` - 下载完成回调
-- `onprogress` 下载进度变化时的回调
-- `ontimeout` 由于超时导致下载失败时的回调
+// 完整选项
+GM_download({
+  url: 'https://example.com/image.png',
+  name: 'image.png',
+  headers: { Referer: 'https://example.com' },
+  saveAs: true,
+  onload: () => console.log('下载完成'),
+  onerror: (err) => console.error('下载失败', err),
+  onprogress: (p) => console.log(`进度: ${p.loaded}/${p.total}`),
+  ontimeout: () => console.error('下载超时'),
+})
+```
 
-`onerror` 回调函数的参数：
+### `GM_notification(details)` / `GM_notification(text, title, image, onclick)`
+显示桌面通知。
 
-- ```
-  error
-  ```
+```js
+// 对象方式
+GM_notification({
+  text: '任务已完成',
+  title: '我的脚本',
+  image: 'https://example.com/icon.png',
+  highlight: true,
+  silent: false,
+  timeout: 5000,
+  onclick: () => console.log('通知被点击'),
+  ondone: () => console.log('通知已关闭'),
+})
 
-  \- 失败原因
+// 传统方式
+GM_notification('内容', '标题', '图片URL', () => { /* onclick */ })
+```
 
-  - `not_enabled` - 用户不能使用下载功能
-  - `not_whitelisted` - 下载文件后缀不在白名单内
-  - `not_permitted` - the user enabled the download feature, but did not give the downloads permission
-  - `not_supported` - the download feature isn't supported by the browser/version
-  - `not_succeeded` - the download wasn't started or failed, the details attribute may provide more information
+### `GM_setClipboard(data, info)`
+复制内容到剪贴板。
 
-- `details` 关于错误的详细信息
+```js
+GM_setClipboard('要复制的文本', 'text')  // 纯文本
+GM_setClipboard('<b>HTML</b>', 'html')   // HTML
+// info 也可以是对象
+GM_setClipboard('text', { type: 'text', mimetype: 'text/plain' })
+```
 
-下载扩展白名单设置如下：
+### `GM_getResourceText(name)` / `GM_getResourceURL(name)`
+获取 `@resource` 预加载的内容。
 
-![img](https://cdn.bianchengquan.com/4fac9ba115140ac4f1c22da82aa0bc7f/blog/5fd1a4eec3b9d.png)
+```js
+// 获取文本内容
+const html = GM_getResourceText('page')
+// 获取 base64 URL
+const iconUrl = GM_getResourceURL('icon')
+```
 
-> Chrome 可以使用 Tampermonkey 的 GM_download 函数绕过 CSP(Content Security Policy) 的限制
+### `GM_log(message)`
+向控制台输出日志（等同于 `console.log`）。
 
-### `GM_getTab(callback)`
-
-Get a object that is persistent as long as this tab is open.
-
-### `GM_saveTab(tab)`
-
-Save the tab object to reopen it after a page unload.
-
-### `GM_getTabs(callback)`
-
-Get all tab objects as a hash to communicate with other script instances.
-
-### `GM_notification(details, ondone)` `GM_notification(text, title, image, onlick)`
-
-显示一个H5桌面通知，并/或 高亮显示当前Tab
-
-`details` 有如下特性:
-
-- `text` - 通知的文本 (需要 `highlight` 设置为`false`)
-- `title` - 通知的标题
-- `image` - 图片
-- `highlight` - `boolean` 是否高亮发送通知的标签页 (未设置`text`时)
-- `silent` - `boolean` 是否播放提示音
-- `timeout` - `timeout` 设置的时间之后通知会被隐藏 (0 = disabled)
-- `ondone` - 通知被关闭时调用 (no matter if this was triggered by a timeout or a click) or the tab was highlighted
-- `onclick` - 用户点击通知时调用
-
-### `GM_setClipborad(data, info)`
-
-复制内容到剪贴板，The parameter 'info' can be an object like "{ type: 'text', mimetype: 'text/plain'}" or just a string expressing the type ("text" or "html")
+```js
+GM_log('脚本已启动')
+```
 
 ### `GM_info`
+获取脚本和 Tampermonkey 的信息对象。
 
-获取关于脚本和GM的一些信息
+```js
+console.log(GM_info)
+// {
+//   script: { name, version, namespace, description, ... },
+//   scriptHandler: 'Tampermonkey',
+//   scriptWillUpdate: true,
+//   scriptMetaStr: ...,
+//   scriptSource: ...,
+//   scriptUpdateURL: ...,
+//   platform: { arch: 'x86', browser: 'Chrome', os: 'win', ... }
+// }
+```
+
+### `GM_getTab(callback)` / `GM_saveTab(tab)` / `GM_getTabs(callback)`
+跨页面（同标签页生命周期）数据共享。
+
+```js
+// 保存数据
+GM_saveTab({ scrollPos: window.scrollY })
+
+// 读取数据
+GM_getTab((tab) => {
+  console.log('当前标签数据:', tab)
+})
+
+// 获取所有标签页数据
+GM_getTabs((tabs) => {
+  console.log('所有标签:', tabs)
+})
+```
+
+### `GM_cookie`
+通过 `GM_cookie.list()`、`GM_cookie.set()`、`GM_cookie.delete()` 管理 cookie。
+
+```js
+// 列出 cookie
+GM_cookie.list({ url: 'https://example.com' }, (cookies, error) => {
+  console.log(cookies)
+})
+
+// 设置 cookie
+GM_cookie.set({ url: 'https://example.com', name: 'token', value: 'abc' }, (error) => {
+  if (error) console.error(error)
+})
+
+// 删除 cookie
+GM_cookie.delete({ url: 'https://example.com', name: 'token' })
+```
+
+### `GM_webRequest`
+监听和修改网络请求（Chrome 扩展 API 封装）。
+
+```js
+GM_webRequest(
+  [{ selector: 'https://api.example.com/*', action: 'cancel' }],
+  (info) => console.log('请求被拦截:', info)
+)
+// 取消监听
+GM_webRequest({ cancel: true })
+```

@@ -130,3 +130,71 @@ $variable_name = @()
 ```powershell
 $array = ($array[1] $array[2] $array[3])
 ```
+
+## 7. 强类型数组
+
+可以创建只包含特定类型元素的数组：
+
+```powershell
+# 只允许整数
+[int[]]$numbers = 1, 2, 3, 4
+# $numbers += "string"  # 会报错
+
+# 只允许字符串
+[string[]]$names = "Alice", "Bob", "Charlie"
+```
+
+## 8. 多维数组
+
+```powershell
+# 创建二维数组
+$matrix = @(
+    (1, 2, 3),
+    (4, 5, 6),
+    (7, 8, 9)
+)
+$matrix[0][1]  # 2
+
+# 使用 .NET 多维数组
+$multi = New-Object 'object[,]' 3, 3
+$multi[0, 0] = "A"
+```
+
+## 9. 数组常用方法
+
+```powershell
+$arr = @(1, 2, 3, 4, 5)
+
+# 检查是否包含元素
+$arr.Contains(3)       # True
+
+# 获取元素索引
+[array]::IndexOf($arr, 3)  # 2
+
+# 反转数组
+[array]::Reverse($arr)
+
+# 排序数组
+[array]::Sort($arr)
+
+# 查找
+$arr.Where({ $_ -gt 3 })           # 4, 5
+$arr.ForEach({ $_ * 2 })           # 2, 4, 6, 8, 10
+```
+
+## 10. ArrayList（可变数组）
+
+PowerShell 数组是固定大小的，使用 `+=` 会创建新数组，性能较差。大量操作时推荐使用 `ArrayList`：
+
+```powershell
+# 创建 ArrayList
+$list = [System.Collections.ArrayList]@()
+$list.Add("Item1")
+$list.Add("Item2")
+$list.Remove("Item1")
+$list.Count
+
+# 或者使用泛型 List
+$list2 = [System.Collections.Generic.List[string]]@()
+$list2.Add("Hello")
+```

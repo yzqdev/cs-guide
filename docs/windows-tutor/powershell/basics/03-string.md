@@ -114,3 +114,118 @@ $s1.replace("P", "S")
 ```
 indows Sowerxhell
 ```
+
+## 6. 常用字符串方法
+
+### 判断是否包含子串
+
+```powershell
+$str = "Hello PowerShell"
+$str.Contains("Power")   # True
+$str.Contains("power")   # False（区分大小写）
+```
+
+### 判断开头/结尾
+
+```powershell
+$str = "Hello PowerShell"
+$str.StartsWith("Hello")  # True
+$str.EndsWith("Shell")    # True
+$str.EndsWith("shell")    # False（区分大小写）
+```
+
+### 字符串分割
+
+```powershell
+$str = "apple,banana,orange"
+$str.Split(",")           # 按逗号分割为数组
+# 输出：apple banana orange
+
+$str = "a|b|c"
+$str.Split("|")           # 按竖线分割
+```
+
+### 去除空白
+
+```powershell
+$str = "  Hello World  "
+$str.Trim()               # "Hello World"（去除首尾空白）
+$str.TrimStart()          # "Hello World  "（去除开头空白）
+$str.TrimEnd()            # "  Hello World"（去除结尾空白）
+```
+
+### 大小写转换
+
+```powershell
+$str = "Hello PowerShell"
+$str.ToUpper()            # "HELLO POWERSHELL"
+$str.ToLower()            # "hello powershell"
+```
+
+### 查找位置
+
+```powershell
+$str = "Hello PowerShell"
+$str.IndexOf("P")         # 6（第一个匹配的位置）
+$str.IndexOf("z")         # -1（未找到）
+$str.LastIndexOf("l")     # 9（最后一个匹配的位置）
+```
+
+### 判断是否为空或空白
+
+```powershell
+[string]::IsNullOrEmpty("")        # True
+[string]::IsNullOrEmpty(" ")       # False
+[string]::IsNullOrWhiteSpace(" ")  # True
+```
+
+## 7. 使用 Here-String（多行字符串）
+
+Here-String 用于定义包含换行符的长字符串，使用 `@""@` 或 `@''@` 包裹：
+
+```powershell
+# 双引号 Here-String（解析变量）
+$name = "PowerShell"
+$multiLine = @"
+Hello $name
+This is line 2
+This is line 3
+"@
+
+# 单引号 Here-String（原样输出，不解析变量）
+$raw = @'
+Hello $name
+This is literal text
+'@
+```
+
+## 8. 字符串与正则表达式
+
+```powershell
+$str = "Hello 123 World 456"
+
+# 匹配数字
+$str -match "\d+"        # True
+$matches[0]              # "123"
+
+# 替换所有数字
+$str -replace "\d+", "NUM"  # "Hello NUM World NUM"
+
+# 按正则分割
+$str -split "\s+"        # 按空白分割
+```
+
+## 9. 字符串插值与格式化
+
+```powershell
+# 使用 -f 格式化运算符
+$name = "PowerShell"
+$ver = 7.0
+"Name: {0}, Version: {1}" -f $name, $ver
+# 输出：Name: PowerShell, Version: 7.0
+
+# 数字格式化
+"{0:N2}" -f 1234.567    # "1,234.57"
+"{0:P0}" -f 0.85        # "85 %"
+"{0:X}" -f 255          # "FF"（十六进制）
+```

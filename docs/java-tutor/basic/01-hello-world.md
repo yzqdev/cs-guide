@@ -1,3 +1,8 @@
+---
+title: "Hello World — 第一个 Java 程序"
+order: 1
+---
+
 # Hello World — 第一个 Java 程序
 
 > Java 是一种面向对象的编程语言，遵循"一次编写，到处运行"（Write Once, Run Anywhere）的理念。

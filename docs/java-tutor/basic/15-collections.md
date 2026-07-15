@@ -1,3 +1,8 @@
+---
+title: "集合框架"
+order: 15
+---
+
 # 集合框架
 
 > Java 集合框架（Collections Framework）提供了一套接口和类，用于存储和操作一组对象。

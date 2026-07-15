@@ -1,3 +1,8 @@
+---
+title: "Lambda 表达式与 Stream API"
+order: 16
+---
+
 # Lambda 表达式与 Stream API
 
 > Lambda 表达式（Java 8+）让 Java 支持函数式编程，Stream API 提供一套高效的数据处理管道。

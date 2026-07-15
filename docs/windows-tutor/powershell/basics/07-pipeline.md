@@ -14,7 +14,7 @@ Get-ChildItem | Where-Object {$_.Length -gt 200} | Sort-Object -Descending Name
 
 下面主要介绍常用的管道处理命令。
 
-## 2.  Where-Object：过滤列表项或命令输出结果
+## 2. Where-Object：过滤列表项或命令输出结果
 
 可以使用Where-Object（别名是where和?）从列表或者命令输出结果中过滤选择你需要的项目。
 
@@ -26,6 +26,7 @@ Where-Object 可以用 `where` 和 `?` 代替：
 ```powershell
 Get-ChildItem |? {$_.Length -gt 200}|Sort-Object -Descending Name
 ```
+
 :::
 
 `{}` 表示一个脚本块，可以输入一系列 PowerShell 命令，其中 `$_` 代表当前输入对象，在这个例子中，`$_` 就代表一个文件项目。`-gt` 是比较操作符，意思是大于。关于比较操作符的介绍如下：
@@ -58,24 +59,24 @@ Mode                 LastWriteTime         Length Name
 
 所有可用的比较操作符如下表格：
 
-| 操作符       | 意义           | 返回True的例子                  |
-| ------------ | -------------- | ------------------------------- |
-| -eq          | 相等符         | 10 -eq 10                       |
-| -ne          | 不相等符       | 10 -ne 9                        |
-| -ge          | 大于等于操作符 | 10 -ge 9                        |
-| -gt          | 大于操作符     | 10 -gt 9                        |
-| -lt          | 小于操作符     | 10 -lt 11                       |
-| -le          | 小于等于操作符 | 10 -le 11                       |
-| -like        | 相似操作符     | "Bob" -like "*ob"               |
-| -notlike     | 非相似操作符   | "Bob" -notlike "1*ob"           |
-| -match       | 匹配操作符     | "Bob" -match "B*ob"             |
-| -notmatch    | 非匹配操作符   | "Bob" -notmatch "123*"          |
-| -contains    | 包含操作符     | "Bob","Bob1" -contains  "Bob"   |
-| -notcontains | 非包含操作符   | "Bob","Bob1" -notcontains  "ob" |
-| -is          | 类型操作符     | "Bob" -is "System.String"       |
-| -isnot       | 非类型操作符   | "Bob" -isnot "System.Int32"     |
+| 操作符       | 意义           | 返回True的例子                 |
+| ------------ | -------------- | ------------------------------ |
+| -eq          | 相等符         | 10 -eq 10                      |
+| -ne          | 不相等符       | 10 -ne 9                       |
+| -ge          | 大于等于操作符 | 10 -ge 9                       |
+| -gt          | 大于操作符     | 10 -gt 9                       |
+| -lt          | 小于操作符     | 10 -lt 11                      |
+| -le          | 小于等于操作符 | 10 -le 11                      |
+| -like        | 相似操作符     | "Bob" -like "*ob"              |
+| -notlike     | 非相似操作符   | "Bob" -notlike "1*ob"          |
+| -match       | 匹配操作符     | "Bob" -match "B*ob"            |
+| -notmatch    | 非匹配操作符   | "Bob" -notmatch "123*"         |
+| -contains    | 包含操作符     | "Bob","Bob1" -contains "Bob"   |
+| -notcontains | 非包含操作符   | "Bob","Bob1" -notcontains "ob" |
+| -is          | 类型操作符     | "Bob" -is "System.String"      |
+| -isnot       | 非类型操作符   | "Bob" -isnot "System.Int32"    |
 
-## 3.  ForEach-Object：处理列表或者命令输出的每一个项目
+## 3. ForEach-Object：处理列表或者命令输出的每一个项目
 
 使用ForEach-Object命令（别名是foreach和%）来处理列表中的每一项。
 
@@ -108,7 +109,7 @@ Mode                 LastWriteTime         Length Name
 
 例子中1..10的意思是简单声明了一个1~10的一组数字。其中处理列表中每一项还可以用for、foreach、do和while等，以后会更详细的介绍。
 
-## 4.  Select-Object：选择列表项或输出结果只输出要的结果
+## 4. Select-Object：选择列表项或输出结果只输出要的结果
 
 使用Select-Object（别名是select）对象可以选择一个对象或者一组对象的指定属性。还可以从对象的数组中选择唯一的对象，也可以从对象数组的开头或末尾选择指定个数的对象。
 
@@ -116,7 +117,7 @@ Mode                 LastWriteTime         Length Name
 
 使用例子如下：
 
-a)    选择当前路径下所有项目的Name和Length属性：
+a) 选择当前路径下所有项目的Name和Length属性：
 
 ```powershell
 # Get-ChildItem|Select-Object Name,Length
@@ -134,7 +135,7 @@ Test.md               4318
 test.txt              4318
 ```
 
-b)   选择当前路径下前2个项目：
+b) 选择当前路径下前2个项目：
 
 ```powershell
 #  E:/tmp/ps
@@ -148,7 +149,7 @@ Mode                 LastWriteTime         Length Name
 -a---            2022/4/2    23:34           4318 Test.md
 ```
 
-c)    选择当前路径下所有项目的Name和自定义属性，名字叫做Last Modified Day，结果是通过LastWriteTime属性算出来的：
+c) 选择当前路径下所有项目的Name和自定义属性，名字叫做Last Modified Day，结果是通过LastWriteTime属性算出来的：
 
 ```powershell
 # dir|select -Property @{Name="上次修改";Expression={$_.LastWriteTime.DayOfWeek}},Name
@@ -166,11 +167,11 @@ Wednesday teeResult.txt
  Saturday test.txt
 ```
 
-d)   选择当前路径下第一个和第六个项目：
+d) 选择当前路径下第一个和第六个项目：
 
 ```powershell
 # dir|Select-Object -Index 0,5
- 
+
     Directory: E:\tmp\ps
 
 Mode                 LastWriteTime         Length Name
@@ -178,11 +179,11 @@ Mode                 LastWriteTime         Length Name
 -a---            2022/4/2    23:34           4318 test-name.md
 ```
 
-e)   选择当前路径下除第五个项目外的所有项目：
+e) 选择当前路径下除第五个项目外的所有项目：
 
 ```powershell
 # dir|Select-Object -Skip 4
- 
+
 
     Directory: E:\tmp\ps
 
@@ -192,7 +193,7 @@ Mode                 LastWriteTime         Length Name
 -a---            2022/4/2    23:34           4318 test.txt
 ```
 
-f)    显示数组中的唯一数字：
+f) 显示数组中的唯一数字：
 
 ```powershell
 # 1,1,2,2,3,3,4,4,5,5,6,6,"test"|Select-Object -Unique
@@ -205,7 +206,7 @@ f)    显示数组中的唯一数字：
 test
 ```
 
-## 5.  Sort-Object：对列表项或者输出结果进行排序
+## 5. Sort-Object：对列表项或者输出结果进行排序
 
 使用Sort-Object（别名是sort）可以按照特定属性值对对象进行排序。您可以指定一个属性或多个属性（用于多键排序），也可以选择区分大小写或不区分大小写的排序。您还可以指示 Sort-Object 只显示对于特定属性具有唯一值的对象。
 
@@ -213,7 +214,7 @@ test
 
 使用例子如下：
 
-a)    对当前路径下所有的项目按照长度从小到大排序：
+a) 对当前路径下所有的项目按照长度从小到大排序：
 
 ```powershell
 
@@ -231,7 +232,7 @@ Mode                 LastWriteTime         Length Name
 -a---            2022/4/2    23:34           4318 test.txt
 ```
 
-b)   对整个数组的唯一性数字按照降序排列：
+b) 对整个数组的唯一性数字按照降序排列：
 
 ```powershell
 # 1,1,2,2,3,3,4,4,5,5,6,6,"test"|Sort-Object -Descending -Unique
@@ -244,11 +245,11 @@ test
 1
 ```
 
-## 6.  Tee-Object：保存并输出列表项或者输出结果
+## 6. Tee-Object：保存并输出列表项或者输出结果
 
 使用Tee-Object（别名是tee）命令可以将命令输出结果保存在文件或者变量中，同时将其显示在控制台中。
 
-a)    将当前路径下所有大小大于900的项目都保存到文件中并显示在控制台中：
+a) 将当前路径下所有大小大于900的项目都保存到文件中并显示在控制台中：
 
 ```powershell
 # dir|where {$_.Length -gt 900}|Tee-Object -FilePath teeResult.txt
@@ -264,7 +265,7 @@ Mode                 LastWriteTime         Length Name
 -a---            2022/4/2    23:34           4318 Test.md
 -a---            2022/4/2    23:34           4318 test.txt
 
- 
+
 # Get-Content .\teeResult.txt
 
     Directory: E:\tmp\ps
@@ -279,12 +280,12 @@ Mode                 LastWriteTime         Length Name
 -a---            2022/4/2    23:34           4318 test.txt
 ```
 
-b)   将当前路径下所有大小大于900的项目都保存在变量中并显示在控制台中：
+b) 将当前路径下所有大小大于900的项目都保存在变量中并显示在控制台中：
 
 ```powershell
 
 # $test="first"
- 
+
 # dir|where {$_.Length -gt 900}|Tee-Object -Variable $test
 
     Directory: E:\tmp\ps
@@ -299,7 +300,7 @@ Mode                 LastWriteTime         Length Name
 -a---            2022/4/2    23:34           4318 test.txt
 ```
 
-## 7.  Group-Object：对列表项或者输出结果进行分组
+## 7. Group-Object：对列表项或者输出结果进行分组
 
 使用Group-Object（group）对列表项或者输出结果进行分组，指定的属性包含相同值的组对象。Group-Object 返回一个表，其中每个属性值对应一行，同时一个列显示具有该值的项目数。
 
@@ -326,11 +327,11 @@ Name                           Value
 4318                           {E:\tmp\ps\Test - 副本.md, E:\tmp\ps\test - 副本.txt, E:\tmp\ps\test-name - 副本.md, E}
 ```
 
-## 8.  Measure-Object：对列表项或输出结果进行计算
+## 8. Measure-Object：对列表项或输出结果进行计算
 
 使用Measure-Object（measure）计算对象的数字属性以及字符串对象（如文本文件）中的字符数、单词数和行数。它计算某些类型对象的属性值。Measure-Object 执行三种类型测量，具体取决于命令中的参数。可以对对象计数并计算数字值的最小值、最大值、总和及平均值。对于文本对象，它可以计数并计算行数、单词数和字符数。
 
-a)    计算当前路径下项目的总数：
+a) 计算当前路径下项目的总数：
 
 ```powershell
 # dir |Measure-Object
@@ -344,7 +345,7 @@ StandardDeviation :
 Property          :
 ```
 
-b)   计算当前路径下项目的长度的最小值、最大值以及平均值：
+b) 计算当前路径下项目的长度的最小值、最大值以及平均值：
 
 ```powershell
 # dir|Measure-Object -Property Length -Minimum -Maximum -Average
@@ -358,7 +359,7 @@ StandardDeviation :
 Property          : Length
 ```
 
-c)    计算当前文件中字符、行、单词的总数：
+c) 计算当前文件中字符、行、单词的总数：
 
 ```powershell
 # Get-Content .\teeResult.txt |measure -Character -Line -Word
@@ -368,7 +369,7 @@ Lines Words Characters Property
     9    46        523
 ```
 
-## 9.  Compare-Object：对两组对象进行比较
+## 9. Compare-Object：对两组对象进行比较
 
 用Compare-Object（别名是compare和diff）可以将两组对象进行比较，一组对象为Reference组，而另一组为Difference组。比较的结果将指示属性值是只出现在 Reference 组中的对象中（由 <= 符号指示），或是只出现在 Difference 组中的对象中（由 => 符号指示），抑或（在指定了 IncludeEqual 参数的情况下）同时出现在这两个对象中（由 == 符号指示）。
 
@@ -512,9 +513,8 @@ Mode                 LastWriteTime         Length Name
 
 管道操作的时候经常会用到管道输入对象的属性，使用Get-Member（gm）来获取对象的属性和方法。
 
-a)    获取对象的公有属性：
+a) 获取对象的公有属性：
 
- 
 ```powershell
 # Get-Process -Name node |Get-Member -MemberType AliasProperty
 
@@ -531,7 +531,7 @@ VM      AliasProperty VM = VirtualMemorySize64
 WS      AliasProperty WS = WorkingSet64
 ```
 
-b)   获取对象的公有方法：
+b) 获取对象的公有方法：
 
 ```powershell
 # Get-Process -Name node |Get-Member -MemberType Method

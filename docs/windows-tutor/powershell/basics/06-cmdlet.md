@@ -149,15 +149,15 @@ PowerShell基本cmdlet命令如下表所示：
 
 ## cmd 和 PowerShell 的对比
 
-| 作用 | cmd 命令 | PowerShell 命令 |
-| --- | --- | --- |
-| 打印字符 | `echo` | `Write-Output` |
-| 进入路径 | `cd` | `Set-Location` |
-| 获取指令路径 | 不支持 | `Get-Command` |
-| 获取文件列表 | `dir` / `ls` | `Get-ChildItem` |
-| 复制文件 | `copy` | `Copy-Item` |
-| 移动文件 | `move` | `Move-Item` |
-| 删除文件 | `del` | `Remove-Item` |
-| 创建目录 | `md` | `New-Item -ItemType Directory` |
-| 查看进程 | `tasklist` | `Get-Process` |
-| 终止进程 | `taskkill` | `Stop-Process` |
+| 作用         | cmd 命令     | PowerShell 命令                |
+| ------------ | ------------ | ------------------------------ |
+| 打印字符     | `echo`       | `Write-Output`                 |
+| 进入路径     | `cd`         | `Set-Location`                 |
+| 获取指令路径 | 不支持       | `Get-Command`                  |
+| 获取文件列表 | `dir` / `ls` | `Get-ChildItem`                |
+| 复制文件     | `copy`       | `Copy-Item`                    |
+| 移动文件     | `move`       | `Move-Item`                    |
+| 删除文件     | `del`        | `Remove-Item`                  |
+| 创建目录     | `md`         | `New-Item -ItemType Directory` |
+| 查看进程     | `tasklist`   | `Get-Process`                  |
+| 终止进程     | `taskkill`   | `Stop-Process`                 |

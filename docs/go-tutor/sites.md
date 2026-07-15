@@ -1,106 +1,55 @@
 ---
 order: 5
 ---
-# 一些技术论坛
 
-- [https://www.sdk.cn/](https://www.sdk.cn/)
-- [https://hao.studygolang.com/](https://hao.studygolang.com/)
-- [https://learnku.com/articles/59094](https://learnku.com/articles/59094)
-- [https://github.com/go-admin-team/go-admin](https://github.com/go-admin-team/go-admin)
+# Go 学习资源与站点
 
-- [https://www.topgoer.cn/](https://www.topgoer.cn/)
+## 技术社区
 
-- [learnku.com](https://learnku.com)
-- [学院君](https://geekr.dev/)
-- [煎鱼](https://eddycjy.com/posts/)
-- [helloworld](https://learnku.com/docs/gobyexample/2020/hello-world/6252)
-- [go指南](https://tour.go-zh.org/list)
-- [coolshell](https://coolshell.cn/)
-- [gozero](https://go-zero.dev/cn/)
-- laruence <https://www.laruence.com>
-- 学院君 <https://xueyuanjun.com> laravelacademy.org/
-- 仙士可 <https://www.php20.cn>
-- 冯奎 <https://fengkui.net>
-- laravel <https://appdividend.com>
-- magento <https://alanstorm.com>
-- 菜鸟 <https://www.runoob.com>
+| 站点 | 说明 |
+|------|------|
+| [LearnKu](https://learnku.com) | Go 教程、翻译、问答社区 |
+| [SDK.CN](https://www.sdk.cn/) | 开发者资讯 |
+| [StuQ 导航](https://hao.studygolang.com/) | Go 开发者导航 |
+| [煎鱼](https://eddycjy.com/posts/) | 煎鱼的 Go 博客，干货多 |
+| [学院君](https://xueyuanjun.com) | Go / Laravel 教程 |
+| [仙士可](https://www.php20.cn) | Go / PHP 技术博客 |
+| [冯奎](https://fengkui.net) | 个人技术博客 |
+| [酷壳](https://coolshell.cn) | 左耳朵耗子博客 |
+| [菜鸟教程](https://www.runoob.com) | 编程入门教程 |
+| [BI](https://d-bi.gitee.io) | 数据可视化 |
+| [爱资料工具](https://www.toolnb.com) | 在线工具集合 |
 
-- BI <https://d-bi.gitee.io>
-- 爱资料工具网 <https://www.toolnb.com>
+## Go 学习
 
-## pastebin
+| 资源 | 说明 |
+|------|------|
+| [地鼠文档](https://www.topgoer.cn/) | Go 中文文档 |
+| [Go 指南](https://tour.go-zh.org/list) | 官方入门互动教程 |
+| [Go 实例](https://learnku.com/docs/gobyexample/2020) | Go By Example 中文版 |
+| [Go-Zero](https://go-zero.dev/cn/) | go-zero 微服务框架官网 |
+| [go-admin](https://github.com/go-admin-team/go-admin) | Go 后台管理系统 |
+| [laruence](https://www.laruence.com) | 鸟哥博客（PHP/Go） |
 
-- [mozzilia](https://pastebin.mozilla.org/)
-- [ubuntu](https://pastebin.ubuntu.com/)
-- [pastbincom](https://pastebin.com/)
-- [futils](https://gist.futils.com/)
+## Pastebin
 
-## go算法
+| 站点 | 说明 |
+|------|------|
+| [Mozilla Pastebin](https://pastebin.mozilla.org/) | Mozilla 文本分享 |
+| [Ubuntu Pastebin](https://pastebin.ubuntu.com/) | Ubuntu 文本分享 |
+| [Pastebin](https://pastebin.com/) | 通用文本分享 |
+| [futils Gist](https://gist.futils.com/) | 轻量 Gist |
 
-所以从下面这些优秀的项目中，一定能够找适合你的项目哦！
+## Go 算法项目
 
-1、GoDS
-Github 地址：<https://github.com/emirpasic/gods>
-Star 数量：9.9k
+| 项目 | Stars | 说明 |
+|------|-------|------|
+| [GoDS](https://github.com/emirpasic/gods) | 9.9k | 常用数据结构实现（列表、栈、哈希表、树等），适合学习和直接使用 |
+| [go-datastructures](https://github.com/Workiva/go-datastructures) | 6k | Workiva 出品，支持 BitArray、BTree、斐波那契堆、AVL 树等高级数据结构 |
+| [TheAlgorithms/Go](https://github.com/TheAlgorithms/Go) | 5.3k | TheAlgorithms 系列 Go 实现，包含数学、排序、搜索、字符串匹配等基础算法 |
+| [algorithm-pattern](https://github.com/greyireland/algorithm-pattern) | 11.5k | 算法刷题模板，涵盖常见题型和解题思路，适合面试突击 |
+| [LeetCode-Go](https://github.com/halfrost/LeetCode-Go) | 17.4k | 600+ LeetCode 题解，配有详细解题思路和电子书 |
+| [hoanhan101/algo](https://github.com/hoanhan101/algo) | 3k | 面试高频算法题总结（英文） |
+| [shady831213/algorithms](https://github.com/shady831213/algorithms) | 504 | Go 算法学习实现 |
 
-Go Data Structures，实现了常见的数据结构，可直接引入到实际的项目中使用，包含链表、栈、哈希表、树等等，命名风格和 Java 中的类名比较相似（估计作者受 Java 的影响颇深哈哈），比如有：
-
-```
-ArrayList
-ArrayStack
-HashSet
-TreeSet
-LinkedHashSet
-RedBlackTree
-```
-
-当然你也可以用来学习数据结构，看看大牛的代码是怎么写的。
-
-2、go-datastructures
-Github 地址：<https://github.com/Workiva/go-datastructures>
-Star 数量：6k
-
-和上面的项目类似，这也是一个用 Go 语言实现各种数据结构的一个项目，只不过它支持的数据结构更加多样化，除了一些基础的，还有 BitArray、BTree、斐波那契堆、图、AVL 树、前缀树等等一些高级数据结构。
-
-如果你想挑战一下比较有难度的数据结构，那么在这个项目应该能找到你可以学习或者借鉴的代码。
-
-3、TheAlgorithms/Go
-Github 地址：<https://github.com/TheAlgorithms/Go>
-Star 数量：5.3k
-
-这是 TheAlgorithms 系列的 Go 语言实现，我们知道 TheAlgorithms 系列有很多语言的版本，比如 Python、Java、Go、C++、JavaScript 等等。
-
-这个项目比较适合用来学习，有很多基础的算法的示例，比如数学、二分查找、排序、字符串匹配，还有一些练手的算法题目。
-
-4、algorithm-pattern
-Github 地址：<https://github.com/greyireland/algorithm-pattern>
-Star 数量：11.5k
-
-这个项目主要是介绍了一些通用的刷题模板，以及一些常见问题，如到底要刷多少题，按什么顺序来刷题，如何提高刷题效率等。
-
-作者总结的模板非常全面，讲解也很细致。
-
-比较适合用来临时刷算法，应对面试，所以即便不是学习 Go 语言的同学，也能够从中获取到一些刷题的经验等。
-
-项目中还有一些书籍推荐，文档也非常的全面。
-
-5、LeetCode-Go
-
-Github 地址：<https://github.com/halfrost/LeetCode-Go>
-Star 数量：17.4k
-
-顾名思义，这是一个使用 Go 语言实现 Leetcode 题目的项目，比较偏向于解题实战。
-
-目前项目已经收录了 600+ leetcode 题目，并且针对每一道题目，都有详细的解题思路，并且有完整的代码实现。
-
-项目还有配套的电子书，文档，可以说是非常 nice 了！
-
-6、hoanhan101/algo
-Github 地址：<https://github.com/hoanhan101/algo>
-Star 数量：3k
-
-这个项目是作者总结的，在面试过程当中最容易遇到的一些算法面试题目，配有详细的代码实现，只不过是全英文的，英文比较好的同学可以尝试学习一下。
-
-7、shady831213/algorithms
-Github 地址：<https://github.com/shady831213/algorithms>
-Star 数量：504
+这些项目覆盖了从基础数据结构到高级算法、从刷题模板到 LeetCode 实战的完整学习路径，适合不同阶段的 Go 开发者。

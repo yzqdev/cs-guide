@@ -1,7 +1,5 @@
 # 环境变量配置
 
-> 文件名中的 "varibles" 是 "variables" 的常见拼写变体，内容无误。
-
 ## 系统环境变量示例
 
 ```text
@@ -81,4 +79,5 @@ $env:PATH += ";$env:ERLANG_HOME\bin;c:\temp"
 # 获取原有系统 PATH 变量：$([environment]::GetEnvironmentvariable("Path", "Machine"))
 [environment]::SetEnvironmentvariable("PATH", "$([environment]::GetEnvironmentvariable("Path", "Machine"));%GOROOT%\bin", "Machine")
 ```
+
 :::

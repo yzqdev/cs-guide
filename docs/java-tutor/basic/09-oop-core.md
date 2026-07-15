@@ -1,3 +1,8 @@
+---
+title: "面向对象核心：封装、继承、多态"
+order: 9
+---
+
 # 面向对象核心：封装、继承、多态
 
 > 面向对象编程（OOP）的三大特征：封装（Encapsulation）、继承（Inheritance）、多态（Polymorphism）。

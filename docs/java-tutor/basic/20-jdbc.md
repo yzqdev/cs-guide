@@ -1,3 +1,8 @@
+---
+title: "JDBC 数据库编程"
+order: 20
+---
+
 # JDBC 数据库编程
 
 > JDBC（Java Database Connectivity）是 Java 操作数据库的标准 API，支持连接任何提供 JDBC 驱动的数据库。
