@@ -1,99 +1,114 @@
-# linuxmint配置
+# Linux Mint 环境配置
 
-1. 配置镜像源,全改为国内的镜像,加快包下载速度
-1. 下载各种软件,gedit, vscode, nvm,chrome, vivaldi,teamviewer等等
-1. 这里要配置node的环境,下载nvm,yarn,mirror-config-china
-1. 添加ohmyzsh美化终端,其中用户目录的.bash_profile,.bashrc,.zshrc要知道是干什么的
-1. 添加字体微软雅黑,yaheimono等,更改terminal字体样式
-1. 下载conda并配置condarc设置国内镜像
+## 一、系统初步配置
 
-​
+1. **配置镜像源**：全改为国内镜像，加快包下载速度
+2. **安装常用软件**：gedit、vscode、chrome、vivaldi、teamviewer 等
+3. **配置开发环境**：nvm、yarn、mirror-config-china
+4. **美化终端**：安装 oh-my-zsh，理解 `.bash_profile`、`.bashrc`、`.zshrc` 的作用
+5. **安装字体**：微软雅黑、YaHei Mono 等，更改终端字体样式
+6. **配置 Python 环境**：安装 Miniconda，配置 condarc 国内镜像
 
-## 安装sshd
+## 二、安装 SSH 服务
 
-```python
-sudo apt-get  install openssh-server
+```bash
+sudo apt-get install openssh-server
+sudo systemctl enable --now ssh
 ```
 
-## 安装nodejs
+## 三、安装 Node.js
 
-## 安装java
+通过 nvm 安装（详见 [linux-nodejs.md](./linux-nodejs.md)）：
 
-在adoptopenjdk网站下载   [https://adoptium.net/releases.html](https://adoptium.net/releases.html)
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm install node
+npm config set registry https://registry.npmmirror.com
+```
 
-```python
-解压
+## 四、安装 Java
+
+```bash
+# 从 Adoptium 下载 JDK
+wget https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.2%2B8/OpenJDK17U-jdk_x64_linux_hotspot_17.0.2_8.tar.gz
+
+# 解压
 tar xzf OpenJDK17U-jdk_x64_linux_hotspot_17.0.2_8.tar.gz
 
-添加环境变量(.bashrc,.zshrc)
+# 添加环境变量（~/.bashrc 或 ~/.zshrc）
 export PATH=$PWD/jdk-17.0.2+8/bin:$PATH
 
-检查是否安装
-java -verison
+# 验证
+java -version
 ```
 
-### 安装docker
+## 五、安装 Docker
 
-[https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)
+```bash
+# 使用官方便捷脚本
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
 
-### 安装golang
+# 将当前用户加入 docker 组
+sudo usermod -aG docker $USER
 
-```python
-在golang官网下载go的安装包，go1.16.linux-amd64.tar.gz 然后
-# 1.解压到local目录
-wget  https://go.dev/dl/go1.17.7.linux-amd64.tar.gz
-sudo tar -C /opt -xzf go1.17.7.linux-amd64.tar.gz
-# 2.编辑环境变量，在/etc/profile和.bashrc添加
-#vim ~/.zshrc  # OR ~/.bashrc OR ~/.profile
-cp -r ~/.bashrc ~/bashrcbak
-# 添加a环境变量
-export GOMODPATH=/opt/go
-export PATH="$GOMODPATH/bin:$GOMODPATH/golangmod/bin:$PATH"
-# 修改/opt的权限
-sudo chmod -R 777 /opt/go
+# 启动 Docker
+sudo systemctl enable --now docker
+```
 
+## 六、安装 Go
 
+```bash
+# 下载 Go
+wget https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
 
-echo 'export GOMODPATH=/opt/go
-export PATH="$GOMODPATH/bin:$GOMODPATH/golangmod/bin:$PATH"' >>~/.bashrc
-source ~/.bashrc
-# 3.输入go version检查是否有安装成功
-# 4.配置go代理
+# 解压到 /opt
+sudo tar -C /opt -xzf go1.21.0.linux-amd64.tar.gz
+
+# 配置环境变量（~/.bashrc 或 ~/.zshrc）
+export GOROOT=/opt/go
+export GOPATH=$HOME/go
+export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+
+# 配置 Go 代理
 go env -w GO111MODULE=on
 go env -w GOPROXY=https://goproxy.cn,direct
-go env -w GOPATH=/opt/go/golangmod
+
+# 验证
+go version
 ```
 
-## 安装guake
+## 七、安装 Guake 终端
 
-```python
+```bash
 sudo apt install guake
+# 启动后按 F12 可快速打开/隐藏
 ```
 
-## 安装openresty
+## 八、安装 OpenResty
 
-```python
+```bash
+# 参考官方安装教程
 https://openresty.org/cn/installation.html
 ```
 
-## 安装fastgithub
+## 九、安装 FastGitHub（加速 GitHub 访问）
 
-在[https://github.com/dotnetcore/FastGithub](https://github.com/dotnetcore/FastGithub)下载fastgithub的linux版本
-​
+```bash
+# 从 GitHub 下载 FastGithub 的 Linux 版本
+# https://github.com/dotnetcore/FastGithub
 
-```python
-以服务启动
+# 以服务启动
 sudo ./fastgithub start
 
-配置代理
-修改   /etc/profile   文件
-添加
+# 配置代理（修改 /etc/profile）
 export http_proxy=http://127.0.0.1:38457
 export https_proxy=http://127.0.0.1:38457
 ```
 
-## 安装dotnet
+## 十、安装 .NET
 
-[https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-ubuntu#2004-](https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-ubuntu#2004-)
-
-##
+```bash
+# 参考微软官方文档
+https://docs.microsoft.com/zh-cn/dotnet/core/install/linux-ubuntu
+```

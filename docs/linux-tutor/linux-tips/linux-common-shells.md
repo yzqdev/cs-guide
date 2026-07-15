@@ -1,6 +1,6 @@
 # linux-shell常用
 
-本文将介绍Linux下使用Shell处理文本时最常用的工具：find、grep、xargs、sort、uniq、tr、cut、paste、wc、sed、awk；提供的例子和参数都是最常用和最为实用的；对shell脚本使用的原则是命令单行书写，尽量不要超过2行；如果有更为复杂的任务需求，还是考虑python吧.
+本文将介绍Linux下使用Shell处理文本时最常用的工具：find、grep、xargs、sort、uniq、tr、cut、paste、wc、sed、awk；提供的例子和参数都是最常用和最为实用的；对shell脚本使用的原则是命令单行书写，尽量不要超过2行；如有更为复杂的任务需求，建议使用 Python 等语言实现。
 
 ## 1、find 文件查找
 
@@ -145,7 +145,7 @@ find source_dir/ -type f -name "*.cpp" -print0 |xargs -0 wc -l
 
 ```shell
 sort -nrk 1 data.txt
-sort -bd data // 忽略像空格之类的前导空白字符
+sort -bd data // 忽略像空格等前导空白字符
 ```
 
 ## 4、uniq 消除重复行
@@ -389,7 +389,7 @@ awk '{print vara}' vara=$var file # 输入来自文件
 ```shell
 awk 'NR < 5' #行号小于5
 awk 'NR==1,NR==4 {print}' file #行号等于1和4的打印出来
-awk '/linux/'  #包含linux文本的行（可以用正则表达式来指定，超级强大）
+awk '/linux/'  #包含linux文本的行（可以用正则表达式来指定，功能强大）
 awk '!/linux/'  #不包含linux文本的行
 ```
 

@@ -1,364 +1,261 @@
-# curl简介
+# curl 命令详解
 
-curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
+> curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
+> 它的功能非常强大，命令行参数多达几十种，熟练使用完全可以取代 Postman 等图形界面工具。
 
-它的功能非常强大，命令行参数多达几十种。如果熟练的话，完全可以取代 Postman 这一类的图形界面工具。
+---
 
-本文介绍它的主要命令行参数，作为日常的参考，方便查阅。内容主要翻译自[《curl cookbook》](https://catonmat.net/cookbooks/curl)。为了节约篇幅，下面的例子不包括运行时的输出，初学者可以先看我以前写的[《curl 初学者教程》](https://www.ruanyifeng.com/blog/2011/09/curl.html)。
+## 参数速查
 
-```
--A/--user-agent <string>              设置用户代理发送给服务器
--b/--cookie <name=string/file>    cookie字符串或文件读取位置
--c/--cookie-jar <file>                    操作结束后把cookie写入到这个文件中
--C/--continue-at <offset>            断点续转
--D/--dump-header <file>              把header信息写入到该文件中
--e/--referer                                  来源网址
--f/--fail                                          连接失败时不显示http错误
--o/--output                                  把输出写到该文件中
--O/--remote-name                      把输出写到该文件中，保留远程文件的文件名
--r/--range <range>                      检索来自HTTP/1.1或FTP服务器字节范围
--s/--silent                                    静音模式。不输出任何东西
--T/--upload-file <file>                  上传文件
--u/--user <user[:password]>      设置服务器的用户和密码
--w/--write-out [format]                什么输出完成后
--x/--proxy <host[:port]>              在给定的端口上使用HTTP代理
--#/--progress-bar                        进度条显示当前的传送状态
-```
+| 参数 | 说明 |
+|------|------|
+| `-A` / `--user-agent` | 设置 User-Agent 请求头 |
+| `-b` / `--cookie` | 发送 Cookie |
+| `-c` / `--cookie-jar` | 将 Cookie 写入文件 |
+| `-d` / `--data` | 发送 POST 数据 |
+| `--data-urlencode` | 发送 URL 编码的 POST 数据 |
+| `-e` / `--referer` | 设置 Referer 请求头 |
+| `-f` / `--fail` | 连接失败时不显示错误 |
+| `-F` / `--form` | 上传文件（multipart/form-data）|
+| `-G` | 将 `-d` 数据拼接到 URL 后面（GET 请求）|
+| `-H` | 添加自定义请求头 |
+| `-i` | 显示响应头 |
+| `-I` / `--head` | 只发送 HEAD 请求 |
+| `-k` / `--insecure` | 跳过 SSL 验证 |
+| `-L` / `--location` | 跟随重定向 |
+| `--limit-rate` | 限制带宽 |
+| `-o` / `--output` | 将输出保存到文件 |
+| `-O` / `--remote-name` | 保存为远程文件名 |
+| `-s` / `--silent` | 静默模式 |
+| `-S` / `--show-error` | 显示错误（与 -s 配合）|
+| `-u` / `--user` | 设置认证用户名和密码 |
+| `-v` / `--verbose` | 详细输出（调试）|
+| `-x` / `--proxy` | 使用代理 |
+| `-X` / `--request` | 指定请求方法 |
+| `-#` / `--progress-bar` | 显示进度条 |
 
-不带有任何参数时，curl 就是发出 GET 请求。
+---
+
+## 详细用法
+
+### 基础请求
 
 ```bash
+# GET 请求（默认）
 curl https://www.example.com
+
+# 指定请求方法
+curl -X POST https://api.example.com
+curl -X PUT https://api.example.com/1
+curl -X DELETE https://api.example.com/1
 ```
 
-上面命令向`www.example.com`发出 GET 请求，服务器返回的内容会在命令行输出。
-
-## **-A**
-
-`-A`参数指定客户端的用户代理标头，即`User-Agent`。curl 的默认用户代理字符串是`curl/[version]`。
+### 请求头
 
 ```bash
-curl -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36' https://bing.com
+# 设置 User-Agent
+curl -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' https://bing.com
+curl -A '' https://bing.com          # 移除 User-Agent
+
+# 设置 Referer
+curl -e 'https://bing.com' https://www.example.com
+
+# 自定义请求头
+curl -H 'Accept-Language: en-US' https://bing.com
+curl -H 'Authorization: Bearer token123' https://api.example.com
+curl -H 'Content-Type: application/json' -d '{"key":"value"}' https://api.example.com
 ```
 
-上面命令将`User-Agent`改成 Chrome 浏览器。
+### Cookie
 
 ```bash
-curl -A '' https://bing.com
-```
-
-上面命令会移除`User-Agent`标头。
-
-也可以通过`-H`参数直接指定标头，更改`User-Agent`。
-
-```bash
-curl -H 'User-Agent: php/1.0' https://bing.com
-```
-
-## **-b**
-
-`-b`参数用来向服务器发送 Cookie。
-
-```bash
+# 发送 Cookie
 curl -b 'foo=bar' https://bing.com
-```
-
-上面命令会生成一个标头`Cookie: foo=bar`，向服务器发送一个名为`foo`、值为`bar`的 Cookie。
-
-```bash
 curl -b 'foo1=bar;foo2=bar2' https://bing.com
-```
-
-上面命令发送两个 Cookie。
-
-```bash
 curl -b cookies.txt https://www.bing.com
-```
 
-上面命令读取本地文件`cookies.txt`，里面是服务器设置的 Cookie（参见`-c`参数），将其发送到服务器。
-
-## **-c**
-
-`-c`参数将服务器设置的 Cookie 写入一个文件。
-
-```bash
+# 保存 Cookie
 curl -c cookies.txt https://www.bing.com
 ```
 
-上面命令将服务器的 HTTP 回应所设置 Cookie 写入文本文件`cookies.txt`。
-
-## **-d**
-
-`-d`参数用于发送 POST 请求的数据体。
+### POST 数据
 
 ```bash
-$ curl -d'login=emma＆password=123'-X POST https://bing.com/login
-# 或者
-$ curl -d 'login=emma' -d 'password=123' -X POST  https://bing.com/login
-```
+# 表单数据
+curl -d 'login=emma&password=123' https://bing.com/login
+curl -d 'login=emma' -d 'password=123' https://bing.com/login
 
-使用`-d`参数以后，HTTP 请求会自动加上标头`Content-Type : application/x-www-form-urlencoded`。并且会自动将请求转为 POST 方法，因此可以省略`-X POST`。
+# JSON 数据
+curl -d '{"login":"emma","pass":"123"}' -H 'Content-Type: application/json' https://bing.com/login
 
-`-d`参数可以读取本地文本文件的数据，向服务器发送。
-
-```bash
+# 从文件读取数据
 curl -d '@data.txt' https://bing.com/login
-```
 
-上面命令读取`data.txt`文件的内容，作为数据体向服务器发送。
-
-## **--data-urlencode**
-
-`--data-urlencode`参数等同于`-d`，发送 POST 请求的数据体，区别在于会自动将发送的数据进行 URL 编码。
-
-```bash
+# URL 编码
 curl --data-urlencode 'comment=hello world' https://bing.com/login
 ```
 
-上面代码中，发送的数据`hello world`之间有一个空格，需要进行 URL 编码。
-
-## **-e**
-
-`-e`参数用来设置 HTTP 的标头`Referer`，表示请求的来源。
+### 上传文件
 
 ```bash
-curl -e 'https://bing.com?q=example' https://www.example.com
+# 上传文件
+curl -F 'file=@photo.png' https://bing.com/upload
+
+# 指定 MIME 类型
+curl -F 'file=@photo.png;type=image/png' https://bing.com/upload
+
+# 指定文件名
+curl -F 'file=@photo.png;filename=me.png' https://bing.com/upload
 ```
 
-上面命令将`Referer`标头设为`[https://bing.com?q=example](https://bing.com?q=example)`。
-
-`-H`参数可以通过直接添加标头`Referer`，达到同样效果。
+### 下载文件
 
 ```bash
-curl -H 'Referer: https://bing.com?q=example' https://www.example.com
-```
-
-## **-F**
-
-`-F`参数用来向服务器上传二进制文件。
-
-```bash
-curl -F 'file=@photo.png' https://bing.com/profile
-```
-
-上面命令会给 HTTP 请求加上标头`Content-Type: multipart/form-data`，然后将文件`photo.png`作为`file`字段上传。
-
-`-F`参数可以指定 MIME 类型。
-
-```bash
-curl -F 'file=@photo.png;type=image/png' https://bing.com/profile
-```
-
-上面命令指定 MIME 类型为`image/png`，否则 curl 会把 MIME 类型设为`application/octet-stream`。
-
-`-F`参数也可以指定文件名。
-
-```bash
-curl -F 'file=@photo.png;filename=me.png' https://bing.com/profile
-```
-
-上面命令中，原始文件名为`photo.png`，但是服务器接收到的文件名为`me.png`。
-
-## **-G**
-
-`-G`参数用来构造 URL 的查询字符串。
-
-```bash
-curl -G -d 'q=kitties' -d 'count=20' https://bing.com/search
-```
-
-上面命令会发出一个 GET 请求，实际请求的 URL 为`[https://bing.com/search?q=kitties&count=20](https://bing.com/search?q=kitties&count=20)`。如果省略`--G`，会发出一个 POST 请求。
-
-如果数据需要 URL 编码，可以结合`--data--urlencode`参数。
-
-```bash
-curl -G --data-urlencode 'comment=hello world' https://www.example.com
-```
-
-## **-H**
-
-`-H`参数添加 HTTP 请求的标头。
-
-```bash
-curl -H 'Accept-Language: en-US' https://bing.com
-```
-
-上面命令添加 HTTP 标头`Accept-Language: en-US`。
-
-```bash
-curl -H 'Accept-Language: en-US' -H 'Secret-Message: xyzzy' https://bing.com
-```
-
-上面命令添加两个 HTTP 标头。
-
-```bash
-curl -d '{"login": "emma", "pass": "123"}' -H 'Content-Type: application/json' https://bing.com/login
-```
-
-上面命令添加 HTTP 请求的标头是`Content-Type: application/json`，然后用`-d`参数发送 JSON 数据。
-
-## **-i**
-
-`-i`参数打印出服务器回应的 HTTP 标头。
-
-```bash
-curl -i https://www.example.com
-```
-
-上面命令收到服务器回应后，先输出服务器回应的标头，然后空一行，再输出网页的源码。
-
-## **-I**
-
-`-I`参数向服务器发出 HEAD 请求，然会将服务器返回的 HTTP 标头打印出来。
-
-```bash
-curl -I https://www.example.com
-```
-
-上面命令输出服务器对 HEAD 请求的回应。
-
-`--head`参数等同于`-I`。
-
-```bash
-curl --head https://www.example.com
-```
-
-## **-k**
-
-`-k`参数指定跳过 SSL 检测。
-
-```bash
-curl -k https://www.example.com
-```
-
-上面命令不会检查服务器的 SSL 证书是否正确。
-
-## **-L**
-
-`-L`参数会让 HTTP 请求跟随服务器的重定向。curl 默认不跟随重定向。
-
-```bash
-curl -L -d 'tweet=hi' https://api.twitter.com/tweet
-```
-
-## **--limit-rate**
-
-`--limit-rate`用来限制 HTTP 请求和回应的带宽，模拟慢网速的环境。
-
-```bash
-curl --limit-rate 200k https://bing.com
-```
-
-上面命令将带宽限制在每秒 200K 字节。
-
-## **-o**
-
-`-o`参数将服务器的回应保存成文件，等同于`wget`命令。
-
-```bash
+# 保存到指定文件
 curl -o example.html https://www.example.com
-```
 
-上面命令将`www.example.com`保存成`example.html`。
-
-## **-O**
-
-`-O`参数将服务器回应保存成文件，并将 URL 的最后部分当作文件名。
-
-```bash
+# 保存为远程文件名
 curl -O https://www.example.com/foo/bar.html
+
+# 断点续传
+curl -C - -o file.zip https://example.com/file.zip
+
+# 限速下载
+curl --limit-rate 200k https://bing.com
+
+# 显示进度条
+curl -# -O https://example.com/bigfile.zip
 ```
 
-上面命令将服务器回应保存成文件，文件名为`bar.html`。
-
-## **-s**
-
-`-s`参数将不输出错误和进度信息。
+### 响应处理
 
 ```bash
+# 显示响应头
+curl -i https://www.example.com
+
+# 只显示响应头
+curl -I https://www.example.com
+curl --head https://www.example.com
+
+# 跟随重定向
+curl -L https://t.co/abc123
+
+# 静默模式
 curl -s https://www.example.com
+curl -s -o /dev/null https://bing.com   # 不产生任何输出
+curl -s -o /dev/null -w "%{http_code}" https://bing.com  # 只输出状态码
 ```
 
-上面命令一旦发生错误，不会显示错误信息。不发生错误的话，会正常显示运行结果。
-
-如果想让 curl 不产生任何输出，可以使用下面的命令。
+### 认证
 
 ```bash
-curl -s -o /dev/null https://bing.com
-```
-
-## **-S**
-
-`-S`参数指定只输出错误信息，通常与`-s`一起使用。
-
-```bash
-curl -s -o /dev/null https://bing.com
-```
-
-上面命令没有任何输出，除非发生错误。
-
-## **-u**
-
-`-u`参数用来设置服务器认证的用户名和密码。
-
-```bash
+# 基本认证
 curl -u 'bob:12345' https://bing.com/login
-```
-
-上面命令设置用户名为`bob`，密码为`12345`，然后将其转为 HTTP 标头`Authorization: Basic Ym9iOjEyMzQ1`。
-
-curl 能够识别 URL 里面的用户名和密码。
-
-```bash
+# 或 URL 中嵌入
 curl https://bob:12345@bing.com/login
-```
 
-上面命令能够识别 URL 里面的用户名和密码，将其转为上个例子里面的 HTTP 标头。
-
-```bash
+# 只输入用户名（会提示输入密码）
 curl -u 'bob' https://bing.com/login
 ```
 
-上面命令只设置了用户名，执行后，curl 会提示用户输入密码。
-
-## **-v**
-
-`-v`参数输出通信的整个过程，用于调试。
+### 代理
 
 ```bash
+# HTTP 代理
+curl -x http://proxy:8080 https://example.com
+
+# SOCKS5 代理
+curl -x socks5://james:cats@myproxy.com:8080 https://example.com
+
+# 使用环境变量
+export http_proxy=http://proxy:8080
+export https_proxy=http://proxy:8080
+```
+
+### SSL/TLS
+
+```bash
+# 跳过 SSL 验证
+curl -k https://self-signed.example.com
+
+# 指定证书
+curl --cert client.crt --key client.key https://example.com
+
+# 指定 CA 证书
+curl --cacert ca.crt https://example.com
+```
+
+### 调试
+
+```bash
+# 详细输出（查看通信过程）
 curl -v https://www.example.com
-```
 
-`--trace`参数也可以用于调试，还会输出原始的二进制数据。
-
-```bash
+# 更详细的跟踪（含二进制数据）
 curl --trace - https://www.example.com
+curl --trace-ascii - https://www.example.com
+
+# 只输出特定信息
+curl -w "状态码: %{http_code}\n时间: %{time_total}s\n" https://www.example.com
 ```
 
-## **-x**
+---
 
-`-x`参数指定 HTTP 请求的代理。
+## 实用示例
+
+### 1. 检查 API 接口
 
 ```bash
-curl -x socks5://james:cats@myproxy.com:8080 https://www.example.com
+# 检查返回状态码
+curl -s -o /dev/null -w "%{http_code}" https://api.example.com/health
+
+# 检查响应时间
+curl -s -o /dev/null -w "DNS: %{time_namelookup}s\n连接: %{time_connect}s\n传输: %{time_total}s\n" https://example.com
 ```
 
-上面命令指定 HTTP 请求通过`myproxy.com:8080`的 socks5 代理发出。
-
-如果没有指定代理协议，默认为 HTTP。
+### 2. 下载 GitHub Release
 
 ```bash
-curl -x james:cats@myproxy.com:8080 https://www.example.com
+curl -L -o release.zip https://github.com/user/repo/releases/latest/download/release.zip
 ```
 
-上面命令中，请求的代理使用 HTTP 协议。
-
-## **-X**
-
-`-X`参数指定 HTTP 请求的方法。
+### 3. 上传文件到服务器
 
 ```bash
-curl -X POST https://www.example.com
+curl -F "file=@/path/to/file" -F "description=test" https://upload.example.com/upload
 ```
 
-上面命令对`[https://www.example.com](https://www.example.com)`发出 POST 请求。
+### 4. 测试 CORS
+
+```bash
+curl -H "Origin: https://example.com" -H "Access-Control-Request-Method: GET" -X OPTIONS -v https://api.target.com
+```
+
+### 5. 发送带 Token 的请求
+
+```bash
+curl -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIs..." https://api.example.com/user
+```
+
+### 6. 下载并解压
+
+```bash
+curl -L https://example.com/archive.tar.gz | tar -xz
+```
+
+### 7. 测试 JSON API
+
+```bash
+curl -s -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@test.com","password":"123456"}' \
+  https://api.example.com/login | python3 -m json.tool
+```
+
+---
+
+## 参考
+
+- [curl 官方文档](https://curl.se/docs/)
+- [curl cookbook](https://catonmat.net/cookbooks/curl)
+- 内容主要参考了阮一峰的《curl 初学者教程》

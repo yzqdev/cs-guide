@@ -51,7 +51,7 @@ top第三行显示当前系统的，其中有两个值很关键:
     KiB Swap:        0 total,        0 used,        0 free.   136988 cached Mem
 ```
 top工具显示了free工具的第一行所有信息，但真实可用的内存，还需要自己计算才知道;
-系统实际可用的内存为free工具输出第二行的free+buffer+cached；也就是第三行的free值191580；关于free命令各个值的详情解读，请参考这篇文章
+系统实际可用的内存为free工具输出第二行的free+buffer+cached；即第三行的free值191580；关于free命令各个值的详情解读，请参考这篇文章
 `free`{.interpreted-text role="ref"} ;
 
 如果是因为缺少内存，系统响应变慢很明显，因为这使得系统不停的做换入换出的工作;

@@ -1,190 +1,459 @@
 ---
 author: HelloGitHub
 ---
-# linux常用包
+# Linux 常用包 — 命令行效率工具
 
-我第一次使用 Linux 服务器是漆黑的界面上只有一行白色字母，末尾还有一个孤独闪烁的光标。我小心翼翼地输入第一个命令 `ls`，然后重复输入了好几遍界面依旧是漆黑一片。这种感觉就像在漆黑的夜空，天上连一颗星星都没有。伸手不见五指，感觉孤独和无力...后来在漫长学习命令行操作的过程中，遇到了一些让我相见恨晚的命令行工具。第一次相遇，它们就像雨夜的一道闪电，瞬间照亮了整个夜空（命令行），最后这些命令行开源项目变成了漆黑夜空中一颗颗闪耀的星星，一闪一闪亮晶晶...我差点唱出来✨
-
-下面我将逐一分享这些照亮漆黑命令行的开源项目，它们包含但不限于：**增加色彩**、**代替系统自带命令**、**提高开发效率**。
-
-## 一、忘记那些 Linux 命令吧
-
-那些年我们一起用过的 Linux 命令：cat、curl、top...忘记他们吧！
-
-### 1、neofetch（代替 uname、hostname 等）
-
-**Star 数**：11.6k｜**语言**：Shell
-
-支持将近 150 种操作系统，展示操作系统信息的命令行工具。首先一条命令安装，然后一条命令启动。展示的信息包含：操作系统、发行版本、内核、Host、CPU、GPU 等。
-
-> 安装：[github.com/dylanaraps/…](https://github.com/dylanaraps/neofetch/wiki/Installation)
+> 我第一次使用 Linux 服务器时，漆黑的界面上只有一行白色字母，末尾还有一个孤独闪烁的光标。我小心翼翼地输入第一个命令 `ls`，然后重复输入了好几遍界面依旧是漆黑一片。这种体验就像在漆黑的夜空，天上连一颗星星都没有...
 >
-> 命令：neofetch
->
-> 地址：[github.com/dylanaraps/…](https://github.com/dylanaraps/neofetch)
+> 后来在漫长学习命令行操作的过程中，遇到了一些让我相见恨晚的命令行工具，它们就像雨夜的一道闪电，瞬间照亮了整个夜空。
 
-### 2、httpie（代替 cURL）
+---
 
-**Star 数**：50.8k｜**语言**：Python
+## 一、系统信息展示
 
-cURL 的替代者，一款非常人性化的 HTTP 命令行客户端。安装简单使用方便，返回的结果还是高亮显示提高了可读性。适用于调试接口、查看服务器返回的 HTTP 协议的信息。下面的是 cURL 和 httpie 的请求命令和结果对比图：
+### 1. neofetch — 系统信息展示
 
-> 安装：[github.com/httpie/http…](https://github.com/httpie/httpie#installation)
->
-> 命令：http [flags] [METHOD] URL [ITEM [ITEM]]
->
-> 地址：[github.com/httpie/http…](https://github.com/httpie/httpie)
+**替代**：`uname`、`hostname` 等
 
-### 3、htop（代替 top）
+支持 150+ 种操作系统，以美观的方式展示系统信息。
 
-**Star 数**：2.4k｜**语言**：C
+```bash
+# 安装
+sudo apt install neofetch          # Debian/Ubuntu
+brew install neofetch              # macOS
 
-可代替 top 的交互式管理进程的命令行工具。就像这个项目名字一样，h 代表 for human，有了它就可以忘记 top 命令的各种参数了！
+# 使用
+neofetch
+```
 
-> 安装：[htop.dev/downloads.h…](https://htop.dev/downloads.html)
->
-> 命令：htop
->
-> 地址：[github.com/htop-dev/ht…](https://github.com/htop-dev/htop)
+**项目地址**：[github.com/dylanaraps/neofetch](https://github.com/dylanaraps/neofetch)
 
-### 4、bat（代替 cat）
+### 2. screenfetch — 另一种系统信息展示
 
-**Star 数**：27k｜**语言**：Rust
+```bash
+sudo apt install screenfetch
+screenfetch
+```
 
-替代 cat 的命令行工具。你还在命令行用 cat 查看文件吗？那你就 out 啦！今天推荐的 bat 它不仅支持语法高亮，还能展示 Git 的改动。macOS 下安装命令：`brew install bat` 相信你用过 bat 后就不会再想用回 cat 了。
+---
 
-> 安装：[github.com/sharkdp/bat…](https://github.com/sharkdp/bat#installation)
->
-> 命令：bat README.md
->
-> 项目地址：[github.com/sharkdp/bat](https://github.com/sharkdp/bat)
+## 二、命令替代品
 
-### 5、fsql（代替 find）
+### 3. bat — 代替 cat
 
-**Star 数**：3.8k｜**语言**：Go
+**语言**：Rust
 
-用 SQL 的语法搜索文件。
+支持语法高亮、行号显示、Git 改动展示的文件查看工具。
 
-> 安装：[github.com/kashav/fsql…](https://github.com/kashav/fsql#installation)
->
-> 命令：fsql [options] [query]
->
-> 地址：[github.com/kashav/fsql](https://github.com/kashav/fsql)
+```bash
+# 安装
+sudo apt install bat               # Debian/Ubuntu
+brew install bat                   # macOS
 
-## 中部：利刃出鞘+探囊取物
+# 使用
+cat README.md                     # 原始 cat
+bat README.md                     # 带语法高亮
 
-优秀的工具可以让你事半功倍，一个命令犹如利剑出鞘：斩杀 BUG、查数据如探囊取物。
+# 常用参数
+bat --show-all                    # 显示所有不可见字符
+bat -A                            # 同上
+bat -n file.txt                   # 显示行号
+bat -l python file.py             # 指定语言高亮
+bat --theme=ansi                  # 指定主题
+```
 
-### 6、ctop
+**项目地址**：[github.com/sharkdp/bat](https://github.com/sharkdp/bat)
 
-**Star 数**：11.6k｜**语言**：Go
+### 4. httpie — 代替 curl
 
-实现了类 top 命令展示效果的 docker 容器监控工具。
+**语言**：Python
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3809f94778ec448584efb3cd95787c6c~tplv-k3u1fbpfcp-zoom-1.image#id=I0q8Y&originalType=binary&status=done&style=none)
+人性化的 HTTP 命令行客户端，返回结果高亮显示。
 
-> 安装：[github.com/bcicen/ctop…](https://github.com/bcicen/ctop#install)
->
-> 命令：ctop
->
-> 地址：[github.com/bcicen/ctop](https://github.com/bcicen/ctop)
+```bash
+# 安装
+sudo apt install httpie            # Debian/Ubuntu
+brew install httpie                # macOS
+pip install httpie                 # pip
 
-### 7、mycli
+# 使用
+http https://api.example.com       # GET 请求
+http POST https://api.example.com name=hello  # POST 请求
+http PUT https://api.example.com/1 name=world
+http DELETE https://api.example.com/1
 
-**Star 数**：9.6k｜**语言**：Python
+# 常用参数
+http -v https://example.com        # 详细输出
+http -h https://example.com        # 只显示请求头
+http -b https://example.com        # 只显示响应体
+http --json POST ...               # JSON 格式
+http -f POST ... name=value        # 表单格式
+```
 
-一个带语法高亮、自动补全的 MySQL 命令行客户端工具。用熟悉的命令，享受不一样的快感。另外还有：
+**项目地址**：[github.com/httpie/httpie](https://github.com/httpie/httpie)
 
-- Postgres 数据库：项目名 pgcli
-- Redis：项目名 iredis
-- 篇幅问题不赘述了，可以用 HelloGitHub 小程序搜这些项目名
+### 5. htop — 代替 top
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a24bb42e3e91467abc644c80f4a8d427~tplv-k3u1fbpfcp-zoom-1.image#id=Wajex&originalType=binary&status=done&style=none)
+**语言**：C
 
-> 安装：[github.com/dbcli/mycli…](https://github.com/dbcli/mycli#detailed-install-instructions)
->
-> 命令：mycli [OPTIONS] [DATABASE]
->
-> 地址：[github.com/dbcli/mycli](https://github.com/dbcli/mycli)
+交互式进程管理工具，比 top 更直观。
 
-### 8、gpustat
+```bash
+# 安装
+sudo apt install htop              # Debian/Ubuntu
+brew install htop                  # macOS
 
-**Star 数**：2.4k｜**语言**：Python
+# 使用
+htop                               # 启动
+htop -u username                   # 只显示指定用户进程
+htop -p 1234,5678                  # 只监控指定 PID
 
-一个方便查询 GPU 状态的命令行工具。
+# 交互快捷键
+# F1 帮助
+# F2 设置
+# F3 搜索
+# F4 过滤
+# F5 树形显示
+# F6 排序
+# F9 杀死进程
+# F10 退出
+```
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/38632dda3c00424e974d47445d4c0168~tplv-k3u1fbpfcp-zoom-1.image#id=ntnew&originalType=binary&status=done&style=none)
+**项目地址**：[github.com/htop-dev/htop](https://github.com/htop-dev/htop)
 
-> 安装：pip install gpustat
->
-> 命令：gpustat [OPTIONS]
->
-> 地址：[github.com/wookayin/gp…](https://github.com/wookayin/gpustat)
+### 6. duf — 代替 df
 
-### 9、lazydocker
+**语言**：Go
 
-**Star 数**：17.7k｜**语言**：Go
+更美观的磁盘使用情况查看工具。
 
-带命令行 UI 的 docker 命令行管理工具，可以通过点点点来管理 docker。
+```bash
+# 安装
+sudo apt install duf
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8078a0e552e34444bf7d7e382a9404f5~tplv-k3u1fbpfcp-zoom-1.image#id=wtpNY&originalType=binary&status=done&style=none)
+# 使用
+duf                                # 查看所有挂载点
+duf /home                          # 查看指定目录
+duf --only local                   # 只显示本地磁盘
+duf --hide-fs tmpfs                # 隐藏 tmpfs
+```
 
-> 安装：[github.com/jesseduffie…](https://github.com/jesseduffield/lazydocker#installation)
->
-> 使用：[github.com/jesseduffie…](https://github.com/jesseduffield/lazydocker#usage)
->
-> 地址：[github.com/jesseduffie…](https://github.com/jesseduffield/lazydocker)
+### 7. ncdu — 代替 du
 
-### 10、ali
+**语言**：C
 
-**Star 数**：2.5k｜**语言**：Go
+交互式磁盘使用分析工具。
 
-能够实时展示分析的压力测试工具。这款命令行的压测工具可以在终端实时展示压测耗时曲线，很动感很酷。
+```bash
+# 安装
+sudo apt install ncdu
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1809490464214c98a50bc23fa52aa2af~tplv-k3u1fbpfcp-zoom-1.image#id=h6dzE&originalType=binary&status=done&style=none)
+# 使用
+ncdu                               # 分析当前目录
+ncdu /home                         # 分析指定目录
+ncdu -x /                          # 不跨文件系统
+```
 
-> 安装：[github.com/nakabonne/a…](https://github.com/nakabonne/ali#installation)
->
-> 命令：ali 地址
->
-> 地址：[github.com/nakabonne/a…](https://github.com/nakabonne/ali)
+---
 
-### 11、lazygit
+## 三、开发效率工具
 
-**Star 数**：19.9k｜**语言**：Go
+### 8. fd — 代替 find
 
-Git 命令行客户端。它充分的体现出了命令行工具的高效，在拥有相同功能的前提下启动速度比各种 GUI 客户端快 N 倍，再配上快捷键速度加倍。Ready？Go！
+**语言**：Rust
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3ef1c81b8dfd4b77a0c40441fd684c59~tplv-k3u1fbpfcp-zoom-1.image#id=wCbyS&originalType=binary&status=done&style=none)
+更快的文件查找工具，默认忽略隐藏文件和 .gitignore。
 
-> 安装：[github.com/jesseduffie…](https://github.com/jesseduffield/lazygit#installation)
->
-> 命令：lazygit
->
-> 地址：[github.com/jesseduffie…](https://github.com/jesseduffield/lazygit)
+```bash
+# 安装
+sudo apt install fd-find           # Debian/Ubuntu
+brew install fd                    # macOS
 
-## 下部：平地起惊雷
+# 使用
+fd "pattern"                       # 查找文件名包含 pattern 的文件
+fd -e txt                          # 查找所有 .txt 文件
+fd -e md -e txt                    # 查找 .md 和 .txt 文件
+fd -d 3 "pattern"                  # 只在 3 层内查找
+fd -x command                      # 对每个结果执行命令
+fd -H "pattern"                    # 包含隐藏文件
+```
 
-有了它...世界貌似变得有一点点地不一样。
+**项目地址**：[github.com/sharkdp/fd](https://github.com/sharkdp/fd)
 
-不对...是很不一样。
+### 9. ripgrep (rg) — 代替 grep
 
-错...这明明是王炸！
+**语言**：Rust
 
-### 12、ohmyzsh
+超快的文本搜索工具，递归搜索默认忽略 .gitignore。
 
-**Star 数**：128k｜**语言**：Shell
+```bash
+# 安装
+sudo apt install ripgrep           # Debian/Ubuntu
+brew install ripgrep               # macOS
 
-史称“终极 Shell”——ZSH 的工具，让你发现命令行前所未有的好用。开箱即用、海量主题，一声真香永远不会迟到。。
+# 使用
+rg "pattern"                       # 递归搜索当前目录
+rg "pattern" /path/                # 搜索指定目录
+rg -i "pattern"                    # 忽略大小写
+rg -l "pattern"                    # 只显示文件名
+rg -c "pattern"                    # 显示匹配次数
+rg -g "*.py" "pattern"             # 只搜索 .py 文件
+rg -A 5 "pattern"                  # 显示匹配后 5 行
+rg -B 5 "pattern"                  # 显示匹配前 5 行
+rg -C 5 "pattern"                  # 显示匹配前后各 5 行
+```
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8f5d2db3358c4f12a3782dec605325b4~tplv-k3u1fbpfcp-zoom-1.image#id=KYbkl&originalType=binary&status=done&style=none)
+**项目地址**：[github.com/BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep)
 
-> 安装：[github.com/ohmyzsh/ohm…](https://github.com/ohmyzsh/ohmyzsh#basic-installation)
->
-> 使用：[github.com/ohmyzsh/ohm…](https://github.com/ohmyzsh/ohmyzsh#using-oh-my-zsh)
->
-> 地址：[github.com/ohmyzsh/ohm…](https://github.com/ohmyzsh/ohmyzsh)
+### 10. fzf — 模糊搜索
 
-## 最后
+**语言**：Go
 
-本期共推荐了 **12 个命令行开源项目**，它们加起来有 **287300+ 星🌟** 足以点亮漆黑的命令行。
+通用命令行模糊搜索工具，可以搜索文件、历史命令、进程等。
+
+```bash
+# 安装
+sudo apt install fzf               # Debian/Ubuntu
+brew install fzf                   # macOS
+
+# 使用
+fzf                                # 搜索当前目录文件
+cat file.txt | fzf                # 搜索文件内容
+
+# 集成到 Shell（在 .bashrc / .zshrc 中添加）
+source /usr/share/fzf/key-bindings.bash
+source /usr/share/fzf/completion.bash
+
+# 快捷键（配置后）
+# Ctrl+T 搜索文件
+# Ctrl+R 搜索历史命令
+# Ctrl+P 搜索进程
+```
+
+**项目地址**：[github.com/junegunn/fzf](https://github.com/junegunn/fzf)
+
+### 11. fsql — 用 SQL 搜索文件
+
+**语言**：Go
+
+```bash
+# 安装
+go install github.com/kashav/fsql
+
+# 使用
+fsql "SELECT * FROM ./ WHERE name LIKE '%test%'"
+fsql "SELECT path, size FROM ./ WHERE size > 1024 ORDER BY size DESC"
+```
+
+**项目地址**：[github.com/kashav/fsql](https://github.com/kashav/fsql)
+
+---
+
+## 四、数据库工具
+
+### 12. mycli — MySQL 增强客户端
+
+**语言**：Python
+
+带语法高亮和自动补全的 MySQL 客户端。
+
+```bash
+# 安装
+sudo apt install mycli             # Debian/Ubuntu
+brew install mycli                 # macOS
+pip install mycli                  # pip
+
+# 使用
+mycli -u root -p password database
+mycli mysql://user:pass@localhost/db
+
+# 功能
+# - 自动补全 SQL 关键字
+# - 语法高亮
+# - 智能提示
+# - 支持 SQL 历史
+```
+
+**项目地址**：[github.com/dbcli/mycli](https://github.com/dbcli/mycli)
+
+### 13. pgcli — PostgreSQL 增强客户端
+
+```bash
+pip install pgcli
+pgcli -h localhost -u user -d database
+```
+
+### 14. iredis — Redis 增强客户端
+
+```bash
+pip install iredis
+iredis
+```
+
+---
+
+## 五、容器与监控
+
+### 15. ctop — 容器监控
+
+**语言**：Go
+
+类似 top 的 Docker 容器监控工具。
+
+```bash
+# 安装
+sudo apt install ctop              # 或下载二进制
+brew install ctop
+
+# 使用
+ctop                               # 启动
+ctop -a                            # 显示所有容器（包括停止的）
+```
+
+**项目地址**：[github.com/bcicen/ctop](https://github.com/bcicen/ctop)
+
+### 16. lazydocker — Docker 管理 UI
+
+**语言**：Go
+
+带终端 UI 的 Docker 管理工具。
+
+```bash
+# 安装
+brew install lazydocker            # macOS
+# 或者下载二进制文件
+
+# 使用
+lazydocker                         # 启动管理界面
+```
+
+**项目地址**：[github.com/jesseduffield/lazydocker](https://github.com/jesseduffield/lazydocker)
+
+### 17. lazydocker 的姊妹 — lazygit
+
+**语言**：Go
+
+带终端 UI 的 Git 客户端。
+
+```bash
+# 安装
+sudo apt install lazygit
+brew install lazygit
+
+# 使用
+lazygit                            # 启动
+```
+
+**项目地址**：[github.com/jesseduffield/lazygit](https://github.com/jesseduffield/lazygit)
+
+---
+
+## 六、性能与压测
+
+### 18. gpustat — GPU 监控
+
+**语言**：Python
+
+```bash
+pip install gpustat
+gpustat                            # 查看 GPU 状态
+gpustat --watch                    # 实时监控
+```
+
+**项目地址**：[github.com/wookayin/gpustat](https://github.com/wookayin/gpustat)
+
+### 19. ali — 压测工具
+
+**语言**：Go
+
+实时展示压力测试结果的命令行工具。
+
+```bash
+# 安装
+go install github.com/nakabonne/ali
+
+# 使用
+ali http://localhost:8080
+ali -d 30s http://localhost:8080   # 持续 30 秒
+ali -c 50 http://localhost:8080    # 50 并发
+```
+
+**项目地址**：[github.com/nakabonne/ali](https://github.com/nakabonne/ali)
+
+---
+
+## 七、终极 Shell 体验
+
+### 20. oh-my-zsh — 终极 Shell
+
+**Star 数**：128k+ ⭐
+
+ZSH 的框架，让命令行前所未有的好用。
+
+```bash
+# 安装 ZSH
+sudo apt install zsh               # Debian/Ubuntu
+brew install zsh                   # macOS
+
+# 安装 oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# 配置文件
+vim ~/.zshrc
+
+# 切换默认 Shell
+chsh -s /bin/zsh
+```
+
+**常用插件**：
+
+```bash
+# 在 ~/.zshrc 中设置
+plugins=(git docker kubectl autojump zsh-autosuggestions zsh-syntax-highlighting)
+
+# 安装自动补全插件
+git clone https://github.com/zsh-users/zsh-autosuggestions \
+  $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+# 安装语法高亮插件
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+  $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+```
+
+**项目地址**：[github.com/ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
+
+---
+
+## 八、快速安装脚本
+
+```bash
+# 一键安装常用工具（Debian/Ubuntu）
+sudo apt install -y \
+    neofetch \
+    htop \
+    bat \
+    httpie \
+    fd-find \
+    ripgrep \
+    fzf \
+    tree \
+    ncdu \
+    duf \
+    lazygit \
+    mycli
+
+# macOS
+brew install \
+    neofetch \
+    htop \
+    bat \
+    httpie \
+    fd \
+    ripgrep \
+    fzf \
+    tree \
+    ncdu \
+    duf \
+    lazygit \
+    mycli
+```

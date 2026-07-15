@@ -1,52 +1,64 @@
-# linux死机的集中处理方案
+# Linux 死机处理方案
 
-linux的图形界面死机很正常，反正我这么感觉。而且linux死机以后鼠标键盘完全gg。
-一般而言死机的主要原因系统负载过高，此时各种操作全卡，而且如果强制关机不利于硬盘等硬件，有时还会无法启动。
+> Linux 图形界面死机很常见，死机后鼠标键盘完全失效。主要原因通常是系统负载过高，此时各种操作全卡，强制关机不利于硬盘等硬件，有时还会导致无法启动。
 
-## 切换tty
+## 一、切换 TTY
 
-按ctrl+alt+F2(F1-F6都可以一试，有的F1可能是图形界面)，等一会就可以进入tty，用户名密码登录后用top查看高负载的进程，kill PID即可
+```bash
+# 按 Ctrl+Alt+F2 ~ F6（F1 通常是图形界面）
+# 稍等片刻即可进入 TTY 终端
 
-## reisub
+# 登录后使用 top 查找高负载进程
+top
 
-### 用法
-
-reisub是linux内核自带的方法，这个方法可以在各种情况下安全地重启计算机。大家在键盘上找，可以找到一个叫做“Sys Rq”的键，在台机的键盘上通常与 Prt Sc 共键，在笔记本可能在其他位置，如 Delete。以台机为例，要使用这种方法需要按住 ctrl+Alt-Print(Sys Rq)，然后依次按下 reisub 这几个键，按完 b 系统就会重启。
-
-解释一下， Sys Rq 是一种叫做系统请求的东西，linux内核自带，reisub每一个代表一个操作，依次是：
-
-unRaw 将键盘控制从 X Server 那里抢回来
-
-tErminate 给所有进程发送 SIGTERM 信号，让他们自己解决善后
-
-kIll 给所有进程发送 SIGKILL 信号，强制他们马上关闭
-
-Sync 将所有数据同步至磁盘
-
-Unmount 将所有分区挂载为只读模式
-
-reBoot 重启
-
-可以通过busier（busy的比较级）协助记忆。
-
-### 不管用？
-
-这个东西是要开启的，并不是默认自带的。查看方法为
-
+# 找到高负载进程后，按 k 输入 PID 杀死它
+kill -9 PID
 ```
+
+## 二、REISUB — 安全重启
+
+REISUB 是 Linux 内核自带的安全重启方法，可以在各种情况下安全地重启计算机。
+
+### 操作步骤
+
+按住 `Ctrl+Alt+PrtSc（SysRq）`，然后依次按下以下字母键（不要松开 Ctrl+Alt）：
+
+| 按键 | 含义 | 作用 |
+|------|------|------|
+| **R** | unRaw | 从 X Server 抢回键盘控制 |
+| **E** | tErminate | 给所有进程发送 SIGTERM，让它们自行善后 |
+| **I** | kIll | 给所有进程发送 SIGKILL，强制关闭 |
+| **S** | Sync | 将所有数据同步至磁盘 |
+| **U** | Unmount | 将所有分区挂载为只读模式 |
+| **B** | reBoot | 重启系统 |
+
+> **记忆方法**：可用 "busier"（busy 的比较级）来辅助记忆，或 "Raising Elephant Is So Utterly Boring"。
+
+### 检查是否启用
+
+```bash
+# 查看 sysrq 是否启用（1 为启用）
 cat /proc/sys/kernel/sysrq
 ```
 
-输出1就能用，否则就不行
+### 启用 REISUB（如未启用）
 
-临时的使用可以编辑
+**临时启用**：
 
-```
+```bash
 sudo sysctl -w kernel.sysrq=1
 ```
 
-终生使用请在 /etc/sysctl.d/ 中创建文件 99-sysctl.conf ，加入
+**永久启用**：
 
+```bash
+# 创建配置文件
+echo "kernel.sysrq=1" | sudo tee /etc/sysctl.d/99-sysctl.conf
 ```
-kernel.sysrq=1
-```
+
+## 三、预防措施
+
+1. **监控系统负载**：定期使用 `top`、`htop` 查看系统状态
+2. **限制进程资源**：使用 `ulimit` 限制单个进程的资源使用
+3. **设置进程优先级**：使用 `nice`、`renice` 调整进程优先级
+4. **定期清理**：及时清理日志和临时文件，避免磁盘写满
