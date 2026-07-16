@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>element-plus</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/element-plus/dist/index.css"
+    />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-plus/dist/index.css"
+    />
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios"></script>
+    <script src="https://unpkg.com/element-plus"></script>
+  </head>
+  <body>
+    <div id="app">
+      <el-button type="primary" @click="showMsg">element-plus</el-button>
+      <div>{{msg1}}</div>
+      <el-button type="primary" @click="showAxios">获取标签</el-button>
+      <div>{{msg2}}</div>
+    </div>
+
+    <script>
+      axios.defaults.crossDomain = true;
+      const app = Vue.createApp({
+        data() {
+          return {
+            msg: "hhhhh",
+            msg1: "",
+            msg2: "",
+          };
+        },
+        methods: {
+          async showAxios() {
+            let data = await axios.get(
+              "https://www.jianshu.com/shakespeare/v2/notes/recommend",
+              {
+                headers: {
+                  "Access-Control-Allow-Headers": "Access-Control-Allow-Origin",
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            );
+            this.msg2 = data;
+            setTimeout(() => {
+              this.msg2 = "";
+            }, 5000);
+          },
+          showMsg() {
+            fetch(
+              "https://118.89.204.198/resolv?host=www.zhihu.com&os_type=web",
+              {
+                method: "GET",
+                mode: "cors",
+                headers: {},
+              }
+            )
+              .then((res) => {
+                console.log(res);
+                return res.json();
+              })
+              .then((data) => {
+                this.msg1 = data;
+                setTimeout(() => {
+                  this.msg1 = "";
+                }, 4000);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          },
+        },
+      });
+      app.use(ElementPlus);
+      app.mount("#app");
+      // 使用setup
+      // const { createApp, reactive, toRefs } = Vue;
+      // const data = reactive({
+      //   state: 12,
+      // });
+      // const app = createApp({
+      //   setup() {
+      //     return {
+      //       ...toRefs(data),
+      //     };
+      //   },
+      // });
+      // app.mount("#app");
+    </script>
+  </body>
+</html>

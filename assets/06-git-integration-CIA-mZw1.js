@@ -1,0 +1,73 @@
+import{a as e,c as t,i as n,l as r,n as i,o as a,r as o,s,t as c}from"./app-B1jqjtqq.js";var l=JSON.parse(`{"path":"/windows-tutor/tools/vscode/06-git-integration.html","title":"06 — Git 集成","lang":"zh-CN","frontmatter":{"description":"06 — Git 集成 VS Code 内置了完整的 Git 支持，无需离开编辑器就能完成日常的 Git 操作。配合 GitLens 扩展更是如虎添翼。 6.1 内置 Git 功能概览 打开侧边栏的 源代码管理 视图（Ctrl+Shift+G）即可看到所有 Git 功能： 核心操作快捷键 6.2 日常 Git 工作流 场景：从修改到推送 对比三路合并 ...","head":[["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"06 — Git 集成\\",\\"image\\":[\\"\\"],\\"dateModified\\":\\"2026-07-16T05:29:15.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"],["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/windows-tutor/tools/vscode/06-git-integration.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"06 — Git 集成"}],["meta",{"property":"og:description","content":"06 — Git 集成 VS Code 内置了完整的 Git 支持，无需离开编辑器就能完成日常的 Git 操作。配合 GitLens 扩展更是如虎添翼。 6.1 内置 Git 功能概览 打开侧边栏的 源代码管理 视图（Ctrl+Shift+G）即可看到所有 Git 功能： 核心操作快捷键 6.2 日常 Git 工作流 场景：从修改到推送 对比三路合并 ..."}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2026-07-16T05:29:15.000Z"}],["meta",{"property":"article:modified_time","content":"2026-07-16T05:29:15.000Z"}]]},"git":{"createdTime":1784179755000,"updatedTime":1784179755000,"contributors":[{"name":"yzqdev","username":"yzqdev","email":"yzqdev@outlook.com","commits":1,"url":"https://github.com/yzqdev"}]},"readingTime":{"minutes":3.7,"words":1110},"filePathRelative":"windows-tutor/tools/vscode/06-git-integration.md","autoDesc":true}`),u={name:`06-git-integration.md`};function d(c,l,u,d,f,p){let m=t(`RouteLink`);return s(),o(`div`,null,[l[3]||=n(`<h1 id="_06-—-git-集成" tabindex="-1"><a class="header-anchor" href="#_06-—-git-集成"><span>06 — Git 集成</span></a></h1><blockquote><p>VS Code 内置了完整的 Git 支持，无需离开编辑器就能完成日常的 Git 操作。配合 GitLens 扩展更是如虎添翼。</p></blockquote><hr><h2 id="_6-1-内置-git-功能概览" tabindex="-1"><a class="header-anchor" href="#_6-1-内置-git-功能概览"><span>6.1 内置 Git 功能概览</span></a></h2><p>打开侧边栏的 <strong>源代码管理</strong> 视图（<code>Ctrl+Shift+G</code>）即可看到所有 Git 功能：</p><div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre><code class="language-text"><span class="line">┌─ 源代码管理 ─────────────────────────┐</span>
+<span class="line">│                                       │</span>
+<span class="line">│  分支: main  ↑0 ↓0                    │</span>
+<span class="line">│                                       │</span>
+<span class="line">│  消息: [______________________________]│</span>
+<span class="line">│  ┌────────────────────────────┐       │</span>
+<span class="line">│  │ ✓ 提交暂存      ⌃Enter     │       │</span>
+<span class="line">│  │ ✓ 提交          ⌃⌘Enter   │       │</span>
+<span class="line">│  └────────────────────────────┘       │</span>
+<span class="line">│                                       │</span>
+<span class="line">│  ── 更改 (2) ──────────────────────── │</span>
+<span class="line">│  M src/app.ts                         │</span>
+<span class="line">│  M src/utils.ts                       │</span>
+<span class="line">│  ┌────────────────────────┐           │</span>
+<span class="line">│  │  ✓ 暂存所有更改        │           │</span>
+<span class="line">│  └────────────────────────┘           │</span>
+<span class="line">│                                       │</span>
+<span class="line">│  ── 暂存的更改 (0) ───────────────── │</span>
+<span class="line">│                                       │</span>
+<span class="line">└───────────────────────────────────────┘</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="核心操作快捷键" tabindex="-1"><a class="header-anchor" href="#核心操作快捷键"><span>核心操作快捷键</span></a></h3><table><thead><tr><th>操作</th><th>快捷键</th></tr></thead><tbody><tr><td>打开源代码管理</td><td><code>Ctrl+Shift+G</code></td></tr><tr><td>提交（在消息框聚焦时）</td><td><code>Ctrl+Enter</code></td></tr><tr><td>提交所有（跳过暂存）</td><td><code>Ctrl+Shift+Enter</code></td></tr><tr><td>暂存文件</td><td>点击文件旁的 <code>+</code> 号</td></tr><tr><td>撤销更改</td><td>点击文件旁的 <code>-</code> 号</td></tr><tr><td>查看文件差异</td><td>点击文件名的 <strong>Diff 视图</strong></td></tr><tr><td>刷新状态</td><td><code>Ctrl+Shift+E</code> 再切换回来</td></tr></tbody></table><hr><h2 id="_6-2-日常-git-工作流" tabindex="-1"><a class="header-anchor" href="#_6-2-日常-git-工作流"><span>6.2 日常 Git 工作流</span></a></h2><h3 id="场景-从修改到推送" tabindex="-1"><a class="header-anchor" href="#场景-从修改到推送"><span>场景：从修改到推送</span></a></h3><div class="language-bash" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line"><span class="token comment"># 习惯在终端用 Git 的，也可以直接在 VS Code 终端里操作</span></span>
+<span class="line"><span class="token comment"># 以下是在 VS Code 图形界面中的操作流程：</span></span>
+<span class="line"></span>
+<span class="line"><span class="token number">1</span>. 修改代码</span>
+<span class="line"><span class="token number">2</span>. Ctrl+Shift+G 打开源代码管理</span>
+<span class="line"><span class="token number">3</span>. 查看更改的文件（绿色 <span class="token operator">=</span> 新增，红色 <span class="token operator">=</span> 删除，橙色 <span class="token operator">=</span> 修改）</span>
+<span class="line"><span class="token number">4</span>. 点击文件查看 Diff</span>
+<span class="line"><span class="token number">5</span>. 点击文件旁的 + 暂存（或 <span class="token string">&quot;暂存所有更改&quot;</span>）</span>
+<span class="line"><span class="token number">6</span>. 输入提交信息</span>
+<span class="line"><span class="token number">7</span>. Ctrl+Enter 提交</span>
+<span class="line"><span class="token number">8</span>. <span class="token punctuation">..</span>. 点击底部状态栏的 <span class="token string">&quot;同步&quot;</span> 按钮推送</span>
+<span class="line"></span></code></pre></div><h3 id="对比三路合并" tabindex="-1"><a class="header-anchor" href="#对比三路合并"><span>对比三路合并</span></a></h3><p>三路合并视图会在冲突时自动打开：</p><div class="language-text" data-highlighter="prismjs" data-ext="text"><pre><code class="language-text"><span class="line">┌───────────────┬───────────────┬───────────────┐</span>
+<span class="line">│  当前更改     │   合并结果     │   传入更改     │</span>
+<span class="line">│  (Ours)       │   (Result)    │   (Theirs)    │</span>
+<span class="line">│               │               │               │</span>
+<span class="line">│  &lt;&lt;&lt;&lt;&lt;&lt;&lt;      │  final code   │  &gt;&gt;&gt;&gt;&gt;&gt;&gt;      │</span>
+<span class="line">│  ours code    │               │  theirs code  │</span>
+<span class="line">│  =======      │               │               │</span>
+<span class="line">└───────────────┴───────────────┴───────────────┘</span>
+<span class="line"></span></code></pre></div><p>解决冲突后，点击 <strong>&quot;接受合并&quot;</strong> 按钮。</p><hr><h2 id="_6-3-gitlens-扩展" tabindex="-1"><a class="header-anchor" href="#_6-3-gitlens-扩展"><span>6.3 GitLens 扩展</span></a></h2><p><a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" target="_blank" rel="noopener noreferrer">GitLens</a> 是 VS Code 上最强大的 Git 扩展，安装量超过 4000 万。</p><h3 id="核心功能" tabindex="-1"><a class="header-anchor" href="#核心功能"><span>核心功能</span></a></h3><table><thead><tr><th>功能</th><th>说明</th></tr></thead><tbody><tr><td><strong>Blame 注解</strong></td><td>每行代码末尾显示最后修改者和提交哈希</td></tr><tr><td><strong>CodeLens</strong></td><td>函数/类上方显示最近修改者和修改时间</td></tr><tr><td><strong>Current Line Blame</strong></td><td>状态栏显示当前行的 Git Blame 信息</td></tr><tr><td><strong>文件历史</strong></td><td>右键文件 → <code>Open File History</code></td></tr><tr><td><strong>搜索提交</strong></td><td>按作者、文件、消息搜索提交历史</td></tr><tr><td><strong>GitLens Inspect</strong></td><td>可视化分支、提交图</td></tr></tbody></table><h3 id="推荐配置" tabindex="-1"><a class="header-anchor" href="#推荐配置"><span>推荐配置</span></a></h3><div class="language-jsonc" data-highlighter="prismjs" data-ext="jsonc"><pre><code class="language-jsonc"><span class="line">// settings.json</span>
+<span class="line">{</span>
+<span class="line">  &quot;gitlens.currentLine.enabled&quot;: true, // 状态栏显示当前行 Blame</span>
+<span class="line">  &quot;gitlens.codeLens.enabled&quot;: true, // 函数上方显示 Git 信息</span>
+<span class="line">  &quot;gitlens.codeLens.recentChange.enabled&quot;: true, // 最近修改</span>
+<span class="line">  &quot;gitlens.codeLens.authors.enabled&quot;: true, // 作者</span>
+<span class="line">  &quot;gitlens.blame.avatars&quot;: true, // 头像</span>
+<span class="line">  &quot;gitlens.hovers.currentLine.over&quot;: &quot;line&quot;, // 悬停显示 Blame</span>
+<span class="line">  &quot;gitlens.defaultDateFormat&quot;: &quot;YYYY-MM-DD HH:mm&quot;, // 日期格式</span>
+<span class="line">}</span>
+<span class="line"></span></code></pre></div><hr><h2 id="_6-4-分支管理" tabindex="-1"><a class="header-anchor" href="#_6-4-分支管理"><span>6.4 分支管理</span></a></h2><h3 id="创建-切换分支" tabindex="-1"><a class="header-anchor" href="#创建-切换分支"><span>创建/切换分支</span></a></h3><ol><li>点击左下角状态栏的分支名（如 <code>main</code>）</li><li>输入新分支名 → <code>Create new branch...</code></li><li>或选择已有分支切换</li></ol><h3 id="分支操作" tabindex="-1"><a class="header-anchor" href="#分支操作"><span>分支操作</span></a></h3><table><thead><tr><th>操作</th><th>方式</th></tr></thead><tbody><tr><td>创建分支</td><td>状态栏 <code>main</code> → <code>Create new branch...</code></td></tr><tr><td>切换分支</td><td>状态栏 <code>main</code> → 选择分支</td></tr><tr><td>删除分支</td><td>命令面板 → <code>&gt; Git: Delete Branch...</code></td></tr><tr><td>合并分支</td><td>命令面板 → <code>&gt; Git: Merge Branch...</code></td></tr><tr><td>变基</td><td>命令面板 → <code>&gt; Git: Rebase...</code></td></tr></tbody></table><h3 id="查看分支图" tabindex="-1"><a class="header-anchor" href="#查看分支图"><span>查看分支图</span></a></h3><p>安装 GitLens 后：</p><ol><li>点击侧边栏 GitLens 图标</li><li>选择 <code>Branches</code> 或 <code>Commits</code> 视图</li><li>可视化查看分支拓扑</li></ol><hr><h2 id="_6-5-常用-git-配置" tabindex="-1"><a class="header-anchor" href="#_6-5-常用-git-配置"><span>6.5 常用 Git 配置</span></a></h2><div class="language-jsonc line-numbers-mode" data-highlighter="prismjs" data-ext="jsonc"><pre><code class="language-jsonc"><span class="line">// settings.json</span>
+<span class="line">{</span>
+<span class="line">  &quot;git.enableSmartCommit&quot;: true, // 无暂存区时直接提交</span>
+<span class="line">  &quot;git.autofetch&quot;: true, // 自动拉取</span>
+<span class="line">  &quot;git.confirmSync&quot;: false, // 同步时不确认</span>
+<span class="line">  &quot;git.fetchOnPull&quot;: true, // 拉取前先 fetch</span>
+<span class="line">  &quot;git.mergeEditor&quot;: true, // 使用三路合并编辑器</span>
+<span class="line">  &quot;git.untrackedChanges&quot;: &quot;separate&quot;, // 未跟踪文件单独显示</span>
+<span class="line">  &quot;git.alwaysSignOff&quot;: false, // 自动加 Signed-off-by</span>
+<span class="line">  &quot;git.defaultBranchName&quot;: &quot;main&quot;, // 默认分支名</span>
+<span class="line">  &quot;git.branchProtection&quot;: [&quot;main&quot;, &quot;master&quot;], // 保护分支</span>
+<span class="line">  &quot;git.branchRandomName&quot;: {</span>
+<span class="line">    &quot;enable&quot;: true, // 随机分支名</span>
+<span class="line">  },</span>
+<span class="line">}</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><hr><h2 id="_6-6-github-集成" tabindex="-1"><a class="header-anchor" href="#_6-6-github-集成"><span>6.6 GitHub 集成</span></a></h2><h3 id="拉取请求" tabindex="-1"><a class="header-anchor" href="#拉取请求"><span>拉取请求</span></a></h3><p>安装 <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github" target="_blank" rel="noopener noreferrer">GitHub Pull Requests</a> 扩展后：</p><table><thead><tr><th>操作</th><th>方式</th></tr></thead><tbody><tr><td>查看 PR</td><td>侧边栏 → GitHub 图标</td></tr><tr><td>创建 PR</td><td>命令面板 → <code>&gt; GitHub: Create Pull Request</code></td></tr><tr><td>审查 PR</td><td>在 PR 视图中查看 Diff、发表评论</td></tr><tr><td>合并 PR</td><td>在 PR 详情页点击 <code>Merge</code></td></tr></tbody></table><h3 id="常见场景" tabindex="-1"><a class="header-anchor" href="#常见场景"><span>常见场景</span></a></h3><p><strong>场景：审查同事的 PR</strong></p><ol><li>安装 GitHub Pull Requests 扩展</li><li>点击侧边栏 GitHub 图标</li><li>选择待审查的 PR</li><li>在 Diff 视图中查看改动</li><li>点击行号旁的 <code>+</code> 发表评论</li><li>审核完成后选择 <code>Approve</code> 或 <code>Request Changes</code></li></ol><hr><h2 id="_6-7-状态栏-git-信息解读" tabindex="-1"><a class="header-anchor" href="#_6-7-状态栏-git-信息解读"><span>6.7 状态栏 Git 信息解读</span></a></h2><p>VS Code 底部状态栏会显示 Git 信息：</p><div class="language-text" data-highlighter="prismjs" data-ext="text"><pre><code class="language-text"><span class="line">main* ↓2 ↑1  ≡ +3 ~2 -1</span>
+<span class="line"> │   │   │   │   │   │  └─ 删除 1 个文件</span>
+<span class="line"> │   │   │   │   │   └──── 修改 2 个文件</span>
+<span class="line"> │   │   │   │   └─────── 新增 3 个文件</span>
+<span class="line"> │   │   │   └─────────── 未暂存的更改数</span>
+<span class="line"> │   │   └─────────────── 落后远程 2 个提交</span>
+<span class="line"> │   └─────────────────── 领先远程 1 个提交（* 表示未提交的更改）</span>
+<span class="line"> └─────────────────────── 当前分支名</span>
+<span class="line"></span></code></pre></div><hr><h2 id="下一步" tabindex="-1"><a class="header-anchor" href="#下一步"><span>下一步</span></a></h2>`,49),i(`p`,null,[l[1]||=e(`掌握 Git 集成后，进入 `,-1),a(m,{to:`/windows-tutor/tools/vscode/07-tasks-and-launch.html`},{default:r(()=>[...l[0]||=[e(`07 — 任务自动化与调试`,-1)]]),_:1}),l[2]||=e(` 学习如何配置构建和调试任务。`,-1)])])}var f=c(u,[[`render`,d]]);export{l as _pageData,f as default};

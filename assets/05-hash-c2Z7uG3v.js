@@ -1,0 +1,131 @@
+import{i as e,r as t,s as n,t as r}from"./app-B1jqjtqq.js";var i=JSON.parse(`{"path":"/windows-tutor/powershell/basics/05-hash.html","title":"哈希表","lang":"zh-CN","frontmatter":{"order":5,"description":"哈希表 PowerShell 哈希表是一种数据结构，用于存储一个或多个键/值对。也称为字典或关联数组。 在 PowerShell 中，每个哈希表都有一个哈希表（System.Collections.Hashtable）对象。我们可以在 PowerShell 中使用 Hashtable 对象的属性和方法。哈希表中的键和值也是 .NET 类型的对象。 在引...","head":[["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"哈希表\\",\\"image\\":[\\"\\"],\\"dateModified\\":\\"2026-07-16T05:29:15.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"],["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/windows-tutor/powershell/basics/05-hash.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"哈希表"}],["meta",{"property":"og:description","content":"哈希表 PowerShell 哈希表是一种数据结构，用于存储一个或多个键/值对。也称为字典或关联数组。 在 PowerShell 中，每个哈希表都有一个哈希表（System.Collections.Hashtable）对象。我们可以在 PowerShell 中使用 Hashtable 对象的属性和方法。哈希表中的键和值也是 .NET 类型的对象。 在引..."}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2026-07-16T05:29:15.000Z"}],["meta",{"property":"article:modified_time","content":"2026-07-16T05:29:15.000Z"}]]},"git":{"createdTime":1652240878000,"updatedTime":1784179755000,"contributors":[{"name":"yzqdev","username":"yzqdev","email":"yzqdev@outlook.com","commits":5,"url":"https://github.com/yzqdev"}]},"readingTime":{"minutes":3.33,"words":1000},"filePathRelative":"windows-tutor/powershell/basics/05-hash.md","autoDesc":true}`),a={name:`05-hash.md`};function o(r,i,a,o,s,c){return n(),t(`div`,null,[...i[0]||=[e(`<h1 id="哈希表" tabindex="-1"><a class="header-anchor" href="#哈希表"><span>哈希表</span></a></h1><p>PowerShell 哈希表是一种数据结构，用于存储一个或多个键/值对。也称为字典或关联数组。</p><p>在 PowerShell 中，每个哈希表都有一个哈希表（<code>System.Collections.Hashtable</code>）对象。我们可以在 PowerShell 中使用 <code>Hashtable</code> 对象的属性和方法。哈希表中的键和值也是 .NET 类型的对象。</p><p>在引入 PowerShell 版本 3.0 之后，我们可以使用 <code>[ordered]</code> 属性在 PowerShell 中创建一个有序字典（<code>System.Collections.Specialized.OrderedDictionary</code>）。</p><p>有序字典和哈希表之间的主要区别在于字典中的键始终按照我们列出的顺序显示。但是哈希表中键的顺序不确定。</p><h2 id="_1-语法" tabindex="-1"><a class="header-anchor" href="#_1-语法"><span>1. 语法</span></a></h2><p>以下语句是创建哈希表的语法：</p><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$variable_name</span> = @<span class="token punctuation">{</span> &lt;key1&gt; = &lt;value1&gt; <span class="token punctuation">;</span> &lt;key2&gt; = &lt;value2&gt; <span class="token punctuation">;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">;</span> &lt;keyN&gt; = &lt;valueN&gt;<span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre></div><p>以下语句是创建有序字典的语法：</p><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$variable_name</span> = <span class="token namespace">[ordered]</span> @<span class="token punctuation">{</span> &lt;key1&gt; = &lt;value1&gt; <span class="token punctuation">;</span> &lt;key2&gt; = &lt;value2&gt; <span class="token punctuation">;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">;</span> &lt;keyN&gt; = &lt;valueN&gt;<span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre></div><h2 id="_2-创建哈希表" tabindex="-1"><a class="header-anchor" href="#_2-创建哈希表"><span>2. 创建哈希表</span></a></h2><p>以下是在 PowerShell 中创建哈希表的步骤：</p><ul><li>创建一个以 <code>@</code> 符号开头的哈希表。</li><li>将哈希表括在花括号中。</li><li>输入一个或多个键/值对作为哈希表的数据（内容）。</li><li>要分隔每个值的键，必须使用等号（<code>=</code>）。</li><li>要分隔键/值对，必须使用分号（<code>;</code>）或换行符。</li><li>包含空格的键将它们括在引号中。并且这些值必须是 PowerShell 的有效表达式。</li><li>要管理或使用哈希表，请将哈希表名分配给变量。</li><li>将有序的哈希表分配给变量时，可以将有序的属性放在 <code>@</code> 符号之前。</li></ul><p>如果要创建一个空的哈希表，请在 PowerShell 中键入以下命令：</p><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$variablename</span> = @<span class="token punctuation">{</span><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre></div><p>创建哈希表时，我们还可以将其添加到哈希表中。以下示例描述了如何使用三个键及其值创建哈希表。</p><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$student</span> = @<span class="token punctuation">{</span> name = <span class="token string">&quot;Maxsu&quot;</span> <span class="token punctuation">;</span> Course = <span class="token string">&quot;数学&quot;</span> <span class="token punctuation">;</span> Age = 25 <span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre></div><h2 id="_3-显示哈希表" tabindex="-1"><a class="header-anchor" href="#_3-显示哈希表"><span>3. 显示哈希表</span></a></h2><p>要显示哈希表，请输入存储它的变量的名称。默认情况下，它显示带有两列的表。一列用于键，另一列用于键的值。</p><p>以下命令显示哈希表的结果：</p><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$Student</span></span>
+<span class="line"></span></code></pre></div><p>若要显示哈希表的所有键或所有值，请使用点（<code>.</code>）表示法。下面的示例显示以上示例的所有键：</p><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$Student</span><span class="token punctuation">.</span>keys</span>
+<span class="line"></span></code></pre></div><p>下面的示例显示以上示例的所有值：</p><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$Student</span><span class="token punctuation">.</span>values</span>
+<span class="line"></span></code></pre></div><p>哈希表具有 <code>count</code> 属性，该属性指示哈希表中键/值对的总数。在上面的示例中，以下命令将显示键-值对的总数：</p><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$Student</span><span class="token punctuation">.</span>count</span>
+<span class="line"></span></code></pre></div><p>输出：</p><div class="language-text" data-highlighter="prismjs" data-ext="text"><pre><code class="language-text"><span class="line">3</span>
+<span class="line"></span></code></pre></div><h2 id="_4-完整示例" tabindex="-1"><a class="header-anchor" href="#_4-完整示例"><span>4. 完整示例</span></a></h2><p>下面是一个完整的示例，演示了如何创建、初始化和处理哈希表：</p><div class="language-powershell line-numbers-mode" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$hash</span> = @<span class="token punctuation">{</span> ID = 1<span class="token punctuation">;</span> Shape = <span class="token string">&quot;Square&quot;</span><span class="token punctuation">;</span> Color = <span class="token string">&quot;Blue&quot;</span><span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;Print all hashtable keys&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>keys</span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;Print all hashtable values&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>values</span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;Get ID&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">[</span><span class="token string">&quot;ID&quot;</span><span class="token punctuation">]</span></span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;Get Shape&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>Number</span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;print Size&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>Count</span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;Add key-value&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">[</span><span class="token string">&quot;Updated&quot;</span><span class="token punctuation">]</span> = <span class="token string">&quot;Now&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;Add key-value&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>Add<span class="token punctuation">(</span><span class="token string">&quot;Created&quot;</span><span class="token punctuation">,</span><span class="token string">&quot;Now&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;print Size&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>Count</span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;Remove key-value&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>Remove<span class="token punctuation">(</span><span class="token string">&quot;Updated&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;print Size&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>Count</span>
+<span class="line"></span>
+<span class="line"><span class="token function">Write-Host</span><span class="token punctuation">(</span><span class="token string">&quot;sort by key&quot;</span><span class="token punctuation">)</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>GetEnumerator<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">|</span> <span class="token function">Sort-Object</span> <span class="token operator">-</span>Property key</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>上面示例代码执行结果如下：</p><div class="language-text line-numbers-mode" data-highlighter="prismjs" data-ext="text"><pre><code class="language-text"><span class="line">Print all hashtable keys</span>
+<span class="line">Color</span>
+<span class="line">Shape</span>
+<span class="line">ID</span>
+<span class="line">Print all hashtable values</span>
+<span class="line">Blue</span>
+<span class="line">Square</span>
+<span class="line">1</span>
+<span class="line">Get ID</span>
+<span class="line">1</span>
+<span class="line">Get Shape</span>
+<span class="line">print Size</span>
+<span class="line">3</span>
+<span class="line">Add key-value</span>
+<span class="line">Add key-value</span>
+<span class="line">print Size</span>
+<span class="line">5</span>
+<span class="line">Remove key-value</span>
+<span class="line">print Size</span>
+<span class="line">4</span>
+<span class="line">sort by key</span>
+<span class="line"></span>
+<span class="line">Name                           Value</span>
+<span class="line">----                           -----</span>
+<span class="line">Color                          Blue</span>
+<span class="line">Created                        Now</span>
+<span class="line">ID                             1</span>
+<span class="line">Shape                          Square</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_5-哈希表常用方法" tabindex="-1"><a class="header-anchor" href="#_5-哈希表常用方法"><span>5. 哈希表常用方法</span></a></h2><div class="language-powershell line-numbers-mode" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$hash</span> = @<span class="token punctuation">{</span> ID = 1<span class="token punctuation">;</span> Shape = <span class="token string">&quot;Square&quot;</span><span class="token punctuation">;</span> Color = <span class="token string">&quot;Blue&quot;</span> <span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 检查键是否存在</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>ContainsKey<span class="token punctuation">(</span><span class="token string">&quot;ID&quot;</span><span class="token punctuation">)</span>      <span class="token comment"># True</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>ContainsValue<span class="token punctuation">(</span><span class="token string">&quot;Blue&quot;</span><span class="token punctuation">)</span>  <span class="token comment"># True</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 获取键集合</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>Keys</span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>Values</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 克隆（浅拷贝）</span></span>
+<span class="line"><span class="token variable">$clone</span> = <span class="token variable">$hash</span><span class="token punctuation">.</span>Clone<span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 遍历</span></span>
+<span class="line"><span class="token variable">$hash</span><span class="token punctuation">.</span>GetEnumerator<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">|</span> <span class="token function">ForEach-Object</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token string">&quot;Key: <span class="token function">$<span class="token punctuation">(</span><span class="token variable">$_</span><span class="token punctuation">.</span>Key<span class="token punctuation">)</span></span>, Value: <span class="token function">$<span class="token punctuation">(</span><span class="token variable">$_</span><span class="token punctuation">.</span>Value<span class="token punctuation">)</span></span>&quot;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_6-嵌套哈希表" tabindex="-1"><a class="header-anchor" href="#_6-嵌套哈希表"><span>6. 嵌套哈希表</span></a></h2><div class="language-powershell line-numbers-mode" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token variable">$config</span> = @<span class="token punctuation">{</span></span>
+<span class="line">    Database = @<span class="token punctuation">{</span></span>
+<span class="line">        Server = <span class="token string">&quot;localhost&quot;</span></span>
+<span class="line">        Port = 3306</span>
+<span class="line">        Name = <span class="token string">&quot;testdb&quot;</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line">    App = @<span class="token punctuation">{</span></span>
+<span class="line">        LogLevel = <span class="token string">&quot;Debug&quot;</span></span>
+<span class="line">        Timeout = 30</span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 访问嵌套值</span></span>
+<span class="line"><span class="token variable">$config</span><span class="token punctuation">.</span>Database<span class="token punctuation">.</span>Server  <span class="token comment"># localhost</span></span>
+<span class="line"><span class="token variable">$config</span><span class="token punctuation">[</span><span class="token string">&quot;App&quot;</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">&quot;Timeout&quot;</span><span class="token punctuation">]</span>  <span class="token comment"># 30</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="_7-哈希表与-pscustomobject" tabindex="-1"><a class="header-anchor" href="#_7-哈希表与-pscustomobject"><span>7. 哈希表与 PSCustomObject</span></a></h2><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token comment"># 哈希表转 PSCustomObject</span></span>
+<span class="line"><span class="token variable">$hash</span> = @<span class="token punctuation">{</span> Name = <span class="token string">&quot;Alice&quot;</span><span class="token punctuation">;</span> Age = 30<span class="token punctuation">;</span> City = <span class="token string">&quot;Beijing&quot;</span> <span class="token punctuation">}</span></span>
+<span class="line"><span class="token variable">$obj</span> = <span class="token namespace">[PSCustomObject]</span><span class="token variable">$hash</span></span>
+<span class="line"><span class="token variable">$obj</span><span class="token punctuation">.</span>Name  <span class="token comment"># Alice</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 创建对象并排序属性</span></span>
+<span class="line"><span class="token variable">$obj2</span> = <span class="token namespace">[PSCustomObject]</span>@<span class="token punctuation">{</span></span>
+<span class="line">    Name = <span class="token string">&quot;Bob&quot;</span></span>
+<span class="line">    Age = 25</span>
+<span class="line">    City = <span class="token string">&quot;Shanghai&quot;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre></div><h2 id="_8-常见用途-函数参数传递" tabindex="-1"><a class="header-anchor" href="#_8-常见用途-函数参数传递"><span>8. 常见用途：函数参数传递</span></a></h2><div class="language-powershell line-numbers-mode" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token keyword">function</span> <span class="token function">Test-Function</span> <span class="token punctuation">{</span></span>
+<span class="line">    <span class="token keyword">param</span><span class="token punctuation">(</span></span>
+<span class="line">        <span class="token namespace">[string]</span><span class="token variable">$Name</span><span class="token punctuation">,</span></span>
+<span class="line">        <span class="token namespace">[int]</span><span class="token variable">$Count</span><span class="token punctuation">,</span></span>
+<span class="line">        <span class="token namespace">[switch]</span><span class="token variable">$Verbose</span></span>
+<span class="line">    <span class="token punctuation">)</span></span>
+<span class="line">    <span class="token function">Write-Host</span> <span class="token string">&quot;Name: <span class="token variable">$Name</span>, Count: <span class="token variable">$Count</span>&quot;</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 使用哈希表传递参数（splatting）</span></span>
+<span class="line"><span class="token variable">$params</span> = @<span class="token punctuation">{</span></span>
+<span class="line">    Name = <span class="token string">&quot;Test&quot;</span></span>
+<span class="line">    Count = 5</span>
+<span class="line">    Verbose = <span class="token boolean">$true</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"><span class="token function">Test-Function</span> @params  <span class="token comment"># 使用 @ 而非 $</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,42)]])}var s=r(a,[[`render`,o]]);export{i as _pageData,s as default};

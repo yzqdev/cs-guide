@@ -1,0 +1,206 @@
+import{i as e,r as t,s as n,t as r}from"./app-B1jqjtqq.js";var i=JSON.parse(`{"path":"/java-tutor/springboot/basic/19-deploy.html","title":"打包与部署","lang":"zh-CN","frontmatter":{"title":"打包与部署","order":19,"description":"打包与部署 Spring Boot 应用可以打包为可执行 JAR 或传统 WAR，支持多种部署方式。 打包为 JAR Maven Gradle 启动 JAR 打包为 WAR（外置 Tomcat） Docker 部署 Dockerfile Docker Compose 多阶段构建优化 分层 JAR 部署策略 性能优化 JVM 参数 Spring Boot...","head":[["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"打包与部署\\",\\"image\\":[\\"\\"],\\"dateModified\\":\\"2026-07-16T03:22:12.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"],["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/java-tutor/springboot/basic/19-deploy.html"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"打包与部署"}],["meta",{"property":"og:description","content":"打包与部署 Spring Boot 应用可以打包为可执行 JAR 或传统 WAR，支持多种部署方式。 打包为 JAR Maven Gradle 启动 JAR 打包为 WAR（外置 Tomcat） Docker 部署 Dockerfile Docker Compose 多阶段构建优化 分层 JAR 部署策略 性能优化 JVM 参数 Spring Boot..."}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2026-07-16T03:22:12.000Z"}],["meta",{"property":"article:modified_time","content":"2026-07-16T03:22:12.000Z"}]]},"git":{"createdTime":1784172132000,"updatedTime":1784172132000,"contributors":[{"name":"yzqdev","username":"yzqdev","email":"yzqdev@outlook.com","commits":1,"url":"https://github.com/yzqdev"}]},"readingTime":{"minutes":2.81,"words":844},"filePathRelative":"java-tutor/springboot/basic/19-deploy.md","autoDesc":true}`),a={name:`19-deploy.md`};function o(r,i,a,o,s,c){return n(),t(`div`,null,[...i[0]||=[e(`<h1 id="打包与部署" tabindex="-1"><a class="header-anchor" href="#打包与部署"><span>打包与部署</span></a></h1><blockquote><p>Spring Boot 应用可以打包为可执行 JAR 或传统 WAR，支持多种部署方式。</p></blockquote><h2 id="打包为-jar" tabindex="-1"><a class="header-anchor" href="#打包为-jar"><span>打包为 JAR</span></a></h2><h3 id="maven" tabindex="-1"><a class="header-anchor" href="#maven"><span>Maven</span></a></h3><div class="language-xml line-numbers-mode" data-highlighter="prismjs" data-ext="xml"><pre><code class="language-xml"><span class="line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>excludes</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>exclude</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.projectlombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>lombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>exclude</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>excludes</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-bash" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line">mvn clean package <span class="token parameter variable">-DskipTests</span></span>
+<span class="line"><span class="token comment"># 目标：target/my-app-0.0.1-SNAPSHOT.jar</span></span>
+<span class="line"></span></code></pre></div><h3 id="gradle" tabindex="-1"><a class="header-anchor" href="#gradle"><span>Gradle</span></a></h3><div class="language-bash" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line">gradle bootJar</span>
+<span class="line"><span class="token comment"># 目标：build/libs/my-app-0.0.1-SNAPSHOT.jar</span></span>
+<span class="line"></span></code></pre></div><h2 id="启动-jar" tabindex="-1"><a class="header-anchor" href="#启动-jar"><span>启动 JAR</span></a></h2><div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line"><span class="token comment"># 基本启动</span></span>
+<span class="line"><span class="token function">java</span> <span class="token parameter variable">-jar</span> my-app.jar</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 指定端口</span></span>
+<span class="line"><span class="token function">java</span> <span class="token parameter variable">-jar</span> my-app.jar <span class="token parameter variable">--server.port</span><span class="token operator">=</span><span class="token number">8080</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 激活特定环境</span></span>
+<span class="line"><span class="token function">java</span> <span class="token parameter variable">-jar</span> my-app.jar <span class="token parameter variable">--spring.profiles.active</span><span class="token operator">=</span>prod</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 指定外部配置文件</span></span>
+<span class="line"><span class="token function">java</span> <span class="token parameter variable">-jar</span> my-app.jar <span class="token parameter variable">--spring.config.location</span><span class="token operator">=</span>file:./config/application.yml</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># JVM 参数优化</span></span>
+<span class="line"><span class="token function">java</span> <span class="token parameter variable">-Xms512m</span> <span class="token parameter variable">-Xmx1024m</span> <span class="token punctuation">\\</span></span>
+<span class="line">     <span class="token parameter variable">-XX:+UseG1GC</span> <span class="token punctuation">\\</span></span>
+<span class="line">     <span class="token parameter variable">-XX:+HeapDumpOnOutOfMemoryError</span> <span class="token punctuation">\\</span></span>
+<span class="line">     <span class="token parameter variable">-XX:HeapDumpPath</span><span class="token operator">=</span>/var/log/app <span class="token punctuation">\\</span></span>
+<span class="line">     <span class="token parameter variable">-jar</span> my-app.jar</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 后台运行</span></span>
+<span class="line"><span class="token function">nohup</span> <span class="token function">java</span> <span class="token parameter variable">-jar</span> my-app.jar <span class="token operator">&gt;</span> app.log <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span> <span class="token operator">&amp;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># systemd 服务</span></span>
+<span class="line"><span class="token punctuation">[</span>Unit<span class="token punctuation">]</span></span>
+<span class="line"><span class="token assign-left variable">Description</span><span class="token operator">=</span>My Spring Boot Application</span>
+<span class="line"><span class="token assign-left variable">After</span><span class="token operator">=</span>syslog.target network.target</span>
+<span class="line"></span>
+<span class="line"><span class="token punctuation">[</span>Service<span class="token punctuation">]</span></span>
+<span class="line"><span class="token assign-left variable">User</span><span class="token operator">=</span>appuser</span>
+<span class="line"><span class="token assign-left variable">ExecStart</span><span class="token operator">=</span>/usr/bin/java <span class="token parameter variable">-Xms512m</span> <span class="token parameter variable">-Xmx1024m</span> <span class="token parameter variable">-jar</span> /opt/app/my-app.jar</span>
+<span class="line"><span class="token assign-left variable">SuccessExitStatus</span><span class="token operator">=</span><span class="token number">143</span></span>
+<span class="line"><span class="token assign-left variable">Restart</span><span class="token operator">=</span>always</span>
+<span class="line"><span class="token assign-left variable">RestartSec</span><span class="token operator">=</span><span class="token number">10</span></span>
+<span class="line"></span>
+<span class="line"><span class="token punctuation">[</span>Install<span class="token punctuation">]</span></span>
+<span class="line"><span class="token assign-left variable">WantedBy</span><span class="token operator">=</span>multi-user.target</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="打包为-war-外置-tomcat" tabindex="-1"><a class="header-anchor" href="#打包为-war-外置-tomcat"><span>打包为 WAR（外置 Tomcat）</span></a></h2><div class="language-java" data-highlighter="prismjs" data-ext="java"><pre><code class="language-java"><span class="line"><span class="token annotation punctuation">@SpringBootApplication</span></span>
+<span class="line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyApplication</span> <span class="token keyword">extends</span> <span class="token class-name">SpringBootServletInitializer</span> <span class="token punctuation">{</span></span>
+<span class="line"></span>
+<span class="line">    <span class="token annotation punctuation">@Override</span></span>
+<span class="line">    <span class="token keyword">protected</span> <span class="token class-name">SpringApplicationBuilder</span> <span class="token function">configure</span><span class="token punctuation">(</span><span class="token class-name">SpringApplicationBuilder</span> builder<span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">        <span class="token keyword">return</span> builder<span class="token punctuation">.</span><span class="token function">sources</span><span class="token punctuation">(</span><span class="token class-name">MyApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"></span>
+<span class="line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span></span>
+<span class="line">        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">MyApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="line">    <span class="token punctuation">}</span></span>
+<span class="line"><span class="token punctuation">}</span></span>
+<span class="line"></span></code></pre></div><div class="language-xml" data-highlighter="prismjs" data-ext="xml"><pre><code class="language-xml"><span class="line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>packaging</span><span class="token punctuation">&gt;</span></span>war<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>packaging</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line"></span>
+<span class="line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-tomcat<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line">    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">&gt;</span></span>provided<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span></span>
+<span class="line"></span></code></pre></div><div class="language-bash" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line">mvn clean package <span class="token parameter variable">-DskipTests</span></span>
+<span class="line"><span class="token comment"># 目标：target/my-app.war → 部署到 Tomcat webapps/</span></span>
+<span class="line"></span></code></pre></div><h2 id="docker-部署" tabindex="-1"><a class="header-anchor" href="#docker-部署"><span>Docker 部署</span></a></h2><h3 id="dockerfile" tabindex="-1"><a class="header-anchor" href="#dockerfile"><span>Dockerfile</span></a></h3><div class="language-docker line-numbers-mode" data-highlighter="prismjs" data-ext="docker"><pre><code class="language-docker"><span class="line"><span class="token comment"># 构建阶段</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">FROM</span> eclipse-temurin:17-jdk-alpine <span class="token keyword">AS</span> builder</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">COPY</span> pom.xml .</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">COPY</span> src ./src</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">RUN</span> apk add --no-cache maven &amp;&amp; mvn package -DskipTests</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 运行阶段</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">FROM</span> eclipse-temurin:17-jre-alpine</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /app/target/*.jar app.jar</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 时区</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">RUN</span> apk add --no-cache tzdata &amp;&amp; <span class="token operator">\\</span></span>
+<span class="line">    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; <span class="token operator">\\</span></span>
+<span class="line">    echo <span class="token string">&quot;Asia/Shanghai&quot;</span> &gt; /etc/timezone</span></span>
+<span class="line"></span>
+<span class="line"><span class="token instruction"><span class="token keyword">EXPOSE</span> 8080</span></span>
+<span class="line"></span>
+<span class="line"><span class="token instruction"><span class="token keyword">HEALTHCHECK</span> <span class="token options"><span class="token property">--interval</span><span class="token punctuation">=</span><span class="token string">30s</span> <span class="token property">--timeout</span><span class="token punctuation">=</span><span class="token string">3s</span> <span class="token property">--retries</span><span class="token punctuation">=</span><span class="token string">3</span></span> <span class="token operator">\\</span></span>
+<span class="line">    <span class="token keyword">CMD</span> wget -qO- http://localhost:8080/actuator/health || exit 1</span></span>
+<span class="line"></span>
+<span class="line"><span class="token instruction"><span class="token keyword">ENTRYPOINT</span> [<span class="token string">&quot;java&quot;</span>, <span class="token string">&quot;-Xms256m&quot;</span>, <span class="token string">&quot;-Xmx512m&quot;</span>, <span class="token string">&quot;-jar&quot;</span>, <span class="token string">&quot;app.jar&quot;</span>]</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="docker-compose" tabindex="-1"><a class="header-anchor" href="#docker-compose"><span>Docker Compose</span></a></h3><div class="language-yaml line-numbers-mode" data-highlighter="prismjs" data-ext="yml"><pre><code class="language-yaml"><span class="line"><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">&#39;3.8&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token key atrule">services</span><span class="token punctuation">:</span></span>
+<span class="line">  <span class="token key atrule">app</span><span class="token punctuation">:</span></span>
+<span class="line">    <span class="token key atrule">build</span><span class="token punctuation">:</span> .</span>
+<span class="line">    <span class="token key atrule">ports</span><span class="token punctuation">:</span></span>
+<span class="line">      <span class="token punctuation">-</span> <span class="token string">&quot;8080:8080&quot;</span></span>
+<span class="line">    <span class="token key atrule">environment</span><span class="token punctuation">:</span></span>
+<span class="line">      <span class="token punctuation">-</span> SPRING_PROFILES_ACTIVE=prod</span>
+<span class="line">      <span class="token punctuation">-</span> SPRING_DATASOURCE_URL=jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//db<span class="token punctuation">:</span>3306/demo<span class="token punctuation">?</span>useUnicode=true<span class="token important">&amp;characterEncoding=utf8</span></span>
+<span class="line">      <span class="token punctuation">-</span> SPRING_DATASOURCE_USERNAME=root</span>
+<span class="line">      <span class="token punctuation">-</span> SPRING_DATASOURCE_PASSWORD=123456</span>
+<span class="line">      <span class="token punctuation">-</span> SPRING_DATA_REDIS_HOST=redis</span>
+<span class="line">    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span></span>
+<span class="line">      <span class="token punctuation">-</span> db</span>
+<span class="line">      <span class="token punctuation">-</span> redis</span>
+<span class="line">    <span class="token key atrule">volumes</span><span class="token punctuation">:</span></span>
+<span class="line">      <span class="token punctuation">-</span> ./logs<span class="token punctuation">:</span>/app/logs</span>
+<span class="line"></span>
+<span class="line">  <span class="token key atrule">db</span><span class="token punctuation">:</span></span>
+<span class="line">    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span><span class="token number">8.0</span></span>
+<span class="line">    <span class="token key atrule">environment</span><span class="token punctuation">:</span></span>
+<span class="line">      <span class="token punctuation">-</span> MYSQL_ROOT_PASSWORD=123456</span>
+<span class="line">      <span class="token punctuation">-</span> MYSQL_DATABASE=demo</span>
+<span class="line">      <span class="token punctuation">-</span> MYSQL_CHARACTER_SET_SERVER=utf8mb4</span>
+<span class="line">    <span class="token key atrule">ports</span><span class="token punctuation">:</span></span>
+<span class="line">      <span class="token punctuation">-</span> <span class="token string">&quot;3306:3306&quot;</span></span>
+<span class="line">    <span class="token key atrule">volumes</span><span class="token punctuation">:</span></span>
+<span class="line">      <span class="token punctuation">-</span> mysql<span class="token punctuation">-</span>data<span class="token punctuation">:</span>/var/lib/mysql</span>
+<span class="line"></span>
+<span class="line">  <span class="token key atrule">redis</span><span class="token punctuation">:</span></span>
+<span class="line">    <span class="token key atrule">image</span><span class="token punctuation">:</span> redis<span class="token punctuation">:</span>7<span class="token punctuation">-</span>alpine</span>
+<span class="line">    <span class="token key atrule">ports</span><span class="token punctuation">:</span></span>
+<span class="line">      <span class="token punctuation">-</span> <span class="token string">&quot;6379:6379&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token key atrule">volumes</span><span class="token punctuation">:</span></span>
+<span class="line">  <span class="token key atrule">mysql-data</span><span class="token punctuation">:</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-bash" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line"><span class="token comment"># 构建和启动</span></span>
+<span class="line"><span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 查看日志</span></span>
+<span class="line"><span class="token function">docker-compose</span> logs <span class="token parameter variable">-f</span> app</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 重新构建</span></span>
+<span class="line"><span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span> <span class="token parameter variable">--build</span> app</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 停止</span></span>
+<span class="line"><span class="token function">docker-compose</span> down</span>
+<span class="line"></span></code></pre></div><h2 id="多阶段构建优化" tabindex="-1"><a class="header-anchor" href="#多阶段构建优化"><span>多阶段构建优化</span></a></h2><h3 id="分层-jar" tabindex="-1"><a class="header-anchor" href="#分层-jar"><span>分层 JAR</span></a></h3><div class="language-docker line-numbers-mode" data-highlighter="prismjs" data-ext="docker"><pre><code class="language-docker"><span class="line"><span class="token instruction"><span class="token keyword">FROM</span> eclipse-temurin:17-jdk-alpine <span class="token keyword">AS</span> builder</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">COPY</span> pom.xml .</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">RUN</span> mvn dependency:go-offline  # 下载依赖</span></span>
+<span class="line"></span>
+<span class="line"><span class="token instruction"><span class="token keyword">COPY</span> src ./src</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">RUN</span> mvn package -DskipTests</span></span>
+<span class="line"></span>
+<span class="line"><span class="token instruction"><span class="token keyword">FROM</span> eclipse-temurin:17-jre-alpine</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">WORKDIR</span> /app</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 利用 Spring Boot 的分层 JAR 特性</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /app/target/*.jar app.jar</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">RUN</span> java -Djarmode=layertools -jar app.jar extract</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 按层复制，最大化缓存命中</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /app/dependencies/ ./</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /app/spring-boot-loader/ ./</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /app/snapshot-dependencies/ ./</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">COPY</span> <span class="token options"><span class="token property">--from</span><span class="token punctuation">=</span><span class="token string">builder</span></span> /app/application/ ./</span></span>
+<span class="line"></span>
+<span class="line"><span class="token instruction"><span class="token keyword">EXPOSE</span> 8080</span></span>
+<span class="line"><span class="token instruction"><span class="token keyword">ENTRYPOINT</span> [<span class="token string">&quot;java&quot;</span>, <span class="token string">&quot;org.springframework.boot.loader.launch.JarLauncher&quot;</span>]</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="部署策略" tabindex="-1"><a class="header-anchor" href="#部署策略"><span>部署策略</span></a></h2><table><thead><tr><th>策略</th><th>说明</th><th>适用场景</th></tr></thead><tbody><tr><td>JAR 直接部署</td><td><code>java -jar</code> 简单直接</td><td>小型应用、开发测试</td></tr><tr><td>Docker 部署</td><td>容器化部署，环境一致</td><td>微服务、云原生</td></tr><tr><td>Kubernetes</td><td>容器编排，自动扩缩容</td><td>大规模微服务</td></tr><tr><td>外置 Tomcat</td><td>WAR 部署到 Tomcat</td><td>遗留架构</td></tr><tr><td>云平台</td><td>Heroku / AWS / 阿里云</td><td>快速上云</td></tr></tbody></table><h2 id="性能优化" tabindex="-1"><a class="header-anchor" href="#性能优化"><span>性能优化</span></a></h2><h3 id="jvm-参数" tabindex="-1"><a class="header-anchor" href="#jvm-参数"><span>JVM 参数</span></a></h3><div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line"><span class="token comment"># G1 垃圾回收器（推荐）</span></span>
+<span class="line"><span class="token parameter variable">-XX:+UseG1GC</span></span>
+<span class="line"><span class="token parameter variable">-XX:MaxGCPauseMillis</span><span class="token operator">=</span><span class="token number">200</span></span>
+<span class="line"><span class="token parameter variable">-XX:InitiatingHeapOccupancyPercent</span><span class="token operator">=</span><span class="token number">45</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 内存配置</span></span>
+<span class="line"><span class="token parameter variable">-Xms512m</span></span>
+<span class="line"><span class="token parameter variable">-Xmx1024m</span></span>
+<span class="line"><span class="token parameter variable">-XX:MetaspaceSize</span><span class="token operator">=</span>128m</span>
+<span class="line"><span class="token parameter variable">-XX:MaxMetaspaceSize</span><span class="token operator">=</span>256m</span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 调试与监控</span></span>
+<span class="line"><span class="token parameter variable">-XX:+HeapDumpOnOutOfMemoryError</span></span>
+<span class="line"><span class="token parameter variable">-XX:HeapDumpPath</span><span class="token operator">=</span>/var/log/app/heapdump.hprof</span>
+<span class="line"><span class="token parameter variable">-XX:+PrintGCDetails</span></span>
+<span class="line"><span class="token parameter variable">-XX:+PrintGCDateStamps</span></span>
+<span class="line">-Xloggc:/var/log/app/gc.log</span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="spring-boot-优化" tabindex="-1"><a class="header-anchor" href="#spring-boot-优化"><span>Spring Boot 优化</span></a></h3><div class="language-yaml line-numbers-mode" data-highlighter="prismjs" data-ext="yml"><pre><code class="language-yaml"><span class="line"><span class="token comment"># application-prod.yml</span></span>
+<span class="line"><span class="token key atrule">spring</span><span class="token punctuation">:</span></span>
+<span class="line">  <span class="token key atrule">jpa</span><span class="token punctuation">:</span></span>
+<span class="line">    <span class="token key atrule">open-in-view</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>         <span class="token comment"># 关闭 OSIV</span></span>
+<span class="line">    <span class="token key atrule">hibernate</span><span class="token punctuation">:</span></span>
+<span class="line">      <span class="token key atrule">ddl-auto</span><span class="token punctuation">:</span> validate        <span class="token comment"># 生产环境不自动改表</span></span>
+<span class="line">  <span class="token key atrule">jackson</span><span class="token punctuation">:</span></span>
+<span class="line">    <span class="token key atrule">default-property-inclusion</span><span class="token punctuation">:</span> non_null  <span class="token comment"># 不序列化 null</span></span>
+<span class="line"></span>
+<span class="line"><span class="token key atrule">server</span><span class="token punctuation">:</span></span>
+<span class="line">  <span class="token key atrule">tomcat</span><span class="token punctuation">:</span></span>
+<span class="line">    <span class="token key atrule">threads</span><span class="token punctuation">:</span></span>
+<span class="line">      <span class="token key atrule">max</span><span class="token punctuation">:</span> <span class="token number">200</span>                  <span class="token comment"># 最大线程数</span></span>
+<span class="line">      <span class="token key atrule">min-spare</span><span class="token punctuation">:</span> <span class="token number">10</span>             <span class="token comment"># 最小空闲线程</span></span>
+<span class="line">    <span class="token key atrule">max-connections</span><span class="token punctuation">:</span> <span class="token number">8192</span>       <span class="token comment"># 最大连接数</span></span>
+<span class="line">    <span class="token key atrule">accept-count</span><span class="token punctuation">:</span> <span class="token number">100</span>           <span class="token comment"># 队列长度</span></span>
+<span class="line">    <span class="token key atrule">connection-timeout</span><span class="token punctuation">:</span> 5000ms  <span class="token comment"># 连接超时</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="练习" tabindex="-1"><a class="header-anchor" href="#练习"><span>练习</span></a></h2><ol><li>将你的应用打包为 JAR 并启动运行</li><li>编写 Dockerfile 将应用容器化</li><li>使用 Docker Compose 编排应用 + MySQL + Redis</li><li>配置生产环境的 JVM 参数和性能优化选项</li></ol>`,32)]])}var s=r(a,[[`render`,o]]);export{i as _pageData,s as default};

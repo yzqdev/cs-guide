@@ -1,0 +1,36 @@
+import{a as e,c as t,i as n,l as r,n as i,o as a,r as o,s,t as c}from"./app-B1jqjtqq.js";var l=JSON.parse(`{"path":"/cs-tips/shell/","title":"Shell 脚本","lang":"zh-CN","frontmatter":{"description":"Shell 脚本 目录 快速参考","head":[["script",{"type":"application/ld+json"},"{\\"@context\\":\\"https://schema.org\\",\\"@type\\":\\"Article\\",\\"headline\\":\\"Shell 脚本\\",\\"image\\":[\\"\\"],\\"dateModified\\":\\"2026-07-13T05:51:09.000Z\\",\\"author\\":[{\\"@type\\":\\"Person\\",\\"name\\":\\"yzqdev\\",\\"url\\":\\"http://www.yzqdev.top\\"}]}"],["meta",{"property":"og:url","content":"https://yzqdev.github.io/cs-guide/cs-guide/cs-tips/shell/"}],["meta",{"property":"og:site_name","content":"cs-guide"}],["meta",{"property":"og:title","content":"Shell 脚本"}],["meta",{"property":"og:description","content":"Shell 脚本 目录 快速参考"}],["meta",{"property":"og:type","content":"article"}],["meta",{"property":"og:locale","content":"zh-CN"}],["meta",{"property":"og:updated_time","content":"2026-07-13T05:51:09.000Z"}],["meta",{"property":"article:modified_time","content":"2026-07-13T05:51:09.000Z"}]]},"git":{"createdTime":1649785467000,"updatedTime":1783921869000,"contributors":[{"name":"yzqdev","username":"yzqdev","email":"yzqdev@outlook.com","commits":5,"url":"https://github.com/yzqdev"}]},"readingTime":{"minutes":0.51,"words":153},"filePathRelative":"cs-tips/shell/README.md","autoDesc":true}`),u={name:`README.md`};function d(c,l,u,d,f,p){let m=t(`Catalog`),h=t(`RouteLink`);return s(),o(`div`,null,[l[3]||=i(`h1`,{id:`shell-脚本`,tabindex:`-1`},[i(`a`,{class:`header-anchor`,href:`#shell-脚本`},[i(`span`,null,`Shell 脚本`)])],-1),a(m),l[4]||=i(`h2`,{id:`目录`,tabindex:`-1`},[i(`a`,{class:`header-anchor`,href:`#目录`},[i(`span`,null,`目录`)])],-1),i(`table`,null,[l[2]||=i(`thead`,null,[i(`tr`,null,[i(`th`,null,`文件`),i(`th`,null,`内容`)])],-1),i(`tbody`,null,[i(`tr`,null,[i(`td`,null,[a(h,{to:`/cs-tips/shell/powershell.html`},{default:r(()=>[...l[0]||=[e(`PowerShell 命令`,-1)]]),_:1})]),l[1]||=i(`td`,null,`PowerShell 删除、统计、遍历、dotnet 发布等`,-1)])])]),l[5]||=n(`<h2 id="快速参考" tabindex="-1"><a class="header-anchor" href="#快速参考"><span>快速参考</span></a></h2><div class="language-powershell" data-highlighter="prismjs" data-ext="powershell"><pre><code class="language-powershell"><span class="line"><span class="token comment"># PowerShell 基础</span></span>
+<span class="line"><span class="token function">Get-ChildItem</span>        <span class="token comment"># ls / dir</span></span>
+<span class="line"><span class="token function">Set-Location</span>         <span class="token comment"># cd</span></span>
+<span class="line"><span class="token function">Get-Content</span>          <span class="token comment"># cat / type</span></span>
+<span class="line"><span class="token function">Select-String</span>        <span class="token comment"># grep / findstr</span></span>
+<span class="line"><span class="token function">Where-Object</span>         <span class="token comment"># where / filter</span></span>
+<span class="line"><span class="token function">ForEach-Object</span>       <span class="token comment"># foreach</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 常用别名</span></span>
+<span class="line"><span class="token comment"># ls → Get-ChildItem</span></span>
+<span class="line"><span class="token comment"># cd → Set-Location  </span></span>
+<span class="line"><span class="token comment"># cat → Get-Content</span></span>
+<span class="line"><span class="token comment"># echo → Write-Output</span></span>
+<span class="line"><span class="token comment"># sleep → Start-Sleep</span></span>
+<span class="line"></span></code></pre></div><div class="language-bash line-numbers-mode" data-highlighter="prismjs" data-ext="sh"><pre><code class="language-bash"><span class="line"><span class="token comment"># Bash 基础</span></span>
+<span class="line"><span class="token function">ls</span> <span class="token parameter variable">-la</span>               <span class="token comment"># 列出文件</span></span>
+<span class="line"><span class="token builtin class-name">cd</span> /path             <span class="token comment"># 切换目录</span></span>
+<span class="line"><span class="token function">grep</span> pattern <span class="token function">file</span>    <span class="token comment"># 搜索</span></span>
+<span class="line"><span class="token function">find</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-name</span> <span class="token string">&quot;*.js&quot;</span>  <span class="token comment"># 查找文件</span></span>
+<span class="line"><span class="token function">chmod</span> +x script.sh   <span class="token comment"># 添加执行权限</span></span>
+<span class="line">./script.sh          <span class="token comment"># 运行脚本</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 变量</span></span>
+<span class="line"><span class="token assign-left variable">NAME</span><span class="token operator">=</span><span class="token string">&quot;world&quot;</span></span>
+<span class="line"><span class="token builtin class-name">echo</span> <span class="token string">&quot;Hello, <span class="token variable">$NAME</span>!&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 条件</span></span>
+<span class="line"><span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token parameter variable">-f</span> <span class="token string">&quot;file.txt&quot;</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">&quot;文件存在&quot;</span></span>
+<span class="line"><span class="token keyword">fi</span></span>
+<span class="line"></span>
+<span class="line"><span class="token comment"># 循环</span></span>
+<span class="line"><span class="token keyword">for</span> <span class="token for-or-select variable">f</span> <span class="token keyword">in</span> *.txt<span class="token punctuation">;</span> <span class="token keyword">do</span></span>
+<span class="line">    <span class="token builtin class-name">echo</span> <span class="token string">&quot;处理 <span class="token variable">$f</span>&quot;</span></span>
+<span class="line"><span class="token keyword">done</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true" style="counter-reset:line-number 0;"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div>`,3)])}var f=c(u,[[`render`,d]]);export{l as _pageData,f as default};
