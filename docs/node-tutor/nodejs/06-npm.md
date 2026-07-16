@@ -1,3 +1,7 @@
+---
+order: 6
+---
+
 # npm 包管理
 
 npm（Node Package Manager）是 Node.js 默认的包管理工具，用于安装、管理和发布 JavaScript 包。

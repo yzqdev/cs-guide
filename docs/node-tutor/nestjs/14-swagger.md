@@ -1,3 +1,7 @@
+---
+order: 14
+---
+
 # Swagger API 文档
 
 NestJS 提供了 `@nestjs/swagger` 模块，可以自动生成 OpenAPI（Swagger）文档。

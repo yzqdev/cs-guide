@@ -1,3 +1,7 @@
+---
+order: 11
+---
+
 # 数据库集成
 
 NestJS 支持多种数据库 ORM，最常用的是 TypeORM 和 Prisma。

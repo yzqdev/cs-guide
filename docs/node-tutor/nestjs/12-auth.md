@@ -1,3 +1,7 @@
+---
+order: 12
+---
+
 # JWT 认证
 
 JWT（JSON Web Token）是目前最流行的 API 认证方案之一。NestJS 提供了 `@nestjs/jwt` 和 `@nestjs/passport` 模块来简化认证流程。

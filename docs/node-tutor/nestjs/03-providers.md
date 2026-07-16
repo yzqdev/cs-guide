@@ -1,3 +1,7 @@
+---
+order: 3
+---
+
 # 提供者与依赖注入
 
 提供者（Providers）是 NestJS 的核心概念之一。几乎所有的业务逻辑都封装在提供者中，通过依赖注入（Dependency Injection）机制组织起来。

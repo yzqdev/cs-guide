@@ -1,3 +1,7 @@
+---
+order: 18
+---
+
 # nest技巧
 
 ## 引入另一个module的service

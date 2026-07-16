@@ -1,3 +1,7 @@
+---
+order: 6
+---
+
 # cmdlet
 
 cmdlet发音为:”command-lets”，它是在PowerShell环境中使用的轻量级命令。 这些是在PowerShell环境中实现特殊功能的特殊命令。cmdlet遵循“动词-名词”模式，例如：`set-childItem`。

@@ -1,3 +1,7 @@
+---
+order: 8
+---
+
 # Buffer 与 Stream
 
 ## 一、Buffer（缓冲区）
