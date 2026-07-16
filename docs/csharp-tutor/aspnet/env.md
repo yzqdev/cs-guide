@@ -1,3 +1,7 @@
+---
+order: 1
+---
+
 # 常用的环境变量
 
 ## launchSettings.json

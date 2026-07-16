@@ -4,17 +4,23 @@
 
 <Catalog />
 
-## 目录导航
+## 基础教程
 
 | 分类 | 说明 |
 |------|------|
-| [安装](./install.md) | Kotlin 环境搭建与配置 |
-| [基础语法](./class.md) | 类、扩展函数、面向对象 |
-| [集合](./collection.md) | List、Map、Set、Range、Group 等 |
-| [高阶函数](./high-order.md) | Lambda、高阶函数、函数类型 |
-| [作用域函数](./scope-fun.md) | let/run/with/apply/also |
-| [导入与包](./import.md) | import 语句、包管理 |
-| [Java → Kotlin](./java-to-kotlin.md) | Java 与 Kotlin 互转指南 |
+| [Kotlin 基础教程](./basic/README.md) | 从零入门：安装 → 语法 → 集合 → OOP → 泛型，共 12 章 |
+
+## 进阶专题
+
+| 分类 | 说明 |
+|------|------|
 | [Compose 教程](./compose/README.md) | Jetpack Compose 界面开发 |
-| [Gradle 教程](./gradle/README.md) | 构建配置、镜像、打包 |
+| [Gradle 教程](./gradle/README.md) | 构建配置、镜像、打包、插件开发 |
+| [Java → Kotlin 互转指南](./java-to-kotlin.md) | Java 与 Kotlin 语法对照与转换 |
 | [相关资源](./site.md) | 库、框架、工具链 |
+
+## 关于这份教程
+
+- 每个章节都配有 **代码示例**，可直接复制运行
+- 涵盖 Kotlin 2.x 新特性
+- 适合有 Java 基础的开发者快速上手
