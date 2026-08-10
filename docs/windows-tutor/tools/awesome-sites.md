@@ -51,8 +51,9 @@ order: 2
 
 ## github好玩的
 
-idea无限使用   [https://gitee.com/pengzhile/ide-eval-resetter](https://gitee.com/pengzhile/ide-eval-resetter)
-正则表达式 [https://regexr.com/](https://regexr.com/)
+- idea无限使用   [https://gitee.com/pengzhile/ide-eval-resetter](https://gitee.com/pengzhile/ide-eval-resetter)
+- 正则表达式 [https://regexr.com/](https://regexr.com/)
+- 正则表达式测试器 [https://extendsclass.com/regex-tester.html](https://extendsclass.com/regex-tester.html)
 
 ## 前端学习
 
