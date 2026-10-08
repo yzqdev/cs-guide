@@ -4,7 +4,6 @@
 
 ## 统一返回值
 
-
 1. 统一状态码
 
 ```java
@@ -175,9 +174,7 @@ import java.util.HashMap;
 }
 ```
 
-
 ## 一种简单的方法
-
 
 ```java
  
@@ -220,7 +217,6 @@ public class RestResponse<T> {
   
 }
 ```
-
 
 ## 使用controllerAdvice
 ```java

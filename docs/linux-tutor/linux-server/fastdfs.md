@@ -54,7 +54,7 @@
     storage_ip_changed_auto_adjust = true
     storage_sync_file_max_delay = 86400
     storage_sync_file_max_time = 300
-    use_trunk_file = false 
+    use_trunk_file = false
     slot_min_size = 256
     slot_max_size = 16MB
     trunk_file_size = 64MB
@@ -297,15 +297,15 @@
   - `vim /usr/local/nginx/conf/nginx.conf`
 
     ``` nginx
+
  # 注意这一行行，我特别加上了使用 root 用户去执行，不然有些日记目录没有权限访问
+
  user  root;
  worker_processes  1;
- 
  
  events {
      worker_connections  1024;
  }
- 
  
  http {
      include       mime.types;
@@ -315,19 +315,18 @@
  
      keepalive_timeout  65;
  
- 
   server{
       listen      80;
       server_name 192.168.1.112;
   
-      set $img_thumbnail_root /opt/fastdfs/thumb; 
+      set $img_thumbnail_root /opt/fastdfs/thumb;
       set $img_file $img_thumbnail_root$uri;  
   
       # like：/pic/M00/xx/xx/xx.jpg_200x100.jpg
       # /group1/M00
       location ~* ^(\/(\w+)(\/M00)(.+\.(jpg|jpeg|gif|png))_(\d+)+x(\d+)+\.(jpg|jpeg|gif|png))$ {
               root $img_thumbnail_root;    
-              set $fdfs_group_root /opt/fastdfs/storage/images-data/data; 
+              set $fdfs_group_root /opt/fastdfs/storage/images-data/data;
      
      # 如果缩略图不存在
               if (!-f $img_file) {   

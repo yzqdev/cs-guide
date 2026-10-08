@@ -18,8 +18,6 @@ order: 33
   SQLiteDatabase mydatabase = openOrCreateDatabase("your database name",MODE_PRIVATE,null);
 ```
   
-  
-  
   除此之外，数据库软件包中还有其他功能可以完成此任务。它们在下面列出
   
   | 方法                                                                                                              | 说明                                                                                      |
@@ -38,8 +36,6 @@ order: 33
   mydatabase.execSQL("INSERT INTO Jc2182 VALUES('admin','admin');");
 ```
   
-  
-  
   这会将一些值插入数据库中的表中。下面给出了另一种方法，它也可以完成相同的工作，但是需要一些附加参数
   
   | 方法                                       | 说明                                                                         |
@@ -56,8 +52,6 @@ order: 33
   String username = resultSet.getString(0);
   String password = resultSet.getString(1);
 ```
-  
-  
   
   Cursor类中还有其他可用函数，使我们可以有效地检索数据。包括了
   
@@ -84,10 +78,6 @@ order: 33
      public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {}
   }
 ```
-  
-  
-
-
   
   ## 示例
   
@@ -190,7 +180,6 @@ order: 33
   }
 
 ```
-
 
 以下是修改后的主要活动文件src/com.jc2182.demo/DBHelper.java的内容。
 
@@ -296,8 +285,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 }
 ```
-
-  
 
   以下是修改后的主要活动文件src/com.jc2182.demo/DisplayContact.java的内容。
 
@@ -496,8 +483,6 @@ public class DisplayContact extends Activity {
 }
 ```
 
-  
-
   以下是res/layout/activity_main.xml文件的内容-
 
 ```xml
@@ -558,8 +543,6 @@ public class DisplayContact extends Activity {
 
 </RelativeLayout>
 ```
-
-  
 
   以下是res/layout/activity_display_contact.xml文件的内容-
 
@@ -686,8 +669,6 @@ public class DisplayContact extends Activity {
 </ScrollView>
 ```
 
-  
-
   以下是res/value/string.xml的内容
 
 ```xml
@@ -709,8 +690,6 @@ public class DisplayContact extends Activity {
 </resources>
 ```
 
-  
-
   以下是res/menu/main_menu.xml的内容
 
 ```xml
@@ -724,8 +703,6 @@ public class DisplayContact extends Activity {
 
 </menu>
 ```
-
-  
 
   以下是AndroidManifest.xml的内容
 
@@ -755,8 +732,6 @@ public class DisplayContact extends Activity {
 
 </manifest>
 ```
-
-  
 
   可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

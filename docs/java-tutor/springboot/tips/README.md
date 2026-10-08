@@ -14,4 +14,4 @@
 | [@Configuration/ @Bean](./configuration.md) | 配置类与 Bean 注解详解 |
 | [过滤器](./filter.md) | GenericFilterBean、OncePerRequestFilter 使用 |
 | [启动打印 URL](./spring-tips.md) | 启动时打印 URL、文件下载、获取 ApplicationContext |
-| [Properties 配置](./springboot%20properties.md) | 常用 application.properties 属性 |
+| [Properties 配置](./springboot properties.md) | 常用 application.properties 属性 |

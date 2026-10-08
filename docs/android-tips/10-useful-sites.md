@@ -25,12 +25,11 @@ order: 10
 - [https://verycapture.com/](https://verycapture.com/)
 - [http://mfiles.maokebing.com/](http://mfiles.maokebing.com/)
 - [简单教程](https://www.twle.cn/)
-##  常用软件下载
 
+## 常用软件下载
 
 github软件
 [https://mobile.softpedia.com/apk/github/](https://mobile.softpedia.com/apk/github/)
-
 
 ### 安卓rom
 
@@ -44,7 +43,9 @@ github软件
 <https://crdroid.net/begonia/9> (红米note8pro)
 
 论坛\[<https://forum.xda-developers.com/>]
+
 ## 镜像
+
 <https://stackoverflow.com/questions/2785485/is-there-a-unique-android-device-id>
 <https://libraries.io/>
 <https://www.finclip.com/downloads/?activeTab=assistant>
@@ -54,6 +55,7 @@ github软件
 
 gradle用法  <https://juejin.cn/post/6895299152226615309>
 <https://www.jetpackcompose.app/compose-catalog>
+
 ## 教程
 
 - https://developer.android.com/courses/android-basics-compose/course

@@ -32,8 +32,6 @@ order: 1
   </LinearLayout>
 ```
   
-  
-  
   创建布局后，您可以在Activity.onCreate()回调实现中从应用程序代码加载布局资源，如下所示-
   
 ```java
@@ -42,10 +40,6 @@ order: 1
      setContentView(R.layout.activity_main);  // activity_main 为布局文件的文件名
   }
 ```
-  
-  
-  
-
   
   ## Android 布局类型
   
@@ -60,8 +54,6 @@ order: 1
   | [框架布局](https://www.jc2182.com/android/android-frameLayout-show.html)    | **FrameLayout**是屏幕上的占位符，可用于显示单个视图。                      |
   | [列表视图](https://www.jc2182.com/android/android-listview-show.html)       | **ListView**是一个视图组，显示可滚动项的列表。                             |
   | [网格视图](https://www.jc2182.com/android/android-gridview-show.html)       | **GridView**是一个**ViewGroup**，它在二维可滚动网格中显示项目。            |
-  
-
   
   ## 布局属性
   
@@ -110,8 +102,6 @@ order: 1
   | **start**             | 0x00800003 | 将object推到其容器的开头，但不改变其大小。                                                                                                                 |
   | **end**               | 0x00800005 | 将对象推到其容器的末端，而不改变其大小。                                                                                                                   |
   
-
-  
   ## 视图标识符
   
   **View** 对象可能具有分配给它的唯一ID，该ID将在树中唯一标识视图。XML标记内的ID的语法是-
@@ -119,8 +109,6 @@ order: 1
 ```xml
   android:id="@+id/my_button"
 ```
-  
-  
   
   以下是@和+符号的简要说明-
   

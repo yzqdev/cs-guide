@@ -1,10 +1,10 @@
 ---
 order: 8
 ---
+
 # 村民机制与交易
 
 ![村民](https://mcasset.cloud/1.21/assets/minecraft/textures/entity/villager/villager.png) ![铁傀儡](https://mcasset.cloud/1.21/assets/minecraft/textures/entity/iron_golem/iron_golem.png)
-
 
 > 村民是 Minecraft 中最强大的资源系统——提供附魔书、钻石装备、绿宝石、经验，是一切高级玩法的经济基础。
 

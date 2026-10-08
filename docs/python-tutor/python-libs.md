@@ -1,6 +1,7 @@
 ---
 order: 1
 ---
+
 # 好用的python库
 
 - [colorama](https://github.com/tartley/colorama)
@@ -94,20 +95,14 @@ anaconda 见本文档
 
 virtual env    [https://virtualenv.pypa.io/en/latest/](https://virtualenv.pypa.io/en/latest/)
 
-
 打包工具
 pyinstaller
 auto-py-to-exe
-
- 
-
-
 
 ## 常用python网站
 
 - [https://magic.iswbm.com/](https://magic.iswbm.com/)
 - <https://github.com/sivel/speedtest-cli>
-
 
 ## mimesis
 
@@ -116,6 +111,7 @@ auto-py-to-exe
 ## pyautogui
 
 控制电脑鼠标和键盘的库
+
 ## yagmail
 
 一行代码发送邮件
@@ -129,12 +125,16 @@ https://github.com/rthalley/dnspython
 https://github.com/autocracy/python-ipy
 
 ## fake-useragent
+
 造假useragent
 
 ## 情感分析
+
  textblob  
 snownlp
+
 ## sh
+
 命令行工具
 
 ## httpstat

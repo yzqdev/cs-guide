@@ -2,7 +2,6 @@
 order: 8
 ---
 
-
 # Android 服务（Services）
   
   :::tip

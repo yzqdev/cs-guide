@@ -20,8 +20,6 @@ order: 31
   }
 ```
   
-  
-  
   接下来，您需要创建一个**SpellCheckerSession**类的对象。可以通过调用**TextServicesManager**类的**newSpellCheckerSession**方法来实例化此对象。此类处理应用程序和文本服务之间的交互。您需要请求系统服务以实例化它。其语法如下-
   
 ```java
@@ -31,15 +29,11 @@ order: 31
   mScs = tsm.newSpellCheckerSession(null, null, this, true);   
 ```
   
-  
-  
   您需要做的最后一件事是调用**getSuggestions**方法以获取您想要的任何文本的建议。这些建议将传递到**onGetSuggestions**方法上，您可以在其中执行任何所需的操作。
   
 ```java
   mScs.getSuggestions(new TextInfo(editText1.getText().toString()), 3);  
 ```
-  
-  
   
   此方法有两个参数。第一个参数是文本信息对象形式的字符串，第二个参数是用于区分建议的cookie编号。除了这些方法外，SpellCheckerSession类还提供了其他方法，可以更好地处理建议。这些方法在下面列出-
   
@@ -51,8 +45,6 @@ order: 31
   | **getSpellChecker()**                                                  | 获取此拼写检查器会话具有的拼写检查器服务信息。                   |
   | **isSessionDisconnected()**                                            | 如果与该会话的文本服务的连接已断开并且未激活，则为True。         |
 
-
-  
   ## 示例
   
   这是演示拼写检查器用法的示例。它创建了一个基本的拼写检查应用程序，使您可以编写文本并获得建议。要试验此示例，可以在实际设备或仿真器中运行它。
@@ -151,7 +143,6 @@ order: 31
 
 ```
 
-
 以下是res/layout/activity_main.xml文件的内容-
 
 ```xml
@@ -230,8 +221,6 @@ order: 31
 
 </RelativeLayout>
 ```
-
-  
 
   可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

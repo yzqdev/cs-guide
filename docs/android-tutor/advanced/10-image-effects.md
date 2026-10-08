@@ -13,15 +13,11 @@ order: 10
   BitmapDrawable  abmp = (BitmapDrawable)img.getDrawable();
 ```
   
-  
-  
   现在，我们将通过调用**BitmapDrawable**类的**getBitmap()**函数来创建位图。其语法如下-
   
 ```java
   bmp = abmp.getBitmap();
 ```
-  
-  
   
   图像不过是二维矩阵。用同样的方式处理位图。图像由像素组成。因此，您将从该位图中获取像素并对其进行处理。它的语法如下-
   
@@ -33,11 +29,7 @@ order: 10
   }
 ```
   
-  
-  
   getWidth()和getHeight()函数返回矩阵的高度和宽度。getPixel()方法返回指定索引处的像素。一旦获得像素，就可以根据需要轻松地对其进行操作。除了这些方法之外，还有其他方法可以帮助我们更好地处理图像。
-  
-   
   
   | 方法                                                                                  | 说明                                                |
   | ------------------------------------------------------------------------------------- | --------------------------------------------------- |
@@ -51,8 +43,6 @@ order: 10
   | **getRowBytes()**                                                                     | 返回位图像素中行之间的字节数                        |
   | **setPixel(int x, int y, int color)**                                                 | W假设指定的颜色在x，y坐标处是可变的，则将其放入位图 |
   | **setDensity(int density)**                                                           | 此方法指定此位图的密度                              |
-  
-
   
   ## 示例
   
@@ -230,7 +220,6 @@ public class MainActivity extends Activity {
 
 ```
 
-
 以下是res/layout/activity_main.xml文件的内容-
 
 ```xml
@@ -353,8 +342,6 @@ public class MainActivity extends Activity {
 
 </RelativeLayout>
 ````
-
-
 
 可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

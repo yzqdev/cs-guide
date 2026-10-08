@@ -94,6 +94,7 @@ dotnet run
 ## 开发工具
 
 ### Visual Studio 2022
+
 - 完整的 IDE 支持
 - 内置调试器、SQL Server 集成
 - 社区版免费
@@ -105,6 +106,7 @@ code --install-extension ms-dotnettools.csharp
 ```
 
 ### JetBrains Rider
+
 - 跨平台 .NET IDE
 - 强大的重构和导航功能
 

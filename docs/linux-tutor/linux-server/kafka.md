@@ -1,6 +1,5 @@
 # Kafka 安装和配置
 
-
 ## 对于版本
 
 - 由于 Kafka 经常会被连接到各个地方去，所以对于 Kafka 的版本，一般不能用太新的，要看你用在什么地方。
@@ -8,14 +7,12 @@
 - [Spark 的要求](https://spark.apache.org/docs/latest/streaming-kafka-integration.html)
 - [Spring 的要求](http://projects.spring.io/spring-kafka/)
 
-
 ## 消息系统的好处
 
 - 解耦（各个业务系统各自为政，有各自新需求，各自系统自行修改，只通过消息来通信）
 - 大系统层面的扩展性（不用改旧业务系统代码，增加新系统，接收新消息）
 - 异步通信（一个消息，多个业务系统来消费。某些场景可以堆积到一定程度再去消费）
 - 缓冲（解耦某些需要长时间处理业务）
-
 
 ## Kafka 介绍
 
@@ -53,7 +50,7 @@
 - 业界常用的 docker 镜像：
 	- [wurstmeister/kafka-docker（不断更新，优先）](https://github.com/wurstmeister/kafka-docker/)
 	- Spring 项目选用依赖包的时候，对于版本之间的关系可以看这里：<http://projects.spring.io/spring-kafka/>
-		- 目前（201803） 
+		- 目前（201803）
 		- spring boot 2.0 以上基础框架版本，kafka 版本 1.0.x，推荐使用：spring-kafka 2.1.4.RELEASE
 		- spring boot 2.0 以下基础框架版本，kafka 版本 0.11.0.x, 1.0.x，推荐使用：spring-kafka 1.3.3.RELEASE
 - 官网 quickstart 指导：<https://kafka.apache.org/quickstart>
@@ -84,9 +81,7 @@ Topic:kafka-all    PartitionCount:6    ReplicationFactor:3    Configs:
     Topic: kafka-all    Partition: 5    Leader: 2    Replicas: 2,1,3    Isr: 2,1,3
 ```
 
-
 -----------------------------
-
 
 ## Docker 单个实例部署（1.0.1）
 
@@ -148,7 +143,6 @@ services:
 
 -----------------------------
 
-
 ## Docker 多机多实例部署（外网无法访问）
 
 - 三台机子：
@@ -175,7 +169,6 @@ services:
 47.74.6.138 youmeekhost3
 ```
 
-
 #### Zookeeper 集群
 
 - 节点 1：
@@ -190,7 +183,6 @@ docker run -d --name=zookeeper1 --net=host --restart=always \
 zookeeper:latest
 ```
 
-
 - 节点 2：
 
 ```
@@ -203,7 +195,6 @@ docker run -d --name=zookeeper2 --net=host --restart=always \
 zookeeper:latest
 ```
 
-
 - 节点 3：
 
 ```
@@ -215,8 +206,6 @@ docker run -d --name=zookeeper3 --net=host --restart=always \
 -e "ZOO_SERVERS=server.1=youmeekhost1:2888:3888 server.2=youmeekhost2:2888:3888 server.3=youmeekhost3:2888:3888" \
 zookeeper:latest
 ```
-
-
 
 #### 先安装 nc 再来校验 zookeeper 集群情况
 
@@ -369,11 +358,9 @@ wurstmeister/kafka:latest
 	- 接受消息：`cd /opt/kafka && bin/kafka-console-consumer.sh --bootstrap-server youmeekhost3:9092 --topic my-topic-test --from-beginning`
 - 如果 kafka1 输入的消息，kafka2 和 kafka3 能收到，则表示已经成功。
 
-
 #### Kafka 认证配置
 
 - 可以参考：[Kafka的SASL/PLAIN认证配置说明](http://www.2bowl.info/kafka%e7%9a%84saslplain%e8%ae%a4%e8%af%81%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/)
-
 
 #### Kafka 单纯监控 KafkaOffsetMonitor
 
@@ -388,8 +375,6 @@ wurstmeister/kafka:latest
 - 节点 1（没成功）：`docker run -d --name=kafka-manager1 --restart=always -p 9000:9000 -e ZK_HOSTS="youmeekhost1:2181,youmeekhost2:2181,youmeekhost3:2181" sheepkiller/kafka-manager:latest`
 - 源码类安装可以看：[Kafka监控工具—Kafka Manager](http://www.2bowl.info/kafka%e7%9b%91%e6%8e%a7%e5%b7%a5%e5%85%b7-kafka-manager/)
 - Kafka manager 是一款管理 + 监控的工具，比较重
-
-
 
 -----------------------------
 
@@ -629,9 +614,7 @@ zookeeper.connection.timeout.ms=6000
 group.initial.rebalance.delay.ms=0
 ```
 
-
 -----------------------------
-
 
 ## 其他资料
 
@@ -662,4 +645,3 @@ group.initial.rebalance.delay.ms=0
 - <http://blog.csdn.net/vtopqx/article/details/78638996>
 - <http://www.weduoo.com/archives/2047>
 - <https://blog.52itstyle.com/archives/2358/>
-

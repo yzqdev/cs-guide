@@ -105,4 +105,4 @@ inline int square(int x) { return x * x; }
 
 ---
 
-**下一步**: [26-命名空间](26-命名空间.md)
+**下一步**: [26-命名空间](26-namespaces.md)

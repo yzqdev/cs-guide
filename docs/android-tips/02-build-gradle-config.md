@@ -125,7 +125,8 @@ implementation(fileTree("libs") {
 ```
 
 ## 配置ndk
-###  goovy
+
+### goovy
 
 ```groovy
 defaultConfig {  
@@ -139,6 +140,7 @@ defaultConfig {
   testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'  
 }
 ```
+
 ### kts
 ```kotlin
 ```kotlin
@@ -146,7 +148,6 @@ defaultConfig {
         abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
     }
 ```
-
 
 ## 配置buildTypes
 
@@ -187,6 +188,7 @@ defaultConfig {
     }
  
 ```
+
 ### kts
 
 ```kotlin
@@ -232,6 +234,7 @@ android {
     }
 }
 ```
+
 ## 配置jdk
 ```groovy
 compileOptions {  
@@ -260,6 +263,7 @@ apply(plugin="kotlin-android")
 ```
 
 ## ext
+
 ### groovy
 ```groovy
 ext {  

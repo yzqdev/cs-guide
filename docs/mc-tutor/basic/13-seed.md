@@ -1,6 +1,7 @@
 ---
 order: 13
 ---
+
 # Minecraft 种子推荐
 
 ![橡树苗](https://minecraft.wiki/images/Invicon_Oak_Sapling.png) ![小麦](https://minecraft.wiki/images/Invicon_Wheat.png) ![胡萝卜](https://minecraft.wiki/images/Invicon_Carrot.png) ![马铃薯](https://minecraft.wiki/images/Invicon_Potato.png) ![骨粉](https://minecraft.wiki/images/Invicon_Bone_Meal.png)

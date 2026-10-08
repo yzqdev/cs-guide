@@ -1,6 +1,5 @@
 # Tomcat 8 安装和配置、优化
 
-
 ## Tomcat 8 安装
 
 - Tomcat 8 安装
@@ -31,7 +30,6 @@
 - 如果启动报：`java.net.BindException: 地址已在使用 / java.net.BindException: Address already in use`
     - 解决办法：这表示端口被占用，修改 Tomcat 的 server.xml 配置文件，把端口改了即可。
 
-
 ## Tomcat 8 配置
 
 - 设置 Tomcat 相关变量：
@@ -46,7 +44,6 @@
 - 如果使用 `shutdown.sh` 还无法停止 tomcat，可以修改其配置：`vim /usr/program/tomcat8/bin/shutdown.sh`
     - 把最尾巴这一行：`exec "$PRGDIR"/"$EXECUTABLE" stop "$@"`
     - 改为：`exec "$PRGDIR"/"$EXECUTABLE" stop 10 -force`
-    
     
 ## Tomcat 8 优化
 
@@ -141,7 +138,7 @@
     - acceptCount，指定当所有可以使用的处理请求的线程数都被使用时，可以放到处理队列中的请求数，超过这个数的请求将不予处理，默认设置 100
     - maxPostSize，以 FORM URL 参数方式的 POST 提交方式，限制提交最大的大小，默认是 2097152(2兆)，它使用的单位是字节。10485760 为 10M。如果要禁用限制，则可以设置为 -1。
     - maxHttpHeaderSize，http请求头信息的最大程度，超过此长度的部分不予处理。一般8K。
-- 禁用 AJP（如果你服务器没有使用 Apache） 
+- 禁用 AJP（如果你服务器没有使用 Apache）
 	- 把下面这一行注释掉，默认 Tomcat 是开启的。
 
 ``` xml
@@ -192,7 +189,7 @@ set JAVA_OPTS=%JAVA_OPTS% -server -Xms4g -Xmx4g
 
 ## tomcat-manager 监控配置（tomcat 8.0.53）
 
-####  开启步骤
+#### 开启步骤
 
 - 不同的 Tomcat 版本会有差异。
 - 官网文档：<https://tomcat.apache.org/tomcat-8.0-doc/manager-howto.html>
@@ -245,9 +242,7 @@ set JAVA_OPTS=%JAVA_OPTS% -server -Xms4g -Xmx4g
 	- 如果当前繁忙线程已经是接近最大线程数，那基本可以表示负载到了
 - 保持连接数：`Keep alive sockets count: 1`
 
-
 ## Tomcat 8 的 Log 分割
-
 
 - 修改前提：本人为 Tomcat8.5，安装目录为：/usr/program/tomcat8
 - 网络上的官网地址现在打不开：<http://cronolog.org/download/index.html>
@@ -368,7 +363,6 @@ EXPOSE 8081
 
 ## 其他问题
 
-
 #### log4j2 输出的时间与北京时间相差 8 小时
 
 - 原因是系统时区不对。
@@ -378,8 +372,6 @@ EXPOSE 8081
 timedatectl set-timezone Asia/Shanghai
 timedatectl status
 ```
-
-
 
 ## 参考
 

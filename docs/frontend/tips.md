@@ -1,6 +1,7 @@
 ---
 order: 2
 ---
+
 # 一些小问题
 
 - [prettier格式html](https://stackoverflow.com/questions/63285895/make-prettier-less-uglier-prevent-split-tags)
@@ -19,6 +20,7 @@ order: 2
 ```
 
 <https://colorhunt.co/>
+
 ## 谷歌浏览器书签转json
 
 目前书签导出大部分都是html,此代码可以将书签提取为json格式。
@@ -65,9 +67,7 @@ order: 2
 
 ## 编写nodejs 命令行
 
-
 推荐使用pnpm
-
 
 在项目目录执行
 

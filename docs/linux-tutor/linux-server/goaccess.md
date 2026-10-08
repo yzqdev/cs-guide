@@ -1,6 +1,4 @@
 
-
-
 ## 安装（CentOS 7.4）
 
 - 注意，如果是在 CentOS 6 下安装会碰到一些问题，可以参考：<https://www.jianshu.com/p/7cacc1d20588>
@@ -49,14 +47,13 @@ http {
 - 停止 nginx：`/usr/local/nginx/sbin/nginx -s stop`
 - 备份旧的 nginx log 文件：`mv /var/log/nginx/access.log /var/log/nginx/access.log.20180702back`
 - 启动 nginx：`/usr/local/nginx/sbin/nginx`
-- 创建 GoAccess 配置文件：`vim /etc/goaccess_log_conf_nginx.conf` 
+- 创建 GoAccess 配置文件：`vim /etc/goaccess_log_conf_nginx.conf`
 
 ```
 time-format %T
 date-format %d/%b/%Y
 log_format %h - %^ [%d:%t %^] "%r" %s %b "%R" "%u" "%^" %^ %^ %^ %T
 ```
-
 
 ## 使用
 
@@ -65,7 +62,6 @@ log_format %h - %^ [%d:%t %^] "%r" %s %b "%R" "%u" "%^" %^ %^ %^ %T
 ```
 goaccess -a -d -f /var/log/nginx/access.log -p /etc/goaccess_log_conf_nginx.conf
 ```
-
 
 #### 手动生成当前统计页面
 

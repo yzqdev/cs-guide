@@ -6,8 +6,6 @@ order: 29
   
   当希望在应用程序外部存储用户数据时，Session可以帮助您，以便下次用户下次使用您的应用程序时，您可以轻松地获取其详细信息并相应地执行操作。这可以通过许多方式来完成。但是，最简单，最好的方法是通过“SharedPreferences”。
 
-
-  
   ## SharedPreferences
   
   **SharedPreferences**允许您以键，值对的形式保存和检索数据。为了使用共享首选项，您必须调用方法**getSharedPreferences()**，该方法返回一个**SharedPreference**实例，该实例指向包含首选项值的文件。
@@ -16,8 +14,6 @@ order: 29
   SharedPreferences sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);        
 ```
   
-  
-  
   您可以使用**SharedPreferences.Editor**类将某些内容保存在**sharedpreferences**中。您将调用**SharedPreference**实例的**edit**方法，并将其在Editor对象中接收。它的语法是-
   
 ```java
@@ -25,8 +21,6 @@ order: 29
   editor.putString("key", "value");
   editor.apply();
 ```
-  
-  
   
   除了**putString**方法外，编辑器类中还有一些可用的方法，这些方法允许在共享首选项内操作数据。它们列出如下-
   
@@ -39,8 +33,6 @@ order: 29
   | **putInt(String key, int value)**     | 它将在首选项编辑器中保存一个整数值                                          |
   | **putFloat(String key, float value)** | 它将浮点值保存在首选项编辑器                                                |
 
-
-  
   ## 示例
   
   为了从共享首选项执行会话管理，我们需要检查**onResume**方法中共享首选项中存储的值或数据。如果没有数据，则将从新安装的应用程序开始重新启动。但是，如果我们得到了数据，我们将从用户离开的地方开始。在下面的示例中进行了演示-
@@ -115,7 +107,6 @@ order: 29
 
 ```
 
-
 以下是修改后的主要活动文件src/com.jc2182.demo/SecondMain.java的内容。
 
 ```java
@@ -154,8 +145,6 @@ public class SecondMain extends Activity {
     }
 }
 ```
-
-  
 
   以下是res/layout/activity_main.xml文件的内容-
 
@@ -232,8 +221,6 @@ public class SecondMain extends Activity {
 </RelativeLayout>
 ```
 
-  
-
   以下是res/layout/second_main.xml文件的内容-
 
 ```xml
@@ -267,8 +254,6 @@ public class SecondMain extends Activity {
 </RelativeLayout>
 ```
 
-  
-
   以下是AndroidManifest.xml文件的内容-
 
 ```xml
@@ -299,8 +284,6 @@ public class SecondMain extends Activity {
 
 </manifest>
 ```
-
-  
 
   可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

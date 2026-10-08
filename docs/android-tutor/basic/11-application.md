@@ -3,6 +3,7 @@
 order: 11
  
 ---
+
 # 应用程序
 
 ## 应用程序组件
@@ -27,8 +28,6 @@ public class MainActivity extends Activity {
 }
 ```
 
-
-
 ## Services
 
 **Service**是在后台运行以执行长时间运行的操作的组件。例如，服务可能会在用户处于其他应用程序中时在后台播放音乐，或者可能会在不阻止用户与 Activity 交互的情况下通过网络获取数据。
@@ -39,8 +38,6 @@ Service被实现为Service类的子类，如下所示-
 public class MyService extends Service {
 }
 ```
-
-
 
 ## Broadcast Receivers(广播接收器)
 
@@ -54,8 +51,6 @@ public class MyReceiver  extends  BroadcastReceiver {
 }
 ```
 
-
-
 ## Content Providers(内容提供者)
 
 **内容提供者**组件应要求将数据从一个应用程序提供给其他应用程序。此类请求由**ContentResolver**类的方法处理。数据可以存储在文件系统，数据库或其他任何地方。内容提供程序作为**ContentProvider**类的子类实现，并且必须实现一组标准的API，这些API可使其他应用程序执行事务。
@@ -65,8 +60,6 @@ public class MyContentProvider extends  ContentProvider {
    public void onCreate(){}
 }
 ```
-
-
 
 我们将在各个章节中详细介绍这些标签，同时涵盖应用程序组件。
 

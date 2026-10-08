@@ -10,10 +10,6 @@ order: 20
   android:parentActivityName = "com.example.test.MainActivity" 
 ```
   
-  
-
-
-  
   ## 检查网络连接
   
   在执行任何网络操作之前​​，必须首先检查是否已连接到该网络或Internet等。为此android提供**ConnectivityManager**类。您需要通过调用**getSystemService()**方法来实例化此类的对象。其语法如下-
@@ -23,15 +19,11 @@ order: 20
   this.context.getSystemService(Context.CONNECTIVITY_SERVICE); 
 ```
   
-  
-  
   实例化**ConnectivityManager**类的对象后，就可以使用**getAllNetworkInfo**方法获取所有网络的信息。此方法返回**NetworkInfo**数组。因此，您必须像这样接收它。
   
 ```java
   NetworkInfo[] info = check.getAllNetworkInfo();
 ```
-  
-  
   
   您需要做的最后一件事是检查网络的连接状态。其语法如下-
   
@@ -43,8 +35,6 @@ order: 20
   }
 ```
   
-  
-  
   除了**CONNECTED**连接状态之外，网络还可以实现其他状态。它们在下面列出-
   
   | 状态              | 说明     |
@@ -55,8 +45,6 @@ order: 20
   | **SUSPENDED**     | 暂停     |
   | **UNKNOWN**       | 未知     |
 
-
-  
   ## 执行网络操作
   
   检查您已连接到Internet后，您可以执行任何网络操作。在这里，我们从网址获取网站的html。Android提供**HttpURLConnection**和**URL**类来处理这些操作。您需要通过提供网站链接来实例化URL类的对象。它的语法如下-
@@ -66,16 +54,12 @@ order: 20
   URL url = new URL(link);   
 ```
   
-  
-  
   之后，您需要调用URL类的**openConnection**方法并将其接收到**HttpURLConnection**对象中。之后，您需要调用**HttpURLConnection**类的**connect**方法。
   
 ```java
   HttpURLConnection conn = (HttpURLConnection) url.openConnection();
   conn.connect();  
 ```
-  
-  
   
   最后，您需要做的就是从网站获取HTML。为此，您将使用**InputStream**和**BufferedReader**类。其语法如下-
   
@@ -89,8 +73,6 @@ order: 20
   }
 ```
   
-  
-  
   除了此connect方法之外，**HttpURLConnection**类中还有其他可用的方法。它们在下面列出-
   
   | 方法                                | 说明                                                     |
@@ -101,8 +83,6 @@ order: 20
   | **setRequestMethod(String method)** | 此方法设置将发送到远程HTTP服务器的request命令            |
   | **usingProxy()**                    | 此方法返回此连接是否使用代理服务器                       |
 
-
-  
   ## 示例
   
   下面的示例演示**HttpURLConnection**类的用法。它创建一个基本的应用程序，使您可以从给定的网页下载HTML。要试验此示例，您需要在连接了wifi互联网的实际设备上运行该示例。
@@ -258,7 +238,6 @@ order: 20
 
 ```
 
-
 以下是res/layout/activity_main.xml文件的内容-
 
 ```xml
@@ -310,8 +289,6 @@ order: 20
 </RelativeLayout>
 ```
 
-  
-
   以下是AndroidManifest.xml文件的内容-
 
 ```xml
@@ -342,8 +319,6 @@ order: 20
 
 </manifest>
 ```
-
-  
 
   可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

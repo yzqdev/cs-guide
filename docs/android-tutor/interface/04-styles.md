@@ -4,16 +4,12 @@ order: 4
 
 # Android （安卓）样式和主题
 
-
-  
   ## 事件
   
 :::tip
  一个**样式**资源定义了用户界面的格式和外观。样式可以应用于单个View（从布局文件中）或整个Activity或应用程序（从清单文件中）。
 :::  
   与Android事件管理相关的以下三个概念-
-  
-
   
   ## 定义样式
   
@@ -33,11 +29,7 @@ order: 4
   </resources>
 ```
   
-  
-  
   > `<item>`的值可以是关键字字符串，十六进制颜色，对另一种资源类型的引用或其他值，具体取决于style属性。
-  
-
   
   ## 使用样式
   
@@ -58,11 +50,7 @@ order: 4
   </LinearLayout>
 ```
   
-  
-  
   [查看安卓样式示例](https://www.jc2182.com/andriod/andriod-style-example.html)
-  
-
   
   ## 样式继承
   
@@ -78,8 +66,6 @@ order: 4
   </resources>
 ```
   
-  
-  
   在您的AndroidManifest.xml中，将主题应用于您要设置样式的活动-
   
 ```xml
@@ -90,13 +76,9 @@ order: 4
      />
 ```
   
-  
-  
   您的新主题将应用于您的活动，并且文本现在变为鲜红色。
   
   ![](https://www.jc2182.com/images/android/styleandtheme1.png)
-  
-
   
   ## 将颜色应用于主题属性
   
@@ -112,10 +94,6 @@ order: 4
      ...
   </resources>
 ```
-  
-  
-  
-
   
   ## 使用带有按钮的自定义9-Patch
   
@@ -139,8 +117,6 @@ order: 4
   </resources>
 ```
   
-  
-  
   套用主题
   
 ```xml
@@ -154,10 +130,6 @@ order: 4
   </resources>
 ```
   
-  
-  
-
-  
   ## Android 主题
   
   希望您了解样式的概念，所以现在可以尝试了解什么是主题。主题不过是应用于整个活动或应用程序而不是单个视图的Android样式。因此，将样式用作主题时，活动或应用程序中的每个视图都将应用其支持的每个样式属性。例如，您可以将相同的CustomFontStyle样式用作Activity的主题，然后该Activity内的所有文本将具有绿色等宽字体。要为应用程序的所有活动设置主题，请打开AndroidManifest.xml文件，然后编辑`<application>`标记，以包含带有样式名称的android:theme属性。例如-
@@ -166,15 +138,11 @@ order: 4
   <application android:theme="@style/CustomFontStyle">
 ```
   
-  
-  
   但是，如果要将主题仅应用到应用程序中的一个Activity，则将android：theme属性仅添加到`<activity>`标签。例如-
   
 ```xml
   <activity android:theme="@style/CustomFontStyle">
 ```
-  
-  
   
   Android定义了许多默认主题，您可以直接使用它们，也可以使用parent属性继承它们，如下所示：
   
@@ -184,11 +152,7 @@ order: 4
   </style>
 ```
   
-  
-  
   要了解与Android主题相关的概念，可以查看[主题演示示例](https://www.jc2182.com/andriod/andriod-theme-example.html)。
-  
-
   
   ## 样式调色板
   
@@ -207,10 +171,6 @@ order: 4
      </style>
   <resource>
 ```
-  
-  
-  
-
   
   ## 默认样式和主题
   

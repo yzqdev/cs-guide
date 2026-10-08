@@ -11,7 +11,7 @@ tag:
 
 ## Git 下载
 
-官网在国外，网速较慢。在安装 Git 前推荐安装好 [VS Code](../vscode/README.md)。
+官网在国外，网速较慢。在安装 Git 前推荐安装好 [VS Code](../../windows-tutor/tools/vscode/README.md)。
 
 - [官网下载](https://git-scm.com/downloads/)
 

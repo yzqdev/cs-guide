@@ -19,11 +19,13 @@
 :::tip
 external的意思是dependencies里面的依赖不会打包进去,而是需要自己手动安装,inlineDependencies就是把devDependencies里面你用到的依赖的源码打包进去,会导致包很大
 :::
+
 ## 自动化工具
 
 - <https://github.com/jakejs/jake>
 - gulp
 - grunt
+
 ## rollup
 
 默认**不会**把dependencies里面的依赖源码全部打包,但是会出现warning,所以一般需要设置`external:['lodash']`之类的,如果实在想把dependency里面的依赖打包进你的库,需要用[@rollup/plugin-node-resolve](https://github.com/rollup/plugins/tree/master/packages/node-resolve)

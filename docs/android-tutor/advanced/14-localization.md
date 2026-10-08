@@ -6,8 +6,6 @@ order: 14
   
   Android应用程序可以在许多不同地区的许多设备上运行。为了使您的应用程序更具交互性，您的应用程序应该以适合于将使用您的应用程序的语言环境的方式来处理文本，数字，文件等。将字符串更改为不同语言的方式称为本地化在本章中，我们将说明，如何根据不同的区域来本地化应用程序等。我们将本地化应用程序中使用的字符串，并以相同的方式本地化其他内容。
 
-
-  
   ## 本地化字符串
   
   为了对应用程序中使用的字符串进行本地化，请在re下创建一个新文件夹，名称为values-local，其中local将替换为该区域。例如，在意大利，values-it文件夹将在res下创建。
@@ -22,8 +20,6 @@ order: 14
   </resources>
 ```
   
-  
-  
   *西班牙，res/values-es/strings.xml*
   
 ```xml
@@ -32,8 +28,6 @@ order: 14
   </resources>
 ```
   
-  
-  
   *法语，res/values-fr/strings.xml*
   
 ```xml
@@ -41,8 +35,6 @@ order: 14
      <string name="hello_world">Bonjour le monde !</string>
   </resources>
 ```
-  
-  
   
   除了这些语言，下表还提供了其他语言的区域代码-
   
@@ -57,8 +49,6 @@ order: 14
   | **法文**     | 代码：fr。文件夹名称：values-fr |
   | **日本**     | 代码：ja。文件夹名称：values-ja |
 
-
-  
   ## 示例
   
   要试验此示例，可以在实际设备或仿真器中运行它。
@@ -155,8 +145,6 @@ order: 14
 </RelativeLayout>
 ```
 
-  
-
   以下是res/values/strings.xml文件的内容-
 
 ```xml
@@ -169,8 +157,6 @@ order: 14
     <string name="english">Butterfly tutorial</string>
 </resources>
 ```
-
-  
 
   可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

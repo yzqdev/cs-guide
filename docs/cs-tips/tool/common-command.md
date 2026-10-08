@@ -133,7 +133,6 @@ svelte prettier配置
 yarn set version stable
 ```
 
- 
 ## npm搭建私库
 
 <https://segmentfault.com/a/1190000040243909>
@@ -195,7 +194,6 @@ dotnet命令  <https://learn.microsoft.com/zh-cn/dotnet/core/tools/>
 
 ### 浏览器推荐 
 
-
 https://thorium.rocks/
 https://github.com/ungoogled-software/ungoogled-chromium-windows
 brave浏览器
@@ -211,9 +209,6 @@ firefox developer 浏览器
 waterfox浏览器
 https://www.runningcheese.com/firefox
 floorp浏览器 https://floorp.app/en/
-
-
-
 
 ## 安卓
 

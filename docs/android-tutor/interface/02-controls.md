@@ -27,8 +27,6 @@ order: 2
   </LinearLayout>
 ```
   
-  
-  
   Android提供了许多UI控件，可让您为应用程序构建图形用户界面。
   
   | 控件                                                                                          | 说明                                                                                                                          |
@@ -47,8 +45,6 @@ order: 2
   | [TimePicker](https://www.jc2182.com/andriod/android-timepicker-show.html)                     | 通过TimePicker视图，用户可以选择24小时模式或AM/PM模式中的一天中的某个时间。                                                   |
   | [DatePicker](https://www.jc2182.com/andriod/android-datepicker-show.html)                     | DatePicker视图使用户可以选择一天中的日期。                                                                                    |
   
-
-  
   ## 创建UI控件
   
   输入控件是应用程序用户界面中的交互式组件。Android提供了可在您的UI中使用的各种控件，例如按钮，文本字段，搜索栏，复选框，缩放按钮，切换按钮等等。如上一章所述，视图对象可能具有分配给它的唯一ID，该ID将在树中唯一标识视图。XML标记内的ID的语法是-
@@ -56,8 +52,6 @@ order: 2
 ```t4
   android:id="@+id/text_id"
 ```
-  
-  
   
   要创建UI控件/视图/小部件，您将必须在布局文件中定义视图/小部件并为其分配唯一的ID，如下所示：
   
@@ -74,12 +68,9 @@ order: 2
   </LinearLayout>
 ```
   
-  
-  
   然后最终创建控制对象的实例并从布局中捕获它，请使用以下命令-
   
 ```java
   TextView myText = (TextView) findViewById(R.id.text_id);
 ```
-  
   

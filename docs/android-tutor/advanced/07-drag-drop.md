@@ -10,7 +10,6 @@ order: 7
   - Drag 监听.
   - Helper 方法和类.
 
-  
   ## 拖放过程
   
   拖放过程中基本上有四个步骤或状态-
@@ -20,7 +19,6 @@ order: 7
   - **已放下** -用户释放一个视图的边框内拖曳的项目。系统向View对象的侦听器发送操作类型为**ACTION_DROP**的拖动事件。
   - **已结束** -在动作类型**ACTION_DROP**之后，系统会发出动作类型为**ACTION_DRAG_ENDED**的拖动事件，以指示拖动操作已结束。
 
-  
   ## DragEvent类
   
   **dragEvent**表示被一个拖放操作期间在不同的时间发送出由系统中的事件。此类提供了一些常量和在拖放过程中使用的重要方法。
@@ -52,8 +50,6 @@ order: 7
   | **float getY()**                         | 获取拖动点的Y坐标。                                       |
   | **String toString()**                    | 返回此DragEvent对象的字符串表示形式。                     |
   
-
-  
   ## 监听拖放事件
   
   如果您希望布局中的任何视图都应响应Drag事件，则您的视图可以实现**View.OnDragListener**或设置**onDragEvent(DragEvent)**回调方法。当系统调用方法或侦听器时，系统会将上述的**DragEvent**对象传递给他们。您可以同时具有View对象的侦听器和回调方法。如果发生这种情况，系统将首先调用侦听器，然后在侦听器返回true时定义回调。所述的组合**onDragEvent(dragEvent)方法和**View.OnDragListener类似于的组合的**onTouchEvent()**和**View.OnTouchListener**与旧版本的Android触摸事件使用。
@@ -63,8 +59,6 @@ order: 7
   ## **开始拖动事件**
   
   **首先，为要移动的数据创建一个ClipData和ClipData.Item。作为ClipData对象的一部分，提供存储在ClipData中的ClipDescription对象中的元数据。对于不代表数据移动的拖放操作，您可能需要使用null而不是实际对象。接下来，您可以扩展extend View.DragShadowBuilder以创建用于拖动视图的拖动阴影，或者可以简单地使用View.DragShadowBuilder(View)来创建默认的拖动阴影，该拖动阴影的大小与传递给它的View参数的大小相同，点位于拖动阴影的中心。**
-  
-
   
   ## 拖放示例演示
   
@@ -203,7 +197,6 @@ public class MainActivity extends Activity {
 
 ```
 
-
 以下是res/layout/activity_main.xml文件的内容-
 ```xml
 
@@ -254,8 +247,6 @@ public class MainActivity extends Activity {
 
 </RelativeLayout>
 ```
-
-
 
 可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

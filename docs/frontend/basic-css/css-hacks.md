@@ -7,6 +7,7 @@
 
 ps：本文原创不是我，我只是搬运工，看到好东西与大家分享而已，作者 github 主页请戳 [这里](https://csscoco.com/inspiration/#/)~
 <!--more-->
+
 ## 装逼指南
 
 本文中，所有的图形都是在单个标签内实现的，大量使用了 `CSS3` 中的 `::before`、`::after` 伪元素，`transparent` 、`border`，多重线性与径向渐变，多重内外阴影，如果你的效果不尽人意，请尝试在 `Chrome` 浏览器下预览。

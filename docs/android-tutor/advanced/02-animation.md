@@ -6,8 +6,6 @@ order: 2
   
   动画是创造运动和形状变化的过程，Android中的动画可以通过多种方式实现。在本章中，我们将讨论一种简单且广泛使用的动画制作方法，称为补间动画。
   
-
-  
   ## 补间动画
   
   补间动画采用一些参数，例如开始值，结束值，大小，持续时间，旋转角度等，并对该对象执行所需的动画。它可以应用于任何类型的对象。因此，为了使用此功能，Android为我们提供了一个名为Animation的类。为了在Android中执行动画，我们将调用AnimationUtils类的静态函数loadAnimation()。我们将在Animation 对象的实例中接收结果。它的语法如下-
@@ -15,8 +13,6 @@ order: 2
 ```java
   Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.myanimation);
 ```
-  
-  
   
   注意第二个参数。这是我们的动画xml文件的名称。您必须在res目录下创建一个名为anim的新文件夹，并在anim文件夹下创建一个xml文件。这个动画类具有许多有用的功能，在下面列出-
   
@@ -34,10 +30,6 @@ order: 2
   ImageView image1 = (ImageView)findViewById(R.id.imageView1);
   image.startAnimation(animation);
 ```
-  
-  
-  
-
   
   ## 示例
   
@@ -109,7 +101,6 @@ public class MainActivity extends Activity {
 }
 
 ```
-
 
 以下是res/layout/activity_main.xml文件的内容-
 
@@ -226,8 +217,6 @@ public class MainActivity extends Activity {
 </RelativeLayout>
 ````
 
-
-
 这是res/anim/myanimation.xml的代码。
 
 ```xml
@@ -258,8 +247,6 @@ public class MainActivity extends Activity {
 </set>
 ```
 
-
-
 这是res/anim/clockwise.xml的代码。
 
 ```xml
@@ -286,8 +273,6 @@ public class MainActivity extends Activity {
 </set>
 ```
 
-
-
 这是res/anim/fade.xml的代码。
 
 ```xml
@@ -311,8 +296,6 @@ public class MainActivity extends Activity {
 </set>
 ```
 
-
-
 这是res/anim/blink.xml的代码。
 
 ```xml
@@ -326,8 +309,6 @@ public class MainActivity extends Activity {
         android:repeatCount="infinite"/>
 </set>
 ```
-
-
 
 这是res/anim/move.xml的代码。
 
@@ -345,8 +326,6 @@ public class MainActivity extends Activity {
 </set>
 ```
 
-
-
 这是res/anim/slide.xml的代码。
 
 ```xml
@@ -363,8 +342,6 @@ public class MainActivity extends Activity {
         android:toYScale="0.0" />
 </set>
 ```
-
-
 
 可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

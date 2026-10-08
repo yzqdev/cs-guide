@@ -4,14 +4,11 @@ order: 1
 
 # 对话框
 
-
 - 对话框是一个小窗口，提示用户做出决定或输入其他信息。在您的应用程序中，有时候，如果您想让用户根据用户采取的任何特定操作，在是或否之间做出决定，方法是保留在同一活动中而不更改屏幕，则可以使用“警告对话框”。为了创建警报对话框，您需要创建一个**AlertDialogBu​​ilder**对象，该对象是**AlertDialog**的内部类。其语法如下
   
 ```java
   AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 ```
-  
-  
   
   现在，您必须使用AlertDialogBu​​ilder类的对象设置正（是）或负（否）按钮。它的语法是
   
@@ -21,8 +18,6 @@ order: 1
   alertDialogBuilder.setNegativeButton(CharSequence text, 
      DialogInterface.OnClickListener listener)
 ```
-  
-  
   
   除此之外，您还可以使用builder类提供的其他功能来自定义警报对话框。这些在下面列出
   
@@ -42,11 +37,7 @@ order: 1
   alertDialog.show();
 ```
   
-  
-  
   这将创建警报对话框，并将其显示在屏幕上。
-  
-
   
   ## 对话片段
   
@@ -74,10 +65,6 @@ order: 1
   }
 ```
   
-  
-  
-
-  
   ## 列表对话框
   
   它用于在对话框中显示项目列表。假设用户需要选择一个项目列表，或者需要从多个项目列表中单击一个项目，在这种情况下，我们可以使用列表对话框。
@@ -93,10 +80,6 @@ order: 1
      return builder.create();
   }
 ```
-  
-  
-  
-
   
   ## 单选列表对话框
   
@@ -144,10 +127,6 @@ order: 1
      return builder.create();
   }
 ```
-  
-  
-  
-
   
   ## 示例
   
@@ -206,7 +185,6 @@ public class MainActivity extends Activity {
 
 ```
 
-
 以下是res/layout/activity_main.xml文件的内容-
 
 ```xml
@@ -262,8 +240,6 @@ public class MainActivity extends Activity {
 
 </RelativeLayout>
 ````
-
-
 
 可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

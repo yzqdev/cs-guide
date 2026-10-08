@@ -5,6 +5,7 @@
 
 原文地址：[YOU-SHOULD-KNOW-JS](https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2FNealyang%2FYOU-SHOULD-KNOW-JS)
 <!--more-->
+
 ## 什么是跨域
 
 跨域，是指浏览器不能执行其他网站的脚本。它是由浏览器的同源策略造成的，是浏览器对JavaScript实施的安全限制。

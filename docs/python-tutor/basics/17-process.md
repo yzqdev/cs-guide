@@ -10,7 +10,6 @@ Python 提供了非常好用的多进程包 multiprocessing，只需要定义一
 
 借助这个包，可以轻松完成从单进程到并发执行的转换。multiprocessing 支持子进程、通信和共享数据、执行不同形式的同步，提供了 Process、Queue、Pipe、Lock 等组件。
 
-
 ## 1、类 Process ##
 
 创建进程的类：`Process([group [, target [, name [, args [, kwargs]]]]])`
@@ -57,11 +56,9 @@ if __name__ == "__main__":
 
 ![](http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-10-14-%E5%A4%9A%E8%BF%9B%E7%A8%8B%E8%BE%93%E5%87%BA%E7%BB%93%E6%9E%9C.gif)
 
-
 ## 2、把进程创建成类 ##
 
 当然我们也可以把进程创建成一个类，如下面的例子，当进程 p 调用 start() 时，自动调用 run() 方法。
-
 
 ```python
 # -*- coding: UTF-8 -*-
@@ -154,9 +151,7 @@ if __name__ == '__main__':
 【EMD】
 ```
 
-
 根据输出结果可见，如果在子进程中添加了 daemon 属性，那么当主进程结束的时候，子进程也会跟着结束。所以没有打印子进程的信息。
-
 
 ## 4、join 方法 ##
 
@@ -256,8 +251,6 @@ p = Pool(5)
 
 就可以同时跑 5 个进程。
 
-
-
 ## 6、进程间通信 ##
 
 Process 之间肯定是需要通信的，操作系统提供了很多机制来实现进程间的通信。Python 的 multiprocessing 模块包装了底层的机制，提供了Queue、Pipes 等多种方式来交换数据。
@@ -317,5 +310,3 @@ if __name__ == '__main__':
 写进 Queue 的值为：四点水
 从 Queue 读取的值为：四点水
 ```
-
-

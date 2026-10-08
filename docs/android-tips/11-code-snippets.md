@@ -3,6 +3,7 @@ order: 11
 ---
 
 # 代码片段
+
 # 安卓代码片段
 
 ## 获取navhost
@@ -64,7 +65,6 @@ val menuHost = requireActivity()
         })
 
 ```
-
 
 # 如何获取Android设备唯一ID？
 
@@ -191,7 +191,6 @@ public synchronized static String id(Context context) {
 stackoverflow链接：
 <http://stackoverflow.com/questions/2785485/is-there-a-unique-android-device-id>
 
-
 ## activity显示返回按钮
 
 ```
@@ -295,6 +294,7 @@ button.setOnClickListener(object : View.OnClickListener{
     return lvRoot.rootView  
   }
 ```
+
 # kotlin compose
 
 ```kotlin
@@ -526,7 +526,6 @@ tasks.configureEach { task ->
     }
 }
 ```
-
 
 ## compose实现下边框
 

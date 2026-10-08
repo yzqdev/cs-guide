@@ -12,7 +12,6 @@ order: 3
   - **事件侦听器注册** - 事件注册是事件处理程序向事件侦听器注册的过程，以便在事件侦听器触发事件​​时调用该处理程序。
   - **事件处理程序** - 当事件发生并且我们已经为该事件注册了一个事件侦听器时，该事件侦听器将调用事件处理程序，这是实际处理该事件的方法。
 
-  
   ## 事件监听器和事件处理程序
   
   | 事件处理                  | 事件监听器                        | 描述                                                                                                                                            |
@@ -27,8 +26,6 @@ order: 3
   
   作为**View**类的一部分，可能还有更多事件侦听器，例如OnHoverListener，OnDragListener等，它们可能是您的应用程序所需要的。因此，如果您要开发复杂的应用程序，建议您参考Android应用程序开发的官方文档。
   
-
-  
   ## 事件监听器注册
   
   事件注册是事件处理程序向事件监听器注册的过程，以便在事件监听器触发事件​​时调用该处理程序。尽管有几种技巧可以为任何事件注册事件侦听器，但是我将仅列出前三种方式，您可以根据情况使用其中三种方式。
@@ -39,13 +36,9 @@ order: 3
   
   以下部分将为您提供有关这三种情况的详细示例-
   
-
-  
   ## 触控模式
   
   用户可以使用硬件键或按钮或触摸屏幕与设备进行交互。触摸屏幕可使设备进入触摸模式。然后，用户可以通过触摸屏幕上的虚拟按钮，图像等与之交互。您可以通过调用View类的isInTouchMode()方法来检查设备是否处于触摸模式。
-  
-
   
   ## 焦点
   
@@ -57,8 +50,6 @@ order: 3
 ```xml
   android:foucsUp="@=id/button_l"
 ```
-  
-  
   
   *onTouchEvent()*
   
@@ -80,10 +71,6 @@ order: 3
      return super.onTouchEvent(event) ;
   }
 ```
-  
-  
-  
-
   
   ## 事件处理示例
   
@@ -107,7 +94,6 @@ order: 3
   import android.widget.TextView;
 ```
   
-
 public class MainActivity extends Activity {
  private ProgressDialog progress;
  Button b1,b2;
@@ -214,8 +200,6 @@ public class MainActivity extends Activity {
 
 </RelativeLayout>
 ````
-
-
 
 可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

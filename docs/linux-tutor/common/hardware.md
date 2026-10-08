@@ -141,24 +141,28 @@ glxinfo | grep "OpenGL renderer"  # OpenGL 信息
 ## 五、选购建议
 
 ### 办公电脑
+
 - CPU：Intel i5 / AMD Ryzen 5
 - 内存：8-16GB DDR4
 - 硬盘：256-512GB NVMe SSD
 - 显卡：集成显卡即可
 
 ### 开发/设计电脑
+
 - CPU：Intel i7 / AMD Ryzen 7
 - 内存：16-32GB DDR4/DDR5
 - 硬盘：512GB-1TB NVMe SSD
 - 显卡：中端独立显卡
 
 ### 游戏/渲染电脑
+
 - CPU：Intel i9 / AMD Ryzen 9
 - 内存：32-64GB DDR5
 - 硬盘：1TB+ NVMe SSD
 - 显卡：高端独立显卡 (RTX 4070+)
 
 ### 服务器
+
 - CPU：Xeon / EPYC
 - 内存：64GB+ ECC 内存
 - 硬盘：企业级 SSD + HDD

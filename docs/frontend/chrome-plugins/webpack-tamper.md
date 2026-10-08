@@ -252,17 +252,14 @@ const devConf = merge(base, {
 export default devConf;
 ```
 
-
 **如何hot reload**
 
 ### 对于暴力猴
+
 1. 直接用浏览器打开本地js文件,然后跟踪外部编辑
 2. 网页打开`http://127.0.0.1:9010/simple.user.js`,在暴力猴安装界面选择 `跟踪外部编辑`,不要 关闭外部界面即可,关闭后需要重新打开上面的链接
 这里使用的@require file:// 所以不会cache
 
 ### 对于油猴
 
-
-
 手动复制`dist/simple.proxy.user.js`里面的内容,创建新的脚本,然后页面刷新即可
-

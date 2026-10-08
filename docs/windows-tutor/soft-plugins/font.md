@@ -5,6 +5,7 @@
 ## 推荐字体列表
 
 ### 经典字体
+
 - **Consolas** - Windows 默认编程字体，清晰易读
 - **Menlo** - macOS 默认编程字体
 - **Monaco** - 经典的 macOS 编程字体
@@ -12,12 +13,14 @@
 - **Droid Sans Mono** - Google 开源字体
 
 ### 支持连字（Ligatures）的现代字体
+
 - **Fira Code** - 最流行的连字字体，支持多种编程符号组合
 - **JetBrains Mono** - JetBrains 出品，专为开发者设计
 - **Cascadia Code** - Microsoft 出品，支持连字和等宽显示
 - **Hack** - 开源编程字体，支持连字
 
 ### 中英文混合字体
+
 - **Microsoft YaHei Mono** - 微软雅黑等宽版，中英文混排友好
 - **Ubuntu Mono** - Ubuntu 系统默认等宽字体
 - **Sarasa Gothic (更纱黑体)** - 专为 CJK 设计的等宽字体

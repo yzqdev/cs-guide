@@ -119,7 +119,6 @@ output {
 }
 ```
 
-
 ## 案例
 
 ### 测试模式
@@ -149,7 +148,6 @@ output {
 
 - 启动 Logstash 并加载该配置文件：`/usr/program/elk/logstash-2.4.1/bin/logstash -f /usr/program/elk/logstash-2.4.1/config/regexp-test.conf`
 
-
 #### 读取文件，输出到控制台先看下：
 
 - 新建目录（如果存在就不用）：`mkdir -p /usr/program/elk/logstash-2.4.1/config`
@@ -172,7 +170,6 @@ output {
 ```
 
 - 启动 Logstash 并加载该配置文件：`/usr/program/elk/logstash-2.4.1/bin/logstash -f /usr/program/elk/logstash-2.4.1/config/regexp-test.conf`
-
 
 ### Nginx 日志收集
 
@@ -302,7 +299,6 @@ output {
 - 启动 Logstash 并加载该配置文件：`/usr/program/elk/logstash-2.4.1/bin/logstash -f /usr/program/elk/logstash-2.4.1/config/nginx.conf`
 - 然后你开始访问 nginx，再关注 elasticsearch 集群的索引变化，如果有新增索引那就表示可以了。
 
-
 ### Tomcat 日志收集
 
 - 机子：192.168.1.121
@@ -337,7 +333,6 @@ output {
 
 - 启动 Logstash 并加载该配置文件：`/usr/program/elk/logstash-2.4.1/bin/logstash -f /usr/program/elk/logstash-2.4.1/config/tomcat.conf`
 - 然后你开始访问 nginx，再关注 elasticsearch 集群的索引变化，如果有新增索引那就表示可以了。
-
 
 ### MySQL 慢 SQL 日志收集
 
@@ -461,7 +456,6 @@ output {
 
 #### 一台 Logstash 把数据从 rabbitMQ 读取出来写到 ES （还未测试）
 
-
 ``` nginx
 input {
 	rabbitmq {
@@ -502,8 +496,6 @@ output {
 	}
 }
 ```
-
-
 
 ## 参考
 

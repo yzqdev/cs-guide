@@ -78,7 +78,6 @@ com.intellij.diagnostic.PluginException: While loading class com.avast.android.b
 
 4.重新build项目，即可通过！
 
-
 ## fragment生命周期
 
  onActivityCreated被弃用 应该使用onViewCreated

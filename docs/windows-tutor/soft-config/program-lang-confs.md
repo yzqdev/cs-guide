@@ -1,6 +1,5 @@
 # 软件配置文件
 
-
 ## .npmrc
 
 > 路径 ${userhome}/.npmrc
@@ -78,7 +77,7 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 trusted-host = pypi.tuna.tsinghua.edu.cn
 ```
 
-## 　.pathrc
+## .pathrc
 
 ```bash
 

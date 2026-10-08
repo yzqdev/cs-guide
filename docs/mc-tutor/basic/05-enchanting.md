@@ -6,7 +6,6 @@ order: 5
 
 ![附魔台](https://minecraft.wiki/images/Invicon_Enchanting_Table.png)
 
-
 ## 附魔基础
 
 附魔可以增强工具、武器和装备的能力。

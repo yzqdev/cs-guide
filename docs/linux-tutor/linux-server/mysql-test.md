@@ -1,13 +1,11 @@
 # MySQL 测试
 
-
 ## mysqlslap 工具
 
 - 工具的官网说明：<https://dev.mysql.com/doc/refman/5.5/en/mysqlslap.html>
 - 可能会遇到的报错：
     - 报：`mysqlslap: Error when connecting to server: Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)`
         - 可以这样解决：`ln -s /usr/program/mysql/data/mysql.sock /tmp/mysql.sock`，原因是 sock 文件位置为自定义路径，与 mysqlslap 默认读取位置不一致。
-
 
 ### 进行基准测试：
 
@@ -29,7 +27,6 @@
 - Number of clients XXXXXXXX：客户端数量
 - Average number of queries per client XXXXXXXX：每个客户端运行查询的平均数。其中这个数和上面的数相乘就等于number-of-queries
 
-
 ### 对自己的数据库进行测试：
 
 - 数据库：`youmeek_nav`
@@ -37,7 +34,6 @@
 - 复杂测试语句：假设我把有3条sql要测试，我把这三条写入到一个 test.sql 文件中，3条sql用分号隔开，文件内容为：`SELECT * FROM sys_user;SELECT * FROM nav_column;SELECT * FROM nav_url;`
     - 那测试语句可以这样写：`mysqlslap --defaults-file=/etc/my.cnf --create-schema=youmeek_nav --query="/opt/test.sql" --delimiter=";" --debug-info -uroot -p123456`
     - `--delimiter=”;”` 表示文件中不同 sql 的分隔符是什么
-
 
 ### 其他一些参数：
 
@@ -48,7 +44,6 @@
 - `--only-print` 打印压力测试的时候 mysqlslap 到底做了什么事，通过 sql 语句方式告诉我们。
 
 -------------------------------------------------------------------
-
 
 ## sysbench 工具
 
@@ -99,14 +94,12 @@
 	- `--max-requests=0` 表示总请求数为 0，因为上面已经定义了总执行时长，所以总请求数可以设定为 0；也可以只设定总请求数，不设定执行时长
 	- `--percentile=99` 表示设定采样比例，即丢弃1%的长请求，在剩余的99%里取最大值。默认是 95%，
 
-
 ### 测试报告
 
 Running the test with following options:
 Number of threads: 15
 Report intermediate results every 10 second(s)
 Initializing random number generator from current time
-
 
 Initializing worker threads...
 
@@ -162,12 +155,10 @@ Threads fairness:
 - 举例，我们一个HTTP请求的响应时间是20ms，在10个并发的情况下，QPS就是 QPS=10*1000/20=500。
 - 这里有个关键的点就是QPS一定是跟并发数联系在一起的，离开并发数谈QPS是没意义的。
 
-
 ### QPS、TPS和性能的关系
 
 - 一个系统吞吐量通常由QPS（TPS）、并发数两个因素决定，每套系统这两个值都有一个相对极限值，在应用场景访问压力下，只要某一项达到系统最高值，系统的吞吐量就上不去了，如果压力继续增大，系统的吞吐量反而会下降，原因是系统超负荷工作，上下文切换、内存等等其它消耗导致系统性能下降。
 - 开始，系统只有一个用户，CPU工作肯定是不饱合的。一方面该服务器可能有多个cpu，但是只处理单个进程，另一方面，在处理一个进程中，有些阶段可能是IO阶段，这个时候会造成CPU等待，但是有没有其他请 求进程可以被处理）。随着并发用户数的增加，CPU利用率上升，QPS相应也增加（公式为QPS=并发用户数/平均响应时间。）随着并发用户数的增加，平均响应时间也在增加，而且平均响应时间的增加是一个指数增加曲线。而当并发数增加到很大时，每秒钟都会有很多请求需要处理，会造成进程（线程）频繁切换，相应地真正用于处理请求的时间变少，每秒能够处 理的请求数反而变少，同时用户的请求等待时间也会变大，甚至超过用户的心理底线。 ）
-
 
 ### 结论
 
@@ -236,8 +227,6 @@ mysql -h rm-wz9v0vej02ys79jbj.mysql.rds.aliyuncs.com -P 3306 -u myaccount -p
 输入密码：Aa123456
 ```
 
-
-
 ```
 创库，名字为：TPCC：
 CREATE DATABASE TPCC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
@@ -250,7 +239,6 @@ CREATE DATABASE TPCC DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 创建索引和外键：add_fkey_idx.sql
 /usr/bin/mysql -h rm-wz9v0vej02ys79jbj.mysql.rds.aliyuncs.com -u myaccount -p tpcc < /root/tpcc-mysql/add_fkey_idx.sql
 ```
-
 
 ### 测试
 
@@ -312,9 +300,7 @@ select count(*) from warehouse;
 -l 1800 表示持续压测 1800 秒
 ```
 
-
 ### 报表
-
 
 ```
 <TpmC>
@@ -325,7 +311,6 @@ tpmC值在国内外被广泛用于衡量计算机系统的事务处理能力
 
 - RDS-2C4G-80个仓库结果：
 - CPU：100%，内存：34%，连接数：17%，IOPS：62%，磁盘空间：20G
-
 
 ```
 1780, trx: 979, 95%: 1849.535, 99%: 2402.613, max_rt: 3401.947, 986|3248.772, 98|698.821, 103|4202.110, 101|4547.416
@@ -408,7 +393,6 @@ STOPPING THREADS................................................................
                  13552.467 TpmC
 ```
 
-
 - 升级：RDS-8C16G-80个仓库结果
 - CPU：100%，内存：35%，连接数：5%，IOPS：18%，磁盘空间：30G
 
@@ -450,7 +434,6 @@ STOPPING THREADS................................................................
 <TpmC>
                  26791.934 TpmC
 ```
-
 
 - 升级：RDS-16C64G-80个仓库结果
 - CPU：100%，内存：18%，连接数：2%，IOPS：10%，磁盘空间：40G
@@ -494,7 +477,6 @@ STOPPING THREADS................................................................
                  51097.668 TpmC
 ```
 
-
 - 几轮下来，最终数据量：
 
 ```
@@ -517,7 +499,6 @@ select count(*) from stock;
 select count(*) from warehouse;
     80
 ```
-
 
 ## 参考
 

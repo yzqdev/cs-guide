@@ -104,6 +104,7 @@ scoop install geany
 或者从官网 <https://www.geany.org/> 下载安装包。
 
 ### Geany 特点
+
 - **轻量快速**：启动速度媲美记事本
 - **多语言支持**：C、Java、Python、PHP、HTML 等 50+ 种语言
 - **内置工具**：编译运行按钮、终端嵌入、符号浏览器

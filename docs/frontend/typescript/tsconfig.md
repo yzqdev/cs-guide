@@ -102,7 +102,6 @@ tsconfig.json 文件是 TypeScript 项目的核心配置文件，它包含了 ts
 }
 ```
 
-
 ## 错误`  Try `npm i --save-dev @types/node-fetch` if it exists or add a new declaration (.d.ts) file containing `declare module 'node-fetch';`
 
 tsconfig.json添加`skipLibCheck:true`或者`  "noImplicitAny": false,`

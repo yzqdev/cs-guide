@@ -6,7 +6,6 @@ order: 9
 
 > 使用 Spring AOP 实现 Web 请求日志记录。
 
-
 需要安装
 ```
 implementation("org.javassist:javassist:3.29.2-GA")

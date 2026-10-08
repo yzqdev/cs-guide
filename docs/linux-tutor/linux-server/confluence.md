@@ -38,7 +38,6 @@ SET GLOBAL tx_isolation='READ-COMMITTED';
     - 选择：linux64 类型下载
 - 授权：`chmod +x atlassian-confluence-6.15.4-x64.bin`
 
-
 ```
 ./atlassian-confluence-6.15.4-x64.bin
 
@@ -117,16 +116,13 @@ firewall-cmd --reload
 
 - 参考自己的为知笔记
 
-
 ## 反向代理的配置可以参考
 
 - <https://blog.51cto.com/m51cto/2131964>
 
-    
 ## 使用 markdown
 
 - 点击右上角小齿轮 > 管理应用 > 搜索市场应用 > 输入 markdown > 安装
-
 
 ## 其他资料
 

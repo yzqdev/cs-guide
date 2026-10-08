@@ -9,7 +9,6 @@ order: 5
   - 在我们的应用程序中使用现有的Android camera应用程序
   - 在我们的应用程序中直接使用android提供的Camera API
 
-  
   ## 现有的Android camera应用程序
   
   您将使用**MediaStore.ACTION_IMAGE_CAPTURE**来启动手机上安装的现有相机应用程序。其语法如下
@@ -17,8 +16,6 @@ order: 5
 ```java
   Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 ```
-  
-  
   
   除上述内容外，MediaStore还提供其他可用的Intent。它们列出如下
   
@@ -37,8 +34,6 @@ order: 5
   startActivityForResult(intent,0)
 ```
   
-  
-  
   该方法已在Activity类中定义。我们从主要活动中调用它。在活动类中定义的方法具有相同的作用，但是在您不是从活动而是从其他地方进行调用时使用。它们在下面列出
   
   | 方法                                                                                             | 说明                                                 |
@@ -50,8 +45,6 @@ order: 5
   | **startActivityFromFragment(Fragment fragment, Intent intent, int requestCode, Bundle options)** | 它不仅从片段启动活动，而且可以带走额外的价值。       |
   
   无论您使用了哪个函数来启动活动，它们都将返回结果。可以通过重写**onActivityResult**函数来获得结果。
-  
-
   
   ## 示例
   
@@ -235,7 +228,6 @@ public class MainActivity extends Activity {
 
 ```
 
-
 以下是res/layout/activity_main.xml文件的内容-
 
 ```xml
@@ -248,8 +240,6 @@ public class MainActivity extends Activity {
     tools:context=".MainActivity">
 </RelativeLayout>
 ````
-
-
 
 以下是AndroidManifest.xml文件的内容-
 
@@ -279,7 +269,5 @@ public class MainActivity extends Activity {
 
 </manifest>
 ```
-
-
 
 在真实的设备上测试您的demo。

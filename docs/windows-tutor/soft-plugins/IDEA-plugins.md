@@ -18,50 +18,62 @@
 ## 效率提升类
 
 ### Key Promoter X
+
 - **功能**: 鼠标操作时提示对应的快捷键，帮助养成使用快捷键的习惯
 
 ### Maven Helper
+
 - **功能**: 简化 Maven 依赖管理，支持依赖分析和冲突解决
 
 ### Gradle View
+
 - **功能**: 可视化展示 Gradle 项目结构和任务
 
 ## Java 开发类
 
 ### Alibaba Java Coding Guidelines
+
 - **功能**: 阿里巴巴 Java 代码规范检查，提升代码质量
 - **链接**: [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/10046-alibaba-java-coding-guidelines)
 
 ### Easy Javadoc
+
 - **功能**: 自动生成 JavaDoc 注释，支持多种模板
 - **链接**: [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/12977-easy-javadoc)
 
 ### AI辅助编码
 
 #### GitHub Copilot
+
 - **功能**: AI 代码补全助手
 
 #### AiXcoder Code Completer
+
 - **功能**: 国产智能代码补全插件
 
 ## 数据库/ORM类
 
 ### MyBatisX
+
 - **功能**: MyBatis 框架增强插件，支持 XML 和注解两种方式
 
 ### Free MyBatis Plugin
+
 - **功能**: MyBatis 代码生成和映射辅助工具
 
 ### Mybatis Builder
+
 - **功能**: MyBatis 配置文件和映射文件辅助工具
 
 ## API 开发类
 
 ### Restful Fast Request
+
 - **功能**: RESTful API 测试工具
 - **链接**: [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/16988-restful-fast-request)
 
 ### RestfulToolkit
+
 - **功能**: REST API 文档生成和测试工具
 - **项目地址**: [GitHub](https://github.com/mrmanzhaow/RestfulToolkit)
 

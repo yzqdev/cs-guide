@@ -48,12 +48,11 @@ cd supervisor-3.3.3
 python setup.py  install
 ```
 
-
 - 生成配置文件：`echo_supervisord_conf > /etc/supervisord.conf`
 - 创建专门的程序配置文件目录、日志目录：
 	- `mkdir -p /var/log/supervisor`
 	- `mkdir -p /etc/supervisor/conf.d/`
-	- `echo -e "[include]\nfiles = /etc/supervisor/conf.d/*.conf">>/etc/supervisord.conf` 
+	- `echo -e "[include]\nfiles = /etc/supervisor/conf.d/*.conf">>/etc/supervisord.conf`
 - 安装完成的内容介绍：supervisor 安装完成后会生成三个执行程序：
 	- supervisortd：supervisor 的守护进程服务（用于接收进程管理命令）
 	- supervisorctl：客户端（用于和守护进程通信，发送管理进程的指令）
@@ -154,12 +153,10 @@ echo "Usage: $0 {start|stop|restart|status}" ;;
 esac
 ```
 
-
 - `chmod 755 /etc/init.d/supervisord`
 - `chkconfig supervisord on`
 - 以后启动可以用：`service supervisord start`
 - 以后停止可以用：`service supervisord stop`
-
 
 #### CentOS 7
 

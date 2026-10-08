@@ -1,10 +1,10 @@
 ---
 order: 6
 ---
+
 # 药水酿造指南
 
 ![药水](https://minecraft.wiki/images/Invicon_Water_Bottle.png)
-
 
 > 从酿造台搭建到效果药水，全面掌握 Minecraft 的药水酿造系统。
 

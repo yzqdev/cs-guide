@@ -55,6 +55,7 @@ class BlankFragment : Fragment() {
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />  
 </LinearLayout>
 ```
+
 ## Cat.kt
 ```kotlin
 data class Cat(val name:String,val age:Int)

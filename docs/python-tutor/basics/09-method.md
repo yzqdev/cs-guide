@@ -7,6 +7,7 @@ order: 9
 # 目录 #
 
 ![](http://twowaterimage.oss-cn-beijing.aliyuncs.com/2019-10-14-Python%20%E7%9A%84%20Magic%20Method.png)
+
 # 一、Python 的 Magic Method #
 
 在 Python 中，所有以 "__" 双下划线包起来的方法，都统称为"魔术方法"。比如我们接触最多的 `__init__` 。
@@ -38,7 +39,6 @@ if __name__ == '__main__':
 ```
 
 可以看到，一个类的魔术方法还是挺多的，不过我们只需要了解一些常见和常用的魔术方法就好了。
-
 
 # 二、构造(`__new__`)和初始化(`__init__`) #
 
@@ -103,8 +103,6 @@ if __name__ == '__main__':
 其实在实际开发中，很少会用到 `__new__` 方法，除非你希望能够控制类的创建。通常讲到 `__new__` ，都是牵扯到 `metaclass`(元类)的。
 
 当然当一个对象的生命周期结束的时候，析构函数 `__del__` 方法会被调用。但是这个方法是 Python 自己对对象进行垃圾回收的。
-
-
 
 # 三、属性的访问控制 #
 
@@ -323,8 +321,6 @@ if __name__ == '__main__':
 
 描述器对象 (Meter、Foot) 不能独立存在, 它需要被另一个所有者类 (Distance) 所持有。描述器对象可以访问到其拥有者实例的属性，比如例子中 Foot 的 `instance.meter` 。
 
-
-
 # 五、自定义容器（Container） #
 
 经过之前编章的介绍，我们知道在 Python 中，常见的容器类型有: dict, tuple, list, string。其中也提到过可容器和不可变容器的概念。其中 tuple, string 是不可变容器，dict, list 是可变容器。
@@ -410,13 +406,9 @@ class FunctionalList:
 
 ```
 
-
-
 # 六、运算符相关的魔术方法 #
 
-
 运算符相关的魔术方法实在太多了,j就大概列举下面两类：
-
 
 ## 1、比较运算符 ##
 
@@ -429,7 +421,6 @@ class FunctionalList:
 | `__gt__(self, other)`  | 定义了比较操作符 > 的行为                                                                                                                                                                                                                |
 | `__le__(self, other)`  | 定义了比较操作符 <= 的行为                                                                                                                                                                                                               |
 | `__ge__(self, other)`  | 定义了比较操作符 >= 的行为                                                                                                                                                                                                               |
-
 
 来看个简单的例子就能理解了：
 

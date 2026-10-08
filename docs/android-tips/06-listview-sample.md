@@ -45,6 +45,7 @@ class HomeFragment : Fragment() {
   }  
 }
 ```
+
 ## fragment_home.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -76,6 +77,7 @@ class HomeFragment : Fragment() {
     android:layout_margin="20dp" />  
 </LinearLayout>
 ```
+
 ## Cat.kt
 
 ```kotlin

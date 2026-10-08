@@ -124,4 +124,4 @@ std::string formatDate(const std::string& input) {
 
 ---
 
-**下一步**: [37-编译与链接](37-编译与链接.md)
+**下一步**: [37-编译与链接](37-compilation-and-linking.md)

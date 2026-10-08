@@ -1,6 +1,7 @@
 ---
 order: 1
 ---
+
 # Minecraft 服务器插件开发
 
 > 基于 Paper/Spigot 的 Bukkit 插件开发指南，包含服务端选择、开发环境配置、API 依赖管理等。

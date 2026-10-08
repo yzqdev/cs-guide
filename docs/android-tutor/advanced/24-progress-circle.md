@@ -10,8 +10,6 @@ order: 24
   ProgressDialog progress = new ProgressDialog(this);
 ```
   
-  
-  
   现在，您可以设置此对话框的某些属性。例如，其样式，其文字等
   
 ```java
@@ -19,8 +17,6 @@ order: 24
   progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
   progress.setIndeterminate(true);
 ```
-  
-  
   
   除了这些方法外，**ProgressDialog**类还提供其他方法。
   
@@ -33,8 +29,6 @@ order: 24
   | **setProgress(int value)**                                          | 此方法用于使用某些特定值更新进度对话框   |
   | **show(Context context, CharSequence title, CharSequence message)** | 这是一种静态方法，用于显示进度对话框     |
 
-
-  
   ## 示例
   
   本示例演示了进度对话框的旋转用法。按下按钮时将显示旋转进度对话框。 要尝试使用此示例，您需要在按照以下步骤开发应用程序后，在实际设备上运行此示例。
@@ -142,7 +136,6 @@ order: 24
 
 ```
 
-
 以下是res/layout/activity_main.xml文件的内容-
 
 ```xml
@@ -190,8 +183,6 @@ order: 24
 
 </RelativeLayout>
 ```
-
-  
 
   可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

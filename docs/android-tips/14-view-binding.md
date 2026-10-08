@@ -3,6 +3,7 @@ order: 14
 ---
 
 # 视图绑定
+
 # 视图绑定
 
 在gradle文件中开启ViewBinding功能后,编译器就会为此模块下的每个布局文件都产生一个对应的绑定类。
@@ -32,7 +33,8 @@ class MainActivity : AppCompatActivity() {
     }  
 }
 ```
-###  kotlin(使用viewbinding)
+
+### kotlin(使用viewbinding)
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
@@ -46,10 +48,9 @@ class MainActivity : AppCompatActivity() {
 
 ```
 
- 
 ## fragment使用
 
-###  不使用viewbinding
+### 不使用viewbinding
 
 ```kotlin
 private const val ARG_PARAM1 = "param1"  
@@ -89,6 +90,7 @@ class BlankFragment : Fragment() {
     }  
 }
 ```
+
 ### 使用viewbinding
 ```kotlin
 class HomeFragment : Fragment() {  
@@ -564,7 +566,6 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-
 ## 如何操作
 
 可替代`findViewById`,
@@ -602,6 +603,7 @@ android {
 :::tip
 **注意**：Fragment 的存在时间比其视图长。请务必在 Fragment 的 [`onDestroyView()`](https://developer.android.google.cn/reference/kotlin/androidx/fragment/app/Fragment#ondestroyview) 方法中清除对绑定类实例的所有引用。
 :::
+
 ## 与 findViewById 的区别
 
 与使用 `findViewById` 相比，视图绑定具有一些很显著的优点：
@@ -688,6 +690,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 //[...]
 }
 ```
+
 ## base activity
 
 ```kotlin
@@ -721,7 +724,6 @@ abstract class BaseFragment<T : ViewBinding>(
 class MyFragment : 
     BaseFragment<MyFragmentBinding>(MyFragmentBinding::inflate) { }
 ```
-
 
 ### 安卓baseactivity的viewbinding
 

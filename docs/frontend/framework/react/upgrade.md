@@ -38,7 +38,7 @@ componentDidUpdate(prevProps, prevState) {
   }
 }
 ```
-react18 
+react18
 ```js
 // Before
 import { render } from 'react-dom';

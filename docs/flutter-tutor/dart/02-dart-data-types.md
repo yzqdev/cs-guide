@@ -1,6 +1,7 @@
 ---
 order: 2
 ---
+
 # Dart 数据类型
 
 [官方文档](https://dart.dev/language/built-in-types)

@@ -1,6 +1,7 @@
 ---
 order: 1
 ---
+
 # awesome java
 
 :::tip

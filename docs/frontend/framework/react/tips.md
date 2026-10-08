@@ -84,7 +84,6 @@ export function ImgWrap(){
 
 是`@types/react`和`@types/react-dom`版本不对,重新安装即可
 
-
 ## `Uncaught ReferenceError: global is not defined`
 
 ```ts

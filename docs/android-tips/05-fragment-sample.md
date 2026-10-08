@@ -2,7 +2,6 @@
 order: 5
 ---
 
-
 # fragment 路由实例
 
 ## MainActivity

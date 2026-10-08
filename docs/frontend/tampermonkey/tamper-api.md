@@ -9,12 +9,15 @@
 脚本头以 `// ==UserScript==` 开始，`// ==/UserScript==` 结束，声明脚本的元信息。
 
 ### `@name`
+
 脚本名称，显示在 Tampermonkey 管理面板中。
 
 ### `@namespace`
+
 脚本命名空间，用于区分同名脚本。通常使用网址。
 
 ### `@include`
+
 设置脚本运行的页面 URL。支持通配符 `*`。
 
 ```
@@ -24,6 +27,7 @@
 ```
 
 ### `@match`
+
 与 `@include` 类似，但语法更严格，推荐使用。
 
 ```
@@ -32,6 +36,7 @@
 ```
 
 ### `@exclude`
+
 排除的 URL，在这些页面不运行脚本。
 
 ```
@@ -39,6 +44,7 @@
 ```
 
 ### `@require`
+
 在脚本运行前加载的外部 JavaScript 文件。支持 SRI 完整性校验。
 
 ```
@@ -48,6 +54,7 @@
 ```
 
 ### `@resource`
+
 预加载的资源文件，可通过 `GM_getResourceURL` / `GM_getResourceText` 访问。
 
 ```
@@ -57,6 +64,7 @@
 ```
 
 ### `@connect`
+
 设置 `GM_xmlhttpRequest` 允许跨域访问的域名。
 
 ```
@@ -74,6 +82,7 @@
 - `*`：所有域名
 
 ### `@run-at`
+
 设置脚本注入的时机。
 
 | 值 | 说明 |
@@ -85,6 +94,7 @@
 | `content-menu` | 在浏览器右键菜单中点击时执行（仅桌面 Chrome） |
 
 ### `@grant`
+
 声明脚本使用的 `GM_*` API 和 `unsafeWindow` 等。如果不声明，Tampermonkey 会自动推断。
 
 ```
@@ -96,9 +106,11 @@
 ```
 
 ### `@noframes`
+
 禁止脚本在 iframe 中运行。
 
 ### `@icon` / `@icon64`
+
 脚本图标 URL。
 
 ---
@@ -106,6 +118,7 @@
 ## API 详解
 
 ### `unsafeWindow`
+
 访问页面的原始 `window` 对象，用于调用页面中的 JS 变量和函数。
 
 ```js
@@ -114,6 +127,7 @@ unsafeWindow.showAlert('Hello')
 ```
 
 ### `GM_addStyle(css)`
+
 向页面注入 CSS 样式，返回注入的 style 元素。
 
 ```js
@@ -129,6 +143,7 @@ GM_addStyle(`
 ```
 
 ### `GM_setValue(name, value)` / `GM_getValue(name, defaultValue)`
+
 持久化存储数据（类似 localStorage，但独立于页面）。
 
 ```js
@@ -142,6 +157,7 @@ const settings = GM_getValue('settings', { theme: 'light' })
 ```
 
 ### `GM_deleteValue(name)` / `GM_listValues()`
+
 删除指定键 / 列出所有键。
 
 ```js
@@ -150,6 +166,7 @@ const allKeys = GM_listValues()
 ```
 
 ### `GM_addValueChangeListener(name, callback)` / `GM_removeValueChangeListener(id)`
+
 监听指定存储值的变化。`callback` 参数：`(name, oldValue, newValue, remote)`。
 
 ```js
@@ -161,6 +178,7 @@ GM_removeValueChangeListener(id)
 ```
 
 ### `GM_registerMenuCommand(name, fn, accessKey)` / `GM_unregisterMenuCommand(id)`
+
 在 Tampermonkey 菜单中注册命令。
 
 ```js
@@ -172,6 +190,7 @@ GM_unregisterMenuCommand(id)
 ```
 
 ### `GM_openInTab(url, options)`
+
 在新标签页打开 URL。
 
 ```js
@@ -180,6 +199,7 @@ GM_openInTab('https://example.com', { active: false, insert: true, setParent: tr
 ```
 
 ### `GM_xmlhttpRequest(details)`
+
 发送跨域 HTTP 请求，不受 CORS 限制（需在 `@connect` 中声明域名）。
 
 ```js
@@ -220,6 +240,7 @@ GM_xmlhttpRequest({
 - `onreadystatechange` - 状态变化回调
 
 ### `GM_download(url, name)` / `GM_download(details)`
+
 下载文件到本地。
 
 ```js
@@ -240,6 +261,7 @@ GM_download({
 ```
 
 ### `GM_notification(details)` / `GM_notification(text, title, image, onclick)`
+
 显示桌面通知。
 
 ```js
@@ -260,6 +282,7 @@ GM_notification('内容', '标题', '图片URL', () => { /* onclick */ })
 ```
 
 ### `GM_setClipboard(data, info)`
+
 复制内容到剪贴板。
 
 ```js
@@ -270,6 +293,7 @@ GM_setClipboard('text', { type: 'text', mimetype: 'text/plain' })
 ```
 
 ### `GM_getResourceText(name)` / `GM_getResourceURL(name)`
+
 获取 `@resource` 预加载的内容。
 
 ```js
@@ -280,6 +304,7 @@ const iconUrl = GM_getResourceURL('icon')
 ```
 
 ### `GM_log(message)`
+
 向控制台输出日志（等同于 `console.log`）。
 
 ```js
@@ -287,6 +312,7 @@ GM_log('脚本已启动')
 ```
 
 ### `GM_info`
+
 获取脚本和 Tampermonkey 的信息对象。
 
 ```js
@@ -303,6 +329,7 @@ console.log(GM_info)
 ```
 
 ### `GM_getTab(callback)` / `GM_saveTab(tab)` / `GM_getTabs(callback)`
+
 跨页面（同标签页生命周期）数据共享。
 
 ```js
@@ -321,6 +348,7 @@ GM_getTabs((tabs) => {
 ```
 
 ### `GM_cookie`
+
 通过 `GM_cookie.list()`、`GM_cookie.set()`、`GM_cookie.delete()` 管理 cookie。
 
 ```js
@@ -339,6 +367,7 @@ GM_cookie.delete({ url: 'https://example.com', name: 'token' })
 ```
 
 ### `GM_webRequest`
+
 监听和修改网络请求（Chrome 扩展 API 封装）。
 
 ```js

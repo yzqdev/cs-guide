@@ -45,6 +45,7 @@
 - [javax.xml.bind.annotation.adapters.XmlAdapter#marshal()](http://docs.oracle.com/javase/6/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html#marshal%28BoundType%29) 和 [#unmarshal()](http://docs.oracle.com/javase/6/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html#unmarshal%28ValueType%29)
 
 ### [桥模式](http://en.wikipedia.org/wiki/Bridge_pattern)
+
 暂时没有发现
 
 ### [合成模式](http://en.wikipedia.org/wiki/Composite_pattern)
@@ -59,6 +60,7 @@
 - [javax.servlet.http.HttpServletRequestWrapper](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequestWrapper.html) 和 [HttpServletResponseWrapper](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponseWrapper.html)
 
 ### [门面模式](http://en.wikipedia.org/wiki/Facade_pattern)
+
 [javax.faces.context.FacesContext](http://docs.oracle.com/javaee/6/api/javax/faces/context/FacesContext.html),其内部使用了 [LifeCycle](http://docs.oracle.com/javaee/6/api/javax/faces/lifecycle/Lifecycle.html), [ViewHandler](http://docs.oracle.com/javaee/6/api/javax/faces/application/ViewHandler.html), [NavigationHandler](http://docs.oracle.com/javaee/6/api/javax/faces/application/NavigationHandler.html) 等接口或抽象类，没有这一个门面类，终端就需要考虑如何去使用接口或抽象类（实际上不需要，因为门面类通过反射完成了）
 [javax.faces.context.ExternalContext](http://docs.oracle.com/javaee/6/api/javax/faces/context/ExternalContext.html), 其内部使用了 [ServletContext](http://docs.oracle.com/javaee/6/api/javax/servlet/ServletContext.html), [HttpSession](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpSession.html), [HttpServletRequest](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletRequest.html), [HttpServletResponse](http://docs.oracle.com/javaee/6/api/javax/servlet/http/HttpServletResponse.html) 等
 
@@ -95,7 +97,6 @@
 - [所有 java.util.Iterator 的实现](http://docs.oracle.com/javase/6/docs/api/java/util/Iterator.html)(因此也包含了所有 [java.util.Scanner](http://docs.oracle.com/javase/6/docs/api/java/util/Scanner.html) 的子类)
 - [所有 java.util.Enumeration 的实现](http://docs.oracle.com/javase/6/docs/api/java/util/Enumeration.html)
 
-
 ### [中介模式](http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries)
 
 - [java.util.Timer 中的所有 scheduleXXX() 方法)](http://docs.oracle.com/javase/6/docs/api/java/util/Timer.html)
@@ -129,6 +130,7 @@
 [javax.servlet.Filter#doFilter()](http://docs.oracle.com/javaee/6/api/javax/servlet/Filter.html#doFilter%28javax.servlet.ServletRequest,%20javax.servlet.ServletResponse,%20javax.servlet.FilterChain%29)
 
 ### [模板模式](http://en.wikipedia.org/wiki/Template_method_pattern)
+
 [java.io.InputStream](http://docs.oracle.com/javase/6/docs/api/java/io/InputStream.html), [java.io.OutputStream](http://docs.oracle.com/javase/6/docs/api/java/io/OutputStream.html), [java.io.Reader](http://docs.oracle.com/javase/6/docs/api/java/io/Reader.html) 和 [java.io.Writer](http://docs.oracle.com/javase/6/docs/api/java/io/Writer.html) 的所有 非抽象 方法。
 [java.util.AbstractList](http://docs.oracle.com/javase/6/docs/api/java/util/AbstractList.html), [java.util.AbstractSet](http://docs.oracle.com/javase/6/docs/api/java/util/AbstractSet.html) 和 [java.util.AbstractMap](http://docs.oracle.com/javase/6/docs/api/java/util/AbstractMap.html) 的所有 非抽象 方法。
 
@@ -141,11 +143,9 @@
 [javax.lang.model.type.TypeMirror](http://docs.oracle.com/javase/6/docs/api/javax/lang/model/type/TypeMirror.html) 和 [TypeVisitor](http://docs.oracle.com/javase/6/docs/api/javax/lang/model/type/TypeVisitor.html)
 [java.nio.file.FileVisitor](http://docs.oracle.com/javase/7/docs/api/java/nio/file/FileVisitor.html) 和 [SimpleFileVisitor](http://docs.oracle.com/javase/7/docs/api/java/nio/file/SimpleFileVisitor.html)
 
-
 附录拓展：
 
 - [设计模式-百度百科](http://baike.baidu.com/link?url=_XNWwtm_SeObjikESBkyse_nfXm2HIOOkwJ1XwyVZALLU36AG36DhOMN0Utln5-nJBT6aAplJFOGXCdwQSsm3_)
-
 
 - stackoverflow原址:
 http://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries

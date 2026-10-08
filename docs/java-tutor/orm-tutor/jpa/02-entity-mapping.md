@@ -231,6 +231,7 @@ public class WechatPayment extends Payment {
 ```
 
 ### 策略三：每类一表（TABLE_PER_CLASS）
+
 不推荐使用，因为查询时性能较差且不支持 IDENTITY 生成策略。
 
 ## @DynamicInsert / @DynamicUpdate

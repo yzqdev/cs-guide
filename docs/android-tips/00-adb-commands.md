@@ -4,7 +4,6 @@ order: 0
 
 # adb命令
 
-
 ## 拍照
 ```
 
@@ -49,11 +48,13 @@ adb disconnect  断开无线
 adb tcpip 5555  让设备改为 TCP 监听模式
 adb -s <序列号> <任意命令>  多设备时精准指定
 ```
+
 ## 服务本身
 ```
 adb start-server / adb kill-server  重启 ADB 后台
 adb -P <端口> start-server  改默认 5037 端口
 ```
+
 ## APK 安装与卸载
 ```
 

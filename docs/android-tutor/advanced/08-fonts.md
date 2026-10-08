@@ -10,23 +10,17 @@ order: 8
   TextView tx = (TextView)findViewById(R.id.textview1);
 ```
   
-  
-  
   您需要做的下一件事是调用**Typeface**类**createFromAsset()**的静态方法以从资产中获取自定义字体。其语法如下-
   
 ```java
   Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/font name.ttf");
 ```
   
-  
-  
   您需要做的最后一件事是将此自定义字体对象设置为TextView Typeface属性。您需要调用setTypeface()方法来执行此操作。其语法如下-
   
 ```java
   tx.setTypeface(custom_font);
 ```
-  
-  
   
   除了这些方法之外，Typeface类中还定义了其他方法，可用于更有效地处理字体。
   
@@ -37,8 +31,6 @@ order: 8
   | **createFromFile(String path)**          | 从指定的字体文件创建一个新的字样                              |
   | **defaultFromStyle(int style)**          | 根据指定的样式返回默认的Typeface对象之一                      |
   | **getStyle()**                           | 返回字体的固有样式属性                                        |
-  
-
   
   ## 示例
   
@@ -86,7 +78,6 @@ public class MainActivity extends Activity {
 }
 
 ```
-
 
 以下是res/layout/activity_main.xml文件的内容-
 
@@ -147,8 +138,6 @@ public class MainActivity extends Activity {
 
 </RelativeLayout>
 ````
-
-
 
 可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

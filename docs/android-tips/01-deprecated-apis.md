@@ -127,7 +127,9 @@ class Fragment{
 
 }
 ```
+
 ## handler()被弃用
+
 ### 使用java
 
 ```java
@@ -140,6 +142,7 @@ new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
 }, 3000);
  
 ```
+
 ### 使用kotlin
 ```kotlin
 ```scss

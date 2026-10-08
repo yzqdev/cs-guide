@@ -1,6 +1,5 @@
 # Ansible 安装和配置
 
-
 ## Ansible 说明
 
 - Ansible 官网：<https://www.ansible.com/>
@@ -29,7 +28,6 @@ ansible.cfg (脚本所在当前目录下)
 /etc/ansible/ansible.cfg（安装后会自动生成）
 ```
 
-
 #### 配置远程主机地址 (Ansible 称这些地址为 Inventory)
 
 - 假设我有 3 台机子：
@@ -52,9 +50,7 @@ ansible.cfg (脚本所在当前目录下)
 
 - 其中 `[hadoop-host]` 表示这些主机代表的一个组名
 
-
 ###### 如果不设置免密，直接采用账号密码（容易泄露信息）
-
 
 - 编辑 Ansible 配置文件：`vim /etc/ansible/hosts`
 - 添加如下内容
@@ -65,8 +61,6 @@ hadoop-master ansible_host=192.168.0.223 ansible_user=root ansible_ssh_pass=1234
 hadoop-node1  ansible_host=192.168.0.70 ansible_user=root ansible_ssh_pass=123456
 hadoop-node2  ansible_host=192.168.0.103 ansible_user=root ansible_ssh_pass=123456
 ```
-
-
 
 ## 简单使用（`ad hoc`方式）
 
@@ -168,9 +162,7 @@ PLAY RECAP *********************************************************************
 
 ## 更多 playbook 实战
 
-
 #### 禁用防火墙（CentOS 7.x）
-
 
 - 创建脚本文件：`vim /opt/disable-firewalld-playbook.yml`
 
@@ -189,10 +181,7 @@ PLAY RECAP *********************************************************************
          - setenforce 0
 ```
 
-
-
 #### 基础环境（CentOS 7.x）
-
 
 - 创建脚本文件：`vim /opt/install-basic-playbook.yml`
 
@@ -243,11 +232,9 @@ PLAY RECAP *********************************************************************
          
 ```
 
-
 - 执行命令：`ansible-playbook /opt/install-basic-playbook.yml`
 
 #### 修改 hosts
-
 
 - 创建脚本文件：`vim /opt/hosts-playbook.yml`
 
@@ -266,10 +253,7 @@ PLAY RECAP *********************************************************************
           192.168.0.223     linux05
 ```
 
-
 - 执行命令：`ansible-playbook /opt/hosts-playbook.yml`
-
-
 
 #### 部署 JDK 
 
@@ -305,10 +289,7 @@ PLAY RECAP *********************************************************************
       shell: source /etc/profile
 ```
 
-
 - 执行命令：`ansible-playbook /opt/jdk8-playbook.yml`
-
-
 
 #### 部署 Hadoop 集群 
 
@@ -346,15 +327,9 @@ PLAY RECAP *********************************************************************
       shell: source /etc/profile
 ```
 
-
 - 执行命令：`ansible-playbook /opt/hadoop-playbook.yml`
 
-
-
-
-
 -------------------------------------------------------------------
-
 
 ## 参考
 

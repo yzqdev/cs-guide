@@ -3,7 +3,7 @@
 <CanvasVSSvg />
 
 :::details
-@[code vue](@/components/CanvasVSSVg.vue)
+@[code vue](@/components/CanvasVSSvg.vue)
 :::
 
 下面是html中的svg代码

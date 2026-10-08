@@ -16,16 +16,12 @@ order: 11
   </ImageSwitcher>
 ```
   
-  
-  
   现在，我们在java文件中创建一个**ImageSwithcer**实例，并获取此XML组件的引用。其语法如下-
   
 ```java
   private ImageSwitcher imageSwitcher;
   imageSwitcher = (ImageSwitcher)findViewById(R.id.imageSwitcher1);
 ```
-  
-  
   
   接下来，我们需要实现ViewFactory接口并实现未实现的方法，该方法返回imageView。它的语法如下-
   
@@ -39,8 +35,6 @@ order: 11
   }
 ```
   
-  
-  
   您需要做的最后一件事是将**Animation**添加到**ImageSwitcher**。您需要通过调用静态方法loadAnimation通过AnimationUtilities类来定义Animation类的对象。其语法如下-
   
 ```java
@@ -48,8 +42,6 @@ order: 11
   imageSwitcher.setInAnimation(in);
   imageSwitcher.setOutAnimation(out);   
 ```
-  
-  
   
   setInAnimaton方法设置对象在屏幕上的外观动画，而setOutAnimation则相反。方法loadAnimation()创建一个动画对象。除了这些方法之外，ImageSwitcher类中还定义了其他方法。它们定义如下-
   
@@ -62,8 +54,6 @@ order: 11
   | **onInitializeAccessibilityEvent (AccessibilityEvent event)**      | 使用有关此View的信息（事件源）初始化AccessibilityEvent         |
   | **onInitializeAccessibilityNodeInfo (AccessibilityNodeInfo info)** | 使用有关此视图的信息初始化AccessibilityNodeInfy                |
 
-
-  
   ## 示例
   
   下面的示例演示了位图上的某些图像切换器效果。它创建了一个基本应用程序，可让您查看图像上的动画效果。要试验此示例，您需要在实际设备上运行它。
@@ -133,7 +123,6 @@ public class MainActivity extends Activity {
 
 ```
 
-
 以下是res/layout/activity_main.xml文件的内容-
 
 ```xml
@@ -197,8 +186,6 @@ public class MainActivity extends Activity {
 
 </RelativeLayout>
 ```
-
-
 
 可以尝试运行刚刚修改的应用程序。我假设您在进行环境设置时已创建了AVD。要从Android Studio运行该应用，请打开您项目的活动文件之一，然后工具栏中单击“运行”图标。Android studio将应用程序安装在您的AVD上并启动它，如果设置和应用程序一切正常，它将显示在“模拟器”窗口下面-
 

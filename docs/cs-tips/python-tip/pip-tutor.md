@@ -1,4 +1,5 @@
 # pip配置
+
 :::tip
 常用的全局包
 ```python
@@ -6,6 +7,7 @@ pip install -U you-get pipenv rembg pyinstaller auto-py-to-exe
 ```
 
 :::
+
 ## 安装
 
 python3已经自带了pip,运行`python -m pip -V` ,就可以看到了

@@ -218,4 +218,4 @@ auto [id, name] = getInfo();  // id=1, name="hello"
 
 ---
 
-**下一步**: [08-数组与字符串](08-数组与字符串.md)
+**下一步**: [08-数组与字符串](08-arrays-and-strings.md)

@@ -6,9 +6,9 @@ Win + R打开搜索框，输入`regedit` 打开注册表
 
 ### 系统变量：
  
-
 - 在注册表框中输入: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment`
 - 右键`Environment` --> 导出 --> 保存文本为 `.reg`文件即可
+
 ### 用户变量：
 
 - 在注册表框中输入: `HKEY_CURRENT_USER\Environment`
@@ -21,6 +21,7 @@ Win + R打开搜索框，输入`regedit` 打开注册表
 :::tip
 
 ## maven
+
 默认在`C:\Users\用户名\.m2\repository\`,修改方法:
 修改.m2文件夹中,setting.xml,添加
 ```xml
@@ -28,13 +29,14 @@ Win + R打开搜索框，输入`regedit` 打开注册表
 ```
 
 ## gradle
+
 设置环境变量`GRADLE_USER_HOME`为`D:\configuration\.gradle`
 
 :::
+
 ### rust
 
 [cargo环境变量](https://rust-lang.github.io/rustup/environment-variables.html)
-
 
 cargo默认cache在`~/.cargo`路径,要更改这个路径,可以修改`CARGO_HOME`为`D:\configuration\.cargo`
 
@@ -53,11 +55,12 @@ registry = "git://mirrors.ustc.edu.cn/crates.io-index"
 ```
 也可以使用字节的代理
 [https://rsproxy.cn/#getStarted](https://rsproxy.cn/#getStarted)
+
 ### nuget
+
 修改nuget环境变量,官方文档链接[https://learn.microsoft.com/zh-cn/nuget/consume-packages/managing-the-global-packages-and-cache-folders]
 
 下面是老办法,推荐用上面官网的方法
-
 
 我们通过NuGet包管理器下载的引用包，默认是存放在C盘的，存储路径一般是：
 ```
@@ -94,25 +97,27 @@ C:\Users\{系统用户名}\AppData\Roaming\NuGet
 配置`PUB_HOSTED_URL`为`https://pub.flutter-io.cn`
 
 ## nodejs
+
 配置`ELECTRON_MIRROR`为`https://npmmirror.com/mirrors/electron/`
 
 ### deno
 
 配置`DENO_DIR`为`D:\configuration\denocache`
 
-
 配置`NPM_CONFIG_REGISTRY`为`https://registry.npmmirror.com`
+
 ### python
 
 :::tip
+
 ### poetry
+
 poetry cache路径 `C:\Users\<username>\AppData\Roaming\pypoetry`
 ```
   
 poetry config --list
 ```
 :::
-
 
 jetbrains系列,自己配,不解释
 

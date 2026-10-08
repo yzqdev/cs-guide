@@ -1,6 +1,7 @@
 ---
 order: 17
 ---
+
 # Minecraft MOD 推荐
 
 ![铁锭](https://minecraft.wiki/images/Invicon_Iron_Ingot.png) ![下界合金锭](https://minecraft.wiki/images/Invicon_Netherite_Ingot.png) ![烈焰棒](https://minecraft.wiki/images/Invicon_Blaze_Rod.png) ![末影珍珠](https://minecraft.wiki/images/Invicon_Ender_Pearl.png) ![书](https://minecraft.wiki/images/Invicon_Book.png)

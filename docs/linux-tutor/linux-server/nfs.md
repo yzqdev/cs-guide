@@ -1,7 +1,5 @@
 # NFS（Network FileSystem）介绍
 
-
-
 ## NFS 安装
 
 - 查看是否已安装：
@@ -41,8 +39,8 @@
 
 ## NFS 资料
 
-- <http://wiki.jikexueyuan.com/project/linux/nfs.html> 
-- <http://www.jb51.net/os/RedHat/77993.html> 
-- <http://www.cnblogs.com/Charles-Zhang-Blog/archive/2013/02/05/2892879.html> 
-- <http://www.linuxidc.com/Linux/2013-08/89154.htm> 
-- <http://www.centoscn.com/image-text/config/2015/0111/4475.html> 
+- <http://wiki.jikexueyuan.com/project/linux/nfs.html>
+- <http://www.jb51.net/os/RedHat/77993.html>
+- <http://www.cnblogs.com/Charles-Zhang-Blog/archive/2013/02/05/2892879.html>
+- <http://www.linuxidc.com/Linux/2013-08/89154.htm>
+- <http://www.centoscn.com/image-text/config/2015/0111/4475.html>
