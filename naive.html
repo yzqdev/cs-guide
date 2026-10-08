@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>naive</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    
+    <script src="https://unpkg.com/naive-ui"></script>  
+  </head>
+  <body>
+    <div id="app">
+      <n-button>{{ message }}</n-button>
+    </div>
+    <script type="module">
+     
+      
+      const App = {
+        setup() {
+          return {
+            message: 'naive',
+          }
+        },
+      }
+      const app =Vue. createApp(App)
+       app.use(naive)
+      app.mount('#app')
+    </script>
+  </body>
+</html>
